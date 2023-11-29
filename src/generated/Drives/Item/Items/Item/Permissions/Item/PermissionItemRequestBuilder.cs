@@ -21,12 +21,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
     /// </summary>
     public class PermissionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null. This API is available in the following national cloud deployments.
+        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-delete?view=graph-rest-1.0";
+            command.Description = "Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -67,12 +67,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from. This API is available in the following national cloud deployments.
+        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item's ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-get?view=graph-rest-1.0";
+            command.Description = "Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item's ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -145,12 +145,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way. This API is available in the following national cloud deployments.
+        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -219,7 +219,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
         public PermissionItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/permissions/{permission%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null. This API is available in the following national cloud deployments.
+        /// Remove access to a DriveItem. Only sharing permissions that are not inherited can be deleted.The inheritedFrom property must be null.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +235,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from. This API is available in the following national cloud deployments.
+        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -251,7 +251,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way. This API is available in the following national cloud deployments.
+        /// Update the properties of a sharing permission by patching the permission resource. Only the roles property can be modified this way.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from. This API is available in the following national cloud deployments.
+        /// Return the effective sharing permission for a particular permission resource. Effective permissions of an item can come from two sources: permissions set directly on the item itself or permissions that are inherited from the item&apos;s ancestors. Callers can differentiate if the permission is inherited or not by checking the inheritedFrom property.This property is an ItemReference resource referencing the ancestor that the permission is inherited from.
         /// </summary>
         public class PermissionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

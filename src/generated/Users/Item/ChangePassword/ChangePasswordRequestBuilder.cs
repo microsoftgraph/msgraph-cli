@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.ChangePassword {
     /// </summary>
     public class ChangePasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Enable the user to update their password. Any user can update their password without belonging to any administrator role. This API is available in the following national cloud deployments.
+        /// Enable the user to update their password. Any user can update their password without belonging to any administrator role.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-changepassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Enable the user to update their password. Any user can update their password without belonging to any administrator role. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-changepassword?view=graph-rest-1.0";
+            command.Description = "Enable the user to update their password. Any user can update their password without belonging to any administrator role.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-changepassword?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.ChangePassword {
         public ChangePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/changePassword", rawUrl) {
         }
         /// <summary>
-        /// Enable the user to update their password. Any user can update their password without belonging to any administrator role. This API is available in the following national cloud deployments.
+        /// Enable the user to update their password. Any user can update their password without belonging to any administrator role.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

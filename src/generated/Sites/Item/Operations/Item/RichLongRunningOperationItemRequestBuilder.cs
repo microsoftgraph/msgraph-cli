@@ -59,12 +59,12 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list. This API is available in the following national cloud deployments.
+        /// Get the status of a rich long-running operation on a site or a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the status of a rich long-running operation on a site or a list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0";
+            command.Description = "Get the status of a rich long-running operation on a site or a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -199,7 +199,7 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list. This API is available in the following national cloud deployments.
+        /// Get the status of a rich long-running operation on a site or a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list. This API is available in the following national cloud deployments.
+        /// Get the status of a rich long-running operation on a site or a list.
         /// </summary>
         public class RichLongRunningOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

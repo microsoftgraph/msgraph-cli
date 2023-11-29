@@ -51,12 +51,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder. This API is available in the following national cloud deployments.
+        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
+            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -122,12 +122,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder. This API is available in the following national cloud deployments.
+        /// Get a collection of child folders under the specified contact folder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a collection of child folders under the specified contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
+            command.Description = "Get a collection of child folders under the specified contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -233,7 +233,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         public ChildFoldersRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder. This API is available in the following national cloud deployments.
+        /// Get a collection of child folders under the specified contact folder.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder. This API is available in the following national cloud deployments.
+        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +267,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder. This API is available in the following national cloud deployments.
+        /// Get a collection of child folders under the specified contact folder.
         /// </summary>
         public class ChildFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

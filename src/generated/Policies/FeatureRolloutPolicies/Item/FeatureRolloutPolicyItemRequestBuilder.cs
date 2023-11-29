@@ -47,12 +47,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a featureRolloutPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete a featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -81,12 +81,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a featureRolloutPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -132,12 +132,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of featureRolloutPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-update?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -194,7 +194,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         public FeatureRolloutPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a featureRolloutPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -210,7 +210,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +226,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of featureRolloutPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +244,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a featureRolloutPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// </summary>
         public class FeatureRolloutPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

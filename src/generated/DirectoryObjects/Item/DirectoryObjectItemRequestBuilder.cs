@@ -55,12 +55,12 @@ namespace ApiSdk.DirectoryObjects.Item {
             return command;
         }
         /// <summary>
-        /// Delete a directory object, for example, a group, user, application, or service principal. This API is available in the following national cloud deployments.
+        /// Delete a directory object, for example, a group, user, application, or service principal.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a directory object, for example, a group, user, application, or service principal. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-delete?view=graph-rest-1.0";
+            command.Description = "Delete a directory object, for example, a group, user, application, or service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-delete?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -89,12 +89,12 @@ namespace ApiSdk.DirectoryObjects.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a directoryObject object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a directoryObject object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a directoryObject object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a directoryObject object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-get?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -246,7 +246,7 @@ namespace ApiSdk.DirectoryObjects.Item {
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryObjects/{directoryObject%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a directory object, for example, a group, user, application, or service principal. This API is available in the following national cloud deployments.
+        /// Delete a directory object, for example, a group, user, application, or service principal.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +262,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a directoryObject object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a directoryObject object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +296,7 @@ namespace ApiSdk.DirectoryObjects.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a directoryObject object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a directoryObject object.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

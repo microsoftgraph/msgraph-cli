@@ -48,12 +48,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a custom authenticationStrengthPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a custom authenticationStrengthPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a custom authenticationStrengthPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0";
+            command.Description = "Delete a custom authenticationStrengthPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthroot-delete-policies?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -82,12 +82,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationStrengthPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an authenticationStrengthPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an authenticationStrengthPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an authenticationStrengthPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-get?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -133,12 +133,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action. This API is available in the following national cloud deployments.
+        /// Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthpolicy-update?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
         public AuthenticationStrengthPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a custom authenticationStrengthPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a custom authenticationStrengthPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationStrengthPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an authenticationStrengthPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -257,7 +257,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action. This API is available in the following national cloud deployments.
+        /// Update the properties of an authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do so, use the Update allowed combinations action.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -275,7 +275,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationStrengthPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an authenticationStrengthPolicy object.
         /// </summary>
         public class AuthenticationStrengthPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

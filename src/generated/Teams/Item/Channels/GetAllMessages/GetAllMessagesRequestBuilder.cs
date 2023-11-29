@@ -163,9 +163,11 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             /// <summary>The payment model for the API</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("model")]
             public string? Model { get; set; }
 #nullable restore
 #else
+            [QueryParameter("model")]
             public string Model { get; set; }
 #endif
             /// <summary>Order items by property values</summary>

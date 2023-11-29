@@ -54,12 +54,12 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEventType object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEventType object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentioneventtype-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a retentionEventType object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentioneventtype-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a retentionEventType object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentioneventtype-get?view=graph-rest-1.0";
             var retentionEventTypeIdOption = new Option<string>("--retention-event-type-id", description: "The unique identifier of retentionEventType") {
             };
             retentionEventTypeIdOption.IsRequired = true;
@@ -182,7 +182,7 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEventType object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEventType object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -216,7 +216,7 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEventType object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEventType object.
         /// </summary>
         public class RetentionEventTypeItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

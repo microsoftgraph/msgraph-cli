@@ -20,12 +20,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
     /// </summary>
     public class BookingCustomQuestionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Delete a bookingCustomQuestion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a bookingCustomQuestion object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0";
+            command.Description = "Delete a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a bookingCustomQuestion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a bookingCustomQuestion object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Update the properties of a bookingCustomQuestion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookingCustomQuestion object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -185,7 +185,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
         public BookingCustomQuestionItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customQuestions/{bookingCustomQuestion%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Delete a bookingCustomQuestion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +201,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a bookingCustomQuestion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Update the properties of a bookingCustomQuestion object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a bookingCustomQuestion object.
         /// </summary>
         public class BookingCustomQuestionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -53,9 +53,9 @@ namespace ApiSdk.Models.ODataErrors {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"client-request-id", n => { ClientRequestId = n.GetStringValue(); } },
                 {"Date", n => { Date = n.GetDateTimeOffsetValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"client-request-id", n => { ClientRequestId = n.GetStringValue(); } },
                 {"request-id", n => { RequestId = n.GetStringValue(); } },
             };
         }

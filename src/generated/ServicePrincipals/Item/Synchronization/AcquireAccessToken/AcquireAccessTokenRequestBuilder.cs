@@ -19,12 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken {
     /// </summary>
     public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.
+        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
+            command.Description = "Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken {
         public AcquireAccessTokenRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/acquireAccessToken", rawUrl) {
         }
         /// <summary>
-        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.
+        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

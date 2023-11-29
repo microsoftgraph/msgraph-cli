@@ -91,11 +91,11 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of an onPremisesDirectorySynchronization object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -195,7 +195,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
         public OnPremisesSynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/directory/onPremisesSynchronization{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +229,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an onPremisesDirectorySynchronization object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         public class OnPremisesSynchronizationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

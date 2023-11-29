@@ -45,9 +45,9 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"failedTasks", n => { FailedTasks = n.GetIntValue(); } },
                 {"failedUsers", n => { FailedUsers = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"successfulUsers", n => { SuccessfulUsers = n.GetIntValue(); } },
                 {"totalTasks", n => { TotalTasks = n.GetIntValue(); } },
                 {"totalUsers", n => { TotalUsers = n.GetIntValue(); } },

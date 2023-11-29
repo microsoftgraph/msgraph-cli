@@ -99,13 +99,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"color", n => { Color = n.GetStringValue(); } },
                 {"criterion1", n => { Criterion1 = n.GetStringValue(); } },
                 {"criterion2", n => { Criterion2 = n.GetStringValue(); } },
                 {"dynamicCriteria", n => { DynamicCriteria = n.GetStringValue(); } },
                 {"filterOn", n => { FilterOn = n.GetStringValue(); } },
                 {"icon", n => { Icon = n.GetObjectValue<WorkbookIcon>(WorkbookIcon.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
                 {"values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };

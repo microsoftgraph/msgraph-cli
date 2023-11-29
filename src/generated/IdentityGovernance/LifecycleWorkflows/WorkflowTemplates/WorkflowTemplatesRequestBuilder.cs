@@ -48,12 +48,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates {
             return command;
         }
         /// <summary>
-        /// Get a list of the workflowTemplate objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the workflowTemplate objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflowtemplates?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the workflowTemplate objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflowtemplates?view=graph-rest-1.0";
+            command.Description = "Get a list of the workflowTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflowtemplates?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -153,7 +153,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates {
         public WorkflowTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflowTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the workflowTemplate objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the workflowTemplate objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -169,7 +169,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the workflowTemplate objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the workflowTemplate objects and their properties.
         /// </summary>
         public class WorkflowTemplatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

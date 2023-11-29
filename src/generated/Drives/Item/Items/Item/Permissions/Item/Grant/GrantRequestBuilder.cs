@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item.Grant {
     /// </summary>
     public class GrantRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Grant users access to a link represented by a permission][]. This API is available in the following [national cloud deployments.
+        /// Grant users access to a link represented by a [permission][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a permission][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
+            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -104,7 +104,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item.Grant {
         public GrantRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/permissions/{permission%2Did}/grant", rawUrl) {
         }
         /// <summary>
-        /// Grant users access to a link represented by a permission][]. This API is available in the following [national cloud deployments.
+        /// Grant users access to a link represented by a [permission][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

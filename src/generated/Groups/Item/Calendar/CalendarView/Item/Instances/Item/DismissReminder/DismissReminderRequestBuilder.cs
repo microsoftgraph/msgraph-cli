@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.DismissRe
     /// </summary>
     public class DismissReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Dismiss a reminder that has been triggered for an event in a user calendar. This API is available in the following national cloud deployments.
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0";
+            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -70,7 +70,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.DismissRe
         public DismissReminderRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/dismissReminder", rawUrl) {
         }
         /// <summary>
-        /// Dismiss a reminder that has been triggered for an event in a user calendar. This API is available in the following national cloud deployments.
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

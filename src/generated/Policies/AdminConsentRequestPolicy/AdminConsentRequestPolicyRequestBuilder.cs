@@ -47,12 +47,12 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an adminConsentRequestPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an adminConsentRequestPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an adminConsentRequestPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -164,7 +164,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an adminConsentRequestPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -198,7 +198,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an adminConsentRequestPolicy object.
         /// </summary>
         public class AdminConsentRequestPolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

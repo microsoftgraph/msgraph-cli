@@ -292,12 +292,12 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item {
             return command;
         }
         /// <summary>
-        /// Update an event object. This API is available in the following national cloud deployments.
+        /// Update an event object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an event object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0";
+            command.Description = "Update an event object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -422,7 +422,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an event object. This API is available in the following national cloud deployments.
+        /// Update an event object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

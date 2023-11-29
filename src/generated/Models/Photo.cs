@@ -65,7 +65,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"cameraMake", n => { CameraMake = n.GetStringValue(); } },
                 {"cameraModel", n => { CameraModel = n.GetStringValue(); } },
                 {"exposureDenominator", n => { ExposureDenominator = n.GetDoubleValue(); } },
@@ -73,6 +72,7 @@ namespace ApiSdk.Models {
                 {"fNumber", n => { FNumber = n.GetDoubleValue(); } },
                 {"focalLength", n => { FocalLength = n.GetDoubleValue(); } },
                 {"iso", n => { Iso = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"orientation", n => { Orientation = n.GetIntValue(); } },
                 {"takenDateTime", n => { TakenDateTime = n.GetDateTimeOffsetValue(); } },
             };

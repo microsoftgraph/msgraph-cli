@@ -48,12 +48,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return command;
         }
         /// <summary>
-        /// Create a new delegatedAdminAccessAssignment object. This API is available in the following national cloud deployments.
+        /// Create a new delegatedAdminAccessAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-post-accessassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new delegatedAdminAccessAssignment object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-post-accessassignments?view=graph-rest-1.0";
+            command.Description = "Create a new delegatedAdminAccessAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-post-accessassignments?view=graph-rest-1.0";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminAccessAssignment objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the delegatedAdminAccessAssignment objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminAccessAssignment objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0";
+            command.Description = "Get a list of the delegatedAdminAccessAssignment objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-accessassignments?view=graph-rest-1.0";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -209,7 +209,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
         public AccessAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/accessAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminAccessAssignment objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the delegatedAdminAccessAssignment objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -225,7 +225,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return requestInfo;
         }
         /// <summary>
-        /// Create a new delegatedAdminAccessAssignment object. This API is available in the following national cloud deployments.
+        /// Create a new delegatedAdminAccessAssignment object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +243,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminAccessAssignment objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the delegatedAdminAccessAssignment objects and their properties.
         /// </summary>
         public class AccessAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

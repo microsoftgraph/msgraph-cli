@@ -47,13 +47,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object. This API is available in the following national cloud deployments.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the identity providers in a b2xIdentityUserFlow object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
+            command.Description = "Get the identity providers in a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -159,7 +159,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         public IdentityProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/identityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object. This API is available in the following national cloud deployments.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
@@ -176,7 +176,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object. This API is available in the following national cloud deployments.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

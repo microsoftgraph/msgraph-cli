@@ -95,7 +95,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"averageInboundJitter", n => { AverageInboundJitter = n.GetTimeSpanValue(); } },
                 {"averageInboundPacketLossRateInPercentage", n => { AverageInboundPacketLossRateInPercentage = n.GetDoubleValue(); } },
                 {"averageInboundRoundTripDelay", n => { AverageInboundRoundTripDelay = n.GetTimeSpanValue(); } },
@@ -114,6 +113,7 @@ namespace ApiSdk.Models {
                 {"maximumOutboundRoundTripDelay", n => { MaximumOutboundRoundTripDelay = n.GetTimeSpanValue(); } },
                 {"mediaDuration", n => { MediaDuration = n.GetTimeSpanValue(); } },
                 {"networkLinkSpeedInBytes", n => { NetworkLinkSpeedInBytes = n.GetLongValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"outboundPackets", n => { OutboundPackets = n.GetLongValue(); } },
                 {"remoteIPAddress", n => { RemoteIPAddress = n.GetStringValue(); } },
                 {"remotePort", n => { RemotePort = n.GetIntValue(); } },

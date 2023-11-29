@@ -59,12 +59,12 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call. This API is available in the following national cloud deployments.
+        /// Get the status of an operation that adds the large gallery view to a call.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the status of an operation that adds the large gallery view to a call. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0";
+            command.Description = "Get the status of an operation that adds the large gallery view to a call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/addlargegalleryviewoperation-get?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -199,7 +199,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call. This API is available in the following national cloud deployments.
+        /// Get the status of an operation that adds the large gallery view to a call.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call. This API is available in the following national cloud deployments.
+        /// Get the status of an operation that adds the large gallery view to a call.
         /// </summary>
         public class CommsOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

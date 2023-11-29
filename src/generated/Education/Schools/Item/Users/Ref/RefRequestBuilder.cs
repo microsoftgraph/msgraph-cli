@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
+            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return command;
         }
         /// <summary>
-        /// Add a user to a school. This API is available in the following national cloud deployments.
+        /// Add a user to a school.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a user to a school. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0";
+            command.Description = "Add a user to a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a user to a school. This API is available in the following national cloud deployments.
+        /// Add a user to a school.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -19,12 +19,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
     /// </summary>
     public class GetStaffAvailabilityRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the availability information of staff members of a Microsoft Bookings calendar. This API is available in the following national cloud deployments.
+        /// Get the availability information of staff members of a Microsoft Bookings calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Get the availability information of staff members of a Microsoft Bookings calendar. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0";
+            command.Description = "Get the availability information of staff members of a Microsoft Bookings calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -92,7 +92,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
         public GetStaffAvailabilityRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/getStaffAvailability", rawUrl) {
         }
         /// <summary>
-        /// Get the availability information of staff members of a Microsoft Bookings calendar. This API is available in the following national cloud deployments.
+        /// Get the availability information of staff members of a Microsoft Bookings calendar.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

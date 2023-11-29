@@ -117,12 +117,12 @@ namespace ApiSdk.Users.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees. This API is available in the following national cloud deployments.
+        /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer's calendar sends a cancellation message to the meeting attendees. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-delete?view=graph-rest-1.0";
+            command.Description = "Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer's calendar sends a cancellation message to the meeting attendees.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -212,12 +212,12 @@ namespace ApiSdk.Users.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user's calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-get?view=graph-rest-1.0";
+            command.Description = "Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user's calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -294,12 +294,12 @@ namespace ApiSdk.Users.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of the event object. This API is available in the following national cloud deployments.
+        /// Update the properties of the event object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of the event object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of the event object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -392,7 +392,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees. This API is available in the following national cloud deployments.
+        /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -408,7 +408,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -424,7 +424,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of the event object. This API is available in the following national cloud deployments.
+        /// Update the properties of the event object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -442,7 +442,7 @@ namespace ApiSdk.Users.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.
         /// </summary>
         public class EventItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -265,9 +265,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("end")]
             public string? End { get; set; }
 #nullable restore
 #else
+            [QueryParameter("end")]
             public string End { get; set; }
 #endif
             /// <summary>Expand related entities</summary>
@@ -326,9 +328,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("start")]
             public string? Start { get; set; }
 #nullable restore
 #else
+            [QueryParameter("start")]
             public string Start { get; set; }
 #endif
             /// <summary>Show only the first n items</summary>

@@ -76,12 +76,12 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Delete a user. This API is available in the following national cloud deployments.
+        /// Delete a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-delete?view=graph-rest-1.0";
+            command.Description = "Delete a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-delete?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -110,12 +110,12 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationUser object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an educationUser object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an educationUser object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -161,12 +161,12 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationUser object. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationUser object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationUser object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an educationUser object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -318,7 +318,7 @@ namespace ApiSdk.Education.Users.Item {
         public EducationUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a user. This API is available in the following national cloud deployments.
+        /// Delete a user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -334,7 +334,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationUser object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -350,7 +350,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationUser object. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationUser object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -368,7 +368,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationUser object.
         /// </summary>
         public class EducationUserItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

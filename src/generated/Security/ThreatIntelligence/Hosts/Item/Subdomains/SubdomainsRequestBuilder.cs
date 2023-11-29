@@ -46,12 +46,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains {
             return command;
         }
         /// <summary>
-        /// Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
+        /// Get the list of subdomain resources associated with a host.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-subdomains?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-subdomains?view=graph-rest-1.0";
+            command.Description = "Get the list of subdomain resources associated with a host.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-subdomains?view=graph-rest-1.0";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains {
         public SubdomainsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/subdomains{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
+        /// Get the list of subdomain resources associated with a host.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of subdomain resources associated with a host. This API is available in the following national cloud deployments.
+        /// Get the list of subdomain resources associated with a host.
         /// </summary>
         public class SubdomainsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

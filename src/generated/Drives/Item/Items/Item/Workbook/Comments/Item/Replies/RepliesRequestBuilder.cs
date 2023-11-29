@@ -109,11 +109,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of workbookCommentReply object. This API is available in the following national cloud deployments.";
+            command.Description = "Retrieve the properties and relationships of workbookCommentReply object.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -231,7 +231,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
         public RepliesRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +265,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookCommentReply object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
         public class RepliesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

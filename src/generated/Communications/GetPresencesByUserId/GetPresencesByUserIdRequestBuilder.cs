@@ -19,12 +19,12 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
     /// </summary>
     public class GetPresencesByUserIdRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the presence information for multiple users. This API is available in the following national cloud deployments.
+        /// Get the presence information for multiple users.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Get the presence information for multiple users. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0";
+            command.Description = "Get the presence information for multiple users.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -86,7 +86,7 @@ namespace ApiSdk.Communications.GetPresencesByUserId {
         public GetPresencesByUserIdRequestBuilder(string rawUrl) : base("{+baseurl}/communications/getPresencesByUserId", rawUrl) {
         }
         /// <summary>
-        /// Get the presence information for multiple users. This API is available in the following national cloud deployments.
+        /// Get the presence information for multiple users.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

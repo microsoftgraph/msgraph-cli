@@ -58,12 +58,12 @@ namespace ApiSdk.Education.Classes {
             return command;
         }
         /// <summary>
-        /// Create a new educationClass object. This API is available in the following national cloud deployments.
+        /// Create a new educationClass object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new educationClass object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post?view=graph-rest-1.0";
+            command.Description = "Create a new educationClass object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Education.Classes {
             return command;
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the educationClass objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the educationClass objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list?view=graph-rest-1.0";
+            command.Description = "Get a list of the educationClass objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -222,7 +222,7 @@ namespace ApiSdk.Education.Classes {
         public ClassesRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the educationClass objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +238,7 @@ namespace ApiSdk.Education.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new educationClass object. This API is available in the following national cloud deployments.
+        /// Create a new educationClass object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -256,7 +256,7 @@ namespace ApiSdk.Education.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the educationClass objects and their properties.
         /// </summary>
         public class ClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

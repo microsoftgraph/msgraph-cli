@@ -88,12 +88,12 @@ namespace ApiSdk.Communications.Presences.Item {
             return command;
         }
         /// <summary>
-        /// Get a user&apos;s presence information. This API is available in the following national cloud deployments.
+        /// Get a user&apos;s presence information.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a user's presence information. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
+            command.Description = "Get a user's presence information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
             var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
@@ -261,7 +261,7 @@ namespace ApiSdk.Communications.Presences.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a user&apos;s presence information. This API is available in the following national cloud deployments.
+        /// Get a user&apos;s presence information.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +295,7 @@ namespace ApiSdk.Communications.Presences.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a user&apos;s presence information. This API is available in the following national cloud deployments.
+        /// Get a user&apos;s presence information.
         /// </summary>
         public class PresenceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

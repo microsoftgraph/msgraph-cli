@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
     /// </summary>
     public class UnsetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification. This API is available in the following national cloud deployments.
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
+            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         public UnsetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", rawUrl) {
         }
         /// <summary>
-        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification. This API is available in the following national cloud deployments.
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

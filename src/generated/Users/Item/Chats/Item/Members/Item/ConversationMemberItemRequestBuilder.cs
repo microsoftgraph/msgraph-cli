@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
     /// </summary>
     public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a conversationMember from a chat. This API is available in the following national cloud deployments.
+        /// Remove a conversationMember from a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove a conversationMember from a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-members?view=graph-rest-1.0";
+            command.Description = "Remove a conversationMember from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-members?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -66,12 +66,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat. This API is available in the following national cloud deployments.
+        /// Retrieve a conversationMember from a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a conversationMember from a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0";
+            command.Description = "Retrieve a conversationMember from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -202,7 +202,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
         public ConversationMemberItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members/{conversationMember%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Remove a conversationMember from a chat. This API is available in the following national cloud deployments.
+        /// Remove a conversationMember from a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -218,7 +218,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat. This API is available in the following national cloud deployments.
+        /// Retrieve a conversationMember from a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +252,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat. This API is available in the following national cloud deployments.
+        /// Retrieve a conversationMember from a chat.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

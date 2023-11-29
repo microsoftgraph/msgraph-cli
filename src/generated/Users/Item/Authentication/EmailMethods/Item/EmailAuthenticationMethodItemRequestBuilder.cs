@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
     /// </summary>
     public class EmailAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a user&apos;s emailAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Deletes a user&apos;s emailAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a user's emailAuthenticationMethod object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a user's emailAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object. This API is available in the following national cloud deployments.
+        /// Retrieve a user&apos;s single email authentication method object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a user's single email authentication method object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a user's single email authentication method object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return command;
         }
         /// <summary>
-        /// Update a user&apos;s email address represented by an emailAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Update a user&apos;s email address represented by an emailAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update a user's email address represented by an emailAuthenticationMethod object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0";
+            command.Description = "Update a user's email address represented by an emailAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -185,7 +185,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         public EmailAuthenticationMethodItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/emailMethods/{emailAuthenticationMethod%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a user&apos;s emailAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Deletes a user&apos;s emailAuthenticationMethod object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +201,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object. This API is available in the following national cloud deployments.
+        /// Retrieve a user&apos;s single email authentication method object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update a user&apos;s email address represented by an emailAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Update a user&apos;s email address represented by an emailAuthenticationMethod object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object. This API is available in the following national cloud deployments.
+        /// Retrieve a user&apos;s single email authentication method object.
         /// </summary>
         public class EmailAuthenticationMethodItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

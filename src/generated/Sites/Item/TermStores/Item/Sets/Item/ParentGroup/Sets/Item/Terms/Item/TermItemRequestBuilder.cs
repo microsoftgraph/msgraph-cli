@@ -48,12 +48,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return command;
         }
         /// <summary>
-        /// Delete a term object. This API is available in the following national cloud deployments.
+        /// Delete a term object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a term object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-delete?view=graph-rest-1.0";
+            command.Description = "Delete a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -106,12 +106,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a term object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -181,12 +181,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return command;
         }
         /// <summary>
-        /// Update the properties of a term object. This API is available in the following national cloud deployments.
+        /// Update the properties of a term object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a term object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-update?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -307,7 +307,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
         public TermItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/terms/{term%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a term object. This API is available in the following national cloud deployments.
+        /// Delete a term object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -323,7 +323,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -339,7 +339,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a term object. This API is available in the following national cloud deployments.
+        /// Update the properties of a term object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -357,7 +357,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         public class TermItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

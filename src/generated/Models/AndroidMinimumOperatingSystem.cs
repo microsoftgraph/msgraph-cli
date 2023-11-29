@@ -20,37 +20,37 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>When TRUE, only Version 10.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V10_0 { get; set; }
+        public bool? V100 { get; set; }
         /// <summary>When TRUE, only Version 11.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V11_0 { get; set; }
+        public bool? V110 { get; set; }
         /// <summary>When TRUE, only Version 4.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_0 { get; set; }
+        public bool? V40 { get; set; }
         /// <summary>When TRUE, only Version 4.0.3 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_0_3 { get; set; }
+        public bool? V403 { get; set; }
         /// <summary>When TRUE, only Version 4.1 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_1 { get; set; }
+        public bool? V41 { get; set; }
         /// <summary>When TRUE, only Version 4.2 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_2 { get; set; }
+        public bool? V42 { get; set; }
         /// <summary>When TRUE, only Version 4.3 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_3 { get; set; }
+        public bool? V43 { get; set; }
         /// <summary>When TRUE, only Version 4.4 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V4_4 { get; set; }
+        public bool? V44 { get; set; }
         /// <summary>When TRUE, only Version 5.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V5_0 { get; set; }
+        public bool? V50 { get; set; }
         /// <summary>When TRUE, only Version 5.1 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V5_1 { get; set; }
+        public bool? V51 { get; set; }
         /// <summary>When TRUE, only Version 6.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V6_0 { get; set; }
+        public bool? V60 { get; set; }
         /// <summary>When TRUE, only Version 7.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V7_0 { get; set; }
+        public bool? V70 { get; set; }
         /// <summary>When TRUE, only Version 7.1 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V7_1 { get; set; }
+        public bool? V71 { get; set; }
         /// <summary>When TRUE, only Version 8.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V8_0 { get; set; }
+        public bool? V80 { get; set; }
         /// <summary>When TRUE, only Version 8.1 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V8_1 { get; set; }
+        public bool? V81 { get; set; }
         /// <summary>When TRUE, only Version 9.0 or later is supported. Default value is FALSE. Exactly one of the minimum operating system boolean values will be TRUE.</summary>
-        public bool? V9_0 { get; set; }
+        public bool? V90 { get; set; }
         /// <summary>
         /// Instantiates a new androidMinimumOperatingSystem and sets the default values.
         /// </summary>
@@ -71,22 +71,22 @@ namespace ApiSdk.Models {
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_0", n => { V10_0 = n.GetBoolValue(); } },
-                {"v11_0", n => { V11_0 = n.GetBoolValue(); } },
-                {"v4_0", n => { V4_0 = n.GetBoolValue(); } },
-                {"v4_0_3", n => { V4_0_3 = n.GetBoolValue(); } },
-                {"v4_1", n => { V4_1 = n.GetBoolValue(); } },
-                {"v4_2", n => { V4_2 = n.GetBoolValue(); } },
-                {"v4_3", n => { V4_3 = n.GetBoolValue(); } },
-                {"v4_4", n => { V4_4 = n.GetBoolValue(); } },
-                {"v5_0", n => { V5_0 = n.GetBoolValue(); } },
-                {"v5_1", n => { V5_1 = n.GetBoolValue(); } },
-                {"v6_0", n => { V6_0 = n.GetBoolValue(); } },
-                {"v7_0", n => { V7_0 = n.GetBoolValue(); } },
-                {"v7_1", n => { V7_1 = n.GetBoolValue(); } },
-                {"v8_0", n => { V8_0 = n.GetBoolValue(); } },
-                {"v8_1", n => { V8_1 = n.GetBoolValue(); } },
-                {"v9_0", n => { V9_0 = n.GetBoolValue(); } },
+                {"v10_0", n => { V100 = n.GetBoolValue(); } },
+                {"v11_0", n => { V110 = n.GetBoolValue(); } },
+                {"v4_0", n => { V40 = n.GetBoolValue(); } },
+                {"v4_0_3", n => { V403 = n.GetBoolValue(); } },
+                {"v4_1", n => { V41 = n.GetBoolValue(); } },
+                {"v4_2", n => { V42 = n.GetBoolValue(); } },
+                {"v4_3", n => { V43 = n.GetBoolValue(); } },
+                {"v4_4", n => { V44 = n.GetBoolValue(); } },
+                {"v5_0", n => { V50 = n.GetBoolValue(); } },
+                {"v5_1", n => { V51 = n.GetBoolValue(); } },
+                {"v6_0", n => { V60 = n.GetBoolValue(); } },
+                {"v7_0", n => { V70 = n.GetBoolValue(); } },
+                {"v7_1", n => { V71 = n.GetBoolValue(); } },
+                {"v8_0", n => { V80 = n.GetBoolValue(); } },
+                {"v8_1", n => { V81 = n.GetBoolValue(); } },
+                {"v9_0", n => { V90 = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -96,22 +96,22 @@ namespace ApiSdk.Models {
         public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteBoolValue("v10_0", V10_0);
-            writer.WriteBoolValue("v11_0", V11_0);
-            writer.WriteBoolValue("v4_0", V4_0);
-            writer.WriteBoolValue("v4_0_3", V4_0_3);
-            writer.WriteBoolValue("v4_1", V4_1);
-            writer.WriteBoolValue("v4_2", V4_2);
-            writer.WriteBoolValue("v4_3", V4_3);
-            writer.WriteBoolValue("v4_4", V4_4);
-            writer.WriteBoolValue("v5_0", V5_0);
-            writer.WriteBoolValue("v5_1", V5_1);
-            writer.WriteBoolValue("v6_0", V6_0);
-            writer.WriteBoolValue("v7_0", V7_0);
-            writer.WriteBoolValue("v7_1", V7_1);
-            writer.WriteBoolValue("v8_0", V8_0);
-            writer.WriteBoolValue("v8_1", V8_1);
-            writer.WriteBoolValue("v9_0", V9_0);
+            writer.WriteBoolValue("v10_0", V100);
+            writer.WriteBoolValue("v11_0", V110);
+            writer.WriteBoolValue("v4_0", V40);
+            writer.WriteBoolValue("v4_0_3", V403);
+            writer.WriteBoolValue("v4_1", V41);
+            writer.WriteBoolValue("v4_2", V42);
+            writer.WriteBoolValue("v4_3", V43);
+            writer.WriteBoolValue("v4_4", V44);
+            writer.WriteBoolValue("v5_0", V50);
+            writer.WriteBoolValue("v5_1", V51);
+            writer.WriteBoolValue("v6_0", V60);
+            writer.WriteBoolValue("v7_0", V70);
+            writer.WriteBoolValue("v7_1", V71);
+            writer.WriteBoolValue("v8_0", V80);
+            writer.WriteBoolValue("v8_1", V81);
+            writer.WriteBoolValue("v9_0", V90);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

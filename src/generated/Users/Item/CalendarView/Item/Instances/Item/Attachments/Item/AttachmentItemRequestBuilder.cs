@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
     /// </summary>
     public class AttachmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete an attachment from a user calendar event, mail message, or group post. This API is available in the following national cloud deployments.
+        /// Delete an attachment from a user calendar event, mail message, or group post.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an attachment from a user calendar event, mail message, or group post. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0";
+            command.Description = "Delete an attachment from a user calendar event, mail message, or group post.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -152,7 +152,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
         public AttachmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/attachments/{attachment%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an attachment from a user calendar event, mail message, or group post. This API is available in the following national cloud deployments.
+        /// Delete an attachment from a user calendar event, mail message, or group post.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

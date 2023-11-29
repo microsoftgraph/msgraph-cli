@@ -205,6 +205,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.delegatedPermissionClassification" => new DelegatedPermissionClassification(),
                 "#microsoft.graph.deletedItemContainer" => new DeletedItemContainer(),
                 "#microsoft.graph.deletedTeam" => new DeletedTeam(),
+                "#microsoft.graph.deltaParticipants" => new DeltaParticipants(),
                 "#microsoft.graph.detectedApp" => new DetectedApp(),
                 "#microsoft.graph.device" => new Device(),
                 "#microsoft.graph.deviceAndAppManagementRoleAssignment" => new DeviceAndAppManagementRoleAssignment(),
@@ -872,8 +873,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

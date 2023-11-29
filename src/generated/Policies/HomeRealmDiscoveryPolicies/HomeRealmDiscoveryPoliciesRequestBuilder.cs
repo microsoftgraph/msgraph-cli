@@ -50,12 +50,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return command;
         }
         /// <summary>
-        /// Create a new homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Create a new homeRealmDiscoveryPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0";
+            command.Description = "Create a new homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -94,12 +94,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return command;
         }
         /// <summary>
-        /// Get a list of homeRealmDiscoveryPolicy objects. This API is available in the following national cloud deployments.
+        /// Get a list of homeRealmDiscoveryPolicy objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of homeRealmDiscoveryPolicy objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0";
+            command.Description = "Get a list of homeRealmDiscoveryPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -199,7 +199,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
         public HomeRealmDiscoveryPoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of homeRealmDiscoveryPolicy objects. This API is available in the following national cloud deployments.
+        /// Get a list of homeRealmDiscoveryPolicy objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Create a new homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +233,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of homeRealmDiscoveryPolicy objects. This API is available in the following national cloud deployments.
+        /// Get a list of homeRealmDiscoveryPolicy objects.
         /// </summary>
         public class HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

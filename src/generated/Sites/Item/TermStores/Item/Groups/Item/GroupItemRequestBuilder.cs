@@ -21,12 +21,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
     /// </summary>
     public class GroupItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a group object in a term store]. This API is available in the following [national cloud deployments.
+        /// Delete a group object in a term [store].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-group-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a group object in a term store]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-delete?view=graph-rest-1.0";
+            command.Description = "Delete a group object in a term [store].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -67,12 +67,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term store group object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term store group object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-group-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a term store group object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a term store group object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -228,7 +228,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a group object in a term store]. This API is available in the following [national cloud deployments.
+        /// Delete a group object in a term [store].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +244,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term store group object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term store group object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -278,7 +278,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term store group object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term store group object.
         /// </summary>
         public class GroupItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

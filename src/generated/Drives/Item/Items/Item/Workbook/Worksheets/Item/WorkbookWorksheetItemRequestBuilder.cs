@@ -73,12 +73,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Deletes the worksheet from the workbook. This API is available in the following national cloud deployments.
+        /// Deletes the worksheet from the workbook.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes the worksheet from the workbook. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-delete?view=graph-rest-1.0";
+            command.Description = "Deletes the worksheet from the workbook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -119,12 +119,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheet object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheet object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of worksheet object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of worksheet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -209,12 +209,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of worksheet object. This API is available in the following national cloud deployments.
+        /// Update the properties of worksheet object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of worksheet object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of worksheet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -420,7 +420,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         public WorkbookWorksheetItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes the worksheet from the workbook. This API is available in the following national cloud deployments.
+        /// Deletes the worksheet from the workbook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -436,7 +436,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheet object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheet object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -452,7 +452,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of worksheet object. This API is available in the following national cloud deployments.
+        /// Update the properties of worksheet object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -470,7 +470,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheet object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheet object.
         /// </summary>
         public class WorkbookWorksheetItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -93,11 +93,11 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostComponent object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a hostComponent object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of a hostComponent object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -197,7 +197,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents {
         public HostComponentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostComponents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostComponent object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostComponent object.
         /// </summary>
         public class HostComponentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

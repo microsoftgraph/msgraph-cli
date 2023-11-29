@@ -46,12 +46,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers {
             return command;
         }
         /// <summary>
-        /// Get a list of hostTracker resources. This API is available in the following national cloud deployments.
+        /// Get a list of hostTracker resources.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-trackers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of hostTracker resources. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-trackers?view=graph-rest-1.0";
+            command.Description = "Get a list of hostTracker resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-trackers?view=graph-rest-1.0";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers {
         public TrackersRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/trackers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of hostTracker resources. This API is available in the following national cloud deployments.
+        /// Get a list of hostTracker resources.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of hostTracker resources. This API is available in the following national cloud deployments.
+        /// Get a list of hostTracker resources.
         /// </summary>
         public class TrackersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

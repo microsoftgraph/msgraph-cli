@@ -19,12 +19,12 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
     /// </summary>
     public class MarkChatUnreadForUserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a chat as unread for a user. This API is available in the following national cloud deployments.
+        /// Mark a chat as unread for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mark a chat as unread for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0";
+            command.Description = "Mark a chat as unread for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
         public MarkChatUnreadForUserRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/markChatUnreadForUser", rawUrl) {
         }
         /// <summary>
-        /// Mark a chat as unread for a user. This API is available in the following national cloud deployments.
+        /// Mark a chat as unread for a user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

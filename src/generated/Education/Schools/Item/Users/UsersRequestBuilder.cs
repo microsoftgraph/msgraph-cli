@@ -44,12 +44,12 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return command;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
+            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -172,7 +172,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
         public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +188,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool. This API is available in the following national cloud deployments.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

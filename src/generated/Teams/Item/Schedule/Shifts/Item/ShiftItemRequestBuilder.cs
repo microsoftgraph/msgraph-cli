@@ -20,12 +20,12 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
     /// </summary>
     public class ShiftItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a shift from the schedule. This API is available in the following national cloud deployments.
+        /// Delete a shift from the schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a shift from the schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0";
+            command.Description = "Delete a shift from the schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a shift object by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a shift object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -178,7 +178,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
         public ShiftItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/schedule/shifts/{shift%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Delete a shift from the schedule. This API is available in the following national cloud deployments.
+        /// Delete a shift from the schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +194,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a shift object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -228,7 +228,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a shift object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a shift object by ID.
         /// </summary>
         public class ShiftItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

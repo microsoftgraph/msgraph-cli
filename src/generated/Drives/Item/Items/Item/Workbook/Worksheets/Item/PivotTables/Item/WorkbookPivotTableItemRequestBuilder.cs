@@ -73,12 +73,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookPivotTable object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbookpivottable-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of workbookPivotTable object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookpivottable-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of workbookPivotTable object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookpivottable-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -267,7 +267,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookPivotTable object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -301,7 +301,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of workbookPivotTable object.
         /// </summary>
         public class WorkbookPivotTableItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

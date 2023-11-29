@@ -72,12 +72,12 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a crossTenantAccessPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a crossTenantAccessPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a crossTenantAccessPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -142,12 +142,12 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return command;
         }
         /// <summary>
-        /// Update the properties of a cross-tenant access policy. This API is available in the following national cloud deployments.
+        /// Update the properties of a cross-tenant access policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a cross-tenant access policy. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a cross-tenant access policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -214,7 +214,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a crossTenantAccessPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +230,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a cross-tenant access policy. This API is available in the following national cloud deployments.
+        /// Update the properties of a cross-tenant access policy.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +248,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a crossTenantAccessPolicy object.
         /// </summary>
         public class CrossTenantAccessPolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

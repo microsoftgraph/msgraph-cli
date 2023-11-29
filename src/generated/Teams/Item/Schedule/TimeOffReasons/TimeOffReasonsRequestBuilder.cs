@@ -48,12 +48,12 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons {
             return command;
         }
         /// <summary>
-        /// Create a new timeOffReason. This API is available in the following national cloud deployments.
+        /// Create a new timeOffReason.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new timeOffReason. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0";
+            command.Description = "Create a new timeOffReason.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons {
             return command;
         }
         /// <summary>
-        /// Get the list of timeOffReasons in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of timeOffReasons in a schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of timeOffReasons in a schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0";
+            command.Description = "Get the list of timeOffReasons in a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -202,7 +202,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons {
         public TimeOffReasonsRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/schedule/timeOffReasons{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Get the list of timeOffReasons in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of timeOffReasons in a schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -218,7 +218,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new timeOffReason. This API is available in the following national cloud deployments.
+        /// Create a new timeOffReason.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -236,7 +236,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of timeOffReasons in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of timeOffReasons in a schedule.
         /// </summary>
         public class TimeOffReasonsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

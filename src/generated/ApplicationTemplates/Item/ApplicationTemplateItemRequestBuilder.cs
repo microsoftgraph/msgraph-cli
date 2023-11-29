@@ -21,12 +21,12 @@ namespace ApiSdk.ApplicationTemplates.Item {
     /// </summary>
     public class ApplicationTemplateItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the properties of an applicationTemplate object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an applicationTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an applicationTemplate object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties of an applicationTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "The unique identifier of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
@@ -99,7 +99,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
         public ApplicationTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties of an applicationTemplate object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an applicationTemplate object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -115,7 +115,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an applicationTemplate object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an applicationTemplate object.
         /// </summary>
         public class ApplicationTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

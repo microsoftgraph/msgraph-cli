@@ -109,12 +109,12 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions.Item.AttendanceR
             return command;
         }
         /// <summary>
-        /// Get a list of attendanceRecord objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of attendanceRecord objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of attendanceRecord objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0";
+            command.Description = "Get a list of attendanceRecord objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions.Item.AttendanceR
         public AttendanceRecordsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports/{meetingAttendanceReport%2Did}/attendanceRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of attendanceRecord objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of attendanceRecord objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +266,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions.Item.AttendanceR
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of attendanceRecord objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of attendanceRecord objects and their properties.
         /// </summary>
         public class AttendanceRecordsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

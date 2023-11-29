@@ -20,12 +20,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
     /// </summary>
     public class DiscoverRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Discover the latest schema definition for provisioning to an application.  This API is available in the following national cloud deployments.
+        /// Discover the latest schema definition for provisioning to an application. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-directorydefinition-discover?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Discover the latest schema definition for provisioning to an application.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-directorydefinition-discover?view=graph-rest-1.0";
+            command.Description = "Discover the latest schema definition for provisioning to an application. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-directorydefinition-discover?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -81,7 +81,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
         public DiscoverRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/templates/{synchronizationTemplate%2Did}/schema/directories/{directoryDefinition%2Did}/discover", rawUrl) {
         }
         /// <summary>
-        /// Discover the latest schema definition for provisioning to an application.  This API is available in the following national cloud deployments.
+        /// Discover the latest schema definition for provisioning to an application. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

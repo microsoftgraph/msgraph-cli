@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list. This API is available in the following national cloud deployments.
+        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return command;
         }
         /// <summary>
-        /// Add a teacher to a class. This API is available in the following national cloud deployments.
+        /// Add a teacher to a class.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post-teachers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a teacher to a class. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-teachers?view=graph-rest-1.0";
+            command.Description = "Add a teacher to a class.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-teachers?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list. This API is available in the following national cloud deployments.
+        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a teacher to a class. This API is available in the following national cloud deployments.
+        /// Add a teacher to a class.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list. This API is available in the following national cloud deployments.
+        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

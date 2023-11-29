@@ -69,7 +69,6 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"aliases", n => { Aliases = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"isQueryable", n => { IsQueryable = n.GetBoolValue(); } },
                 {"isRefinable", n => { IsRefinable = n.GetBoolValue(); } },
@@ -77,6 +76,7 @@ namespace ApiSdk.Models.ExternalConnectors {
                 {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
                 {"labels", n => { Labels = n.GetCollectionOfEnumValues<Label>()?.ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PropertyType>(); } },
             };
         }

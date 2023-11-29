@@ -88,12 +88,12 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             return command;
         }
         /// <summary>
-        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults. This API is available in the following national cloud deployments.
+        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0";
+            command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0";
             var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "The unique identifier of groupSettingTemplate") {
             };
             groupSettingTemplateIdOption.IsRequired = true;
@@ -261,7 +261,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults. This API is available in the following national cloud deployments.
+        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +295,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults. This API is available in the following national cloud deployments.
+        /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.
         /// </summary>
         public class GroupSettingTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
