@@ -45,12 +45,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"accuracy", n => { Accuracy = n.GetDoubleValue(); } },
                 {"altitude", n => { Altitude = n.GetDoubleValue(); } },
                 {"altitudeAccuracy", n => { AltitudeAccuracy = n.GetDoubleValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

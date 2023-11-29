@@ -97,12 +97,12 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return command;
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of the attack simulation automation runs for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the attack simulation automation runs for a tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
+            command.Description = "Get a list of the attack simulation automation runs for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
         public RunsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of the attack simulation automation runs for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +242,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of the attack simulation automation runs for a tenant.
         /// </summary>
         public class RunsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

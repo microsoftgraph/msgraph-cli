@@ -97,11 +97,11 @@ namespace ApiSdk.External.Connections.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a connectionOperation object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of a connectionOperation object.";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.External.Connections.Item.Operations {
         public OperationsRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.External.Connections.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

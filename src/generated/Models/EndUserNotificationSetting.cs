@@ -52,8 +52,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"notificationPreference", n => { NotificationPreference = n.GetEnumValue<EndUserNotificationPreference>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"positiveReinforcement", n => { PositiveReinforcement = n.GetObjectValue<PositiveReinforcementNotification>(PositiveReinforcementNotification.CreateFromDiscriminatorValue); } },
                 {"settingType", n => { SettingType = n.GetEnumValue<EndUserNotificationSettingType>(); } },
             };

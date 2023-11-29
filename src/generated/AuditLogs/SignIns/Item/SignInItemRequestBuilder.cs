@@ -53,12 +53,12 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs. This API is available in the following national cloud deployments.
+        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0";
             var signInIdOption = new Option<string>("--sign-in-id", description: "The unique identifier of signIn") {
             };
             signInIdOption.IsRequired = true;
@@ -181,7 +181,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs. This API is available in the following national cloud deployments.
+        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs. This API is available in the following national cloud deployments.
+        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
         /// </summary>
         public class SignInItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

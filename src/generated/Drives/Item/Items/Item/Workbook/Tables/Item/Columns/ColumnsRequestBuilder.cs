@@ -71,12 +71,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new TableColumn. This API is available in the following national cloud deployments.
+        /// Use this API to create a new TableColumn.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new TableColumn. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -148,12 +148,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of tablecolumn objects. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-list?view=graph-rest-1.0" />
+        /// Retrieve a list of tablecolumn objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tablecolumn objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -271,7 +271,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns {
         public ColumnsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of tablecolumn objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of tablecolumn objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -287,7 +287,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new TableColumn. This API is available in the following national cloud deployments.
+        /// Use this API to create a new TableColumn.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -305,7 +305,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of tablecolumn objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of tablecolumn objects.
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

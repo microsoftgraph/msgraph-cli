@@ -54,12 +54,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Subdomains.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a subdomain object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subdomain object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-subdomain-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a subdomain object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-subdomain-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a subdomain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-subdomain-get?view=graph-rest-1.0";
             var subdomainIdOption = new Option<string>("--subdomain-id", description: "The unique identifier of subdomain") {
             };
             subdomainIdOption.IsRequired = true;
@@ -197,7 +197,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Subdomains.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subdomain object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subdomain object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Subdomains.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subdomain object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subdomain object.
         /// </summary>
         public class SubdomainItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

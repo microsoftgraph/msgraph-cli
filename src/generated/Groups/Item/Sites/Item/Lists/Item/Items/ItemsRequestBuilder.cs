@@ -42,12 +42,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
             return new(executables, commands);
         }
         /// <summary>
-        /// Create a new listItem][] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Create a new [listItem][] in a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new listItem][] in a [list][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
+            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -104,12 +104,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
             return command;
         }
         /// <summary>
-        /// Get the collection of items][item] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Get the collection of [items][item] in a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of items][item] in a [list][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
+            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -221,7 +221,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
         public ItemsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items{?%24top,%24skip,%24search,%24filter,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the collection of items][item] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Get the collection of [items][item] in a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +237,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new listItem][] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Create a new [listItem][] in a [list][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +255,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of items][item] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Get the collection of [items][item] in a [list][].
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

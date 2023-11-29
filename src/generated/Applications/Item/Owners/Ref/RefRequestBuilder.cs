@@ -112,12 +112,12 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             return command;
         }
         /// <summary>
-        /// Add an owner to an application by posting to the owners collection. This API is available in the following national cloud deployments.
+        /// Add an owner to an application by posting to the owners collection.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add an owner to an application by posting to the owners collection. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0";
+            command.Description = "Add an owner to an application by posting to the owners collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -180,7 +180,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add an owner to an application by posting to the owners collection. This API is available in the following national cloud deployments.
+        /// Add an owner to an application by posting to the owners collection.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -20,12 +20,12 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
     /// </summary>
     public class SchedulingGroupItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group. This API is available in the following national cloud deployments.
+        /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedulinggroup-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-delete?view=graph-rest-1.0";
+            command.Description = "Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-delete?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a schedulingGroup by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a schedulingGroup by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedulinggroup-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a schedulingGroup by ID. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a schedulingGroup by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -178,7 +178,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
         public SchedulingGroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/schedule/schedulingGroups/{schedulingGroup%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group. This API is available in the following national cloud deployments.
+        /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +194,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a schedulingGroup by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a schedulingGroup by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -228,7 +228,7 @@ namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a schedulingGroup by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a schedulingGroup by ID.
         /// </summary>
         public class SchedulingGroupItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

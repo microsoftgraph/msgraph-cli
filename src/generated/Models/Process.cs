@@ -95,7 +95,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"accountName", n => { AccountName = n.GetStringValue(); } },
                 {"commandLine", n => { CommandLine = n.GetStringValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -103,6 +102,7 @@ namespace ApiSdk.Models {
                 {"integrityLevel", n => { IntegrityLevel = n.GetEnumValue<ProcessIntegrityLevel>(); } },
                 {"isElevated", n => { IsElevated = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"parentProcessCreatedDateTime", n => { ParentProcessCreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"parentProcessId", n => { ParentProcessId = n.GetIntValue(); } },
                 {"parentProcessName", n => { ParentProcessName = n.GetStringValue(); } },

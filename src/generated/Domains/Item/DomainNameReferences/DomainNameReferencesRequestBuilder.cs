@@ -46,12 +46,12 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain. This API is available in the following national cloud deployments.
+        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-list-domainnamereferences?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
         public DomainNameReferencesRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/domainNameReferences{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain. This API is available in the following national cloud deployments.
+        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain. This API is available in the following national cloud deployments.
+        /// Retrieve a list of directoryObject with a reference to the domain. The returned list will contain all directory objects that have a dependency on the domain.
         /// </summary>
         public class DomainNameReferencesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

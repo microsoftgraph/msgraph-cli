@@ -57,12 +57,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// Create a new list][] in a [site][]. This API is available in the following [national cloud deployments.
+        /// Create a new [list][] in a [site][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new list][] in a [site][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-create?view=graph-rest-1.0";
+            command.Description = "Create a new [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-create?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -113,12 +113,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement. This API is available in the following national cloud deployments.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list?view=graph-rest-1.0";
+            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
         public ListsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement. This API is available in the following national cloud deployments.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +246,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new list][] in a [site][]. This API is available in the following [national cloud deployments.
+        /// Create a new [list][] in a [site][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +264,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement. This API is available in the following national cloud deployments.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
         /// </summary>
         public class ListsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

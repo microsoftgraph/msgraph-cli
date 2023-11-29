@@ -59,12 +59,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a caseOperation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-caseoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a caseOperation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-caseoperation-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a caseOperation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-caseoperation-get?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -199,7 +199,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a caseOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a caseOperation object.
         /// </summary>
         public class CaseOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

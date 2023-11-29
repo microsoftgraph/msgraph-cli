@@ -69,12 +69,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a sectionGroup object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a sectionGroup object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a sectionGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -300,7 +300,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a sectionGroup object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -334,7 +334,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a sectionGroup object.
         /// </summary>
         public class SectionGroupItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

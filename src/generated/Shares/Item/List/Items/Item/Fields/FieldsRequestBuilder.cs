@@ -115,12 +115,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Fields {
             return command;
         }
         /// <summary>
-        /// Update the properties on a listItem][]. This API is available in the following [national cloud deployments.
+        /// Update the properties on a [listItem][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties on a listItem][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0";
+            command.Description = "Update the properties on a [listItem][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -215,7 +215,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Fields {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties on a listItem][]. This API is available in the following [national cloud deployments.
+        /// Update the properties on a [listItem][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

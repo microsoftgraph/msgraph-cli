@@ -22,12 +22,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
     /// </summary>
     public class DocumentSetVersionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a version of a document set in a list. This API is available in the following national cloud deployments.
+        /// Delete a version of a document set in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a version of a document set in a list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0";
+            command.Description = "Delete a version of a document set in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -97,12 +97,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a documentSetVersion object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a documentSetVersion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -272,7 +272,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
         public DocumentSetVersionItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a version of a document set in a list. This API is available in the following national cloud deployments.
+        /// Delete a version of a document set in a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +288,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -322,7 +322,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         public class DocumentSetVersionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

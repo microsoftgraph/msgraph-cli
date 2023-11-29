@@ -62,12 +62,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder. This API is available in the following national cloud deployments.
+        /// Use this API to create a new Message in a mailfolder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Message in a mailfolder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -139,12 +139,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox. This API is available in the following national cloud deployments.
+        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
+            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
         public MessagesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox. This API is available in the following national cloud deployments.
+        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -278,7 +278,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder. This API is available in the following national cloud deployments.
+        /// Use this API to create a new Message in a mailfolder.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -296,7 +296,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox. This API is available in the following national cloud deployments.
+        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// </summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

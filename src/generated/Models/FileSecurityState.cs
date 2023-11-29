@@ -67,9 +67,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"fileHash", n => { FileHash = n.GetObjectValue<ApiSdk.Models.FileHash>(ApiSdk.Models.FileHash.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"path", n => { Path = n.GetStringValue(); } },
                 {"riskScore", n => { RiskScore = n.GetStringValue(); } },
             };

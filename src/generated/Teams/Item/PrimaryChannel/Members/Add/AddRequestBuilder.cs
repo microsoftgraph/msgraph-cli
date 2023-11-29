@@ -19,12 +19,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created. This API is available in the following national cloud deployments.
+        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0";
+            command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -92,7 +92,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Add {
         public AddRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/add", rawUrl) {
         }
         /// <summary>
-        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created. This API is available in the following national cloud deployments.
+        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

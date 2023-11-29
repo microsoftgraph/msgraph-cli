@@ -20,12 +20,12 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
     /// </summary>
     public class ConditionalAccessTemplateItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Read the properties and relationships of a conditionalAccessTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a conditionalAccessTemplate object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a conditionalAccessTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0";
             var conditionalAccessTemplateIdOption = new Option<string>("--conditional-access-template-id", description: "The unique identifier of conditionalAccessTemplate") {
             };
             conditionalAccessTemplateIdOption.IsRequired = true;
@@ -83,7 +83,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         public ConditionalAccessTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a conditionalAccessTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,7 +99,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a conditionalAccessTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// </summary>
         public class ConditionalAccessTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

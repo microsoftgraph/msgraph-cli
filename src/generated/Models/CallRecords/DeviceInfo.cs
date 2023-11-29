@@ -101,7 +101,6 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"captureDeviceDriver", n => { CaptureDeviceDriver = n.GetStringValue(); } },
                 {"captureDeviceName", n => { CaptureDeviceName = n.GetStringValue(); } },
                 {"captureNotFunctioningEventRatio", n => { CaptureNotFunctioningEventRatio = n.GetFloatValue(); } },
@@ -113,6 +112,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"lowSpeechLevelEventRatio", n => { LowSpeechLevelEventRatio = n.GetFloatValue(); } },
                 {"lowSpeechToNoiseEventRatio", n => { LowSpeechToNoiseEventRatio = n.GetFloatValue(); } },
                 {"micGlitchRate", n => { MicGlitchRate = n.GetFloatValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"receivedNoiseLevel", n => { ReceivedNoiseLevel = n.GetIntValue(); } },
                 {"receivedSignalLevel", n => { ReceivedSignalLevel = n.GetIntValue(); } },
                 {"renderDeviceDriver", n => { RenderDeviceDriver = n.GetStringValue(); } },

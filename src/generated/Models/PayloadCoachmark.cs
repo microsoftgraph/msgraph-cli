@@ -77,12 +77,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"coachmarkLocation", n => { CoachmarkLocation = n.GetObjectValue<ApiSdk.Models.CoachmarkLocation>(ApiSdk.Models.CoachmarkLocation.CreateFromDiscriminatorValue); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"indicator", n => { Indicator = n.GetStringValue(); } },
                 {"isValid", n => { IsValid = n.GetBoolValue(); } },
                 {"language", n => { Language = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"order", n => { Order = n.GetStringValue(); } },
             };
         }

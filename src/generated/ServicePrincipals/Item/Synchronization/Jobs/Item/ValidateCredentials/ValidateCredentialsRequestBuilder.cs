@@ -19,12 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
     /// </summary>
     public class ValidateCredentialsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.
+        /// Validate that the credentials are valid in the tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
+            command.Description = "Validate that the credentials are valid in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
         public ValidateCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/validateCredentials", rawUrl) {
         }
         /// <summary>
-        /// Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.
+        /// Validate that the credentials are valid in the tenant.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

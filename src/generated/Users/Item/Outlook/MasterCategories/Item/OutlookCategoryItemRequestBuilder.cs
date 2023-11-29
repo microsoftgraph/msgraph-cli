@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
     /// </summary>
     public class OutlookCategoryItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete the specified outlookCategory object. This API is available in the following national cloud deployments.
+        /// Delete the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete the specified outlookCategory object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0";
+            command.Description = "Delete the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of the specified outlookCategory object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0";
+            command.Description = "Get the properties and relationships of the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -110,12 +110,12 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return command;
         }
         /// <summary>
-        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category. This API is available in the following national cloud deployments.
+        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the writable property, color, of the specified outlookCategory object. You can't modify the displayName propertyonce you have created the category. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0";
+            command.Description = "Update the writable property, color, of the specified outlookCategory object. You can't modify the displayName propertyonce you have created the category.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -178,7 +178,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         public OutlookCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories/{outlookCategory%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Delete the specified outlookCategory object. This API is available in the following national cloud deployments.
+        /// Delete the specified outlookCategory object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +194,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified outlookCategory object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -210,7 +210,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category. This API is available in the following national cloud deployments.
+        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -228,7 +228,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of the specified outlookCategory object.
         /// </summary>
         public class OutlookCategoryItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

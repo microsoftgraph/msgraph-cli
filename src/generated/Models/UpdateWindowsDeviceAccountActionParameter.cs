@@ -71,11 +71,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"calendarSyncEnabled", n => { CalendarSyncEnabled = n.GetBoolValue(); } },
                 {"deviceAccount", n => { DeviceAccount = n.GetObjectValue<WindowsDeviceAccount>(WindowsDeviceAccount.CreateFromDiscriminatorValue); } },
                 {"deviceAccountEmail", n => { DeviceAccountEmail = n.GetStringValue(); } },
                 {"exchangeServer", n => { ExchangeServer = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"passwordRotationEnabled", n => { PasswordRotationEnabled = n.GetBoolValue(); } },
                 {"sessionInitiationProtocalAddress", n => { SessionInitiationProtocalAddress = n.GetStringValue(); } },
             };

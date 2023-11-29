@@ -91,11 +91,11 @@ namespace ApiSdk.Print.Operations {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a printOperation object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of a printOperation object. This API is available in the following national cloud deployments.";
+            command.Description = "Retrieve the properties and relationships of a printOperation object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -195,7 +195,7 @@ namespace ApiSdk.Print.Operations {
         public OperationsRequestBuilder(string rawUrl) : base("{+baseurl}/print/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a printOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +229,7 @@ namespace ApiSdk.Print.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a printOperation object.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

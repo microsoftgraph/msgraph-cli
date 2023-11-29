@@ -56,9 +56,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"address", n => { Address = n.GetStringValue(); } },
                 {"exceptions", n => { Exceptions = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"useForLocalAddresses", n => { UseForLocalAddresses = n.GetBoolValue(); } },
             };
         }

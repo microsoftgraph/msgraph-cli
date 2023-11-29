@@ -54,12 +54,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/servicehealth-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/servicehealth-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/servicehealth-get?view=graph-rest-1.0";
             var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a serviceHealth object. This operation provides the health information of a specified service for a tenant.
         /// </summary>
         public class ServiceHealthItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

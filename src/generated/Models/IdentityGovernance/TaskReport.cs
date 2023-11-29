@@ -26,14 +26,6 @@ namespace ApiSdk.Models.IdentityGovernance {
         public DateTimeOffset? StartedDateTime { get; set; }
         /// <summary>The number of users in the run execution for which the associated task succeeded.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public int? SuccessfulUsersCount { get; set; }
-        /// <summary>The task property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public TaskObject? Task { get; set; }
-#nullable restore
-#else
-        public TaskObject Task { get; set; }
-#endif
         /// <summary>The taskDefinition property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,6 +33,14 @@ namespace ApiSdk.Models.IdentityGovernance {
 #nullable restore
 #else
         public ApiSdk.Models.IdentityGovernance.TaskDefinition TaskDefinition { get; set; }
+#endif
+        /// <summary>The task property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.IdentityGovernance.TaskObject? TaskObject { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.IdentityGovernance.TaskObject TaskObject { get; set; }
 #endif
         /// <summary>The related lifecycle workflow taskProcessingResults.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,8 +74,8 @@ namespace ApiSdk.Models.IdentityGovernance {
                 {"runId", n => { RunId = n.GetStringValue(); } },
                 {"startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"successfulUsersCount", n => { SuccessfulUsersCount = n.GetIntValue(); } },
-                {"task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
                 {"taskDefinition", n => { TaskDefinition = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskDefinition>(ApiSdk.Models.IdentityGovernance.TaskDefinition.CreateFromDiscriminatorValue); } },
+                {"task", n => { TaskObject = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue); } },
                 {"taskProcessingResults", n => { TaskProcessingResults = n.GetCollectionOfObjectValues<TaskProcessingResult>(TaskProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"totalUsersCount", n => { TotalUsersCount = n.GetIntValue(); } },
                 {"unprocessedUsersCount", n => { UnprocessedUsersCount = n.GetIntValue(); } },
@@ -95,8 +95,8 @@ namespace ApiSdk.Models.IdentityGovernance {
             writer.WriteStringValue("runId", RunId);
             writer.WriteDateTimeOffsetValue("startedDateTime", StartedDateTime);
             writer.WriteIntValue("successfulUsersCount", SuccessfulUsersCount);
-            writer.WriteObjectValue<TaskObject>("task", Task);
             writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskDefinition>("taskDefinition", TaskDefinition);
+            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>("task", TaskObject);
             writer.WriteCollectionOfObjectValues<TaskProcessingResult>("taskProcessingResults", TaskProcessingResults);
             writer.WriteIntValue("totalUsersCount", TotalUsersCount);
             writer.WriteIntValue("unprocessedUsersCount", UnprocessedUsersCount);

@@ -50,12 +50,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             return command;
         }
         /// <summary>
-        /// Create a new bookingAppointment for the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Create a new bookingAppointment for the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-post-appointments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new bookingAppointment for the specified bookingBusiness. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-post-appointments?view=graph-rest-1.0";
+            command.Description = "Create a new bookingAppointment for the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-post-appointments?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -100,12 +100,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             return command;
         }
         /// <summary>
-        /// Get a list of bookingAppointment objects for the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Get a list of bookingAppointment objects for the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of bookingAppointment objects for the specified bookingBusiness. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0";
+            command.Description = "Get a list of bookingAppointment objects for the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
         public AppointmentsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/appointments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of bookingAppointment objects for the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Get a list of bookingAppointment objects for the specified bookingBusiness.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new bookingAppointment for the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Create a new bookingAppointment for the specified bookingBusiness.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,7 +245,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of bookingAppointment objects for the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Get a list of bookingAppointment objects for the specified bookingBusiness.
         /// </summary>
         public class AppointmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

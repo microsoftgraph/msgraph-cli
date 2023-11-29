@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
     /// </summary>
     public class TimeOffReasonItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason. This API is available in the following national cloud deployments.
+        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn't remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0";
+            command.Description = "Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn't remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOffReason object by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeOffReason object by ID. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a timeOffReason object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -178,7 +178,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         public TimeOffReasonItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffReasons/{timeOffReason%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason. This API is available in the following national cloud deployments.
+        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +194,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOffReason object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -228,7 +228,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOffReason object by ID.
         /// </summary>
         public class TimeOffReasonItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

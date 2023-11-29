@@ -53,12 +53,12 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an securescorecontrolprofile object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an securescorecontrolprofile object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0";
             var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
@@ -104,12 +104,12 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return command;
         }
         /// <summary>
-        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote. This API is available in the following national cloud deployments.
+        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0";
+            command.Description = "Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0";
             var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
@@ -182,7 +182,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -198,7 +198,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote. This API is available in the following national cloud deployments.
+        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -216,7 +216,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
         /// </summary>
         public class SecureScoreControlProfileItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

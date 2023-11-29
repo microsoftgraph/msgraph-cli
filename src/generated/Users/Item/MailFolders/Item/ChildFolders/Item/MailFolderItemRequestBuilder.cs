@@ -357,9 +357,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
             /// <summary>Include Hidden Folders</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("includeHiddenFolders")]
             public string? IncludeHiddenFolders { get; set; }
 #nullable restore
 #else
+            [QueryParameter("includeHiddenFolders")]
             public string IncludeHiddenFolders { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>

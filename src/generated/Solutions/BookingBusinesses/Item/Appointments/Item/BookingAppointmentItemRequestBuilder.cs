@@ -36,12 +36,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Delete a bookingAppointment in the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Delete a bookingAppointment in the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a bookingAppointment in the specified bookingBusiness. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0";
+            command.Description = "Delete a bookingAppointment in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -76,12 +76,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0";
+            command.Description = "Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -133,12 +133,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookingAppointment object in the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookingAppointment object in the specified bookingBusiness. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a bookingAppointment object in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -201,7 +201,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         public BookingAppointmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/appointments/{bookingAppointment%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a bookingAppointment in the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Delete a bookingAppointment in the specified bookingBusiness.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookingAppointment object in the specified bookingBusiness. This API is available in the following national cloud deployments.
+        /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +251,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
         /// </summary>
         public class BookingAppointmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

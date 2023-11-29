@@ -93,12 +93,12 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return command;
         }
         /// <summary>
-        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups. This API is available in the following national cloud deployments.
+        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0";
+            command.Description = "Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -198,7 +198,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
         public RoleManagementPolicyAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups. This API is available in the following national cloud deployments.
+        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -232,7 +232,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups. This API is available in the following national cloud deployments.
+        /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups.
         /// </summary>
         public class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

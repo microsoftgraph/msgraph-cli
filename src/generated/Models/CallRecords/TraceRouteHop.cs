@@ -47,9 +47,9 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"hopCount", n => { HopCount = n.GetIntValue(); } },
                 {"ipAddress", n => { IpAddress = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"roundTripTime", n => { RoundTripTime = n.GetTimeSpanValue(); } },
             };
         }

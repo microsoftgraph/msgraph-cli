@@ -54,12 +54,12 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership. This API is available in the following national cloud deployments.
+        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the details of a policy assignment in PIM that's assigned to Microsoft Entra roles or group membership or ownership. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0";
+            command.Description = "Get the details of a policy assignment in PIM that's assigned to Microsoft Entra roles or group membership or ownership.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0";
             var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
@@ -197,7 +197,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership. This API is available in the following national cloud deployments.
+        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership. This API is available in the following national cloud deployments.
+        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
         /// </summary>
         public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

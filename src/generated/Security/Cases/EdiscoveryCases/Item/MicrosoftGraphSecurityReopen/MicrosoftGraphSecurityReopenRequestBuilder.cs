@@ -19,12 +19,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReope
     /// </summary>
     public class MicrosoftGraphSecurityReopenRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case. This API is available in the following national cloud deployments.
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reopen an eDiscovery case that was closed. For details, see Reopen a closed case. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0";
+            command.Description = "Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReope
         public MicrosoftGraphSecurityReopenRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/microsoft.graph.security.reopen", rawUrl) {
         }
         /// <summary>
-        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case. This API is available in the following national cloud deployments.
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

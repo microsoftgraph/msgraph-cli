@@ -157,12 +157,12 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for a list][]. This API is available in the following [national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
+        /// Get a list of rich long-running operations associated with a list.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the metadata for a list][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
+            command.Description = "Get a list of rich long-running operations associated with a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -393,7 +393,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a list][]. This API is available in the following [national cloud deployments.
+        /// Get a list of rich long-running operations associated with a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -427,7 +427,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a list][]. This API is available in the following [national cloud deployments.
+        /// Get a list of rich long-running operations associated with a list.
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

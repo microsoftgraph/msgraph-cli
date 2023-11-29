@@ -149,7 +149,6 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callEndSubReason", n => { CallEndSubReason = n.GetIntValue(); } },
                 {"callType", n => { CallType = n.GetStringValue(); } },
                 {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
@@ -164,6 +163,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"inviteDateTime", n => { InviteDateTime = n.GetDateTimeOffsetValue(); } },
                 {"mediaBypassEnabled", n => { MediaBypassEnabled = n.GetBoolValue(); } },
                 {"mediaPathLocation", n => { MediaPathLocation = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"signalingLocation", n => { SignalingLocation = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"successfulCall", n => { SuccessfulCall = n.GetBoolValue(); } },

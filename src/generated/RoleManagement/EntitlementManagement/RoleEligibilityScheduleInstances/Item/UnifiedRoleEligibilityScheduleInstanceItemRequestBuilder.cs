@@ -87,12 +87,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return command;
         }
         /// <summary>
-        /// Get the instance of a role eligibility. This API is available in the following national cloud deployments.
+        /// Get the instance of a role eligibility.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the instance of a role eligibility. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0";
+            command.Description = "Get the instance of a role eligibility.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0";
             var unifiedRoleEligibilityScheduleInstanceIdOption = new Option<string>("--unified-role-eligibility-schedule-instance-id", description: "The unique identifier of unifiedRoleEligibilityScheduleInstance") {
             };
             unifiedRoleEligibilityScheduleInstanceIdOption.IsRequired = true;
@@ -245,7 +245,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of a role eligibility. This API is available in the following national cloud deployments.
+        /// Get the instance of a role eligibility.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +279,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of a role eligibility. This API is available in the following national cloud deployments.
+        /// Get the instance of a role eligibility.
         /// </summary>
         public class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

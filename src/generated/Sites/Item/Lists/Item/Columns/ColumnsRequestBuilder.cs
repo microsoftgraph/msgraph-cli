@@ -50,12 +50,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Create a column for a list][list] with a request that specifies a [columnDefinition][columnDefinition]. This API is available in the following [national cloud deployments.
+        /// Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a column for a list][list] with a request that specifies a [columnDefinition][columnDefinition]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
+            command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -106,12 +106,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Get the collection of columns represented as columnDefinition][columnDefinition] resources in a [list][list]. This API is available in the following [national cloud deployments.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as columnDefinition][columnDefinition] resources in a [list][list]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -223,7 +223,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
         public ColumnsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/columns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the collection of columns represented as columnDefinition][columnDefinition] resources in a [list][list]. This API is available in the following [national cloud deployments.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,7 +239,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Create a column for a list][list] with a request that specifies a [columnDefinition][columnDefinition]. This API is available in the following [national cloud deployments.
+        /// Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -257,7 +257,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of columns represented as columnDefinition][columnDefinition] resources in a [list][list]. This API is available in the following [national cloud deployments.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

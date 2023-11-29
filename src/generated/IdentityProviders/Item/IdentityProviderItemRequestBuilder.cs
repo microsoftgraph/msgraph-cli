@@ -20,13 +20,13 @@ namespace ApiSdk.IdentityProviders.Item {
     /// </summary>
     public class IdentityProviderItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Delete an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an existing identityProvider. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0";
+            command.Description = "Delete an existing identityProvider.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0";
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
@@ -55,13 +55,13 @@ namespace ApiSdk.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an existing identityProvider. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties of an existing identityProvider.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0";
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
@@ -107,13 +107,13 @@ namespace ApiSdk.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Update properties in an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Update properties in an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update properties in an existing identityProvider. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0";
+            command.Description = "Update properties in an existing identityProvider.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0";
             var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
@@ -170,7 +170,7 @@ namespace ApiSdk.IdentityProviders.Item {
         public IdentityProviderItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders/{identityProvider%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Delete an existing identityProvider.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
@@ -187,7 +187,7 @@ namespace ApiSdk.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an existing identityProvider.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
@@ -204,7 +204,7 @@ namespace ApiSdk.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update properties in an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Update properties in an existing identityProvider.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -223,7 +223,7 @@ namespace ApiSdk.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an existing identityProvider. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an existing identityProvider.
         /// </summary>
         public class IdentityProviderItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

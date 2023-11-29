@@ -41,12 +41,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Delete a unifiedRoleAssignment object. This API is available in the following national cloud deployments.
+        /// Delete a unifiedRoleAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a unifiedRoleAssignment object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete a unifiedRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-delete?view=graph-rest-1.0";
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -90,12 +90,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a unifiedRoleAssignment object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a unifiedRoleAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a unifiedRoleAssignment object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a unifiedRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-get?view=graph-rest-1.0";
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         public UnifiedRoleAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignments/{unifiedRoleAssignment%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a unifiedRoleAssignment object. This API is available in the following national cloud deployments.
+        /// Delete a unifiedRoleAssignment object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a unifiedRoleAssignment object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a unifiedRoleAssignment object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -282,7 +282,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a unifiedRoleAssignment object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a unifiedRoleAssignment object.
         /// </summary>
         public class UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

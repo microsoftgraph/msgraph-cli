@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move {
     /// </summary>
     public class MoveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Move a mailfolder and its contents to another mailfolder. This API is available in the following national cloud deployments.
+        /// Move a mailfolder and its contents to another mailfolder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Move a mailfolder and its contents to another mailfolder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0";
+            command.Description = "Move a mailfolder and its contents to another mailfolder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -94,7 +94,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move {
         public MoveRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/move", rawUrl) {
         }
         /// <summary>
-        /// Move a mailfolder and its contents to another mailfolder. This API is available in the following national cloud deployments.
+        /// Move a mailfolder and its contents to another mailfolder.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -96,12 +96,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem. This API is available in the following national cloud deployments.
+        /// Retrieve the metadata for a specific version of a ListItem.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a specific version of a ListItem. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the metadata for a specific version of a ListItem.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -287,7 +287,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem. This API is available in the following national cloud deployments.
+        /// Retrieve the metadata for a specific version of a ListItem.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +321,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem. This API is available in the following national cloud deployments.
+        /// Retrieve the metadata for a specific version of a ListItem.
         /// </summary>
         public class ListItemVersionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

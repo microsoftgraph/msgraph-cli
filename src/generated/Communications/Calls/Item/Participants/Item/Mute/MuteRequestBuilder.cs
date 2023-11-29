@@ -20,12 +20,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
     /// </summary>
     public class MuteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation. This API is available in the following national cloud deployments.
+        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/participant-mute?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-mute?view=graph-rest-1.0";
+            command.Description = "Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-mute?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         public MuteRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/mute", rawUrl) {
         }
         /// <summary>
-        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation. This API is available in the following national cloud deployments.
+        /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

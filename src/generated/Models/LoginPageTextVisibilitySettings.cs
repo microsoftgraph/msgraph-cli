@@ -47,13 +47,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"hideAccountResetCredentials", n => { HideAccountResetCredentials = n.GetBoolValue(); } },
                 {"hideCannotAccessYourAccount", n => { HideCannotAccessYourAccount = n.GetBoolValue(); } },
                 {"hideForgotMyPassword", n => { HideForgotMyPassword = n.GetBoolValue(); } },
                 {"hidePrivacyAndCookies", n => { HidePrivacyAndCookies = n.GetBoolValue(); } },
                 {"hideResetItNow", n => { HideResetItNow = n.GetBoolValue(); } },
                 {"hideTermsOfUse", n => { HideTermsOfUse = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -50,12 +50,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Get the task processing result resources from the taskReport. This API is available in the following national cloud deployments.
+        /// Get the task processing result resources from the taskReport.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-taskreport-list-taskprocessingresults?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the task processing result resources from the taskReport. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-taskreport-list-taskprocessingresults?view=graph-rest-1.0";
+            command.Description = "Get the task processing result resources from the taskReport.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-taskreport-list-taskprocessingresults?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -167,7 +167,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         public TaskProcessingResultsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/taskReports/{taskReport%2Did}/taskProcessingResults{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the task processing result resources from the taskReport. This API is available in the following national cloud deployments.
+        /// Get the task processing result resources from the taskReport.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +183,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Get the task processing result resources from the taskReport. This API is available in the following national cloud deployments.
+        /// Get the task processing result resources from the taskReport.
         /// </summary>
         public class TaskProcessingResultsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -46,12 +46,12 @@ namespace ApiSdk.Education.Me.Schools {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of schools for a user. This API is available in the following national cloud deployments.
+        /// Retrieve a list of schools for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of schools for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of schools for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -151,7 +151,7 @@ namespace ApiSdk.Education.Me.Schools {
         public SchoolsRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/schools{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of schools for a user. This API is available in the following national cloud deployments.
+        /// Retrieve a list of schools for a user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -167,7 +167,7 @@ namespace ApiSdk.Education.Me.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of schools for a user. This API is available in the following national cloud deployments.
+        /// Retrieve a list of schools for a user.
         /// </summary>
         public class SchoolsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

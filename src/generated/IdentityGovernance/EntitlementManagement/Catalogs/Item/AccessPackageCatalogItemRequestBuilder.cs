@@ -74,12 +74,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Delete an accessPackageCatalog. This API is available in the following national cloud deployments.
+        /// Delete an accessPackageCatalog.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an accessPackageCatalog. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0";
+            command.Description = "Delete an accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -108,12 +108,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessPackageCatalog object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an accessPackageCatalog object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -159,12 +159,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
+        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0";
+            command.Description = "Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -296,7 +296,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         public AccessPackageCatalogItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/catalogs/{accessPackageCatalog%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an accessPackageCatalog. This API is available in the following national cloud deployments.
+        /// Delete an accessPackageCatalog.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -312,7 +312,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessPackageCatalog object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -328,7 +328,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
+        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -346,7 +346,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessPackageCatalog object.
         /// </summary>
         public class AccessPackageCatalogItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

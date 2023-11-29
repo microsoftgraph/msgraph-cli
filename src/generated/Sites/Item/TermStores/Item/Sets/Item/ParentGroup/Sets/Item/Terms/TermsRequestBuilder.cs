@@ -119,11 +119,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a term object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of a term object.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -247,7 +247,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
         public TermsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/terms{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +281,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Term
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         public class TermsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

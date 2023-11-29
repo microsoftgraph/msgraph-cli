@@ -101,7 +101,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"connectingIP", n => { ConnectingIP = n.GetStringValue(); } },
                 {"deliveryAction", n => { DeliveryAction = n.GetStringValue(); } },
                 {"deliveryLocation", n => { DeliveryLocation = n.GetStringValue(); } },
@@ -111,6 +110,7 @@ namespace ApiSdk.Models {
                 {"messageReceivedDateTime", n => { MessageReceivedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"messageSubject", n => { MessageSubject = n.GetStringValue(); } },
                 {"networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

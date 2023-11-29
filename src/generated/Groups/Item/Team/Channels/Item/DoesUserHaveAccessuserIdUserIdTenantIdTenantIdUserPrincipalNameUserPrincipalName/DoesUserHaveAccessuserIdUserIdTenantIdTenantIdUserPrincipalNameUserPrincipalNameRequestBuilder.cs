@@ -113,25 +113,31 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.DoesUserHaveAccessuserIdUserIdTe
             /// <summary>Usage: tenantId=&apos;@tenantId&apos;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("tenantId")]
             public string? TenantId { get; set; }
 #nullable restore
 #else
+            [QueryParameter("tenantId")]
             public string TenantId { get; set; }
 #endif
             /// <summary>Usage: userId=&apos;@userId&apos;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("userId")]
             public string? UserId { get; set; }
 #nullable restore
 #else
+            [QueryParameter("userId")]
             public string UserId { get; set; }
 #endif
             /// <summary>Usage: userPrincipalName=&apos;@userPrincipalName&apos;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("userPrincipalName")]
             public string? UserPrincipalName { get; set; }
 #nullable restore
 #else
+            [QueryParameter("userPrincipalName")]
             public string UserPrincipalName { get; set; }
 #endif
         }

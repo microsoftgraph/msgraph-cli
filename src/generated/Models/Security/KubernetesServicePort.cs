@@ -65,10 +65,10 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"appProtocol", n => { AppProtocol = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"nodePort", n => { NodePort = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"port", n => { Port = n.GetIntValue(); } },
                 {"protocol", n => { Protocol = n.GetEnumValue<ContainerPortProtocol>(); } },
                 {"targetPort", n => { TargetPort = n.GetStringValue(); } },

@@ -19,12 +19,12 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
     /// </summary>
     public class RemoveGroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Removes a group from a lifecycle policy. This API is available in the following national cloud deployments.
+        /// Removes a group from a lifecycle policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Removes a group from a lifecycle policy. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0";
+            command.Description = "Removes a group from a lifecycle policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0";
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
@@ -81,7 +81,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
         public RemoveGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}/removeGroup", rawUrl) {
         }
         /// <summary>
-        /// Removes a group from a lifecycle policy. This API is available in the following national cloud deployments.
+        /// Removes a group from a lifecycle policy.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

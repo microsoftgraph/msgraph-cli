@@ -22,12 +22,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
     /// </summary>
     public class RunItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Read the properties and relationships of a run object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a run object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a run object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a run object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         public RunItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a run object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a run object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -156,7 +156,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a run object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a run object.
         /// </summary>
         public class RunItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -103,12 +103,12 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return command;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation. This API is available in the following national cloud deployments.
+        /// Retrieve the schedule for an active role assignment operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the schedule for an active role assignment operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the schedule for an active role assignment operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0";
             var unifiedRoleAssignmentScheduleIdOption = new Option<string>("--unified-role-assignment-schedule-id", description: "The unique identifier of unifiedRoleAssignmentSchedule") {
             };
             unifiedRoleAssignmentScheduleIdOption.IsRequired = true;
@@ -261,7 +261,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation. This API is available in the following national cloud deployments.
+        /// Retrieve the schedule for an active role assignment operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +295,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation. This API is available in the following national cloud deployments.
+        /// Retrieve the schedule for an active role assignment operation.
         /// </summary>
         public class UnifiedRoleAssignmentScheduleItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

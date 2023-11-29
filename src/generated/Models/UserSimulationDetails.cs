@@ -71,12 +71,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"assignedTrainingsCount", n => { AssignedTrainingsCount = n.GetIntValue(); } },
                 {"completedTrainingsCount", n => { CompletedTrainingsCount = n.GetIntValue(); } },
                 {"compromisedDateTime", n => { CompromisedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"inProgressTrainingsCount", n => { InProgressTrainingsCount = n.GetIntValue(); } },
                 {"isCompromised", n => { IsCompromised = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reportedPhishDateTime", n => { ReportedPhishDateTime = n.GetDateTimeOffsetValue(); } },
                 {"simulationEvents", n => { SimulationEvents = n.GetCollectionOfObjectValues<UserSimulationEventInfo>(UserSimulationEventInfo.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"simulationUser", n => { SimulationUser = n.GetObjectValue<AttackSimulationUser>(AttackSimulationUser.CreateFromDiscriminatorValue); } },

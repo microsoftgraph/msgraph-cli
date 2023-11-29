@@ -20,12 +20,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
     /// </summary>
     public class MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create a new version of the workflow object. This API is available in the following national cloud deployments.
+        /// Create a new version of the workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create a new version of the workflow object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0";
+            command.Description = "Create a new version of the workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         public MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/microsoft.graph.identityGovernance.createNewVersion", rawUrl) {
         }
         /// <summary>
-        /// Create a new version of the workflow object. This API is available in the following national cloud deployments.
+        /// Create a new version of the workflow object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

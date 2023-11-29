@@ -19,12 +19,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
     /// </summary>
     public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high. This API is available in the following national cloud deployments.
+        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Confirm one or more riskyUser objects as compromised. This action sets the targeted user's risk level to high. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0";
+            command.Description = "Confirm one or more riskyUser objects as compromised. This action sets the targeted user's risk level to high.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
         public ConfirmCompromisedRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", rawUrl) {
         }
         /// <summary>
-        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high. This API is available in the following national cloud deployments.
+        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

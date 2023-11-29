@@ -103,7 +103,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"containerFilter", n => { ContainerFilter = n.GetObjectValue<ApiSdk.Models.ContainerFilter>(ApiSdk.Models.ContainerFilter.CreateFromDiscriminatorValue); } },
                 {"editable", n => { Editable = n.GetBoolValue(); } },
                 {"groupFilter", n => { GroupFilter = n.GetObjectValue<ApiSdk.Models.GroupFilter>(ApiSdk.Models.GroupFilter.CreateFromDiscriminatorValue); } },
@@ -111,6 +110,7 @@ namespace ApiSdk.Models {
                 {"metadata", n => { Metadata = n.GetCollectionOfObjectValues<StringKeyStringValuePair>(StringKeyStringValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"objectMappings", n => { ObjectMappings = n.GetCollectionOfObjectValues<ObjectMapping>(ObjectMapping.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"priority", n => { Priority = n.GetIntValue(); } },
                 {"sourceDirectoryName", n => { SourceDirectoryName = n.GetStringValue(); } },
                 {"targetDirectoryName", n => { TargetDirectoryName = n.GetStringValue(); } },

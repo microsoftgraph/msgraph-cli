@@ -55,12 +55,12 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Create a new page in the specified section. This API is available in the following national cloud deployments.
+        /// Create a new page in the specified section.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-post-pages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new page in the specified section. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-post-pages?view=graph-rest-1.0";
+            command.Description = "Create a new page in the specified section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-post-pages?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section. This API is available in the following national cloud deployments.
+        /// Retrieve a list of page objects from the specified section.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of page objects from the specified section. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of page objects from the specified section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -240,7 +240,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages {
         public PagesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section. This API is available in the following national cloud deployments.
+        /// Retrieve a list of page objects from the specified section.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +256,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new page in the specified section. This API is available in the following national cloud deployments.
+        /// Create a new page in the specified section.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +274,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item.Sections.Item.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section. This API is available in the following national cloud deployments.
+        /// Retrieve a list of page objects from the specified section.
         /// </summary>
         public class PagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

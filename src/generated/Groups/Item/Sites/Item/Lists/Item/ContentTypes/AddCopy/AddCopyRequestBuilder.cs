@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopy {
     /// </summary>
     public class AddCopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
+            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -94,7 +94,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopy {
         public AddCopyRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/addCopy", rawUrl) {
         }
         /// <summary>
-        /// Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

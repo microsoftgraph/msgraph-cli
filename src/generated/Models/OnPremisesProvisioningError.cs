@@ -61,9 +61,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"category", n => { Category = n.GetStringValue(); } },
                 {"occurredDateTime", n => { OccurredDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"propertyCausingError", n => { PropertyCausingError = n.GetStringValue(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };

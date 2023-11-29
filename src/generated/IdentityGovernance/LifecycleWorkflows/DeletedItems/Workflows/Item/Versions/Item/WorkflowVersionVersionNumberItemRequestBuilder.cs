@@ -45,12 +45,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowVersion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a workflowVersion object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a workflowVersion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -161,7 +161,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         public WorkflowVersionVersionNumberItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowVersion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -177,7 +177,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowVersion object.
         /// </summary>
         public class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Presence.ClearUserPreferredPresence {
     /// </summary>
     public class ClearUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Clear the preferred availability and activity status for a user. This API is available in the following national cloud deployments.
+        /// Clear the preferred availability and activity status for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clear the preferred availability and activity status for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
+            command.Description = "Clear the preferred availability and activity status for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.Presence.ClearUserPreferredPresence {
         public ClearUserPreferredPresenceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence/clearUserPreferredPresence", rawUrl) {
         }
         /// <summary>
-        /// Clear the preferred availability and activity status for a user. This API is available in the following national cloud deployments.
+        /// Clear the preferred availability and activity status for a user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

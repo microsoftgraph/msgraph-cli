@@ -93,11 +93,11 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a intelligenceProfileIndicator object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of a intelligenceProfileIndicator object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -197,7 +197,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators {
         public IntelligenceProfileIndicatorsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelligenceProfileIndicators{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
         /// </summary>
         public class IntelligenceProfileIndicatorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

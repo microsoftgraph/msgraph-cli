@@ -183,7 +183,6 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callDurationSource", n => { CallDurationSource = n.GetEnumValue<PstnCallDurationSource>(); } },
                 {"callId", n => { CallId = n.GetStringValue(); } },
                 {"callType", n => { CallType = n.GetStringValue(); } },
@@ -200,6 +199,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"inventoryType", n => { InventoryType = n.GetStringValue(); } },
                 {"licenseCapability", n => { LicenseCapability = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"tenantCountryCode", n => { TenantCountryCode = n.GetStringValue(); } },

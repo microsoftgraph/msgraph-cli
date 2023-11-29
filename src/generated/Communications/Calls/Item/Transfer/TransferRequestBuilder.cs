@@ -19,12 +19,12 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
     /// </summary>
     public class TransferRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly. This API is available in the following national cloud deployments.
+        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0";
+            command.Description = "Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
         public TransferRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/transfer", rawUrl) {
         }
         /// <summary>
-        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly. This API is available in the following national cloud deployments.
+        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

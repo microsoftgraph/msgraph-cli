@@ -54,12 +54,12 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostCookie object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-hostcookie-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-hostcookie-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a hostCookie object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-hostcookie-get?view=graph-rest-1.0";
             var hostCookieIdOption = new Option<string>("--host-cookie-id", description: "The unique identifier of hostCookie") {
             };
             hostCookieIdOption.IsRequired = true;
@@ -197,7 +197,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostCookie object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostCookie object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a hostCookie object.
         /// </summary>
         public class HostCookieItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

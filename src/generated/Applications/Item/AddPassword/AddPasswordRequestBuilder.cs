@@ -20,12 +20,12 @@ namespace ApiSdk.Applications.Item.AddPassword {
     /// </summary>
     public class AddPasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Adds a strong password or secret to an application. This API is available in the following national cloud deployments.
+        /// Adds a strong password or secret to an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds a strong password or secret to an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0";
+            command.Description = "Adds a strong password or secret to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Applications.Item.AddPassword {
         public AddPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/addPassword", rawUrl) {
         }
         /// <summary>
-        /// Adds a strong password or secret to an application. This API is available in the following national cloud deployments.
+        /// Adds a strong password or secret to an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

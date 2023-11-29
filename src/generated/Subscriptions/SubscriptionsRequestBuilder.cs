@@ -34,12 +34,12 @@ namespace ApiSdk.Subscriptions {
             return new(executables, commands);
         }
         /// <summary>
-        /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources. This API is available in the following national cloud deployments.
+        /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0";
+            command.Description = "Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -78,12 +78,12 @@ namespace ApiSdk.Subscriptions {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user's role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user's role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0";
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };
             searchOption.IsRequired = false;
@@ -145,7 +145,7 @@ namespace ApiSdk.Subscriptions {
         public SubscriptionsRequestBuilder(string rawUrl) : base("{+baseurl}/subscriptions{?%24search,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -161,7 +161,7 @@ namespace ApiSdk.Subscriptions {
             return requestInfo;
         }
         /// <summary>
-        /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources. This API is available in the following national cloud deployments.
+        /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Subscriptions {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         /// </summary>
         public class SubscriptionsRequestBuilderGetQueryParameters {
             /// <summary>Search items by search phrases</summary>

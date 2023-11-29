@@ -20,12 +20,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
     /// </summary>
     public class InternalDomainFederationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Delete an internalDomainFederation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/internaldomainfederation-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an internalDomainFederation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-delete?view=graph-rest-1.0";
+            command.Description = "Delete an internalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-delete?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/internaldomainfederation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an internalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-get?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Update the properties of an internalDomainFederation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/internaldomainfederation-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an internalDomainFederation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an internalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internaldomainfederation-update?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -185,7 +185,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
         public InternalDomainFederationItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Delete an internalDomainFederation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +201,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Update the properties of an internalDomainFederation object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         public class InternalDomainFederationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

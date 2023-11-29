@@ -83,11 +83,11 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"accessReviews", n => { AccessReviews = n.GetObjectValue<ApiSdk.Models.AccessReviewSet>(ApiSdk.Models.AccessReviewSet.CreateFromDiscriminatorValue); } },
                 {"appConsent", n => { AppConsent = n.GetObjectValue<ApiSdk.Models.AppConsentApprovalRoute>(ApiSdk.Models.AppConsentApprovalRoute.CreateFromDiscriminatorValue); } },
                 {"entitlementManagement", n => { EntitlementManagement = n.GetObjectValue<ApiSdk.Models.EntitlementManagement>(ApiSdk.Models.EntitlementManagement.CreateFromDiscriminatorValue); } },
                 {"lifecycleWorkflows", n => { LifecycleWorkflows = n.GetObjectValue<LifecycleWorkflowsContainer>(LifecycleWorkflowsContainer.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"privilegedAccess", n => { PrivilegedAccess = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessRoot>(ApiSdk.Models.PrivilegedAccessRoot.CreateFromDiscriminatorValue); } },
                 {"termsOfUse", n => { TermsOfUse = n.GetObjectValue<ApiSdk.Models.TermsOfUseContainer>(ApiSdk.Models.TermsOfUseContainer.CreateFromDiscriminatorValue); } },
             };

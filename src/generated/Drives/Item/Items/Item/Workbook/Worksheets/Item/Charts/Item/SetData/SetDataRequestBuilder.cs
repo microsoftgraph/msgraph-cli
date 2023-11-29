@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Set
     /// </summary>
     public class SetDataRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Resets the source data for the chart. This API is available in the following national cloud deployments.
+        /// Resets the source data for the chart.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-setdata?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Resets the source data for the chart. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-setdata?view=graph-rest-1.0";
+            command.Description = "Resets the source data for the chart.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-setdata?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -89,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Set
         public SetDataRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/setData", rawUrl) {
         }
         /// <summary>
-        /// Resets the source data for the chart. This API is available in the following national cloud deployments.
+        /// Resets the source data for the chart.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

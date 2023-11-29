@@ -20,11 +20,11 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>Windows version 10.0 or later.</summary>
-        public bool? V10_0 { get; set; }
+        public bool? V100 { get; set; }
         /// <summary>Windows version 8.0 or later.</summary>
-        public bool? V8_0 { get; set; }
+        public bool? V80 { get; set; }
         /// <summary>Windows version 8.1 or later.</summary>
-        public bool? V8_1 { get; set; }
+        public bool? V81 { get; set; }
         /// <summary>
         /// Instantiates a new windowsMinimumOperatingSystem and sets the default values.
         /// </summary>
@@ -45,9 +45,9 @@ namespace ApiSdk.Models {
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_0", n => { V10_0 = n.GetBoolValue(); } },
-                {"v8_0", n => { V8_0 = n.GetBoolValue(); } },
-                {"v8_1", n => { V8_1 = n.GetBoolValue(); } },
+                {"v10_0", n => { V100 = n.GetBoolValue(); } },
+                {"v8_0", n => { V80 = n.GetBoolValue(); } },
+                {"v8_1", n => { V81 = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -57,9 +57,9 @@ namespace ApiSdk.Models {
         public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteBoolValue("v10_0", V10_0);
-            writer.WriteBoolValue("v8_0", V8_0);
-            writer.WriteBoolValue("v8_1", V8_1);
+            writer.WriteBoolValue("v10_0", V100);
+            writer.WriteBoolValue("v8_0", V80);
+            writer.WriteBoolValue("v8_1", V81);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -21,12 +21,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
     /// </summary>
     public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove (unpin) a tab from the specified chat.  This API is available in the following national cloud deployments.
+        /// Remove (unpin) a tab from the specified chat. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove (unpin) a tab from the specified chat.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-tabs?view=graph-rest-1.0";
+            command.Description = "Remove (unpin) a tab from the specified chat. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-tabs?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -67,12 +67,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a chat.  This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of the specified tab in a chat.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-tabs?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of the specified tab in a chat. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-tabs?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -130,12 +130,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab. This API is available in the following national cloud deployments.
+        /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-patch-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of the specified tab in a chat. This can be used to configure the content of the tab. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-patch-tabs?view=graph-rest-1.0";
+            command.Description = "Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-patch-tabs?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -219,7 +219,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
         public TeamsTabItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/tabs/{teamsTab%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Remove (unpin) a tab from the specified chat.  This API is available in the following national cloud deployments.
+        /// Remove (unpin) a tab from the specified chat. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a chat.  This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -251,7 +251,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab. This API is available in the following national cloud deployments.
+        /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +269,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a chat.  This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// </summary>
         public class TeamsTabItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

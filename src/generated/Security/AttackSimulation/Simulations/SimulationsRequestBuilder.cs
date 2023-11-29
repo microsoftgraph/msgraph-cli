@@ -96,12 +96,12 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return command;
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of attack simulation campaigns for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0";
+            command.Description = "Get a list of attack simulation campaigns for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -201,7 +201,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
         public SimulationsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of attack simulation campaigns for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +235,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant. This API is available in the following national cloud deployments.
+        /// Get a list of attack simulation campaigns for a tenant.
         /// </summary>
         public class SimulationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

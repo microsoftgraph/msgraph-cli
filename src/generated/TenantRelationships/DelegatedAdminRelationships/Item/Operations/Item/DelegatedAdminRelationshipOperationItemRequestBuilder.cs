@@ -59,12 +59,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return command;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationshipOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties of a delegatedAdminRelationshipOperation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationshipoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties of a delegatedAdminRelationshipOperation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationshipoperation-get?view=graph-rest-1.0";
+            command.Description = "Read the properties of a delegatedAdminRelationshipOperation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationshipoperation-get?view=graph-rest-1.0";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -199,7 +199,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationshipOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties of a delegatedAdminRelationshipOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationshipOperation object. This API is available in the following national cloud deployments.
+        /// Read the properties of a delegatedAdminRelationshipOperation object.
         /// </summary>
         public class DelegatedAdminRelationshipOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -112,12 +112,12 @@ namespace ApiSdk.Groups.Item.Owners.Ref {
             return command;
         }
         /// <summary>
-        /// Add a user or service principal to a Microsoft 365 or security group&apos;s owners. The owners are a set of users or service principals who are allowed to modify the group object. This API is available in the following national cloud deployments.
+        /// Add a user or service principal to a Microsoft 365 or security group&apos;s owners. The owners are a set of users or service principals who are allowed to modify the group object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a user or service principal to a Microsoft 365 or security group's owners. The owners are a set of users or service principals who are allowed to modify the group object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-owners?view=graph-rest-1.0";
+            command.Description = "Add a user or service principal to a Microsoft 365 or security group's owners. The owners are a set of users or service principals who are allowed to modify the group object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-owners?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -180,7 +180,7 @@ namespace ApiSdk.Groups.Item.Owners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a user or service principal to a Microsoft 365 or security group&apos;s owners. The owners are a set of users or service principals who are allowed to modify the group object. This API is available in the following national cloud deployments.
+        /// Add a user or service principal to a Microsoft 365 or security group&apos;s owners. The owners are a set of users or service principals who are allowed to modify the group object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

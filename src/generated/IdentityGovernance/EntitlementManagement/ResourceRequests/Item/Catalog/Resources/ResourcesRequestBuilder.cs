@@ -101,12 +101,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return command;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-list-resources?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of accessPackageResource objects in an accessPackageCatalog. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-list-resources?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of accessPackageResource objects in an accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-list-resources?view=graph-rest-1.0";
             var accessPackageResourceRequestIdOption = new Option<string>("--access-package-resource-request-id", description: "The unique identifier of accessPackageResourceRequest") {
             };
             accessPackageResourceRequestIdOption.IsRequired = true;
@@ -212,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         public ResourcesRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests/{accessPackageResourceRequest%2Did}/catalog/resources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +246,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

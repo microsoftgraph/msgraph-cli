@@ -108,12 +108,12 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated with a plannerPlan object. This API is available in the following national cloud deployments.
+        /// Retrieve a list of plannerTask objects associated with a plannerPlan object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplan-list-tasks?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerTask objects associated with a plannerPlan object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplan-list-tasks?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of plannerTask objects associated with a plannerPlan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplan-list-tasks?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks {
         public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/planner/plans/{plannerPlan%2Did}/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated with a plannerPlan object. This API is available in the following national cloud deployments.
+        /// Retrieve a list of plannerTask objects associated with a plannerPlan object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +259,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated with a plannerPlan object. This API is available in the following national cloud deployments.
+        /// Retrieve a list of plannerTask objects associated with a plannerPlan object.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

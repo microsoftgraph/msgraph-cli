@@ -52,9 +52,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"endDate", n => { EndDate = n.GetDateValue(); } },
                 {"numberOfOccurrences", n => { NumberOfOccurrences = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recurrenceTimeZone", n => { RecurrenceTimeZone = n.GetStringValue(); } },
                 {"startDate", n => { StartDate = n.GetDateValue(); } },
                 {"type", n => { Type = n.GetEnumValue<RecurrenceRangeType>(); } },

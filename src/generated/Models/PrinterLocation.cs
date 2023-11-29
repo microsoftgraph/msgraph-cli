@@ -153,7 +153,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"altitudeInMeters", n => { AltitudeInMeters = n.GetIntValue(); } },
                 {"building", n => { Building = n.GetStringValue(); } },
                 {"city", n => { City = n.GetStringValue(); } },
@@ -162,6 +161,7 @@ namespace ApiSdk.Models {
                 {"floorDescription", n => { FloorDescription = n.GetStringValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"organization", n => { Organization = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"postalCode", n => { PostalCode = n.GetStringValue(); } },
                 {"roomDescription", n => { RoomDescription = n.GetStringValue(); } },

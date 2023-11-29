@@ -53,12 +53,12 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userRegistrationDetails object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userregistrationdetails-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a userRegistrationDetails object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userregistrationdetails-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a userRegistrationDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userregistrationdetails-get?view=graph-rest-1.0";
             var userRegistrationDetailsIdOption = new Option<string>("--user-registration-details-id", description: "The unique identifier of userRegistrationDetails") {
             };
             userRegistrationDetailsIdOption.IsRequired = true;
@@ -181,7 +181,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userRegistrationDetails object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userRegistrationDetails object.
         /// </summary>
         public class UserRegistrationDetailsItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

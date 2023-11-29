@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
     /// </summary>
     public class EducationOutcomeItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a feedback resource from a submission. This can only be done by a teacher. This API is available in the following national cloud deployments.
+        /// Delete a feedback resource from a submission. This can only be done by a teacher.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a feedback resource from a submission. This can only be done by a teacher. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0";
+            command.Description = "Delete a feedback resource from a submission. This can only be done by a teacher.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -128,12 +128,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationOutcome object. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationOutcome object. Only teachers can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an educationOutcome object. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -202,7 +202,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         public EducationOutcomeItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/outcomes/{educationOutcome%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a feedback resource from a submission. This can only be done by a teacher. This API is available in the following national cloud deployments.
+        /// Delete a feedback resource from a submission. This can only be done by a teacher.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,7 +234,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationOutcome object. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
