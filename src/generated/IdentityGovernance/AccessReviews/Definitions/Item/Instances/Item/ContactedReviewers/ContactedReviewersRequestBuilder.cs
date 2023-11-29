@@ -103,12 +103,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties. This API is available in the following national cloud deployments.
+        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0";
+            command.Description = "Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -220,7 +220,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public ContactedReviewersRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/contactedReviewers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties. This API is available in the following national cloud deployments.
+        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -254,7 +254,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties. This API is available in the following national cloud deployments.
+        /// Get the reviewers for an access review instance, irrespective of whether or not they have received a notification. The reviewers are represented by an accessReviewReviewer object. A list of zero or more objects are returned, including all of their nested properties.
         /// </summary>
         public class ContactedReviewersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

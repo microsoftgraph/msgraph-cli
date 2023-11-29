@@ -107,12 +107,12 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"address", n => { Address = n.GetObjectValue<ApiSdk.Models.PhysicalAddress>(ApiSdk.Models.PhysicalAddress.CreateFromDiscriminatorValue); } },
                 {"alternateNames", n => { AlternateNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"commonName", n => { CommonName = n.GetStringValue(); } },
                 {"email", n => { Email = n.GetStringValue(); } },
                 {"givenName", n => { GivenName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"organizationName", n => { OrganizationName = n.GetStringValue(); } },
                 {"organizationUnitName", n => { OrganizationUnitName = n.GetStringValue(); } },
                 {"serialNumber", n => { SerialNumber = n.GetStringValue(); } },

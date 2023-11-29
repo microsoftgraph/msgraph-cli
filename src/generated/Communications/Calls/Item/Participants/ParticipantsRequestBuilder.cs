@@ -117,12 +117,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call. This API is available in the following national cloud deployments.
+        /// Retrieve a list of participant objects in the call.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of participant objects in the call. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of participant objects in the call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -228,7 +228,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         public ParticipantsRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call. This API is available in the following national cloud deployments.
+        /// Retrieve a list of participant objects in the call.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +262,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call. This API is available in the following national cloud deployments.
+        /// Retrieve a list of participant objects in the call.
         /// </summary>
         public class ParticipantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

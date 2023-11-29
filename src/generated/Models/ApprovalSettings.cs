@@ -57,12 +57,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"approvalMode", n => { ApprovalMode = n.GetStringValue(); } },
                 {"approvalStages", n => { ApprovalStages = n.GetCollectionOfObjectValues<UnifiedApprovalStage>(UnifiedApprovalStage.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isApprovalRequired", n => { IsApprovalRequired = n.GetBoolValue(); } },
                 {"isApprovalRequiredForExtension", n => { IsApprovalRequiredForExtension = n.GetBoolValue(); } },
                 {"isRequestorJustificationRequired", n => { IsRequestorJustificationRequired = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

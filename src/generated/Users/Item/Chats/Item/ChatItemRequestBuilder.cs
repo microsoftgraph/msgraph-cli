@@ -71,12 +71,12 @@ namespace ApiSdk.Users.Item.Chats.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -455,7 +455,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -489,7 +489,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from. This API is available in the following national cloud deployments.
+        /// Retrieve a single chat (without its messages). This method supports federation. To access a chat, at least one chat member must belong to the tenant the request initiated from.
         /// </summary>
         public class ChatItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

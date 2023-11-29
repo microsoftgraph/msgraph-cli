@@ -53,12 +53,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return command;
         }
         /// <summary>
-        /// Create a new set object. This API is available in the following national cloud deployments.
+        /// Create a new set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new set object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0";
+            command.Description = "Create a new set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -109,11 +109,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a set object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a set object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties and relationships of a set object.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
         public SetsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a set object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new set object. This API is available in the following national cloud deployments.
+        /// Create a new set object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +259,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a set object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -20,12 +20,12 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
     /// </summary>
     public class CancelMediaProcessingRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue. This API is available in the following national cloud deployments.
+        /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0";
+            command.Description = "Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         public CancelMediaProcessingRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/cancelMediaProcessing", rawUrl) {
         }
         /// <summary>
-        /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue. This API is available in the following national cloud deployments.
+        /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

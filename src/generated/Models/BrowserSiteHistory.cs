@@ -64,12 +64,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
                 {"comment", n => { Comment = n.GetStringValue(); } },
                 {"compatibilityMode", n => { CompatibilityMode = n.GetEnumValue<BrowserSiteCompatibilityMode>(); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"mergeType", n => { MergeType = n.GetEnumValue<BrowserSiteMergeType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"targetEnvironment", n => { TargetEnvironment = n.GetEnumValue<BrowserSiteTargetEnvironment>(); } },
             };

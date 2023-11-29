@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.AddGroup {
     /// </summary>
     public class AddGroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected. This API is available in the following national cloud deployments.
+        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0";
+            command.Description = "Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.AddGroup {
         public AddGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}/addGroup", rawUrl) {
         }
         /// <summary>
-        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected. This API is available in the following national cloud deployments.
+        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

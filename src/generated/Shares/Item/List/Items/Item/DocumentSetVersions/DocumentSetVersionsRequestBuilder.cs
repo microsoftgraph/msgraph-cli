@@ -51,12 +51,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list. This API is available in the following national cloud deployments.
+        /// Create a new version of a document set item in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new version of a document set item in a list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -107,12 +107,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list. This API is available in the following national cloud deployments.
+        /// Get a list of the versions of a document set item in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the versions of a document set item in a list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
         public DocumentSetVersionsRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/documentSetVersions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list. This API is available in the following national cloud deployments.
+        /// Get a list of the versions of a document set item in a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +240,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list. This API is available in the following national cloud deployments.
+        /// Create a new version of a document set item in a list.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +258,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list. This API is available in the following national cloud deployments.
+        /// Get a list of the versions of a document set item in a list.
         /// </summary>
         public class DocumentSetVersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

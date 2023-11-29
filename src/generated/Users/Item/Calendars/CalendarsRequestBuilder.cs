@@ -54,12 +54,12 @@ namespace ApiSdk.Users.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Create a new calendar for a user. This API is available in the following national cloud deployments.
+        /// Create a new calendar for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new calendar for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0";
+            command.Description = "Create a new calendar for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -104,12 +104,12 @@ namespace ApiSdk.Users.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.  This API is available in the following national cloud deployments.
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the user's calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
+            command.Description = "Get all the user's calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -209,7 +209,7 @@ namespace ApiSdk.Users.Item.Calendars {
         public CalendarsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendars{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.  This API is available in the following national cloud deployments.
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -225,7 +225,7 @@ namespace ApiSdk.Users.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new calendar for a user. This API is available in the following national cloud deployments.
+        /// Create a new calendar for a user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.  This API is available in the following national cloud deployments.
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
         /// </summary>
         public class CalendarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

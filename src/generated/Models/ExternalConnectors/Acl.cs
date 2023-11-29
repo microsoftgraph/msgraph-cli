@@ -47,8 +47,8 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"accessType", n => { AccessType = n.GetEnumValue<AccessType>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<AclType>(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };

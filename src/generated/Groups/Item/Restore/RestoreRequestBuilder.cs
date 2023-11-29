@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.Restore {
     /// </summary>
     public class RestoreRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted. This API is available in the following national cloud deployments.
+        /// Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-restore?view=graph-rest-1.0";
+            command.Description = "Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-restore?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -69,7 +69,7 @@ namespace ApiSdk.Groups.Item.Restore {
         public RestoreRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/restore", rawUrl) {
         }
         /// <summary>
-        /// Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted. This API is available in the following national cloud deployments.
+        /// Restore a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item. However, security groups cannot be restored. A recently deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

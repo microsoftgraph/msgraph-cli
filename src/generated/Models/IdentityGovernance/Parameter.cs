@@ -33,7 +33,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public List<string> Values { get; set; }
 #endif
         /// <summary>The valueType property</summary>
-        public ValueTypeObject? ValueType { get; set; }
+        public ApiSdk.Models.IdentityGovernance.ValueTypeObject? ValueTypeObject { get; set; }
         /// <summary>
         /// Instantiates a new parameter and sets the default values.
         /// </summary>
@@ -53,9 +53,9 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"valueType", n => { ValueType = n.GetEnumValue<ValueTypeObject>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"valueType", n => { ValueTypeObject = n.GetEnumValue<ValueTypeObject>(); } },
                 {"values", n => { Values = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.IdentityGovernance {
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("values", Values);
-            writer.WriteEnumValue<ValueTypeObject>("valueType", ValueType);
+            writer.WriteEnumValue<ValueTypeObject>("valueType", ValueTypeObject);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

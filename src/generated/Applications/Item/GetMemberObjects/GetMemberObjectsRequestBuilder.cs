@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.GetMemberObjects {
     /// </summary>
     public class GetMemberObjectsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles. This API is available in the following national cloud deployments.
+        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0";
+            command.Description = "Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -92,7 +92,7 @@ namespace ApiSdk.Applications.Item.GetMemberObjects {
         public GetMemberObjectsRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/getMemberObjects", rawUrl) {
         }
         /// <summary>
-        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles. This API is available in the following national cloud deployments.
+        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. Note: Only users and role-enabled groups can be members of directory roles.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

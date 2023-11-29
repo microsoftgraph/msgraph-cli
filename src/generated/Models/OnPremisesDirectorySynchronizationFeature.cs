@@ -73,7 +73,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"blockCloudObjectTakeoverThroughHardMatchEnabled", n => { BlockCloudObjectTakeoverThroughHardMatchEnabled = n.GetBoolValue(); } },
                 {"blockSoftMatchEnabled", n => { BlockSoftMatchEnabled = n.GetBoolValue(); } },
                 {"bypassDirSyncOverridesEnabled", n => { BypassDirSyncOverridesEnabled = n.GetBoolValue(); } },
@@ -84,6 +83,7 @@ namespace ApiSdk.Models {
                 {"directoryExtensionsEnabled", n => { DirectoryExtensionsEnabled = n.GetBoolValue(); } },
                 {"fopeConflictResolutionEnabled", n => { FopeConflictResolutionEnabled = n.GetBoolValue(); } },
                 {"groupWriteBackEnabled", n => { GroupWriteBackEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"passwordSyncEnabled", n => { PasswordSyncEnabled = n.GetBoolValue(); } },
                 {"passwordWritebackEnabled", n => { PasswordWritebackEnabled = n.GetBoolValue(); } },
                 {"quarantineUponProxyAddressesConflictEnabled", n => { QuarantineUponProxyAddressesConflictEnabled = n.GetBoolValue(); } },

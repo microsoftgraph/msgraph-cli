@@ -20,12 +20,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
     /// </summary>
     public class SettingsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a lifecycleManagementSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -65,12 +65,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return command;
         }
         /// <summary>
-        /// Update the properties of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.
+        /// Update the properties of a lifecycleManagementSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -121,7 +121,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/settings{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a lifecycleManagementSettings object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -137,7 +137,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.
+        /// Update the properties of a lifecycleManagementSettings object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -155,7 +155,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a lifecycleManagementSettings object.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

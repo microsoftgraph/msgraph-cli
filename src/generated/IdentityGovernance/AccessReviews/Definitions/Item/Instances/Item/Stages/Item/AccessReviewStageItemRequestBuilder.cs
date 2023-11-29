@@ -93,12 +93,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessReviewStage object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessReviewStage object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewstage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an accessReviewStage object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewstage-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an accessReviewStage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewstage-get?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -156,12 +156,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress. This API is available in the following national cloud deployments.
+        /// Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewstage-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can't remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewstage-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can't remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewstage-update?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -261,7 +261,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessReviewStage object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessReviewStage object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +277,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress. This API is available in the following national cloud deployments.
+        /// Update the properties of an accessReviewStage object. Only the reviewers and fallbackReviewers properties can be updated. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewStage, its status must be NotStarted, Initializing, or InProgress.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessReviewStage object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an accessReviewStage object.
         /// </summary>
         public class AccessReviewStageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

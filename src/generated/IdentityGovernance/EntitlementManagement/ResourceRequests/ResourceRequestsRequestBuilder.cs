@@ -51,12 +51,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests {
             return command;
         }
         /// <summary>
-        /// Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package. This API is available in the following national cloud deployments.
+        /// Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-post-resourcerequests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-resourcerequests?view=graph-rest-1.0";
+            command.Description = "Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-resourcerequests?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -95,12 +95,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResourceRequest objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResourceRequest objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-list-resourcerequests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of accessPackageResourceRequest objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-resourcerequests?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of accessPackageResourceRequest objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-resourcerequests?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -200,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests {
         public ResourceRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResourceRequest objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResourceRequest objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -216,7 +216,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package. This API is available in the following national cloud deployments.
+        /// Create a new accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a resource, or the removal of a resource from a catalog.  A resource must be included in an access package catalog before a role of that resource can be added to an access package.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +234,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResourceRequest objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of accessPackageResourceRequest objects.
         /// </summary>
         public class ResourceRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

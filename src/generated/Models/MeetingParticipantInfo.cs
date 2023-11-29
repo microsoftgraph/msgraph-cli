@@ -53,8 +53,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"role", n => { Role = n.GetEnumValue<OnlineMeetingRole>(); } },
                 {"upn", n => { Upn = n.GetStringValue(); } },
             };

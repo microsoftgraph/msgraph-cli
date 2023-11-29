@@ -61,11 +61,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"addImageQuery", n => { AddImageQuery = n.GetBoolValue(); } },
                 {"alternateText", n => { AlternateText = n.GetStringValue(); } },
                 {"alternativeText", n => { AlternativeText = n.GetStringValue(); } },
                 {"iconUrl", n => { IconUrl = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

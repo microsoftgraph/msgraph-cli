@@ -94,13 +94,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"encryptionKey", n => { EncryptionKey = n.GetByteArrayValue(); } },
                 {"fileDigest", n => { FileDigest = n.GetByteArrayValue(); } },
                 {"fileDigestAlgorithm", n => { FileDigestAlgorithm = n.GetStringValue(); } },
                 {"initializationVector", n => { InitializationVector = n.GetByteArrayValue(); } },
                 {"mac", n => { Mac = n.GetByteArrayValue(); } },
                 {"macKey", n => { MacKey = n.GetByteArrayValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"profileIdentifier", n => { ProfileIdentifier = n.GetStringValue(); } },
             };
         }

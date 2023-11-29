@@ -20,29 +20,29 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>When TRUE, indicates OS X 10.10 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_10 { get; set; }
+        public bool? V1010 { get; set; }
         /// <summary>When TRUE, indicates OS X 10.11 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_11 { get; set; }
+        public bool? V1011 { get; set; }
         /// <summary>When TRUE, indicates macOS 10.12 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_12 { get; set; }
+        public bool? V1012 { get; set; }
         /// <summary>When TRUE, indicates macOS 10.13 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_13 { get; set; }
+        public bool? V1013 { get; set; }
         /// <summary>When TRUE, indicates macOS 10.14 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_14 { get; set; }
+        public bool? V1014 { get; set; }
         /// <summary>When TRUE, indicates macOS 10.15 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_15 { get; set; }
+        public bool? V1015 { get; set; }
         /// <summary>When TRUE, indicates Mac OS X 10.7 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_7 { get; set; }
+        public bool? V107 { get; set; }
         /// <summary>When TRUE, indicates OS X 10.8 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_8 { get; set; }
+        public bool? V108 { get; set; }
         /// <summary>When TRUE, indicates OS X 10.9 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V10_9 { get; set; }
+        public bool? V109 { get; set; }
         /// <summary>When TRUE, indicates macOS 11.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V11_0 { get; set; }
+        public bool? V110 { get; set; }
         /// <summary>When TRUE, indicates macOS 12.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V12_0 { get; set; }
+        public bool? V120 { get; set; }
         /// <summary>When TRUE, indicates macOS 13.0 or later is required to install the app. When FALSE, indicates some other OS version is the minimum OS to install the app. Default value is FALSE.</summary>
-        public bool? V13_0 { get; set; }
+        public bool? V130 { get; set; }
         /// <summary>
         /// Instantiates a new macOSMinimumOperatingSystem and sets the default values.
         /// </summary>
@@ -63,18 +63,18 @@ namespace ApiSdk.Models {
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_10", n => { V10_10 = n.GetBoolValue(); } },
-                {"v10_11", n => { V10_11 = n.GetBoolValue(); } },
-                {"v10_12", n => { V10_12 = n.GetBoolValue(); } },
-                {"v10_13", n => { V10_13 = n.GetBoolValue(); } },
-                {"v10_14", n => { V10_14 = n.GetBoolValue(); } },
-                {"v10_15", n => { V10_15 = n.GetBoolValue(); } },
-                {"v10_7", n => { V10_7 = n.GetBoolValue(); } },
-                {"v10_8", n => { V10_8 = n.GetBoolValue(); } },
-                {"v10_9", n => { V10_9 = n.GetBoolValue(); } },
-                {"v11_0", n => { V11_0 = n.GetBoolValue(); } },
-                {"v12_0", n => { V12_0 = n.GetBoolValue(); } },
-                {"v13_0", n => { V13_0 = n.GetBoolValue(); } },
+                {"v10_10", n => { V1010 = n.GetBoolValue(); } },
+                {"v10_11", n => { V1011 = n.GetBoolValue(); } },
+                {"v10_12", n => { V1012 = n.GetBoolValue(); } },
+                {"v10_13", n => { V1013 = n.GetBoolValue(); } },
+                {"v10_14", n => { V1014 = n.GetBoolValue(); } },
+                {"v10_15", n => { V1015 = n.GetBoolValue(); } },
+                {"v10_7", n => { V107 = n.GetBoolValue(); } },
+                {"v10_8", n => { V108 = n.GetBoolValue(); } },
+                {"v10_9", n => { V109 = n.GetBoolValue(); } },
+                {"v11_0", n => { V110 = n.GetBoolValue(); } },
+                {"v12_0", n => { V120 = n.GetBoolValue(); } },
+                {"v13_0", n => { V130 = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -84,18 +84,18 @@ namespace ApiSdk.Models {
         public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
-            writer.WriteBoolValue("v10_10", V10_10);
-            writer.WriteBoolValue("v10_11", V10_11);
-            writer.WriteBoolValue("v10_12", V10_12);
-            writer.WriteBoolValue("v10_13", V10_13);
-            writer.WriteBoolValue("v10_14", V10_14);
-            writer.WriteBoolValue("v10_15", V10_15);
-            writer.WriteBoolValue("v10_7", V10_7);
-            writer.WriteBoolValue("v10_8", V10_8);
-            writer.WriteBoolValue("v10_9", V10_9);
-            writer.WriteBoolValue("v11_0", V11_0);
-            writer.WriteBoolValue("v12_0", V12_0);
-            writer.WriteBoolValue("v13_0", V13_0);
+            writer.WriteBoolValue("v10_10", V1010);
+            writer.WriteBoolValue("v10_11", V1011);
+            writer.WriteBoolValue("v10_12", V1012);
+            writer.WriteBoolValue("v10_13", V1013);
+            writer.WriteBoolValue("v10_14", V1014);
+            writer.WriteBoolValue("v10_15", V1015);
+            writer.WriteBoolValue("v10_7", V107);
+            writer.WriteBoolValue("v10_8", V108);
+            writer.WriteBoolValue("v10_9", V109);
+            writer.WriteBoolValue("v11_0", V110);
+            writer.WriteBoolValue("v12_0", V120);
+            writer.WriteBoolValue("v13_0", V130);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

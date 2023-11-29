@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
     /// </summary>
     public class AdministrativeUnitRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object. This API is available in the following national cloud deployments.
+        /// Get a list of administrativeUnits associated with an educationSchool object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of administrativeUnits associated with an educationSchool object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
+            command.Description = "Get a list of administrativeUnits associated with an educationSchool object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -132,7 +132,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         public AdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object. This API is available in the following national cloud deployments.
+        /// Get a list of administrativeUnits associated with an educationSchool object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -166,7 +166,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object. This API is available in the following national cloud deployments.
+        /// Get a list of administrativeUnits associated with an educationSchool object.
         /// </summary>
         public class AdministrativeUnitRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

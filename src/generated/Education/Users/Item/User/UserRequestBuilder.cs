@@ -22,12 +22,12 @@ namespace ApiSdk.Education.Users.Item.User {
     /// </summary>
     public class UserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser. This API is available in the following national cloud deployments.
+        /// Retrieve the simple directory user that corresponds to this educationUser.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the simple directory user that corresponds to this educationUser. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
+            command.Description = "Retrieve the simple directory user that corresponds to this educationUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -122,7 +122,7 @@ namespace ApiSdk.Education.Users.Item.User {
         public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser. This API is available in the following national cloud deployments.
+        /// Retrieve the simple directory user that corresponds to this educationUser.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -138,7 +138,7 @@ namespace ApiSdk.Education.Users.Item.User {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser. This API is available in the following national cloud deployments.
+        /// Retrieve the simple directory user that corresponds to this educationUser.
         /// </summary>
         public class UserRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

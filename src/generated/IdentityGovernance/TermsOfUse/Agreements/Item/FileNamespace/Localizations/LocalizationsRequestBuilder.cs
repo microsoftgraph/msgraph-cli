@@ -99,12 +99,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             return command;
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files. This API is available in the following national cloud deployments.
+        /// Get a list of the default and localized agreement files.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the default and localized agreement files. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0";
+            command.Description = "Get a list of the default and localized agreement files.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -210,7 +210,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         public LocalizationsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/file/localizations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files. This API is available in the following national cloud deployments.
+        /// Get a list of the default and localized agreement files.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +244,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files. This API is available in the following national cloud deployments.
+        /// Get a list of the default and localized agreement files.
         /// </summary>
         public class LocalizationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

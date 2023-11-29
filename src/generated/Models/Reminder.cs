@@ -99,7 +99,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"changeKey", n => { ChangeKey = n.GetStringValue(); } },
                 {"eventEndTime", n => { EventEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"eventId", n => { EventId = n.GetStringValue(); } },
@@ -107,6 +106,7 @@ namespace ApiSdk.Models {
                 {"eventStartTime", n => { EventStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"eventSubject", n => { EventSubject = n.GetStringValue(); } },
                 {"eventWebLink", n => { EventWebLink = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reminderFireTime", n => { ReminderFireTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }

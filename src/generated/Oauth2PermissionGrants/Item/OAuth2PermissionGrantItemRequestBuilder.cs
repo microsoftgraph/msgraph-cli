@@ -20,12 +20,12 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
     /// </summary>
     public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant. This API is available in the following national cloud deployments.
+        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0";
+            command.Description = "Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-delete?view=graph-rest-1.0";
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "The unique identifier of oAuth2PermissionGrant") {
             };
             oAuth2PermissionGrantIdOption.IsRequired = true;
@@ -54,12 +54,12 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0";
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "The unique identifier of oAuth2PermissionGrant") {
             };
             oAuth2PermissionGrantIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes. This API is available in the following national cloud deployments.
+        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0";
             var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "The unique identifier of oAuth2PermissionGrant") {
             };
             oAuth2PermissionGrantIdOption.IsRequired = true;
@@ -167,7 +167,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
         public OAuth2PermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/oauth2PermissionGrants/{oAuth2PermissionGrant%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant. This API is available in the following national cloud deployments.
+        /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +183,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -199,7 +199,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes. This API is available in the following national cloud deployments.
+        /// Update the properties of oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to change which delegated permissions are granted, by adding or removing items from the list in scopes.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -217,7 +217,7 @@ namespace ApiSdk.Oauth2PermissionGrants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a single delegated permission grant represented by an oAuth2PermissionGrant object. An oAuth2PermissionGrant represents delegated permissions which have been granted for a client application to access an API on behalf of a signed-in user.
         /// </summary>
         public class OAuth2PermissionGrantItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

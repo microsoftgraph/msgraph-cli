@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.SnoozeRemi
     /// </summary>
     public class SnoozeReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.
+        /// Postpone a reminder for an event in a user calendar until a new time.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
+            command.Description = "Postpone a reminder for an event in a user calendar until a new time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -83,7 +83,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.SnoozeRemi
         public SnoozeReminderRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/snoozeReminder", rawUrl) {
         }
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.
+        /// Postpone a reminder for an event in a user calendar until a new time.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

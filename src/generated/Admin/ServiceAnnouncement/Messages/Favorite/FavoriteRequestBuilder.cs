@@ -19,12 +19,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
     /// </summary>
     public class FavoriteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user. This API is available in the following national cloud deployments.
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0";
+            command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -75,7 +75,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         public FavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/favorite", rawUrl) {
         }
         /// <summary>
-        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user. This API is available in the following national cloud deployments.
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -45,8 +45,8 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"status", n => { Status = n.GetEnumValue<EventStatusType>(); } },
             };
         }

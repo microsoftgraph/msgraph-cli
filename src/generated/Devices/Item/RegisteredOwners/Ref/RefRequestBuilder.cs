@@ -112,12 +112,12 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             return command;
         }
         /// <summary>
-        /// Add a user as a registered owner of the device. This API is available in the following national cloud deployments.
+        /// Add a user as a registered owner of the device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-post-registeredowners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a user as a registered owner of the device. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-registeredowners?view=graph-rest-1.0";
+            command.Description = "Add a user as a registered owner of the device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-registeredowners?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -180,7 +180,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a user as a registered owner of the device. This API is available in the following national cloud deployments.
+        /// Add a user as a registered owner of the device.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

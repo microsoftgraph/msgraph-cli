@@ -20,12 +20,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-incompatiblegroups?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return command;
         }
         /// <summary>
-        /// Add a group to the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Add a group to the list of groups that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a group to the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0";
+            command.Description = "Add a group to the list of groups that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-post-incompatiblegroup?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return requestInfo;
         }
         /// <summary>
-        /// Add a group to the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Add a group to the list of groups that have been marked as incompatible on an accessPackage.  
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Retrieve a list of the group objects that have been marked as incompatible on an accessPackage.  
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

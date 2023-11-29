@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
     /// </summary>
     public class TimeOffItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a timeOff instance from a schedule. This API is available in the following national cloud deployments.
+        /// Delete a timeOff instance from a schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a timeOff instance from a schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0";
+            command.Description = "Delete a timeOff instance from a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -66,12 +66,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeOff object by ID. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a timeOff object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -196,7 +196,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
         public TimeOffItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/timesOff/{timeOff%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Delete a timeOff instance from a schedule. This API is available in the following national cloud deployments.
+        /// Delete a timeOff instance from a schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -212,7 +212,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +246,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOff object by ID. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
         /// </summary>
         public class TimeOffItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

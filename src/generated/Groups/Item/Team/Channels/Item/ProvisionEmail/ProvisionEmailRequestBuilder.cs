@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.ProvisionEmail {
     /// </summary>
     public class ProvisionEmailRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method. This API is available in the following national cloud deployments.
+        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-provisionemail?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Provision an email address for a channel. Microsoft Teams doesn't automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-provisionemail?view=graph-rest-1.0";
+            command.Description = "Provision an email address for a channel. Microsoft Teams doesn't automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-provisionemail?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -75,7 +75,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.ProvisionEmail {
         public ProvisionEmailRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/provisionEmail", rawUrl) {
         }
         /// <summary>
-        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method. This API is available in the following national cloud deployments.
+        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a channel by default. To have Teams provision an email address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a channel, use the removeEmail method.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

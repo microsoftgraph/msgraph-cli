@@ -47,9 +47,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"actions", n => { Actions = n.GetEnumValue<ChatMessageActions>(); } },
                 {"modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reaction", n => { Reaction = n.GetObjectValue<ChatMessageReaction>(ChatMessageReaction.CreateFromDiscriminatorValue); } },
             };
         }

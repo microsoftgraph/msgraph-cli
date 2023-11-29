@@ -61,12 +61,12 @@ namespace ApiSdk.Users.Item.Events {
             return command;
         }
         /// <summary>
-        /// Create one or more multi-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources are supported: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0" />
+        /// Create one or more single-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create one or more multi-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources are supported: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/multivaluelegacyextendedproperty-post-multivalueextendedproperties?view=graph-rest-1.0";
+            command.Description = "Create one or more single-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -126,12 +126,12 @@ namespace ApiSdk.Users.Item.Events {
             return command;
         }
         /// <summary>
-        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar: This API is available in the following national cloud deployments.
+        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-events?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of event objects in the user's mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user's calendar: This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-events?view=graph-rest-1.0";
+            command.Description = "Get a list of event objects in the user's mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user's calendar:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-events?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -231,7 +231,7 @@ namespace ApiSdk.Users.Item.Events {
         public EventsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar: This API is available in the following national cloud deployments.
+        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +247,7 @@ namespace ApiSdk.Users.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Create one or more multi-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources are supported: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties. This API is available in the following national cloud deployments.
+        /// Create one or more single-value extended properties in a new or existing instance of a resource. The following user resources are supported: The following group resources: See Extended properties overview for more information about when to useopen extensions or extended properties, and how to specify extended properties.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +265,7 @@ namespace ApiSdk.Users.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar: This API is available in the following national cloud deployments.
+        /// Get a list of event objects in the user&apos;s mailbox. The list contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get events in another user&apos;s calendar:
         /// </summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

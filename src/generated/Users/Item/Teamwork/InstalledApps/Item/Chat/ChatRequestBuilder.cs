@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
     /// </summary>
     public class ChatRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
+        /// Retrieve the chat of the specified user and Teams app.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
+            command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         public ChatRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
+        /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app. This API is available in the following national cloud deployments.
+        /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
         public class ChatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

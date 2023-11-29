@@ -59,12 +59,12 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an offerShiftRequest object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an offerShiftRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -199,7 +199,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +233,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
         /// </summary>
         public class OfferShiftRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

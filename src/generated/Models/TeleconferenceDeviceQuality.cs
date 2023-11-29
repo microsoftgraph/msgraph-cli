@@ -97,7 +97,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callChainId", n => { CallChainId = n.GetGuidValue(); } },
                 {"cloudServiceDeploymentEnvironment", n => { CloudServiceDeploymentEnvironment = n.GetStringValue(); } },
                 {"cloudServiceDeploymentId", n => { CloudServiceDeploymentId = n.GetStringValue(); } },
@@ -107,6 +106,7 @@ namespace ApiSdk.Models {
                 {"deviceName", n => { DeviceName = n.GetStringValue(); } },
                 {"mediaLegId", n => { MediaLegId = n.GetGuidValue(); } },
                 {"mediaQualityList", n => { MediaQualityList = n.GetCollectionOfObjectValues<TeleconferenceDeviceMediaQuality>(TeleconferenceDeviceMediaQuality.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetGuidValue(); } },
             };
         }

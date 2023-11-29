@@ -19,12 +19,12 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a class from a school. This API is available in the following national cloud deployments.
+        /// Delete a class from a school.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a class from a school. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0";
+            command.Description = "Delete a class from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/{educationClass%2Did}/$ref{?%40id*}", rawUrl) {
         }
         /// <summary>
-        /// Delete a class from a school. This API is available in the following national cloud deployments.
+        /// Delete a class from a school.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,7 +93,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete a class from a school. This API is available in the following national cloud deployments.
+        /// Delete a class from a school.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

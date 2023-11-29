@@ -64,12 +64,12 @@ namespace ApiSdk.Groups.Item.Team.Members {
             return command;
         }
         /// <summary>
-        /// Add a new conversationMember to a team. This API is available in the following national cloud deployments.
+        /// Add a new conversationMember to a team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a new conversationMember to a team. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0";
+            command.Description = "Add a new conversationMember to a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -114,12 +114,12 @@ namespace ApiSdk.Groups.Item.Team.Members {
             return command;
         }
         /// <summary>
-        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant. This API is available in the following national cloud deployments.
+        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0";
+            command.Description = "Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Groups.Item.Team.Members {
         public MembersRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant. This API is available in the following national cloud deployments.
+        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Groups.Item.Team.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Add a new conversationMember to a team. This API is available in the following national cloud deployments.
+        /// Add a new conversationMember to a team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +259,7 @@ namespace ApiSdk.Groups.Item.Team.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant. This API is available in the following national cloud deployments.
+        /// Get the conversationMember collection of a team. The membership IDs returned by the server must be treated as opaque strings. The client should not try to parse or make assumptions about these resource IDs. In the future, membership results may include users from various tenants, as indicated in the response. Clients should avoid assuming that all members exclusively belong to the current tenant.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

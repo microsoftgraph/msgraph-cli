@@ -75,9 +75,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"availabilityView", n => { AvailabilityView = n.GetStringValue(); } },
                 {"error", n => { Error = n.GetObjectValue<FreeBusyError>(FreeBusyError.CreateFromDiscriminatorValue); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"scheduleId", n => { ScheduleId = n.GetStringValue(); } },
                 {"scheduleItems", n => { ScheduleItems = n.GetCollectionOfObjectValues<ScheduleItem>(ScheduleItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"workingHours", n => { WorkingHours = n.GetObjectValue<ApiSdk.Models.WorkingHours>(ApiSdk.Models.WorkingHours.CreateFromDiscriminatorValue); } },

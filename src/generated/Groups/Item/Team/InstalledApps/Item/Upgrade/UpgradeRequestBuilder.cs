@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.Upgrade {
     /// </summary>
     public class UpgradeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Upgrade an app installation within a chat. This API is available in the following national cloud deployments.
+        /// Upgrade an app installation within a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upgrade an app installation within a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
+            command.Description = "Upgrade an app installation within a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/upgrade", rawUrl) {
         }
         /// <summary>
-        /// Upgrade an app installation within a chat. This API is available in the following national cloud deployments.
+        /// Upgrade an app installation within a chat.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

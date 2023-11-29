@@ -19,12 +19,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
     /// </summary>
     public class MicrosoftGraphSecurityActivateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case. This API is available in the following national cloud deployments.
+        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-activate?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-activate?view=graph-rest-1.0";
+            command.Description = "Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-activate?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -64,7 +64,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
         public MicrosoftGraphSecurityActivateRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/microsoft.graph.security.activate", rawUrl) {
         }
         /// <summary>
-        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case. This API is available in the following national cloud deployments.
+        /// Activate a custodian that has been released from a case to make them part of the case again. For details, see Manage custodians in an eDiscovery (Premium) case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

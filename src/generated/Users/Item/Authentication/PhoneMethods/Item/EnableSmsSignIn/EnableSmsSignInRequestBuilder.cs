@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn {
     /// </summary>
     public class EnableSmsSignInRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled: This API is available in the following national cloud deployments.
+        /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled: This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0";
+            command.Description = "Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         public EnableSmsSignInRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/phoneMethods/{phoneAuthenticationMethod%2Did}/enableSmsSignIn", rawUrl) {
         }
         /// <summary>
-        /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled: This API is available in the following national cloud deployments.
+        /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

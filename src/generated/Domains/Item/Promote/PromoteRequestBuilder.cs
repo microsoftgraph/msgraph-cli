@@ -19,12 +19,12 @@ namespace ApiSdk.Domains.Item.Promote {
     /// </summary>
     public class PromoteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true. This API is available in the following national cloud deployments.
+        /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0";
+            command.Description = "Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -68,7 +68,7 @@ namespace ApiSdk.Domains.Item.Promote {
         public PromoteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/promote", rawUrl) {
         }
         /// <summary>
-        /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true. This API is available in the following national cloud deployments.
+        /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

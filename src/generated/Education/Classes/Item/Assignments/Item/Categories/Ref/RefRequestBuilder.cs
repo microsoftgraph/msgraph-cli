@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
+            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -111,12 +111,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref {
             return command;
         }
         /// <summary>
-        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0";
+            command.Description = "Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -169,7 +169,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/categories/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
         }
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -185,7 +185,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -203,7 +203,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. This API is available in the following national cloud deployments.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

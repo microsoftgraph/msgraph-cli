@@ -44,12 +44,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization. This API is available in the following national cloud deployments.
+        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of a connectedOrganization's internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of a connectedOrganization's internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -172,7 +172,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         public InternalSponsorsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/connectedOrganizations/{connectedOrganization%2Did}/internalSponsors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization. This API is available in the following national cloud deployments.
+        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +188,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization. This API is available in the following national cloud deployments.
+        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         public class InternalSponsorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

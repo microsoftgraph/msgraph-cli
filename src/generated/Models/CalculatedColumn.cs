@@ -59,9 +59,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"format", n => { Format = n.GetStringValue(); } },
                 {"formula", n => { Formula = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"outputType", n => { OutputType = n.GetStringValue(); } },
             };
         }

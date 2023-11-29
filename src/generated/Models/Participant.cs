@@ -42,6 +42,14 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.RecordingInfo RecordingInfo { get; set; }
 #endif
+        /// <summary>The removedState property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.RemovedState? RemovedState { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.RemovedState RemovedState { get; set; }
+#endif
         /// <summary>Indicates the reason or reasons media content from this participant is restricted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -50,6 +58,8 @@ namespace ApiSdk.Models {
 #else
         public OnlineMeetingRestricted RestrictedExperience { get; set; }
 #endif
+        /// <summary>The rosterSequenceNumber property</summary>
+        public long? RosterSequenceNumber { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -69,7 +79,9 @@ namespace ApiSdk.Models {
                 {"mediaStreams", n => { MediaStreams = n.GetCollectionOfObjectValues<MediaStream>(MediaStream.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"metadata", n => { Metadata = n.GetStringValue(); } },
                 {"recordingInfo", n => { RecordingInfo = n.GetObjectValue<ApiSdk.Models.RecordingInfo>(ApiSdk.Models.RecordingInfo.CreateFromDiscriminatorValue); } },
+                {"removedState", n => { RemovedState = n.GetObjectValue<ApiSdk.Models.RemovedState>(ApiSdk.Models.RemovedState.CreateFromDiscriminatorValue); } },
                 {"restrictedExperience", n => { RestrictedExperience = n.GetObjectValue<OnlineMeetingRestricted>(OnlineMeetingRestricted.CreateFromDiscriminatorValue); } },
+                {"rosterSequenceNumber", n => { RosterSequenceNumber = n.GetLongValue(); } },
             };
         }
         /// <summary>
@@ -85,7 +97,9 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<MediaStream>("mediaStreams", MediaStreams);
             writer.WriteStringValue("metadata", Metadata);
             writer.WriteObjectValue<ApiSdk.Models.RecordingInfo>("recordingInfo", RecordingInfo);
+            writer.WriteObjectValue<ApiSdk.Models.RemovedState>("removedState", RemovedState);
             writer.WriteObjectValue<OnlineMeetingRestricted>("restrictedExperience", RestrictedExperience);
+            writer.WriteLongValue("rosterSequenceNumber", RosterSequenceNumber);
         }
     }
 }

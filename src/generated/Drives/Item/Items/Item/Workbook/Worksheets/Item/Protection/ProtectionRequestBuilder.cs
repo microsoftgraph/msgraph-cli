@@ -67,12 +67,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheetprotection object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheetprotection object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of worksheetprotection object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of worksheetprotection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -249,7 +249,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheetprotection object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheetprotection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -283,7 +283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of worksheetprotection object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of worksheetprotection object.
         /// </summary>
         public class ProtectionRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

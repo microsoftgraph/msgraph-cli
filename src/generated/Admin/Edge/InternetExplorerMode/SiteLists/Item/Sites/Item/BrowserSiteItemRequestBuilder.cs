@@ -20,12 +20,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
     /// </summary>
     public class BrowserSiteItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a browserSite from a browserSiteList. This API is available in the following national cloud deployments.
+        /// Delete a browserSite from a browserSiteList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a browserSite from a browserSiteList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0";
+            command.Description = "Delete a browserSite from a browserSiteList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-delete-sites?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Get a browserSite that resides on a browserSiteList. This API is available in the following national cloud deployments.
+        /// Get a browserSite that resides on a browserSiteList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersite-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a browserSite that resides on a browserSiteList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersite-get?view=graph-rest-1.0";
+            command.Description = "Get a browserSite that resides on a browserSiteList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersite-get?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a browserSite object. This API is available in the following national cloud deployments.
+        /// Update the properties of a browserSite object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersite-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a browserSite object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersite-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a browserSite object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersite-update?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -185,7 +185,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
         public BrowserSiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sites/{browserSite%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a browserSite from a browserSiteList. This API is available in the following national cloud deployments.
+        /// Delete a browserSite from a browserSiteList.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +201,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a browserSite that resides on a browserSiteList. This API is available in the following national cloud deployments.
+        /// Get a browserSite that resides on a browserSiteList.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a browserSite object. This API is available in the following national cloud deployments.
+        /// Update the properties of a browserSite object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a browserSite that resides on a browserSiteList. This API is available in the following national cloud deployments.
+        /// Get a browserSite that resides on a browserSiteList.
         /// </summary>
         public class BrowserSiteItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

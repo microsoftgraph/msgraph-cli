@@ -50,12 +50,12 @@ namespace ApiSdk.Connections.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Create a new externalGroup object. This API is available in the following national cloud deployments.
+        /// Create a new externalGroup object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new externalGroup object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0";
+            command.Description = "Create a new externalGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-post-groups?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -100,11 +100,11 @@ namespace ApiSdk.Connections.Item.Groups {
             return command;
         }
         /// <summary>
-        /// Get an externalGroup object. This API is available in the following national cloud deployments.
+        /// Get an externalGroup object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get an externalGroup object. This API is available in the following national cloud deployments.";
+            command.Description = "Get an externalGroup object.";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -210,7 +210,7 @@ namespace ApiSdk.Connections.Item.Groups {
         public GroupsRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/groups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get an externalGroup object. This API is available in the following national cloud deployments.
+        /// Get an externalGroup object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +226,7 @@ namespace ApiSdk.Connections.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new externalGroup object. This API is available in the following national cloud deployments.
+        /// Create a new externalGroup object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +244,7 @@ namespace ApiSdk.Connections.Item.Groups {
             return requestInfo;
         }
         /// <summary>
-        /// Get an externalGroup object. This API is available in the following national cloud deployments.
+        /// Get an externalGroup object.
         /// </summary>
         public class GroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

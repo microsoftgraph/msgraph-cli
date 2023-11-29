@@ -21,12 +21,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
     /// </summary>
     public class WorkflowTemplateItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflowtemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a workflowTemplate object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowtemplate-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a workflowTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowtemplate-get?view=graph-rest-1.0";
             var workflowTemplateIdOption = new Option<string>("--workflow-template-id", description: "The unique identifier of workflowTemplate") {
             };
             workflowTemplateIdOption.IsRequired = true;
@@ -108,7 +108,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
         public WorkflowTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflowTemplates/{workflowTemplate%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowTemplate object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -124,7 +124,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a workflowTemplate object.
         /// </summary>
         public class WorkflowTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

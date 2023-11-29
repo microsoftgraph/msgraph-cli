@@ -53,12 +53,12 @@ namespace ApiSdk.SubscribedSkus.Item {
             return command;
         }
         /// <summary>
-        /// Get a specific commercial subscription that an organization has acquired. This API is available in the following national cloud deployments.
+        /// Get a specific commercial subscription that an organization has acquired.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a specific commercial subscription that an organization has acquired. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0";
+            command.Description = "Get a specific commercial subscription that an organization has acquired.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0";
             var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "The unique identifier of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
@@ -174,7 +174,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific commercial subscription that an organization has acquired. This API is available in the following national cloud deployments.
+        /// Get a specific commercial subscription that an organization has acquired.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +208,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific commercial subscription that an organization has acquired. This API is available in the following national cloud deployments.
+        /// Get a specific commercial subscription that an organization has acquired.
         /// </summary>
         public class SubscribedSkuItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

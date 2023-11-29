@@ -64,12 +64,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Delete a school. This API is available in the following national cloud deployments.
+        /// Delete a school.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a school. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0";
+            command.Description = "Delete a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationSchool object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationSchool object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an educationSchool object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an educationSchool object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -149,12 +149,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationSchool object. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationSchool object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationSchool object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an educationSchool object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -236,7 +236,7 @@ namespace ApiSdk.Education.Schools.Item {
         public EducationSchoolItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a school. This API is available in the following national cloud deployments.
+        /// Delete a school.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +252,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationSchool object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationSchool object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -268,7 +268,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationSchool object. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationSchool object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +286,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationSchool object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an educationSchool object.
         /// </summary>
         public class EducationSchoolItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

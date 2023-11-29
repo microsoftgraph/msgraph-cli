@@ -48,8 +48,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"day", n => { Day = n.GetEnumValue<DayOfWeekObject>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<BookingWorkTimeSlot>(BookingWorkTimeSlot.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }

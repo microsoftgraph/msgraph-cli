@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
     /// </summary>
     public class RestartRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors. This API is available in the following national cloud deployments.
+        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-restart?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-restart?view=graph-rest-1.0";
+            command.Description = "Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-restart?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
         public RestartRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/restart", rawUrl) {
         }
         /// <summary>
-        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors. This API is available in the following national cloud deployments.
+        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

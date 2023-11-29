@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Set
     /// </summary>
     public class SetPositionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Positions the chart relative to cells on the worksheet. This API is available in the following national cloud deployments.
+        /// Positions the chart relative to cells on the worksheet.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-setposition?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Positions the chart relative to cells on the worksheet. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-setposition?view=graph-rest-1.0";
+            command.Description = "Positions the chart relative to cells on the worksheet.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-setposition?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -89,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Set
         public SetPositionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/setPosition", rawUrl) {
         }
         /// <summary>
-        /// Positions the chart relative to cells on the worksheet. This API is available in the following national cloud deployments.
+        /// Positions the chart relative to cells on the worksheet.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

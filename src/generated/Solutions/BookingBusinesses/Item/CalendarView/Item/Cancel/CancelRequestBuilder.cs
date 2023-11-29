@@ -19,12 +19,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members. This API is available in the following national cloud deployments.
+        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0";
+            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
         public CancelRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/{bookingAppointment%2Did}/cancel", rawUrl) {
         }
         /// <summary>
-        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members. This API is available in the following national cloud deployments.
+        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

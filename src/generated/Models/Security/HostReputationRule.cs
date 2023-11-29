@@ -61,9 +61,9 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"relatedDetailsUrl", n => { RelatedDetailsUrl = n.GetStringValue(); } },
                 {"severity", n => { Severity = n.GetEnumValue<HostReputationRuleSeverity>(); } },
             };

@@ -66,12 +66,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return command;
         }
         /// <summary>
-        /// Removes an item from a list][]. This API is available in the following [national cloud deployments.
+        /// Removes an item from a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Removes an item from a list][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
+            command.Description = "Removes an item from a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -199,12 +199,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Returns the metadata for an [item][] in a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
+            command.Description = "Returns the metadata for an [item][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -370,7 +370,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
         public ListItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Removes an item from a list][]. This API is available in the following [national cloud deployments.
+        /// Removes an item from a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -386,7 +386,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Returns the metadata for an [item][] in a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -420,7 +420,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an item][] in a [list][]. This API is available in the following [national cloud deployments.
+        /// Returns the metadata for an [item][] in a [list][].
         /// </summary>
         public class ListItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

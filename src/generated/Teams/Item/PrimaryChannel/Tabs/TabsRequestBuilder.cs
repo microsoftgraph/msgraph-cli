@@ -50,12 +50,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs {
             return command;
         }
         /// <summary>
-        /// Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team. This API is available in the following national cloud deployments.
+        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
+            command.Description = "Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -100,12 +100,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team.  This API is available in the following national cloud deployments.
+        /// Retrieve the list of tabs in the specified channel within a team. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of tabs in the specified channel within a team.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of tabs in the specified channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs {
         public TabsRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/tabs{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team.  This API is available in the following national cloud deployments.
+        /// Retrieve the list of tabs in the specified channel within a team. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team. This API is available in the following national cloud deployments.
+        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,7 +245,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team.  This API is available in the following national cloud deployments.
+        /// Retrieve the list of tabs in the specified channel within a team. 
         /// </summary>
         public class TabsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

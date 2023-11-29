@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion {
     /// </summary>
     public class RestoreVersionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item. This API is available in the following national cloud deployments.
+        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0";
+            command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -70,7 +70,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/versions/{listItemVersion%2Did}/restoreVersion", rawUrl) {
         }
         /// <summary>
-        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item. This API is available in the following national cloud deployments.
+        /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

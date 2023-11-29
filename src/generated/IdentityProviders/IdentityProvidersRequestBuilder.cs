@@ -64,13 +64,13 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret. This API is available in the following national cloud deployments.
+        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0";
+            command.Description = "Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -109,13 +109,13 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Retrieve all identityProviders in the directory. This API is available in the following national cloud deployments.
+        /// Retrieve all identityProviders in the directory.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve all identityProviders in the directory. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0";
+            command.Description = "Retrieve all identityProviders in the directory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -215,7 +215,7 @@ namespace ApiSdk.IdentityProviders {
         public IdentityProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve all identityProviders in the directory. This API is available in the following national cloud deployments.
+        /// Retrieve all identityProviders in the directory.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
@@ -232,7 +232,7 @@ namespace ApiSdk.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret. This API is available in the following national cloud deployments.
+        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +251,7 @@ namespace ApiSdk.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve all identityProviders in the directory. This API is available in the following national cloud deployments.
+        /// Retrieve all identityProviders in the directory.
         /// </summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -53,12 +53,12 @@ namespace ApiSdk.Security.SecureScores.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a secureScore object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a secureScore object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescore-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a secureScore object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescore-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a secureScore object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescore-get?view=graph-rest-1.0";
             var secureScoreIdOption = new Option<string>("--secure-score-id", description: "The unique identifier of secureScore") {
             };
             secureScoreIdOption.IsRequired = true;
@@ -181,7 +181,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a secureScore object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a secureScore object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a secureScore object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a secureScore object.
         /// </summary>
         public class SecureScoreItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -59,12 +59,12 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a plannerTaskDetails object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a plannerTaskDetails object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a plannerTaskDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
             var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a plannerTaskDetails object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a plannerTaskDetails object.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

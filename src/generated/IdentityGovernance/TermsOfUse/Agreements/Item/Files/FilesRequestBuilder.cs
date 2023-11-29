@@ -50,12 +50,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// Create a new localized agreement file. This API is available in the following national cloud deployments.
+        /// Create a new localized agreement file.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new localized agreement file. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
+            command.Description = "Create a new localized agreement file.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -226,7 +226,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new localized agreement file. This API is available in the following national cloud deployments.
+        /// Create a new localized agreement file.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -75,12 +75,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"attribution", n => { Attribution = n.GetObjectValue<ImageInfo>(ImageInfo.CreateFromDiscriminatorValue); } },
                 {"backgroundColor", n => { BackgroundColor = n.GetStringValue(); } },
                 {"content", n => { Content = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayText", n => { DisplayText = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

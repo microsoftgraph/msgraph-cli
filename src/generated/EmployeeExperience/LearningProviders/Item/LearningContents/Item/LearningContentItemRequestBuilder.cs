@@ -60,12 +60,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return command;
         }
         /// <summary>
-        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content. This API is available in the following national cloud deployments.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the specified learningContent resource which represents the metadata of the specified provider's ingested content. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0";
+            command.Description = "Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -200,7 +200,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content. This API is available in the following national cloud deployments.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,7 +234,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content. This API is available in the following national cloud deployments.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
         /// </summary>
         public class LearningContentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -46,12 +46,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
             return command;
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article. This API is available in the following national cloud deployments.
+        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-article-list-indicators?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-article-list-indicators?view=graph-rest-1.0";
+            command.Description = "Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-article-list-indicators?view=graph-rest-1.0";
             var articleIdOption = new Option<string>("--article-id", description: "The unique identifier of article") {
             };
             articleIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
         public IndicatorsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article. This API is available in the following national cloud deployments.
+        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article. This API is available in the following national cloud deployments.
+        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
         /// </summary>
         public class IndicatorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

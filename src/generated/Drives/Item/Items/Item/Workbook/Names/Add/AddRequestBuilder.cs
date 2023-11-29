@@ -20,12 +20,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula. This API is available in the following national cloud deployments.
+        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-add?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Adds a new name to the collection of the given scope using the user's locale for the formula. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-add?view=graph-rest-1.0";
+            command.Description = "Adds a new name to the collection of the given scope using the user's locale for the formula.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-add?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Add {
         public AddRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/add", rawUrl) {
         }
         /// <summary>
-        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula. This API is available in the following national cloud deployments.
+        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

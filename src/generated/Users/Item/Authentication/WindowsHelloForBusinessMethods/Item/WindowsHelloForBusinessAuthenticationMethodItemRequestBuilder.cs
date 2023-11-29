@@ -21,12 +21,12 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
     /// </summary>
     public class WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Deletes a windowsHelloForBusinessAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a windowsHelloForBusinessAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -76,12 +76,12 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -145,7 +145,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Deletes a windowsHelloForBusinessAuthenticationMethod object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -161,7 +161,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -177,7 +177,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.
         /// </summary>
         public class WindowsHelloForBusinessAuthenticationMethodItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -48,12 +48,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivit
             return command;
         }
         /// <summary>
-        /// Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity. This API is available in the following national cloud deployments.
+        /// Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/employeeexperienceuser-post-learningcourseactivities?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/employeeexperienceuser-post-learningcourseactivities?view=graph-rest-1.0";
+            command.Description = "Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/employeeexperienceuser-post-learningcourseactivities?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivit
             return requestInfo;
         }
         /// <summary>
-        /// Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity. This API is available in the following national cloud deployments.
+        /// Create a new learningCourseActivity object. A learning course activity can be one of two types: - Assignment- Self-initiated Use this method to create either type of activity.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

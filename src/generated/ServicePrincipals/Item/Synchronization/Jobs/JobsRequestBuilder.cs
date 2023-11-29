@@ -56,12 +56,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization. This API is available in the following national cloud deployments.
+        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0";
+            command.Description = "Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -106,12 +106,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal). This API is available in the following national cloud deployments.
+        /// List existing jobs for a given application instance (service principal).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List existing jobs for a given application instance (service principal). This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0";
+            command.Description = "List existing jobs for a given application instance (service principal).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         public JobsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal). This API is available in the following national cloud deployments.
+        /// List existing jobs for a given application instance (service principal).
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization. This API is available in the following national cloud deployments.
+        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +266,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal). This API is available in the following national cloud deployments.
+        /// List existing jobs for a given application instance (service principal).
         /// </summary>
         public class JobsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

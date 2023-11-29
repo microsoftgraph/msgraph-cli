@@ -91,12 +91,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment. This API is available in the following national cloud deployments.
+        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0";
+            command.Description = "Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -140,12 +140,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0" />
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an accessPackage object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0";
+            command.Description = "Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -241,12 +241,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
+        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an existing accessPackage object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0";
+            command.Description = "Update an existing accessPackage object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -328,7 +328,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         public AccessPackageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment. This API is available in the following national cloud deployments.
+        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -344,7 +344,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object. This API is available in the following national cloud deployments.
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -360,7 +360,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description. This API is available in the following national cloud deployments.
+        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -378,7 +378,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object. This API is available in the following national cloud deployments.
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
         /// </summary>
         public class AccessPackageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -53,10 +53,10 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"comment", n => { Comment = n.GetStringValue(); } },
                 {"createdByDisplayName", n => { CreatedByDisplayName = n.GetStringValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

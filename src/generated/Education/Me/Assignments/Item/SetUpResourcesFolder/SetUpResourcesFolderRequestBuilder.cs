@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder {
     /// </summary>
     public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment&apos;s folder.  This API is available in the following national cloud deployments.
+        /// Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment&apos;s folder. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment's folder.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0";
+            command.Description = "Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment's folder. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -69,7 +69,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.SetUpResourcesFolder {
         public SetUpResourcesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/setUpResourcesFolder", rawUrl) {
         }
         /// <summary>
-        /// Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment&apos;s folder.  This API is available in the following national cloud deployments.
+        /// Create a SharePoint folder to upload files for a given educationAssignment. Only teachers can perform this operation. The teacher determines the resources to upload in the assignment&apos;s folder. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

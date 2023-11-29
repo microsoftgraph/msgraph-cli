@@ -95,11 +95,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"adminConsentDescription", n => { AdminConsentDescription = n.GetStringValue(); } },
                 {"adminConsentDisplayName", n => { AdminConsentDisplayName = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetGuidValue(); } },
                 {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"origin", n => { Origin = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
                 {"userConsentDescription", n => { UserConsentDescription = n.GetStringValue(); } },

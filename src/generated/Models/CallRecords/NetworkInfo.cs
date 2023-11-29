@@ -159,7 +159,6 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"bandwidthLowEventRatio", n => { BandwidthLowEventRatio = n.GetFloatValue(); } },
                 {"basicServiceSetIdentifier", n => { BasicServiceSetIdentifier = n.GetStringValue(); } },
                 {"connectionType", n => { ConnectionType = n.GetEnumValue<NetworkConnectionType>(); } },
@@ -169,6 +168,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"linkSpeed", n => { LinkSpeed = n.GetLongValue(); } },
                 {"macAddress", n => { MacAddress = n.GetStringValue(); } },
                 {"networkTransportProtocol", n => { NetworkTransportProtocol = n.GetEnumValue<NetworkTransportProtocol>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"port", n => { Port = n.GetIntValue(); } },
                 {"receivedQualityEventRatio", n => { ReceivedQualityEventRatio = n.GetFloatValue(); } },
                 {"reflexiveIPAddress", n => { ReflexiveIPAddress = n.GetStringValue(); } },

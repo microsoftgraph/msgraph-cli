@@ -112,12 +112,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the androidManagedAppRegistration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosManagedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the androidManagedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -217,7 +217,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         public ManagedAppRegistrationsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
+        /// List properties and relationships of the androidManagedAppRegistration objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -251,7 +251,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
+        /// List properties and relationships of the androidManagedAppRegistration objects.
         /// </summary>
         public class ManagedAppRegistrationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

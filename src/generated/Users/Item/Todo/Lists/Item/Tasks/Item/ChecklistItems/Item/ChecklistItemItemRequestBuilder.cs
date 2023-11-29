@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
     /// </summary>
     public class ChecklistItemItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a checklistItem object. This API is available in the following national cloud deployments.
+        /// Delete a checklistItem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/checklistitem-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a checklistItem object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete a checklistItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -72,12 +72,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a checklistItem object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a checklistItem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/checklistitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a checklistItem object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a checklistItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -141,12 +141,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a checklistItem object. This API is available in the following national cloud deployments.
+        /// Update the properties of a checklistItem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/checklistitem-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a checklistItem object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a checklistItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/checklistitem-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -221,7 +221,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
         public ChecklistItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/checklistItems/{checklistItem%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a checklistItem object. This API is available in the following national cloud deployments.
+        /// Delete a checklistItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +237,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a checklistItem object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a checklistItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +253,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a checklistItem object. This API is available in the following national cloud deployments.
+        /// Update the properties of a checklistItem object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +271,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a checklistItem object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a checklistItem object.
         /// </summary>
         public class ChecklistItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

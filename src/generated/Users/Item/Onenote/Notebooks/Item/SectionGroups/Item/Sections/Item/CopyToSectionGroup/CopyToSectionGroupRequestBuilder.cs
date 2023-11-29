@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
     /// </summary>
     public class CopyToSectionGroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result. This API is available in the following national cloud deployments.
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0";
+            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -100,7 +100,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         public CopyToSectionGroupRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/copyToSectionGroup", rawUrl) {
         }
         /// <summary>
-        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result. This API is available in the following national cloud deployments.
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

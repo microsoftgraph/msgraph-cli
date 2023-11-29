@@ -51,12 +51,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryReviewSetQuery object. This API is available in the following national cloud deployments.
+        /// Create a new ediscoveryReviewSetQuery object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-post-queries?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryReviewSetQuery object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-post-queries?view=graph-rest-1.0";
+            command.Description = "Create a new ediscoveryReviewSetQuery object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-post-queries?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -107,12 +107,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return command;
         }
         /// <summary>
-        /// Get the list of queries associated with an eDiscovery review set. This API is available in the following national cloud deployments.
+        /// Get the list of queries associated with an eDiscovery review set.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of queries associated with an eDiscovery review set. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0";
+            command.Description = "Get the list of queries associated with an eDiscovery review set.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
         public QueriesRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}/queries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the list of queries associated with an eDiscovery review set. This API is available in the following national cloud deployments.
+        /// Get the list of queries associated with an eDiscovery review set.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +240,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryReviewSetQuery object. This API is available in the following national cloud deployments.
+        /// Create a new ediscoveryReviewSetQuery object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +258,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of queries associated with an eDiscovery review set. This API is available in the following national cloud deployments.
+        /// Get the list of queries associated with an eDiscovery review set.
         /// </summary>
         public class QueriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

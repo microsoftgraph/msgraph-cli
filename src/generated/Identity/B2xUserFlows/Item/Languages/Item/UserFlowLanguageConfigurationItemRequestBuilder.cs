@@ -86,12 +86,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -251,7 +251,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,7 +285,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.
         /// </summary>
         public class UserFlowLanguageConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

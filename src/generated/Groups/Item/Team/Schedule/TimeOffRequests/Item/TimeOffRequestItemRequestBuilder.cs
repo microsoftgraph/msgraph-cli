@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.Item {
     /// </summary>
     public class TimeOffRequestItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a timeOffRequest object. This API is available in the following national cloud deployments.
+        /// Delete a timeOffRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a timeOffRequest object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0";
+            command.Description = "Delete a timeOffRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeoffrequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeoffrequest object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a timeoffrequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -177,7 +177,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.Item {
         public TimeOffRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffRequests/{timeOffRequest%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Delete a timeOffRequest object. This API is available in the following national cloud deployments.
+        /// Delete a timeOffRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -193,7 +193,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeoffrequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a timeoffrequest object.
         /// </summary>
         public class TimeOffRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

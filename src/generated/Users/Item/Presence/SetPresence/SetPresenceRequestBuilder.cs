@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
     /// </summary>
     public class SetPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Set the state of a user&apos;s presence session as an application. This API is available in the following national cloud deployments.
+        /// Set the state of a user&apos;s presence session as an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the state of a user's presence session as an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0";
+            command.Description = "Set the state of a user's presence session as an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         public SetPresenceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence/setPresence", rawUrl) {
         }
         /// <summary>
-        /// Set the state of a user&apos;s presence session as an application. This API is available in the following national cloud deployments.
+        /// Set the state of a user&apos;s presence session as an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

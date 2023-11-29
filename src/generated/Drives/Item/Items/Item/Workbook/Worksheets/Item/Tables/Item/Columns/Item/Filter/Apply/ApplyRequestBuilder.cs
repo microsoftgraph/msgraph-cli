@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
     /// </summary>
     public class ApplyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Apply the given filter criteria on the given column. This API is available in the following national cloud deployments.
+        /// Apply the given filter criteria on the given column.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/filter-apply?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Apply the given filter criteria on the given column. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/filter-apply?view=graph-rest-1.0";
+            command.Description = "Apply the given filter criteria on the given column.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/filter-apply?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -95,7 +95,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         public ApplyRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter/apply", rawUrl) {
         }
         /// <summary>
-        /// Apply the given filter criteria on the given column. This API is available in the following national cloud deployments.
+        /// Apply the given filter criteria on the given column.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

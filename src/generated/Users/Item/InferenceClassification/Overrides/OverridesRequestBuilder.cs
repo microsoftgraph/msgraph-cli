@@ -48,12 +48,12 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note This API is available in the following national cloud deployments.
+        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0";
+            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is available in the following national cloud deployments.
+        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0";
+            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -196,7 +196,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         public OverridesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/inferenceClassification/overrides{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is available in the following national cloud deployments.
+        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -212,7 +212,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return requestInfo;
         }
         /// <summary>
-        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note This API is available in the following national cloud deployments.
+        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +230,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return requestInfo;
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides. This API is available in the following national cloud deployments.
+        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
         /// </summary>
         public class OverridesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

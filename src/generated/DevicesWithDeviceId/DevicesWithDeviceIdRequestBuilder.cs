@@ -20,12 +20,12 @@ namespace ApiSdk.DevicesWithDeviceId {
     /// </summary>
     public class DevicesWithDeviceIdRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a registered device. This API is available in the following national cloud deployments.
+        /// Delete a registered device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a registered device. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0";
+            command.Description = "Delete a registered device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "Alternate key of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -54,12 +54,12 @@ namespace ApiSdk.DevicesWithDeviceId {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a device object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a device object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a device object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0";
+            command.Description = "Get the properties and relationships of a device object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "Alternate key of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.DevicesWithDeviceId {
             return command;
         }
         /// <summary>
-        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps. This API is available in the following national cloud deployments.
+        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "Alternate key of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -167,7 +167,7 @@ namespace ApiSdk.DevicesWithDeviceId {
         public DevicesWithDeviceIdRequestBuilder(string rawUrl) : base("{+baseurl}/devices(deviceId='{deviceId}'){?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a registered device. This API is available in the following national cloud deployments.
+        /// Delete a registered device.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +183,7 @@ namespace ApiSdk.DevicesWithDeviceId {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a device object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a device object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -199,7 +199,7 @@ namespace ApiSdk.DevicesWithDeviceId {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps. This API is available in the following national cloud deployments.
+        /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -217,7 +217,7 @@ namespace ApiSdk.DevicesWithDeviceId {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a device object. This API is available in the following national cloud deployments.
+        /// Get the properties and relationships of a device object.
         /// </summary>
         public class DevicesWithDeviceIdRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

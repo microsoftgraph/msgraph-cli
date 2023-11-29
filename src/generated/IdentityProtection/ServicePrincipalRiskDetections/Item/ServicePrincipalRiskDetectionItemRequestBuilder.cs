@@ -53,12 +53,12 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a servicePrincipalRiskDetection object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a servicePrincipalRiskDetection object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a servicePrincipalRiskDetection object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a servicePrincipalRiskDetection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipalriskdetection-get?view=graph-rest-1.0";
             var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "The unique identifier of servicePrincipalRiskDetection") {
             };
             servicePrincipalRiskDetectionIdOption.IsRequired = true;
@@ -181,7 +181,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a servicePrincipalRiskDetection object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a servicePrincipalRiskDetection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a servicePrincipalRiskDetection object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a servicePrincipalRiskDetection object.
         /// </summary>
         public class ServicePrincipalRiskDetectionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

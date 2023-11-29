@@ -63,10 +63,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"evaluationResult", n => { EvaluationResult = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"evaluationSucceeded", n => { EvaluationSucceeded = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"parsedExpression", n => { ParsedExpression = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
                 {"parsingSucceeded", n => { ParsingSucceeded = n.GetBoolValue(); } },
             };

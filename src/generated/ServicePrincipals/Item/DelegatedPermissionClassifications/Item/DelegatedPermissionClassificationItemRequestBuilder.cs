@@ -20,12 +20,12 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
     /// </summary>
     public class DelegatedPermissionClassificationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a delegatedPermissionClassification which had previously been set for a delegated permission. This API is available in the following national cloud deployments.
+        /// Deletes a delegatedPermissionClassification which had previously been set for a delegated permission.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a delegatedPermissionClassification which had previously been set for a delegated permission. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0";
+            command.Description = "Deletes a delegatedPermissionClassification which had previously been set for a delegated permission.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete-delegatedpermissionclassifications?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -183,7 +183,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
         public DelegatedPermissionClassificationItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/delegatedPermissionClassifications/{delegatedPermissionClassification%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a delegatedPermissionClassification which had previously been set for a delegated permission. This API is available in the following national cloud deployments.
+        /// Deletes a delegatedPermissionClassification which had previously been set for a delegated permission.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

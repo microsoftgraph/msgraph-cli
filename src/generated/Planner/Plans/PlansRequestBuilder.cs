@@ -52,12 +52,12 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new plannerPlan. This API is available in the following national cloud deployments.
+        /// Use this API to create a new plannerPlan.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new plannerPlan. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new plannerPlan.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -96,12 +96,12 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Get a list of plannerPlan objects. This API is available in the following national cloud deployments.
+        /// Get a list of plannerPlan objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of plannerPlan objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0";
+            command.Description = "Get a list of plannerPlan objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -201,7 +201,7 @@ namespace ApiSdk.Planner.Plans {
         public PlansRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of plannerPlan objects. This API is available in the following national cloud deployments.
+        /// Get a list of plannerPlan objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new plannerPlan. This API is available in the following national cloud deployments.
+        /// Use this API to create a new plannerPlan.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of plannerPlan objects. This API is available in the following national cloud deployments.
+        /// Get a list of plannerPlan objects.
         /// </summary>
         public class PlansRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

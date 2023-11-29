@@ -50,12 +50,12 @@ namespace ApiSdk.Groups.Item.Team.Tags {
             return command;
         }
         /// <summary>
-        /// Create a standard tag for members in a team. This API is available in the following national cloud deployments.
+        /// Create a standard tag for members in a team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a standard tag for members in a team. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0";
+            command.Description = "Create a standard tag for members in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -100,12 +100,12 @@ namespace ApiSdk.Groups.Item.Team.Tags {
             return command;
         }
         /// <summary>
-        /// Get a list of the tag objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the tag objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the tag objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0";
+            command.Description = "Get a list of the tag objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Groups.Item.Team.Tags {
         public TagsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/tags{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the tag objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the tag objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +227,7 @@ namespace ApiSdk.Groups.Item.Team.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Create a standard tag for members in a team. This API is available in the following national cloud deployments.
+        /// Create a standard tag for members in a team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,7 +245,7 @@ namespace ApiSdk.Groups.Item.Team.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the tag objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the tag objects and their properties.
         /// </summary>
         public class TagsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

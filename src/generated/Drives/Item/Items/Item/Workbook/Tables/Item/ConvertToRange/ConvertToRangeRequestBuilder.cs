@@ -20,12 +20,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ConvertToRange {
     /// </summary>
     public class ConvertToRangeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Converts the table into a normal range of cells. All data is preserved. This API is available in the following national cloud deployments.
+        /// Converts the table into a normal range of cells. All data is preserved.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-converttorange?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Converts the table into a normal range of cells. All data is preserved. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-converttorange?view=graph-rest-1.0";
+            command.Description = "Converts the table into a normal range of cells. All data is preserved.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-converttorange?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -81,7 +81,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ConvertToRange {
         public ConvertToRangeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/convertToRange", rawUrl) {
         }
         /// <summary>
-        /// Converts the table into a normal range of cells. All data is preserved. This API is available in the following national cloud deployments.
+        /// Converts the table into a normal range of cells. All data is preserved.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

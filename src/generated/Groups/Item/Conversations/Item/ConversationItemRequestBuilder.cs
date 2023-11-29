@@ -21,12 +21,12 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
     /// </summary>
     public class ConversationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete conversation. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0" />
+        /// Delete conversation.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-conversation?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete conversation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0";
+            command.Description = "Delete conversation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-conversation?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -61,12 +61,12 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return command;
         }
         /// <summary>
-        /// This API is available in the following national cloud deployments.
+        /// The group&apos;s conversations.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0";
+            command.Description = "The group's conversations.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -148,7 +148,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         public ConversationItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Delete conversation. This API is available in the following national cloud deployments.
+        /// Delete conversation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -164,7 +164,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// This API is available in the following national cloud deployments.
+        /// The group&apos;s conversations.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -180,7 +180,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// This API is available in the following national cloud deployments.
+        /// The group&apos;s conversations.
         /// </summary>
         public class ConversationItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

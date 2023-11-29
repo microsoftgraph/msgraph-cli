@@ -19,12 +19,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
     /// </summary>
     public class MarkUnreadRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a list of serviceUpdateMessages as unread for the signed in user. This API is available in the following national cloud deployments.
+        /// Mark a list of serviceUpdateMessages as unread for the signed in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mark a list of serviceUpdateMessages as unread for the signed in user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0";
+            command.Description = "Mark a list of serviceUpdateMessages as unread for the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -75,7 +75,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
         public MarkUnreadRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", rawUrl) {
         }
         /// <summary>
-        /// Mark a list of serviceUpdateMessages as unread for the signed in user. This API is available in the following national cloud deployments.
+        /// Mark a list of serviceUpdateMessages as unread for the signed in user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

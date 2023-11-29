@@ -55,12 +55,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Create a new task object in a specified todoTaskList. This API is available in the following national cloud deployments.
+        /// Create a new task object in a specified todoTaskList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new task object in a specified todoTaskList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0";
+            command.Description = "Create a new task object in a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -126,12 +126,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList. This API is available in the following national cloud deployments.
+        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the todoTask resources from the tasks navigation property of a specified todoTaskList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0";
+            command.Description = "Get the todoTask resources from the tasks navigation property of a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList. This API is available in the following national cloud deployments.
+        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +259,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new task object in a specified todoTaskList. This API is available in the following national cloud deployments.
+        /// Create a new task object in a specified todoTaskList.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +277,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList. This API is available in the following national cloud deployments.
+        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

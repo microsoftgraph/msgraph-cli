@@ -48,12 +48,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             return command;
         }
         /// <summary>
-        /// Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope. This API is available in the following national cloud deployments.
+        /// Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0";
+            command.Description = "Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             return command;
         }
         /// <summary>
-        /// List Microsoft Entra role assignments with administrative unit scope. This API is available in the following national cloud deployments.
+        /// List Microsoft Entra role assignments with administrative unit scope.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-list-scopedrolemembers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List Microsoft Entra role assignments with administrative unit scope. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-scopedrolemembers?view=graph-rest-1.0";
+            command.Description = "List Microsoft Entra role assignments with administrative unit scope.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-scopedrolemembers?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -209,7 +209,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
         public ScopedRoleMembersRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/scopedRoleMembers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List Microsoft Entra role assignments with administrative unit scope. This API is available in the following national cloud deployments.
+        /// List Microsoft Entra role assignments with administrative unit scope.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -225,7 +225,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope. This API is available in the following national cloud deployments.
+        /// Assign a Microsoft Entra role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with administrative unit scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +243,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             return requestInfo;
         }
         /// <summary>
-        /// List Microsoft Entra role assignments with administrative unit scope. This API is available in the following national cloud deployments.
+        /// List Microsoft Entra role assignments with administrative unit scope.
         /// </summary>
         public class ScopedRoleMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

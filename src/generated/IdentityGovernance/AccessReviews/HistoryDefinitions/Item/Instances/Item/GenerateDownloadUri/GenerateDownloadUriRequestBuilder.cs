@@ -20,12 +20,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
     /// </summary>
     public class GenerateDownloadUriRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance&apos;s review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object. This API is available in the following national cloud deployments.
+        /// Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance&apos;s review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance's review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0";
+            command.Description = "Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance's review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewhistoryinstance-generatedownloaduri?view=graph-rest-1.0";
             var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
@@ -75,7 +75,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
         public GenerateDownloadUriRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews/historyDefinitions/{accessReviewHistoryDefinition%2Did}/instances/{accessReviewHistoryInstance%2Did}/generateDownloadUri", rawUrl) {
         }
         /// <summary>
-        /// Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance&apos;s review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object. This API is available in the following national cloud deployments.
+        /// Generates a URI for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the instance&apos;s review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri property from the accessReviewHistoryInstance object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

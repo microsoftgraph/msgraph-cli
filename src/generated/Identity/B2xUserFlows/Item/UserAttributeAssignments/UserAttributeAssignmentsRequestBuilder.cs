@@ -52,12 +52,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.
+        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.
+        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -243,7 +243,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         public UserAttributeAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.
+        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +259,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.
+        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +277,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow. This API is available in the following national cloud deployments.
+        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// </summary>
         public class UserAttributeAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

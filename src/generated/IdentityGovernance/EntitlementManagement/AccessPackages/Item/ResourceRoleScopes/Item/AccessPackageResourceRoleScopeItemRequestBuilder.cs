@@ -22,12 +22,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
     /// </summary>
     public class AccessPackageResourceRoleScopeItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes. This API is available in the following national cloud deployments.
+        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0";
+            command.Description = "Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -231,7 +231,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         public AccessPackageResourceRoleScopeItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes. This API is available in the following national cloud deployments.
+        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
