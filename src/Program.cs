@@ -65,7 +65,30 @@ namespace Microsoft.Graph.Cli
             }
 
             var builder = BuildCommandLine()
-                .UseDefaults()
+                .UseVersionOption()
+                .UseHelp()
+                .UseEnvironmentVariableDirective()
+                .UseParseDirective()
+                .UseSuggestDirective()
+                .RegisterWithDotnetSuggest()
+                .UseTypoCorrections()
+                .UseParseErrorReporting()
+                .CancelOnProcessTermination()
+                .UseExceptionHandler((ex, context) =>
+                {
+                    var message = GetExceptionMessage(ex);
+                    var exitCode = GetExceptionExitCode(ex);
+
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        context.Console.Error.WriteLine(message);
+                        Console.ResetColor();
+                    }
+
+                    context.ExitCode = exitCode;
+                })
                 .UseHost(CreateHostBuilder)
                 .UseRequestAdapter(ic =>
                 {
@@ -91,36 +114,6 @@ namespace Microsoft.Graph.Cli
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<LogoutService>());
                 await next(ic);
             });
-            builder.UseExceptionHandler((ex, context) =>
-            {
-                var message = ex switch
-                {
-                    _ when ex is AuthenticationRequiredException => "Token acquisition failed. Run mgc login command first to get an access token.",
-                    _ when ex is TaskCanceledException => string.Empty,
-                    ODataError _e when ex is ODataError => $"Error {_e.ResponseStatusCode}({_e.Error?.Code}) from API:\n  {_e.Error?.Message}",
-                    ApiException _e when ex is ApiException => $"Error {_e.ResponseStatusCode} from API.",
-                    AuthenticationFailedException e => $"Authentication failed: {e.Message}",
-                    Identity.Client.MsalException e => $"Authentication failed: {e.Message}",
-                    _ => ex.Message
-                };
-
-                var exitCode = ex switch
-                {
-                    _ when ex is AuthenticationRequiredException => 1,
-                    _ when ex is TaskCanceledException => 0,
-                    _ => -1
-                };
-
-                if (!string.IsNullOrEmpty(message))
-                {
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    context.Console.Error.WriteLine(message);
-                    Console.ResetColor();
-                }
-
-                context.ExitCode = exitCode;
-            });
 
             try
             {
@@ -132,6 +125,26 @@ namespace Microsoft.Graph.Cli
                 listener?.Dispose();
             }
         }
+
+        static string? GetExceptionMessage<E>(E ex) where E: Exception {
+            return ex switch
+                {
+                    _ when ex is AuthenticationRequiredException => "Token acquisition failed. Run mgc login command first to get an access token.",
+                    _ when ex is TaskCanceledException => string.Empty,
+                    ODataError _e when ex is ODataError => $"Error {_e.ResponseStatusCode}({_e.Error?.Code}) from API:\n  {_e.Error?.Message}",
+                    ApiException _e when ex is ApiException => $"Error {_e.ResponseStatusCode} from API.",
+                    AuthenticationFailedException e => $"Authentication failed: {e.Message}",
+                    Identity.Client.MsalException e => $"Authentication failed: {e.Message}",
+                    _ => ex.Message
+                };
+        }
+
+        static int GetExceptionExitCode<E>(E ex) where E: Exception => ex switch
+                {
+                    _ when ex is AuthenticationRequiredException => 1,
+                    _ when ex is TaskCanceledException => 0,
+                    _ => -1
+                };
 
         static CommandLineBuilder BuildCommandLine()
         {
