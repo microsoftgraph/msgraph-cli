@@ -407,11 +407,11 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-policyset-devicemanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-policyset-devicemanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };

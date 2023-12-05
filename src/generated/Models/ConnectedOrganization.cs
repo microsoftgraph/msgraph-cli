@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> ExternalSponsors { get; set; }
 #endif
-        /// <summary>The identity sources in this connected organization, one of azureActiveDirectoryTenant, domainIdentitySource, externalDomainFederation or crossCloudAzureActiveDirectoryTenant. Nullable.</summary>
+        /// <summary>The identity sources in this connected organization, one of azureActiveDirectoryTenant, crossCloudAzureActiveDirectoryTenant, domainIdentitySource, externalDomainFederation, or socialIdentitySource. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<IdentitySource>? IdentitySources { get; set; }
