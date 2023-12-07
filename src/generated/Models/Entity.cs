@@ -538,6 +538,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.privilegedAccessScheduleRequest" => new PrivilegedAccessScheduleRequest(),
                 "#microsoft.graph.profileCardProperty" => new ProfileCardProperty(),
                 "#microsoft.graph.profilePhoto" => new ProfilePhoto(),
+                "#microsoft.graph.pronounsSettings" => new PronounsSettings(),
                 "#microsoft.graph.provisioningObjectSummary" => new ProvisioningObjectSummary(),
                 "#microsoft.graph.rbacApplication" => new RbacApplication(),
                 "#microsoft.graph.recordOperation" => new RecordOperation(),

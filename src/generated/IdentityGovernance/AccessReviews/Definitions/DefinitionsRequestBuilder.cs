@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
-            executables.Add(builder.BuildPatchCommand());
+            executables.Add(builder.BuildPutCommand());
             commands.Add(builder.BuildStopNavCommand());
             return new(executables, commands);
         }

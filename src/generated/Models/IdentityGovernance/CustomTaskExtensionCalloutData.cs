@@ -17,10 +17,10 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>The task property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApiSdk.Models.IdentityGovernance.TaskObject? TaskObject { get; set; }
+        public TaskObject? Task { get; set; }
 #nullable restore
 #else
-        public ApiSdk.Models.IdentityGovernance.TaskObject TaskObject { get; set; }
+        public TaskObject Task { get; set; }
 #endif
         /// <summary>The taskProcessingresult property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,7 +58,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"subject", n => { Subject = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
-                {"task", n => { TaskObject = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>(ApiSdk.Models.IdentityGovernance.TaskObject.CreateFromDiscriminatorValue); } },
+                {"task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
                 {"taskProcessingresult", n => { TaskProcessingresult = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>(ApiSdk.Models.IdentityGovernance.TaskProcessingResult.CreateFromDiscriminatorValue); } },
                 {"workflow", n => { Workflow = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.Workflow>(ApiSdk.Models.IdentityGovernance.Workflow.CreateFromDiscriminatorValue); } },
             };
@@ -71,7 +71,7 @@ namespace ApiSdk.Models.IdentityGovernance {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.User>("subject", Subject);
-            writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskObject>("task", TaskObject);
+            writer.WriteObjectValue<TaskObject>("task", Task);
             writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.TaskProcessingResult>("taskProcessingresult", TaskProcessingresult);
             writer.WriteObjectValue<ApiSdk.Models.IdentityGovernance.Workflow>("workflow", Workflow);
         }

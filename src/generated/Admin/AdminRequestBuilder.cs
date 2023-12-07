@@ -143,8 +143,8 @@ namespace ApiSdk.Admin {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
-            execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildProfileCardPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildPronounsNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

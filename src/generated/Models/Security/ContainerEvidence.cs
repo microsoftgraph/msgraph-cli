@@ -17,10 +17,10 @@ namespace ApiSdk.Models.Security {
         /// <summary>The list of commands.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Command { get; set; }
+        public List<string>? CommandEscaped { get; set; }
 #nullable restore
 #else
-        public List<string> Command { get; set; }
+        public List<string> CommandEscaped { get; set; }
 #endif
         /// <summary>The container ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -76,7 +76,7 @@ namespace ApiSdk.Models.Security {
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"args", n => { Args = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"command", n => { Command = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"command", n => { CommandEscaped = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"containerId", n => { ContainerId = n.GetStringValue(); } },
                 {"image", n => { Image = n.GetObjectValue<ContainerImageEvidence>(ContainerImageEvidence.CreateFromDiscriminatorValue); } },
                 {"isPrivileged", n => { IsPrivileged = n.GetBoolValue(); } },
@@ -92,7 +92,7 @@ namespace ApiSdk.Models.Security {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfPrimitiveValues<string>("args", Args);
-            writer.WriteCollectionOfPrimitiveValues<string>("command", Command);
+            writer.WriteCollectionOfPrimitiveValues<string>("command", CommandEscaped);
             writer.WriteStringValue("containerId", ContainerId);
             writer.WriteObjectValue<ContainerImageEvidence>("image", Image);
             writer.WriteBoolValue("isPrivileged", IsPrivileged);
