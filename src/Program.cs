@@ -47,7 +47,7 @@ namespace Microsoft.Graph.Cli
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
             // Replace `me ...` with `users ... --user-id me`
-            if (args[0] == "me")
+            if (args.Length > 1 && args[0] == "me")
             {
                 var hasHelp = Array.Exists(args, static x => x == "--help" || x == "-h" || x == "/?");
                 var newArgs = hasHelp ? args : new string[args.Length + 2];
