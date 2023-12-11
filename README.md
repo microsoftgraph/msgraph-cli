@@ -70,7 +70,7 @@ Adding to the PATH for your current session is also an option as it is in Window
 from your terminal in the directory of the CLI:
 
 ```sh
-export PATH=$PATH:$(PWD)
+export PATH=$PATH:$(pwd)
 ```
 
 Adding the location permanently can be done for the current user by editing your `~/.bash-profile` file.
