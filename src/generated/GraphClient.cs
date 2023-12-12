@@ -630,6 +630,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsWorkFromAnywhereMetricsNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsWorkFromAnywhereModelPerformanceNavCommand());
             nonExecCommands.Add(builder.BuildVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRbCommand());
+            nonExecCommands.Add(builder.BuildVirtualEndpointNavCommand());
             nonExecCommands.Add(builder.BuildWindowsAutopilotDeviceIdentitiesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionAppLearningSummariesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand());

@@ -2,6 +2,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Shares.Item.List.Items.Item.Analytics;
+using ApiSdk.Shares.Item.List.Items.Item.CreateLink;
 using ApiSdk.Shares.Item.List.Items.Item.CreatedByUser;
 using ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions;
 using ApiSdk.Shares.Item.List.Items.Item.DriveItem;
@@ -60,6 +61,21 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createLink method.
+        /// </summary>
+        public Command BuildCreateLinkNavCommand() {
+            var command = new Command("create-link");
+            command.Description = "Provides operations to call the createLink method.";
+            var builder = new CreateLinkRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
