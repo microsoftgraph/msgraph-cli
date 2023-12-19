@@ -14,6 +14,14 @@ namespace ApiSdk.Models {
 #else
         public List<ProfileCardProperty> ProfileCardProperties { get; set; }
 #endif
+        /// <summary>Represents administrator settings that manage the support of pronouns in an organization.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PronounsSettings? Pronouns { get; set; }
+#nullable restore
+#else
+        public PronounsSettings Pronouns { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -28,6 +36,7 @@ namespace ApiSdk.Models {
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"profileCardProperties", n => { ProfileCardProperties = n.GetCollectionOfObjectValues<ProfileCardProperty>(ProfileCardProperty.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"pronouns", n => { Pronouns = n.GetObjectValue<PronounsSettings>(PronounsSettings.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -38,6 +47,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ProfileCardProperty>("profileCardProperties", ProfileCardProperties);
+            writer.WriteObjectValue<PronounsSettings>("pronouns", Pronouns);
         }
     }
 }

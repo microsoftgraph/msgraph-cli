@@ -38,6 +38,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.muteParticipantOperation" => new MuteParticipantOperation(),
                 "#microsoft.graph.playPromptOperation" => new PlayPromptOperation(),
                 "#microsoft.graph.recordOperation" => new RecordOperation(),
+                "#microsoft.graph.sendDtmfTonesOperation" => new SendDtmfTonesOperation(),
                 "#microsoft.graph.startHoldMusicOperation" => new StartHoldMusicOperation(),
                 "#microsoft.graph.stopHoldMusicOperation" => new StopHoldMusicOperation(),
                 "#microsoft.graph.subscribeToToneOperation" => new SubscribeToToneOperation(),

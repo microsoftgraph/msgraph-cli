@@ -29,6 +29,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items {
             var builder = new ListItemItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAnalyticsNavCommand());
             commands.Add(builder.BuildCreatedByUserNavCommand());
+            commands.Add(builder.BuildCreateLinkNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDocumentSetVersionsNavCommand());
             commands.Add(builder.BuildDriveItemNavCommand());

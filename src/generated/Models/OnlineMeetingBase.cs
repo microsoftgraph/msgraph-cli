@@ -6,19 +6,19 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class OnlineMeetingBase : Entity, IParsable {
-        /// <summary>The allowAttendeeToEnableCamera property</summary>
+        /// <summary>Indicates whether attendees can turn on their camera.</summary>
         public bool? AllowAttendeeToEnableCamera { get; set; }
-        /// <summary>The allowAttendeeToEnableMic property</summary>
+        /// <summary>Indicates whether attendees can turn on their microphone.</summary>
         public bool? AllowAttendeeToEnableMic { get; set; }
-        /// <summary>The allowedPresenters property</summary>
+        /// <summary>Specifies who can be a presenter in a meeting.</summary>
         public OnlineMeetingPresenters? AllowedPresenters { get; set; }
-        /// <summary>The allowMeetingChat property</summary>
+        /// <summary>Specifies the mode of the meeting chat.</summary>
         public MeetingChatMode? AllowMeetingChat { get; set; }
-        /// <summary>The allowParticipantsToChangeName property</summary>
+        /// <summary>Specifies if participants are allowed to rename themselves in an instance of the meeting.</summary>
         public bool? AllowParticipantsToChangeName { get; set; }
-        /// <summary>The allowTeamworkReactions property</summary>
+        /// <summary>Indicates if Teams reactions are enabled for the meeting.</summary>
         public bool? AllowTeamworkReactions { get; set; }
-        /// <summary>The attendanceReports property</summary>
+        /// <summary>The attendance reports of an online meeting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<MeetingAttendanceReport>? AttendanceReports { get; set; }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public List<MeetingAttendanceReport> AttendanceReports { get; set; }
 #endif
-        /// <summary>The audioConferencing property</summary>
+        /// <summary>The phone access (dial-in) information for an online meeting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AudioConferencing? AudioConferencing { get; set; }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AudioConferencing AudioConferencing { get; set; }
 #endif
-        /// <summary>The chatInfo property</summary>
+        /// <summary>The chat information associated with this online meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ChatInfo? ChatInfo { get; set; }
@@ -42,9 +42,9 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ChatInfo ChatInfo { get; set; }
 #endif
-        /// <summary>The isEntryExitAnnounced property</summary>
+        /// <summary>Indicates whether to announce when callers join or leave.</summary>
         public bool? IsEntryExitAnnounced { get; set; }
-        /// <summary>The joinInformation property</summary>
+        /// <summary>The join information in the language and locale variant specified in &apos;Accept-Language&apos; request HTTP header. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? JoinInformation { get; set; }
@@ -52,7 +52,7 @@ namespace ApiSdk.Models {
 #else
         public ItemBody JoinInformation { get; set; }
 #endif
-        /// <summary>The joinMeetingIdSettings property</summary>
+        /// <summary>Specifies the joinMeetingId, the meeting passcode, and the requirement for the passcode. Once an onlineMeeting is created, the joinMeetingIdSettings can&apos;t be modified. To make any changes to this property, you must cancel this meeting and create a new one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.JoinMeetingIdSettings? JoinMeetingIdSettings { get; set; }
@@ -60,7 +60,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.JoinMeetingIdSettings JoinMeetingIdSettings { get; set; }
 #endif
-        /// <summary>The joinWebUrl property</summary>
+        /// <summary>The join URL of the online meeting. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? JoinWebUrl { get; set; }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models {
 #else
         public string JoinWebUrl { get; set; }
 #endif
-        /// <summary>The lobbyBypassSettings property</summary>
+        /// <summary>Specifies which participants can bypass the meeting lobby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.LobbyBypassSettings? LobbyBypassSettings { get; set; }
@@ -76,11 +76,11 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.LobbyBypassSettings LobbyBypassSettings { get; set; }
 #endif
-        /// <summary>The recordAutomatically property</summary>
+        /// <summary>Indicates whether to record the meeting automatically.</summary>
         public bool? RecordAutomatically { get; set; }
         /// <summary>The shareMeetingChatHistoryDefault property</summary>
         public MeetingChatHistoryDefaultMode? ShareMeetingChatHistoryDefault { get; set; }
-        /// <summary>The subject property</summary>
+        /// <summary>The subject of the online meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -88,7 +88,7 @@ namespace ApiSdk.Models {
 #else
         public string Subject { get; set; }
 #endif
-        /// <summary>The videoTeleconferenceId property</summary>
+        /// <summary>The video teleconferencing ID. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? VideoTeleconferenceId { get; set; }
@@ -96,7 +96,7 @@ namespace ApiSdk.Models {
 #else
         public string VideoTeleconferenceId { get; set; }
 #endif
-        /// <summary>The watermarkProtection property</summary>
+        /// <summary>Specifies whether the client application should apply a watermark to a content type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public WatermarkProtectionValues? WatermarkProtection { get; set; }

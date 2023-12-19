@@ -15,5 +15,13 @@ namespace ApiSdk.Models {
         Unknown,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "reportOnlySuccess")]
+        ReportOnlySuccess,
+        [EnumMember(Value = "reportOnlyFailure")]
+        ReportOnlyFailure,
+        [EnumMember(Value = "reportOnlyNotApplied")]
+        ReportOnlyNotApplied,
+        [EnumMember(Value = "reportOnlyInterrupted")]
+        ReportOnlyInterrupted,
     }
 }

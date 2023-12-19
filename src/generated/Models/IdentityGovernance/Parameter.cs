@@ -33,7 +33,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public List<string> Values { get; set; }
 #endif
         /// <summary>The valueType property</summary>
-        public ApiSdk.Models.IdentityGovernance.ValueTypeObject? ValueTypeObject { get; set; }
+        public ValueTypeObject? ValueType { get; set; }
         /// <summary>
         /// Instantiates a new parameter and sets the default values.
         /// </summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.IdentityGovernance {
             return new Dictionary<string, Action<IParseNode>> {
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"valueType", n => { ValueTypeObject = n.GetEnumValue<ValueTypeObject>(); } },
+                {"valueType", n => { ValueType = n.GetEnumValue<ValueTypeObject>(); } },
                 {"values", n => { Values = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.IdentityGovernance {
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("values", Values);
-            writer.WriteEnumValue<ValueTypeObject>("valueType", ValueTypeObject);
+            writer.WriteEnumValue<ValueTypeObject>("valueType", ValueType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

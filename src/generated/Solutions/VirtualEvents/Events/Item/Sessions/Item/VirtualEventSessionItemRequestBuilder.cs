@@ -85,11 +85,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item {
             return command;
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get sessions from solutions";
+            command.Description = "Sessions for the virtual event.";
             var virtualEventIdOption = new Option<string>("--virtual-event-id", description: "The unique identifier of virtualEvent") {
             };
             virtualEventIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -258,7 +258,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         public class VirtualEventSessionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The isBroadcast property</summary>
         public bool? IsBroadcast { get; set; }
-        /// <summary>The participants associated with the online meeting.  This includes the organizer and the attendees.</summary>
+        /// <summary>The participants associated with the online meeting, including the organizer and the attendees.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public MeetingParticipants? Participants { get; set; }
