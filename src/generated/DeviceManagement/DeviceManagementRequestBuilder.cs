@@ -55,6 +55,7 @@ using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwareRea
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereModelPerformance;
 using ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName;
+using ApiSdk.DeviceManagement.VirtualEndpoint;
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries;
@@ -407,11 +408,11 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-auditing-devicemanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-auditing-devicemanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -633,11 +634,11 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Update the properties of a deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-devicemanagement-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-devicemanagement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-gpanalyticsservice-devicemanagement-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-devicemanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -1488,6 +1489,23 @@ namespace ApiSdk.DeviceManagement {
             var builder = new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildVirtualEndpointNavCommand() {
+            var command = new Command("virtual-endpoint");
+            command.Description = "Provides operations to manage the virtualEndpoint property of the microsoft.graph.deviceManagement entity.";
+            var builder = new VirtualEndpointRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
