@@ -8,9 +8,9 @@ namespace ApiSdk.Models {
     public class ServiceProvisioningError : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The date and time at which the error occurred.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The isResolved property</summary>
+        /// <summary>Indicates whether the error has been attended to.</summary>
         public bool? IsResolved { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -20,7 +20,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The serviceInstance property</summary>
+        /// <summary>Qualified service instance (for example, &apos;SharePoint/Dublin&apos;) that published the service error information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServiceInstance { get; set; }

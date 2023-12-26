@@ -8,9 +8,9 @@ namespace ApiSdk.Models {
     public class VirtualEventRegistrationQuestionAnswer : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The booleanValue property</summary>
+        /// <summary>Boolean answer of the virtual event registration question. Only appears when answerInputType is boolean.</summary>
         public bool? BooleanValue { get; set; }
-        /// <summary>The displayName property</summary>
+        /// <summary>Display name of the registration question.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The multiChoiceValues property</summary>
+        /// <summary>Collection of text answer of the virtual event registration question. Only appears when answerInputType is multiChoice.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? MultiChoiceValues { get; set; }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The questionId property</summary>
+        /// <summary>id of the virtual event registration question.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? QuestionId { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
 #else
         public string QuestionId { get; set; }
 #endif
-        /// <summary>The value property</summary>
+        /// <summary>Text answer of the virtual event registration question. Appears when answerInputType is text, multilineText or singleChoice.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

@@ -20,12 +20,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivit
     /// </summary>
     public class LearningCourseActivityItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a learningCourseActivity object by using the course activity ID of either an assignment or a self-initiated activity.
+        /// Delete a learningCourseActivity object using the course activity ID of either an assignment or a self-initiated activity.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningcourseactivity-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a learningCourseActivity object by using the course activity ID of either an assignment or a self-initiated activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningcourseactivity-delete?view=graph-rest-1.0";
+            command.Description = "Delete a learningCourseActivity object using the course activity ID of either an assignment or a self-initiated activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningcourseactivity-delete?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -184,7 +184,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivit
         public LearningCourseActivityItemRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningCourseActivities/{learningCourseActivity%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a learningCourseActivity object by using the course activity ID of either an assignment or a self-initiated activity.
+        /// Delete a learningCourseActivity object using the course activity ID of either an assignment or a self-initiated activity.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

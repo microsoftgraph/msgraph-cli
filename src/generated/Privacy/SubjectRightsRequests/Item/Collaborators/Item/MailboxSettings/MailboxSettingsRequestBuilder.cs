@@ -20,12 +20,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item.MailboxSe
     /// </summary>
     public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale and time zone. Returned only on $select.
+        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.
         /// </summary>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale and time zone. Returned only on $select.";
+            command.Description = "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -145,7 +145,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item.MailboxSe
         public MailboxSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators/{user%2Did}/mailboxSettings{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale and time zone. Returned only on $select.
+        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
@@ -181,7 +181,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item.MailboxSe
             return requestInfo;
         }
         /// <summary>
-        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale and time zone. Returned only on $select.
+        /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.
         /// </summary>
         public class MailboxSettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

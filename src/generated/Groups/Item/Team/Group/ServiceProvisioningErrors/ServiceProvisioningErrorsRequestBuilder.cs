@@ -36,11 +36,11 @@ namespace ApiSdk.Groups.Item.Team.Group.ServiceProvisioningErrors {
             return command;
         }
         /// <summary>
-        /// Get serviceProvisioningErrors property value
+        /// Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get serviceProvisioningErrors property value";
+            command.Description = "Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -146,7 +146,7 @@ namespace ApiSdk.Groups.Item.Team.Group.ServiceProvisioningErrors {
         public ServiceProvisioningErrorsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/group/serviceProvisioningErrors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get serviceProvisioningErrors property value
+        /// Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -162,7 +162,7 @@ namespace ApiSdk.Groups.Item.Team.Group.ServiceProvisioningErrors {
             return requestInfo;
         }
         /// <summary>
-        /// Get serviceProvisioningErrors property value
+        /// Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).
         /// </summary>
         public class ServiceProvisioningErrorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

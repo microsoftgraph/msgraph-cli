@@ -364,7 +364,7 @@ namespace ApiSdk.Models {
 #else
         public string SecurityIdentifier { get; set; }
 #endif
-        /// <summary>The serviceProvisioningErrors property</summary>
+        /// <summary>Errors published by a federated service describing a non-transient, service-specific error regarding the properties or link from a group object .  Supports $filter (eq, not, for isResolved and serviceInstance).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ServiceProvisioningError>? ServiceProvisioningErrors { get; set; }
