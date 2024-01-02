@@ -78,10 +78,16 @@ namespace ApiSdk.Education.Classes.Item {
             command.Description = "Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentSettingsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildGradingCategoriesNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

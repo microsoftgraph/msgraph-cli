@@ -32,6 +32,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             commands.Add(builder.BuildCategoriesNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGradingCategoryNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildPublishNavCommand());
             commands.Add(builder.BuildResourcesNavCommand());

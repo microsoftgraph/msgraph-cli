@@ -46,6 +46,7 @@ namespace ApiSdk.Communications.Calls {
             commands.Add(builder.BuildRecordResponseNavCommand());
             commands.Add(builder.BuildRedirectNavCommand());
             commands.Add(builder.BuildRejectNavCommand());
+            commands.Add(builder.BuildSendDtmfTonesNavCommand());
             commands.Add(builder.BuildSubscribeToToneNavCommand());
             commands.Add(builder.BuildTransferNavCommand());
             commands.Add(builder.BuildUnmuteNavCommand());

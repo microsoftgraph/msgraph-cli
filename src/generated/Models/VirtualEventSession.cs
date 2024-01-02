@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class VirtualEventSession : OnlineMeetingBase, IParsable {
-        /// <summary>The endDateTime property</summary>
+        /// <summary>The virtual event session end time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? EndDateTime { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone EndDateTime { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
+        /// <summary>The virtual event session start time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? StartDateTime { get; set; }
