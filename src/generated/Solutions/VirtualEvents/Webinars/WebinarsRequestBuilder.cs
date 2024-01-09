@@ -126,11 +126,12 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
             return command;
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Get the list of all virtualEventWebinar objects created in the tenant.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get webinars from solutions";
+            command.Description = "Get the list of all virtualEventWebinar objects created in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +231,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         public WebinarsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Get the list of all virtualEventWebinar objects created in the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +265,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
             return requestInfo;
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Get the list of all virtualEventWebinar objects created in the tenant.
         /// </summary>
         public class WebinarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

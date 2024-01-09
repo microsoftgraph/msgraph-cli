@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.RetryServiceProvisioning {
     /// </summary>
     public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action retryServiceProvisioning
+        /// Retry the user service provisioning.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-retryserviceprovisioning?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action retryServiceProvisioning";
+            command.Description = "Retry the user service provisioning.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-retryserviceprovisioning?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -57,7 +58,7 @@ namespace ApiSdk.Users.Item.RetryServiceProvisioning {
         public RetryServiceProvisioningRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/retryServiceProvisioning", rawUrl) {
         }
         /// <summary>
-        /// Invoke action retryServiceProvisioning
+        /// Retry the user service provisioning.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

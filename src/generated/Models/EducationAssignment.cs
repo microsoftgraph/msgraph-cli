@@ -80,6 +80,14 @@ namespace ApiSdk.Models {
 #else
         public EducationAssignmentGradeType Grading { get; set; }
 #endif
+        /// <summary>The gradingCategory property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EducationGradingCategory? GradingCategory { get; set; }
+#nullable restore
+#else
+        public EducationGradingCategory GradingCategory { get; set; }
+#endif
         /// <summary>Instructions for the assignment.  This along with the display name tell the student what to do.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -177,6 +185,7 @@ namespace ApiSdk.Models {
                 {"dueDateTime", n => { DueDateTime = n.GetDateTimeOffsetValue(); } },
                 {"feedbackResourcesFolderUrl", n => { FeedbackResourcesFolderUrl = n.GetStringValue(); } },
                 {"grading", n => { Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
+                {"gradingCategory", n => { GradingCategory = n.GetObjectValue<EducationGradingCategory>(EducationGradingCategory.CreateFromDiscriminatorValue); } },
                 {"instructions", n => { Instructions = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -207,6 +216,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("dueDateTime", DueDateTime);
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
+            writer.WriteObjectValue<EducationGradingCategory>("gradingCategory", GradingCategory);
             writer.WriteObjectValue<EducationItemBody>("instructions", Instructions);
             writer.WriteStringValue("notificationChannelUrl", NotificationChannelUrl);
             writer.WriteCollectionOfObjectValues<EducationAssignmentResource>("resources", Resources);

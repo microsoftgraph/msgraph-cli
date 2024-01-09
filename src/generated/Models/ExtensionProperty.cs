@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string AppDisplayName { get; set; }
 #endif
-        /// <summary>Specifies the data type of the value the extension property can hold. Following values are supported. Not nullable. Binary - 256 bytes maximumBooleanDateTime - Must be specified in ISO 8601 format. Will be stored in UTC.Integer - 32-bit value.LargeInteger - 64-bit value.String - 256 characters maximum</summary>
+        /// <summary>Specifies the data type of the value the extension property can hold. Following values are supported. Binary - 256 bytes maximumBooleanDateTime - Must be specified in ISO 8601 format. Will be stored in UTC.Integer - 32-bit value.LargeInteger - 64-bit value.String - 256 characters maximumNot nullable. For multivalued directory extensions, these limits apply per value in the collection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DataType { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string DataType { get; set; }
 #endif
-        /// <summary>Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of integers. The default value is false. Supports $filter (eq).</summary>
+        /// <summary>Defines the directory extension as a multi-valued property. When true, the directory extension property can store a collection of objects of the dataType; for example, a collection of string types such as &apos;extensionb7b1c57b532f40b8b5ed4b7a7ba67401jobGroupTracker&apos;: [&apos;String 1&apos;, &apos;String 2&apos;]. The default value is false. Supports $filter (eq).</summary>
         public bool? IsMultiValued { get; set; }
         /// <summary>Indicates if this extension property was synced from on-premises active directory using Microsoft Entra Connect. Read-only.</summary>
         public bool? IsSyncedFromOnPremises { get; set; }
