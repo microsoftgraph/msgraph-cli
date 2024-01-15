@@ -70,9 +70,9 @@ stages:
         condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
-          displayName: 'Use .NET 7'
+          displayName: 'Use .NET 8'
           inputs:
-            version: 7.x
+            version: 8.x
 
         # Restore NuGet packages (enables cache by default)
         - template: templates/nuget-packages.yaml
@@ -114,10 +114,10 @@ stages:
           # maxParallel: 2
         steps:
           - task: UseDotNet@2
-            displayName: 'Use .NET 7'
+            displayName: 'Use .NET 8'
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             inputs:
-              version: 7.x
+              version: 8.x
 
           - ${{ if ne(parameters.simulate, 'true') }}:
             - template: templates/nuget-packages.yaml
@@ -179,9 +179,9 @@ stages:
         condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
         steps:
         - task: UseDotNet@2
-          displayName: 'Use .NET 7'
+          displayName: 'Use .NET 8'
           inputs:
-            version: 7.x
+            version: 8.x
 
         # Restore NuGet packages (enables cache by default)
         - template: templates/nuget-packages.yaml
@@ -410,10 +410,10 @@ stages:
 
           # Nuget tool doesn't work with multi-stage builds
           - task: UseDotNet@2
-            displayName: 'Use .NET 7'
+            displayName: 'Use .NET 8'
             condition: and(false, succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
             inputs:
-              version: 7.x
+              version: 8.x
 
           - ${{ if ne(parameters.simulate, 'true') }}:
             - template: templates/nuget-packages.yaml
