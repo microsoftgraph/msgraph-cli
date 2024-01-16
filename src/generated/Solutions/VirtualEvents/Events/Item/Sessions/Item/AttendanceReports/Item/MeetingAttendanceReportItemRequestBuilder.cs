@@ -91,11 +91,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
             return command;
         }
         /// <summary>
-        /// Get attendanceReports from solutions
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get attendanceReports from solutions";
+            command.Description = "The attendance reports of an online meeting. Read-only.";
             var virtualEventIdOption = new Option<string>("--virtual-event-id", description: "The unique identifier of virtualEvent") {
             };
             virtualEventIdOption.IsRequired = true;
@@ -242,7 +242,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
             return requestInfo;
         }
         /// <summary>
-        /// Get attendanceReports from solutions
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -276,7 +276,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
             return requestInfo;
         }
         /// <summary>
-        /// Get attendanceReports from solutions
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public class MeetingAttendanceReportItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -97,12 +97,12 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the deviceEnrollmentConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceEnrollmentConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentconfiguration-get?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -241,7 +241,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Read properties and relationships of the deviceEnrollmentConfiguration object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +275,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Read properties and relationships of the deviceEnrollmentConfiguration object.
         /// </summary>
         public class DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

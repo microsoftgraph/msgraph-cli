@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.RecordingInfo RecordingInfo { get; set; }
 #endif
-        /// <summary>The removedState property</summary>
+        /// <summary>Indicates the reason why the participant was removed from the roster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.RemovedState? RemovedState { get; set; }
@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
 #else
         public OnlineMeetingRestricted RestrictedExperience { get; set; }
 #endif
-        /// <summary>The rosterSequenceNumber property</summary>
+        /// <summary>Indicates the roster sequence number in which the participant was last updated.</summary>
         public long? RosterSequenceNumber { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

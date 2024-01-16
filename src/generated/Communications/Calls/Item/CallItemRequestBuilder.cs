@@ -13,6 +13,7 @@ using ApiSdk.Communications.Calls.Item.PlayPrompt;
 using ApiSdk.Communications.Calls.Item.RecordResponse;
 using ApiSdk.Communications.Calls.Item.Redirect;
 using ApiSdk.Communications.Calls.Item.Reject;
+using ApiSdk.Communications.Calls.Item.SendDtmfTones;
 using ApiSdk.Communications.Calls.Item.SubscribeToTone;
 using ApiSdk.Communications.Calls.Item.Transfer;
 using ApiSdk.Communications.Calls.Item.Unmute;
@@ -414,6 +415,21 @@ namespace ApiSdk.Communications.Calls.Item {
             var command = new Command("reject");
             command.Description = "Provides operations to call the reject method.";
             var builder = new RejectRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendDtmfTones method.
+        /// </summary>
+        public Command BuildSendDtmfTonesNavCommand() {
+            var command = new Command("send-dtmf-tones");
+            command.Description = "Provides operations to call the sendDtmfTones method.";
+            var builder = new SendDtmfTonesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

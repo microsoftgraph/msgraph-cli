@@ -99,11 +99,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
             return command;
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get sessions from solutions";
+            command.Description = "Sessions for the virtual event.";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -209,7 +209,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
         public SessionsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/sessions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +243,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
             return requestInfo;
         }
         /// <summary>
-        /// Get sessions from solutions
+        /// Sessions for the virtual event.
         /// </summary>
         public class SessionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

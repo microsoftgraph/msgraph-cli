@@ -6,7 +6,15 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EducationAssignmentSettings : Entity, IParsable {
-        /// <summary>Indicates whether turn-in celebration animation is shown. A value of true indicates that the animation isn&apos;t shown. Default value is false.</summary>
+        /// <summary>When set, enables users to weight assignments differently when computing a class average grade.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EducationGradingCategory>? GradingCategories { get; set; }
+#nullable restore
+#else
+        public List<EducationGradingCategory> GradingCategories { get; set; }
+#endif
+        /// <summary>Indicates whether to show the turn-in celebration animation. If true, indicates to skip the animation. The default value is false.</summary>
         public bool? SubmissionAnimationDisabled { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -21,6 +29,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"gradingCategories", n => { GradingCategories = n.GetCollectionOfObjectValues<EducationGradingCategory>(EducationGradingCategory.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"submissionAnimationDisabled", n => { SubmissionAnimationDisabled = n.GetBoolValue(); } },
             };
         }
@@ -31,6 +40,7 @@ namespace ApiSdk.Models {
         public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteCollectionOfObjectValues<EducationGradingCategory>("gradingCategories", GradingCategories);
             writer.WriteBoolValue("submissionAnimationDisabled", SubmissionAnimationDisabled);
         }
     }

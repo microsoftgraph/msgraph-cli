@@ -105,11 +105,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
             return command;
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get attendanceReports from users";
+            command.Description = "The attendance reports of an online meeting. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -221,7 +221,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
         public AttendanceReportsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/attendanceReports{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +255,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
             return requestInfo;
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public class AttendanceReportsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

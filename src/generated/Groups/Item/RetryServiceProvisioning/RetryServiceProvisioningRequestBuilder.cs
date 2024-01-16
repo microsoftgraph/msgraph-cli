@@ -19,11 +19,12 @@ namespace ApiSdk.Groups.Item.RetryServiceProvisioning {
     /// </summary>
     public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action retryServiceProvisioning
+        /// Retry the group service provisioning.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-retryserviceprovisioning?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action retryServiceProvisioning";
+            command.Description = "Retry the group service provisioning.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-retryserviceprovisioning?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -57,7 +58,7 @@ namespace ApiSdk.Groups.Item.RetryServiceProvisioning {
         public RetryServiceProvisioningRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/retryServiceProvisioning", rawUrl) {
         }
         /// <summary>
-        /// Invoke action retryServiceProvisioning
+        /// Retry the group service provisioning.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
