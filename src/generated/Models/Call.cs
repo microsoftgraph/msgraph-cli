@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<AudioRoutingGroup> AudioRoutingGroups { get; set; }
 #endif
-        /// <summary>The callback URL on which callbacks will be delivered. Must be https.</summary>
+        /// <summary>The callback URL on which callbacks are delivered. Must be an HTTPS URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallbackUri { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string CallbackUri { get; set; }
 #endif
-        /// <summary>A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This needs to be copied over from Microsoft.Graph.Call.CallChainId.</summary>
+        /// <summary>A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in a P2P call.  This identifier must be copied over from Microsoft.Graph.Call.CallChainId.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallChainId { get; set; }

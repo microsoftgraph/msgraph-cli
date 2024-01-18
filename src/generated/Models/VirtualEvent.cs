@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class VirtualEvent : Entity, IParsable {
-        /// <summary>The createdBy property</summary>
+        /// <summary>Identity information for the creator of the virtual event. Inherited from virtualEvent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CommunicationsIdentitySet? CreatedBy { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public CommunicationsIdentitySet CreatedBy { get; set; }
 #endif
-        /// <summary>The description property</summary>
+        /// <summary>Description of the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? Description { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public ItemBody Description { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Display name of the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The endDateTime property</summary>
+        /// <summary>End time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? EndDateTime { get; set; }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone EndDateTime { get; set; }
 #endif
-        /// <summary>The sessions property</summary>
+        /// <summary>Sessions for the virtual event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<VirtualEventSession>? Sessions { get; set; }
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
 #else
         public List<VirtualEventSession> Sessions { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
+        /// <summary>Start time of the virtual event. The timeZone property can be set to any of the time zones currently supported by Windows.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? StartDateTime { get; set; }
@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone StartDateTime { get; set; }
 #endif
-        /// <summary>The status property</summary>
+        /// <summary>Status of the virtual event. The possible values are: draft, published, canceled, unknownFutureValue.</summary>
         public VirtualEventStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EducationAssignment : Entity, IParsable {
-        /// <summary>Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none. Supported values are: none, assignIfOpen. For example, a teacher can use assignIfOpen to indicate that an assignment should be assigned to any new student who joins the class while the assignment is still open, and none to indicate that an assignment should not be assigned to new students.</summary>
+        /// <summary>Optional field to control the assignment behavior for students who are added after the assignment is published. If not specified, defaults to none. Supported values are: none, assignIfOpen. For example, a teacher can use assignIfOpen to indicate that an assignment should be assigned to any new student who joins the class while the assignment is still open, and none to indicate that an assignment shouldn&apos;t be assigned to new students.</summary>
         public EducationAddedStudentAction? AddedStudentAction { get; set; }
-        /// <summary>Optional field to control the assignment behavior  for adding assignments to students&apos; and teachers&apos; calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.</summary>
+        /// <summary>Optional field to control the assignment behavior  for adding assignments to students&apos; and teachers&apos; calendars when the assignment is published. The possible values are: none, studentsAndPublisher, studentsAndTeamOwners, unknownFutureValue, and studentsOnly. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: studentsOnly. The default value is none.</summary>
         public EducationAddToCalendarOptions? AddToCalendarAction { get; set; }
         /// <summary>Identifies whether students can submit after the due date. If this property isn&apos;t specified during create, it defaults to true.</summary>
         public bool? AllowLateSubmissions { get; set; }
@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
 #else
         public List<EducationCategory> Categories { get; set; }
 #endif
-        /// <summary>Class which this assignment belongs.</summary>
+        /// <summary>Class to which this assignment belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ClassId { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
 #else
         public string ClassId { get; set; }
 #endif
-        /// <summary>Date when the assignment will be closed for submissions. This is an optional field that can be null if the assignment does not allowLateSubmissions or when the closeDateTime is the same as the dueDateTime. But if specified, then the closeDateTime must be greater than or equal to the dueDateTime. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        /// <summary>Date when the assignment will be closed for submissions. This is an optional field that can be null if the assignment doesn&apos;t allowLateSubmissions or when the closeDateTime is the same as the dueDateTime. But if specified, then the closeDateTime must be greater than or equal to the dueDateTime. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CloseDateTime { get; set; }
         /// <summary>Who created the assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,7 +80,15 @@ namespace ApiSdk.Models {
 #else
         public EducationAssignmentGradeType Grading { get; set; }
 #endif
-        /// <summary>Instructions for the assignment.  This along with the display name tell the student what to do.</summary>
+        /// <summary>When set, enables users to weight assignments differently when computing a class average grade.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EducationGradingCategory? GradingCategory { get; set; }
+#nullable restore
+#else
+        public EducationGradingCategory GradingCategory { get; set; }
+#endif
+        /// <summary>Instructions for the assignment.  The instructsions and the display name tell the student what to do.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EducationItemBody? Instructions { get; set; }
@@ -132,7 +140,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Status of the Assignment.  You can&apos;t PATCH this value.  Possible values are: draft, scheduled, published, assigned.</summary>
         public EducationAssignmentStatus? Status { get; private set; }
-        /// <summary>Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
+        /// <summary>Once published, there&apos;s a submission object for each student representing their work and grade.  Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationSubmission>? Submissions { get; set; }
@@ -177,6 +185,7 @@ namespace ApiSdk.Models {
                 {"dueDateTime", n => { DueDateTime = n.GetDateTimeOffsetValue(); } },
                 {"feedbackResourcesFolderUrl", n => { FeedbackResourcesFolderUrl = n.GetStringValue(); } },
                 {"grading", n => { Grading = n.GetObjectValue<EducationAssignmentGradeType>(EducationAssignmentGradeType.CreateFromDiscriminatorValue); } },
+                {"gradingCategory", n => { GradingCategory = n.GetObjectValue<EducationGradingCategory>(EducationGradingCategory.CreateFromDiscriminatorValue); } },
                 {"instructions", n => { Instructions = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -207,6 +216,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("dueDateTime", DueDateTime);
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
+            writer.WriteObjectValue<EducationGradingCategory>("gradingCategory", GradingCategory);
             writer.WriteObjectValue<EducationItemBody>("instructions", Instructions);
             writer.WriteStringValue("notificationChannelUrl", NotificationChannelUrl);
             writer.WriteCollectionOfObjectValues<EducationAssignmentResource>("resources", Resources);

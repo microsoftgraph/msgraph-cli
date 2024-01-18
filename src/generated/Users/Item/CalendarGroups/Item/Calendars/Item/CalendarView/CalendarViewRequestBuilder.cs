@@ -74,12 +74,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar (../me/calendarView) or some other calendar of the user&apos;s.
+        /// The calendar view for the calendar. Navigation property. Read-only.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user's default calendar (../me/calendarView) or some other calendar of the user's.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -92,6 +92,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
+            var startDateTimeOption = new Option<string>("--start-date-time", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--end-date-time", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -128,6 +136,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var calendarGroupId = invocationContext.ParseResult.GetValueForOption(calendarGroupIdOption);
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
+                var startDateTime = invocationContext.ParseResult.GetValueForOption(startDateTimeOption);
+                var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
@@ -143,6 +153,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
+                    if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
@@ -175,16 +187,16 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
         /// Instantiates a new CalendarViewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView{?startDateTime*,endDateTime*,%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CalendarViewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", rawUrl) {
+        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView{?startDateTime*,endDateTime*,%24top,%24skip,%24filter,%24count,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar (../me/calendarView) or some other calendar of the user&apos;s.
+        /// The calendar view for the calendar. Navigation property. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -200,12 +212,22 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar (../me/calendarView) or some other calendar of the user&apos;s.
+        /// The calendar view for the calendar. Navigation property. Read-only.
         /// </summary>
         public class CalendarViewRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("endDateTime")]
+            public string? EndDateTime { get; set; }
+#nullable restore
+#else
+            [QueryParameter("endDateTime")]
+            public string EndDateTime { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,6 +261,16 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("startDateTime")]
+            public string? StartDateTime { get; set; }
+#nullable restore
+#else
+            [QueryParameter("startDateTime")]
+            public string StartDateTime { get; set; }
+#endif
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }

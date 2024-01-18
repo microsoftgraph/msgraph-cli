@@ -235,12 +235,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of mailfolder object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-update?view=graph-rest-1.0" />
+        /// Update the writable properties of a mailSearchFolder object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailsearchfolder-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of mailfolder object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-update?view=graph-rest-1.0";
+            command.Description = "Update the writable properties of a mailSearchFolder object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailsearchfolder-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -335,7 +335,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of mailfolder object.
+        /// Update the writable properties of a mailSearchFolder object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

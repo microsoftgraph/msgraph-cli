@@ -91,11 +91,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return command;
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get attendanceReports from users";
+            command.Description = "The attendance reports of an online meeting. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -276,7 +276,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get attendanceReports from users
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public class MeetingAttendanceReportItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

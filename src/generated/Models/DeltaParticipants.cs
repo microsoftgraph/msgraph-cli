@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class DeltaParticipants : Entity, IParsable {
-        /// <summary>The participants property</summary>
+        /// <summary>The collection of participants that were updated since the last roster update.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Participant>? Participants { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<Participant> Participants { get; set; }
 #endif
-        /// <summary>The sequenceNumber property</summary>
+        /// <summary>The sequence number for the roster update that is used to identify the notification order.</summary>
         public long? SequenceNumber { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
