@@ -130,12 +130,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an agreement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0" />
+        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-list-files?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an agreement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0";
+            command.Description = "Retrieve all files related to an agreement. This includes the default file and all localized files.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-list-files?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -259,7 +259,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an agreement object.
+        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -293,7 +293,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an agreement object.
+        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
         /// </summary>
         public class AgreementItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

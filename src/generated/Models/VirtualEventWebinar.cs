@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class VirtualEventWebinar : VirtualEvent, IParsable {
-        /// <summary>The audience property</summary>
+        /// <summary>To whom the webinar is visible.</summary>
         public MeetingAudience? Audience { get; set; }
-        /// <summary>The coOrganizers property</summary>
+        /// <summary>Identity information of coorganizers of the webinar.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CommunicationsUserIdentity>? CoOrganizers { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public List<CommunicationsUserIdentity> CoOrganizers { get; set; }
 #endif
-        /// <summary>The registrations property</summary>
+        /// <summary>Registration records of the webinar.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<VirtualEventRegistration>? Registrations { get; set; }

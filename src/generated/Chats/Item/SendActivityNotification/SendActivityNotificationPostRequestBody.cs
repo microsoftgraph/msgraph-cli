@@ -35,6 +35,14 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
 #else
         public TeamworkNotificationRecipient Recipient { get; set; }
 #endif
+        /// <summary>The teamsAppId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TeamsAppId { get; set; }
+#nullable restore
+#else
+        public string TeamsAppId { get; set; }
+#endif
         /// <summary>The templateParameters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,6 +82,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
                 {"chainId", n => { ChainId = n.GetLongValue(); } },
                 {"previewText", n => { PreviewText = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
                 {"recipient", n => { Recipient = n.GetObjectValue<TeamworkNotificationRecipient>(TeamworkNotificationRecipient.CreateFromDiscriminatorValue); } },
+                {"teamsAppId", n => { TeamsAppId = n.GetStringValue(); } },
                 {"templateParameters", n => { TemplateParameters = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"topic", n => { Topic = n.GetObjectValue<TeamworkActivityTopic>(TeamworkActivityTopic.CreateFromDiscriminatorValue); } },
             };
@@ -88,6 +97,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
             writer.WriteLongValue("chainId", ChainId);
             writer.WriteObjectValue<ItemBody>("previewText", PreviewText);
             writer.WriteObjectValue<TeamworkNotificationRecipient>("recipient", Recipient);
+            writer.WriteStringValue("teamsAppId", TeamsAppId);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("templateParameters", TemplateParameters);
             writer.WriteObjectValue<TeamworkActivityTopic>("topic", Topic);
             writer.WriteAdditionalData(AdditionalData);

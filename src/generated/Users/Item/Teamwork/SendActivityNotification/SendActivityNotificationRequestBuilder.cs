@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Teamwork.SendActivityNotification {
     /// </summary>
     public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Send an activity feed notification to a user. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
+        /// Send an activity feed notification to a user. For more information, see sending Teams activity notifications.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an activity feed notification to a user. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0";
+            command.Description = "Send an activity feed notification to a user. For more information, see sending Teams activity notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-sendactivitynotification?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.Teamwork.SendActivityNotification {
         public SendActivityNotificationRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/sendActivityNotification", rawUrl) {
         }
         /// <summary>
-        /// Send an activity feed notification to a user. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
+        /// Send an activity feed notification to a user. For more information, see sending Teams activity notifications.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
