@@ -3,7 +3,7 @@
 #   2. Use the \\?\ prefix when specifying the path in the docker build command. e.g.
 #      docker build \\?\C:\path -f .\Dockerfile
 # See https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build-env
 
 ARG MSGRAPH_NUGET_URL=https://nuget.pkg.github.com/microsoftgraph/index.json
 
@@ -16,7 +16,7 @@ WORKDIR /app/msgraph-cli
 
 RUN dotnet publish -p:PublishSingleFile=false -p:PublishReadyToRun=true -p:PublishReadyToRunShowWarnings=true ./src/msgraph-cli.csproj --configuration Release --no-self-contained --runtime linux-musl-x64 --output /app/output
 
-FROM mcr.microsoft.com/dotnet/runtime:7.0-alpine as runtime
+FROM mcr.microsoft.com/dotnet/runtime:8.0-alpine as runtime
 
 # Change this password by providing a different value when running the container
 ENV KEYRING_PASSWORD="password"
