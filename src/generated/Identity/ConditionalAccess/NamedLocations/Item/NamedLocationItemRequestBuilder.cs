@@ -20,12 +20,12 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
     /// </summary>
     public class NamedLocationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a countryNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0" />
+        /// Delete an ipNamedLocation object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a countryNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0";
+            command.Description = "Delete an ipNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-delete?view=graph-rest-1.0";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -167,7 +167,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         public NamedLocationItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a countryNamedLocation object.
+        /// Delete an ipNamedLocation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

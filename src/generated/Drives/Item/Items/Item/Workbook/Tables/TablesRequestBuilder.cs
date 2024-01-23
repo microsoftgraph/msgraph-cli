@@ -139,8 +139,24 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
             command.Description = "Provides operations to call the itemAt method.";
             var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildClearFiltersNavCommand());
+            nonExecCommands.Add(builder.BuildColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildConvertToRangeNavCommand());
+            nonExecCommands.Add(builder.BuildDataBodyRangeNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHeaderRowRangeNavCommand());
+            nonExecCommands.Add(builder.BuildRangeNavCommand());
+            nonExecCommands.Add(builder.BuildReapplyFiltersNavCommand());
+            nonExecCommands.Add(builder.BuildRowsNavCommand());
+            nonExecCommands.Add(builder.BuildSortNavCommand());
+            nonExecCommands.Add(builder.BuildTotalRowRangeNavCommand());
+            nonExecCommands.Add(builder.BuildWorksheetNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

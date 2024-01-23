@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AccessPackageResource : Entity, IParsable {
-        /// <summary>The attributes property</summary>
+        /// <summary>Contains information about the attributes to be collected from the requestor and sent to the resource application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AccessPackageResourceAttribute>? Attributes { get; set; }
