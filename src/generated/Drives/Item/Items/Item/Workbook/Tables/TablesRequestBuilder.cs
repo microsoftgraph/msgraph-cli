@@ -139,8 +139,24 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
             command.Description = "Provides operations to call the itemAt method.";
             var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildClearFiltersNavCommand());
+            nonExecCommands.Add(builder.BuildColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildConvertToRangeNavCommand());
+            nonExecCommands.Add(builder.BuildDataBodyRangeNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHeaderRowRangeNavCommand());
+            nonExecCommands.Add(builder.BuildRangeNavCommand());
+            nonExecCommands.Add(builder.BuildReapplyFiltersNavCommand());
+            nonExecCommands.Add(builder.BuildRowsNavCommand());
+            nonExecCommands.Add(builder.BuildSortNavCommand());
+            nonExecCommands.Add(builder.BuildTotalRowRangeNavCommand());
+            nonExecCommands.Add(builder.BuildWorksheetNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -148,11 +164,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
         }
         /// <summary>
         /// Retrieve a list of table objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbook-list-tables?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of table objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbook-list-tables?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of table objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

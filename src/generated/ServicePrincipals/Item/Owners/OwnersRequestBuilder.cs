@@ -36,6 +36,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
             commands.Add(builder.BuildGraphEndpointByIdNavCommand());
             commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
             commands.Add(builder.BuildGraphUserByIdNavCommand());
+            commands.Add(builder.BuildRefByIdNavCommand());
             return new(new(0), commands);
         }
         /// <summary>
@@ -247,11 +248,11 @@ namespace ApiSdk.ServicePrincipals.Item.Owners {
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

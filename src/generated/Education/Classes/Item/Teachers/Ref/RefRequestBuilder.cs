@@ -20,6 +20,46 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
+        /// Remove a teacher from an educationClass.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-delete-teachers?view=graph-rest-1.0" />
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "Remove a teacher from an educationClass.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-delete-teachers?view=graph-rest-1.0";
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
+            };
+            educationClassIdOption.IsRequired = true;
+            command.AddOption(educationClassIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            var idOption = new Option<string>("--id", description: "The delete Uri") {
+            };
+            idOption.IsRequired = true;
+            command.AddOption(idOption);
+            command.SetHandler(async (invocationContext) => {
+                var educationClassId = invocationContext.ParseResult.GetValueForOption(educationClassIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var id = invocationContext.ParseResult.GetValueForOption(idOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
+                });
+                if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
         /// </summary>
@@ -148,13 +188,29 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%40id*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%40id*}", rawUrl) {
+        }
+        /// <summary>
+        /// Remove a teacher from an educationClass.
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
@@ -189,6 +245,21 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
+        }
+        /// <summary>
+        /// Remove a teacher from an educationClass.
+        /// </summary>
+        public class RefRequestBuilderDeleteQueryParameters {
+            /// <summary>The delete Uri</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%40id")]
+            public string? Id { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%40id")]
+            public string Id { get; set; }
+#endif
         }
         /// <summary>
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.

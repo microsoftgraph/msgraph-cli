@@ -2,6 +2,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivities;
+using ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -122,6 +123,21 @@ namespace ApiSdk.Users.Item.EmployeeExperience {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperienceUser entity.
+        /// </summary>
+        public Command BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand() {
+            var command = new Command("learning-course-activities-with-externalcourse-activity-id");
+            command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperienceUser entity.";
+            var builder = new LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }

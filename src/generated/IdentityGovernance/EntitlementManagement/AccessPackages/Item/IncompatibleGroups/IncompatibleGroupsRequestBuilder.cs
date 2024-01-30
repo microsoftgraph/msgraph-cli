@@ -28,6 +28,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new GroupItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             return new(new(0), commands);
         }
@@ -149,11 +150,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// Provides operations to manage the collection of identityGovernance entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var groupIndexer = new GroupItemRequestBuilder(PathParameters);
-            var command = groupIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

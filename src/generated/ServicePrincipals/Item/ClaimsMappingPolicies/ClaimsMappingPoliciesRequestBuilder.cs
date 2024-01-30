@@ -26,7 +26,10 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
         /// Gets an item from the ApiSdk.servicePrincipals.item.claimsMappingPolicies.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new ClaimsMappingPolicyItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -146,11 +149,11 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var claimsMappingPolicyIndexer = new ClaimsMappingPolicyItemRequestBuilder(PathParameters);
-            var command = claimsMappingPolicyIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

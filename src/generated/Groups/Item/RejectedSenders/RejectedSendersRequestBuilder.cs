@@ -26,7 +26,10 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
         /// Gets an item from the ApiSdk.groups.item.rejectedSenders.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -133,11 +136,11 @@ namespace ApiSdk.Groups.Item.RejectedSenders {
         /// Provides operations to manage the collection of group entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of group entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

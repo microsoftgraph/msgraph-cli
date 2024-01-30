@@ -37,39 +37,6 @@ namespace ApiSdk.Groups.Item.Photo {
             return command;
         }
         /// <summary>
-        /// Delete navigation property photo for groups
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Delete navigation property photo for groups";
-            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
-            };
-            groupIdOption.IsRequired = true;
-            command.AddOption(groupIdOption);
-            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                var requestInfo = ToDeleteRequestInformation(q => {
-                });
-                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
-                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// The group&apos;s profile photo
         /// </summary>
         public Command BuildGetCommand() {
@@ -172,22 +139,6 @@ namespace ApiSdk.Groups.Item.Photo {
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PhotoRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photo{?%24select}", rawUrl) {
-        }
-        /// <summary>
-        /// Delete navigation property photo for groups
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
-#endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            return requestInfo;
         }
         /// <summary>
         /// The group&apos;s profile photo

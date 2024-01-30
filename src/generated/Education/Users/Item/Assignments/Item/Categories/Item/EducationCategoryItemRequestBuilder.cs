@@ -18,8 +18,8 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Item {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        public Command BuildRefNavCommand() {
-            var command = new Command("ref");
+        public Command BuildRefByIdNavCommand() {
+            var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

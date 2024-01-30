@@ -18,8 +18,8 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        public Command BuildRefNavCommand() {
-            var command = new Command("ref");
+        public Command BuildRefByIdNavCommand() {
+            var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

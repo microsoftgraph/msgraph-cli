@@ -933,6 +933,7 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildLearningCourseActivitiesNavCommand());
+            nonExecCommands.Add(builder.BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand());
             nonExecCommands.Add(builder.BuildLearningProvidersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)

@@ -26,7 +26,10 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
         /// Gets an item from the ApiSdk.applications.item.tokenIssuancePolicies.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new TokenIssuancePolicyItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -146,11 +149,11 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
         /// Provides operations to manage the collection of application entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var tokenIssuancePolicyIndexer = new TokenIssuancePolicyItemRequestBuilder(PathParameters);
-            var command = tokenIssuancePolicyIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

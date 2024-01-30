@@ -27,11 +27,11 @@ namespace ApiSdk.Models {
         AdminConfirmedUserCompromised,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "m365DAdminDismissedDetection")]
+        M365DAdminDismissedDetection,
         [EnumMember(Value = "adminConfirmedServicePrincipalCompromised")]
         AdminConfirmedServicePrincipalCompromised,
         [EnumMember(Value = "adminDismissedAllRiskForServicePrincipal")]
         AdminDismissedAllRiskForServicePrincipal,
-        [EnumMember(Value = "m365DAdminDismissedDetection")]
-        M365DAdminDismissedDetection,
     }
 }

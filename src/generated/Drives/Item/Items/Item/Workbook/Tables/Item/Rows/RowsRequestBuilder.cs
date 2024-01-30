@@ -136,8 +136,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             command.Description = "Provides operations to call the itemAt method.";
             var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildRangeNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

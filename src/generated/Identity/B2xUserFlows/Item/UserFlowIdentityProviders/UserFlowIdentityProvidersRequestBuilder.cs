@@ -26,7 +26,10 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         /// Gets an item from the ApiSdk.identity.b2xUserFlows.item.userFlowIdentityProviders.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new IdentityProviderBaseItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -145,11 +148,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var identityProviderBaseIndexer = new IdentityProviderBaseItemRequestBuilder(PathParameters);
-            var command = identityProviderBaseIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

@@ -114,8 +114,8 @@ namespace ApiSdk.Groups.Item.Owners.Item {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
-        public Command BuildRefNavCommand() {
-            var command = new Command("ref");
+        public Command BuildRefByIdNavCommand() {
+            var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of group entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

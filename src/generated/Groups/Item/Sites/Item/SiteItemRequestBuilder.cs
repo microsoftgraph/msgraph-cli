@@ -255,8 +255,33 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             command.Description = "Provides operations to call the getByPath method.";
             var builder = new GetByPathWithPathRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAnalyticsNavCommand());
+            nonExecCommands.Add(builder.BuildColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildContentTypesNavCommand());
+            nonExecCommands.Add(builder.BuildCreatedByUserNavCommand());
+            nonExecCommands.Add(builder.BuildDriveNavCommand());
+            nonExecCommands.Add(builder.BuildDrivesNavCommand());
+            nonExecCommands.Add(builder.BuildExternalColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            nonExecCommands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());
+            nonExecCommands.Add(builder.BuildGetApplicableContentTypesForListWithListIdRbCommand());
+            nonExecCommands.Add(builder.BuildGetByPathWithPath1RbCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildItemsNavCommand());
+            nonExecCommands.Add(builder.BuildLastModifiedByUserNavCommand());
+            nonExecCommands.Add(builder.BuildListsNavCommand());
+            nonExecCommands.Add(builder.BuildOnenoteNavCommand());
+            nonExecCommands.Add(builder.BuildOperationsNavCommand());
+            nonExecCommands.Add(builder.BuildPermissionsNavCommand());
+            nonExecCommands.Add(builder.BuildSitesNavCommand());
+            nonExecCommands.Add(builder.BuildTermStoreNavCommand());
+            nonExecCommands.Add(builder.BuildTermStoresNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

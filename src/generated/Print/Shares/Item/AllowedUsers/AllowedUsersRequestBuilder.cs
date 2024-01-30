@@ -29,6 +29,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             var commands = new List<Command>();
             var builder = new UserItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildMailboxSettingsNavCommand());
+            commands.Add(builder.BuildRefByIdNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             return new(new(0), commands);
         }
@@ -150,11 +151,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         /// Provides operations to manage the collection of print entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var userIndexer = new UserItemRequestBuilder(PathParameters);
-            var command = userIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of print entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

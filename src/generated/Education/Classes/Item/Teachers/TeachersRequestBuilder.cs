@@ -26,7 +26,10 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Gets an item from the ApiSdk.education.classes.item.teachers.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new EducationUserItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -146,11 +149,11 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var educationUserIndexer = new EducationUserItemRequestBuilder(PathParameters);
-            var command = educationUserIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
