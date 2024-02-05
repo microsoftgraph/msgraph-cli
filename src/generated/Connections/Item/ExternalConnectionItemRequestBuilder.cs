@@ -250,13 +250,13 @@ namespace ApiSdk.Connections.Item {
         /// Instantiates a new ExternalConnectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ExternalConnectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}{?%24select,%24expand}", pathParameters) {
+        public ExternalConnectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ExternalConnectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ExternalConnectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}{?%24select,%24expand}", rawUrl) {
+        public ExternalConnectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete entity from connections

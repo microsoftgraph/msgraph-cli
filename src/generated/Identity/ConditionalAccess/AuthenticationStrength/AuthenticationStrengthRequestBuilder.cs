@@ -189,13 +189,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// Instantiates a new AuthenticationStrengthRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationStrengthRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24select,%24expand}", pathParameters) {
+        public AuthenticationStrengthRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationStrengthRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationStrengthRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24select,%24expand}", rawUrl) {
+        public AuthenticationStrengthRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property authenticationStrength for identity

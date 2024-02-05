@@ -182,13 +182,13 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
         /// Instantiates a new FileRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FileRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24select,%24expand}", pathParameters) {
+        public FileRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FileRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FileRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24select,%24expand}", rawUrl) {
+        public FileRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/file{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property file for agreements

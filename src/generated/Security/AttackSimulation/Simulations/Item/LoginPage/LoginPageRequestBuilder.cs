@@ -73,13 +73,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LoginPage {
         /// Instantiates a new LoginPageRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LoginPageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/loginPage{?%24select,%24expand}", pathParameters) {
+        public LoginPageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/loginPage{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LoginPageRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LoginPageRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/loginPage{?%24select,%24expand}", rawUrl) {
+        public LoginPageRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/loginPage{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The login page associated with a simulation during its creation.

@@ -164,13 +164,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// Instantiates a new AppConsentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppConsentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/appConsent{?%24select,%24expand}", pathParameters) {
+        public AppConsentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/appConsent{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppConsentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppConsentRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/appConsent{?%24select,%24expand}", rawUrl) {
+        public AppConsentRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/appConsent{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property appConsent for identityGovernance

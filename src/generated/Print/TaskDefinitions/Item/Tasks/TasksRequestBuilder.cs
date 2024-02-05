@@ -202,13 +202,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// Instantiates a new TasksRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TasksRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.

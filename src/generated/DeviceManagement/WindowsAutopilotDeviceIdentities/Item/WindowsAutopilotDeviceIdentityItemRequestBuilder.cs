@@ -205,13 +205,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// Instantiates a new WindowsAutopilotDeviceIdentityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24select,%24expand}", pathParameters) {
+        public WindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WindowsAutopilotDeviceIdentityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsAutopilotDeviceIdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24select,%24expand}", rawUrl) {
+        public WindowsAutopilotDeviceIdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a windowsAutopilotDeviceIdentity.

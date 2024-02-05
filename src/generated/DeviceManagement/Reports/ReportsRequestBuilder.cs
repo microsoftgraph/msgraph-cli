@@ -453,13 +453,13 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// Instantiates a new ReportsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports{?%24select,%24expand}", pathParameters) {
+        public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ReportsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ReportsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports{?%24select,%24expand}", rawUrl) {
+        public ReportsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property reports for deviceManagement

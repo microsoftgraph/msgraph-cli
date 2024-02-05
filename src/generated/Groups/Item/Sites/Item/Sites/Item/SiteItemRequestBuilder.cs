@@ -85,13 +85,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Sites.Item {
         /// Instantiates a new SiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/sites/{site%2Did1}{?%24select,%24expand}", pathParameters) {
+        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/sites/{site%2Did1}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/sites/{site%2Did1}{?%24select,%24expand}", rawUrl) {
+        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/sites/{site%2Did1}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The collection of the sub-sites under this site.

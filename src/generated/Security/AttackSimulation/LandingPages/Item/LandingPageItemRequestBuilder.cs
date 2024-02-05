@@ -181,13 +181,13 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item {
         /// Instantiates a new LandingPageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LandingPageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}{?%24select,%24expand}", pathParameters) {
+        public LandingPageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LandingPageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LandingPageItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}{?%24select,%24expand}", rawUrl) {
+        public LandingPageItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property landingPages for security

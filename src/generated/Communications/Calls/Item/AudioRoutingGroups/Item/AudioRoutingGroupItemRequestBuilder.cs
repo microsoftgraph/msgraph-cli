@@ -176,13 +176,13 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// Instantiates a new AudioRoutingGroupItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AudioRoutingGroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24select,%24expand}", pathParameters) {
+        public AudioRoutingGroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AudioRoutingGroupItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AudioRoutingGroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24select,%24expand}", rawUrl) {
+        public AudioRoutingGroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete the specified audioRoutingGroup.

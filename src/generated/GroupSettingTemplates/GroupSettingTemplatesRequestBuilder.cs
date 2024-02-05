@@ -257,13 +257,13 @@ namespace ApiSdk.GroupSettingTemplates {
         /// Instantiates a new GroupSettingTemplatesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupSettingTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupSettingTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public GroupSettingTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupSettingTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GroupSettingTemplatesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GroupSettingTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/groupSettingTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public GroupSettingTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/groupSettingTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.

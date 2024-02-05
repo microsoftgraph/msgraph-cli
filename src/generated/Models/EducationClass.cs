@@ -136,6 +136,14 @@ namespace ApiSdk.Models {
 #else
         public List<EducationUser> Members { get; set; }
 #endif
+        /// <summary>The modules property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<EducationModule>? Modules { get; set; }
+#nullable restore
+#else
+        public List<EducationModule> Modules { get; set; }
+#endif
         /// <summary>All schools that this class is associated with. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -190,6 +198,7 @@ namespace ApiSdk.Models {
                 {"group", n => { Group = n.GetObjectValue<ApiSdk.Models.Group>(ApiSdk.Models.Group.CreateFromDiscriminatorValue); } },
                 {"mailNickname", n => { MailNickname = n.GetStringValue(); } },
                 {"members", n => { Members = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"modules", n => { Modules = n.GetCollectionOfObjectValues<EducationModule>(EducationModule.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"schools", n => { Schools = n.GetCollectionOfObjectValues<EducationSchool>(EducationSchool.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"teachers", n => { Teachers = n.GetCollectionOfObjectValues<EducationUser>(EducationUser.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"term", n => { Term = n.GetObjectValue<EducationTerm>(EducationTerm.CreateFromDiscriminatorValue); } },
@@ -219,6 +228,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.Group>("group", Group);
             writer.WriteStringValue("mailNickname", MailNickname);
             writer.WriteCollectionOfObjectValues<EducationUser>("members", Members);
+            writer.WriteCollectionOfObjectValues<EducationModule>("modules", Modules);
             writer.WriteCollectionOfObjectValues<EducationSchool>("schools", Schools);
             writer.WriteCollectionOfObjectValues<EducationUser>("teachers", Teachers);
             writer.WriteObjectValue<EducationTerm>("term", Term);

@@ -91,13 +91,13 @@ namespace ApiSdk.Shares.Item.DriveItem {
         /// Instantiates a new DriveItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/driveItem{?%24select,%24expand}", pathParameters) {
+        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/driveItem{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/driveItem{?%24select,%24expand}", rawUrl) {
+        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/driveItem{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.

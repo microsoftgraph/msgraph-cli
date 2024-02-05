@@ -186,13 +186,13 @@ namespace ApiSdk.Security.Alerts {
         /// Instantiates a new AlertsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AlertsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public AlertsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AlertsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AlertsRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public AlertsRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of alert objects.

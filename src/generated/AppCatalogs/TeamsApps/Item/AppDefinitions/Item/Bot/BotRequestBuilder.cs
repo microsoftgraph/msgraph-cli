@@ -174,13 +174,13 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
         /// Instantiates a new BotRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BotRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}/bot{?%24select,%24expand}", pathParameters) {
+        public BotRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}/bot{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new BotRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BotRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}/bot{?%24select,%24expand}", rawUrl) {
+        public BotRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions/{teamsAppDefinition%2Did}/bot{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property bot for appCatalogs

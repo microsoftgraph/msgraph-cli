@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
         /// Instantiates a new ManagedEBookAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedEBookAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public ManagedEBookAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagedEBookAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedEBookAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public ManagedEBookAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a iosVppEBookAssignment.

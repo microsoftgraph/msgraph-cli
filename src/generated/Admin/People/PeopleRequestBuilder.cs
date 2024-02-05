@@ -111,13 +111,13 @@ namespace ApiSdk.Admin.People {
         /// Instantiates a new PeopleRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PeopleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people{?%24select,%24expand}", pathParameters) {
+        public PeopleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PeopleRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PeopleRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people{?%24select,%24expand}", rawUrl) {
+        public PeopleRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a peopleAdminSettings object.

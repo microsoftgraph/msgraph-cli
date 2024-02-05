@@ -157,13 +157,13 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
         /// Instantiates a new OnPremisesDirectorySynchronizationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OnPremisesDirectorySynchronizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/onPremisesSynchronization/{onPremisesDirectorySynchronization%2Did}{?%24select,%24expand}", pathParameters) {
+        public OnPremisesDirectorySynchronizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/onPremisesSynchronization/{onPremisesDirectorySynchronization%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new OnPremisesDirectorySynchronizationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OnPremisesDirectorySynchronizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/onPremisesSynchronization/{onPremisesDirectorySynchronization%2Did}{?%24select,%24expand}", rawUrl) {
+        public OnPremisesDirectorySynchronizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/onPremisesSynchronization/{onPremisesDirectorySynchronization%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property onPremisesSynchronization for directory

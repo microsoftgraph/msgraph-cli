@@ -212,13 +212,13 @@ namespace ApiSdk.Connections.Item.Items.Item.Activities {
         /// Instantiates a new ActivitiesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ActivitiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ActivitiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ActivitiesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ActivitiesRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ActivitiesRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Returns a list of activities performed on the item. Write-only.

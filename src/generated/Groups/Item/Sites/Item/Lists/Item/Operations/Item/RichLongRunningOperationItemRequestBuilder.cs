@@ -209,13 +209,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Operations.Item {
         /// Instantiates a new RichLongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RichLongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/operations/{richLongRunningOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public RichLongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/operations/{richLongRunningOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RichLongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RichLongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/operations/{richLongRunningOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public RichLongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/operations/{richLongRunningOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for groups

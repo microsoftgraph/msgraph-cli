@@ -164,13 +164,13 @@ namespace ApiSdk.Planner.Tasks.Item.ProgressTaskBoardFormat {
         /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ProgressTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24select,%24expand}", pathParameters) {
+        public ProgressTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ProgressTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24select,%24expand}", rawUrl) {
+        public ProgressTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner

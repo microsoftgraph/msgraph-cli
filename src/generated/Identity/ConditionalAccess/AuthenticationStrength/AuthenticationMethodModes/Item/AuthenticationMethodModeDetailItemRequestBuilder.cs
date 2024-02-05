@@ -155,13 +155,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// Instantiates a new AuthenticationMethodModeDetailItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationMethodModeDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/{authenticationMethodModeDetail%2Did}{?%24select,%24expand}", pathParameters) {
+        public AuthenticationMethodModeDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/{authenticationMethodModeDetail%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationMethodModeDetailItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationMethodModeDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/{authenticationMethodModeDetail%2Did}{?%24select,%24expand}", rawUrl) {
+        public AuthenticationMethodModeDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/{authenticationMethodModeDetail%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property authenticationMethodModes for identity

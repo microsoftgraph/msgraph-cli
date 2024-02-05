@@ -85,13 +85,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.ParentNote
         /// Instantiates a new ParentNotebookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentNotebookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24select,%24expand}", pathParameters) {
+        public ParentNotebookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ParentNotebookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentNotebookRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24select,%24expand}", rawUrl) {
+        public ParentNotebookRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The notebook that contains the section group. Read-only.

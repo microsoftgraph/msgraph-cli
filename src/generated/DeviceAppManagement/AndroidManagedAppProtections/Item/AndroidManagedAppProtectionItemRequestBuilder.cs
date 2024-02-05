@@ -228,13 +228,13 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// Instantiates a new AndroidManagedAppProtectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AndroidManagedAppProtectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}{?%24select,%24expand}", pathParameters) {
+        public AndroidManagedAppProtectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AndroidManagedAppProtectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AndroidManagedAppProtectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}{?%24select,%24expand}", rawUrl) {
+        public AndroidManagedAppProtectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a androidManagedAppProtection.

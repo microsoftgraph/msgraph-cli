@@ -218,13 +218,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
         /// Instantiates a new ContactFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContactFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}{?%24select,%24expand}", pathParameters) {
+        public ContactFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ContactFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContactFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}{?%24select,%24expand}", rawUrl) {
+        public ContactFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property childFolders for users

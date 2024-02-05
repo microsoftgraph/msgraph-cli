@@ -174,13 +174,13 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
         /// Instantiates a new CommsOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CommsOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/operations/{commsOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public CommsOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/operations/{commsOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CommsOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CommsOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/operations/{commsOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public CommsOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/operations/{commsOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for communications

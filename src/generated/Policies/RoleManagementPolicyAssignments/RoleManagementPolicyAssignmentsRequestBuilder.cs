@@ -189,13 +189,13 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
         /// Instantiates a new RoleManagementPolicyAssignmentsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleManagementPolicyAssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RoleManagementPolicyAssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleManagementPolicyAssignmentsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleManagementPolicyAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RoleManagementPolicyAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get the details of all role management policy assignments made in PIM for Microsoft Entra roles and PIM for groups.

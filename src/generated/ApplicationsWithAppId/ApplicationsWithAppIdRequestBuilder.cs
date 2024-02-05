@@ -158,13 +158,13 @@ namespace ApiSdk.ApplicationsWithAppId {
         /// Instantiates a new ApplicationsWithAppIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ApplicationsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications(appId='{appId}'){?%24select,%24expand}", pathParameters) {
+        public ApplicationsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications(appId='{appId}'){?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ApplicationsWithAppIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ApplicationsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/applications(appId='{appId}'){?%24select,%24expand}", rawUrl) {
+        public ApplicationsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/applications(appId='{appId}'){?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.

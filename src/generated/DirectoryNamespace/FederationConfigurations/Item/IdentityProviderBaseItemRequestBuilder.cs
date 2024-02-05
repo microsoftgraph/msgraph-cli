@@ -156,13 +156,13 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24select,%24expand}", pathParameters) {
+        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24select,%24expand}", rawUrl) {
+        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a samlOrWsFedExternalDomainFederation object.

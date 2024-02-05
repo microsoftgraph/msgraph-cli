@@ -198,13 +198,13 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details {
         /// Instantiates a new DetailsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}/details{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public DetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}/details{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DetailsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DetailsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}/details{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public DetailsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}/details{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// The detail information for a landing page associated with a simulation during its creation.

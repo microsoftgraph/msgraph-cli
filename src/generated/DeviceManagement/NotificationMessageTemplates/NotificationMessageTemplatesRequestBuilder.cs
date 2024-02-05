@@ -191,13 +191,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
         /// Instantiates a new NotificationMessageTemplatesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public NotificationMessageTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public NotificationMessageTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new NotificationMessageTemplatesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public NotificationMessageTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public NotificationMessageTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// List properties and relationships of the notificationMessageTemplate objects.

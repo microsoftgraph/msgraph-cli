@@ -188,13 +188,13 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
         /// Instantiates a new ProfileCardPropertiesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ProfileCardPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people/profileCardProperties{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ProfileCardPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people/profileCardProperties{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ProfileCardPropertiesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ProfileCardPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people/profileCardProperties{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ProfileCardPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people/profileCardProperties{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a collection of profileCardProperty resources for an organization. Each resource is identified by its directoryPropertyName property.

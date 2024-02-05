@@ -150,13 +150,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedAndroidLobApp {
         /// Instantiates a new GraphManagedAndroidLobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphManagedAndroidLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24select,%24expand}", pathParameters) {
+        public GraphManagedAndroidLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphManagedAndroidLobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphManagedAndroidLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24select,%24expand}", rawUrl) {
+        public GraphManagedAndroidLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedAndroidLobApp{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.managedAndroidLobApp

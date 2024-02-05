@@ -73,13 +73,13 @@ namespace ApiSdk.Shares.Item.Site {
         /// Instantiates a new SiteRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SiteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24select,%24expand}", pathParameters) {
+        public SiteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SiteRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SiteRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24select,%24expand}", rawUrl) {
+        public SiteRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Used to access the underlying site

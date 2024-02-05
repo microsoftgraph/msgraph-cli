@@ -91,12 +91,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedAppStatus objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedAppStatusRaw objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedAppStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -187,16 +187,16 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
         /// Instantiates a new ManagedAppStatusesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedAppStatusesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ManagedAppStatusesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppStatuses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagedAppStatusesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedAppStatusesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ManagedAppStatusesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppStatuses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
+        /// List properties and relationships of the managedAppStatus objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +230,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatusRaw objects.
+        /// List properties and relationships of the managedAppStatus objects.
         /// </summary>
         public class ManagedAppStatusesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

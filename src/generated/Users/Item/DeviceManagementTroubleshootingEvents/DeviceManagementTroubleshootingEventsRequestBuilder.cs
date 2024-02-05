@@ -198,13 +198,13 @@ namespace ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents {
         /// Instantiates a new DeviceManagementTroubleshootingEventsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceManagementTroubleshootingEventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/deviceManagementTroubleshootingEvents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public DeviceManagementTroubleshootingEventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/deviceManagementTroubleshootingEvents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceManagementTroubleshootingEventsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceManagementTroubleshootingEventsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/deviceManagementTroubleshootingEvents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public DeviceManagementTroubleshootingEventsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/deviceManagementTroubleshootingEvents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// The list of troubleshooting events for this user.

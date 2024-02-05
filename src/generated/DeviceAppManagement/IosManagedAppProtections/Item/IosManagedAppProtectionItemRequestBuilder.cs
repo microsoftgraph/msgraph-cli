@@ -228,13 +228,13 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item {
         /// Instantiates a new IosManagedAppProtectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IosManagedAppProtectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}{?%24select,%24expand}", pathParameters) {
+        public IosManagedAppProtectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IosManagedAppProtectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IosManagedAppProtectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}{?%24select,%24expand}", rawUrl) {
+        public IosManagedAppProtectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a iosManagedAppProtection.

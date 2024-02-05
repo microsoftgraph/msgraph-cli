@@ -79,13 +79,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.SslCertificates.Item {
         /// Instantiates a new HostSslCertificateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostSslCertificateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/sslCertificates/{hostSslCertificate%2Did}{?%24select,%24expand}", pathParameters) {
+        public HostSslCertificateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/sslCertificates/{hostSslCertificate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HostSslCertificateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostSslCertificateItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/sslCertificates/{hostSslCertificate%2Did}{?%24select,%24expand}", rawUrl) {
+        public HostSslCertificateItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/sslCertificates/{hostSslCertificate%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The hostSslCertificates that are associated with this host.

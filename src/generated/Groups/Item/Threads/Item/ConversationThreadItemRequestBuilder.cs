@@ -23,11 +23,11 @@ namespace ApiSdk.Groups.Item.Threads.Item {
     public class ConversationThreadItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete conversationThread.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0";
+            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

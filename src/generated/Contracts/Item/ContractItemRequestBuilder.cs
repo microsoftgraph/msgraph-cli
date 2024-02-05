@@ -236,13 +236,13 @@ namespace ApiSdk.Contracts.Item {
         /// Instantiates a new ContractItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContractItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contracts/{contract%2Did}{?%24select,%24expand}", pathParameters) {
+        public ContractItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contracts/{contract%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ContractItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContractItemRequestBuilder(string rawUrl) : base("{+baseurl}/contracts/{contract%2Did}{?%24select,%24expand}", rawUrl) {
+        public ContractItemRequestBuilder(string rawUrl) : base("{+baseurl}/contracts/{contract%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete entity from contracts

@@ -309,13 +309,13 @@ namespace ApiSdk.Domains.Item {
         /// Instantiates a new DomainItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DomainItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}{?%24select,%24expand}", pathParameters) {
+        public DomainItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DomainItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DomainItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}{?%24select,%24expand}", rawUrl) {
+        public DomainItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a domain from a tenant.

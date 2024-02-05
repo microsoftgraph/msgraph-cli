@@ -282,13 +282,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// Instantiates a new MailFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?includeHiddenFolders*,%24select,%24expand}", pathParameters) {
+        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MailFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MailFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?includeHiddenFolders*,%24select,%24expand}", rawUrl) {
+        public MailFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property childFolders for users

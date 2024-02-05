@@ -181,13 +181,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item {
         /// Instantiates a new ArticleItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ArticleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}{?%24select,%24expand}", pathParameters) {
+        public ArticleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ArticleItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ArticleItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}{?%24select,%24expand}", rawUrl) {
+        public ArticleItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property articles for security

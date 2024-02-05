@@ -85,13 +85,13 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
         /// Instantiates a new ActivityRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ActivityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}/activity{?%24select,%24expand}", pathParameters) {
+        public ActivityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}/activity{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ActivityRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ActivityRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}/activity{?%24select,%24expand}", rawUrl) {
+        public ActivityRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}/activity{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the associated activity.

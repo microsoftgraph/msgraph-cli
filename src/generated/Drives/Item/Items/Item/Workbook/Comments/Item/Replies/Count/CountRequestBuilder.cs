@@ -74,13 +74,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Count {
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/$count{?%24search,%24filter}", pathParameters) {
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/$count{?%24filter,%24search}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/$count{?%24search,%24filter}", rawUrl) {
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/$count{?%24filter,%24search}", rawUrl) {
         }
         /// <summary>
         /// Get the number of the resource

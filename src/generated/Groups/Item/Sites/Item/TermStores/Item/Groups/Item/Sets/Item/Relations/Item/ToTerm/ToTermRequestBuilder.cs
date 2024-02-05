@@ -103,13 +103,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Re
         /// Instantiates a new ToTermRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ToTermRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/relations/{relation%2Did}/toTerm{?%24select,%24expand}", pathParameters) {
+        public ToTermRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/relations/{relation%2Did}/toTerm{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ToTermRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ToTermRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/relations/{relation%2Did}/toTerm{?%24select,%24expand}", rawUrl) {
+        public ToTermRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/relations/{relation%2Did}/toTerm{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The to [term] of the relation. The term to which the relationship is defined.

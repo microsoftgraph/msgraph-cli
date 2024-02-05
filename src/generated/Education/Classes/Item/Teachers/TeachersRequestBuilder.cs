@@ -26,7 +26,10 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Gets an item from the ApiSdk.education.classes.item.teachers.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new EducationUserItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -146,11 +149,11 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var educationUserIndexer = new EducationUserItemRequestBuilder(PathParameters);
-            var command = educationUserIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -163,13 +166,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Instantiates a new TeachersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeachersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public TeachersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeachersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeachersRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public TeachersRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.

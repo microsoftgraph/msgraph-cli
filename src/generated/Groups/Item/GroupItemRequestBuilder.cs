@@ -738,7 +738,6 @@ namespace ApiSdk.Groups.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
-            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
@@ -1141,13 +1140,13 @@ namespace ApiSdk.Groups.Item {
         /// Instantiates a new GroupItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}{?%24select,%24expand}", pathParameters) {
+        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GroupItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}{?%24select,%24expand}", rawUrl) {
+        public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.

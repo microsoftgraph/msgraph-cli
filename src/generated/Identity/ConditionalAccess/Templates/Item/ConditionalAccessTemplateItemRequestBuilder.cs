@@ -74,13 +74,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         /// Instantiates a new ConditionalAccessTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConditionalAccessTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24select,%24expand}", pathParameters) {
+        public ConditionalAccessTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ConditionalAccessTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConditionalAccessTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24select,%24expand}", rawUrl) {
+        public ConditionalAccessTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read the properties and relationships of a conditionalAccessTemplate object.

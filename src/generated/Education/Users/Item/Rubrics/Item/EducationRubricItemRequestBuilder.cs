@@ -176,13 +176,13 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
         /// Instantiates a new EducationRubricItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationRubricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics/{educationRubric%2Did}{?%24select,%24expand}", pathParameters) {
+        public EducationRubricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics/{educationRubric%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EducationRubricItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationRubricItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics/{educationRubric%2Did}{?%24select,%24expand}", rawUrl) {
+        public EducationRubricItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics/{educationRubric%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an educationRubric object. Only teachers can perform this operation.

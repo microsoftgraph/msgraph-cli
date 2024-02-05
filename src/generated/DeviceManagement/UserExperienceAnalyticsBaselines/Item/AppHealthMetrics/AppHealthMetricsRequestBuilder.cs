@@ -73,13 +73,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealt
         /// Instantiates a new AppHealthMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppHealthMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24select,%24expand}", pathParameters) {
+        public AppHealthMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppHealthMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppHealthMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24select,%24expand}", rawUrl) {
+        public AppHealthMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The scores and insights for the application health metrics.

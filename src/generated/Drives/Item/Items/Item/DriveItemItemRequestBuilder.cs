@@ -467,12 +467,12 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0" />
+        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0";
+            command.Description = "Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item's parentReference property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -767,13 +767,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24select,%24expand}", pathParameters) {
+        public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24select,%24expand}", rawUrl) {
+        public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
@@ -808,7 +808,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

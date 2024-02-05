@@ -181,13 +181,13 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item {
         /// Instantiates a new IntelligenceProfileItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IntelligenceProfileItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24select,%24expand}", pathParameters) {
+        public IntelligenceProfileItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IntelligenceProfileItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IntelligenceProfileItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24select,%24expand}", rawUrl) {
+        public IntelligenceProfileItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property intelProfiles for security

@@ -139,13 +139,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// Instantiates a new SettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24select,%24expand}", pathParameters) {
+        public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24select,%24expand}", rawUrl) {
+        public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property settings for identityGovernance

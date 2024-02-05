@@ -163,13 +163,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode {
         /// Instantiates a new InternetExplorerModeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InternetExplorerModeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24select,%24expand}", pathParameters) {
+        public InternetExplorerModeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InternetExplorerModeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InternetExplorerModeRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24select,%24expand}", rawUrl) {
+        public InternetExplorerModeRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property internetExplorerMode for admin

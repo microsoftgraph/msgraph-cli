@@ -202,13 +202,13 @@ namespace ApiSdk.Teams.Item.Tags.Item {
         /// Instantiates a new TeamworkTagItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamworkTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}{?%24select,%24expand}", pathParameters) {
+        public TeamworkTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamworkTagItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamworkTagItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}{?%24select,%24expand}", rawUrl) {
+        public TeamworkTagItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a tag object permanently.

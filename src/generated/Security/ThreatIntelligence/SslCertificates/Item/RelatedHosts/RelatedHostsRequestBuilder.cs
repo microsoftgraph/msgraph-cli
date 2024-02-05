@@ -147,13 +147,13 @@ namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.RelatedHosts {
         /// Instantiates a new RelatedHostsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RelatedHostsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RelatedHostsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RelatedHostsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RelatedHostsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RelatedHostsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// The hosts related with this sslCertificate.

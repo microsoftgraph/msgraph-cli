@@ -182,13 +182,13 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// Instantiates a new ThreatAssessmentRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ThreatAssessmentRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}{?%24select,%24expand}", pathParameters) {
+        public ThreatAssessmentRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ThreatAssessmentRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ThreatAssessmentRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}{?%24select,%24expand}", rawUrl) {
+        public ThreatAssessmentRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/threatAssessmentRequests/{threatAssessmentRequest%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property threatAssessmentRequests for informationProtection

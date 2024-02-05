@@ -197,13 +197,13 @@ namespace ApiSdk.Teamwork {
         /// Instantiates a new TeamworkRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamworkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork{?%24select,%24expand}", pathParameters) {
+        public TeamworkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamworkRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamworkRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork{?%24select,%24expand}", rawUrl) {
+        public TeamworkRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get teamwork

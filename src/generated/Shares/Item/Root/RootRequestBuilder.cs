@@ -90,13 +90,13 @@ namespace ApiSdk.Shares.Item.Root {
         /// Instantiates a new RootRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24select,%24expand}", pathParameters) {
+        public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RootRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RootRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24select,%24expand}", rawUrl) {
+        public RootRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Used to access the underlying driveItem. Deprecated -- use driveItem instead.

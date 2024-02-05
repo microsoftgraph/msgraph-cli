@@ -279,13 +279,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LifecycleWorkflowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24select,%24expand}", pathParameters) {
+        public LifecycleWorkflowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LifecycleWorkflowsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24select,%24expand}", rawUrl) {
+        public LifecycleWorkflowsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property lifecycleWorkflows for identityGovernance

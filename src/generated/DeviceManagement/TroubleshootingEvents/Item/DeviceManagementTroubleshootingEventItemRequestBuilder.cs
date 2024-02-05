@@ -155,13 +155,13 @@ namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
         /// Instantiates a new DeviceManagementTroubleshootingEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceManagementTroubleshootingEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/troubleshootingEvents/{deviceManagementTroubleshootingEvent%2Did}{?%24select,%24expand}", pathParameters) {
+        public DeviceManagementTroubleshootingEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/troubleshootingEvents/{deviceManagementTroubleshootingEvent%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceManagementTroubleshootingEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceManagementTroubleshootingEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/troubleshootingEvents/{deviceManagementTroubleshootingEvent%2Did}{?%24select,%24expand}", rawUrl) {
+        public DeviceManagementTroubleshootingEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/troubleshootingEvents/{deviceManagementTroubleshootingEvent%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property troubleshootingEvents for deviceManagement

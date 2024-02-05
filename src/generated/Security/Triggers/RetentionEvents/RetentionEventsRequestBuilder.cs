@@ -190,13 +190,13 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
         /// Instantiates a new RetentionEventsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RetentionEventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RetentionEventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RetentionEventsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RetentionEventsRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RetentionEventsRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the retentionEvent objects and their properties.

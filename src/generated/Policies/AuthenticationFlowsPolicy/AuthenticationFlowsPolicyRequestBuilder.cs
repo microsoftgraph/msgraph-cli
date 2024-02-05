@@ -139,13 +139,13 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// Instantiates a new AuthenticationFlowsPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationFlowsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24select,%24expand}", pathParameters) {
+        public AuthenticationFlowsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationFlowsPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationFlowsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24select,%24expand}", rawUrl) {
+        public AuthenticationFlowsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property authenticationFlowsPolicy for policies

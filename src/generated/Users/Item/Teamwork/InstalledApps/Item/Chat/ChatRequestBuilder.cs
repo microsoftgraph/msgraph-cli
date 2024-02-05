@@ -80,13 +80,13 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// Instantiates a new ChatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24select,%24expand}", pathParameters) {
+        public ChatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ChatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChatRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24select,%24expand}", rawUrl) {
+        public ChatRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the chat of the specified user and Teams app.

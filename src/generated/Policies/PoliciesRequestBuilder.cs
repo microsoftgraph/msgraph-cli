@@ -561,13 +561,13 @@ namespace ApiSdk.Policies {
         /// Instantiates a new PoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies{?%24select,%24expand}", pathParameters) {
+        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies{?%24select,%24expand}", rawUrl) {
+        public PoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get policies

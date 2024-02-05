@@ -192,13 +192,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
         /// Instantiates a new SimulationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SimulationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public SimulationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SimulationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SimulationsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public SimulationsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of attack simulation campaigns for a tenant.

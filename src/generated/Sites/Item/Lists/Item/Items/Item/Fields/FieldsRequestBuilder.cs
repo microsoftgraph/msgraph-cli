@@ -192,13 +192,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
         /// Instantiates a new FieldsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FieldsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/fields{?%24select,%24expand}", pathParameters) {
+        public FieldsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/fields{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FieldsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FieldsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/fields{?%24select,%24expand}", rawUrl) {
+        public FieldsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/fields{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property fields for sites

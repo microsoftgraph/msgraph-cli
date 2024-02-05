@@ -155,13 +155,13 @@ namespace ApiSdk.Admin.Sharepoint {
         /// Instantiates a new SharepointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SharepointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/sharepoint{?%24select,%24expand}", pathParameters) {
+        public SharepointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/sharepoint{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SharepointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SharepointRequestBuilder(string rawUrl) : base("{+baseurl}/admin/sharepoint{?%24select,%24expand}", rawUrl) {
+        public SharepointRequestBuilder(string rawUrl) : base("{+baseurl}/admin/sharepoint{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property sharepoint for admin

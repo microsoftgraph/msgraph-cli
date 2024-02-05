@@ -85,13 +85,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Drives.Item {
         /// Instantiates a new DriveItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/drives/{drive%2Did}{?%24select,%24expand}", pathParameters) {
+        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/drives/{drive%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/drives/{drive%2Did}{?%24select,%24expand}", rawUrl) {
+        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/drives/{drive%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The collection of drives (document libraries) under this site.

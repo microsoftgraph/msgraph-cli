@@ -158,13 +158,13 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
         /// Instantiates a new WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/{windowsInformationProtectionNetworkLearningSummary%2Did}{?%24select,%24expand}", pathParameters) {
+        public WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/{windowsInformationProtectionNetworkLearningSummary%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/{windowsInformationProtectionNetworkLearningSummary%2Did}{?%24select,%24expand}", rawUrl) {
+        public WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/{windowsInformationProtectionNetworkLearningSummary%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a windowsInformationProtectionNetworkLearningSummary.

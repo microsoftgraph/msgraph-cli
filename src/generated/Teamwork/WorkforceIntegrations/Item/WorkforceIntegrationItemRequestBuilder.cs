@@ -158,13 +158,13 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
         /// Instantiates a new WorkforceIntegrationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkforceIntegrationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/workforceIntegrations/{workforceIntegration%2Did}{?%24select,%24expand}", pathParameters) {
+        public WorkforceIntegrationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/workforceIntegrations/{workforceIntegration%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WorkforceIntegrationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkforceIntegrationItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/workforceIntegrations/{workforceIntegration%2Did}{?%24select,%24expand}", rawUrl) {
+        public WorkforceIntegrationItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/workforceIntegrations/{workforceIntegration%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an instance of a workforceIntegration.

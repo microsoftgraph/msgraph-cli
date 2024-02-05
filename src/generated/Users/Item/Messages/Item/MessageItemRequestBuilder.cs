@@ -396,13 +396,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
         /// Instantiates a new MessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?includeHiddenMessages*,%24select,%24expand}", pathParameters) {
+        public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?%24expand,%24select,includeHiddenMessages*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?includeHiddenMessages*,%24select,%24expand}", rawUrl) {
+        public MessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?%24expand,%24select,includeHiddenMessages*}", rawUrl) {
         }
         /// <summary>
         /// Delete eventMessage.

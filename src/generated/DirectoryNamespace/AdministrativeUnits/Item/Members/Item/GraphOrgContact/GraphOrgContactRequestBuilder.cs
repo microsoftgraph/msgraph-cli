@@ -86,13 +86,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphO
         /// Instantiates a new GraphOrgContactRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphOrgContactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24select,%24expand}", pathParameters) {
+        public GraphOrgContactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphOrgContactRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphOrgContactRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24select,%24expand}", rawUrl) {
+        public GraphOrgContactRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact

@@ -167,13 +167,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess {
         /// Instantiates a new PrivilegedAccessRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrivilegedAccessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess{?%24select,%24expand}", pathParameters) {
+        public PrivilegedAccessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrivilegedAccessRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrivilegedAccessRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess{?%24select,%24expand}", rawUrl) {
+        public PrivilegedAccessRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property privilegedAccess for identityGovernance

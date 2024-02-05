@@ -110,13 +110,13 @@ namespace ApiSdk.Compliance {
         /// Instantiates a new ComplianceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ComplianceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/compliance{?%24select,%24expand}", pathParameters) {
+        public ComplianceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/compliance{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ComplianceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ComplianceRequestBuilder(string rawUrl) : base("{+baseurl}/compliance{?%24select,%24expand}", rawUrl) {
+        public ComplianceRequestBuilder(string rawUrl) : base("{+baseurl}/compliance{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get compliance

@@ -174,13 +174,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SwapShiftsChangeRequests.Item {
         /// Instantiates a new SwapShiftsChangeRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SwapShiftsChangeRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/swapShiftsChangeRequests/{swapShiftsChangeRequest%2Did}{?%24select,%24expand}", pathParameters) {
+        public SwapShiftsChangeRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/swapShiftsChangeRequests/{swapShiftsChangeRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SwapShiftsChangeRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SwapShiftsChangeRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/swapShiftsChangeRequests/{swapShiftsChangeRequest%2Did}{?%24select,%24expand}", rawUrl) {
+        public SwapShiftsChangeRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/swapShiftsChangeRequests/{swapShiftsChangeRequest%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property swapShiftsChangeRequests for groups

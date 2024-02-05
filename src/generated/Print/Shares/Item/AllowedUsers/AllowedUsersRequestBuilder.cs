@@ -29,6 +29,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             var commands = new List<Command>();
             var builder = new UserItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildMailboxSettingsNavCommand());
+            commands.Add(builder.BuildRefByIdNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             return new(new(0), commands);
         }
@@ -150,11 +151,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         /// Provides operations to manage the collection of print entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var userIndexer = new UserItemRequestBuilder(PathParameters);
-            var command = userIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of print entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -167,13 +168,13 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         /// Instantiates a new AllowedUsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllowedUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public AllowedUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AllowedUsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllowedUsersRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public AllowedUsersRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.

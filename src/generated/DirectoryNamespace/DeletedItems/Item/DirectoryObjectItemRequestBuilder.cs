@@ -284,13 +284,13 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24select,%24expand}", pathParameters) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24select,%24expand}", rawUrl) {
+        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.

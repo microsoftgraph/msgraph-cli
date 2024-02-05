@@ -139,13 +139,13 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
         /// Instantiates a new AdminConsentRequestPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AdminConsentRequestPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/adminConsentRequestPolicy{?%24select,%24expand}", pathParameters) {
+        public AdminConsentRequestPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/adminConsentRequestPolicy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AdminConsentRequestPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AdminConsentRequestPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/adminConsentRequestPolicy{?%24select,%24expand}", rawUrl) {
+        public AdminConsentRequestPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/adminConsentRequestPolicy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property adminConsentRequestPolicy for policies

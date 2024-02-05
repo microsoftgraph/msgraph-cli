@@ -79,13 +79,13 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphServicePrincipal 
         /// Instantiates a new GraphServicePrincipalRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.servicePrincipal{?%24select,%24expand}", pathParameters) {
+        public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphServicePrincipalRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.servicePrincipal{?%24select,%24expand}", rawUrl) {
+        public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal

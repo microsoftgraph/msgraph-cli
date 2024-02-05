@@ -163,13 +163,13 @@ namespace ApiSdk.Security.Cases {
         /// Instantiates a new CasesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CasesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases{?%24select,%24expand}", pathParameters) {
+        public CasesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CasesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CasesRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases{?%24select,%24expand}", rawUrl) {
+        public CasesRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property cases for security

@@ -188,13 +188,13 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners {
         /// Instantiates a new ComplianceManagementPartnersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ComplianceManagementPartnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/complianceManagementPartners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ComplianceManagementPartnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/complianceManagementPartners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ComplianceManagementPartnersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ComplianceManagementPartnersRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/complianceManagementPartners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ComplianceManagementPartnersRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/complianceManagementPartners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// List properties and relationships of the complianceManagementPartner objects.

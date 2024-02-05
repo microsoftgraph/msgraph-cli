@@ -118,13 +118,13 @@ namespace ApiSdk.Groups.Item.MemberOf.Item {
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/memberOf/{directoryObject%2Did}{?%24select,%24expand}", pathParameters) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/memberOf/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/memberOf/{directoryObject%2Did}{?%24select,%24expand}", rawUrl) {
+        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/memberOf/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Groups that this group is a member of. HTTP Methods: GET (supported for all groups). Read-only. Nullable. Supports $expand.

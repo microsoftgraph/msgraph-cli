@@ -190,13 +190,13 @@ namespace ApiSdk.Policies.AppManagementPolicies {
         /// Instantiates a new AppManagementPoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppManagementPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public AppManagementPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppManagementPoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppManagementPoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public AppManagementPoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of appManagementPolicy objects.

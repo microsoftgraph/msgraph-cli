@@ -207,13 +207,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// Instantiates a new PrintTaskItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24select,%24expand}", pathParameters) {
+        public PrintTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrintTaskItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24select,%24expand}", rawUrl) {
+        public PrintTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property tasks for print

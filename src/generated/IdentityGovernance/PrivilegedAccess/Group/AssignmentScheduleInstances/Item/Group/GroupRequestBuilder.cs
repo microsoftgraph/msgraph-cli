@@ -95,13 +95,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// Instantiates a new GroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}/group{?%24select,%24expand}", pathParameters) {
+        public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}/group{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}/group{?%24select,%24expand}", rawUrl) {
+        public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}/group{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.

@@ -243,13 +243,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AdministrativeUnitItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24select,%24expand}", pathParameters) {
+        public AdministrativeUnitItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AdministrativeUnitItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24select,%24expand}", rawUrl) {
+        public AdministrativeUnitItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an administrativeUnit.

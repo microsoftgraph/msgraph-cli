@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// Instantiates a new DeviceComplianceUserStatusItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceComplianceUserStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24select,%24expand}", pathParameters) {
+        public DeviceComplianceUserStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceComplianceUserStatusItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceComplianceUserStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24select,%24expand}", rawUrl) {
+        public DeviceComplianceUserStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a deviceComplianceUserStatus.

@@ -92,13 +92,13 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// Instantiates a new BitlockerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BitlockerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker{?%24select,%24expand}", pathParameters) {
+        public BitlockerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new BitlockerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BitlockerRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker{?%24select,%24expand}", rawUrl) {
+        public BitlockerRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get bitlocker from informationProtection

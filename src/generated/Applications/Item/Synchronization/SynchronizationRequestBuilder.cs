@@ -246,13 +246,13 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// Instantiates a new SynchronizationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24select,%24expand}", pathParameters) {
+        public SynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SynchronizationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24select,%24expand}", rawUrl) {
+        public SynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property synchronization for applications

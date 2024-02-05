@@ -199,13 +199,13 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
         /// Instantiates a new LearningContentsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LearningContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public LearningContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LearningContentsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LearningContentsRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public LearningContentsRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.

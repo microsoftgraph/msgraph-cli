@@ -120,13 +120,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Delta {
         /// Instantiates a new DeltaRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeltaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/delta(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
+        public DeltaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/delta(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeltaRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeltaRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/delta(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", rawUrl) {
+        public DeltaRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/delta(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a set of contact folders that have been added, deleted, or removed from the user&apos;s mailbox. A delta function call for contact folders in a mailbox is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contact folders. This allows you to maintain and synchronize a local store of a user&apos;s contact folders without having to fetch all the contact folders of that mailbox from the server every time.

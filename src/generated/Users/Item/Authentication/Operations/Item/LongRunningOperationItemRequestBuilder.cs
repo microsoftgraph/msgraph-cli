@@ -174,13 +174,13 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
         /// Instantiates a new LongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/operations/{longRunningOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public LongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/operations/{longRunningOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/operations/{longRunningOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public LongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/operations/{longRunningOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for users

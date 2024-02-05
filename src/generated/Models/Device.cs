@@ -100,6 +100,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).</summary>
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
+        /// <summary>The onPremisesSecurityIdentifier property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OnPremisesSecurityIdentifier { get; set; }
+#nullable restore
+#else
+        public string OnPremisesSecurityIdentifier { get; set; }
+#endif
         /// <summary>true if this object is synced from an on-premises directory; false if this object was originally synced from an on-premises directory but is no longer synced; null if this object has never been synced from an on-premises directory (default). Read-only. Supports $filter (eq, ne, not, in, and eq on null values).</summary>
         public bool? OnPremisesSyncEnabled { get; set; }
         /// <summary>The type of operating system on the device. Required. Supports $filter (eq, ne, not, ge, le, startsWith, and eq on null values).</summary>
@@ -212,6 +220,7 @@ namespace ApiSdk.Models {
                 {"mdmAppId", n => { MdmAppId = n.GetStringValue(); } },
                 {"memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"onPremisesLastSyncDateTime", n => { OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
+                {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 {"onPremisesSyncEnabled", n => { OnPremisesSyncEnabled = n.GetBoolValue(); } },
                 {"operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
                 {"operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
@@ -249,6 +258,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("mdmAppId", MdmAppId);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("memberOf", MemberOf);
             writer.WriteDateTimeOffsetValue("onPremisesLastSyncDateTime", OnPremisesLastSyncDateTime);
+            writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteBoolValue("onPremisesSyncEnabled", OnPremisesSyncEnabled);
             writer.WriteStringValue("operatingSystem", OperatingSystem);
             writer.WriteStringValue("operatingSystemVersion", OperatingSystemVersion);

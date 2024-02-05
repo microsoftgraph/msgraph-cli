@@ -216,13 +216,13 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item {
         /// Instantiates a new AuthenticationStrengthPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationStrengthPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}{?%24select,%24expand}", pathParameters) {
+        public AuthenticationStrengthPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationStrengthPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationStrengthPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}{?%24select,%24expand}", rawUrl) {
+        public AuthenticationStrengthPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a custom authenticationStrengthPolicy object.

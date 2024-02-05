@@ -156,13 +156,13 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
         /// Instantiates a new RiskDetectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RiskDetectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskDetections/{riskDetection%2Did}{?%24select,%24expand}", pathParameters) {
+        public RiskDetectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskDetections/{riskDetection%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RiskDetectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RiskDetectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskDetections/{riskDetection%2Did}{?%24select,%24expand}", rawUrl) {
+        public RiskDetectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskDetections/{riskDetection%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property riskDetections for identityProtection

@@ -252,13 +252,13 @@ namespace ApiSdk.Print.Shares.Item {
         /// Instantiates a new PrinterShareItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24select,%24expand}", pathParameters) {
+        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrinterShareItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24select,%24expand}", rawUrl) {
+        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a printer share (unshare the associated printer). This action can&apos;t be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer needs to discover and reinstall it.

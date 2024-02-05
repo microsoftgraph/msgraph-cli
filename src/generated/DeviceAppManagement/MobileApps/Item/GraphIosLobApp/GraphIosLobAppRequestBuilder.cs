@@ -150,13 +150,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp {
         /// Instantiates a new GraphIosLobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphIosLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.iosLobApp{?%24select,%24expand}", pathParameters) {
+        public GraphIosLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.iosLobApp{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphIosLobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphIosLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.iosLobApp{?%24select,%24expand}", rawUrl) {
+        public GraphIosLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.iosLobApp{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.iosLobApp

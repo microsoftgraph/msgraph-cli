@@ -291,13 +291,13 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}", rawUrl) {
+        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", rawUrl) {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only.

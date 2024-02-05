@@ -171,13 +171,13 @@ namespace ApiSdk.Shares.Item.Permission {
         /// Instantiates a new PermissionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PermissionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission{?%24select,%24expand}", pathParameters) {
+        public PermissionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PermissionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PermissionRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission{?%24select,%24expand}", rawUrl) {
+        public PermissionRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property permission for shares

@@ -157,13 +157,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview {
         /// Instantiates a new UserStatusOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserStatusOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/userStatusOverview{?%24select,%24expand}", pathParameters) {
+        public UserStatusOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/userStatusOverview{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserStatusOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserStatusOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/userStatusOverview{?%24select,%24expand}", rawUrl) {
+        public UserStatusOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/userStatusOverview{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property userStatusOverview for deviceManagement

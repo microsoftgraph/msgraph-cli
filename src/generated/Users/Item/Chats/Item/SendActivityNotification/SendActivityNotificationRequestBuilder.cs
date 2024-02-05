@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification {
     /// </summary>
     public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
+        /// Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0";
+            command.Description = "Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification {
         public SendActivityNotificationRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/sendActivityNotification", rawUrl) {
         }
         /// <summary>
-        /// Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
+        /// Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

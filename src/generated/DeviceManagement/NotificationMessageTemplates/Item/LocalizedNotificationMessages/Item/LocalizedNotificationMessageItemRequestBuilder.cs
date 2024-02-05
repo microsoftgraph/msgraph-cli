@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         /// Instantiates a new LocalizedNotificationMessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LocalizedNotificationMessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/localizedNotificationMessages/{localizedNotificationMessage%2Did}{?%24select,%24expand}", pathParameters) {
+        public LocalizedNotificationMessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/localizedNotificationMessages/{localizedNotificationMessage%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LocalizedNotificationMessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LocalizedNotificationMessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/localizedNotificationMessages/{localizedNotificationMessage%2Did}{?%24select,%24expand}", rawUrl) {
+        public LocalizedNotificationMessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}/localizedNotificationMessages/{localizedNotificationMessage%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a localizedNotificationMessage.

@@ -181,13 +181,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// Instantiates a new UnifiedRbacResourceNamespaceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRbacResourceNamespaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24select,%24expand}", pathParameters) {
+        public UnifiedRbacResourceNamespaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UnifiedRbacResourceNamespaceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UnifiedRbacResourceNamespaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24select,%24expand}", rawUrl) {
+        public UnifiedRbacResourceNamespaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property resourceNamespaces for roleManagement
