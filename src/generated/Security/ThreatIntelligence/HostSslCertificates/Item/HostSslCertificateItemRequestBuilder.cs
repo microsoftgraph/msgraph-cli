@@ -188,13 +188,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item {
         /// Instantiates a new HostSslCertificateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostSslCertificateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}{?%24select,%24expand}", pathParameters) {
+        public HostSslCertificateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HostSslCertificateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostSslCertificateItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}{?%24select,%24expand}", rawUrl) {
+        public HostSslCertificateItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property hostSslCertificates for security

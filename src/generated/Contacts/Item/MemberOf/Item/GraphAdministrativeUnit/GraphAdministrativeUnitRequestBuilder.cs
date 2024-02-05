@@ -86,13 +86,13 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item.GraphAdministrativeUnit {
         /// Instantiates a new GraphAdministrativeUnitRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphAdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24select,%24expand}", pathParameters) {
+        public GraphAdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphAdministrativeUnitRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphAdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24select,%24expand}", rawUrl) {
+        public GraphAdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit

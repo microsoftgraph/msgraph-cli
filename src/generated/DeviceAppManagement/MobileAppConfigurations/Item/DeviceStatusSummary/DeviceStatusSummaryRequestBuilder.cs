@@ -157,13 +157,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
         /// Instantiates a new DeviceStatusSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceStatusSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24select,%24expand}", pathParameters) {
+        public DeviceStatusSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceStatusSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceStatusSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24select,%24expand}", rawUrl) {
+        public DeviceStatusSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/deviceStatusSummary{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deviceStatusSummary for deviceAppManagement

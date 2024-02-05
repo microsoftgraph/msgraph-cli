@@ -173,13 +173,13 @@ namespace ApiSdk.Drives.Item.List.Operations.Item {
         /// Instantiates a new RichLongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RichLongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/operations/{richLongRunningOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public RichLongRunningOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/operations/{richLongRunningOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RichLongRunningOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RichLongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/operations/{richLongRunningOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public RichLongRunningOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/operations/{richLongRunningOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for drives

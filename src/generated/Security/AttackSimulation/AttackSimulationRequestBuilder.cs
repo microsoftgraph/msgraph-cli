@@ -345,13 +345,13 @@ namespace ApiSdk.Security.AttackSimulation {
         /// Instantiates a new AttackSimulationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttackSimulationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation{?%24select,%24expand}", pathParameters) {
+        public AttackSimulationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AttackSimulationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttackSimulationRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation{?%24select,%24expand}", rawUrl) {
+        public AttackSimulationRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property attackSimulation for security

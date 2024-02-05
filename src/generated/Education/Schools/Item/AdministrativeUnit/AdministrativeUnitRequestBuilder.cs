@@ -123,13 +123,13 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// Instantiates a new AdministrativeUnitRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24select,%24expand}", pathParameters) {
+        public AdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AdministrativeUnitRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24select,%24expand}", rawUrl) {
+        public AdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get a list of administrativeUnits associated with an educationSchool object.

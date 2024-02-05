@@ -236,13 +236,13 @@ namespace ApiSdk.Communications.Presences.Item {
         /// Instantiates a new PresenceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PresenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24select,%24expand}", pathParameters) {
+        public PresenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PresenceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PresenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24select,%24expand}", rawUrl) {
+        public PresenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property presences for communications

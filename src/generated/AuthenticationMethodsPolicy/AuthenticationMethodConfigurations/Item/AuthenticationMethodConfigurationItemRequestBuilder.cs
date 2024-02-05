@@ -155,13 +155,13 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// Instantiates a new AuthenticationMethodConfigurationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationMethodConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy/authenticationMethodConfigurations/{authenticationMethodConfiguration%2Did}{?%24select,%24expand}", pathParameters) {
+        public AuthenticationMethodConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy/authenticationMethodConfigurations/{authenticationMethodConfiguration%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationMethodConfigurationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationMethodConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy/authenticationMethodConfigurations/{authenticationMethodConfiguration%2Did}{?%24select,%24expand}", rawUrl) {
+        public AuthenticationMethodConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy/authenticationMethodConfigurations/{authenticationMethodConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property authenticationMethodConfigurations for authenticationMethodsPolicy

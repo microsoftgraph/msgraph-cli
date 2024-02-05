@@ -220,13 +220,13 @@ namespace ApiSdk.Education {
         /// Instantiates a new EducationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24select,%24expand}", pathParameters) {
+        public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EducationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24select,%24expand}", rawUrl) {
+        public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get education

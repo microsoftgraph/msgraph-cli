@@ -190,13 +190,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews {
         /// Instantiates a new AccessReviewsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AccessReviewsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews{?%24select,%24expand}", pathParameters) {
+        public AccessReviewsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AccessReviewsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AccessReviewsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews{?%24select,%24expand}", rawUrl) {
+        public AccessReviewsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property accessReviews for identityGovernance

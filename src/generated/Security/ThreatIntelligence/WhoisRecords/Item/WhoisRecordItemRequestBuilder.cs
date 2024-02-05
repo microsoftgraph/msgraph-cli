@@ -197,13 +197,13 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// Instantiates a new WhoisRecordItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WhoisRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24select,%24expand}", pathParameters) {
+        public WhoisRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WhoisRecordItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WhoisRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24select,%24expand}", rawUrl) {
+        public WhoisRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property whoisRecords for security

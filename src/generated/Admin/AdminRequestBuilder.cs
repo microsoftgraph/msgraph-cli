@@ -207,13 +207,13 @@ namespace ApiSdk.Admin {
         /// Instantiates a new AdminRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AdminRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin{?%24select,%24expand}", pathParameters) {
+        public AdminRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AdminRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AdminRequestBuilder(string rawUrl) : base("{+baseurl}/admin{?%24select,%24expand}", rawUrl) {
+        public AdminRequestBuilder(string rawUrl) : base("{+baseurl}/admin{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get admin

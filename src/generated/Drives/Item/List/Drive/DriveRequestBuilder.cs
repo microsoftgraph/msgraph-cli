@@ -73,13 +73,13 @@ namespace ApiSdk.Drives.Item.List.Drive {
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/drive{?%24select,%24expand}", pathParameters) {
+        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/drive{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/drive{?%24select,%24expand}", rawUrl) {
+        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/drive{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Allows access to the list as a drive resource with driveItems. Only present on document libraries.

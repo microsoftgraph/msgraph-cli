@@ -73,13 +73,13 @@ namespace ApiSdk.Sites.Item.Drive {
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/drive{?%24select,%24expand}", pathParameters) {
+        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/drive{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/drive{?%24select,%24expand}", rawUrl) {
+        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/drive{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The default drive (document library) for this site.

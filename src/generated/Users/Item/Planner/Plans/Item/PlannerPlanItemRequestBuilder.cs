@@ -243,13 +243,13 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item {
         /// Instantiates a new PlannerPlanItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlannerPlanItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/planner/plans/{plannerPlan%2Did}{?%24select,%24expand}", pathParameters) {
+        public PlannerPlanItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PlannerPlanItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlannerPlanItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/planner/plans/{plannerPlan%2Did}{?%24select,%24expand}", rawUrl) {
+        public PlannerPlanItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property plans for users

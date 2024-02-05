@@ -266,13 +266,13 @@ namespace ApiSdk.Print {
         /// Instantiates a new PrintRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print{?%24select,%24expand}", pathParameters) {
+        public PrintRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrintRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintRequestBuilder(string rawUrl) : base("{+baseurl}/print{?%24select,%24expand}", rawUrl) {
+        public PrintRequestBuilder(string rawUrl) : base("{+baseurl}/print{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get print

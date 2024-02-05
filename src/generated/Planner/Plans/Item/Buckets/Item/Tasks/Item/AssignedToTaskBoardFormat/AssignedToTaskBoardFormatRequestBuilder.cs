@@ -200,13 +200,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
         /// Instantiates a new AssignedToTaskBoardFormatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignedToTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24select,%24expand}", pathParameters) {
+        public AssignedToTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AssignedToTaskBoardFormatRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignedToTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24select,%24expand}", rawUrl) {
+        public AssignedToTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property assignedToTaskBoardFormat for planner

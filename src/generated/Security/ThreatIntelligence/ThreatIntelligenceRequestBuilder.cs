@@ -579,13 +579,13 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// Instantiates a new ThreatIntelligenceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ThreatIntelligenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence{?%24select,%24expand}", pathParameters) {
+        public ThreatIntelligenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ThreatIntelligenceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ThreatIntelligenceRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence{?%24select,%24expand}", rawUrl) {
+        public ThreatIntelligenceRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property threatIntelligence for security

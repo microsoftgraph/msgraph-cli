@@ -176,13 +176,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
         /// Instantiates a new ConversationMemberItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConversationMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/{conversationMember%2Did}{?%24select,%24expand}", pathParameters) {
+        public ConversationMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/{conversationMember%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ConversationMemberItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConversationMemberItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/{conversationMember%2Did}{?%24select,%24expand}", rawUrl) {
+        public ConversationMemberItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/{conversationMember%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a conversationMember from a channel.

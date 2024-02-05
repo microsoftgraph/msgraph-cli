@@ -79,13 +79,13 @@ namespace ApiSdk.Education.Users.Item.Classes.Item {
         /// Instantiates a new EducationClassItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/classes/{educationClass%2Did}{?%24select,%24expand}", pathParameters) {
+        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EducationClassItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/classes/{educationClass%2Did}{?%24select,%24expand}", rawUrl) {
+        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Classes to which the user belongs. Nullable.

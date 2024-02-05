@@ -73,13 +73,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item.ChildHost {
         /// Instantiates a new ChildHostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChildHostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPairs/{hostPair%2Did}/childHost{?%24select,%24expand}", pathParameters) {
+        public ChildHostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPairs/{hostPair%2Did}/childHost{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ChildHostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChildHostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPairs/{hostPair%2Did}/childHost{?%24select,%24expand}", rawUrl) {
+        public ChildHostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPairs/{hostPair%2Did}/childHost{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Host reached via the parentHost.

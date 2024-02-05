@@ -73,13 +73,13 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
         /// Instantiates a new CreatedOnBehalfOfRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CreatedOnBehalfOfRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/createdOnBehalfOf{?%24select,%24expand}", pathParameters) {
+        public CreatedOnBehalfOfRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/createdOnBehalfOf{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CreatedOnBehalfOfRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CreatedOnBehalfOfRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/createdOnBehalfOf{?%24select,%24expand}", rawUrl) {
+        public CreatedOnBehalfOfRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/createdOnBehalfOf{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.

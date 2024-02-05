@@ -155,13 +155,13 @@ namespace ApiSdk.Functions.Item {
         /// Instantiates a new AttributeMappingFunctionSchemaItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttributeMappingFunctionSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24select,%24expand}", pathParameters) {
+        public AttributeMappingFunctionSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AttributeMappingFunctionSchemaItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttributeMappingFunctionSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24select,%24expand}", rawUrl) {
+        public AttributeMappingFunctionSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete entity from functions

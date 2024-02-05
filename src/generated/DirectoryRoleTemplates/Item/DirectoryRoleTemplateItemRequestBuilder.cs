@@ -236,13 +236,13 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// Instantiates a new DirectoryRoleTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryRoleTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate%2Did}{?%24select,%24expand}", pathParameters) {
+        public DirectoryRoleTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DirectoryRoleTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryRoleTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate%2Did}{?%24select,%24expand}", rawUrl) {
+        public DirectoryRoleTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/{directoryRoleTemplate%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete entity from directoryRoleTemplates

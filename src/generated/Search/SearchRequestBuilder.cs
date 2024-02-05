@@ -126,13 +126,13 @@ namespace ApiSdk.Search {
         /// Instantiates a new SearchRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SearchRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/search{?%24select,%24expand}", pathParameters) {
+        public SearchRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/search{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SearchRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SearchRequestBuilder(string rawUrl) : base("{+baseurl}/search{?%24select,%24expand}", rawUrl) {
+        public SearchRequestBuilder(string rawUrl) : base("{+baseurl}/search{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get search

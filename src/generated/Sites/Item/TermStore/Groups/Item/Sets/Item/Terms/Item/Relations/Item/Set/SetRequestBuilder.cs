@@ -97,13 +97,13 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item.Relations
         /// Instantiates a new SetRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}/set{?%24select,%24expand}", pathParameters) {
+        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}/set{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SetRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}/set{?%24select,%24expand}", rawUrl) {
+        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}/set{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The [set] in which the relation is relevant.

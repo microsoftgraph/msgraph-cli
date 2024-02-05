@@ -157,13 +157,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// Instantiates a new AssignmentDefaultsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignmentDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentDefaults{?%24select,%24expand}", pathParameters) {
+        public AssignmentDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentDefaults{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AssignmentDefaultsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignmentDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentDefaults{?%24select,%24expand}", rawUrl) {
+        public AssignmentDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentDefaults{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property assignmentDefaults for education

@@ -164,13 +164,13 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
         /// Instantiates a new DetailsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/details{?%24select,%24expand}", pathParameters) {
+        public DetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/details{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DetailsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DetailsRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/details{?%24select,%24expand}", rawUrl) {
+        public DetailsRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}/details{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property details for planner

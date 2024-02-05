@@ -73,13 +73,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAn
         /// Instantiates a new RebootAnalyticsMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RebootAnalyticsMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24select,%24expand}", pathParameters) {
+        public RebootAnalyticsMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RebootAnalyticsMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RebootAnalyticsMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24select,%24expand}", rawUrl) {
+        public RebootAnalyticsMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The scores and insights for the reboot analytics metrics.

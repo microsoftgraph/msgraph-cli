@@ -174,13 +174,13 @@ namespace ApiSdk.RoleManagement {
         /// Instantiates a new RoleManagementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement{?%24select,%24expand}", pathParameters) {
+        public RoleManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleManagementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleManagementRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement{?%24select,%24expand}", rawUrl) {
+        public RoleManagementRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get roleManagement

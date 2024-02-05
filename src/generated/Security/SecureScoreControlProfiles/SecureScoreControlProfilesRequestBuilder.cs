@@ -187,13 +187,13 @@ namespace ApiSdk.Security.SecureScoreControlProfiles {
         /// Instantiates a new SecureScoreControlProfilesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SecureScoreControlProfilesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/secureScoreControlProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public SecureScoreControlProfilesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/secureScoreControlProfiles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SecureScoreControlProfilesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SecureScoreControlProfilesRequestBuilder(string rawUrl) : base("{+baseurl}/security/secureScoreControlProfiles{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public SecureScoreControlProfilesRequestBuilder(string rawUrl) : base("{+baseurl}/security/secureScoreControlProfiles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a secureScoreControlProfiles object.

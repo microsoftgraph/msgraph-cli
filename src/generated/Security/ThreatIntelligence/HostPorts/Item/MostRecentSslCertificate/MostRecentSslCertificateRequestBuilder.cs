@@ -73,13 +73,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertifi
         /// Instantiates a new MostRecentSslCertificateRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MostRecentSslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24select,%24expand}", pathParameters) {
+        public MostRecentSslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MostRecentSslCertificateRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MostRecentSslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24select,%24expand}", rawUrl) {
+        public MostRecentSslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The most recent sslCertificate used to communicate on the port.

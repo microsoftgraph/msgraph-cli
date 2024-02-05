@@ -73,13 +73,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.Host {
         /// Instantiates a new HostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/host{?%24select,%24expand}", pathParameters) {
+        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/host{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/host{?%24select,%24expand}", rawUrl) {
+        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/host{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The host related to this hostPort. This is a reverse navigation property. When you navigate to hostPorts from a host, assume that this is a return reference.

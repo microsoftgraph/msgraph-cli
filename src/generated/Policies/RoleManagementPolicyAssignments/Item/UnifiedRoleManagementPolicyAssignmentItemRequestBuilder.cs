@@ -172,13 +172,13 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
         /// Instantiates a new UnifiedRoleManagementPolicyAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicyAssignments/{unifiedRoleManagementPolicyAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicyAssignments/{unifiedRoleManagementPolicyAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UnifiedRoleManagementPolicyAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicyAssignments/{unifiedRoleManagementPolicyAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public UnifiedRoleManagementPolicyAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicyAssignments/{unifiedRoleManagementPolicyAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property roleManagementPolicyAssignments for policies

@@ -221,13 +221,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// Instantiates a new ServiceAnnouncementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServiceAnnouncementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement{?%24select,%24expand}", pathParameters) {
+        public ServiceAnnouncementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ServiceAnnouncementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ServiceAnnouncementRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement{?%24select,%24expand}", rawUrl) {
+        public ServiceAnnouncementRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin

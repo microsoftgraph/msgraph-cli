@@ -112,13 +112,13 @@ namespace ApiSdk.Drives.Item.LastModifiedByUser {
         /// Instantiates a new LastModifiedByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LastModifiedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/lastModifiedByUser{?%24select,%24expand}", pathParameters) {
+        public LastModifiedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/lastModifiedByUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LastModifiedByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LastModifiedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/lastModifiedByUser{?%24select,%24expand}", rawUrl) {
+        public LastModifiedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/lastModifiedByUser{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Identity of the user who last modified the item. Read-only.

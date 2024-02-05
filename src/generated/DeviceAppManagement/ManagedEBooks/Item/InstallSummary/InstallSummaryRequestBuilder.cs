@@ -157,13 +157,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
         /// Instantiates a new InstallSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InstallSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/installSummary{?%24select,%24expand}", pathParameters) {
+        public InstallSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/installSummary{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InstallSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InstallSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/installSummary{?%24select,%24expand}", rawUrl) {
+        public InstallSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/installSummary{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property installSummary for deviceAppManagement

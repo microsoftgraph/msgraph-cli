@@ -474,7 +474,7 @@ namespace ApiSdk.Models {
 #else
         public List<ManagedDevice> ManagedDevices { get; set; }
 #endif
-        /// <summary>The user or contact that is this user&apos;s manager. Read-only. (HTTP Methods: GET, PUT, DELETE.). Supports $expand.</summary>
+        /// <summary>The user or contact that is this user&apos;s manager. Read-only. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DirectoryObject? Manager { get; set; }

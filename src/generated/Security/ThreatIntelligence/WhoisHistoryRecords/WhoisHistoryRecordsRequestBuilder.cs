@@ -188,13 +188,13 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisHistoryRecords {
         /// Instantiates a new WhoisHistoryRecordsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WhoisHistoryRecordsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisHistoryRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public WhoisHistoryRecordsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisHistoryRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WhoisHistoryRecordsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WhoisHistoryRecordsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisHistoryRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public WhoisHistoryRecordsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisHistoryRecords{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.

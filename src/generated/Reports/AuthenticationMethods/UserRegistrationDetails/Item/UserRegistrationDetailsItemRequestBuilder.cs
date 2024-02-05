@@ -156,13 +156,13 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
         /// Instantiates a new UserRegistrationDetailsItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserRegistrationDetailsItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/userRegistrationDetails/{userRegistrationDetails%2Did}{?%24select,%24expand}", pathParameters) {
+        public UserRegistrationDetailsItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/userRegistrationDetails/{userRegistrationDetails%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserRegistrationDetailsItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserRegistrationDetailsItemRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/userRegistrationDetails/{userRegistrationDetails%2Did}{?%24select,%24expand}", rawUrl) {
+        public UserRegistrationDetailsItemRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/userRegistrationDetails/{userRegistrationDetails%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property userRegistrationDetails for reports

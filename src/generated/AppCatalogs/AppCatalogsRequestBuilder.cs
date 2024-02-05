@@ -136,13 +136,13 @@ namespace ApiSdk.AppCatalogs {
         /// Instantiates a new AppCatalogsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppCatalogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs{?%24select,%24expand}", pathParameters) {
+        public AppCatalogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppCatalogsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppCatalogsRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs{?%24select,%24expand}", rawUrl) {
+        public AppCatalogsRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get appCatalogs

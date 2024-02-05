@@ -21,7 +21,7 @@ namespace ApiSdk.IdentityProviders.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
-        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
@@ -57,19 +57,19 @@ namespace ApiSdk.IdentityProviders.Count {
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProviders/$count{?%24search,%24filter}", pathParameters) {
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProviders/$count{?%24filter,%24search}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders/$count{?%24search,%24filter}", rawUrl) {
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders/$count{?%24filter,%24search}", rawUrl) {
         }
         /// <summary>
         /// Get the number of the resource
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>>? requestConfiguration = default) {

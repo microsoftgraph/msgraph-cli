@@ -174,13 +174,13 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
         /// Instantiates a new OnenoteOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OnenoteOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/operations/{onenoteOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public OnenoteOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/operations/{onenoteOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new OnenoteOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OnenoteOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/operations/{onenoteOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public OnenoteOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/operations/{onenoteOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for users

@@ -163,12 +163,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0" />
+        /// Returns the metadata for a [list][].
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of rich long-running operations associated with a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0";
+            command.Description = "Returns the metadata for a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -386,13 +386,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// Instantiates a new ListItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24select,%24expand}", pathParameters) {
+        public ListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ListItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ListItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24select,%24expand}", rawUrl) {
+        public ListItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property lists for groups
@@ -411,7 +411,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
+        /// Returns the metadata for a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -445,7 +445,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
+        /// Returns the metadata for a [list][].
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

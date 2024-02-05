@@ -176,13 +176,13 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
         /// Instantiates a new FederatedIdentityCredentialItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FederatedIdentityCredentialItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24select,%24expand}", pathParameters) {
+        public FederatedIdentityCredentialItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FederatedIdentityCredentialItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FederatedIdentityCredentialItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24select,%24expand}", rawUrl) {
+        public FederatedIdentityCredentialItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a federatedIdentityCredential object from an application.

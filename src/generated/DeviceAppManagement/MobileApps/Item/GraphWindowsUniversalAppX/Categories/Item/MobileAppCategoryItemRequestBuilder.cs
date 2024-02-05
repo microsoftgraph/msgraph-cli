@@ -79,13 +79,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.C
         /// Instantiates a new MobileAppCategoryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MobileAppCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/categories/{mobileAppCategory%2Did}{?%24select,%24expand}", pathParameters) {
+        public MobileAppCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/categories/{mobileAppCategory%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MobileAppCategoryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MobileAppCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/categories/{mobileAppCategory%2Did}{?%24select,%24expand}", rawUrl) {
+        public MobileAppCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX/categories/{mobileAppCategory%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The list of categories for this app.

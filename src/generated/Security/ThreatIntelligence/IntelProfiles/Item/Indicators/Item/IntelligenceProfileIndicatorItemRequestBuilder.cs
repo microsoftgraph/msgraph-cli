@@ -79,13 +79,13 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators.Item 
         /// Instantiates a new IntelligenceProfileIndicatorItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IntelligenceProfileIndicatorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}/indicators/{intelligenceProfileIndicator%2Did}{?%24select,%24expand}", pathParameters) {
+        public IntelligenceProfileIndicatorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}/indicators/{intelligenceProfileIndicator%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IntelligenceProfileIndicatorItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IntelligenceProfileIndicatorItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}/indicators/{intelligenceProfileIndicator%2Did}{?%24select,%24expand}", rawUrl) {
+        public IntelligenceProfileIndicatorItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/intelProfiles/{intelligenceProfile%2Did}/indicators/{intelligenceProfileIndicator%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Includes an assemblage of high-fidelity network indicators of compromise.

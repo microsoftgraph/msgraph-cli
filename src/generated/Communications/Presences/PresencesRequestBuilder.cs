@@ -192,13 +192,13 @@ namespace ApiSdk.Communications.Presences {
         /// Instantiates a new PresencesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PresencesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public PresencesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PresencesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PresencesRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public PresencesRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a user&apos;s presence information.

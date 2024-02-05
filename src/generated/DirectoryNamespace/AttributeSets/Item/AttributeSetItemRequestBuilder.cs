@@ -157,13 +157,13 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
         /// Instantiates a new AttributeSetItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttributeSetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/attributeSets/{attributeSet%2Did}{?%24select,%24expand}", pathParameters) {
+        public AttributeSetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/attributeSets/{attributeSet%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AttributeSetItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttributeSetItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/attributeSets/{attributeSet%2Did}{?%24select,%24expand}", rawUrl) {
+        public AttributeSetItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/attributeSets/{attributeSet%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property attributeSets for directory

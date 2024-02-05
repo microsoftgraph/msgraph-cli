@@ -187,13 +187,13 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
         /// Instantiates a new ServicePrincipalRiskDetectionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServicePrincipalRiskDetectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ServicePrincipalRiskDetectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ServicePrincipalRiskDetectionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ServicePrincipalRiskDetectionsRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ServicePrincipalRiskDetectionsRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.

@@ -86,13 +86,13 @@ namespace ApiSdk.Users.Item.RegisteredDevices.Item.GraphDevice {
         /// Instantiates a new GraphDeviceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/registeredDevices/{directoryObject%2Did}/graph.device{?%24select,%24expand}", pathParameters) {
+        public GraphDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/registeredDevices/{directoryObject%2Did}/graph.device{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphDeviceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/registeredDevices/{directoryObject%2Did}/graph.device{?%24select,%24expand}", rawUrl) {
+        public GraphDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/registeredDevices/{directoryObject%2Did}/graph.device{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.device

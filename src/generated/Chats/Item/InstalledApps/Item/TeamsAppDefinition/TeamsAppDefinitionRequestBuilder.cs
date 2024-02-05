@@ -79,13 +79,13 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
         /// Instantiates a new TeamsAppDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24select,%24expand}", pathParameters) {
+        public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamsAppDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24select,%24expand}", rawUrl) {
+        public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The details of this version of the app.

@@ -157,13 +157,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
         /// Instantiates a new IdentitySynchronizationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentitySynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}/identitySynchronization{?%24select,%24expand}", pathParameters) {
+        public IdentitySynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}/identitySynchronization{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentitySynchronizationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentitySynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}/identitySynchronization{?%24select,%24expand}", rawUrl) {
+        public IdentitySynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}/identitySynchronization{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete the user synchronization policy for a partner-specific configuration.

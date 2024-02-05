@@ -233,13 +233,13 @@ namespace ApiSdk.Users.Item.Insights {
         /// Instantiates a new InsightsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InsightsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights{?%24select,%24expand}", pathParameters) {
+        public InsightsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InsightsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InsightsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights{?%24select,%24expand}", rawUrl) {
+        public InsightsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property insights for users

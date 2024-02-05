@@ -137,13 +137,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint {
         /// Instantiates a new VirtualEndpointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public VirtualEndpointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint{?%24select,%24expand}", pathParameters) {
+        public VirtualEndpointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/virtualEndpoint{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new VirtualEndpointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public VirtualEndpointRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint{?%24select,%24expand}", rawUrl) {
+        public VirtualEndpointRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/virtualEndpoint{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property virtualEndpoint for deviceManagement

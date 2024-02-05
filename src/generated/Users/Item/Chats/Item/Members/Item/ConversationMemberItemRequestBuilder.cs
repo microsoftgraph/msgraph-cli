@@ -66,12 +66,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0" />
+        /// Retrieve a conversationMember from a chat or channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a conversationMember from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0";
+            command.Description = "Retrieve a conversationMember from a chat or channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -193,13 +193,13 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
         /// Instantiates a new ConversationMemberItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConversationMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members/{conversationMember%2Did}{?%24select,%24expand}", pathParameters) {
+        public ConversationMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members/{conversationMember%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ConversationMemberItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConversationMemberItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members/{conversationMember%2Did}{?%24select,%24expand}", rawUrl) {
+        public ConversationMemberItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members/{conversationMember%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Remove a conversationMember from a chat.
@@ -218,7 +218,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat.
+        /// Retrieve a conversationMember from a chat or channel.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +252,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat.
+        /// Retrieve a conversationMember from a chat or channel.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

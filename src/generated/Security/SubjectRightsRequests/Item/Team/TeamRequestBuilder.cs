@@ -73,13 +73,13 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Team {
         /// Instantiates a new TeamRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24select,%24expand}", pathParameters) {
+        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24select,%24expand}", rawUrl) {
+        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.

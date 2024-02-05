@@ -112,13 +112,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifi
         /// Instantiates a new LastModifiedByRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LastModifiedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/lastModifiedBy{?%24select,%24expand}", pathParameters) {
+        public LastModifiedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/lastModifiedBy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LastModifiedByRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LastModifiedByRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/lastModifiedBy{?%24select,%24expand}", rawUrl) {
+        public LastModifiedByRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/lastModifiedBy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow.

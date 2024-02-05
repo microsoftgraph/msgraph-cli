@@ -113,13 +113,13 @@ namespace ApiSdk.Education.Users.Item.User {
         /// Instantiates a new UserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24select,%24expand}", pathParameters) {
+        public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24select,%24expand}", rawUrl) {
+        public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the simple directory user that corresponds to this educationUser.

@@ -107,6 +107,7 @@ using ApiSdk.Reports.ManagedDeviceEnrollmentTopFailures;
 using ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod;
 using ApiSdk.Reports.MonthlyPrintUsageByPrinter;
 using ApiSdk.Reports.MonthlyPrintUsageByUser;
+using ApiSdk.Reports.Partners;
 using ApiSdk.Reports.Security;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -1814,6 +1815,29 @@ namespace ApiSdk.Reports {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.
+        /// </summary>
+        public Command BuildPartnersNavCommand() {
+            var command = new Command("partners");
+            command.Description = "Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.";
+            var builder = new PartnersRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBillingNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the properties of a reportRoot object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-update?view=graph-rest-1.0" />
         /// </summary>
@@ -1886,13 +1910,13 @@ namespace ApiSdk.Reports {
         /// Instantiates a new ReportsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports{?%24select,%24expand}", pathParameters) {
+        public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ReportsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ReportsRequestBuilder(string rawUrl) : base("{+baseurl}/reports{?%24select,%24expand}", rawUrl) {
+        public ReportsRequestBuilder(string rawUrl) : base("{+baseurl}/reports{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read properties and relationships of the reportRoot object.

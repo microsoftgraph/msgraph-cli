@@ -3,6 +3,8 @@ using ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Communications.OnlineMeetings.Item.AttendeeReport;
 using ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl;
 using ApiSdk.Communications.OnlineMeetings.Item.Recordings;
+using ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentReminderSms;
+using ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentSms;
 using ApiSdk.Communications.OnlineMeetings.Item.Transcripts;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -238,6 +240,36 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the sendVirtualAppointmentReminderSms method.
+        /// </summary>
+        public Command BuildSendVirtualAppointmentReminderSmsNavCommand() {
+            var command = new Command("send-virtual-appointment-reminder-sms");
+            command.Description = "Provides operations to call the sendVirtualAppointmentReminderSms method.";
+            var builder = new SendVirtualAppointmentReminderSmsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendVirtualAppointmentSms method.
+        /// </summary>
+        public Command BuildSendVirtualAppointmentSmsNavCommand() {
+            var command = new Command("send-virtual-appointment-sms");
+            command.Description = "Provides operations to call the sendVirtualAppointmentSms method.";
+            var builder = new SendVirtualAppointmentSmsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
         public Command BuildTranscriptsNavCommand() {
@@ -266,13 +298,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// Instantiates a new OnlineMeetingItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OnlineMeetingItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}{?%24select,%24expand}", pathParameters) {
+        public OnlineMeetingItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new OnlineMeetingItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OnlineMeetingItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}{?%24select,%24expand}", rawUrl) {
+        public OnlineMeetingItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property onlineMeetings for communications

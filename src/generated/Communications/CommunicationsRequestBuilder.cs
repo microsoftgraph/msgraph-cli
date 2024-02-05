@@ -234,13 +234,13 @@ namespace ApiSdk.Communications {
         /// Instantiates a new CommunicationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CommunicationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications{?%24select,%24expand}", pathParameters) {
+        public CommunicationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CommunicationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CommunicationsRequestBuilder(string rawUrl) : base("{+baseurl}/communications{?%24select,%24expand}", rawUrl) {
+        public CommunicationsRequestBuilder(string rawUrl) : base("{+baseurl}/communications{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get communications

@@ -173,13 +173,13 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
         /// Instantiates a new ScopedRoleMembershipItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ScopedRoleMembershipItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers/{scopedRoleMembership%2Did}{?%24select,%24expand}", pathParameters) {
+        public ScopedRoleMembershipItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers/{scopedRoleMembership%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ScopedRoleMembershipItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ScopedRoleMembershipItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers/{scopedRoleMembership%2Did}{?%24select,%24expand}", rawUrl) {
+        public ScopedRoleMembershipItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers/{scopedRoleMembership%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property scopedMembers for directoryRoles

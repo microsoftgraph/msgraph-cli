@@ -187,13 +187,13 @@ namespace ApiSdk.Solutions {
         /// Instantiates a new SolutionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SolutionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions{?%24select,%24expand}", pathParameters) {
+        public SolutionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SolutionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SolutionsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions{?%24select,%24expand}", rawUrl) {
+        public SolutionsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get solutions

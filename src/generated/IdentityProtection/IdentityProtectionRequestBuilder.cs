@@ -218,13 +218,13 @@ namespace ApiSdk.IdentityProtection {
         /// Instantiates a new IdentityProtectionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection{?%24select,%24expand}", pathParameters) {
+        public IdentityProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityProtectionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection{?%24select,%24expand}", rawUrl) {
+        public IdentityProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get identityProtection
