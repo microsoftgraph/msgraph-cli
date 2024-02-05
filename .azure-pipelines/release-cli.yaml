@@ -17,6 +17,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  - group: ESRP
   - name: repositoryConnection
     value: 'GitHub - calebkiage'
   - name: fileNameTemplate
@@ -505,6 +506,7 @@ stages:
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
               enabled: $(IS_MACOS)
+              certificateName: $(CERTIFICATE_ID)
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
