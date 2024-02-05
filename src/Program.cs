@@ -196,15 +196,18 @@ namespace Microsoft.Graph.Cli
                         GraphServiceLibraryClientVersion = $"{assemblyVersion?.Major ?? 0}.{assemblyVersion?.Minor ?? 0}.{assemblyVersion?.Build ?? 0}",
                         GraphServiceTargetVersion = "1.0"
                     };
+
+                    var authSettings = p.GetRequiredService<IOptions<AuthenticationOptions>>().Value;
                     var headersHandler = new NativeHttpHeadersHandler(() => InMemoryHeadersStore.Instance, p.GetService<ILogger<NativeHttpHeadersHandler>>());
-                    return GraphCliClientFactory.GetDefaultClient(options, loggingHandler: p.GetRequiredService<LoggingHandler>(), middlewares: new[] { headersHandler });
+
+                    return GraphCliClientFactory.GetDefaultClient(options, environment: authSettings.Environment, loggingHandler: p.GetRequiredService<LoggingHandler>(), middlewares: new[] { headersHandler });
                 });
                 services.AddSingleton<IAuthenticationProvider>(p =>
                 {
                     var authSettings = p.GetRequiredService<IOptions<AuthenticationOptions>>()?.Value;
                     var serviceFactory = p.GetRequiredService<AuthenticationServiceFactory>();
                     AuthenticationStrategy authStrategy = authSettings?.Strategy ?? AuthenticationStrategy.DeviceCode;
-                    var credential = serviceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId, authSettings?.ClientCertificateName, authSettings?.ClientCertificateThumbPrint);
+                    var credential = serviceFactory.GetTokenCredentialAsync(authStrategy, authSettings?.TenantId, authSettings?.ClientId, authSettings?.ClientCertificateName, authSettings?.ClientCertificateThumbPrint, authSettings?.Environment ?? CloudEnvironment.Global);
                     credential.Wait();
                     var client = p.GetRequiredService<HttpClient>();
                     return new AzureIdentityAuthenticationProvider(credential.Result);
