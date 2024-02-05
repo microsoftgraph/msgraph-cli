@@ -158,13 +158,13 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// Instantiates a new ProfileCardPropertyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ProfileCardPropertyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24select,%24expand}", pathParameters) {
+        public ProfileCardPropertyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ProfileCardPropertyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ProfileCardPropertyItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24select,%24expand}", rawUrl) {
+        public ProfileCardPropertyItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete the profileCardProperty object specified by its directoryPropertyName from the organization&apos;s profile card, and remove any localized customizations for that property.

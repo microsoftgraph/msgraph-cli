@@ -97,13 +97,13 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// Instantiates a new FilesFolderRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/filesFolder{?%24select,%24expand}", pathParameters) {
+        public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/filesFolder{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FilesFolderRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FilesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/filesFolder{?%24select,%24expand}", rawUrl) {
+        public FilesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/channels/{channel%2Did}/filesFolder{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the metadata for the location where the files of a channel are stored. 

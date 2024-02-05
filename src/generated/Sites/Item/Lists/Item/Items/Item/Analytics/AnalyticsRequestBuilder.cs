@@ -85,13 +85,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics {
         /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AnalyticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/analytics{?%24select,%24expand}", pathParameters) {
+        public AnalyticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/analytics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AnalyticsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/analytics{?%24select,%24expand}", rawUrl) {
+        public AnalyticsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/analytics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Analytics about the view activities that took place on this item.

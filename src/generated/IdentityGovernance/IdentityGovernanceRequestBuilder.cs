@@ -272,13 +272,13 @@ namespace ApiSdk.IdentityGovernance {
         /// Instantiates a new IdentityGovernanceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance{?%24select,%24expand}", pathParameters) {
+        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityGovernanceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityGovernanceRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance{?%24select,%24expand}", rawUrl) {
+        public IdentityGovernanceRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get identityGovernance

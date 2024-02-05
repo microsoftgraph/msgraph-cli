@@ -73,13 +73,13 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item.RetentionEventType {
         /// Instantiates a new RetentionEventTypeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RetentionEventTypeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}/retentionEventType{?%24select,%24expand}", pathParameters) {
+        public RetentionEventTypeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}/retentionEventType{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RetentionEventTypeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RetentionEventTypeRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}/retentionEventType{?%24select,%24expand}", rawUrl) {
+        public RetentionEventTypeRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}/retentionEventType{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Specifies the event that will start the retention period for labels that use this event type when an event is created.

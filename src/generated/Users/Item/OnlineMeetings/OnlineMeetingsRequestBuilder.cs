@@ -36,6 +36,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             commands.Add(builder.BuildGetVirtualAppointmentJoinWebUrlNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRecordingsNavCommand());
+            commands.Add(builder.BuildSendVirtualAppointmentReminderSmsNavCommand());
+            commands.Add(builder.BuildSendVirtualAppointmentSmsNavCommand());
             commands.Add(builder.BuildTranscriptsNavCommand());
             return new(executables, commands);
         }
@@ -222,13 +224,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// Instantiates a new OnlineMeetingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OnlineMeetingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onlineMeetings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public OnlineMeetingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onlineMeetings{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new OnlineMeetingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OnlineMeetingsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public OnlineMeetingsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.

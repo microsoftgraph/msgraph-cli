@@ -157,13 +157,13 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// Instantiates a new ServicePrincipalsWithAppIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServicePrincipalsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24select,%24expand}", pathParameters) {
+        public ServicePrincipalsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ServicePrincipalsWithAppIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ServicePrincipalsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24select,%24expand}", rawUrl) {
+        public ServicePrincipalsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a servicePrincipal object.

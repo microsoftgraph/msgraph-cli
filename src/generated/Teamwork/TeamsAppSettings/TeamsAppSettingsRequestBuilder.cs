@@ -139,13 +139,13 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
         /// Instantiates a new TeamsAppSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/teamsAppSettings{?%24select,%24expand}", pathParameters) {
+        public TeamsAppSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/teamsAppSettings{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamsAppSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/teamsAppSettings{?%24select,%24expand}", rawUrl) {
+        public TeamsAppSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/teamsAppSettings{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property teamsAppSettings for teamwork

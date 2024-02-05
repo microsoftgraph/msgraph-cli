@@ -194,13 +194,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// Instantiates a new RubricRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RubricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24select,%24expand}", pathParameters) {
+        public RubricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RubricRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RubricRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24select,%24expand}", rawUrl) {
+        public RubricRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Remove an educationRubric from an educationAssignment. This method doesn&apos;t delete the rubric itself and can only be performed by teachers.

@@ -147,13 +147,13 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
         /// Instantiates a new ManagedDevicesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedDevicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}/managedDevices{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ManagedDevicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}/managedDevices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagedDevicesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedDevicesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}/managedDevices{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ManagedDevicesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}/managedDevices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// The devices that have the discovered application installed

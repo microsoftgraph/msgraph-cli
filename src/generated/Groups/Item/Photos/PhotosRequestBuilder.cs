@@ -115,13 +115,13 @@ namespace ApiSdk.Groups.Item.Photos {
         /// Instantiates a new PhotosRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos{?%24top,%24skip,%24filter,%24orderby,%24select}", pathParameters) {
+        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PhotosRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos{?%24top,%24skip,%24filter,%24orderby,%24select}", rawUrl) {
+        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of profilePhoto objects.

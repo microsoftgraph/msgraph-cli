@@ -31,7 +31,9 @@ namespace ApiSdk.EmployeeExperience.LearningProviders {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLearningContentsNavCommand());
+            commands.Add(builder.BuildLearningContentsWithExternalIdRbCommand());
             commands.Add(builder.BuildLearningCourseActivitiesNavCommand());
+            commands.Add(builder.BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }
@@ -191,13 +193,13 @@ namespace ApiSdk.EmployeeExperience.LearningProviders {
         /// Instantiates a new LearningProvidersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LearningProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public LearningProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LearningProvidersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LearningProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public LearningProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience/learningProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the learningProvider resources registered in Viva Learning for a tenant.

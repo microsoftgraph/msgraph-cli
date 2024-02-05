@@ -36,6 +36,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
             commands.Add(builder.BuildGraphEndpointByIdNavCommand());
             commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
             commands.Add(builder.BuildGraphUserByIdNavCommand());
+            commands.Add(builder.BuildRefByIdNavCommand());
             return new(new(0), commands);
         }
         /// <summary>
@@ -247,11 +248,11 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Provides operations to manage the collection of device entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -264,13 +265,13 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Instantiates a new RegisteredUsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RegisteredUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RegisteredUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RegisteredUsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RegisteredUsersRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RegisteredUsersRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.

@@ -217,13 +217,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
         /// Instantiates a new ParentGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup{?%24select,%24expand}", pathParameters) {
+        public ParentGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ParentGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentGroupRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup{?%24select,%24expand}", rawUrl) {
+        public ParentGroupRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property parentGroup for sites

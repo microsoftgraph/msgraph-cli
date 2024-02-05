@@ -126,13 +126,13 @@ namespace ApiSdk.Users.Item.Manager {
         /// Instantiates a new ManagerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/manager{?%24select,%24expand}", pathParameters) {
+        public ManagerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/manager{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagerRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/manager{?%24select,%24expand}", rawUrl) {
+        public ManagerRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/manager{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Remove a user&apos;s manager.

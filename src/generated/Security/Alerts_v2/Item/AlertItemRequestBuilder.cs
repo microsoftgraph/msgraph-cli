@@ -179,13 +179,13 @@ namespace ApiSdk.Security.Alerts_v2.Item {
         /// Instantiates a new AlertItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AlertItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts_v2/{alert%2Did}{?%24select,%24expand}", pathParameters) {
+        public AlertItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts_v2/{alert%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AlertItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AlertItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts_v2/{alert%2Did}{?%24select,%24expand}", rawUrl) {
+        public AlertItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts_v2/{alert%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property alerts_v2 for security

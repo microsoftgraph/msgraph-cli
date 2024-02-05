@@ -191,13 +191,13 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// Instantiates a new PrintTaskTriggerItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintTaskTriggerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24select,%24expand}", pathParameters) {
+        public PrintTaskTriggerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrintTaskTriggerItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintTaskTriggerItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24select,%24expand}", rawUrl) {
+        public PrintTaskTriggerItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.

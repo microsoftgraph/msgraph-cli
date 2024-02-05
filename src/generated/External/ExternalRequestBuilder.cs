@@ -136,13 +136,13 @@ namespace ApiSdk.External {
         /// Instantiates a new ExternalRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ExternalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external{?%24select,%24expand}", pathParameters) {
+        public ExternalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ExternalRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ExternalRequestBuilder(string rawUrl) : base("{+baseurl}/external{?%24select,%24expand}", rawUrl) {
+        public ExternalRequestBuilder(string rawUrl) : base("{+baseurl}/external{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get external

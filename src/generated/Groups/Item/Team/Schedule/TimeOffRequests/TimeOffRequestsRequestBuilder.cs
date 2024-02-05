@@ -192,13 +192,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffRequests {
         /// Instantiates a new TimeOffRequestsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TimeOffRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public TimeOffRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffRequests{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TimeOffRequestsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TimeOffRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", rawUrl) {
+        public TimeOffRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffRequests{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of timeOffRequest objects in the team.

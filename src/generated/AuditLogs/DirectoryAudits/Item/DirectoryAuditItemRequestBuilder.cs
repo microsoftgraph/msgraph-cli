@@ -156,13 +156,13 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
         /// Instantiates a new DirectoryAuditItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryAuditItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/auditLogs/directoryAudits/{directoryAudit%2Did}{?%24select,%24expand}", pathParameters) {
+        public DirectoryAuditItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/auditLogs/directoryAudits/{directoryAudit%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DirectoryAuditItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryAuditItemRequestBuilder(string rawUrl) : base("{+baseurl}/auditLogs/directoryAudits/{directoryAudit%2Did}{?%24select,%24expand}", rawUrl) {
+        public DirectoryAuditItemRequestBuilder(string rawUrl) : base("{+baseurl}/auditLogs/directoryAudits/{directoryAudit%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property directoryAudits for auditLogs

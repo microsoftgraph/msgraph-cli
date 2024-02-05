@@ -18,8 +18,8 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item {
         /// <summary>
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
-        public Command BuildRefNavCommand() {
-            var command = new Command("ref");
+        public Command BuildRefByIdNavCommand() {
+            var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

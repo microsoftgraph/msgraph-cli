@@ -223,13 +223,13 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// Instantiates a new TeamsAppInstallationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppInstallationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}{?%24select,%24expand}", pathParameters) {
+        public TeamsAppInstallationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamsAppInstallationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppInstallationItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}{?%24select,%24expand}", rawUrl) {
+        public TeamsAppInstallationItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Uninstalls an app from the specified team.

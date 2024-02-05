@@ -73,13 +73,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item.Payload {
         /// Instantiates a new PayloadRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PayloadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/payload{?%24select,%24expand}", pathParameters) {
+        public PayloadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/payload{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PayloadRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PayloadRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/payload{?%24select,%24expand}", rawUrl) {
+        public PayloadRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/payload{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The payload associated with a simulation during its creation.

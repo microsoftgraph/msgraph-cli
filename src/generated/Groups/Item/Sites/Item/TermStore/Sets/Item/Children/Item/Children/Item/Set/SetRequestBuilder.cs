@@ -97,13 +97,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Children.Item.Childr
         /// Instantiates a new SetRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/set{?%24select,%24expand}", pathParameters) {
+        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SetRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/set{?%24select,%24expand}", rawUrl) {
+        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The [set] in which the term is created.

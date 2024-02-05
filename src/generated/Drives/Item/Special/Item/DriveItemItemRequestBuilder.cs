@@ -97,13 +97,13 @@ namespace ApiSdk.Drives.Item.Special.Item {
         /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24select,%24expand}", pathParameters) {
+        public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24select,%24expand}", rawUrl) {
+        public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.

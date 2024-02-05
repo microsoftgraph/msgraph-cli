@@ -155,13 +155,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// Instantiates a new DefaultRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24select,%24expand}", pathParameters) {
+        public DefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DefaultRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DefaultRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24select,%24expand}", rawUrl) {
+        public DefaultRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property default for policies

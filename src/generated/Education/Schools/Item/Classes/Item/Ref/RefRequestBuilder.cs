@@ -38,19 +38,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
             };
             ifMatchOption.IsRequired = false;
             command.AddOption(ifMatchOption);
-            var idOption = new Option<string>("--id", description: "Delete Uri") {
-            };
-            idOption.IsRequired = false;
-            command.AddOption(idOption);
             command.SetHandler(async (invocationContext) => {
                 var educationSchoolId = invocationContext.ParseResult.GetValueForOption(educationSchoolIdOption);
                 var educationClassId = invocationContext.ParseResult.GetValueForOption(educationClassIdOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var id = invocationContext.ParseResult.GetValueForOption(idOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToDeleteRequestInformation(q => {
-                    if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
                 });
                 if (educationSchoolId is not null) requestInfo.PathParameters.Add("educationSchool%2Did", educationSchoolId);
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
@@ -68,13 +62,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/{educationClass%2Did}/$ref{?%40id*}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/{educationClass%2Did}/$ref", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/{educationClass%2Did}/$ref{?%40id*}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/{educationClass%2Did}/$ref", rawUrl) {
         }
         /// <summary>
         /// Delete a class from a school.
@@ -82,30 +76,15 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
-        }
-        /// <summary>
-        /// Delete a class from a school.
-        /// </summary>
-        public class RefRequestBuilderDeleteQueryParameters {
-            /// <summary>Delete Uri</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%40id")]
-            public string? Id { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%40id")]
-            public string Id { get; set; }
-#endif
         }
     }
 }

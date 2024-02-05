@@ -158,13 +158,13 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
         /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders/{identityProviderBase%2Did}{?%24select,%24expand}", pathParameters) {
+        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders/{identityProviderBase%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/identityProviders/{identityProviderBase%2Did}{?%24select,%24expand}", rawUrl) {
+        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/identityProviders/{identityProviderBase%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an identity provider resource that is of the type specified by the id in the request. Among the types of providers derived from identityProviderBase, you can currently delete a socialIdentityProvider resource in Microsoft Entra ID. In Azure AD B2C, this operation can currently delete a socialIdentityProvider, or an appleManagedIdentityProvider resource.

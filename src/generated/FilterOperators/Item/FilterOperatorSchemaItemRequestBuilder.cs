@@ -155,13 +155,13 @@ namespace ApiSdk.FilterOperators.Item {
         /// Instantiates a new FilterOperatorSchemaItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FilterOperatorSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/filterOperators/{filterOperatorSchema%2Did}{?%24select,%24expand}", pathParameters) {
+        public FilterOperatorSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/filterOperators/{filterOperatorSchema%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FilterOperatorSchemaItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FilterOperatorSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/filterOperators/{filterOperatorSchema%2Did}{?%24select,%24expand}", rawUrl) {
+        public FilterOperatorSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/filterOperators/{filterOperatorSchema%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete entity from filterOperators

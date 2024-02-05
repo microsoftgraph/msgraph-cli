@@ -173,13 +173,13 @@ namespace ApiSdk.Places.Item.GraphRoomList.Rooms.Item {
         /// Instantiates a new RoomItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoomItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.roomList/rooms/{room%2Did}{?%24select,%24expand}", pathParameters) {
+        public RoomItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.roomList/rooms/{room%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoomItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoomItemRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.roomList/rooms/{room%2Did}{?%24select,%24expand}", rawUrl) {
+        public RoomItemRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.roomList/rooms/{room%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property rooms for places

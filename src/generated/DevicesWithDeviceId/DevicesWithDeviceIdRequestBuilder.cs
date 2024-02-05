@@ -158,13 +158,13 @@ namespace ApiSdk.DevicesWithDeviceId {
         /// Instantiates a new DevicesWithDeviceIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DevicesWithDeviceIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices(deviceId='{deviceId}'){?%24select,%24expand}", pathParameters) {
+        public DevicesWithDeviceIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices(deviceId='{deviceId}'){?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DevicesWithDeviceIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DevicesWithDeviceIdRequestBuilder(string rawUrl) : base("{+baseurl}/devices(deviceId='{deviceId}'){?%24select,%24expand}", rawUrl) {
+        public DevicesWithDeviceIdRequestBuilder(string rawUrl) : base("{+baseurl}/devices(deviceId='{deviceId}'){?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a registered device.

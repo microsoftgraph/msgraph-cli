@@ -579,13 +579,13 @@ namespace ApiSdk.Applications.Item {
         /// Instantiates a new ApplicationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}{?%24select,%24expand}", pathParameters) {
+        public ApplicationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ApplicationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ApplicationItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}{?%24select,%24expand}", rawUrl) {
+        public ApplicationItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.

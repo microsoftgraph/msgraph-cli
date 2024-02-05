@@ -156,13 +156,13 @@ namespace ApiSdk.Print.Operations.Item {
         /// Instantiates a new PrintOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/operations/{printOperation%2Did}{?%24select,%24expand}", pathParameters) {
+        public PrintOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/operations/{printOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrintOperationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/operations/{printOperation%2Did}{?%24select,%24expand}", rawUrl) {
+        public PrintOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/operations/{printOperation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property operations for print

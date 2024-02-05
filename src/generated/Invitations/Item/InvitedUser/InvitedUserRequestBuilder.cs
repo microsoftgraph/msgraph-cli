@@ -112,13 +112,13 @@ namespace ApiSdk.Invitations.Item.InvitedUser {
         /// Instantiates a new InvitedUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InvitedUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/invitations/{invitation%2Did}/invitedUser{?%24select,%24expand}", pathParameters) {
+        public InvitedUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/invitations/{invitation%2Did}/invitedUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InvitedUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InvitedUserRequestBuilder(string rawUrl) : base("{+baseurl}/invitations/{invitation%2Did}/invitedUser{?%24select,%24expand}", rawUrl) {
+        public InvitedUserRequestBuilder(string rawUrl) : base("{+baseurl}/invitations/{invitation%2Did}/invitedUser{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The user created as part of the invitation creation. Read-Only

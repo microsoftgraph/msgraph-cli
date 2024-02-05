@@ -200,13 +200,13 @@ namespace ApiSdk.Users.Item.Activities.Item {
         /// Instantiates a new UserActivityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserActivityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}{?%24select,%24expand}", pathParameters) {
+        public UserActivityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserActivityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserActivityItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}{?%24select,%24expand}", rawUrl) {
+        public UserActivityItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an existing user activity for your app.

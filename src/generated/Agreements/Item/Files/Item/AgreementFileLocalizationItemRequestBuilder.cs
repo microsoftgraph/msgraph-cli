@@ -199,13 +199,13 @@ namespace ApiSdk.Agreements.Item.Files.Item {
         /// Instantiates a new AgreementFileLocalizationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AgreementFileLocalizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24select,%24expand}", pathParameters) {
+        public AgreementFileLocalizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AgreementFileLocalizationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AgreementFileLocalizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24select,%24expand}", rawUrl) {
+        public AgreementFileLocalizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property files for agreements

@@ -155,13 +155,13 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// Instantiates a new ApplePushNotificationCertificateRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ApplePushNotificationCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate{?%24select,%24expand}", pathParameters) {
+        public ApplePushNotificationCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ApplePushNotificationCertificateRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ApplePushNotificationCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate{?%24select,%24expand}", rawUrl) {
+        public ApplePushNotificationCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property applePushNotificationCertificate for deviceManagement

@@ -86,13 +86,13 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Item.GraphUser {
         /// Instantiates a new GraphUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24select,%24expand}", pathParameters) {
+        public GraphUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphUserRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24select,%24expand}", rawUrl) {
+        public GraphUserRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user

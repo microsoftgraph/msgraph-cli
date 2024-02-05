@@ -79,13 +79,13 @@ namespace ApiSdk.Security.ThreatIntelligence.SslCertificates.Item.RelatedHosts.I
         /// Instantiates a new HostItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts/{host%2Did}{?%24select,%24expand}", pathParameters) {
+        public HostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts/{host%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HostItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts/{host%2Did}{?%24select,%24expand}", rawUrl) {
+        public HostItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/sslCertificates/{sslCertificate%2Did}/relatedHosts/{host%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The hosts related with this sslCertificate.

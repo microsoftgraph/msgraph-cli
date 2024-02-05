@@ -176,13 +176,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OpenShifts.Item {
         /// Instantiates a new OpenShiftItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OpenShiftItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/openShifts/{openShift%2Did}{?%24select,%24expand}", pathParameters) {
+        public OpenShiftItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/openShifts/{openShift%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new OpenShiftItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OpenShiftItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/openShifts/{openShift%2Did}{?%24select,%24expand}", rawUrl) {
+        public OpenShiftItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/openShifts/{openShift%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an openShift object.

@@ -139,13 +139,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
         /// Instantiates a new DeviceConfigurationDeviceStateSummariesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceConfigurationDeviceStateSummariesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurationDeviceStateSummaries{?%24select,%24expand}", pathParameters) {
+        public DeviceConfigurationDeviceStateSummariesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurationDeviceStateSummaries{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceConfigurationDeviceStateSummariesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceConfigurationDeviceStateSummariesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurationDeviceStateSummaries{?%24select,%24expand}", rawUrl) {
+        public DeviceConfigurationDeviceStateSummariesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurationDeviceStateSummaries{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deviceConfigurationDeviceStateSummaries for deviceManagement

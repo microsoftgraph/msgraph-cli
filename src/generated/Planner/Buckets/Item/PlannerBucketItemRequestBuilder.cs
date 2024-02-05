@@ -191,13 +191,13 @@ namespace ApiSdk.Planner.Buckets.Item {
         /// Instantiates a new PlannerBucketItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlannerBucketItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}{?%24select,%24expand}", pathParameters) {
+        public PlannerBucketItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PlannerBucketItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlannerBucketItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}{?%24select,%24expand}", rawUrl) {
+        public PlannerBucketItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete plannerBucket.

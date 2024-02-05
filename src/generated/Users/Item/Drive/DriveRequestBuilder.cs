@@ -74,13 +74,13 @@ namespace ApiSdk.Users.Item.Drive {
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/drive{?%24select,%24expand}", pathParameters) {
+        public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/drive{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DriveRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/drive{?%24select,%24expand}", rawUrl) {
+        public DriveRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/drive{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.

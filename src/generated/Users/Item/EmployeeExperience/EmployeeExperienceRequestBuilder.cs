@@ -2,6 +2,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivities;
+using ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivitiesWithExternalcourseActivityId;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -128,6 +129,21 @@ namespace ApiSdk.Users.Item.EmployeeExperience {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperienceUser entity.
+        /// </summary>
+        public Command BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand() {
+            var command = new Command("learning-course-activities-with-externalcourse-activity-id");
+            command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperienceUser entity.";
+            var builder = new LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property employeeExperience in users
         /// </summary>
         public Command BuildPatchCommand() {
@@ -180,13 +196,13 @@ namespace ApiSdk.Users.Item.EmployeeExperience {
         /// Instantiates a new EmployeeExperienceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EmployeeExperienceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/employeeExperience{?%24select,%24expand}", pathParameters) {
+        public EmployeeExperienceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/employeeExperience{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EmployeeExperienceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EmployeeExperienceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/employeeExperience{?%24select,%24expand}", rawUrl) {
+        public EmployeeExperienceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/employeeExperience{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property employeeExperience for users

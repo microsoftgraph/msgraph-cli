@@ -79,13 +79,13 @@ namespace ApiSdk.Print.Printers.Item.Shares.Item {
         /// Instantiates a new PrinterShareItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/shares/{printerShare%2Did}{?%24select,%24expand}", pathParameters) {
+        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/shares/{printerShare%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrinterShareItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/shares/{printerShare%2Did}{?%24select,%24expand}", rawUrl) {
+        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/shares/{printerShare%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.

@@ -85,13 +85,13 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Tasks.Item.Definition {
         /// Instantiates a new DefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/tasks/{printTask%2Did}/definition{?%24select,%24expand}", pathParameters) {
+        public DefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/tasks/{printTask%2Did}/definition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/tasks/{printTask%2Did}/definition{?%24select,%24expand}", rawUrl) {
+        public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/tasks/{printTask%2Did}/definition{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The printTaskDefinition that was used to create this task. Read-only.

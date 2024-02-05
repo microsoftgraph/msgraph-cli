@@ -68,13 +68,13 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
         /// Instantiates a new ManagedDeviceOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24select,%24expand}", pathParameters) {
+        public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagedDeviceOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedDeviceOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24select,%24expand}", rawUrl) {
+        public ManagedDeviceOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read properties and relationships of the managedDeviceOverview object.

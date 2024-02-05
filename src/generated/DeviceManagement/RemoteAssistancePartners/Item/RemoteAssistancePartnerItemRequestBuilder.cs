@@ -190,13 +190,13 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// Instantiates a new RemoteAssistancePartnerItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RemoteAssistancePartnerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24select,%24expand}", pathParameters) {
+        public RemoteAssistancePartnerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RemoteAssistancePartnerItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RemoteAssistancePartnerItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24select,%24expand}", rawUrl) {
+        public RemoteAssistancePartnerItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/remoteAssistancePartners/{remoteAssistancePartner%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a remoteAssistancePartner.

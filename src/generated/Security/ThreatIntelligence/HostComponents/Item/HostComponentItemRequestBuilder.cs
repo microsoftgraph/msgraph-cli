@@ -172,13 +172,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item {
         /// Instantiates a new HostComponentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostComponentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostComponents/{hostComponent%2Did}{?%24select,%24expand}", pathParameters) {
+        public HostComponentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostComponents/{hostComponent%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HostComponentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostComponentItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostComponents/{hostComponent%2Did}{?%24select,%24expand}", rawUrl) {
+        public HostComponentItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostComponents/{hostComponent%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property hostComponents for security

@@ -86,11 +86,11 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceAppManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -373,11 +373,11 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Update the properties of a deviceAppManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -509,13 +509,13 @@ namespace ApiSdk.DeviceAppManagement {
         /// Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceAppManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement{?%24select,%24expand}", pathParameters) {
+        public DeviceAppManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceAppManagementRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement{?%24select,%24expand}", rawUrl) {
+        public DeviceAppManagementRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read properties and relationships of the deviceAppManagement object.

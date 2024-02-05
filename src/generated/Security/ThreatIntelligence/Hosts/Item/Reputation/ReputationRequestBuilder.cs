@@ -156,13 +156,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// Instantiates a new ReputationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ReputationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24select,%24expand}", pathParameters) {
+        public ReputationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ReputationRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ReputationRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24select,%24expand}", rawUrl) {
+        public ReputationRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property reputation for security

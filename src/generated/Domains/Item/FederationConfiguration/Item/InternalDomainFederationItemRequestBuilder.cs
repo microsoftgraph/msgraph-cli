@@ -176,13 +176,13 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
         /// Instantiates a new InternalDomainFederationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InternalDomainFederationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24select,%24expand}", pathParameters) {
+        public InternalDomainFederationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InternalDomainFederationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InternalDomainFederationItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24select,%24expand}", rawUrl) {
+        public InternalDomainFederationItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an internalDomainFederation object.

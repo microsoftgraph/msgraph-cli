@@ -88,12 +88,12 @@ namespace ApiSdk.Users.Item.Presence {
             return command;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0" />
+        /// Get a user&apos;s presence information.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Set a presence status message for a user. An optional expiration date and time can be supplied.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0";
+            command.Description = "Get a user's presence information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -236,13 +236,13 @@ namespace ApiSdk.Users.Item.Presence {
         /// Instantiates a new PresenceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/presence{?%24select,%24expand}", pathParameters) {
+        public PresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/presence{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PresenceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PresenceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence{?%24select,%24expand}", rawUrl) {
+        public PresenceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property presence for users
@@ -261,7 +261,7 @@ namespace ApiSdk.Users.Item.Presence {
             return requestInfo;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
+        /// Get a user&apos;s presence information.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +295,7 @@ namespace ApiSdk.Users.Item.Presence {
             return requestInfo;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
+        /// Get a user&apos;s presence information.
         /// </summary>
         public class PresenceRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -79,13 +79,13 @@ namespace ApiSdk.Users.Item.AgreementAcceptances.Item {
         /// Instantiates a new AgreementAcceptanceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AgreementAcceptanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/agreementAcceptances/{agreementAcceptance%2Did}{?%24select,%24expand}", pathParameters) {
+        public AgreementAcceptanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/agreementAcceptances/{agreementAcceptance%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AgreementAcceptanceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AgreementAcceptanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/agreementAcceptances/{agreementAcceptance%2Did}{?%24select,%24expand}", rawUrl) {
+        public AgreementAcceptanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/agreementAcceptances/{agreementAcceptance%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The user&apos;s terms of use acceptance statuses. Read-only. Nullable.

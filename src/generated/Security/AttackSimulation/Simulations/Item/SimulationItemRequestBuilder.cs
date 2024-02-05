@@ -206,13 +206,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// Instantiates a new SimulationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SimulationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24select,%24expand}", pathParameters) {
+        public SimulationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SimulationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SimulationItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24select,%24expand}", rawUrl) {
+        public SimulationItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an attack simulation campaign for a tenant.

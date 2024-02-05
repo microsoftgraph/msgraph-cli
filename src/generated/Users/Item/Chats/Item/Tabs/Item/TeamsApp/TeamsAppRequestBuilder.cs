@@ -85,13 +85,13 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item.TeamsApp {
         /// Instantiates a new TeamsAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24select,%24expand}", pathParameters) {
+        public TeamsAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TeamsAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24select,%24expand}", rawUrl) {
+        public TeamsAppRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/tabs/{teamsTab%2Did}/teamsApp{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The application that is linked to the tab. This can&apos;t be changed after tab creation.

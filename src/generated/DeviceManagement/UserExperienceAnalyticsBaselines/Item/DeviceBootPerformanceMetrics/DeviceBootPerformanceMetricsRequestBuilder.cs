@@ -73,13 +73,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.DeviceBo
         /// Instantiates a new DeviceBootPerformanceMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceBootPerformanceMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24select,%24expand}", pathParameters) {
+        public DeviceBootPerformanceMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceBootPerformanceMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceBootPerformanceMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24select,%24expand}", rawUrl) {
+        public DeviceBootPerformanceMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/deviceBootPerformanceMetrics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The scores and insights for the device boot performance metrics.

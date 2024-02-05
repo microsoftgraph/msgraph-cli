@@ -137,12 +137,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsMicrosoftEdgeApp object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedIOSLobApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-managedioslobapp-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsMicrosoftEdgeApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedIOSLobApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-managedioslobapp-get?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -552,12 +552,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosiPadOSWebClip object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosipadoswebclip-update?view=graph-rest-1.0" />
+        /// Update the properties of a managedAndroidStoreApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-managedandroidstoreapp-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosiPadOSWebClip object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosipadoswebclip-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a managedAndroidStoreApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-managedandroidstoreapp-update?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -605,13 +605,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}", pathParameters) {
+        public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MobileAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}", rawUrl) {
+        public MobileAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a windowsAppX.
@@ -630,7 +630,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsMicrosoftEdgeApp object.
+        /// Read properties and relationships of the managedIOSLobApp object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -646,7 +646,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosiPadOSWebClip object.
+        /// Update the properties of a managedAndroidStoreApp object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -664,7 +664,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsMicrosoftEdgeApp object.
+        /// Read properties and relationships of the managedIOSLobApp object.
         /// </summary>
         public class MobileAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

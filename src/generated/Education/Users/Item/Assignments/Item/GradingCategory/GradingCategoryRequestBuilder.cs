@@ -119,13 +119,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.GradingCategory {
         /// Instantiates a new GradingCategoryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GradingCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/gradingCategory{?%24select,%24expand}", pathParameters) {
+        public GradingCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/gradingCategory{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GradingCategoryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GradingCategoryRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/gradingCategory{?%24select,%24expand}", rawUrl) {
+        public GradingCategoryRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/gradingCategory{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Remove a gradingCategory from an educationAssignment. Only teachers can perform this operation.

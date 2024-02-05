@@ -124,13 +124,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.CreatedByUser {
         /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser{?%24select,%24expand}", pathParameters) {
+        public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser{?%24select,%24expand}", rawUrl) {
+        public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createdByUser{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Identity of the user who created the item. Read-only.

@@ -93,13 +93,13 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders {
         /// Instantiates a new GetAttackSimulationRepeatOffendersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAttackSimulationRepeatOffendersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
+        public GetAttackSimulationRepeatOffendersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GetAttackSimulationRepeatOffendersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAttackSimulationRepeatOffendersRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24top,%24skip,%24search,%24filter,%24count}", rawUrl) {
+        public GetAttackSimulationRepeatOffendersRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getAttackSimulationRepeatOffenders

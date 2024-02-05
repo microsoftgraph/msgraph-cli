@@ -119,13 +119,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.GetAllMessages {
         /// Instantiates a new GetAllMessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/getAllMessages(){?model*,%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
+        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/getAllMessages(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GetAllMessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAllMessagesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/channels/getAllMessages(){?model*,%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", rawUrl) {
+        public GetAllMessagesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/channels/getAllMessages(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getAllMessages
