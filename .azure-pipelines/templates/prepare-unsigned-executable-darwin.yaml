@@ -7,7 +7,7 @@ parameters:
     default: mgc
   - name: certificateName
     type: "string"
-    default: 26745KVN9Q
+    default: ''
   - name: zipName
     type: "string"
     default: unsigned.zip
