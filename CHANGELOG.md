@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](https://github.com/microsoftgraph/msgraph-cli/compare/v1.2.0...v1.3.0) (2024-02-06)
+
+
+### Features
+
+* add national clouds support ([#423](https://github.com/microsoftgraph/msgraph-cli/issues/423)) ([f29cc5c](https://github.com/microsoftgraph/msgraph-cli/commit/f29cc5cc52ebc9e2e67b7605c22722e29db4ba93))
+* **generation:** update request builders and models ([#428](https://github.com/microsoftgraph/msgraph-cli/issues/428)) ([ae339fb](https://github.com/microsoftgraph/msgraph-cli/commit/ae339fbabcd89173042e602b5b6357f3016fd157))
+
 ## [1.2.0] - 2024-01-22
 
 ### Added
