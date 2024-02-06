@@ -39,7 +39,6 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildCheckMemberGroupsNavCommand());
             commands.Add(builder.BuildCheckMemberObjectsNavCommand());
-            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());

@@ -209,11 +209,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         }
         /// <summary>
         /// Retrieve a list of chart objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-list?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

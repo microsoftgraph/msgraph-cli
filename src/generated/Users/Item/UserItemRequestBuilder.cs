@@ -1086,7 +1086,6 @@ namespace ApiSdk.Users.Item {
             var builder = new ManagerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildRefNavCommand());
             foreach (var cmd in execCommands)

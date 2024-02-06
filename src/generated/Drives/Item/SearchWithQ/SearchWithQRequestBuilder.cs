@@ -62,6 +62,11 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
             };
             orderbyOption.IsRequired = false;
             command.AddOption(orderbyOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -78,6 +83,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
@@ -94,6 +100,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (q is not null) requestInfo.PathParameters.Add("q", q);
@@ -119,13 +126,13 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
         /// Instantiates a new SearchWithQRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/search(q='{q}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/search(q='{q}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SearchWithQRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SearchWithQRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/search(q='{q}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public SearchWithQRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/search(q='{q}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function search
@@ -150,6 +157,16 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

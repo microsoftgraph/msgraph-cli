@@ -143,11 +143,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         }
         /// <summary>
         /// Retrieve a list of chartseries objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

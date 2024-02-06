@@ -150,12 +150,12 @@ namespace ApiSdk.Organization {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0" />
+        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the organization objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of organization objects. There's only one organization object in the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -270,7 +270,7 @@ namespace ApiSdk.Organization {
         public OrganizationRequestBuilder(string rawUrl) : base("{+baseurl}/organization{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
+        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -304,7 +304,7 @@ namespace ApiSdk.Organization {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
+        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
         /// </summary>
         public class OrganizationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

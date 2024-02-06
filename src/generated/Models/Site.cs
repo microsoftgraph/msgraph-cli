@@ -71,7 +71,7 @@ namespace ApiSdk.Models {
 #else
         public List<ColumnDefinition> ExternalColumns { get; set; }
 #endif
-        /// <summary>The isPersonalSite property</summary>
+        /// <summary>Identifies whether the site is personal or not. Read-only.</summary>
         public bool? IsPersonalSite { get; set; }
         /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

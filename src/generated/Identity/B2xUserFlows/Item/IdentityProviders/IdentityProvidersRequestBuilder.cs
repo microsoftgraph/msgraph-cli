@@ -27,7 +27,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new IdentityProviderItemRequestBuilder(PathParameters);
-            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }

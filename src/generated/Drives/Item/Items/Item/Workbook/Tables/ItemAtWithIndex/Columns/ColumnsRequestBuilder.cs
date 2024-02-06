@@ -34,6 +34,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -78,6 +82,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -106,6 +111,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -139,6 +145,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -150,6 +160,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -168,6 +179,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},

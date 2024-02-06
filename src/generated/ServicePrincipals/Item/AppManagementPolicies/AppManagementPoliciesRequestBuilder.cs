@@ -27,7 +27,6 @@ namespace ApiSdk.ServicePrincipals.Item.AppManagementPolicies {
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new AppManagementPolicyItemRequestBuilder(PathParameters);
-            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }

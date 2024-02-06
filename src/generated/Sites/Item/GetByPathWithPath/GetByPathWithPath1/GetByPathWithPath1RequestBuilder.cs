@@ -154,6 +154,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var path1Option = new Option<string>("--path1", description: "Usage: path='{path1}'") {
             };
             path1Option.IsRequired = true;
@@ -164,6 +168,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
             command.AddOption(queryOption);
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var path1 = invocationContext.ParseResult.GetValueForOption(path1Option);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -174,6 +179,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
                 var requestInfo = ToGetRequestInformation(q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 if (path1 is not null) requestInfo.PathParameters.Add("path1", path1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},

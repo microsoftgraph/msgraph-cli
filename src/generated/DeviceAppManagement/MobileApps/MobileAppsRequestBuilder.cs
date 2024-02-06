@@ -464,12 +464,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the windowsUniversalAppX objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the windowsMobileMSI objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the windowsUniversalAppX objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the windowsMobileMSI objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -569,7 +569,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public MobileAppsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the windowsUniversalAppX objects.
+        /// List properties and relationships of the windowsMobileMSI objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -603,7 +603,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the windowsUniversalAppX objects.
+        /// List properties and relationships of the windowsMobileMSI objects.
         /// </summary>
         public class MobileAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

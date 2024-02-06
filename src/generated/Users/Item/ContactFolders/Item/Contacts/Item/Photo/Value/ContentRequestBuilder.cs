@@ -36,16 +36,22 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
+            var formatOption = new Option<string>("--format", description: "Format of the content") {
+            };
+            formatOption.IsRequired = false;
+            command.AddOption(formatOption);
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
                 var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
+                var format = invocationContext.ParseResult.GetValueForOption(formatOption);
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(format)) q.QueryParameters.Format = format;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
@@ -132,13 +138,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
         /// Instantiates a new ContentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}/photo/$value", pathParameters) {
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}/photo/$value{?%24format*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ContentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}/photo/$value", rawUrl) {
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}/photo/$value{?%24format*}", rawUrl) {
         }
         /// <summary>
         /// Get media content for the navigation property photo from users
@@ -146,10 +152,10 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -174,6 +180,21 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Photo.Value {
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
+        }
+        /// <summary>
+        /// Get media content for the navigation property photo from users
+        /// </summary>
+        public class ContentRequestBuilderGetQueryParameters {
+            /// <summary>Format of the content</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24format")]
+            public string? Format { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24format")]
+            public string Format { get; set; }
+#endif
         }
     }
 }

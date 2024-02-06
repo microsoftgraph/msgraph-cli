@@ -127,11 +127,11 @@ namespace ApiSdk.Users {
         }
         /// <summary>
         /// Create a new user object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0";
+            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;

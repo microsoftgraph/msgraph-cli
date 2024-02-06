@@ -68,12 +68,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a sharedPCConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-sharedpcconfiguration-delete?view=graph-rest-1.0" />
+        /// Deletes a iosCustomConfiguration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscustomconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a sharedPCConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-sharedpcconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a iosCustomConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscustomconfiguration-delete?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -169,12 +169,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10EnterpriseModernAppManagementConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10enterprisemodernappmanagementconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the iosDeviceFeaturesConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windows10EnterpriseModernAppManagementConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10enterprisemodernappmanagementconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the iosDeviceFeaturesConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-get?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -235,12 +235,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosGeneralDeviceConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosgeneraldeviceconfiguration-update?view=graph-rest-1.0" />
+        /// Update the properties of a iosDeviceFeaturesConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosGeneralDeviceConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosgeneraldeviceconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a iosDeviceFeaturesConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-update?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -339,7 +339,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public DeviceConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a sharedPCConfiguration.
+        /// Deletes a iosCustomConfiguration.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -355,7 +355,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10EnterpriseModernAppManagementConfiguration object.
+        /// Read properties and relationships of the iosDeviceFeaturesConfiguration object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -371,7 +371,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosGeneralDeviceConfiguration object.
+        /// Update the properties of a iosDeviceFeaturesConfiguration object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -389,7 +389,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10EnterpriseModernAppManagementConfiguration object.
+        /// Read properties and relationships of the iosDeviceFeaturesConfiguration object.
         /// </summary>
         public class DeviceConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -36,6 +36,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var nameOption = new Option<string>("--name", description: "Usage: name='{name}'") {
+            };
+            nameOption.IsRequired = true;
+            command.AddOption(nameOption);
             var widthOption = new Option<int?>("--width", description: "Usage: width={width}") {
             };
             widthOption.IsRequired = true;
@@ -52,6 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var name = invocationContext.ParseResult.GetValueForOption(nameOption);
                 var width = invocationContext.ParseResult.GetValueForOption(widthOption);
                 var height = invocationContext.ParseResult.GetValueForOption(heightOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -65,6 +70,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (name is not null) requestInfo.PathParameters.Add("name", name);
                 if (width is not null) requestInfo.PathParameters.Add("width", width);
                 if (height is not null) requestInfo.PathParameters.Add("height", height);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {

@@ -157,7 +157,6 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             command.Description = "Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.";
             var builder = new GradingCategoryRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
             {

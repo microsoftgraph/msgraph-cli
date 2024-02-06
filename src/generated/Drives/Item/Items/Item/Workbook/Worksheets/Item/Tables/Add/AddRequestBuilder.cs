@@ -20,12 +20,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create a new table. The range source address determines the worksheet under which the table will be added. If the table can&apos;t be added (for example, because the address is invalid, or the table would overlap with another table), an error is generated.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecollection-add?view=graph-rest-1.0" />
+        /// Use this API to create a new Table.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbook-post-tables?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create a new table. The range source address determines the worksheet under which the table will be added. If the table can't be added (for example, because the address is invalid, or the table would overlap with another table), an error is generated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecollection-add?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new Table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbook-post-tables?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -94,7 +94,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Add {
         public AddRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/add", rawUrl) {
         }
         /// <summary>
-        /// Create a new table. The range source address determines the worksheet under which the table will be added. If the table can&apos;t be added (for example, because the address is invalid, or the table would overlap with another table), an error is generated.
+        /// Use this API to create a new Table.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

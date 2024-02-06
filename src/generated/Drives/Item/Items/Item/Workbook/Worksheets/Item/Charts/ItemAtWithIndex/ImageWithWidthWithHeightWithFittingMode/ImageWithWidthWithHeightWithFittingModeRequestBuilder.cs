@@ -36,6 +36,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var widthOption = new Option<int?>("--width", description: "Usage: width={width}") {
             };
             widthOption.IsRequired = true;
@@ -56,6 +60,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var width = invocationContext.ParseResult.GetValueForOption(widthOption);
                 var height = invocationContext.ParseResult.GetValueForOption(heightOption);
                 var fittingMode = invocationContext.ParseResult.GetValueForOption(fittingModeOption);
@@ -70,6 +75,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 if (width is not null) requestInfo.PathParameters.Add("width", width);
                 if (height is not null) requestInfo.PathParameters.Add("height", height);
                 if (fittingMode is not null) requestInfo.PathParameters.Add("fittingMode", fittingMode);

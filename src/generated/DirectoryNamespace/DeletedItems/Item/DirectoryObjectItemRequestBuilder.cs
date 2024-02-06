@@ -61,40 +61,6 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0" />
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0";
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
-            };
-            directoryObjectIdOption.IsRequired = true;
-            command.AddOption(directoryObjectIdOption);
-            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var directoryObjectId = invocationContext.ParseResult.GetValueForOption(directoryObjectIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                var requestInfo = ToDeleteRequestInformation(q => {
-                });
-                if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
-                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-get?view=graph-rest-1.0" />
         /// </summary>
@@ -291,22 +257,6 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
-        }
-        /// <summary>
-        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
-#endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            return requestInfo;
         }
         /// <summary>
         /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
