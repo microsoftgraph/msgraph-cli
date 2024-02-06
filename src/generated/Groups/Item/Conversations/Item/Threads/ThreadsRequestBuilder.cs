@@ -209,13 +209,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// Instantiates a new ThreadsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ThreadsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ThreadsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ThreadsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ThreadsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public ThreadsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.

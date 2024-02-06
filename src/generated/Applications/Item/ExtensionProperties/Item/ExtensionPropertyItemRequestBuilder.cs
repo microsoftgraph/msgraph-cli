@@ -175,13 +175,13 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// Instantiates a new ExtensionPropertyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ExtensionPropertyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/extensionProperties/{extensionProperty%2Did}{?%24select,%24expand}", pathParameters) {
+        public ExtensionPropertyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/extensionProperties/{extensionProperty%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ExtensionPropertyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ExtensionPropertyItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/extensionProperties/{extensionProperty%2Did}{?%24select,%24expand}", rawUrl) {
+        public ExtensionPropertyItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/extensionProperties/{extensionProperty%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a directory extension definition represented by an extensionProperty object. You can delete only directory extensions that aren&apos;t synced from on-premises active directory (AD).

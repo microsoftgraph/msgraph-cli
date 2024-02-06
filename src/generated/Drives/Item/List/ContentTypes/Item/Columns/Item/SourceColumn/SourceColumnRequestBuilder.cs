@@ -85,13 +85,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item.SourceColumn {
         /// Instantiates a new SourceColumnRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SourceColumnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/columns/{columnDefinition%2Did}/sourceColumn{?%24select,%24expand}", pathParameters) {
+        public SourceColumnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/columns/{columnDefinition%2Did}/sourceColumn{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SourceColumnRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SourceColumnRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/columns/{columnDefinition%2Did}/sourceColumn{?%24select,%24expand}", rawUrl) {
+        public SourceColumnRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/columns/{columnDefinition%2Did}/sourceColumn{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The source column for the content type column.

@@ -73,13 +73,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// Instantiates a new EnvironmentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EnvironmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests/{accessPackageResourceRequest%2Did}/resource/environment{?%24select,%24expand}", pathParameters) {
+        public EnvironmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests/{accessPackageResourceRequest%2Did}/resource/environment{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EnvironmentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EnvironmentRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests/{accessPackageResourceRequest%2Did}/resource/environment{?%24select,%24expand}", rawUrl) {
+        public EnvironmentRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRequests/{accessPackageResourceRequest%2Did}/resource/environment{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Contains the environment information for the resource. This can be set using either the @odata.bind annotation or the environment&apos;s originId.Supports $expand.

@@ -293,13 +293,13 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Instantiates a new MembersWithLicenseErrorsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MembersWithLicenseErrorsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public MembersWithLicenseErrorsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MembersWithLicenseErrorsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MembersWithLicenseErrorsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public MembersWithLicenseErrorsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.

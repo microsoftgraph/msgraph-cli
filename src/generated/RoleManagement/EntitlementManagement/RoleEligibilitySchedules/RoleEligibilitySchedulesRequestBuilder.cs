@@ -208,13 +208,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
         /// Instantiates a new RoleEligibilitySchedulesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleEligibilitySchedulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RoleEligibilitySchedulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleEligibilitySchedulesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleEligibilitySchedulesRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RoleEligibilitySchedulesRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.

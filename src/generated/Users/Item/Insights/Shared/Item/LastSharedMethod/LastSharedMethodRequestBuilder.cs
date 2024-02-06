@@ -79,13 +79,13 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
         /// Instantiates a new LastSharedMethodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public LastSharedMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24select,%24expand}", pathParameters) {
+        public LastSharedMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new LastSharedMethodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public LastSharedMethodRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24select,%24expand}", rawUrl) {
+        public LastSharedMethodRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get lastSharedMethod from users

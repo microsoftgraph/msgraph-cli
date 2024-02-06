@@ -79,13 +79,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Trigger {
         /// Instantiates a new TriggerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TriggerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}/trigger{?%24select,%24expand}", pathParameters) {
+        public TriggerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}/trigger{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TriggerRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TriggerRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}/trigger{?%24select,%24expand}", rawUrl) {
+        public TriggerRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks/{printTask%2Did}/trigger{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The printTaskTrigger that triggered this task&apos;s execution. Read-only.

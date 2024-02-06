@@ -170,13 +170,13 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo {
         /// Instantiates a new InReplyToRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InReplyToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24select,%24expand}", pathParameters) {
+        public InReplyToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new InReplyToRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InReplyToRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24select,%24expand}", rawUrl) {
+        public InReplyToRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}/inReplyTo{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read-only. Supports $expand.

@@ -193,13 +193,13 @@ namespace ApiSdk.Planner.Tasks {
         /// Instantiates a new TasksRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TasksRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/planner/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of plannertask objects.

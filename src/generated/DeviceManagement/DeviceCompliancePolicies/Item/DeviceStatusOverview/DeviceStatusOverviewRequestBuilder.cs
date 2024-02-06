@@ -157,13 +157,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
         /// Instantiates a new DeviceStatusOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceStatusOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceStatusOverview{?%24select,%24expand}", pathParameters) {
+        public DeviceStatusOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceStatusOverview{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceStatusOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceStatusOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceStatusOverview{?%24select,%24expand}", rawUrl) {
+        public DeviceStatusOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceStatusOverview{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deviceStatusOverview for deviceManagement

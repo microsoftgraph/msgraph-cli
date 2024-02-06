@@ -113,13 +113,13 @@ namespace ApiSdk.Users.Item.GetManagedAppPolicies {
         /// Instantiates a new GetManagedAppPoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetManagedAppPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/getManagedAppPolicies(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
+        public GetManagedAppPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/getManagedAppPolicies(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GetManagedAppPoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetManagedAppPoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/getManagedAppPolicies(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", rawUrl) {
+        public GetManagedAppPoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/getManagedAppPolicies(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Gets app restrictions for a given user.

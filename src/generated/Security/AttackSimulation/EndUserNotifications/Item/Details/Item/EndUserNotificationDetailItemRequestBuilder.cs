@@ -173,13 +173,13 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item.Details.Ite
         /// Instantiates a new EndUserNotificationDetailItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EndUserNotificationDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/endUserNotifications/{endUserNotification%2Did}/details/{endUserNotificationDetail%2Did}{?%24select,%24expand}", pathParameters) {
+        public EndUserNotificationDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/endUserNotifications/{endUserNotification%2Did}/details/{endUserNotificationDetail%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EndUserNotificationDetailItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EndUserNotificationDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/endUserNotifications/{endUserNotification%2Did}/details/{endUserNotificationDetail%2Did}{?%24select,%24expand}", rawUrl) {
+        public EndUserNotificationDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/endUserNotifications/{endUserNotification%2Did}/details/{endUserNotificationDetail%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property details for security

@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
         /// Instantiates a new EnrollmentConfigurationAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EnrollmentConfigurationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}/assignments/{enrollmentConfigurationAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public EnrollmentConfigurationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}/assignments/{enrollmentConfigurationAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EnrollmentConfigurationAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EnrollmentConfigurationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}/assignments/{enrollmentConfigurationAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public EnrollmentConfigurationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}/assignments/{enrollmentConfigurationAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a enrollmentConfigurationAssignment.

@@ -192,13 +192,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// Instantiates a new IdentityUserFlowAttributeAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityUserFlowAttributeAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public IdentityUserFlowAttributeAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityUserFlowAttributeAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityUserFlowAttributeAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public IdentityUserFlowAttributeAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an identityUserFlowAttributeAssignment object.

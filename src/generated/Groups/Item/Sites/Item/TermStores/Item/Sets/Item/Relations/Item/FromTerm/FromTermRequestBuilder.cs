@@ -97,13 +97,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.Relations.Item
         /// Instantiates a new FromTermRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FromTermRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/relations/{relation%2Did}/fromTerm{?%24select,%24expand}", pathParameters) {
+        public FromTermRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/relations/{relation%2Did}/fromTerm{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new FromTermRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FromTermRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/relations/{relation%2Did}/fromTerm{?%24select,%24expand}", rawUrl) {
+        public FromTermRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/relations/{relation%2Did}/fromTerm{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The from [term] of the relation. The term from which the relationship is defined. A null value would indicate the relation is directly with the [set].

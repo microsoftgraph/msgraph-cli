@@ -430,13 +430,13 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// Instantiates a new ChatItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChatItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24select,%24expand}", pathParameters) {
+        public ChatItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ChatItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChatItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24select,%24expand}", rawUrl) {
+        public ChatItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property chats for users

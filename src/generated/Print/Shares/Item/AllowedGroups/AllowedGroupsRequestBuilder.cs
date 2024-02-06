@@ -28,6 +28,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups {
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new GroupItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildRefByIdNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             return new(new(0), commands);
         }
@@ -149,11 +150,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups {
         /// Provides operations to manage the collection of print entities.
         /// </summary>
         public Command BuildRefNavCommand() {
-            var groupIndexer = new GroupItemRequestBuilder(PathParameters);
-            var command = groupIndexer.BuildRefNavCommand();
+            var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of print entities.";
             var builder = new RefRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -166,13 +167,13 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups {
         /// Instantiates a new AllowedGroupsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllowedGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public AllowedGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AllowedGroupsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllowedGroupsRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public AllowedGroupsRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.

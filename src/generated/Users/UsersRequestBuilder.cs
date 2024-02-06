@@ -127,11 +127,11 @@ namespace ApiSdk.Users {
         }
         /// <summary>
         /// Create a new user object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0";
+            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -215,12 +215,12 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0" />
+        /// Retrieve a list of user objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -327,16 +327,16 @@ namespace ApiSdk.Users {
         /// Instantiates a new UsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
+        /// Retrieve a list of user objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -370,7 +370,7 @@ namespace ApiSdk.Users {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
+        /// Retrieve a list of user objects.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

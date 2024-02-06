@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         /// Instantiates a new TermsAndConditionsAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TermsAndConditionsAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/assignments/{termsAndConditionsAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public TermsAndConditionsAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/assignments/{termsAndConditionsAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TermsAndConditionsAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TermsAndConditionsAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/assignments/{termsAndConditionsAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public TermsAndConditionsAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/assignments/{termsAndConditionsAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a termsAndConditionsAssignment.

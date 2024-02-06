@@ -136,13 +136,13 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// Instantiates a new AuthenticationMethodsPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationMethodsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy{?%24select,%24expand}", pathParameters) {
+        public AuthenticationMethodsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationMethodsPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationMethodsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy{?%24select,%24expand}", rawUrl) {
+        public AuthenticationMethodsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get authenticationMethodsPolicy

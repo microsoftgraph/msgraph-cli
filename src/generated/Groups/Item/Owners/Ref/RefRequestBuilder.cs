@@ -20,6 +20,46 @@ namespace ApiSdk.Groups.Item.Owners.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
+        /// Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0" />
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0";
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            var idOption = new Option<string>("--id", description: "The delete Uri") {
+            };
+            idOption.IsRequired = true;
+            command.AddOption(idOption);
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var id = invocationContext.ParseResult.GetValueForOption(idOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(id)) q.QueryParameters.Id = id;
+                });
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
         /// The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,&apos;Role&apos;)&amp;$select=id,displayName&amp;$expand=owners($select=id,userPrincipalName,displayName).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-owners?view=graph-rest-1.0" />
         /// </summary>
@@ -155,13 +195,29 @@ namespace ApiSdk.Groups.Item.Owners.Ref {
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RefRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/owners/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/owners/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
+        }
+        /// <summary>
+        /// Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,&apos;Role&apos;)&amp;$select=id,displayName&amp;$expand=owners($select=id,userPrincipalName,displayName).
@@ -196,6 +252,21 @@ namespace ApiSdk.Groups.Item.Owners.Ref {
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
+        }
+        /// <summary>
+        /// Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
+        /// </summary>
+        public class RefRequestBuilderDeleteQueryParameters {
+            /// <summary>The delete Uri</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%40id")]
+            public string? Id { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%40id")]
+            public string Id { get; set; }
+#endif
         }
         /// <summary>
         /// The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,&apos;Role&apos;)&amp;$select=id,displayName&amp;$expand=owners($select=id,userPrincipalName,displayName).

@@ -192,13 +192,13 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         /// Instantiates a new IdentityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24select,%24expand}", pathParameters) {
+        public IdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24select,%24expand}", rawUrl) {
+        public IdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an identity resource to remove the corresponding member from an externalGroup.

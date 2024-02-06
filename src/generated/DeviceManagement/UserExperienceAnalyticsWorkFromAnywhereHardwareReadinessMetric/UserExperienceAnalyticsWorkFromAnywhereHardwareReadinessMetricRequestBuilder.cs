@@ -137,13 +137,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24select,%24expand}", pathParameters) {
+        public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24select,%24expand}", rawUrl) {
+        public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric for deviceManagement

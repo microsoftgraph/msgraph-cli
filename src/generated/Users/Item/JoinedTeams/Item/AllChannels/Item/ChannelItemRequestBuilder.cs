@@ -85,13 +85,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.AllChannels.Item {
         /// Instantiates a new ChannelItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/allChannels/{channel%2Did}{?%24select,%24expand}", pathParameters) {
+        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ChannelItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/allChannels/{channel%2Did}{?%24select,%24expand}", rawUrl) {
+        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// List of channels either hosted in or shared with the team (incoming channels).

@@ -79,13 +79,13 @@ namespace ApiSdk.Groups.Item.Onenote.Sections.Item.ParentSectionGroup {
         /// Instantiates a new ParentSectionGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentSectionGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/parentSectionGroup{?%24select,%24expand}", pathParameters) {
+        public ParentSectionGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/parentSectionGroup{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ParentSectionGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentSectionGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/parentSectionGroup{?%24select,%24expand}", rawUrl) {
+        public ParentSectionGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/sections/{onenoteSection%2Did}/parentSectionGroup{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The section group that contains the section.  Read-only.

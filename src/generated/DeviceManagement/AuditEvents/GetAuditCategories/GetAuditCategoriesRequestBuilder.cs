@@ -93,13 +93,13 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditCategories {
         /// Instantiates a new GetAuditCategoriesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAuditCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditCategories(){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
+        public GetAuditCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditCategories(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GetAuditCategoriesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAuditCategoriesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/auditEvents/getAuditCategories(){?%24top,%24skip,%24search,%24filter,%24count}", rawUrl) {
+        public GetAuditCategoriesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/auditEvents/getAuditCategories(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getAuditCategories

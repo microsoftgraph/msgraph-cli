@@ -188,13 +188,13 @@ namespace ApiSdk.Education.Me.Rubrics {
         /// Instantiates a new RubricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RubricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/rubrics{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RubricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/rubrics{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RubricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RubricsRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/rubrics{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RubricsRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/rubrics{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of educationRubric objects.

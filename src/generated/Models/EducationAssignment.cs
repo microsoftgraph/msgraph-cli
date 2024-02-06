@@ -106,6 +106,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Moment when the assignment was last modified.  The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
+        /// <summary>The moduleUrl property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ModuleUrl { get; set; }
+#nullable restore
+#else
+        public string ModuleUrl { get; set; }
+#endif
         /// <summary>Optional field to specify the URL of the channel to post the assignment publish notification. If not specified or null, defaults to the General channel. This field only applies to assignments where the assignTo value is educationAssignmentClassRecipient. Updating the notificationChannelUrl isn&apos;t allowed after the assignment has been published.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -189,6 +197,7 @@ namespace ApiSdk.Models {
                 {"instructions", n => { Instructions = n.GetObjectValue<EducationItemBody>(EducationItemBody.CreateFromDiscriminatorValue); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"moduleUrl", n => { ModuleUrl = n.GetStringValue(); } },
                 {"notificationChannelUrl", n => { NotificationChannelUrl = n.GetStringValue(); } },
                 {"resources", n => { Resources = n.GetCollectionOfObjectValues<EducationAssignmentResource>(EducationAssignmentResource.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"resourcesFolderUrl", n => { ResourcesFolderUrl = n.GetStringValue(); } },
@@ -218,6 +227,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<EducationAssignmentGradeType>("grading", Grading);
             writer.WriteObjectValue<EducationGradingCategory>("gradingCategory", GradingCategory);
             writer.WriteObjectValue<EducationItemBody>("instructions", Instructions);
+            writer.WriteStringValue("moduleUrl", ModuleUrl);
             writer.WriteStringValue("notificationChannelUrl", NotificationChannelUrl);
             writer.WriteCollectionOfObjectValues<EducationAssignmentResource>("resources", Resources);
             writer.WriteObjectValue<EducationRubric>("rubric", Rubric);

@@ -158,13 +158,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationContextClassReferenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24select,%24expand}", pathParameters) {
+        public AuthenticationContextClassReferenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationContextClassReferenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24select,%24expand}", rawUrl) {
+        public AuthenticationContextClassReferenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.

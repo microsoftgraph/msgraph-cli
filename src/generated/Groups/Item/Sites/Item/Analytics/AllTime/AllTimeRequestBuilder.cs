@@ -80,13 +80,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.AllTime {
         /// Instantiates a new AllTimeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/allTime{?%24select,%24expand}", pathParameters) {
+        public AllTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/allTime{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AllTimeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllTimeRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/allTime{?%24select,%24expand}", rawUrl) {
+        public AllTimeRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/allTime{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.

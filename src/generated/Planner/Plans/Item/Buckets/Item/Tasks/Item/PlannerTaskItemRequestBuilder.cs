@@ -263,13 +263,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item {
         /// Instantiates a new PlannerTaskItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlannerTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}{?%24select,%24expand}", pathParameters) {
+        public PlannerTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PlannerTaskItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlannerTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}{?%24select,%24expand}", rawUrl) {
+        public PlannerTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property tasks for planner

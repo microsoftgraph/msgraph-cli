@@ -182,13 +182,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
         /// Instantiates a new AssignmentSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignmentSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings{?%24select,%24expand}", pathParameters) {
+        public AssignmentSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AssignmentSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignmentSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings{?%24select,%24expand}", rawUrl) {
+        public AssignmentSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentSettings{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property assignmentSettings for education

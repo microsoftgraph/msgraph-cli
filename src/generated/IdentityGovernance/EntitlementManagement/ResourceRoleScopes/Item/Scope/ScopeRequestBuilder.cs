@@ -181,13 +181,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Ite
         /// Instantiates a new ScopeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24select,%24expand}", pathParameters) {
+        public ScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ScopeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ScopeRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24select,%24expand}", rawUrl) {
+        public ScopeRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}/scope{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property scope for identityGovernance

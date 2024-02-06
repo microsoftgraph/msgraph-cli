@@ -79,13 +79,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse.Item {
         /// Instantiates a new PassiveDnsRecordItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PassiveDnsRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDnsReverse/{passiveDnsRecord%2Did}{?%24select,%24expand}", pathParameters) {
+        public PassiveDnsRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDnsReverse/{passiveDnsRecord%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PassiveDnsRecordItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PassiveDnsRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDnsReverse/{passiveDnsRecord%2Did}{?%24select,%24expand}", rawUrl) {
+        public PassiveDnsRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDnsReverse/{passiveDnsRecord%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Reverse passive DNS retrieval about this host.

@@ -90,13 +90,13 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// Instantiates a new ApplicationTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ApplicationTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24select,%24expand}", pathParameters) {
+        public ApplicationTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ApplicationTemplateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ApplicationTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24select,%24expand}", rawUrl) {
+        public ApplicationTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.

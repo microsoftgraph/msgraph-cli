@@ -2,6 +2,8 @@
 using ApiSdk.Models.CallRecords;
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.IdentityGovernance;
+using ApiSdk.Models.Partners.Billing;
+using ApiSdk.Models.Partners;
 using ApiSdk.Models.Security;
 using ApiSdk.Models.TermStore;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -275,6 +277,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.educationFeedbackOutcome" => new EducationFeedbackOutcome(),
                 "#microsoft.graph.educationFeedbackResourceOutcome" => new EducationFeedbackResourceOutcome(),
                 "#microsoft.graph.educationGradingCategory" => new EducationGradingCategory(),
+                "#microsoft.graph.educationModule" => new EducationModule(),
+                "#microsoft.graph.educationModuleResource" => new EducationModuleResource(),
                 "#microsoft.graph.educationOrganization" => new EducationOrganization(),
                 "#microsoft.graph.educationOutcome" => new EducationOutcome(),
                 "#microsoft.graph.educationPointsOutcome" => new EducationPointsOutcome(),
@@ -484,6 +488,16 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.participant" => new Participant(),
                 "#microsoft.graph.participantJoiningNotification" => new ParticipantJoiningNotification(),
                 "#microsoft.graph.participantLeftNotification" => new ParticipantLeftNotification(),
+                "#microsoft.graph.partners" => new ApiSdk.Models.Partners.Partners(),
+                "#microsoft.graph.partners.billing.azureUsage" => new AzureUsage(),
+                "#microsoft.graph.partners.billing.billedUsage" => new BilledUsage(),
+                "#microsoft.graph.partners.billing.billing" => new ApiSdk.Models.Partners.Billing.Billing(),
+                "#microsoft.graph.partners.billing.exportSuccessOperation" => new ExportSuccessOperation(),
+                "#microsoft.graph.partners.billing.failedOperation" => new FailedOperation(),
+                "#microsoft.graph.partners.billing.manifest" => new Manifest(),
+                "#microsoft.graph.partners.billing.operation" => new ApiSdk.Models.Partners.Billing.Operation(),
+                "#microsoft.graph.partners.billing.runningOperation" => new RunningOperation(),
+                "#microsoft.graph.partners.billing.unbilledUsage" => new UnbilledUsage(),
                 "#microsoft.graph.passwordAuthenticationMethod" => new PasswordAuthenticationMethod(),
                 "#microsoft.graph.payload" => new Payload(),
                 "#microsoft.graph.peopleAdminSettings" => new PeopleAdminSettings(),

@@ -191,13 +191,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
         /// Instantiates a new DeviceInstallStateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceInstallStateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}/deviceStates/{deviceInstallState%2Did}{?%24select,%24expand}", pathParameters) {
+        public DeviceInstallStateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}/deviceStates/{deviceInstallState%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceInstallStateItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceInstallStateItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}/deviceStates/{deviceInstallState%2Did}{?%24select,%24expand}", rawUrl) {
+        public DeviceInstallStateItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}/deviceStates/{deviceInstallState%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deviceStates for deviceAppManagement

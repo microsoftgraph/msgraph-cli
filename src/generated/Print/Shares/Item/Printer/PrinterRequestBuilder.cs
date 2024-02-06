@@ -73,13 +73,13 @@ namespace ApiSdk.Print.Shares.Item.Printer {
         /// Instantiates a new PrinterRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrinterRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/printer{?%24select,%24expand}", pathParameters) {
+        public PrinterRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/printer{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrinterRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrinterRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/printer{?%24select,%24expand}", rawUrl) {
+        public PrinterRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/printer{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The printer that this printer share is related to.

@@ -265,13 +265,13 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// Instantiates a new ConditionalAccessRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConditionalAccessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess{?%24select,%24expand}", pathParameters) {
+        public ConditionalAccessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ConditionalAccessRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConditionalAccessRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess{?%24select,%24expand}", rawUrl) {
+        public ConditionalAccessRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property conditionalAccess for identity

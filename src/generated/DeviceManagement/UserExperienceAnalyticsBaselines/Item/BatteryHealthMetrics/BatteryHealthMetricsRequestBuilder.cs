@@ -73,13 +73,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BatteryH
         /// Instantiates a new BatteryHealthMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BatteryHealthMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/batteryHealthMetrics{?%24select,%24expand}", pathParameters) {
+        public BatteryHealthMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/batteryHealthMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new BatteryHealthMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BatteryHealthMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/batteryHealthMetrics{?%24select,%24expand}", rawUrl) {
+        public BatteryHealthMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/batteryHealthMetrics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The scores and insights for the battery health metrics.

@@ -181,13 +181,13 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         /// Instantiates a new AppRoleAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppRoleAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24select,%24expand}", pathParameters) {
+        public AppRoleAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppRoleAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppRoleAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24select,%24expand}", rawUrl) {
+        public AppRoleAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes an appRoleAssignment that a group has been granted.

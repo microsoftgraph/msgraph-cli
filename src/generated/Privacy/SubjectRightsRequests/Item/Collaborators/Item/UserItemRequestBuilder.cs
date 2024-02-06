@@ -24,7 +24,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item {
         /// <summary>
         /// Collection of users who can collaborate on the request.
         /// </summary>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Collection of users who can collaborate on the request.";
@@ -119,19 +119,19 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Collaborators.Item {
         /// Instantiates a new UserItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators/{user%2Did}{?%24select,%24expand}", pathParameters) {
+        public UserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators/{user%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserItemRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators/{user%2Did}{?%24select,%24expand}", rawUrl) {
+        public UserItemRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/collaborators/{user%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Collection of users who can collaborate on the request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {

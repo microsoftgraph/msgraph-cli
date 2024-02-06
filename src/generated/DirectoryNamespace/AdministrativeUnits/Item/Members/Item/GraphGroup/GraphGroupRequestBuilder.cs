@@ -86,13 +86,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphG
         /// Instantiates a new GraphGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.group{?%24select,%24expand}", pathParameters) {
+        public GraphGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.group{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphGroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphGroupRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.group{?%24select,%24expand}", rawUrl) {
+        public GraphGroupRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.group{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group

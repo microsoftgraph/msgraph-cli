@@ -192,13 +192,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Instantiates a new AppLogCollectionRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppLogCollectionRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24select,%24expand}", pathParameters) {
+        public AppLogCollectionRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppLogCollectionRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppLogCollectionRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24select,%24expand}", rawUrl) {
+        public AppLogCollectionRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a appLogCollectionRequest.

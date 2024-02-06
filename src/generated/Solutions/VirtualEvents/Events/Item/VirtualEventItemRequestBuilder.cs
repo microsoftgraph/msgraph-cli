@@ -181,13 +181,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item {
         /// Instantiates a new VirtualEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public VirtualEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24select,%24expand}", pathParameters) {
+        public VirtualEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new VirtualEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public VirtualEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24select,%24expand}", rawUrl) {
+        public VirtualEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property events for solutions

@@ -187,13 +187,13 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser {
         /// Instantiates a new MonthlyPrintUsageByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MonthlyPrintUsageByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/monthlyPrintUsageByUser{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public MonthlyPrintUsageByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/monthlyPrintUsageByUser{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MonthlyPrintUsageByUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MonthlyPrintUsageByUserRequestBuilder(string rawUrl) : base("{+baseurl}/reports/monthlyPrintUsageByUser{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public MonthlyPrintUsageByUserRequestBuilder(string rawUrl) : base("{+baseurl}/reports/monthlyPrintUsageByUser{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of monthly print usage summaries, grouped by user.

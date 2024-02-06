@@ -183,13 +183,13 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         /// Instantiates a new HomeRealmDiscoveryPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HomeRealmDiscoveryPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24select,%24expand}", pathParameters) {
+        public HomeRealmDiscoveryPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new HomeRealmDiscoveryPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HomeRealmDiscoveryPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24select,%24expand}", rawUrl) {
+        public HomeRealmDiscoveryPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a homeRealmDiscoveryPolicy object.

@@ -58,7 +58,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         /// Create a new subjectRightsRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0" />
         /// </summary>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new subjectRightsRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0";
@@ -103,7 +103,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         /// Get a list of subjectRightsRequest objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0" />
         /// </summary>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of subjectRightsRequest objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0";
@@ -197,19 +197,19 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         /// Instantiates a new SubjectRightsRequestsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SubjectRightsRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public SubjectRightsRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SubjectRightsRequestsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SubjectRightsRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public SubjectRightsRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of subjectRightsRequest objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubjectRightsRequestsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
@@ -227,7 +227,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
+        [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {

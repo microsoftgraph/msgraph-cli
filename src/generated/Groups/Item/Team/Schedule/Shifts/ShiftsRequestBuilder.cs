@@ -193,13 +193,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
         /// Instantiates a new ShiftsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ShiftsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/shifts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public ShiftsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/shifts{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ShiftsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ShiftsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/shifts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", rawUrl) {
+        public ShiftsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/shifts{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get the list of shift instances in a schedule.

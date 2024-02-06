@@ -54,12 +54,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedAppProtection object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-get?view=graph-rest-1.0";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
@@ -172,13 +172,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         /// Instantiates a new ManagedAppPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedAppPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}{?%24select,%24expand}", pathParameters) {
+        public ManagedAppPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ManagedAppPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedAppPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}{?%24select,%24expand}", rawUrl) {
+        public ManagedAppPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property managedAppPolicies for deviceAppManagement
@@ -197,7 +197,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppConfiguration object.
+        /// Read properties and relationships of the managedAppProtection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +231,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppConfiguration object.
+        /// Read properties and relationships of the managedAppProtection object.
         /// </summary>
         public class ManagedAppPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

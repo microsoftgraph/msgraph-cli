@@ -163,13 +163,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview {
         /// Instantiates a new UserExperienceAnalyticsAppHealthOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserExperienceAnalyticsAppHealthOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview{?%24select,%24expand}", pathParameters) {
+        public UserExperienceAnalyticsAppHealthOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UserExperienceAnalyticsAppHealthOverviewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserExperienceAnalyticsAppHealthOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview{?%24select,%24expand}", rawUrl) {
+        public UserExperienceAnalyticsAppHealthOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsAppHealthOverview for deviceManagement

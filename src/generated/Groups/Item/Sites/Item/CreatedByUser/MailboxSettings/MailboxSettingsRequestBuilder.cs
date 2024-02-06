@@ -134,13 +134,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.CreatedByUser.MailboxSettings {
         /// Instantiates a new MailboxSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MailboxSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/createdByUser/mailboxSettings{?%24select,%24expand}", pathParameters) {
+        public MailboxSettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/createdByUser/mailboxSettings{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new MailboxSettingsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MailboxSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/createdByUser/mailboxSettings{?%24select,%24expand}", rawUrl) {
+        public MailboxSettingsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/createdByUser/mailboxSettings{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.

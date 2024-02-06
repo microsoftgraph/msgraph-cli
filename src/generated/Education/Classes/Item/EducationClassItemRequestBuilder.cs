@@ -5,6 +5,7 @@ using ApiSdk.Education.Classes.Item.AssignmentSettings;
 using ApiSdk.Education.Classes.Item.Assignments;
 using ApiSdk.Education.Classes.Item.Group;
 using ApiSdk.Education.Classes.Item.Members;
+using ApiSdk.Education.Classes.Item.Modules;
 using ApiSdk.Education.Classes.Item.Schools;
 using ApiSdk.Education.Classes.Item.Teachers;
 using ApiSdk.Models.ODataErrors;
@@ -251,6 +252,31 @@ namespace ApiSdk.Education.Classes.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the modules property of the microsoft.graph.educationClass entity.
+        /// </summary>
+        public Command BuildModulesNavCommand() {
+            var command = new Command("modules");
+            command.Description = "Provides operations to manage the modules property of the microsoft.graph.educationClass entity.";
+            var builder = new ModulesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the properties of an educationClass object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-update?view=graph-rest-1.0" />
         /// </summary>
@@ -353,13 +379,13 @@ namespace ApiSdk.Education.Classes.Item {
         /// Instantiates a new EducationClassItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24select,%24expand}", pathParameters) {
+        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EducationClassItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24select,%24expand}", rawUrl) {
+        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.

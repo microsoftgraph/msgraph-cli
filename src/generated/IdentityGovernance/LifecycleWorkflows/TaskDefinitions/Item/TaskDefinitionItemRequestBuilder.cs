@@ -74,13 +74,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
         /// Instantiates a new TaskDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TaskDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24select,%24expand}", pathParameters) {
+        public TaskDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TaskDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TaskDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24select,%24expand}", rawUrl) {
+        public TaskDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read the details of a built-in workflow task.

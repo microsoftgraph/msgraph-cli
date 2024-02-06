@@ -206,13 +206,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleIn
         /// Instantiates a new EligibilityScheduleInstancesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EligibilityScheduleInstancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleInstances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public EligibilityScheduleInstancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleInstances{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EligibilityScheduleInstancesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EligibilityScheduleInstancesRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleInstances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public EligibilityScheduleInstancesRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleInstances{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the privilegedAccessGroupEligibilityScheduleInstance objects and their properties.

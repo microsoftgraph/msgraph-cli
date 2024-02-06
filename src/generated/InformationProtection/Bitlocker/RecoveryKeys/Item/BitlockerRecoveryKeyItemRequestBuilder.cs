@@ -74,13 +74,13 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
         /// Instantiates a new BitlockerRecoveryKeyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BitlockerRecoveryKeyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24select,%24expand}", pathParameters) {
+        public BitlockerRecoveryKeyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new BitlockerRecoveryKeyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BitlockerRecoveryKeyItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24select,%24expand}", rawUrl) {
+        public BitlockerRecoveryKeyItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.

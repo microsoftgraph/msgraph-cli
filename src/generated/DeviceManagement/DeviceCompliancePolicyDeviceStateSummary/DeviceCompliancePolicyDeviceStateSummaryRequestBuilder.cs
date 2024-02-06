@@ -139,13 +139,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// Instantiates a new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24select,%24expand}", pathParameters) {
+        public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24select,%24expand}", rawUrl) {
+        public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deviceCompliancePolicyDeviceStateSummary for deviceManagement

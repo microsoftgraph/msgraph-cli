@@ -151,13 +151,13 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
         /// Instantiates a new WindowsHelloForBusinessMethodsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsHelloForBusinessMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public WindowsHelloForBusinessMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WindowsHelloForBusinessMethodsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsHelloForBusinessMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public WindowsHelloForBusinessMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.

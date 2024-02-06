@@ -183,13 +183,13 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         /// Instantiates a new DetectedAppItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DetectedAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}{?%24select,%24expand}", pathParameters) {
+        public DetectedAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DetectedAppItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DetectedAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}{?%24select,%24expand}", rawUrl) {
+        public DetectedAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a detectedApp.

@@ -136,13 +136,13 @@ namespace ApiSdk.Privacy {
         /// Instantiates a new PrivacyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrivacyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy{?%24select,%24expand}", pathParameters) {
+        public PrivacyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PrivacyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrivacyRequestBuilder(string rawUrl) : base("{+baseurl}/privacy{?%24select,%24expand}", rawUrl) {
+        public PrivacyRequestBuilder(string rawUrl) : base("{+baseurl}/privacy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get privacy

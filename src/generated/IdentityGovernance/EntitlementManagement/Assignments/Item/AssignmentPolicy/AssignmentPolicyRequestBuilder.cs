@@ -73,13 +73,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
         /// Instantiates a new AssignmentPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignmentPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24select,%24expand}", pathParameters) {
+        public AssignmentPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AssignmentPolicyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignmentPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24select,%24expand}", rawUrl) {
+        public AssignmentPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.

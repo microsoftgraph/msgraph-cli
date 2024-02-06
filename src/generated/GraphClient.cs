@@ -933,6 +933,7 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildLearningCourseActivitiesNavCommand());
+            nonExecCommands.Add(builder.BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand());
             nonExecCommands.Add(builder.BuildLearningProvidersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
@@ -1608,6 +1609,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentTopFailuresWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildMonthlyPrintUsageByPrinterNavCommand());
             nonExecCommands.Add(builder.BuildMonthlyPrintUsageByUserNavCommand());
+            nonExecCommands.Add(builder.BuildPartnersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSecurityNavCommand());
             foreach (var cmd in execCommands)

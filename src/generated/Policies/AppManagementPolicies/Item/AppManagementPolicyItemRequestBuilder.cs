@@ -183,13 +183,13 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         /// Instantiates a new AppManagementPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppManagementPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24select,%24expand}", pathParameters) {
+        public AppManagementPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AppManagementPolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppManagementPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24select,%24expand}", rawUrl) {
+        public AppManagementPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an appManagementPolicy object.

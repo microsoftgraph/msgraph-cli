@@ -173,13 +173,13 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// Instantiates a new RetentionEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RetentionEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24select,%24expand}", pathParameters) {
+        public RetentionEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RetentionEventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RetentionEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24select,%24expand}", rawUrl) {
+        public RetentionEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a retentionEvent object.

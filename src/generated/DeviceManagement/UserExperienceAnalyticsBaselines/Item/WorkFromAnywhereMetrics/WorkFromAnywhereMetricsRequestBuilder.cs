@@ -73,13 +73,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.WorkFrom
         /// Instantiates a new WorkFromAnywhereMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkFromAnywhereMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/workFromAnywhereMetrics{?%24select,%24expand}", pathParameters) {
+        public WorkFromAnywhereMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/workFromAnywhereMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new WorkFromAnywhereMetricsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkFromAnywhereMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/workFromAnywhereMetrics{?%24select,%24expand}", rawUrl) {
+        public WorkFromAnywhereMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/workFromAnywhereMetrics{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The scores and insights for the work from anywhere metrics.

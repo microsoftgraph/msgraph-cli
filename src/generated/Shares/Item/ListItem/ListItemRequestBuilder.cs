@@ -73,13 +73,13 @@ namespace ApiSdk.Shares.Item.ListItem {
         /// Instantiates a new ListItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/listItem{?%24select,%24expand}", pathParameters) {
+        public ListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/listItem{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ListItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ListItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/listItem{?%24select,%24expand}", rawUrl) {
+        public ListItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/listItem{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Used to access the underlying listItem

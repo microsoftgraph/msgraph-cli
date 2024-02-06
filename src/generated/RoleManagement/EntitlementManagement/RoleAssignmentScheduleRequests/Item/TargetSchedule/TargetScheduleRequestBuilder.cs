@@ -73,13 +73,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// Instantiates a new TargetScheduleRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TargetScheduleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/targetSchedule{?%24select,%24expand}", pathParameters) {
+        public TargetScheduleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/targetSchedule{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TargetScheduleRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TargetScheduleRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/targetSchedule{?%24select,%24expand}", rawUrl) {
+        public TargetScheduleRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/targetSchedule{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The schedule for an eligible role assignment that is referenced through the targetScheduleId property. Supports $expand.

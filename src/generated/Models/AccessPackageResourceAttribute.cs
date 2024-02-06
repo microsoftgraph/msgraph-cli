@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class AccessPackageResourceAttribute : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The destination property</summary>
+        /// <summary>Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AccessPackageResourceAttributeDestination? Destination { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public AccessPackageResourceAttributeDestination Destination { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>The name of the attribute in the end system. If the destination is accessPackageUserDirectoryAttributeStore, then a user property such as jobTitle or a directory schema extension for the user object type, such as extension2b676109c7c74ae2b41549205f1947edpersonalTitle.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The source property</summary>
+        /// <summary>Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled, currently a accessPackageResourceAttributeQuestion type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AccessPackageResourceAttributeSource? Source { get; set; }

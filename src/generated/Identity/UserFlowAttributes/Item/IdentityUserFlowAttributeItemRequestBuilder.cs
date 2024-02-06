@@ -158,13 +158,13 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
         /// Instantiates a new IdentityUserFlowAttributeItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityUserFlowAttributeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/userFlowAttributes/{identityUserFlowAttribute%2Did}{?%24select,%24expand}", pathParameters) {
+        public IdentityUserFlowAttributeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/userFlowAttributes/{identityUserFlowAttribute%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new IdentityUserFlowAttributeItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityUserFlowAttributeItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/userFlowAttributes/{identityUserFlowAttribute%2Did}{?%24select,%24expand}", rawUrl) {
+        public IdentityUserFlowAttributeItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/userFlowAttributes/{identityUserFlowAttribute%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a custom identityUserFlowAttribute.

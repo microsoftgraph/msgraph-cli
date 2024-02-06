@@ -85,13 +85,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns.Item {
         /// Instantiates a new ColumnDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ColumnDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns/{columnDefinition%2Did}{?%24select,%24expand}", pathParameters) {
+        public ColumnDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns/{columnDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ColumnDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ColumnDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns/{columnDefinition%2Did}{?%24select,%24expand}", rawUrl) {
+        public ColumnDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns/{columnDefinition%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get externalColumns from groups

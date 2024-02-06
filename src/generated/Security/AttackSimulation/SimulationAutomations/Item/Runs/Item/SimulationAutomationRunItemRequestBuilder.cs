@@ -173,13 +173,13 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item 
         /// Instantiates a new SimulationAutomationRunItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SimulationAutomationRunItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs/{simulationAutomationRun%2Did}{?%24select,%24expand}", pathParameters) {
+        public SimulationAutomationRunItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs/{simulationAutomationRun%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SimulationAutomationRunItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SimulationAutomationRunItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs/{simulationAutomationRun%2Did}{?%24select,%24expand}", rawUrl) {
+        public SimulationAutomationRunItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs/{simulationAutomationRun%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property runs for security

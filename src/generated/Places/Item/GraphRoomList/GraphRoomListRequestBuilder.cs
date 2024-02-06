@@ -99,13 +99,13 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// Instantiates a new GraphRoomListRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphRoomListRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24select,%24expand}", pathParameters) {
+        public GraphRoomListRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphRoomListRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphRoomListRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24select,%24expand}", rawUrl) {
+        public GraphRoomListRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList

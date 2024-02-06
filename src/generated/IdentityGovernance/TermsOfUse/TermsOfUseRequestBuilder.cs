@@ -189,13 +189,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse {
         /// Instantiates a new TermsOfUseRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TermsOfUseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse{?%24select,%24expand}", pathParameters) {
+        public TermsOfUseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TermsOfUseRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TermsOfUseRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse{?%24select,%24expand}", rawUrl) {
+        public TermsOfUseRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property termsOfUse for identityGovernance

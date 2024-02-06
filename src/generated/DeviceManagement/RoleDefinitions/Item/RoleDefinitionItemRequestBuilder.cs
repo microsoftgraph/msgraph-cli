@@ -106,12 +106,12 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0" />
+        /// Update the properties of a roleDefinition object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceAndAppManagementRoleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a roleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0";
             var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
@@ -184,13 +184,13 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// Instantiates a new RoleDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24select,%24expand}", pathParameters) {
+        public RoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24select,%24expand}", rawUrl) {
+        public RoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a deviceAndAppManagementRoleDefinition.
@@ -225,7 +225,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
+        /// Update the properties of a roleDefinition object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

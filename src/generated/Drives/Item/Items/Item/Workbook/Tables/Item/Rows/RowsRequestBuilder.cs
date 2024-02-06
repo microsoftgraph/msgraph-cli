@@ -136,8 +136,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             command.Description = "Provides operations to call the itemAt method.";
             var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildRangeNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -145,11 +151,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         }
         /// <summary>
         /// Retrieve a list of tablerow objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-list-rows?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-list-rows?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -258,13 +264,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         /// Instantiates a new RowsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/rows{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public RowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/rows{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RowsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RowsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/rows{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public RowsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/rows{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve a list of tablerow objects.

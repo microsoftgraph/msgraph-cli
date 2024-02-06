@@ -73,13 +73,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstanc
         /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/roleDefinition{?%24select,%24expand}", pathParameters) {
+        public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/roleDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/roleDefinition{?%24select,%24expand}", rawUrl) {
+        public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/roleDefinition{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Detailed information for the roleDefinition object that is referenced through the roleDefinitionId property.

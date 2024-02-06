@@ -73,13 +73,13 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost {
         /// Instantiates a new ParentHostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentHostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24select,%24expand}", pathParameters) {
+        public ParentHostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ParentHostRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentHostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24select,%24expand}", rawUrl) {
+        public ParentHostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The parent host related to this passiveDnsRecord entry. Generally, this is the value that you can search to discover this passiveDnsRecord value.

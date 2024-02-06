@@ -163,13 +163,13 @@ namespace ApiSdk.Security.Triggers {
         /// Instantiates a new TriggersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TriggersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers{?%24select,%24expand}", pathParameters) {
+        public TriggersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TriggersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TriggersRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers{?%24select,%24expand}", rawUrl) {
+        public TriggersRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property triggers for security

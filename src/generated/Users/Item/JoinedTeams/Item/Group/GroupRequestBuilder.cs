@@ -101,13 +101,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group {
         /// Instantiates a new GroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24select,%24expand}", pathParameters) {
+        public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GroupRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24select,%24expand}", rawUrl) {
+        public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get group from users

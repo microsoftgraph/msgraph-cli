@@ -155,13 +155,13 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Deploymen
         /// Instantiates a new DeploymentSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeploymentSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}/deploymentSummary{?%24select,%24expand}", pathParameters) {
+        public DeploymentSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}/deploymentSummary{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeploymentSummaryRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeploymentSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}/deploymentSummary{?%24select,%24expand}", rawUrl) {
+        public DeploymentSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}/deploymentSummary{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property deploymentSummary for deviceAppManagement

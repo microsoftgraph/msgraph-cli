@@ -175,13 +175,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
         /// Instantiates a new EducationCategoryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentCategories/{educationCategory%2Did}{?%24select,%24expand}", pathParameters) {
+        public EducationCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentCategories/{educationCategory%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EducationCategoryItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentCategories/{educationCategory%2Did}{?%24select,%24expand}", rawUrl) {
+        public EducationCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentCategories/{educationCategory%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete an existing category. Only teachers can perform this operation.

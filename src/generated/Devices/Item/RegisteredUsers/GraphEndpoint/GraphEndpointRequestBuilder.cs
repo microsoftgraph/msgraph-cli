@@ -144,13 +144,13 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.GraphEndpoint {
         /// Instantiates a new GraphEndpointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphEndpointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/graph.endpoint{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public GraphEndpointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/graph.endpoint{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphEndpointRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphEndpointRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/graph.endpoint{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public GraphEndpointRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/graph.endpoint{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get the items of type microsoft.graph.endpoint in the microsoft.graph.directoryObject collection

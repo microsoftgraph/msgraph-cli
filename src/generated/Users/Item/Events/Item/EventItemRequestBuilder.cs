@@ -383,13 +383,13 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24select,%24expand}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24select,%24expand}", rawUrl) {
+        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees.

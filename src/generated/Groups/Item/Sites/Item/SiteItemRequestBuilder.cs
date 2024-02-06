@@ -255,8 +255,33 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             command.Description = "Provides operations to call the getByPath method.";
             var builder = new GetByPathWithPathRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAnalyticsNavCommand());
+            nonExecCommands.Add(builder.BuildColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildContentTypesNavCommand());
+            nonExecCommands.Add(builder.BuildCreatedByUserNavCommand());
+            nonExecCommands.Add(builder.BuildDriveNavCommand());
+            nonExecCommands.Add(builder.BuildDrivesNavCommand());
+            nonExecCommands.Add(builder.BuildExternalColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            nonExecCommands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());
+            nonExecCommands.Add(builder.BuildGetApplicableContentTypesForListWithListIdRbCommand());
+            nonExecCommands.Add(builder.BuildGetByPathWithPath1RbCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildItemsNavCommand());
+            nonExecCommands.Add(builder.BuildLastModifiedByUserNavCommand());
+            nonExecCommands.Add(builder.BuildListsNavCommand());
+            nonExecCommands.Add(builder.BuildOnenoteNavCommand());
+            nonExecCommands.Add(builder.BuildOperationsNavCommand());
+            nonExecCommands.Add(builder.BuildPermissionsNavCommand());
+            nonExecCommands.Add(builder.BuildSitesNavCommand());
+            nonExecCommands.Add(builder.BuildTermStoreNavCommand());
+            nonExecCommands.Add(builder.BuildTermStoresNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -599,13 +624,13 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// Instantiates a new SiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}{?%24select,%24expand}", pathParameters) {
+        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new SiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}{?%24select,%24expand}", rawUrl) {
+        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.

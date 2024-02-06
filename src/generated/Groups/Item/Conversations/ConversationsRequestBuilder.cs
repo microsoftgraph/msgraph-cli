@@ -49,12 +49,12 @@ namespace ApiSdk.Groups.Item.Conversations {
             return command;
         }
         /// <summary>
-        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. The table in the Permissions section lists the resources that support open extensions.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0" />
+        /// Use reply thread or reply post to further post to that conversation.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-conversations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. The table in the Permissions section lists the resources that support open extensions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
+            command.Description = "Use reply thread or reply post to further post to that conversation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-conversations?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -194,13 +194,13 @@ namespace ApiSdk.Groups.Item.Conversations {
         /// Instantiates a new ConversationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConversationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public ConversationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new ConversationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConversationsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", rawUrl) {
+        public ConversationsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the list of conversations in this group.
@@ -219,7 +219,7 @@ namespace ApiSdk.Groups.Item.Conversations {
             return requestInfo;
         }
         /// <summary>
-        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. The table in the Permissions section lists the resources that support open extensions.
+        /// Use reply thread or reply post to further post to that conversation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

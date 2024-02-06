@@ -85,13 +85,13 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item.PerformedB
         /// Instantiates a new PerformedByRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PerformedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24select,%24expand}", pathParameters) {
+        public PerformedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new PerformedByRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PerformedByRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24select,%24expand}", rawUrl) {
+        public PerformedByRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.

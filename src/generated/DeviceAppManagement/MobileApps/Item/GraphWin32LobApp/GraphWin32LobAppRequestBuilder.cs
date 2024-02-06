@@ -150,13 +150,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWin32LobApp {
         /// Instantiates a new GraphWin32LobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphWin32LobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.win32LobApp{?%24select,%24expand}", pathParameters) {
+        public GraphWin32LobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.win32LobApp{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new GraphWin32LobAppRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphWin32LobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.win32LobApp{?%24select,%24expand}", rawUrl) {
+        public GraphWin32LobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.win32LobApp{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.win32LobApp

@@ -176,13 +176,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites.Item {
         /// Instantiates a new BrowserSiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BrowserSiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sites/{browserSite%2Did}{?%24select,%24expand}", pathParameters) {
+        public BrowserSiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sites/{browserSite%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new BrowserSiteItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BrowserSiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sites/{browserSite%2Did}{?%24select,%24expand}", rawUrl) {
+        public BrowserSiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sites/{browserSite%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete a browserSite from a browserSiteList.

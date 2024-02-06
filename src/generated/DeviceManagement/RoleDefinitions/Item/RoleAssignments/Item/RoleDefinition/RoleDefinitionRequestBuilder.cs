@@ -79,13 +79,13 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item.Role
         /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}/roleAssignments/{roleAssignment%2Did}/roleDefinition{?%24select,%24expand}", pathParameters) {
+        public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}/roleAssignments/{roleAssignment%2Did}/roleDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}/roleAssignments/{roleAssignment%2Did}/roleDefinition{?%24select,%24expand}", rawUrl) {
+        public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}/roleAssignments/{roleAssignment%2Did}/roleDefinition{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Role definition this assignment is part of.

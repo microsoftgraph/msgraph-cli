@@ -120,13 +120,13 @@ namespace ApiSdk.Users.Item.Messages.Delta {
         /// Instantiates a new DeltaRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeltaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/delta(){?changeType*,%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
+        public DeltaRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/delta(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,changeType*}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeltaRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeltaRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/delta(){?changeType*,%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", rawUrl) {
+        public DeltaRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/delta(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,changeType*}", rawUrl) {
         }
         /// <summary>
         /// Get a set of messages that have been added, deleted, or updated in a specified folder. A delta function call for messages in a folder is similar to a GET request, except that by appropriatelyapplying state tokens in one or more of these calls, you can [query for incremental changes in the messages inthat folder](/graph/delta-query-messages). This allows you to maintain and synchronize a local store of a user&apos;s messages withouthaving to fetch the entire set of messages from the server every time.

@@ -173,13 +173,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
         /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}{?%24select,%24expand}", pathParameters) {
+        public UnifiedRoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UnifiedRoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}{?%24select,%24expand}", rawUrl) {
+        public UnifiedRoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleDefinitions/{unifiedRoleDefinition%2Did}/inheritsPermissionsFrom/{unifiedRoleDefinition%2Did1}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property inheritsPermissionsFrom for roleManagement

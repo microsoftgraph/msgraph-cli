@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
         /// Instantiates a new DeviceConfigurationDeviceStatusItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceConfigurationDeviceStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceStatuses/{deviceConfigurationDeviceStatus%2Did}{?%24select,%24expand}", pathParameters) {
+        public DeviceConfigurationDeviceStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceStatuses/{deviceConfigurationDeviceStatus%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DeviceConfigurationDeviceStatusItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceConfigurationDeviceStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceStatuses/{deviceConfigurationDeviceStatus%2Did}{?%24select,%24expand}", rawUrl) {
+        public DeviceConfigurationDeviceStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceStatuses/{deviceConfigurationDeviceStatus%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Deletes a deviceConfigurationDeviceStatus.

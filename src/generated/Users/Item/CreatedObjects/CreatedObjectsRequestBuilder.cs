@@ -172,13 +172,13 @@ namespace ApiSdk.Users.Item.CreatedObjects {
         /// Instantiates a new CreatedObjectsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CreatedObjectsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/createdObjects{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public CreatedObjectsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/createdObjects{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CreatedObjectsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CreatedObjectsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/createdObjects{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public CreatedObjectsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/createdObjects{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.

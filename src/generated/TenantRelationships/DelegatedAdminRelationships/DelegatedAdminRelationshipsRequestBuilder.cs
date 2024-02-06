@@ -192,13 +192,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships {
         /// Instantiates a new DelegatedAdminRelationshipsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DelegatedAdminRelationshipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public DelegatedAdminRelationshipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new DelegatedAdminRelationshipsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DelegatedAdminRelationshipsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public DelegatedAdminRelationshipsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get a list of the delegatedAdminRelationship objects and their properties.

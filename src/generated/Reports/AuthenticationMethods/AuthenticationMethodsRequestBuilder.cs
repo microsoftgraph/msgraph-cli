@@ -227,13 +227,13 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// Instantiates a new AuthenticationMethodsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods{?%24select,%24expand}", pathParameters) {
+        public AuthenticationMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new AuthenticationMethodsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods{?%24select,%24expand}", rawUrl) {
+        public AuthenticationMethodsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Delete navigation property authenticationMethods for reports

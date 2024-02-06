@@ -91,13 +91,13 @@ namespace ApiSdk.Drives.Item.Root {
         /// Instantiates a new RootRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/root{?%24select,%24expand}", pathParameters) {
+        public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/root{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new RootRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RootRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/root{?%24select,%24expand}", rawUrl) {
+        public RootRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/root{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
         /// Retrieve the metadata for a driveItem in a drive by file system path or ID.item-id is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.

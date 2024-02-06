@@ -148,13 +148,13 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses {
         /// Instantiates a new TaughtClassesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TaughtClassesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/taughtClasses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public TaughtClassesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/taughtClasses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new TaughtClassesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TaughtClassesRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/taughtClasses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
+        public TaughtClassesRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/taughtClasses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Get the educationClass resources owned by an educationUser.
