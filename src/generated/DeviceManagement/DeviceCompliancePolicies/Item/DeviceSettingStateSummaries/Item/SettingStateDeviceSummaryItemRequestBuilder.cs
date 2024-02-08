@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Delete navigation property deviceSettingStateSummaries for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceSettingStateSummaries for deviceManagement";
@@ -61,6 +62,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Compliance Setting State Device Summary
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Compliance Setting State Device Summary";
@@ -117,6 +119,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Update the navigation property deviceSettingStateSummaries in deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceSettingStateSummaries in deviceManagement";
@@ -170,13 +173,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             return command;
         }
         /// <summary>
-        /// Instantiates a new SettingStateDeviceSummaryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SettingStateDeviceSummaryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SettingStateDeviceSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceSettingStateSummaries/{settingStateDeviceSummary%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SettingStateDeviceSummaryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SettingStateDeviceSummaryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SettingStateDeviceSummaryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/deviceSettingStateSummaries/{settingStateDeviceSummary%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Delete navigation property deviceSettingStateSummaries for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +204,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Compliance Setting State Device Summary
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
         /// <summary>
         /// Update the navigation property deviceSettingStateSummaries in deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

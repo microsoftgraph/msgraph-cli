@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetOffice365ServicesUserCountsWithPeriod {
         /// <summary>
         /// Invoke function getOffice365ServicesUserCounts
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ServicesUserCounts";
@@ -57,13 +58,13 @@ namespace ApiSdk.Reports.GetOffice365ServicesUserCountsWithPeriod {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ServicesUserCountsWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ServicesUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ServicesUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ServicesUserCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ServicesUserCountsWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ServicesUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ServicesUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ServicesUserCounts(period='{period}')", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Reports.GetOffice365ServicesUserCountsWithPeriod {
         /// <summary>
         /// Invoke function getOffice365ServicesUserCounts
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -22,6 +22,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place on this item.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AnalyticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AnalyticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/analytics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AnalyticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AnalyticsRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/analytics{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place on this item.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

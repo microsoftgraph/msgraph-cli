@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
@@ -57,13 +58,13 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReprocessLicenseAssignmentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReprocessLicenseAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReprocessLicenseAssignmentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReprocessLicenseAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         /// <summary>
         /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -42,7 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay_Intl {
         public Json Weekend { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new workDay_IntlPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="WorkDay_IntlPostRequestBody"/> and sets the default values.
         /// </summary>
         public WorkDay_IntlPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -50,6 +50,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay_Intl {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="WorkDay_IntlPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static WorkDay_IntlPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -58,6 +59,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay_Intl {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"days", n => { Days = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

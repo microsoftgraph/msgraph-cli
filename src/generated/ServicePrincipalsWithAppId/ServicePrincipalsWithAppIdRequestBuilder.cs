@@ -23,6 +23,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// Delete a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0";
@@ -57,6 +58,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0";
@@ -107,6 +109,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Update entity in servicePrincipals by appId
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in servicePrincipals by appId";
@@ -154,13 +157,13 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ServicePrincipalsWithAppIdRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ServicePrincipalsWithAppIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ServicePrincipalsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ServicePrincipalsWithAppIdRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ServicePrincipalsWithAppIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ServicePrincipalsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", rawUrl) {
@@ -168,6 +171,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Delete a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -184,6 +188,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +205,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Update entity in servicePrincipals by appId
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

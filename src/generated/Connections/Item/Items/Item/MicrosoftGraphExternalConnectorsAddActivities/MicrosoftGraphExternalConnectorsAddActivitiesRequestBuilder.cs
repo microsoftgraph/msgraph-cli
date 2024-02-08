@@ -21,6 +21,7 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
         /// <summary>
         /// Invoke action addActivities
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action addActivities";
@@ -85,13 +86,13 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/microsoft.graph.externalConnectors.addActivities", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/microsoft.graph.externalConnectors.addActivities", rawUrl) {
@@ -99,6 +100,7 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
         /// <summary>
         /// Invoke action addActivities
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

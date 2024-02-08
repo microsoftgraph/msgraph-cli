@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.Content {
         /// The page&apos;s HTML content.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-pages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The page's HTML content.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-pages?view=graph-rest-1.0";
@@ -67,6 +68,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.Content {
         /// <summary>
         /// The page&apos;s HTML content.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "The page's HTML content.";
@@ -117,13 +119,13 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.Content {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/pages/{onenotePage%2Did}/content", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/pages/{onenotePage%2Did}/content", rawUrl) {
@@ -131,6 +133,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.Content {
         /// <summary>
         /// The page&apos;s HTML content.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -147,6 +150,7 @@ namespace ApiSdk.Users.Item.Onenote.Pages.Item.Content {
         /// <summary>
         /// The page&apos;s HTML content.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

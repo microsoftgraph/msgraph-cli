@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Remove {
         /// Unfollow a user&apos;s site or multiple sites.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Unfollow a user's site or multiple sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0";
@@ -80,13 +81,13 @@ namespace ApiSdk.Groups.Item.Sites.Remove {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RemoveRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemoveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/remove", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RemoveRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemoveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoveRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/remove", rawUrl) {
@@ -94,6 +95,7 @@ namespace ApiSdk.Groups.Item.Sites.Remove {
         /// <summary>
         /// Unfollow a user&apos;s site or multiple sites.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

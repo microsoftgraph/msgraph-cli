@@ -25,6 +25,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.";
@@ -51,6 +52,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// Deletes a mdmWindowsInformationProtectionPolicy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a mdmWindowsInformationProtectionPolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-delete?view=graph-rest-1.0";
@@ -84,6 +86,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExemptAppLockerFilesNavCommand() {
             var command = new Command("exempt-app-locker-files");
             command.Description = "Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
@@ -110,6 +113,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-get?view=graph-rest-1.0";
@@ -161,6 +165,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// Update the properties of a mdmWindowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a mdmWindowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-update?view=graph-rest-1.0";
@@ -210,6 +215,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildProtectedAppLockerFilesNavCommand() {
             var command = new Command("protected-app-locker-files");
             command.Description = "Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
@@ -233,13 +239,13 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new MdmWindowsInformationProtectionPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MdmWindowsInformationProtectionPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mdmWindowsInformationProtectionPolicies/{mdmWindowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MdmWindowsInformationProtectionPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MdmWindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MdmWindowsInformationProtectionPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mdmWindowsInformationProtectionPolicies/{mdmWindowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", rawUrl) {
@@ -247,6 +253,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Deletes a mdmWindowsInformationProtectionPolicy.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -263,6 +270,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -279,6 +287,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         /// <summary>
         /// Update the properties of a mdmWindowsInformationProtectionPolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
         /// <summary>
         /// Invoke function getAttackSimulationSimulationUserCoverage
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAttackSimulationSimulationUserCoverage";
@@ -90,13 +91,13 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetAttackSimulationSimulationUserCoverageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAttackSimulationSimulationUserCoverageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAttackSimulationSimulationUserCoverageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetAttackSimulationSimulationUserCoverageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAttackSimulationSimulationUserCoverageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAttackSimulationSimulationUserCoverageRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -104,6 +105,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
         /// <summary>
         /// Invoke function getAttackSimulationSimulationUserCoverage
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

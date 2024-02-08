@@ -22,6 +22,7 @@ namespace ApiSdk.Organization.Item.Branding.CustomCSS {
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
@@ -60,6 +61,7 @@ namespace ApiSdk.Organization.Item.Branding.CustomCSS {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.";
@@ -111,13 +113,13 @@ namespace ApiSdk.Organization.Item.Branding.CustomCSS {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CustomCSSRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CustomCSSRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/customCSS", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CustomCSSRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CustomCSSRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/customCSS", rawUrl) {
@@ -125,6 +127,7 @@ namespace ApiSdk.Organization.Item.Branding.CustomCSS {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +144,7 @@ namespace ApiSdk.Organization.Item.Branding.CustomCSS {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

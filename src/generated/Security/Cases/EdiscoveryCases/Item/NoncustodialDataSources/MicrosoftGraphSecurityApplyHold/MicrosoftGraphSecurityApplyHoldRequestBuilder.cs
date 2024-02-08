@@ -21,6 +21,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Mic
         /// <summary>
         /// Invoke action applyHold
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action applyHold";
@@ -58,13 +59,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Mic
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityApplyHoldRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityApplyHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityApplyHoldRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources/microsoft.graph.security.applyHold", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityApplyHoldRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityApplyHoldRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityApplyHoldRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources/microsoft.graph.security.applyHold", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Mic
         /// <summary>
         /// Invoke action applyHold
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

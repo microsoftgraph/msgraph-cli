@@ -21,6 +21,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pag
         /// <summary>
         /// Invoke action onenotePatchContent
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action onenotePatchContent";
@@ -82,13 +83,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pag
             return command;
         }
         /// <summary>
-        /// Instantiates a new OnenotePatchContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenotePatchContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OnenotePatchContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/onenotePatchContent", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OnenotePatchContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenotePatchContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OnenotePatchContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/onenotePatchContent", rawUrl) {
@@ -96,6 +97,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pag
         /// <summary>
         /// Invoke action onenotePatchContent
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

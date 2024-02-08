@@ -22,6 +22,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnpublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnpublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnpublishRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         /// <summary>
         /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

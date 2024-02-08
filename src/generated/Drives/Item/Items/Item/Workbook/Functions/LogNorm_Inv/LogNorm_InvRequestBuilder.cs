@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.LogNorm_Inv {
         /// <summary>
         /// Invoke action logNorm_Inv
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action logNorm_Inv";
@@ -75,13 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.LogNorm_Inv {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LogNorm_InvRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LogNorm_InvRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LogNorm_InvRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/logNorm_Inv", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LogNorm_InvRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LogNorm_InvRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LogNorm_InvRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/logNorm_Inv", rawUrl) {
@@ -89,6 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.LogNorm_Inv {
         /// <summary>
         /// Invoke action logNorm_Inv
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

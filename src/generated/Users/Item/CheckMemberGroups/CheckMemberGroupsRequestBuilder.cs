@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.CheckMemberGroups {
         /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Microsoft Entra ID. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Microsoft Entra ID. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0";
@@ -80,13 +81,13 @@ namespace ApiSdk.Users.Item.CheckMemberGroups {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CheckMemberGroupsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CheckMemberGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CheckMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/checkMemberGroups", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CheckMemberGroupsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CheckMemberGroupsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CheckMemberGroupsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/checkMemberGroups", rawUrl) {
@@ -94,6 +95,7 @@ namespace ApiSdk.Users.Item.CheckMemberGroups {
         /// <summary>
         /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Microsoft Entra ID. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

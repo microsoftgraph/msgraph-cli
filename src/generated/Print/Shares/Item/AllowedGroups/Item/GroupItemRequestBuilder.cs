@@ -19,6 +19,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Item {
         /// <summary>
         /// Provides operations to manage the collection of print entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of print entities.";
@@ -34,6 +35,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Item {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -53,13 +55,13 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/{group%2Did}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/{group%2Did}", rawUrl) {

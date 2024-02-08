@@ -22,6 +22,7 @@ namespace ApiSdk.Domains.Item.Promote {
         /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0";
@@ -56,13 +57,13 @@ namespace ApiSdk.Domains.Item.Promote {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PromoteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PromoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/promote", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PromoteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PromoteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/promote", rawUrl) {
@@ -70,6 +71,7 @@ namespace ApiSdk.Domains.Item.Promote {
         /// <summary>
         /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

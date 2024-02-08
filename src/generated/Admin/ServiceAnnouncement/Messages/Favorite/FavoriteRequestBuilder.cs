@@ -22,6 +22,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0";
@@ -63,13 +64,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FavoriteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/favorite", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FavoriteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/favorite", rawUrl) {
@@ -77,6 +78,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         /// <summary>
         /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

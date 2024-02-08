@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/participant-mute?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-mute?view=graph-rest-1.0";
@@ -76,13 +77,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MuteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MuteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MuteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/mute", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MuteRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MuteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MuteRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/mute", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.Mute {
         /// <summary>
         /// Mute a specific participant in the call. This is a server mute, meaning that the server will drop all audio packets for this participant, even if the participant continues to stream audio. For more information about how to handle mute operations, see muteParticipantOperation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

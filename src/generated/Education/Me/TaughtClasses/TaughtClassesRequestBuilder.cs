@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         /// <summary>
         /// Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new EducationClassItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -49,6 +51,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         /// Get the educationClass resources owned by an educationUser.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the educationClass resources owned by an educationUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0";
@@ -139,13 +142,13 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TaughtClassesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaughtClassesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaughtClassesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/taughtClasses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TaughtClassesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaughtClassesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaughtClassesRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/taughtClasses{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -153,6 +156,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         /// <summary>
         /// Get the educationClass resources owned by an educationUser.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,6 +23,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// <summary>
         /// Provides operations to manage the media for the sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the sharedDriveItem entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// <summary>
         /// Used to access the underlying driveItem. Deprecated -- use driveItem instead.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used to access the underlying driveItem. Deprecated -- use driveItem instead.";
@@ -87,13 +89,13 @@ namespace ApiSdk.Shares.Item.Root {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RootRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RootRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RootRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/root{?%24expand,%24select}", rawUrl) {
@@ -101,6 +103,7 @@ namespace ApiSdk.Shares.Item.Root {
         /// <summary>
         /// Used to access the underlying driveItem. Deprecated -- use driveItem instead.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

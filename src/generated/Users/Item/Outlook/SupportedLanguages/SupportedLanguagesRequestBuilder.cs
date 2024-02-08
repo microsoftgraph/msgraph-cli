@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
         /// Get the list of locales and languages that are supported for the user, as configured on the user&apos;s mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user&apos;s mailbox settings.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user's mailbox settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0";
@@ -97,13 +98,13 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SupportedLanguagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SupportedLanguagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SupportedLanguagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/supportedLanguages(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SupportedLanguagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SupportedLanguagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SupportedLanguagesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/supportedLanguages(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -111,6 +112,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
         /// <summary>
         /// Get the list of locales and languages that are supported for the user, as configured on the user&apos;s mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language bygetting the user&apos;s mailbox settings.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

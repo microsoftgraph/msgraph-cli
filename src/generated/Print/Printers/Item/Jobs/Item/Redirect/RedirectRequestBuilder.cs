@@ -23,6 +23,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
         /// Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-redirect?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-redirect?view=graph-rest-1.0";
@@ -76,13 +77,13 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RedirectRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RedirectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RedirectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/redirect", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RedirectRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RedirectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RedirectRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/redirect", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
         /// <summary>
         /// Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a processing state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

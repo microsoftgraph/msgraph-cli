@@ -23,6 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Directory objects created by this service principal. Read-only. Nullable.";
@@ -79,6 +80,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphServicePrincipalByIdNavCommand() {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -92,13 +94,13 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/createdObjects/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/createdObjects/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
@@ -106,6 +108,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

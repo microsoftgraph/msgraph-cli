@@ -18,7 +18,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin {
         public Json Number { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new asinPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="AsinPostRequestBody"/> and sets the default values.
         /// </summary>
         public AsinPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -26,6 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AsinPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AsinPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -34,6 +35,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"number", n => { Number = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

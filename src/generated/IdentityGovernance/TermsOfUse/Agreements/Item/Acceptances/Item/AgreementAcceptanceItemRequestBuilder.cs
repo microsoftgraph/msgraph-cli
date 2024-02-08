@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Delete navigation property acceptances for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property acceptances for identityGovernance";
@@ -61,6 +62,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Read-only. Information about acceptances of this agreement.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Information about acceptances of this agreement.";
@@ -117,6 +119,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Update the navigation property acceptances in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property acceptances in identityGovernance";
@@ -170,13 +173,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
             return command;
         }
         /// <summary>
-        /// Instantiates a new AgreementAcceptanceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementAcceptanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AgreementAcceptanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/acceptances/{agreementAcceptance%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AgreementAcceptanceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementAcceptanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AgreementAcceptanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/acceptances/{agreementAcceptance%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Delete navigation property acceptances for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +204,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Read-only. Information about acceptances of this agreement.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Acceptances.Item 
         /// <summary>
         /// Update the navigation property acceptances in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,6 +22,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// Delete navigation property effectiveRules for policies
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property effectiveRules for policies";
@@ -61,6 +62,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.";
@@ -117,6 +119,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// Update the navigation property effectiveRules in policies
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property effectiveRules in policies";
@@ -170,13 +173,13 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicyRuleItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyRuleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnifiedRoleManagementPolicyRuleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}/effectiveRules/{unifiedRoleManagementPolicyRule%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicyRuleItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleManagementPolicyRuleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnifiedRoleManagementPolicyRuleItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}/effectiveRules/{unifiedRoleManagementPolicyRule%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// Delete navigation property effectiveRules for policies
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +204,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
         /// <summary>
         /// Update the navigation property effectiveRules in policies
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

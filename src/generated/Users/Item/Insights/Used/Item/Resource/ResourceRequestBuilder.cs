@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ResourceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ResourceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ResourceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/used/{usedInsight%2Did}/resource{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ResourceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ResourceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ResourceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/used/{usedInsight%2Did}/resource{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

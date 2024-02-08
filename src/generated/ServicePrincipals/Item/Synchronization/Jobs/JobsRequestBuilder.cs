@@ -25,6 +25,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -43,6 +44,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -59,6 +61,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0";
@@ -109,6 +112,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// List existing jobs for a given application instance (service principal).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List existing jobs for a given application instance (service principal).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0";
@@ -207,6 +211,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// <summary>
         /// Provides operations to call the validateCredentials method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildValidateCredentialsNavCommand() {
             var command = new Command("validate-credentials");
             command.Description = "Provides operations to call the validateCredentials method.";
@@ -220,13 +225,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// Instantiates a new JobsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="JobsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public JobsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new JobsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="JobsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public JobsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -234,6 +239,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// <summary>
         /// List existing jobs for a given application instance (service principal).
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,6 +256,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         /// <summary>
         /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

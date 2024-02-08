@@ -30,6 +30,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.list entity.";
@@ -55,6 +56,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentTypesNavCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
@@ -83,6 +85,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -105,6 +108,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Delete navigation property lists for groups
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property lists for groups";
@@ -150,6 +154,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.list entity.";
@@ -163,12 +168,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0" />
+        /// Returns the metadata for a [list][].
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of rich long-running operations associated with a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0";
+            command.Description = "Returns the metadata for a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -228,6 +234,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.list entity.";
@@ -252,6 +259,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -274,6 +282,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.list entity.";
@@ -299,6 +308,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Update the navigation property lists in groups
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property lists in groups";
@@ -360,6 +370,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubscriptionsNavCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.list entity.";
@@ -383,13 +394,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ListItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ListItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ListItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ListItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ListItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}{?%24expand,%24select}", rawUrl) {
@@ -397,6 +408,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Delete navigation property lists for groups
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -411,8 +423,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
+        /// Returns the metadata for a [list][].
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -429,6 +442,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
         /// <summary>
         /// Update the navigation property lists in groups
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -445,7 +459,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a list.
+        /// Returns the metadata for a [list][].
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

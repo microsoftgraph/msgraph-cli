@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Events.Item.TentativelyAccept {
         /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.Users.Item.Events.Item.TentativelyAccept {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TentativelyAcceptRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TentativelyAcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TentativelyAcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}/tentativelyAccept", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TentativelyAcceptRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TentativelyAcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TentativelyAcceptRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}/tentativelyAccept", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.Users.Item.Events.Item.TentativelyAccept {
         /// <summary>
         /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

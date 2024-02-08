@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Calendar {
         /// <summary>
         /// The calendar that contains the event. Navigation property. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The calendar that contains the event. Navigation property. Read-only.";
@@ -69,13 +70,13 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarView/{event%2Did}/calendar{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarView/{event%2Did}/calendar{?%24select}", rawUrl) {
@@ -83,6 +84,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Calendar {
         /// <summary>
         /// The calendar that contains the event. Navigation property. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

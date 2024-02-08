@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWi
         /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0";
@@ -77,13 +78,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWi
             return command;
         }
         /// <summary>
-        /// Instantiates a new AssociateWithHubSitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssociateWithHubSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AssociateWithHubSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/associateWithHubSites", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AssociateWithHubSitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssociateWithHubSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AssociateWithHubSitesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/associateWithHubSites", rawUrl) {
@@ -91,6 +92,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWi
         /// <summary>
         /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

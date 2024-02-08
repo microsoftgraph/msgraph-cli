@@ -22,6 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.GraphUser {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.user";
@@ -83,13 +84,13 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.GraphUser {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphUserRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}/graph.user{?%24expand,%24select}", rawUrl) {
@@ -97,6 +98,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.GraphUser {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

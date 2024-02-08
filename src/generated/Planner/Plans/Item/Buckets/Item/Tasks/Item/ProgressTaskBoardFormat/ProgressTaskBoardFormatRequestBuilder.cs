@@ -22,6 +22,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property progressTaskBoardFormat for planner";
@@ -68,6 +69,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
@@ -131,6 +133,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// Update the navigation property progressTaskBoardFormat in planner
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property progressTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
@@ -197,13 +200,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProgressTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProgressTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProgressTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProgressTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", rawUrl) {
@@ -211,6 +214,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -227,6 +231,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// <summary>
         /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -243,6 +248,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFor
         /// <summary>
         /// Update the navigation property progressTaskBoardFormat in planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

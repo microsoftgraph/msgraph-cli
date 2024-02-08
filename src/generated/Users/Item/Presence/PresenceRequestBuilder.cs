@@ -27,6 +27,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Provides operations to call the clearPresence method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClearPresenceNavCommand() {
             var command = new Command("clear-presence");
             command.Description = "Provides operations to call the clearPresence method.";
@@ -42,6 +43,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Provides operations to call the clearUserPreferredPresence method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClearUserPreferredPresenceNavCommand() {
             var command = new Command("clear-user-preferred-presence");
             command.Description = "Provides operations to call the clearUserPreferredPresence method.";
@@ -57,6 +59,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Delete navigation property presence for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property presence for users";
@@ -88,12 +91,13 @@ namespace ApiSdk.Users.Item.Presence {
             return command;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0" />
+        /// Get a user&apos;s presence information.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Set a presence status message for a user. An optional expiration date and time can be supplied.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0";
+            command.Description = "Get a user's presence information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -141,6 +145,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Update the navigation property presence in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property presence in users";
@@ -190,6 +195,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Provides operations to call the setPresence method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSetPresenceNavCommand() {
             var command = new Command("set-presence");
             command.Description = "Provides operations to call the setPresence method.";
@@ -205,6 +211,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Provides operations to call the setStatusMessage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSetStatusMessageNavCommand() {
             var command = new Command("set-status-message");
             command.Description = "Provides operations to call the setStatusMessage method.";
@@ -220,6 +227,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Provides operations to call the setUserPreferredPresence method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSetUserPreferredPresenceNavCommand() {
             var command = new Command("set-user-preferred-presence");
             command.Description = "Provides operations to call the setUserPreferredPresence method.";
@@ -233,13 +241,13 @@ namespace ApiSdk.Users.Item.Presence {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PresenceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/presence{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PresenceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PresenceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence{?%24expand,%24select}", rawUrl) {
@@ -247,6 +255,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Delete navigation property presence for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -261,8 +270,9 @@ namespace ApiSdk.Users.Item.Presence {
             return requestInfo;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
+        /// Get a user&apos;s presence information.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -279,6 +289,7 @@ namespace ApiSdk.Users.Item.Presence {
         /// <summary>
         /// Update the navigation property presence in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +306,7 @@ namespace ApiSdk.Users.Item.Presence {
             return requestInfo;
         }
         /// <summary>
-        /// Set a presence status message for a user. An optional expiration date and time can be supplied.
+        /// Get a user&apos;s presence information.
         /// </summary>
         public class PresenceRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

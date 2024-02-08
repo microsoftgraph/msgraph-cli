@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getEmailAppUsageUserDetail";
@@ -57,13 +58,13 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetEmailAppUsageUserDetailWithDateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetEmailAppUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetEmailAppUsageUserDetailWithDateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetEmailAppUsageUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetEmailAppUsageUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

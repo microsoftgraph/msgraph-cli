@@ -26,6 +26,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// <summary>
         /// Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
@@ -74,6 +77,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
@@ -96,6 +100,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0";
@@ -199,13 +204,13 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/directReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectReportsRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/directReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -213,6 +218,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// <summary>
         /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

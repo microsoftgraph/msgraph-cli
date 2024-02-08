@@ -22,6 +22,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
         /// Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
@@ -60,6 +61,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
         /// <summary>
         /// Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.";
@@ -111,13 +113,13 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
             return command;
         }
         /// <summary>
-        /// Instantiates a new BackgroundImageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BackgroundImageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BackgroundImageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/backgroundImage", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new BackgroundImageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BackgroundImageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BackgroundImageRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/backgroundImage", rawUrl) {
@@ -125,6 +127,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
         /// <summary>
         /// Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +144,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
         /// <summary>
         /// Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

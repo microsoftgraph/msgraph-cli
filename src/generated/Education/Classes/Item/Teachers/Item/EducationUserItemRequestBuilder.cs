@@ -18,6 +18,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Item {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
@@ -31,13 +32,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new EducationUserItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationUserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/{educationUser%2Did}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new EducationUserItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers/{educationUser%2Did}", rawUrl) {

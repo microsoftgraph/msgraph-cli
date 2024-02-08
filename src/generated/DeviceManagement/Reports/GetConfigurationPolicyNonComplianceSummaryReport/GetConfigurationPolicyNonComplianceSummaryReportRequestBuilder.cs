@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
         /// Not yet documented
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getconfigurationpolicynoncompliancesummaryreport?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getconfigurationpolicynoncompliancesummaryreport?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
         /// <summary>
         /// Not yet documented
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

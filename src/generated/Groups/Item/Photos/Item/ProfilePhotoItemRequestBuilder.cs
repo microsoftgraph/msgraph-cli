@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
@@ -86,13 +88,13 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProfilePhotoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProfilePhotoItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", rawUrl) {
@@ -100,6 +102,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

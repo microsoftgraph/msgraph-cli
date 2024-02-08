@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// Deletes a linkedResource object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-delete?view=graph-rest-1.0";
@@ -75,6 +76,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// Read the properties and relationships of a linkedResource object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-get?view=graph-rest-1.0";
@@ -144,6 +146,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// Update the properties of a linkedResource object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-update?view=graph-rest-1.0";
@@ -209,13 +212,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LinkedResourceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LinkedResourceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LinkedResourceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/linkedResources/{linkedResource%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LinkedResourceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LinkedResourceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LinkedResourceItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/linkedResources/{linkedResource%2Did}{?%24expand,%24select}", rawUrl) {
@@ -223,6 +226,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// <summary>
         /// Deletes a linkedResource object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,6 +243,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// <summary>
         /// Read the properties and relationships of a linkedResource object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,6 +260,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         /// <summary>
         /// Update the properties of a linkedResource object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

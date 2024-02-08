@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         /// Reincorporate a participant previously put on hold to the call.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reincorporate a participant previously put on hold to the call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
@@ -76,13 +77,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
             return command;
         }
         /// <summary>
-        /// Instantiates a new StopHoldMusicRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StopHoldMusicRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public StopHoldMusicRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/stopHoldMusic", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new StopHoldMusicRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StopHoldMusicRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public StopHoldMusicRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/stopHoldMusic", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         /// <summary>
         /// Reincorporate a participant previously put on hold to the call.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

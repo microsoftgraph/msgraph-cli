@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsMetricHistory for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property userExperienceAnalyticsMetricHistory for deviceManagement";
@@ -55,6 +56,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// User experience analytics metric history
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "User experience analytics metric history";
@@ -105,6 +107,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsMetricHistory in deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property userExperienceAnalyticsMetricHistory in deviceManagement";
@@ -152,13 +155,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsMetricHistoryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsMetricHistoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsMetricHistoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsMetricHistory/{userExperienceAnalyticsMetricHistory%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsMetricHistoryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsMetricHistoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsMetricHistoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsMetricHistory/{userExperienceAnalyticsMetricHistory%2Did}{?%24expand,%24select}", rawUrl) {
@@ -166,6 +169,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsMetricHistory for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,6 +186,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// User experience analytics metric history
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -198,6 +203,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory.Item {
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsMetricHistory in deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

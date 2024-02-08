@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item.RoleDefinition {
         /// <summary>
         /// Role definition this assignment is part of.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Role definition this assignment is part of.";
@@ -70,13 +71,13 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item.RoleDefinition {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleAssignments/{deviceAndAppManagementRoleAssignment%2Did}/roleDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleAssignments/{deviceAndAppManagementRoleAssignment%2Did}/roleDefinition{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item.RoleDefinition {
         /// <summary>
         /// Role definition this assignment is part of.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

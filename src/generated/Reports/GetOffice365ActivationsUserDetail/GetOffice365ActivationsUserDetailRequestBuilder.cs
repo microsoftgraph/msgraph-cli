@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserDetail {
         /// <summary>
         /// Invoke function getOffice365ActivationsUserDetail
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ActivationsUserDetail";
@@ -51,13 +52,13 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserDetail {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ActivationsUserDetailRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ActivationsUserDetailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationsUserDetail()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ActivationsUserDetailRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ActivationsUserDetailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ActivationsUserDetailRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActivationsUserDetail()", rawUrl) {
@@ -65,6 +66,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserDetail {
         /// <summary>
         /// Invoke function getOffice365ActivationsUserDetail
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

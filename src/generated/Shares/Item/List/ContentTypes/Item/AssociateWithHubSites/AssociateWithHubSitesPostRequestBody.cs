@@ -19,7 +19,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
         /// <summary>The propagateToExistingLists property</summary>
         public bool? PropagateToExistingLists { get; set; }
         /// <summary>
-        /// Instantiates a new associateWithHubSitesPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="AssociateWithHubSitesPostRequestBody"/> and sets the default values.
         /// </summary>
         public AssociateWithHubSitesPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -27,6 +27,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AssociateWithHubSitesPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AssociateWithHubSitesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -35,6 +36,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"hubSiteUrls", n => { HubSiteUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },

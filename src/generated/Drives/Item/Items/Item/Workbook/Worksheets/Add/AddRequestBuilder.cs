@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
         /// Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0";
@@ -76,13 +77,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AddRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/add", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AddRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AddRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/add", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
         /// <summary>
         /// Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

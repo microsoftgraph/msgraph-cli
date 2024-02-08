@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
         /// <summary>
         /// Invoke function getOffice365ActiveUserDetail
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ActiveUserDetail";
@@ -57,13 +58,13 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ActiveUserDetailWithDateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOffice365ActiveUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetOffice365ActiveUserDetailWithDateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOffice365ActiveUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOffice365ActiveUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
         /// <summary>
         /// Invoke function getOffice365ActiveUserDetail
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

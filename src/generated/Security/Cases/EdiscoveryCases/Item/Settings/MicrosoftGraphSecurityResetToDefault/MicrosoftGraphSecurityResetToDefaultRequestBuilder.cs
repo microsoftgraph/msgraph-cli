@@ -22,6 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
         /// Reset a caseSettings object to the default values.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-resettodefault?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reset a caseSettings object to the default values.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-resettodefault?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityResetToDefaultRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityResetToDefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/settings/microsoft.graph.security.resetToDefault", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityResetToDefaultRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityResetToDefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityResetToDefaultRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/settings/microsoft.graph.security.resetToDefault", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
         /// <summary>
         /// Reset a caseSettings object to the default values.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

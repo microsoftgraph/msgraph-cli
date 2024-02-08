@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         /// <summary>The routingType property</summary>
         public ApiSdk.Models.RoutingType? RoutingType { get; set; }
         /// <summary>
-        /// Instantiates a new callRoute and sets the default values.
+        /// Instantiates a new <see cref="CallRoute"/> and sets the default values.
         /// </summary>
         public CallRoute() {
             AdditionalData = new Dictionary<string, object>();
@@ -43,6 +43,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="CallRoute"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CallRoute CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -51,6 +52,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"final", n => { Final = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },

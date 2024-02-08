@@ -21,6 +21,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.UnsetReaction {
         /// <summary>
         /// Invoke action unsetReaction
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action unsetReaction";
@@ -64,13 +65,13 @@ namespace ApiSdk.Chats.Item.Messages.Item.UnsetReaction {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnsetReactionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnsetReactionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnsetReactionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}/unsetReaction", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnsetReactionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnsetReactionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnsetReactionRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}/unsetReaction", rawUrl) {
@@ -78,6 +79,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.UnsetReaction {
         /// <summary>
         /// Invoke action unsetReaction
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

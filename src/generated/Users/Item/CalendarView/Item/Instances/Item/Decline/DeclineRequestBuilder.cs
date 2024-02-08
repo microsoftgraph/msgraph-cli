@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Decline {
         /// Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-decline?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-decline?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Decline {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeclineRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeclineRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeclineRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/decline", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeclineRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeclineRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeclineRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/decline", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Decline {
         /// <summary>
         /// Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

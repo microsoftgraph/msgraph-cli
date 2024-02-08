@@ -23,6 +23,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.place as microsoft.graph.roomList";
@@ -73,6 +74,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoomsNavCommand() {
             var command = new Command("rooms");
             command.Description = "Provides operations to manage the rooms property of the microsoft.graph.roomList entity.";
@@ -96,13 +98,13 @@ namespace ApiSdk.Places.Item.GraphRoomList {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphRoomListRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphRoomListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphRoomListRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphRoomListRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphRoomListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphRoomListRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.roomList{?%24expand,%24select}", rawUrl) {
@@ -110,6 +112,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

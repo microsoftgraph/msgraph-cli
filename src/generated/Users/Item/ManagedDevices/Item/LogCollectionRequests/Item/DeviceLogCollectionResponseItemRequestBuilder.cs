@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// Provides operations to call the createDownloadUrl method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateDownloadUrlNavCommand() {
             var command = new Command("create-download-url");
             command.Description = "Provides operations to call the createDownloadUrl method.";
@@ -38,6 +39,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// Delete navigation property logCollectionRequests for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property logCollectionRequests for users";
@@ -83,6 +85,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// List of log collection requests
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List of log collection requests";
@@ -145,6 +148,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// Update the navigation property logCollectionRequests in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property logCollectionRequests in users";
@@ -204,13 +208,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeviceLogCollectionResponseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceLogCollectionResponseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceLogCollectionResponseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/logCollectionRequests/{deviceLogCollectionResponse%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeviceLogCollectionResponseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceLogCollectionResponseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceLogCollectionResponseItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/logCollectionRequests/{deviceLogCollectionResponse%2Did}{?%24expand,%24select}", rawUrl) {
@@ -218,6 +222,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// Delete navigation property logCollectionRequests for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// List of log collection requests
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,6 +256,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item {
         /// <summary>
         /// Update the navigation property logCollectionRequests in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

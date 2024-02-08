@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.FindMeetingTimes {
         /// Suggest meeting times and locations based on organizer and attendee availability, and time or location constraints specified as parameters. If findMeetingTimes cannot return any meeting suggestions, the response would indicate a reason in the emptySuggestionsReason property. Based on this value, you can better adjust the parameters and call findMeetingTimes again. The algorithm used to suggest meeting times and locations undergoes fine-tuning from time to time. In scenarios like test environments where the input parameters and calendar data remain static, expect that the suggested results may differ over time.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-findmeetingtimes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Suggest meeting times and locations based on organizer and attendee availability, and time or location constraints specified as parameters. If findMeetingTimes cannot return any meeting suggestions, the response would indicate a reason in the emptySuggestionsReason property. Based on this value, you can better adjust the parameters and call findMeetingTimes again. The algorithm used to suggest meeting times and locations undergoes fine-tuning from time to time. In scenarios like test environments where the input parameters and calendar data remain static, expect that the suggested results may differ over time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-findmeetingtimes?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.Users.Item.FindMeetingTimes {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FindMeetingTimesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FindMeetingTimesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FindMeetingTimesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/findMeetingTimes", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FindMeetingTimesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FindMeetingTimesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FindMeetingTimesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/findMeetingTimes", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Users.Item.FindMeetingTimes {
         /// <summary>
         /// Suggest meeting times and locations based on organizer and attendee availability, and time or location constraints specified as parameters. If findMeetingTimes cannot return any meeting suggestions, the response would indicate a reason in the emptySuggestionsReason property. Based on this value, you can better adjust the parameters and call findMeetingTimes again. The algorithm used to suggest meeting times and locations undergoes fine-tuning from time to time. In scenarios like test environments where the input parameters and calendar data remain static, expect that the suggested results may differ over time.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

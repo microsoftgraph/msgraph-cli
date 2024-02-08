@@ -22,6 +22,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "An abstract definition that is used to create a printTask when triggered by a print event. Read-only.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

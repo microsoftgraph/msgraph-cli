@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.DismissReminder {
         /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0";
@@ -58,13 +59,13 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.DismissReminder {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DismissReminderRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DismissReminderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DismissReminderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/dismissReminder", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DismissReminderRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DismissReminderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DismissReminderRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/dismissReminder", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.DismissReminder {
         /// <summary>
         /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

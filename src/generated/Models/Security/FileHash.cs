@@ -27,7 +27,7 @@ namespace ApiSdk.Models.Security {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new fileHash and sets the default values.
+        /// Instantiates a new <see cref="FileHash"/> and sets the default values.
         /// </summary>
         public FileHash() {
             AdditionalData = new Dictionary<string, object>();
@@ -35,6 +35,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="FileHash"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static FileHash CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -43,6 +44,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"algorithm", n => { Algorithm = n.GetEnumValue<FileHashAlgorithm>(); } },

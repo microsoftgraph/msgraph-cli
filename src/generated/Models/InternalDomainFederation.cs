@@ -45,7 +45,7 @@ namespace ApiSdk.Models {
         public string SignOutUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new internalDomainFederation and sets the default values.
+        /// Instantiates a new <see cref="InternalDomainFederation"/> and sets the default values.
         /// </summary>
         public InternalDomainFederation() : base() {
             OdataType = "#microsoft.graph.internalDomainFederation";
@@ -53,6 +53,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="InternalDomainFederation"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new InternalDomainFederation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -61,6 +62,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activeSignInUri", n => { ActiveSignInUri = n.GetStringValue(); } },

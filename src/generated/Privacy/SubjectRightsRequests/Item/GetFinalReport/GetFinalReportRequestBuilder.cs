@@ -21,6 +21,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
         /// <summary>
         /// Invoke function getFinalReport
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -58,13 +59,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetFinalReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetFinalReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetFinalReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetFinalReportRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport {
         /// <summary>
         /// Invoke function getFinalReport
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

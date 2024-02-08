@@ -23,6 +23,7 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// <summary>
         /// Provides operations to manage the media for the site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the site entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// <summary>
         /// Exposes the driveItem that was the target of this activity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Exposes the driveItem that was the target of this activity.";
@@ -99,13 +101,13 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
             return command;
         }
         /// <summary>
-        /// Instantiates a new DriveItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DriveItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", rawUrl) {
@@ -113,6 +115,7 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// <summary>
         /// Exposes the driveItem that was the target of this activity.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

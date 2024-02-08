@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.DisableSmsSignIn {
         /// Disable SMS sign-in for an existing mobile phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/phoneauthenticationmethod-disablesmssignin?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Disable SMS sign-in for an existing mobile phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/phoneauthenticationmethod-disablesmssignin?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.DisableSmsSignIn {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DisableSmsSignInRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DisableSmsSignInRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DisableSmsSignInRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/phoneMethods/{phoneAuthenticationMethod%2Did}/disableSmsSignIn", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DisableSmsSignInRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DisableSmsSignInRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DisableSmsSignInRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/phoneMethods/{phoneAuthenticationMethod%2Did}/disableSmsSignIn", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.DisableSmsSignIn {
         /// <summary>
         /// Disable SMS sign-in for an existing mobile phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent your user from signing in.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

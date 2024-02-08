@@ -22,6 +22,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphS
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal";
@@ -83,13 +84,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphS
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphServicePrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphServicePrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", rawUrl) {
@@ -97,6 +98,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphS
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

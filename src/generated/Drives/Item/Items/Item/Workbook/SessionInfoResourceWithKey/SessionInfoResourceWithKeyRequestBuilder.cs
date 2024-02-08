@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey {
         /// <summary>
         /// Invoke function sessionInfoResource
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function sessionInfoResource";
@@ -68,13 +69,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SessionInfoResourceWithKeyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SessionInfoResourceWithKeyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SessionInfoResourceWithKeyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SessionInfoResourceWithKeyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SessionInfoResourceWithKeyRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", rawUrl) {
@@ -82,6 +83,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey {
         /// <summary>
         /// Invoke function sessionInfoResource
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.SendMail {
         /// Send the message specified in the request body using either JSON or MIME format. When using JSON format, you can include a file attachment in the same sendMail action call. When using MIME format: This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-sendmail?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Send the message specified in the request body using either JSON or MIME format. When using JSON format, you can include a file attachment in the same sendMail action call. When using MIME format: This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-sendmail?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.Users.Item.SendMail {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SendMailRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendMailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendMailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/sendMail", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SendMailRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendMailRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendMailRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/sendMail", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.Users.Item.SendMail {
         /// <summary>
         /// Send the message specified in the request body using either JSON or MIME format. When using JSON format, you can include a file attachment in the same sendMail action call. When using MIME format: This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn more about the steps involved in the backend before a mail is delivered to recipients, see here.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

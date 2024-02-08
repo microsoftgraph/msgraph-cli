@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityUserCountsWithPer
         /// <summary>
         /// Invoke function getSkypeForBusinessParticipantActivityUserCounts
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getSkypeForBusinessParticipantActivityUserCounts";
@@ -57,13 +58,13 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityUserCountsWithPer
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityUserCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetSkypeForBusinessParticipantActivityUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityUserCounts(period='{period}')", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityUserCountsWithPer
         /// <summary>
         /// Invoke function getSkypeForBusinessParticipantActivityUserCounts
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

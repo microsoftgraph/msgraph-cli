@@ -22,6 +22,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.Item {
         /// <summary>
         /// Passive DNS retrieval about this host.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Passive DNS retrieval about this host.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PassiveDnsRecordItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PassiveDnsRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PassiveDnsRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDns/{passiveDnsRecord%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PassiveDnsRecordItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PassiveDnsRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PassiveDnsRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDns/{passiveDnsRecord%2Did}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.Item {
         /// <summary>
         /// Passive DNS retrieval about this host.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

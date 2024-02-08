@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ref
         /// Refreshes the PivotTable within a given worksheet.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbookpivottable-refreshall?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Refreshes the PivotTable within a given worksheet.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookpivottable-refreshall?view=graph-rest-1.0";
@@ -58,13 +59,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ref
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefreshAllRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefreshAllRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RefreshAllRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/pivotTables/refreshAll", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefreshAllRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefreshAllRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RefreshAllRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/pivotTables/refreshAll", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ref
         /// <summary>
         /// Refreshes the PivotTable within a given worksheet.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

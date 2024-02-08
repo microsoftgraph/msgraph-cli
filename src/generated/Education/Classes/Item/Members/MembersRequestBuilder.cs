@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Gets an item from the ApiSdk.education.classes.item.members.item collection
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new EducationUserItemRequestBuilder(PathParameters);
@@ -34,6 +35,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -50,6 +52,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// Retrieves the educationUser members of an educationClass.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieves the educationUser members of an educationClass.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0";
@@ -148,6 +151,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
@@ -163,13 +167,13 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MembersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MembersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MembersRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -177,6 +181,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Retrieves the educationUser members of an educationClass.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

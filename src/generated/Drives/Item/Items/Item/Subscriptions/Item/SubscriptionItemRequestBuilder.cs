@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// Delete navigation property subscriptions for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property subscriptions for drives";
@@ -68,6 +69,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// The set of subscriptions on the item. Only supported on the root of a drive.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The set of subscriptions on the item. Only supported on the root of a drive.";
@@ -130,6 +132,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// Update the navigation property subscriptions in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property subscriptions in drives";
@@ -191,6 +194,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// Provides operations to call the reauthorize method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildReauthorizeNavCommand() {
             var command = new Command("reauthorize");
             command.Description = "Provides operations to call the reauthorize method.";
@@ -204,13 +208,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SubscriptionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubscriptionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubscriptionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/subscriptions/{subscription%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SubscriptionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubscriptionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubscriptionItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/subscriptions/{subscription%2Did}{?%24expand,%24select}", rawUrl) {
@@ -218,6 +222,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// Delete navigation property subscriptions for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// The set of subscriptions on the item. Only supported on the root of a drive.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,6 +256,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions.Item {
         /// <summary>
         /// Update the navigation property subscriptions in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

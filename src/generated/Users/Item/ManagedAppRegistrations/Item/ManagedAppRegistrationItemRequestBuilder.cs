@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.ManagedAppRegistrations.Item {
         /// <summary>
         /// Zero or more managed app registrations that belong to the user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Zero or more managed app registrations that belong to the user.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Users.Item.ManagedAppRegistrations.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ManagedAppRegistrationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedAppRegistrationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedAppRegistrations/{managedAppRegistration%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ManagedAppRegistrationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagedAppRegistrationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedAppRegistrationItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedAppRegistrations/{managedAppRegistration%2Did}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Users.Item.ManagedAppRegistrations.Item {
         /// <summary>
         /// Zero or more managed app registrations that belong to the user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

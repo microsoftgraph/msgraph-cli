@@ -66,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc {
         public Json Salvage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new amorLincPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="AmorLincPostRequestBody"/> and sets the default values.
         /// </summary>
         public AmorLincPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -74,6 +74,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AmorLincPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AmorLincPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -82,6 +83,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"basis", n => { Basis = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

@@ -22,6 +22,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnsetVerifiedPublisherRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnsetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnsetVerifiedPublisherRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnsetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnsetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         /// <summary>
         /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

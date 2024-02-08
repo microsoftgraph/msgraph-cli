@@ -21,6 +21,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
         /// <summary>
         /// Invoke function incidentReport
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function incidentReport";
@@ -57,13 +58,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IncidentReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IncidentReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IncidentReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/issues/{serviceHealthIssue%2Did}/incidentReport()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IncidentReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IncidentReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IncidentReportRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/issues/{serviceHealthIssue%2Did}/incidentReport()", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport {
         /// <summary>
         /// Invoke function incidentReport
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -26,7 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         public Json SourceData { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new setDataPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="SetDataPostRequestBody"/> and sets the default values.
         /// </summary>
         public SetDataPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -34,6 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="SetDataPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SetDataPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -42,6 +43,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"seriesBy", n => { SeriesBy = n.GetStringValue(); } },

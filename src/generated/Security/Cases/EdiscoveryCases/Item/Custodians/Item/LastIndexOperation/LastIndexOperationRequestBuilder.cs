@@ -23,6 +23,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0";
@@ -77,13 +78,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
             return command;
         }
         /// <summary>
-        /// Instantiates a new LastIndexOperationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastIndexOperationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LastIndexOperationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/lastIndexOperation{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LastIndexOperationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastIndexOperationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LastIndexOperationRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/lastIndexOperation{?%24expand,%24select}", rawUrl) {
@@ -91,6 +92,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         /// <summary>
         /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

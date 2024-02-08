@@ -18,7 +18,7 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new addActivitiesPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="AddActivitiesPostRequestBody"/> and sets the default values.
         /// </summary>
         public AddActivitiesPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -26,6 +26,7 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AddActivitiesPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AddActivitiesPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -34,6 +35,7 @@ namespace ApiSdk.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAdd
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"activities", n => { Activities = n.GetCollectionOfObjectValues<ExternalActivity>(ExternalActivity.CreateFromDiscriminatorValue)?.ToList(); } },

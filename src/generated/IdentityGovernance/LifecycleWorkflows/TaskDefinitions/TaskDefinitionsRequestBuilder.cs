@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions {
         /// <summary>
         /// Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new TaskDefinitionItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -49,6 +51,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions {
         /// Get a list of the taskDefinition objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-taskdefinitions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the taskDefinition objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-taskdefinitions?view=graph-rest-1.0";
@@ -139,13 +142,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TaskDefinitionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskDefinitionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaskDefinitionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TaskDefinitionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskDefinitionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaskDefinitionsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -153,6 +156,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions {
         /// <summary>
         /// Get a list of the taskDefinition objects and their properties.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,6 +23,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Delete navigation property directories for applications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property directories for applications";
@@ -68,6 +69,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Provides operations to call the discover method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDiscoverNavCommand() {
             var command = new Command("discover");
             command.Description = "Provides operations to call the discover method.";
@@ -83,6 +85,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Contains the collection of directories and all of their objects.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Contains the collection of directories and all of their objects.";
@@ -145,6 +148,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Update the navigation property directories in applications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property directories in applications";
@@ -204,13 +208,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/directories/{directoryDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/directories/{directoryDefinition%2Did}{?%24expand,%24select}", rawUrl) {
@@ -218,6 +222,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Delete navigation property directories for applications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Contains the collection of directories and all of their objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,6 +256,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         /// <summary>
         /// Update the navigation property directories in applications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

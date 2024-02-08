@@ -23,6 +23,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled.MicrosoftGraphPartnersB
         /// Export the unbilled Azure usage data for a specific billing period and a given currency.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/partners-billing-unbilledusage-export?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Export the unbilled Azure usage data for a specific billing period and a given currency.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/partners-billing-unbilledusage-export?view=graph-rest-1.0";
@@ -64,13 +65,13 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled.MicrosoftGraphPartnersB
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphPartnersBillingExportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphPartnersBillingExportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphPartnersBillingExportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphPartnersBillingExportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphPartnersBillingExportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphPartnersBillingExportRequestBuilder(string rawUrl) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", rawUrl) {
@@ -78,6 +79,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled.MicrosoftGraphPartnersB
         /// <summary>
         /// Export the unbilled Azure usage data for a specific billing period and a given currency.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

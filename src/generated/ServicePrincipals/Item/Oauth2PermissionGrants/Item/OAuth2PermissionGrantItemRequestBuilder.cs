@@ -22,6 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
         /// <summary>
         /// Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.";
@@ -76,13 +77,13 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OAuth2PermissionGrantItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OAuth2PermissionGrantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/oauth2PermissionGrants/{oAuth2PermissionGrant%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OAuth2PermissionGrantItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OAuth2PermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OAuth2PermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/oauth2PermissionGrants/{oAuth2PermissionGrant%2Did}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
         /// <summary>
         /// Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

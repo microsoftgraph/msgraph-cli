@@ -69,7 +69,7 @@ namespace ApiSdk.Models {
         /// <summary>Possible values for welcome screen meeting information.</summary>
         public ApiSdk.Models.WelcomeScreenMeetingInformation? WelcomeScreenMeetingInformation { get; set; }
         /// <summary>
-        /// Instantiates a new windows10TeamGeneralConfiguration and sets the default values.
+        /// Instantiates a new <see cref="Windows10TeamGeneralConfiguration"/> and sets the default values.
         /// </summary>
         public Windows10TeamGeneralConfiguration() : base() {
             OdataType = "#microsoft.graph.windows10TeamGeneralConfiguration";
@@ -77,6 +77,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Windows10TeamGeneralConfiguration"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Windows10TeamGeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -85,6 +86,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"azureOperationalInsightsBlockTelemetry", n => { AzureOperationalInsightsBlockTelemetry = n.GetBoolValue(); } },

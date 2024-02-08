@@ -22,6 +22,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// Delete navigation property segments for communications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property segments for communications";
@@ -67,6 +68,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// The list of segments involved in the session. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of segments involved in the session. Read-only. Nullable.";
@@ -129,6 +131,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// Update the navigation property segments in communications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property segments in communications";
@@ -188,13 +191,13 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SegmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SegmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SegmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords/{callRecord%2Did}/sessions/{session%2Did}/segments/{segment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SegmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SegmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SegmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/callRecords/{callRecord%2Did}/sessions/{session%2Did}/segments/{segment%2Did}{?%24expand,%24select}", rawUrl) {
@@ -202,6 +205,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// Delete navigation property segments for communications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,6 +222,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// The list of segments involved in the session. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments.Item {
         /// <summary>
         /// Update the navigation property segments in communications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

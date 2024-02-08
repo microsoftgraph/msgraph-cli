@@ -22,6 +22,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item.Reauthorize {
         /// Reauthorize a subscription when you receive a reauthorizationRequired challenge.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-reauthorize?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reauthorize a subscription when you receive a reauthorizationRequired challenge.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-reauthorize?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item.Reauthorize {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReauthorizeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReauthorizeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReauthorizeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/subscriptions/{subscription%2Did}/reauthorize", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReauthorizeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReauthorizeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReauthorizeRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/subscriptions/{subscription%2Did}/reauthorize", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item.Reauthorize {
         /// <summary>
         /// Reauthorize a subscription when you receive a reauthorizationRequired challenge.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

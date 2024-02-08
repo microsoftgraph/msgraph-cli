@@ -22,6 +22,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item.GraphAppRoleAssignment {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment";
@@ -83,13 +84,13 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item.GraphAppRoleAssignment {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphAppRoleAssignmentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphAppRoleAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphAppRoleAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/{directoryObject%2Did}/graph.appRoleAssignment{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphAppRoleAssignmentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphAppRoleAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphAppRoleAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredUsers/{directoryObject%2Did}/graph.appRoleAssignment{?%24expand,%24select}", rawUrl) {
@@ -97,6 +98,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item.GraphAppRoleAssignment {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
         /// Send an existing draft message. The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder. Alternatively, send a new message in a single operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-send?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Send an existing draft message. The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder. Alternatively, send a new message in a single operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-send?view=graph-rest-1.0";
@@ -58,13 +59,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SendRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/send", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SendRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/send", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send {
         /// <summary>
         /// Send an existing draft message. The draft message can be a new message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder. Alternatively, send a new message in a single operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

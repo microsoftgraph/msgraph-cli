@@ -22,6 +22,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// <summary>
         /// Delete navigation property dailyPrintUsageByUser for reports
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property dailyPrintUsageByUser for reports";
@@ -56,6 +57,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a user's usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0";
@@ -106,6 +108,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// <summary>
         /// Update the navigation property dailyPrintUsageByUser in reports
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property dailyPrintUsageByUser in reports";
@@ -153,13 +156,13 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PrintUsageByUserItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrintUsageByUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrintUsageByUserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/dailyPrintUsageByUser/{printUsageByUser%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PrintUsageByUserItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrintUsageByUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrintUsageByUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/reports/dailyPrintUsageByUser/{printUsageByUser%2Did}{?%24expand,%24select}", rawUrl) {
@@ -167,6 +170,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// <summary>
         /// Delete navigation property dailyPrintUsageByUser for reports
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -183,6 +187,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// <summary>
         /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -199,6 +204,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
         /// <summary>
         /// Update the navigation property dailyPrintUsageByUser in reports
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

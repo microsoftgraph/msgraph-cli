@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.LastModifiedByUser {
         /// <summary>
         /// Identity of the user who last modified the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Identity of the user who last modified the item. Read-only.";
@@ -86,6 +87,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.LastModifiedByUser {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMailboxSettingsNavCommand() {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
@@ -102,6 +104,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.LastModifiedByUser {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -121,13 +124,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.LastModifiedByUser {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LastModifiedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastModifiedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LastModifiedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/lastModifiedByUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LastModifiedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastModifiedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LastModifiedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/lastModifiedByUser{?%24expand,%24select}", rawUrl) {
@@ -135,6 +138,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.LastModifiedByUser {
         /// <summary>
         /// Identity of the user who last modified the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

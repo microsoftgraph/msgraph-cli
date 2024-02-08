@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsDevicePerformance for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property userExperienceAnalyticsDevicePerformance for deviceManagement";
@@ -55,6 +56,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// User experience analytics device performance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "User experience analytics device performance";
@@ -105,6 +107,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsDevicePerformance in deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property userExperienceAnalyticsDevicePerformance in deviceManagement";
@@ -152,13 +155,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
             return command;
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsDevicePerformanceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsDevicePerformanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsDevicePerformanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsDevicePerformance/{userExperienceAnalyticsDevicePerformance%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsDevicePerformanceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsDevicePerformanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsDevicePerformanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsDevicePerformance/{userExperienceAnalyticsDevicePerformance%2Did}{?%24expand,%24select}", rawUrl) {
@@ -166,6 +169,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsDevicePerformance for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,6 +186,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// User experience analytics device performance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -198,6 +203,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance.Item 
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsDevicePerformance in deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -35,7 +35,7 @@ namespace ApiSdk.Models.ODataErrors {
         public string RequestId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new InnerError and sets the default values.
+        /// Instantiates a new <see cref="InnerError"/> and sets the default values.
         /// </summary>
         public InnerError() {
             AdditionalData = new Dictionary<string, object>();
@@ -43,6 +43,7 @@ namespace ApiSdk.Models.ODataErrors {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="InnerError"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static InnerError CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -51,6 +52,7 @@ namespace ApiSdk.Models.ODataErrors {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"client-request-id", n => { ClientRequestId = n.GetStringValue(); } },

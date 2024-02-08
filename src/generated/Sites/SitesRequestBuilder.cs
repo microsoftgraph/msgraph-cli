@@ -28,6 +28,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
@@ -43,6 +44,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to manage the collection of site entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -74,6 +76,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -89,6 +92,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -104,6 +108,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to call the getAllSites method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetAllSitesNavCommand() {
             var command = new Command("get-all-sites");
             command.Description = "Provides operations to call the getAllSites method.";
@@ -117,12 +122,13 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-search?view=graph-rest-1.0" />
+        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-search?view=graph-rest-1.0";
+            command.Description = "List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,6 +218,7 @@ namespace ApiSdk.Sites {
         /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRemoveNavCommand() {
             var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
@@ -225,20 +232,21 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SitesRequestBuilder(string rawUrl) : base("{+baseurl}/sites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -253,7 +261,7 @@ namespace ApiSdk.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

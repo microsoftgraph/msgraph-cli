@@ -22,6 +22,7 @@ namespace ApiSdk.Connections.Item.Items.Item.Activities.Item.PerformedBy {
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents an identity used to identify who is responsible for the activity.";
@@ -82,13 +83,13 @@ namespace ApiSdk.Connections.Item.Items.Item.Activities.Item.PerformedBy {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PerformedByRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PerformedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PerformedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PerformedByRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PerformedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PerformedByRequestBuilder(string rawUrl) : base("{+baseurl}/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", rawUrl) {
@@ -96,6 +97,7 @@ namespace ApiSdk.Connections.Item.Items.Item.Activities.Item.PerformedBy {
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

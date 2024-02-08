@@ -22,6 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
         /// Remove a password from a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Remove a password from a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RemovePasswordRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RemovePasswordRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
         /// <summary>
         /// Remove a password from a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

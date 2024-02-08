@@ -22,6 +22,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Detailed information for the roleDefinition object that is referenced through the roleDefinitionId property.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Detailed information for the roleDefinition object that is referenced through the roleDefinitionId property.";
@@ -70,13 +71,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RoleDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules/{unifiedRoleEligibilitySchedule%2Did}/roleDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RoleDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules/{unifiedRoleEligibilitySchedule%2Did}/roleDefinition{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Detailed information for the roleDefinition object that is referenced through the roleDefinitionId property.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

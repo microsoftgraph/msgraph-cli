@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True {
         /// <summary>
         /// Invoke action true
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action true";
@@ -62,13 +63,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TrueRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TrueRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TrueRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/true", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TrueRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TrueRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TrueRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/true", rawUrl) {
@@ -76,6 +77,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True {
         /// <summary>
         /// Invoke action true
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

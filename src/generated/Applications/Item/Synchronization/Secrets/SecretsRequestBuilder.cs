@@ -22,6 +22,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Secrets {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -37,6 +38,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Secrets {
         /// <summary>
         /// Update property secrets value.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update property secrets value.";
@@ -84,13 +86,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Secrets {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SecretsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SecretsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SecretsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/secrets", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SecretsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SecretsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SecretsRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/secrets", rawUrl) {
@@ -98,6 +100,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Secrets {
         /// <summary>
         /// Update property secrets value.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

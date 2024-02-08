@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// <summary>
         /// Delete navigation property deviceCompliancePolicyDeviceStateSummary for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCompliancePolicyDeviceStateSummary for deviceManagement";
@@ -50,6 +51,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// Read properties and relationships of the deviceCompliancePolicyDeviceStateSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicydevicestatesummary-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceCompliancePolicyDeviceStateSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicydevicestatesummary-get?view=graph-rest-1.0";
@@ -95,6 +97,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// Update the properties of a deviceCompliancePolicyDeviceStateSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicydevicestatesummary-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceCompliancePolicyDeviceStateSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicydevicestatesummary-update?view=graph-rest-1.0";
@@ -136,13 +139,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceCompliancePolicyDeviceStateSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceCompliancePolicyDeviceStateSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicyDeviceStateSummary{?%24expand,%24select}", rawUrl) {
@@ -150,6 +153,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// <summary>
         /// Delete navigation property deviceCompliancePolicyDeviceStateSummary for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -166,6 +170,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// <summary>
         /// Read properties and relationships of the deviceCompliancePolicyDeviceStateSummary object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,6 +187,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
         /// <summary>
         /// Update the properties of a deviceCompliancePolicyDeviceStateSummary object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

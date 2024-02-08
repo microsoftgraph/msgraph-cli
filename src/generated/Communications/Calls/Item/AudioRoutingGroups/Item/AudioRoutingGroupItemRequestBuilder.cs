@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// Delete the specified audioRoutingGroup.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/audioroutinggroup-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the specified audioRoutingGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/audioroutinggroup-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// Retrieve the properties and relationships of an audioRoutingGroup object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/audioroutinggroup-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an audioRoutingGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/audioroutinggroup-get?view=graph-rest-1.0";
@@ -120,6 +122,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// Modify sources and receivers of an audioRoutingGroup.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/audioroutinggroup-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Modify sources and receivers of an audioRoutingGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/audioroutinggroup-update?view=graph-rest-1.0";
@@ -173,13 +176,13 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AudioRoutingGroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AudioRoutingGroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AudioRoutingGroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AudioRoutingGroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AudioRoutingGroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AudioRoutingGroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/audioRoutingGroups/{audioRoutingGroup%2Did}{?%24expand,%24select}", rawUrl) {
@@ -187,6 +190,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// <summary>
         /// Delete the specified audioRoutingGroup.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,6 +207,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an audioRoutingGroup object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,6 +224,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
         /// <summary>
         /// Modify sources and receivers of an audioRoutingGroup.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

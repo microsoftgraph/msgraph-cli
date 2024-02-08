@@ -47,7 +47,7 @@ namespace ApiSdk.Models {
         public string ResourceAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new resourceSpecificPermissionGrant and sets the default values.
+        /// Instantiates a new <see cref="ResourceSpecificPermissionGrant"/> and sets the default values.
         /// </summary>
         public ResourceSpecificPermissionGrant() : base() {
             OdataType = "#microsoft.graph.resourceSpecificPermissionGrant";
@@ -55,6 +55,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="ResourceSpecificPermissionGrant"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ResourceSpecificPermissionGrant CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -63,6 +64,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"clientAppId", n => { ClientAppId = n.GetStringValue(); } },

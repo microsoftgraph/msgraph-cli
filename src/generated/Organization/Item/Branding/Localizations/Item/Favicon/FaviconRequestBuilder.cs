@@ -22,6 +22,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
@@ -66,6 +67,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.";
@@ -123,13 +125,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FaviconRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FaviconRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FaviconRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/favicon", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FaviconRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FaviconRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FaviconRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/favicon", rawUrl) {
@@ -137,6 +139,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -153,6 +156,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

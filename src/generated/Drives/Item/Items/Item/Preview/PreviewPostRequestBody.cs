@@ -19,7 +19,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview {
         /// <summary>The zoom property</summary>
         public double? Zoom { get; set; }
         /// <summary>
-        /// Instantiates a new previewPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="PreviewPostRequestBody"/> and sets the default values.
         /// </summary>
         public PreviewPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -27,6 +27,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="PreviewPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static PreviewPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -35,6 +36,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"page", n => { Page = n.GetStringValue(); } },

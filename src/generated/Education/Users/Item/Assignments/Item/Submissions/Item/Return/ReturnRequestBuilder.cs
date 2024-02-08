@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
         /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0";
@@ -69,13 +70,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReturnRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReturnRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReturnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/return", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReturnRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReturnRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReturnRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/return", rawUrl) {
@@ -83,6 +84,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
         /// <summary>
         /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

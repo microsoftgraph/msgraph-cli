@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
         public List<OptionalClaim> Saml2Token { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new optionalClaims and sets the default values.
+        /// Instantiates a new <see cref="OptionalClaims"/> and sets the default values.
         /// </summary>
         public OptionalClaims() {
             AdditionalData = new Dictionary<string, object>();
@@ -49,6 +49,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="OptionalClaims"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static OptionalClaims CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -57,6 +58,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"accessToken", n => { AccessToken = n.GetCollectionOfObjectValues<OptionalClaim>(OptionalClaim.CreateFromDiscriminatorValue)?.ToList(); } },

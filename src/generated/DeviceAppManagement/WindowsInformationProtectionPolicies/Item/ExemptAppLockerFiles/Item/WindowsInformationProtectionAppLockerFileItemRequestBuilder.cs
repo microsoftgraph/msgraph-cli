@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Delete navigation property exemptAppLockerFiles for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property exemptAppLockerFiles for deviceAppManagement";
@@ -61,6 +62,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Another way to input exempt apps through xml files
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Another way to input exempt apps through xml files";
@@ -117,6 +119,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Update the navigation property exemptAppLockerFiles in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property exemptAppLockerFiles in deviceAppManagement";
@@ -170,13 +173,13 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
             return command;
         }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionAppLockerFileItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsInformationProtectionAppLockerFileItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WindowsInformationProtectionAppLockerFileItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}/exemptAppLockerFiles/{windowsInformationProtectionAppLockerFile%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionAppLockerFileItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsInformationProtectionAppLockerFileItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WindowsInformationProtectionAppLockerFileItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}/exemptAppLockerFiles/{windowsInformationProtectionAppLockerFile%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Delete navigation property exemptAppLockerFiles for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +204,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Another way to input exempt apps through xml files
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.E
         /// <summary>
         /// Update the navigation property exemptAppLockerFiles in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

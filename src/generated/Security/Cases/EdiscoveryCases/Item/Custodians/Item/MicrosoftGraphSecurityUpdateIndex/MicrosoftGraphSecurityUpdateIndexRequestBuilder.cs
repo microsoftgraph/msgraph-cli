@@ -22,6 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
         /// Trigger an indexOperation to make a custodian and associated sources searchable.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Trigger an indexOperation to make a custodian and associated sources searchable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-updateindex?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityUpdateIndexRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityUpdateIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityUpdateIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/microsoft.graph.security.updateIndex", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityUpdateIndexRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityUpdateIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityUpdateIndexRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/microsoft.graph.security.updateIndex", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.MicrosoftGr
         /// <summary>
         /// Trigger an indexOperation to make a custodian and associated sources searchable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

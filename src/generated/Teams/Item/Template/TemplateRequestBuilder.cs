@@ -22,6 +22,7 @@ namespace ApiSdk.Teams.Item.Template {
         /// <summary>
         /// The template this team was created from. See available templates.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The template this team was created from. See available templates.";
@@ -70,13 +71,13 @@ namespace ApiSdk.Teams.Item.Template {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TemplateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemplateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TemplateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/template{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TemplateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemplateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TemplateRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/template{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Teams.Item.Template {
         /// <summary>
         /// The template this team was created from. See available templates.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

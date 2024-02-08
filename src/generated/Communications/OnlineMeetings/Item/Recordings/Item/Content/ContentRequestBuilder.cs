@@ -22,6 +22,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content {
         /// <summary>
         /// The content of the recording. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The content of the recording. Read-only.";
@@ -66,6 +67,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content {
         /// <summary>
         /// The content of the recording. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "The content of the recording. Read-only.";
@@ -116,13 +118,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/recordings/{callRecording%2Did}/content", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/recordings/{callRecording%2Did}/content", rawUrl) {
@@ -130,6 +132,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content {
         /// <summary>
         /// The content of the recording. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -146,6 +149,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item.Content {
         /// <summary>
         /// The content of the recording. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

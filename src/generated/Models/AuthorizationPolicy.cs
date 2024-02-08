@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>Represents role templateId for the role that should be granted to guest user. Currently following roles are supported:  User (a0b1b346-4d3e-4e8b-98f8-753987be4970), Guest User (10dae51f-b6af-4016-8d66-8c2a99b929b3), and Restricted Guest User (2af84b1e-32c8-42b7-82bc-daa82404023b).</summary>
         public Guid? GuestUserRoleId { get; set; }
         /// <summary>
-        /// Instantiates a new authorizationPolicy and sets the default values.
+        /// Instantiates a new <see cref="AuthorizationPolicy"/> and sets the default values.
         /// </summary>
         public AuthorizationPolicy() : base() {
             OdataType = "#microsoft.graph.authorizationPolicy";
@@ -37,6 +37,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AuthorizationPolicy"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new AuthorizationPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -45,6 +46,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"allowEmailVerifiedUsersToJoinOrganization", n => { AllowEmailVerifiedUsersToJoinOrganization = n.GetBoolValue(); } },

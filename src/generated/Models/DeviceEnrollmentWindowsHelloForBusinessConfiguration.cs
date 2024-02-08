@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>Controls the use of biometric gestures, such as face and fingerprint, as an alternative to the Windows Hello for Business PIN.  If set to False, biometric gestures are not allowed. Users must still configure a PIN as a backup in case of failures.</summary>
         public bool? UnlockWithBiometricsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new deviceEnrollmentWindowsHelloForBusinessConfiguration and sets the default values.
+        /// Instantiates a new <see cref="DeviceEnrollmentWindowsHelloForBusinessConfiguration"/> and sets the default values.
         /// </summary>
         public DeviceEnrollmentWindowsHelloForBusinessConfiguration() : base() {
             OdataType = "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration";
@@ -42,6 +42,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="DeviceEnrollmentWindowsHelloForBusinessConfiguration"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new DeviceEnrollmentWindowsHelloForBusinessConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -50,6 +51,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"enhancedBiometricsState", n => { EnhancedBiometricsState = n.GetEnumValue<Enablement>(); } },

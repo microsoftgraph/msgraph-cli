@@ -23,6 +23,7 @@ namespace ApiSdk.Contacts.Item.Manager {
         /// Get this organizational contact&apos;s manager.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-get-manager?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get this organizational contact's manager.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-get-manager?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Contacts.Item.Manager {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ManagerRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/manager{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ManagerRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagerRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/manager{?%24expand,%24select}", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Contacts.Item.Manager {
         /// <summary>
         /// Get this organizational contact&apos;s manager.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

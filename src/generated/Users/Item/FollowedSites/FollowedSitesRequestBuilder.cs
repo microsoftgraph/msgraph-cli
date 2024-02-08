@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
         /// <summary>
         /// Provides operations to manage the followedSites property of the microsoft.graph.user entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new SiteItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -49,6 +51,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
         /// List the sites that have been followed by the signed in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sites-list-followed?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List the sites that have been followed by the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sites-list-followed?view=graph-rest-1.0";
@@ -145,13 +148,13 @@ namespace ApiSdk.Users.Item.FollowedSites {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FollowedSitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FollowedSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FollowedSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/followedSites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FollowedSitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FollowedSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FollowedSitesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/followedSites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -159,6 +162,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
         /// <summary>
         /// List the sites that have been followed by the signed in user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

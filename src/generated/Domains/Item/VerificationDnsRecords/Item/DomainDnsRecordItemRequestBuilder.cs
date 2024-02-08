@@ -22,6 +22,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// Delete navigation property verificationDnsRecords for domains
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property verificationDnsRecords for domains";
@@ -61,6 +62,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID. Read-only, Nullable. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID. Read-only, Nullable. Supports $expand.";
@@ -117,6 +119,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// Update the navigation property verificationDnsRecords in domains
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property verificationDnsRecords in domains";
@@ -170,13 +173,13 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DomainDnsRecordItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DomainDnsRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DomainDnsRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/verificationDnsRecords/{domainDnsRecord%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DomainDnsRecordItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DomainDnsRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DomainDnsRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/verificationDnsRecords/{domainDnsRecord%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// Delete navigation property verificationDnsRecords for domains
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,6 +204,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// DNS records that the customer adds to the DNS zone file of the domain before the customer can complete domain ownership verification with Microsoft Entra ID. Read-only, Nullable. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords.Item {
         /// <summary>
         /// Update the navigation property verificationDnsRecords in domains
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

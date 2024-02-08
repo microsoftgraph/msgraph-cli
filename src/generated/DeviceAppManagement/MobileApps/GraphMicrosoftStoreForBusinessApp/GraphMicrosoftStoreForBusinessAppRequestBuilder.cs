@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMicrosoftStoreForBusinessAp
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -38,6 +39,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMicrosoftStoreForBusinessAp
         /// <summary>
         /// Get the items of type microsoft.graph.microsoftStoreForBusinessApp in the microsoft.graph.mobileApp collection
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the items of type microsoft.graph.microsoftStoreForBusinessApp in the microsoft.graph.mobileApp collection";
@@ -128,13 +130,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMicrosoftStoreForBusinessAp
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphMicrosoftStoreForBusinessAppRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphMicrosoftStoreForBusinessAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GraphMicrosoftStoreForBusinessAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.microsoftStoreForBusinessApp{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphMicrosoftStoreForBusinessAppRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GraphMicrosoftStoreForBusinessAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GraphMicrosoftStoreForBusinessAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.microsoftStoreForBusinessApp{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -142,6 +144,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMicrosoftStoreForBusinessAp
         /// <summary>
         /// Get the items of type microsoft.graph.microsoftStoreForBusinessApp in the microsoft.graph.mobileApp collection
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
