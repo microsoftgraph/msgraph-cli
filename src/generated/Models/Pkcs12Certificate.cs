@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
         public string Pkcs12Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new pkcs12Certificate and sets the default values.
+        /// Instantiates a new <see cref="Pkcs12Certificate"/> and sets the default values.
         /// </summary>
         public Pkcs12Certificate() : base() {
             OdataType = "#microsoft.graph.pkcs12Certificate";
@@ -31,6 +31,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Pkcs12Certificate"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Pkcs12Certificate CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -39,6 +40,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"password", n => { Password = n.GetStringValue(); } },

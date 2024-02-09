@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
         /// <summary>
         /// References the principal that&apos;s in the scope of this membership or ownership assignment request to the group that&apos;s governed by PIM. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "References the principal that's in the scope of this membership or ownership assignment request to the group that's governed by PIM. Supports $expand.";
@@ -70,13 +71,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new PrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/principal{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/principal{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
         /// <summary>
         /// References the principal that&apos;s in the scope of this membership or ownership assignment request to the group that&apos;s governed by PIM. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -21,6 +21,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
         /// <summary>
         /// Invoke function getByUserRole
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getByUserRole";
@@ -58,6 +59,11 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
             };
             orderbyOption.IsRequired = false;
             command.AddOption(orderbyOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -73,6 +79,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
@@ -89,6 +96,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (role is not null) requestInfo.PathParameters.Add("role", role);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -110,20 +118,21 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetByUserRoleWithRoleRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetByUserRoleWithRoleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetByUserRoleWithRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetByUserRoleWithRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetByUserRoleWithRoleRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetByUserRoleWithRoleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetByUserRoleWithRoleRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetByUserRoleWithRoleRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getByUserRole
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -144,6 +153,16 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

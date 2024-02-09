@@ -21,6 +21,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport {
         /// <summary>
         /// Invoke function getFinalReport
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getFinalReport";
@@ -57,13 +58,13 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetFinalReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetFinalReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetFinalReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetFinalReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetFinalReportRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}/getFinalReport()", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.GetFinalReport {
         /// <summary>
         /// Invoke function getFinalReport
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

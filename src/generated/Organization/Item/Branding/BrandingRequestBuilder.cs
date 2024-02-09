@@ -30,6 +30,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBackgroundImageNavCommand() {
             var command = new Command("background-image");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -46,6 +47,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBannerLogoNavCommand() {
             var command = new Command("banner-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -62,6 +64,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCustomCSSNavCommand() {
             var command = new Command("custom-c-s-s");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -79,6 +82,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// Delete the default organizational branding object. To delete the organizationalBranding object, all images (Stream types) must first be removed from the object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the default organizational branding object. To delete the organizationalBranding object, all images (Stream types) must first be removed from the object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-delete?view=graph-rest-1.0";
@@ -112,6 +116,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFaviconNavCommand() {
             var command = new Command("favicon");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -129,6 +134,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
@@ -179,6 +185,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHeaderLogoNavCommand() {
             var command = new Command("header-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -195,6 +202,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLocalizationsNavCommand() {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.";
@@ -221,6 +229,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// Update the properties of the default branding object specified by the organizationalBranding resource.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of the default branding object specified by the organizationalBranding resource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-update?view=graph-rest-1.0";
@@ -270,6 +279,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSquareLogoDarkNavCommand() {
             var command = new Command("square-logo-dark");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -286,6 +296,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSquareLogoNavCommand() {
             var command = new Command("square-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -300,13 +311,13 @@ namespace ApiSdk.Organization.Item.Branding {
             return command;
         }
         /// <summary>
-        /// Instantiates a new BrandingRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BrandingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BrandingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new BrandingRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BrandingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BrandingRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding{?%24expand,%24select}", rawUrl) {
@@ -314,6 +325,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Delete the default organizational branding object. To delete the organizationalBranding object, all images (Stream types) must first be removed from the object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -322,7 +334,7 @@ namespace ApiSdk.Organization.Item.Branding {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/organization/{organization%2Did}/branding", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -330,6 +342,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Retrieve the default organizational branding object, if the Accept-Language header is set to 0 or default. If no default organizational branding object exists, this method returns a 404 Not Found error. If the Accept-Language header is set to an existing locale identified by the value of its id, this method retrieves the branding for the specified locale. This method retrieves only non-Stream properties, for example, usernameHintText and signInPageText. To retrieve Stream types of the default branding, for example, bannerLogo and backgroundImage, use the GET organizationalBrandingLocalization method.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -346,6 +359,7 @@ namespace ApiSdk.Organization.Item.Branding {
         /// <summary>
         /// Update the properties of the default branding object specified by the organizationalBranding resource.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -356,7 +370,7 @@ namespace ApiSdk.Organization.Item.Branding {
         public RequestInformation ToPatchRequestInformation(OrganizationalBranding body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/organization/{organization%2Did}/branding", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

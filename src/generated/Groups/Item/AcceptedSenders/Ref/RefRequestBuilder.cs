@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         /// Remove acceptedSender
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove acceptedSender\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         /// Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-acceptedsenders?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-acceptedsenders?view=graph-rest-1.0";
@@ -142,6 +144,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don&apos;t specify the same user or group in the accepted senders and rejected senders lists, otherwise you&apos;ll get an error.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-acceptedsenders?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don't specify the same user or group in the accepted senders and rejected senders lists, otherwise you'll get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-acceptedsenders?view=graph-rest-1.0";
@@ -179,20 +182,21 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24skip,%24top}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref{?%24count,%24filter,%24orderby,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24skip,%24top}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref{?%24count,%24filter,%24orderby,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Remove acceptedSender
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,7 +205,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref?@id={%40id}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -209,6 +213,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         /// <summary>
         /// Users in the accepted senders list can post to conversations of the group (identified in the GET request URL).Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,6 +230,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         /// <summary>
         /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don&apos;t specify the same user or group in the accepted senders and rejected senders lists, otherwise you&apos;ll get an error.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +241,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
         public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/acceptedSenders/$ref", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

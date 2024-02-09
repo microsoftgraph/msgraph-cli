@@ -23,6 +23,7 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Get privacy
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get privacy";
@@ -67,6 +68,7 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Update privacy
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update privacy";
@@ -110,6 +112,7 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubjectRightsRequestsNavCommand() {
             var command = new Command("subject-rights-requests");
             command.Description = "Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.";
@@ -133,13 +136,13 @@ namespace ApiSdk.Privacy {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PrivacyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrivacyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrivacyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PrivacyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrivacyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrivacyRequestBuilder(string rawUrl) : base("{+baseurl}/privacy{?%24expand,%24select}", rawUrl) {
@@ -147,6 +150,7 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Get privacy
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -163,6 +167,7 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Update privacy
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +178,7 @@ namespace ApiSdk.Privacy {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Privacy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/privacy", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -21,6 +21,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.SetRea
         /// <summary>
         /// Invoke action setReaction
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action setReaction";
@@ -70,13 +71,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.SetRea
             return command;
         }
         /// <summary>
-        /// Instantiates a new SetReactionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SetReactionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetReactionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/primaryChannel/messages/{chatMessage%2Did}/setReaction", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SetReactionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SetReactionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetReactionRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/primaryChannel/messages/{chatMessage%2Did}/setReaction", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.SetRea
         /// <summary>
         /// Invoke action setReaction
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

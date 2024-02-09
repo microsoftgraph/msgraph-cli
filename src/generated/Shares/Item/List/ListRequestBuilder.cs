@@ -30,6 +30,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.list entity.";
@@ -55,6 +56,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentTypesNavCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
@@ -83,6 +85,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -105,6 +108,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Delete navigation property list for shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property list for shares";
@@ -138,6 +142,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.list entity.";
@@ -153,6 +158,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Used to access the underlying list
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used to access the underlying list";
@@ -203,6 +209,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.list entity.";
@@ -227,6 +234,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -249,6 +257,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.list entity.";
@@ -274,6 +283,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Update the navigation property list in shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property list in shares";
@@ -323,6 +333,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubscriptionsNavCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.list entity.";
@@ -346,13 +357,13 @@ namespace ApiSdk.Shares.Item.List {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ListRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ListRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ListRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ListRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ListRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list{?%24expand,%24select}", rawUrl) {
@@ -360,6 +371,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Delete navigation property list for shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -368,7 +380,7 @@ namespace ApiSdk.Shares.Item.List {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/shares/{sharedDriveItem%2Did}/list", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -376,6 +388,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Used to access the underlying list
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -392,6 +405,7 @@ namespace ApiSdk.Shares.Item.List {
         /// <summary>
         /// Update the navigation property list in shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -402,7 +416,7 @@ namespace ApiSdk.Shares.Item.List {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.List body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/shares/{sharedDriveItem%2Did}/list", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

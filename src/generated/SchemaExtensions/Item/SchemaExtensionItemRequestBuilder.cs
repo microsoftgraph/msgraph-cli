@@ -23,6 +23,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// Delete the definition of a schema extension. Only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the InDevelopment state. Deleting a schema extension definition does not affect accessing custom data that has been added to resource instances based on that definition.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schemaextension-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the definition of a schema extension. Only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the InDevelopment state. Deleting a schema extension definition does not affect accessing custom data that has been added to resource instances based on that definition.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schemaextension-delete?view=graph-rest-1.0";
@@ -57,6 +58,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// Get schemaExtension
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schemaextension-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get schemaExtension\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schemaextension-get?view=graph-rest-1.0";
@@ -108,6 +110,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// Update properties in the definition of the specified schemaExtension. Additive updates to the extension can only be made when the extension is in the InDevelopment or Available status. This means custom properties or target resource types cannot be removed from the definition, but new custom properties can be added and the description of the extension changed. The update applies to all the resources that are included in the targetTypes property of the extension. These resources are among the supporting resource types. For delegated flows, the signed-in user can update a schema extension as long as the owner property of the extension is set to the appId of an application the signed-in user owns. That application can be the one that initially created the extension, or some other application owned by the signed-in user.  This criteria for the owner property allows a signed-in user to make updates through other applications they don&apos;t own, such as Microsoft Graph Explorer. When using Graph Explorer to update a schemaExtension resource, include the owner property in the PATCH request body.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schemaextension-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update properties in the definition of the specified schemaExtension. Additive updates to the extension can only be made when the extension is in the InDevelopment or Available status. This means custom properties or target resource types cannot be removed from the definition, but new custom properties can be added and the description of the extension changed. The update applies to all the resources that are included in the targetTypes property of the extension. These resources are among the supporting resource types. For delegated flows, the signed-in user can update a schema extension as long as the owner property of the extension is set to the appId of an application the signed-in user owns. That application can be the one that initially created the extension, or some other application owned by the signed-in user.  This criteria for the owner property allows a signed-in user to make updates through other applications they don't own, such as Microsoft Graph Explorer. When using Graph Explorer to update a schemaExtension resource, include the owner property in the PATCH request body.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schemaextension-update?view=graph-rest-1.0";
@@ -155,13 +158,13 @@ namespace ApiSdk.SchemaExtensions.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SchemaExtensionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SchemaExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SchemaExtensionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/schemaExtensions/{schemaExtension%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SchemaExtensionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SchemaExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SchemaExtensionItemRequestBuilder(string rawUrl) : base("{+baseurl}/schemaExtensions/{schemaExtension%2Did}{?%24expand,%24select}", rawUrl) {
@@ -169,6 +172,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// <summary>
         /// Delete the definition of a schema extension. Only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the InDevelopment state. Deleting a schema extension definition does not affect accessing custom data that has been added to resource instances based on that definition.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -177,7 +181,7 @@ namespace ApiSdk.SchemaExtensions.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/schemaExtensions/{schemaExtension%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -185,6 +189,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// <summary>
         /// Get schemaExtension
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,6 +206,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         /// <summary>
         /// Update properties in the definition of the specified schemaExtension. Additive updates to the extension can only be made when the extension is in the InDevelopment or Available status. This means custom properties or target resource types cannot be removed from the definition, but new custom properties can be added and the description of the extension changed. The update applies to all the resources that are included in the targetTypes property of the extension. These resources are among the supporting resource types. For delegated flows, the signed-in user can update a schema extension as long as the owner property of the extension is set to the appId of an application the signed-in user owns. That application can be the one that initially created the extension, or some other application owned by the signed-in user.  This criteria for the owner property allows a signed-in user to make updates through other applications they don&apos;t own, such as Microsoft Graph Explorer. When using Graph Explorer to update a schemaExtension resource, include the owner property in the PATCH request body.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +217,7 @@ namespace ApiSdk.SchemaExtensions.Item {
         public RequestInformation ToPatchRequestInformation(SchemaExtension body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/schemaExtensions/{schemaExtension%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

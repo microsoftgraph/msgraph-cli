@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// Retrieve the chat of the specified user and Teams app.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
@@ -77,13 +78,13 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ChatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ChatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ChatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ChatRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24expand,%24select}", rawUrl) {
@@ -91,6 +92,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// <summary>
         /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

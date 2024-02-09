@@ -17,7 +17,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword {
         public string NewPassword { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new resetPasswordPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="ResetPasswordPostRequestBody"/> and sets the default values.
         /// </summary>
         public ResetPasswordPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="ResetPasswordPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ResetPasswordPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -33,6 +34,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"newPassword", n => { NewPassword = n.GetStringValue(); } },

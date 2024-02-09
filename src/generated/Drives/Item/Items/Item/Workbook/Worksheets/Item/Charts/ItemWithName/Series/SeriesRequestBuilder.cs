@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// Retrieve a list of chartseries objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-list-series?view=graph-rest-1.0";
@@ -38,6 +39,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var nameOption = new Option<string>("--name", description: "Usage: name='{name}'") {
+            };
+            nameOption.IsRequired = true;
+            command.AddOption(nameOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -83,6 +88,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var name = invocationContext.ParseResult.GetValueForOption(nameOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -112,6 +118,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (name is not null) requestInfo.PathParameters.Add("name", name);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -134,6 +141,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// Use this API to create a new ChartSeries.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Use this API to create a new ChartSeries.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0";
@@ -149,6 +157,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var nameOption = new Option<string>("--name", description: "Usage: name='{name}'") {
+            };
+            nameOption.IsRequired = true;
+            command.AddOption(nameOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -161,6 +173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var name = invocationContext.ParseResult.GetValueForOption(nameOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -180,6 +193,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (name is not null) requestInfo.PathParameters.Add("name", name);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -193,13 +207,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
             return command;
         }
         /// <summary>
-        /// Instantiates a new SeriesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SeriesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SeriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')/series{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SeriesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SeriesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SeriesRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')/series{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -207,6 +221,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Retrieve a list of chartseries objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -223,6 +238,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Use this API to create a new ChartSeries.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -233,7 +249,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         public RequestInformation ToPostRequestInformation(WorkbookChartSeries body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')/series", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

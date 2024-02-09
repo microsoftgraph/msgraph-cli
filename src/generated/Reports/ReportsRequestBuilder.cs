@@ -130,6 +130,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAuthenticationMethodsNavCommand() {
             var command = new Command("authentication-methods");
             command.Description = "Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.";
@@ -157,6 +158,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDailyPrintUsageByPrinterNavCommand() {
             var command = new Command("daily-print-usage-by-printer");
             command.Description = "Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.";
@@ -182,6 +184,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDailyPrintUsageByUserNavCommand() {
             var command = new Command("daily-print-usage-by-user");
             command.Description = "Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.";
@@ -207,6 +210,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the deviceConfigurationDeviceActivity method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeviceConfigurationDeviceActivityNavCommand() {
             var command = new Command("device-configuration-device-activity");
             command.Description = "Provides operations to call the deviceConfigurationDeviceActivity method.";
@@ -222,6 +226,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the deviceConfigurationUserActivity method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeviceConfigurationUserActivityNavCommand() {
             var command = new Command("device-configuration-user-activity");
             command.Description = "Provides operations to call the deviceConfigurationUserActivity method.";
@@ -238,6 +243,7 @@ namespace ApiSdk.Reports {
         /// Read properties and relationships of the reportRoot object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the reportRoot object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-get?view=graph-rest-1.0";
@@ -282,6 +288,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-email-activity-counts-with-period");
             command.Description = "Provides operations to call the getEmailActivityCounts method.";
@@ -297,6 +304,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-email-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getEmailActivityUserCounts method.";
@@ -312,6 +320,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-email-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getEmailActivityUserDetail method.";
@@ -327,6 +336,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-email-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getEmailActivityUserDetail method.";
@@ -342,6 +352,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailAppUsageAppsUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailAppUsageAppsUserCountsWithPeriodRbCommand() {
             var command = new Command("get-email-app-usage-apps-user-counts-with-period");
             command.Description = "Provides operations to call the getEmailAppUsageAppsUserCounts method.";
@@ -357,6 +368,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailAppUsageUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailAppUsageUserCountsWithPeriodRbCommand() {
             var command = new Command("get-email-app-usage-user-counts-with-period");
             command.Description = "Provides operations to call the getEmailAppUsageUserCounts method.";
@@ -372,6 +384,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailAppUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailAppUsageUserDetailWithDateRbCommand() {
             var command = new Command("get-email-app-usage-user-detail-with-date");
             command.Description = "Provides operations to call the getEmailAppUsageUserDetail method.";
@@ -387,6 +400,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailAppUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailAppUsageUserDetailWithPeriodRbCommand() {
             var command = new Command("get-email-app-usage-user-detail-with-period");
             command.Description = "Provides operations to call the getEmailAppUsageUserDetail method.";
@@ -402,6 +416,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getEmailAppUsageVersionsUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetEmailAppUsageVersionsUserCountsWithPeriodRbCommand() {
             var command = new Command("get-email-app-usage-versions-user-counts-with-period");
             command.Description = "Provides operations to call the getEmailAppUsageVersionsUserCounts method.";
@@ -417,6 +432,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getGroupArchivedPrintJobs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRbCommand() {
             var command = new Command("get-group-archived-print-jobs-with-group-id-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the getGroupArchivedPrintJobs method.";
@@ -432,6 +448,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getM365AppPlatformUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetM365AppPlatformUserCountsWithPeriodRbCommand() {
             var command = new Command("get-m365-app-platform-user-counts-with-period");
             command.Description = "Provides operations to call the getM365AppPlatformUserCounts method.";
@@ -447,6 +464,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getM365AppUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetM365AppUserCountsWithPeriodRbCommand() {
             var command = new Command("get-m365-app-user-counts-with-period");
             command.Description = "Provides operations to call the getM365AppUserCounts method.";
@@ -462,6 +480,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getM365AppUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetM365AppUserDetailWithDateRbCommand() {
             var command = new Command("get-m365-app-user-detail-with-date");
             command.Description = "Provides operations to call the getM365AppUserDetail method.";
@@ -477,6 +496,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getM365AppUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetM365AppUserDetailWithPeriodRbCommand() {
             var command = new Command("get-m365-app-user-detail-with-period");
             command.Description = "Provides operations to call the getM365AppUserDetail method.";
@@ -492,6 +512,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getMailboxUsageDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMailboxUsageDetailWithPeriodRbCommand() {
             var command = new Command("get-mailbox-usage-detail-with-period");
             command.Description = "Provides operations to call the getMailboxUsageDetail method.";
@@ -507,6 +528,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getMailboxUsageMailboxCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMailboxUsageMailboxCountsWithPeriodRbCommand() {
             var command = new Command("get-mailbox-usage-mailbox-counts-with-period");
             command.Description = "Provides operations to call the getMailboxUsageMailboxCounts method.";
@@ -522,6 +544,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getMailboxUsageQuotaStatusMailboxCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMailboxUsageQuotaStatusMailboxCountsWithPeriodRbCommand() {
             var command = new Command("get-mailbox-usage-quota-status-mailbox-counts-with-period");
             command.Description = "Provides operations to call the getMailboxUsageQuotaStatusMailboxCounts method.";
@@ -537,6 +560,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getMailboxUsageStorage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMailboxUsageStorageWithPeriodRbCommand() {
             var command = new Command("get-mailbox-usage-storage-with-period");
             command.Description = "Provides operations to call the getMailboxUsageStorage method.";
@@ -552,6 +576,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActivationCountsNavCommand() {
             var command = new Command("get-office365-activation-counts");
             command.Description = "Provides operations to call the getOffice365ActivationCounts method.";
@@ -567,6 +592,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActivationsUserCountsNavCommand() {
             var command = new Command("get-office365-activations-user-counts");
             command.Description = "Provides operations to call the getOffice365ActivationsUserCounts method.";
@@ -582,6 +608,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActivationsUserDetailNavCommand() {
             var command = new Command("get-office365-activations-user-detail");
             command.Description = "Provides operations to call the getOffice365ActivationsUserDetail method.";
@@ -597,6 +624,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActiveUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActiveUserCountsWithPeriodRbCommand() {
             var command = new Command("get-office365-active-user-counts-with-period");
             command.Description = "Provides operations to call the getOffice365ActiveUserCounts method.";
@@ -612,6 +640,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActiveUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActiveUserDetailWithDateRbCommand() {
             var command = new Command("get-office365-active-user-detail-with-date");
             command.Description = "Provides operations to call the getOffice365ActiveUserDetail method.";
@@ -627,6 +656,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActiveUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ActiveUserDetailWithPeriodRbCommand() {
             var command = new Command("get-office365-active-user-detail-with-period");
             command.Description = "Provides operations to call the getOffice365ActiveUserDetail method.";
@@ -642,6 +672,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-office365-groups-activity-counts-with-period");
             command.Description = "Provides operations to call the getOffice365GroupsActivityCounts method.";
@@ -657,6 +688,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityDetailWithDateRbCommand() {
             var command = new Command("get-office365-groups-activity-detail-with-date");
             command.Description = "Provides operations to call the getOffice365GroupsActivityDetail method.";
@@ -672,6 +704,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityDetailWithPeriodRbCommand() {
             var command = new Command("get-office365-groups-activity-detail-with-period");
             command.Description = "Provides operations to call the getOffice365GroupsActivityDetail method.";
@@ -687,6 +720,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityFileCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityFileCountsWithPeriodRbCommand() {
             var command = new Command("get-office365-groups-activity-file-counts-with-period");
             command.Description = "Provides operations to call the getOffice365GroupsActivityFileCounts method.";
@@ -702,6 +736,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityGroupCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityGroupCountsWithPeriodRbCommand() {
             var command = new Command("get-office365-groups-activity-group-counts-with-period");
             command.Description = "Provides operations to call the getOffice365GroupsActivityGroupCounts method.";
@@ -717,6 +752,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365GroupsActivityStorage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365GroupsActivityStorageWithPeriodRbCommand() {
             var command = new Command("get-office365-groups-activity-storage-with-period");
             command.Description = "Provides operations to call the getOffice365GroupsActivityStorage method.";
@@ -732,6 +768,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ServicesUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOffice365ServicesUserCountsWithPeriodRbCommand() {
             var command = new Command("get-office365-services-user-counts-with-period");
             command.Description = "Provides operations to call the getOffice365ServicesUserCounts method.";
@@ -747,6 +784,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveActivityFileCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveActivityFileCountsWithPeriodRbCommand() {
             var command = new Command("get-one-drive-activity-file-counts-with-period");
             command.Description = "Provides operations to call the getOneDriveActivityFileCounts method.";
@@ -762,6 +800,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-one-drive-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getOneDriveActivityUserCounts method.";
@@ -777,6 +816,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-one-drive-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getOneDriveActivityUserDetail method.";
@@ -792,6 +832,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-one-drive-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getOneDriveActivityUserDetail method.";
@@ -807,6 +848,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveUsageAccountCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveUsageAccountCountsWithPeriodRbCommand() {
             var command = new Command("get-one-drive-usage-account-counts-with-period");
             command.Description = "Provides operations to call the getOneDriveUsageAccountCounts method.";
@@ -822,6 +864,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveUsageAccountDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveUsageAccountDetailWithDateRbCommand() {
             var command = new Command("get-one-drive-usage-account-detail-with-date");
             command.Description = "Provides operations to call the getOneDriveUsageAccountDetail method.";
@@ -837,6 +880,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveUsageAccountDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveUsageAccountDetailWithPeriodRbCommand() {
             var command = new Command("get-one-drive-usage-account-detail-with-period");
             command.Description = "Provides operations to call the getOneDriveUsageAccountDetail method.";
@@ -852,6 +896,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveUsageFileCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveUsageFileCountsWithPeriodRbCommand() {
             var command = new Command("get-one-drive-usage-file-counts-with-period");
             command.Description = "Provides operations to call the getOneDriveUsageFileCounts method.";
@@ -867,6 +912,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOneDriveUsageStorage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetOneDriveUsageStorageWithPeriodRbCommand() {
             var command = new Command("get-one-drive-usage-storage-with-period");
             command.Description = "Provides operations to call the getOneDriveUsageStorage method.";
@@ -882,6 +928,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getPrinterArchivedPrintJobs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRbCommand() {
             var command = new Command("get-printer-archived-print-jobs-with-printer-id-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the getPrinterArchivedPrintJobs method.";
@@ -897,6 +944,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointActivityFileCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointActivityFileCountsWithPeriodRbCommand() {
             var command = new Command("get-share-point-activity-file-counts-with-period");
             command.Description = "Provides operations to call the getSharePointActivityFileCounts method.";
@@ -912,6 +960,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointActivityPages method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointActivityPagesWithPeriodRbCommand() {
             var command = new Command("get-share-point-activity-pages-with-period");
             command.Description = "Provides operations to call the getSharePointActivityPages method.";
@@ -927,6 +976,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-share-point-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getSharePointActivityUserCounts method.";
@@ -942,6 +992,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-share-point-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getSharePointActivityUserDetail method.";
@@ -957,6 +1008,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-share-point-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getSharePointActivityUserDetail method.";
@@ -972,6 +1024,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsageDetailWithDateRbCommand() {
             var command = new Command("get-share-point-site-usage-detail-with-date");
             command.Description = "Provides operations to call the getSharePointSiteUsageDetail method.";
@@ -987,6 +1040,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsageDetailWithPeriodRbCommand() {
             var command = new Command("get-share-point-site-usage-detail-with-period");
             command.Description = "Provides operations to call the getSharePointSiteUsageDetail method.";
@@ -1002,6 +1056,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageFileCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsageFileCountsWithPeriodRbCommand() {
             var command = new Command("get-share-point-site-usage-file-counts-with-period");
             command.Description = "Provides operations to call the getSharePointSiteUsageFileCounts method.";
@@ -1017,6 +1072,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsagePages method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsagePagesWithPeriodRbCommand() {
             var command = new Command("get-share-point-site-usage-pages-with-period");
             command.Description = "Provides operations to call the getSharePointSiteUsagePages method.";
@@ -1032,6 +1088,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageSiteCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsageSiteCountsWithPeriodRbCommand() {
             var command = new Command("get-share-point-site-usage-site-counts-with-period");
             command.Description = "Provides operations to call the getSharePointSiteUsageSiteCounts method.";
@@ -1047,6 +1104,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSharePointSiteUsageStorage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSharePointSiteUsageStorageWithPeriodRbCommand() {
             var command = new Command("get-share-point-site-usage-storage-with-period");
             command.Description = "Provides operations to call the getSharePointSiteUsageStorage method.";
@@ -1062,6 +1120,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-activity-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessActivityCounts method.";
@@ -1077,6 +1136,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessActivityUserCounts method.";
@@ -1092,6 +1152,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-skype-for-business-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getSkypeForBusinessActivityUserDetail method.";
@@ -1107,6 +1168,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessActivityUserDetail method.";
@@ -1122,6 +1184,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-device-usage-distribution-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.";
@@ -1137,6 +1200,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessDeviceUsageUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-device-usage-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessDeviceUsageUserCounts method.";
@@ -1152,6 +1216,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessDeviceUsageUserDetailWithDateRbCommand() {
             var command = new Command("get-skype-for-business-device-usage-user-detail-with-date");
             command.Description = "Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.";
@@ -1167,6 +1232,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessDeviceUsageUserDetailWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-device-usage-user-detail-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessDeviceUsageUserDetail method.";
@@ -1182,6 +1248,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessOrganizerActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-organizer-activity-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessOrganizerActivityCounts method.";
@@ -1197,6 +1264,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityMinuteCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-organizer-activity-minute-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessOrganizerActivityMinuteCounts method.";
@@ -1212,6 +1280,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessOrganizerActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-organizer-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessOrganizerActivityUserCounts method.";
@@ -1227,6 +1296,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessParticipantActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-participant-activity-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessParticipantActivityCounts method.";
@@ -1242,6 +1312,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityMinuteCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-participant-activity-minute-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessParticipantActivityMinuteCounts method.";
@@ -1257,6 +1328,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessParticipantActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessParticipantActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-participant-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessParticipantActivityUserCounts method.";
@@ -1272,6 +1344,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-peer-to-peer-activity-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessPeerToPeerActivityCounts method.";
@@ -1287,6 +1360,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityMinuteCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-peer-to-peer-activity-minute-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessPeerToPeerActivityMinuteCounts method.";
@@ -1302,6 +1376,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-skype-for-business-peer-to-peer-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getSkypeForBusinessPeerToPeerActivityUserCounts method.";
@@ -1317,6 +1392,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageDistributionUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsDeviceUsageDistributionUserCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-device-usage-distribution-user-counts-with-period");
             command.Description = "Provides operations to call the getTeamsDeviceUsageDistributionUserCounts method.";
@@ -1332,6 +1408,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsDeviceUsageUserCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-device-usage-user-counts-with-period");
             command.Description = "Provides operations to call the getTeamsDeviceUsageUserCounts method.";
@@ -1347,6 +1424,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsDeviceUsageUserDetailWithDateRbCommand() {
             var command = new Command("get-teams-device-usage-user-detail-with-date");
             command.Description = "Provides operations to call the getTeamsDeviceUsageUserDetail method.";
@@ -1362,6 +1440,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsDeviceUsageUserDetailWithPeriodRbCommand() {
             var command = new Command("get-teams-device-usage-user-detail-with-period");
             command.Description = "Provides operations to call the getTeamsDeviceUsageUserDetail method.";
@@ -1377,6 +1456,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsTeamActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsTeamActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-team-activity-counts-with-period");
             command.Description = "Provides operations to call the getTeamsTeamActivityCounts method.";
@@ -1392,6 +1472,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsTeamActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsTeamActivityDetailWithDateRbCommand() {
             var command = new Command("get-teams-team-activity-detail-with-date");
             command.Description = "Provides operations to call the getTeamsTeamActivityDetail method.";
@@ -1407,6 +1488,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsTeamActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsTeamActivityDetailWithPeriodRbCommand() {
             var command = new Command("get-teams-team-activity-detail-with-period");
             command.Description = "Provides operations to call the getTeamsTeamActivityDetail method.";
@@ -1422,6 +1504,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsTeamActivityDistributionCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsTeamActivityDistributionCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-team-activity-distribution-counts-with-period");
             command.Description = "Provides operations to call the getTeamsTeamActivityDistributionCounts method.";
@@ -1437,6 +1520,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsTeamCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsTeamCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-team-counts-with-period");
             command.Description = "Provides operations to call the getTeamsTeamCounts method.";
@@ -1452,6 +1536,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsUserActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-user-activity-counts-with-period");
             command.Description = "Provides operations to call the getTeamsUserActivityCounts method.";
@@ -1467,6 +1552,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsUserActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-teams-user-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getTeamsUserActivityUserCounts method.";
@@ -1482,6 +1568,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsUserActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-teams-user-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getTeamsUserActivityUserDetail method.";
@@ -1497,6 +1584,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getTeamsUserActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetTeamsUserActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-teams-user-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getTeamsUserActivityUserDetail method.";
@@ -1512,6 +1600,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getUserArchivedPrintJobs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRbCommand() {
             var command = new Command("get-user-archived-print-jobs-with-user-id-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the getUserArchivedPrintJobs method.";
@@ -1527,6 +1616,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-activity-counts-with-period");
             command.Description = "Provides operations to call the getYammerActivityCounts method.";
@@ -1542,6 +1632,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerActivityUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerActivityUserCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-activity-user-counts-with-period");
             command.Description = "Provides operations to call the getYammerActivityUserCounts method.";
@@ -1557,6 +1648,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerActivityUserDetailWithDateRbCommand() {
             var command = new Command("get-yammer-activity-user-detail-with-date");
             command.Description = "Provides operations to call the getYammerActivityUserDetail method.";
@@ -1572,6 +1664,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerActivityUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerActivityUserDetailWithPeriodRbCommand() {
             var command = new Command("get-yammer-activity-user-detail-with-period");
             command.Description = "Provides operations to call the getYammerActivityUserDetail method.";
@@ -1587,6 +1680,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageDistributionUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerDeviceUsageDistributionUserCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-device-usage-distribution-user-counts-with-period");
             command.Description = "Provides operations to call the getYammerDeviceUsageDistributionUserCounts method.";
@@ -1602,6 +1696,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageUserCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerDeviceUsageUserCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-device-usage-user-counts-with-period");
             command.Description = "Provides operations to call the getYammerDeviceUsageUserCounts method.";
@@ -1617,6 +1712,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerDeviceUsageUserDetailWithDateRbCommand() {
             var command = new Command("get-yammer-device-usage-user-detail-with-date");
             command.Description = "Provides operations to call the getYammerDeviceUsageUserDetail method.";
@@ -1632,6 +1728,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerDeviceUsageUserDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerDeviceUsageUserDetailWithPeriodRbCommand() {
             var command = new Command("get-yammer-device-usage-user-detail-with-period");
             command.Description = "Provides operations to call the getYammerDeviceUsageUserDetail method.";
@@ -1647,6 +1744,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerGroupsActivityCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-groups-activity-counts-with-period");
             command.Description = "Provides operations to call the getYammerGroupsActivityCounts method.";
@@ -1662,6 +1760,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerGroupsActivityDetailWithDateRbCommand() {
             var command = new Command("get-yammer-groups-activity-detail-with-date");
             command.Description = "Provides operations to call the getYammerGroupsActivityDetail method.";
@@ -1677,6 +1776,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityDetail method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerGroupsActivityDetailWithPeriodRbCommand() {
             var command = new Command("get-yammer-groups-activity-detail-with-period");
             command.Description = "Provides operations to call the getYammerGroupsActivityDetail method.";
@@ -1692,6 +1792,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getYammerGroupsActivityGroupCounts method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetYammerGroupsActivityGroupCountsWithPeriodRbCommand() {
             var command = new Command("get-yammer-groups-activity-group-counts-with-period");
             command.Description = "Provides operations to call the getYammerGroupsActivityGroupCounts method.";
@@ -1707,6 +1808,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedDeviceEnrollmentFailureDetailsNavCommand() {
             var command = new Command("managed-device-enrollment-failure-details");
             command.Description = "Provides operations to call the managedDeviceEnrollmentFailureDetails method.";
@@ -1722,6 +1824,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRbCommand() {
             var command = new Command("managed-device-enrollment-failure-details-with-skip-with-top-with-filter-with-skip-token");
             command.Description = "Provides operations to call the managedDeviceEnrollmentFailureDetails method.";
@@ -1737,6 +1840,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedDeviceEnrollmentTopFailuresNavCommand() {
             var command = new Command("managed-device-enrollment-top-failures");
             command.Description = "Provides operations to call the managedDeviceEnrollmentTopFailures method.";
@@ -1752,6 +1856,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedDeviceEnrollmentTopFailuresWithPeriodRbCommand() {
             var command = new Command("managed-device-enrollment-top-failures-with-period");
             command.Description = "Provides operations to call the managedDeviceEnrollmentTopFailures method.";
@@ -1767,6 +1872,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMonthlyPrintUsageByPrinterNavCommand() {
             var command = new Command("monthly-print-usage-by-printer");
             command.Description = "Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.";
@@ -1792,6 +1898,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMonthlyPrintUsageByUserNavCommand() {
             var command = new Command("monthly-print-usage-by-user");
             command.Description = "Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.";
@@ -1817,6 +1924,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPartnersNavCommand() {
             var command = new Command("partners");
             command.Description = "Provides operations to manage the partners property of the microsoft.graph.reportRoot entity.";
@@ -1841,6 +1949,7 @@ namespace ApiSdk.Reports {
         /// Update the properties of a reportRoot object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a reportRoot object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-update?view=graph-rest-1.0";
@@ -1884,6 +1993,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the security property of the microsoft.graph.reportRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSecurityNavCommand() {
             var command = new Command("security");
             command.Description = "Provides operations to manage the security property of the microsoft.graph.reportRoot entity.";
@@ -1907,13 +2017,13 @@ namespace ApiSdk.Reports {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReportsRequestBuilder(string rawUrl) : base("{+baseurl}/reports{?%24expand,%24select}", rawUrl) {
@@ -1921,6 +2031,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Read properties and relationships of the reportRoot object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -1937,6 +2048,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Update the properties of a reportRoot object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -1947,7 +2059,7 @@ namespace ApiSdk.Reports {
         public RequestInformation ToPatchRequestInformation(ReportRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/reports", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

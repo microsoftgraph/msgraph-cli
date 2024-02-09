@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new conditionalAccessDevices and sets the default values.
+        /// Instantiates a new <see cref="ConditionalAccessDevices"/> and sets the default values.
         /// </summary>
         public ConditionalAccessDevices() {
             AdditionalData = new Dictionary<string, object>();
@@ -33,6 +33,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="ConditionalAccessDevices"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ConditionalAccessDevices CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -41,6 +42,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"deviceFilter", n => { DeviceFilter = n.GetObjectValue<ConditionalAccessFilter>(ConditionalAccessFilter.CreateFromDiscriminatorValue); } },

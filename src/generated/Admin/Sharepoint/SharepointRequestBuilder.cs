@@ -23,6 +23,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Delete navigation property sharepoint for admin
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sharepoint for admin";
@@ -50,6 +51,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Get sharepoint from admin
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get sharepoint from admin";
@@ -94,6 +96,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Update the navigation property sharepoint in admin
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sharepoint in admin";
@@ -137,6 +140,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.sharepoint entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.sharepoint entity.";
@@ -152,13 +156,13 @@ namespace ApiSdk.Admin.Sharepoint {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SharepointRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SharepointRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SharepointRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/sharepoint{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SharepointRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SharepointRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SharepointRequestBuilder(string rawUrl) : base("{+baseurl}/admin/sharepoint{?%24expand,%24select}", rawUrl) {
@@ -166,6 +170,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Delete navigation property sharepoint for admin
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -174,7 +179,7 @@ namespace ApiSdk.Admin.Sharepoint {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/admin/sharepoint", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -182,6 +187,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Get sharepoint from admin
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -198,6 +204,7 @@ namespace ApiSdk.Admin.Sharepoint {
         /// <summary>
         /// Update the navigation property sharepoint in admin
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +215,7 @@ namespace ApiSdk.Admin.Sharepoint {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Sharepoint body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/admin/sharepoint", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

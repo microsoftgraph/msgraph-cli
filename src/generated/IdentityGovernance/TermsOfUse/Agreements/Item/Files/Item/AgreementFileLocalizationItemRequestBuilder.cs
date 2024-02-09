@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// Delete navigation property files for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property files for identityGovernance";
@@ -62,6 +63,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.";
@@ -118,6 +120,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// Update the navigation property files in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property files in identityGovernance";
@@ -173,6 +176,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.";
@@ -196,13 +200,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AgreementFileLocalizationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AgreementFileLocalizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AgreementFileLocalizationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementFileLocalizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AgreementFileLocalizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}{?%24expand,%24select}", rawUrl) {
@@ -210,6 +214,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// Delete navigation property files for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,7 +223,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -226,6 +231,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,6 +248,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         /// <summary>
         /// Update the navigation property files in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +259,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
         public RequestInformation ToPatchRequestInformation(AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files/{agreementFileLocalization%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

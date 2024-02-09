@@ -28,6 +28,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to manage the collection of groupSettingTemplate entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -45,6 +46,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -60,6 +62,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Add new entity to groupSettingTemplates
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add new entity to groupSettingTemplates";
@@ -103,6 +106,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -118,6 +122,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
@@ -133,6 +138,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
@@ -149,6 +155,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0";
@@ -241,6 +248,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
@@ -254,13 +262,13 @@ namespace ApiSdk.GroupSettingTemplates {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GroupSettingTemplatesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupSettingTemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupSettingTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupSettingTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GroupSettingTemplatesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupSettingTemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupSettingTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/groupSettingTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -268,6 +276,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -284,6 +293,7 @@ namespace ApiSdk.GroupSettingTemplates {
         /// <summary>
         /// Add new entity to groupSettingTemplates
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -294,7 +304,7 @@ namespace ApiSdk.GroupSettingTemplates {
         public RequestInformation ToPostRequestInformation(GroupSettingTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groupSettingTemplates", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

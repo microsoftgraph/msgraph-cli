@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Renew {
         /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-renew?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Renews a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-renew?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.Groups.Item.Renew {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RenewRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RenewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RenewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/renew", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RenewRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RenewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RenewRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/renew", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.Groups.Item.Renew {
         /// <summary>
         /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

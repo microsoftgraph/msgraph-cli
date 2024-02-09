@@ -28,6 +28,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApproversNavCommand() {
             var command = new Command("approvers");
             command.Description = "Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.";
@@ -52,6 +53,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCollaboratorsNavCommand() {
             var command = new Command("collaborators");
             command.Description = "Provides operations to manage the collaborators property of the microsoft.graph.subjectRightsRequest entity.";
@@ -76,6 +78,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Delete navigation property subjectRightsRequests for security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property subjectRightsRequests for security";
@@ -109,6 +112,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Get subjectRightsRequests from security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get subjectRightsRequests from security";
@@ -159,6 +163,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to call the getFinalAttachment method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetFinalAttachmentNavCommand() {
             var command = new Command("get-final-attachment");
             command.Description = "Provides operations to call the getFinalAttachment method.";
@@ -174,6 +179,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to call the getFinalReport method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetFinalReportNavCommand() {
             var command = new Command("get-final-report");
             command.Description = "Provides operations to call the getFinalReport method.";
@@ -189,6 +195,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNotesNavCommand() {
             var command = new Command("notes");
             command.Description = "Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.";
@@ -214,6 +221,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Update the navigation property subjectRightsRequests in security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property subjectRightsRequests in security";
@@ -263,6 +271,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTeamNavCommand() {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.";
@@ -276,13 +285,13 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SubjectRightsRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubjectRightsRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SubjectRightsRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubjectRightsRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubjectRightsRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}{?%24expand,%24select}", rawUrl) {
@@ -290,6 +299,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Delete navigation property subjectRightsRequests for security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -298,7 +308,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -306,6 +316,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Get subjectRightsRequests from security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -322,6 +333,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         /// <summary>
         /// Update the navigation property subjectRightsRequests in security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -332,7 +344,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item {
         public RequestInformation ToPatchRequestInformation(SubjectRightsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/subjectRightsRequests/{subjectRightsRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

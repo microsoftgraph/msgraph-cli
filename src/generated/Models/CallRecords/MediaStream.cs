@@ -83,7 +83,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>True if the media stream bypassed the Mediation Server and went straight between client and PSTN Gateway/PBX, false otherwise.</summary>
         public bool? WasMediaBypassed { get; set; }
         /// <summary>
-        /// Instantiates a new mediaStream and sets the default values.
+        /// Instantiates a new <see cref="MediaStream"/> and sets the default values.
         /// </summary>
         public MediaStream() {
             AdditionalData = new Dictionary<string, object>();
@@ -91,6 +91,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="MediaStream"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static MediaStream CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -99,6 +100,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },

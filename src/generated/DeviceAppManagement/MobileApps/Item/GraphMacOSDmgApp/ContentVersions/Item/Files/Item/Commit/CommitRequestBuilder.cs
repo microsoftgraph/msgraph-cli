@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMacOSDmgApp.ContentVer
         /// <summary>
         /// Commits a file of a given app.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Commits a file of a given app.";
@@ -70,13 +71,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMacOSDmgApp.ContentVer
             return command;
         }
         /// <summary>
-        /// Instantiates a new CommitRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CommitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CommitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.macOSDmgApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/commit", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CommitRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CommitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CommitRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.macOSDmgApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/commit", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMacOSDmgApp.ContentVer
         /// <summary>
         /// Commits a file of a given app.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

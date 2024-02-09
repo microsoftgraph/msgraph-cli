@@ -22,6 +22,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.Item {
         /// <summary>
         /// The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/domainNameReferences/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/domainNameReferences/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.Item {
         /// <summary>
         /// The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

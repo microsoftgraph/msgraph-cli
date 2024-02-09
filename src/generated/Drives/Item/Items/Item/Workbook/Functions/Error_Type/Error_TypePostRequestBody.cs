@@ -18,7 +18,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type {
         public Json ErrorVal { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new error_TypePostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="Error_TypePostRequestBody"/> and sets the default values.
         /// </summary>
         public Error_TypePostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -26,6 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Error_TypePostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Error_TypePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -34,6 +35,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"errorVal", n => { ErrorVal = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

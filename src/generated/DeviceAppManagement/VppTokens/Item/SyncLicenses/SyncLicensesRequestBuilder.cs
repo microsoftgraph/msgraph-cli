@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0";
@@ -57,13 +58,13 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SyncLicensesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SyncLicensesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SyncLicensesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SyncLicensesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
         /// <summary>
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateRuleType? X509CertificateRuleType { get; set; }
         /// <summary>
-        /// Instantiates a new x509CertificateRule and sets the default values.
+        /// Instantiates a new <see cref="X509CertificateRule"/> and sets the default values.
         /// </summary>
         public X509CertificateRule() {
             AdditionalData = new Dictionary<string, object>();
@@ -37,6 +37,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="X509CertificateRule"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static X509CertificateRule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -45,6 +46,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"identifier", n => { Identifier = n.GetStringValue(); } },

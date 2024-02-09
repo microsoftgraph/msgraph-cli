@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewinstance-batchrecorddecisions?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new BatchRecordDecisionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BatchRecordDecisionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BatchRecordDecisionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/batchRecordDecisions", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new BatchRecordDecisionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BatchRecordDecisionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BatchRecordDecisionsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/batchRecordDecisions", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

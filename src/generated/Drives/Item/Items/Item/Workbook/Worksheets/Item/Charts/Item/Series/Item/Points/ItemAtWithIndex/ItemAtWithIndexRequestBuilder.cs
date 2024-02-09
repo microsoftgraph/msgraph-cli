@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChartPoint entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChartPoint entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
@@ -104,13 +106,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Instantiates a new ItemAtWithIndexRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/points/itemAt(index={index})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ItemAtWithIndexRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ItemAtWithIndexRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/points/itemAt(index={index})", rawUrl) {
@@ -118,6 +120,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

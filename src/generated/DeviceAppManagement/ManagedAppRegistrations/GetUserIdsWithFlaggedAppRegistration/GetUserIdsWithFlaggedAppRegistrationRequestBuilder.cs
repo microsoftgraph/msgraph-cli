@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// <summary>
         /// Invoke function getUserIdsWithFlaggedAppRegistration
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
@@ -90,13 +91,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetUserIdsWithFlaggedAppRegistrationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetUserIdsWithFlaggedAppRegistrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetUserIdsWithFlaggedAppRegistrationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetUserIdsWithFlaggedAppRegistrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -104,6 +105,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// <summary>
         /// Invoke function getUserIdsWithFlaggedAppRegistration
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

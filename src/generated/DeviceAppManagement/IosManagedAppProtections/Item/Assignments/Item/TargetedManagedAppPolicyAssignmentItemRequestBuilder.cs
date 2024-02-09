@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Delete navigation property assignments for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceAppManagement";
@@ -61,6 +62,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
@@ -117,6 +119,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Update the navigation property assignments in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceAppManagement";
@@ -170,13 +173,13 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new TargetedManagedAppPolicyAssignmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TargetedManagedAppPolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TargetedManagedAppPolicyAssignmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TargetedManagedAppPolicyAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TargetedManagedAppPolicyAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}{?%24expand,%24select}", rawUrl) {
@@ -184,6 +187,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Delete navigation property assignments for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -192,7 +196,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -200,6 +204,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,6 +221,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         /// <summary>
         /// Update the navigation property assignments in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +232,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         public RequestInformation ToPatchRequestInformation(TargetedManagedAppPolicyAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/assignments/{targetedManagedAppPolicyAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

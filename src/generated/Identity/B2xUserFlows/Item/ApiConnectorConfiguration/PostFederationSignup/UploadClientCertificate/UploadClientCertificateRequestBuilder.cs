@@ -23,6 +23,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
             return command;
         }
         /// <summary>
-        /// Instantiates a new UploadClientCertificateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UploadClientCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UploadClientCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postFederationSignup/uploadClientCertificate", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UploadClientCertificateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UploadClientCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UploadClientCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postFederationSignup/uploadClientCertificate", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

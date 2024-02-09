@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// Read the properties and relationships of a run object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a run object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0";
@@ -81,6 +82,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTaskProcessingResultsNavCommand() {
             var command = new Command("task-processing-results");
             command.Description = "Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.run entity.";
@@ -105,6 +107,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUserProcessingResultsNavCommand() {
             var command = new Command("user-processing-results");
             command.Description = "Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.run entity.";
@@ -128,13 +131,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Instantiates a new RunItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RunItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RunItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RunItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RunItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RunItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}/runs/{run%2Did}{?%24expand,%24select}", rawUrl) {
@@ -142,6 +145,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Read the properties and relationships of a run object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

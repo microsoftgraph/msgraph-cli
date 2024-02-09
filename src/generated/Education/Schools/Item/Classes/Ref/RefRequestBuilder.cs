@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         /// Delete a class from a school.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a class from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         /// Get the educationClass resources owned by an educationSchool.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
@@ -148,6 +150,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         /// Add a class to a school.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add a class to a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0";
@@ -185,20 +188,21 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Delete a class from a school.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,7 +211,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref?@id={%40id}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -215,6 +219,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         /// <summary>
         /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,6 +236,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         /// <summary>
         /// Add a class to a school.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +247,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

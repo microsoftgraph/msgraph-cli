@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
         /// <summary>
         /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes.Item.ContentTypeItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -48,6 +50,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The collection of content types that are ancestors of this content type.";
@@ -150,13 +153,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
             return command;
         }
         /// <summary>
-        /// Instantiates a new BaseTypesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BaseTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BaseTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/baseTypes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new BaseTypesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BaseTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BaseTypesRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/baseTypes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -164,6 +167,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes {
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

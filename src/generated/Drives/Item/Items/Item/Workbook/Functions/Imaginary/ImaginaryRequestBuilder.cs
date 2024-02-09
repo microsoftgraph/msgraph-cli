@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary {
         /// <summary>
         /// Invoke action imaginary
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action imaginary";
@@ -75,13 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ImaginaryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ImaginaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ImaginaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/imaginary", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ImaginaryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ImaginaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ImaginaryRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/imaginary", rawUrl) {
@@ -89,6 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary {
         /// <summary>
         /// Invoke action imaginary
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

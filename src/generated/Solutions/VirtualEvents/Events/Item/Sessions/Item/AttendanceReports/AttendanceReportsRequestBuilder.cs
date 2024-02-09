@@ -24,6 +24,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,6 +54,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// Create new navigation property to attendanceReports for solutions
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to attendanceReports for solutions";
@@ -107,6 +110,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// The attendance reports of an online meeting. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The attendance reports of an online meeting. Read-only.";
@@ -209,13 +213,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
             return command;
         }
         /// <summary>
-        /// Instantiates a new AttendanceReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttendanceReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttendanceReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AttendanceReportsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttendanceReportsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttendanceReportsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -223,6 +227,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// The attendance reports of an online meeting. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,6 +244,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         /// <summary>
         /// Create new navigation property to attendanceReports for solutions
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -249,7 +255,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Events.Item.Sessions.Item.AttendanceRep
         public RequestInformation ToPostRequestInformation(MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/solutions/virtualEvents/events/{virtualEvent%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

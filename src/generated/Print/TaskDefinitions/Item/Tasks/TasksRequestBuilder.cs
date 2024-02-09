@@ -24,6 +24,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.printTaskDefinition entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// <summary>
         /// Create new navigation property to tasks for print
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to tasks for print";
@@ -103,6 +106,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0";
@@ -199,13 +203,13 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TasksRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TasksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TasksRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TasksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TasksRequestBuilder(string rawUrl) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -213,6 +217,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// <summary>
         /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -229,6 +234,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         /// <summary>
         /// Create new navigation property to tasks for print
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,7 +245,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         public RequestInformation ToPostRequestInformation(PrintTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

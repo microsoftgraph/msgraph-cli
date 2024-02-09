@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
         /// Get the permission resources from the permissions navigation property on a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the permission resources from the permissions navigation property on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0";
@@ -34,6 +35,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -78,6 +83,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -106,6 +112,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -128,6 +135,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
         /// Create a new permission object on a site. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Create a new permission object on a site. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
@@ -139,6 +147,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -150,6 +162,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -168,6 +181,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -181,13 +195,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PermissionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PermissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/permissions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PermissionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PermissionsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/permissions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -195,6 +209,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
         /// <summary>
         /// Get the permission resources from the permissions navigation property on a site.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,6 +226,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
         /// <summary>
         /// Create a new permission object on a site. 
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -221,7 +237,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Permissions {
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.Permission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/permissions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

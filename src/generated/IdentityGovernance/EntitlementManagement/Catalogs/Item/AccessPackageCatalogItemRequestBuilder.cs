@@ -27,6 +27,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAccessPackagesNavCommand() {
             var command = new Command("access-packages");
             command.Description = "Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.";
@@ -51,6 +52,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCustomWorkflowExtensionsNavCommand() {
             var command = new Command("custom-workflow-extensions");
             command.Description = "Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.";
@@ -77,6 +79,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// Delete an accessPackageCatalog.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0";
@@ -111,6 +114,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// Retrieve the properties and relationships of an accessPackageCatalog object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an accessPackageCatalog object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0";
@@ -162,6 +166,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0";
@@ -211,6 +216,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildResourceRolesNavCommand() {
             var command = new Command("resource-roles");
             command.Description = "Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.";
@@ -236,6 +242,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildResourceScopesNavCommand() {
             var command = new Command("resource-scopes");
             command.Description = "Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.";
@@ -261,6 +268,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.";
@@ -284,13 +292,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AccessPackageCatalogItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageCatalogItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AccessPackageCatalogItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/catalogs/{accessPackageCatalog%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AccessPackageCatalogItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageCatalogItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AccessPackageCatalogItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/catalogs/{accessPackageCatalog%2Did}{?%24expand,%24select}", rawUrl) {
@@ -298,6 +306,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Delete an accessPackageCatalog.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -306,7 +315,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/entitlementManagement/catalogs/{accessPackageCatalog%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -314,6 +323,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an accessPackageCatalog object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -330,6 +340,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         /// <summary>
         /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -340,7 +351,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         public RequestInformation ToPatchRequestInformation(AccessPackageCatalog body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/entitlementManagement/catalogs/{accessPackageCatalog%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

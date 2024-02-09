@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
         /// Delete a users&apos;s temporaryAccessPassAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a users's temporaryAccessPassAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
         /// Retrieve a user&apos;s single temporaryAccessPassAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a user's single temporaryAccessPassAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/temporaryaccesspassauthenticationmethod-get?view=graph-rest-1.0";
@@ -117,13 +119,13 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemporaryAccessPassAuthenticationMethodItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TemporaryAccessPassAuthenticationMethodItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/temporaryAccessPassMethods/{temporaryAccessPassAuthenticationMethod%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TemporaryAccessPassAuthenticationMethodItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemporaryAccessPassAuthenticationMethodItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TemporaryAccessPassAuthenticationMethodItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/temporaryAccessPassMethods/{temporaryAccessPassAuthenticationMethod%2Did}{?%24expand,%24select}", rawUrl) {
@@ -131,6 +133,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
         /// <summary>
         /// Delete a users&apos;s temporaryAccessPassAuthenticationMethod object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -139,7 +142,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/authentication/temporaryAccessPassMethods/{temporaryAccessPassAuthenticationMethod%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -147,6 +150,7 @@ namespace ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods.Item {
         /// <summary>
         /// Retrieve a user&apos;s single temporaryAccessPassAuthenticationMethod object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

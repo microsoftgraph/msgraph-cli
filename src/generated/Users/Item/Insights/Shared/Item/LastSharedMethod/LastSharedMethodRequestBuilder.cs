@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
         /// <summary>
         /// Get lastSharedMethod from users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get lastSharedMethod from users";
@@ -76,13 +77,13 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LastSharedMethodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastSharedMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LastSharedMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LastSharedMethodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LastSharedMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LastSharedMethodRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/shared/{sharedInsight%2Did}/lastSharedMethod{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
         /// <summary>
         /// Get lastSharedMethod from users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

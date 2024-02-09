@@ -26,6 +26,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignedToTaskBoardFormatNavCommand() {
             var command = new Command("assigned-to-task-board-format");
             command.Description = "Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -43,6 +44,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBucketTaskBoardFormatNavCommand() {
             var command = new Command("bucket-task-board-format");
             command.Description = "Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -60,6 +62,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Delete navigation property tasks for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property tasks for users";
@@ -99,6 +102,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerTask entity.";
@@ -116,6 +120,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Read-only. Nullable. Returns the plannerPlans shared with the user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
@@ -172,6 +177,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Update the navigation property tasks in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property tasks in users";
@@ -227,6 +233,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildProgressTaskBoardFormatNavCommand() {
             var command = new Command("progress-task-board-format");
             command.Description = "Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -242,13 +249,13 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PlannerTaskItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PlannerTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlannerTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/planner/tasks/{plannerTask%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PlannerTaskItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PlannerTaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlannerTaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/planner/tasks/{plannerTask%2Did}{?%24expand,%24select}", rawUrl) {
@@ -256,6 +263,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Delete navigation property tasks for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -264,7 +272,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/planner/tasks/{plannerTask%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -272,6 +280,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Read-only. Nullable. Returns the plannerPlans shared with the user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -288,6 +297,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         /// <summary>
         /// Update the navigation property tasks in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +308,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item {
         public RequestInformation ToPatchRequestInformation(PlannerTask body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/planner/tasks/{plannerTask%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

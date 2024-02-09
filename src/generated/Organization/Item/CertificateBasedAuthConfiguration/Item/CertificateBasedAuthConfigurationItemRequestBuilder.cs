@@ -23,6 +23,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
         /// Delete a certificateBasedAuthConfiguration object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a certificateBasedAuthConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
         /// Get the properties of a certificateBasedAuthConfiguration object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties of a certificateBasedAuthConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0";
@@ -117,13 +119,13 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CertificateBasedAuthConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CertificateBasedAuthConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration/{certificateBasedAuthConfiguration%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CertificateBasedAuthConfigurationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CertificateBasedAuthConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CertificateBasedAuthConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration/{certificateBasedAuthConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
@@ -131,6 +133,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Delete a certificateBasedAuthConfiguration object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -139,7 +142,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration/{certificateBasedAuthConfiguration%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -147,6 +150,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Get the properties of a certificateBasedAuthConfiguration object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

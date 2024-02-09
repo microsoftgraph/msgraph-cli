@@ -21,6 +21,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref {
         /// <summary>
         /// Delete ref of navigation property userFlowIdentityProviders for identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property userFlowIdentityProviders for identity";
@@ -58,13 +59,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}/$ref", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}/$ref", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref {
         /// <summary>
         /// Delete ref of navigation property userFlowIdentityProviders for identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

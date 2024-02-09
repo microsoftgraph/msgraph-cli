@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.group entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new DriveItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -48,6 +50,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// <summary>
         /// The group&apos;s drives. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The group's drives. Read-only.";
@@ -144,13 +147,13 @@ namespace ApiSdk.Groups.Item.Drives {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DrivesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/drives{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DrivesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DrivesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/drives{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -158,6 +161,7 @@ namespace ApiSdk.Groups.Item.Drives {
         /// <summary>
         /// The group&apos;s drives. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

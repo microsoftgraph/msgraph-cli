@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-post-attachments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-post-attachments?view=graph-rest-1.0";
@@ -114,6 +117,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// <summary>
         /// Provides operations to call the createUploadSession method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateUploadSessionNavCommand() {
             var command = new Command("create-upload-session");
             command.Description = "Provides operations to call the createUploadSession method.";
@@ -130,6 +134,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// Get a list of the taskFileAttachment objects and their properties. The contentBytes property will not be returned in the response. Use the Get attachment API to view the contentBytes.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the taskFileAttachment objects and their properties. The contentBytes property will not be returned in the response. Use the Get attachment API to view the contentBytes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0";
@@ -225,13 +230,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
@@ -239,6 +244,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// <summary>
         /// Get a list of the taskFileAttachment objects and their properties. The contentBytes property will not be returned in the response. Use the Get attachment API to view the contentBytes.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,6 +261,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         /// <summary>
         /// Add a new taskFileAttachment object to a todoTask. This operation limits the size of the attachment you can add to under 3 MB. If the size of the file attachments is more than 3 MB, create an upload session to upload the attachments.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +272,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments {
         public RequestInformation ToPostRequestInformation(AttachmentBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

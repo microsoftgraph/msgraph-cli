@@ -53,6 +53,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.";
@@ -78,6 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the assignSensitivityLabel method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignSensitivityLabelNavCommand() {
             var command = new Command("assign-sensitivity-label");
             command.Description = "Provides operations to call the assignSensitivityLabel method.";
@@ -93,6 +95,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the checkin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckinNavCommand() {
             var command = new Command("checkin");
             command.Description = "Provides operations to call the checkin method.";
@@ -108,6 +111,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the checkout method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckoutNavCommand() {
             var command = new Command("checkout");
             command.Description = "Provides operations to call the checkout method.";
@@ -123,6 +127,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChildrenNavCommand() {
             var command = new Command("children");
             command.Description = "Provides operations to manage the children property of the microsoft.graph.driveItem entity.";
@@ -148,6 +153,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
@@ -164,6 +170,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCopyNavCommand() {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
@@ -179,6 +186,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -201,6 +209,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the createLink method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateLinkNavCommand() {
             var command = new Command("create-link");
             command.Description = "Provides operations to call the createLink method.";
@@ -216,6 +225,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the createUploadSession method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateUploadSessionNavCommand() {
             var command = new Command("create-upload-session");
             command.Description = "Provides operations to call the createUploadSession method.";
@@ -232,6 +242,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0";
@@ -271,6 +282,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -286,6 +298,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaWithTokenRbCommand() {
             var command = new Command("delta-with-token");
             command.Description = "Provides operations to call the delta method.";
@@ -301,6 +314,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the extractSensitivityLabels method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtractSensitivityLabelsNavCommand() {
             var command = new Command("extract-sensitivity-labels");
             command.Description = "Provides operations to call the extractSensitivityLabels method.";
@@ -316,6 +330,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the follow method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFollowNavCommand() {
             var command = new Command("follow");
             command.Description = "Provides operations to call the follow method.";
@@ -331,6 +346,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetActivitiesByIntervalNavCommand() {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
@@ -346,6 +362,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
             var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
@@ -361,6 +378,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// All items contained in the drive. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "All items contained in the drive. Read-only. Nullable.";
@@ -417,6 +435,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the invite method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildInviteNavCommand() {
             var command = new Command("invite");
             command.Description = "Provides operations to call the invite method.";
@@ -432,6 +451,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -454,6 +474,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListItemNavCommand() {
             var command = new Command("list-item");
             command.Description = "Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.";
@@ -467,12 +488,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0" />
+        /// To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item's parentReference property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0";
+            command.Description = "To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -525,6 +547,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the permanentDelete method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermanentDeleteNavCommand() {
             var command = new Command("permanent-delete");
             command.Description = "Provides operations to call the permanentDelete method.";
@@ -540,6 +563,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermissionsNavCommand() {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.";
@@ -565,6 +589,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the preview method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPreviewNavCommand() {
             var command = new Command("preview");
             command.Description = "Provides operations to call the preview method.";
@@ -580,6 +605,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -595,6 +621,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the retentionLabel property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRetentionLabelNavCommand() {
             var command = new Command("retention-label");
             command.Description = "Provides operations to manage the retentionLabel property of the microsoft.graph.driveItem entity.";
@@ -612,6 +639,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the search method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSearchWithQRbCommand() {
             var command = new Command("search-with-q");
             command.Description = "Provides operations to call the search method.";
@@ -627,6 +655,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubscriptionsNavCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.";
@@ -652,6 +681,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildThumbnailsNavCommand() {
             var command = new Command("thumbnails");
             command.Description = "Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.";
@@ -677,6 +707,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the unfollow method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUnfollowNavCommand() {
             var command = new Command("unfollow");
             command.Description = "Provides operations to call the unfollow method.";
@@ -692,6 +723,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the validatePermission method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildValidatePermissionNavCommand() {
             var command = new Command("validate-permission");
             command.Description = "Provides operations to call the validatePermission method.";
@@ -707,6 +739,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.driveItem entity.";
@@ -732,6 +765,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWorkbookNavCommand() {
             var command = new Command("workbook");
             command.Description = "Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.";
@@ -764,13 +798,13 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24expand,%24select}", rawUrl) {
@@ -778,6 +812,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Delete a DriveItem by using its ID or path.Deleting items using this method moves the items to the recycle bin instead of permanently deleting the item.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -786,7 +821,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -794,6 +829,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// All items contained in the drive. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -808,8 +844,9 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s parentReference property.
+        /// To move a DriveItem to a new parent item, your app requests to update the parentReference of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -820,7 +857,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

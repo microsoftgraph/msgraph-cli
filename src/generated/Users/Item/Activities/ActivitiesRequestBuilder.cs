@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.user entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Create new navigation property to activities for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to activities for users";
@@ -103,6 +106,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the nextLink property to paginate.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-get-activities?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application's activities, use the nextLink property to paginate.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-get-activities?view=graph-rest-1.0";
@@ -201,6 +205,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRecentNavCommand() {
             var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
@@ -214,13 +219,13 @@ namespace ApiSdk.Users.Item.Activities {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ActivitiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ActivitiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ActivitiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ActivitiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ActivitiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ActivitiesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/activities{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -228,6 +233,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Get activities for a given user. Unlike the recent OData function, activities without histories will be returned. The permission UserActivity.ReadWrite.CreatedByApp will apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the nextLink property to paginate.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -244,6 +250,7 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Create new navigation property to activities for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -254,7 +261,7 @@ namespace ApiSdk.Users.Item.Activities {
         public RequestInformation ToPostRequestInformation(UserActivity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/activities", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

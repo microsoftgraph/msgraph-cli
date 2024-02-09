@@ -23,6 +23,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Delete navigation property default for policies
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property default for policies";
@@ -51,6 +52,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// Read the default configuration of a cross-tenant access policy. This default configuration may be the service default assigned by Microsoft Entra ID (isServiceDefault is true) or may be customized in your tenant (isServiceDefault is false).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the default configuration of a cross-tenant access policy. This default configuration may be the service default assigned by Microsoft Entra ID (isServiceDefault is true) or may be customized in your tenant (isServiceDefault is false).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-get?view=graph-rest-1.0";
@@ -96,6 +98,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// Update the default configuration of a cross-tenant access policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the default configuration of a cross-tenant access policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0";
@@ -139,6 +142,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Provides operations to call the resetToSystemDefault method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildResetToSystemDefaultNavCommand() {
             var command = new Command("reset-to-system-default");
             command.Description = "Provides operations to call the resetToSystemDefault method.";
@@ -152,13 +156,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DefaultRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DefaultRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DefaultRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DefaultRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/default{?%24expand,%24select}", rawUrl) {
@@ -166,6 +170,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Delete navigation property default for policies
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -174,7 +179,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/crossTenantAccessPolicy/default", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -182,6 +187,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Read the default configuration of a cross-tenant access policy. This default configuration may be the service default assigned by Microsoft Entra ID (isServiceDefault is true) or may be customized in your tenant (isServiceDefault is false).
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -198,6 +204,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Update the default configuration of a cross-tenant access policy.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +215,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         public RequestInformation ToPatchRequestInformation(CrossTenantAccessPolicyConfigurationDefault body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/crossTenantAccessPolicy/default", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

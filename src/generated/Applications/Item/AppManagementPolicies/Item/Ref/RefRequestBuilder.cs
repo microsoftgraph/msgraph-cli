@@ -22,6 +22,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item.Ref {
         /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item.Ref {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/appManagementPolicies/{appManagementPolicy%2Did}/$ref", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/appManagementPolicies/{appManagementPolicy%2Did}/$ref", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item.Ref {
         /// <summary>
         /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

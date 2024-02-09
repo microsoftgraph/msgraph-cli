@@ -28,6 +28,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCustomTaskExtensionsNavCommand() {
             var command = new Command("custom-task-extensions");
             command.Description = "Provides operations to manage the customTaskExtensions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -53,6 +54,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Delete navigation property lifecycleWorkflows for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property lifecycleWorkflows for identityGovernance";
@@ -80,6 +82,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeletedItemsNavCommand() {
             var command = new Command("deleted-items");
             command.Description = "Provides operations to manage the deletedItems property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -102,6 +105,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Get lifecycleWorkflows from identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get lifecycleWorkflows from identityGovernance";
@@ -146,6 +150,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Update the navigation property lifecycleWorkflows in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property lifecycleWorkflows in identityGovernance";
@@ -189,6 +194,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -205,6 +211,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTaskDefinitionsNavCommand() {
             var command = new Command("task-definitions");
             command.Description = "Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -229,6 +236,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWorkflowsNavCommand() {
             var command = new Command("workflows");
             command.Description = "Provides operations to manage the workflows property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -254,6 +262,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWorkflowTemplatesNavCommand() {
             var command = new Command("workflow-templates");
             command.Description = "Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.";
@@ -276,13 +285,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LifecycleWorkflowsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LifecycleWorkflowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LifecycleWorkflowsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LifecycleWorkflowsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LifecycleWorkflowsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows{?%24expand,%24select}", rawUrl) {
@@ -290,6 +299,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Delete navigation property lifecycleWorkflows for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -298,7 +308,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/lifecycleWorkflows", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -306,6 +316,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Get lifecycleWorkflows from identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -322,6 +333,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         /// <summary>
         /// Update the navigation property lifecycleWorkflows in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -332,7 +344,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows {
         public RequestInformation ToPatchRequestInformation(LifecycleWorkflowsContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/lifecycleWorkflows", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

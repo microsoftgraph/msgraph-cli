@@ -22,6 +22,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethodWithInclud
         /// <summary>
         /// Invoke function usersRegisteredByMethod
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function usersRegisteredByMethod";
@@ -62,13 +63,13 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethodWithInclud
             return command;
         }
         /// <summary>
-        /// Instantiates a new UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod(includedUserTypes='{includedUserTypes}',includedUserRoles='{includedUserRoles}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod(includedUserTypes='{includedUserTypes}',includedUserRoles='{includedUserRoles}')", rawUrl) {
@@ -76,6 +77,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethodWithInclud
         /// <summary>
         /// Invoke function usersRegisteredByMethod
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

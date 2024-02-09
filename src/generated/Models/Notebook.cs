@@ -53,7 +53,7 @@ namespace ApiSdk.Models {
         /// <summary>Possible values are: Owner, Contributor, Reader, None. Owner represents owner-level access to the notebook. Contributor represents read/write access to the notebook. Reader represents read-only access to the notebook. Read-only.</summary>
         public OnenoteUserRole? UserRole { get; set; }
         /// <summary>
-        /// Instantiates a new notebook and sets the default values.
+        /// Instantiates a new <see cref="Notebook"/> and sets the default values.
         /// </summary>
         public Notebook() : base() {
             OdataType = "#microsoft.graph.notebook";
@@ -61,6 +61,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Notebook"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Notebook CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -69,6 +70,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"isDefault", n => { IsDefault = n.GetBoolValue(); } },

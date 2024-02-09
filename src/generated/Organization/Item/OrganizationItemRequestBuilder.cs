@@ -31,6 +31,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to manage the branding property of the microsoft.graph.organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBrandingNavCommand() {
             var command = new Command("branding");
             command.Description = "Provides operations to manage the branding property of the microsoft.graph.organization entity.";
@@ -61,6 +62,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCertificateBasedAuthConfigurationNavCommand() {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.";
@@ -86,6 +88,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -101,6 +104,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -116,6 +120,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Delete entity from organization
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from organization";
@@ -149,6 +154,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.organization entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.organization entity.";
@@ -175,6 +181,7 @@ namespace ApiSdk.Organization.Item {
         /// Get the properties and relationships of the currently authenticated organization. Since the organization resource supports extensions, you can also use the GET operation to get custom properties and extension data in an organization instance.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organization-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of the currently authenticated organization. Since the organization resource supports extensions, you can also use the GET operation to get custom properties and extension data in an organization instance.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organization-get?view=graph-rest-1.0";
@@ -225,6 +232,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -240,6 +248,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -256,6 +265,7 @@ namespace ApiSdk.Organization.Item {
         /// Update the properties of a organization object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a organization object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-update?view=graph-rest-1.0";
@@ -305,6 +315,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -320,6 +331,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the setMobileDeviceManagementAuthority method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSetMobileDeviceManagementAuthorityNavCommand() {
             var command = new Command("set-mobile-device-management-authority");
             command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
@@ -333,13 +345,13 @@ namespace ApiSdk.Organization.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OrganizationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OrganizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OrganizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OrganizationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OrganizationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OrganizationItemRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}{?%24expand,%24select}", rawUrl) {
@@ -347,6 +359,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Delete entity from organization
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -355,7 +368,7 @@ namespace ApiSdk.Organization.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/organization/{organization%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -363,6 +376,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Get the properties and relationships of the currently authenticated organization. Since the organization resource supports extensions, you can also use the GET operation to get custom properties and extension data in an organization instance.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -379,6 +393,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Update the properties of a organization object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -389,7 +404,7 @@ namespace ApiSdk.Organization.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Organization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/organization/{organization%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

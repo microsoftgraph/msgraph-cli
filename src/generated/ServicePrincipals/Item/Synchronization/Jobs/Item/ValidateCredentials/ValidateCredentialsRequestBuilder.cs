@@ -22,6 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
         /// Validate that the credentials are valid in the tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Validate that the credentials are valid in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
             return command;
         }
         /// <summary>
-        /// Instantiates a new ValidateCredentialsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ValidateCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ValidateCredentialsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/validateCredentials", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ValidateCredentialsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ValidateCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ValidateCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/validateCredentials", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
         /// <summary>
         /// Validate that the credentials are valid in the tenant.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

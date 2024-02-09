@@ -33,6 +33,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the accept method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcceptNavCommand() {
             var command = new Command("accept");
             command.Description = "Provides operations to call the accept method.";
@@ -48,6 +49,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
@@ -74,6 +76,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCalendarNavCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
@@ -89,6 +92,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
@@ -104,6 +108,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the decline method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeclineNavCommand() {
             var command = new Command("decline");
             command.Description = "Provides operations to call the decline method.";
@@ -120,6 +125,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer's calendar sends a cancellation message to the meeting attendees.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-delete?view=graph-rest-1.0";
@@ -159,6 +165,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the dismissReminder method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDismissReminderNavCommand() {
             var command = new Command("dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
@@ -174,6 +181,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
@@ -199,6 +207,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
@@ -215,6 +224,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user's calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-get?view=graph-rest-1.0";
@@ -271,6 +281,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.event entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildInstancesNavCommand() {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
@@ -297,6 +308,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// Update the properties of the event object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of the event object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-update?view=graph-rest-1.0";
@@ -352,6 +364,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the snoozeReminder method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSnoozeReminderNavCommand() {
             var command = new Command("snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
@@ -367,6 +380,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Provides operations to call the tentativelyAccept method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTentativelyAcceptNavCommand() {
             var command = new Command("tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
@@ -380,13 +394,13 @@ namespace ApiSdk.Users.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new EventItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new EventItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/events/{event%2Did}{?%24expand,%24select}", rawUrl) {
@@ -394,6 +408,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Removes the specified event from the containing calendar.  If the event is a meeting, deleting the event on the organizer&apos;s calendar sends a cancellation message to the meeting attendees.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -402,7 +417,7 @@ namespace ApiSdk.Users.Item.Events.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/events/{event%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -410,6 +425,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Get the properties and relationships of the specified event object. Currently, this operation returns event bodies in only HTML format. There are two scenarios where an app can get an event in another user&apos;s calendar: Since the event resource supports extensions, you can also use the GET operation to get custom properties and extension data in an event instance.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -426,6 +442,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         /// <summary>
         /// Update the properties of the event object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -436,7 +453,7 @@ namespace ApiSdk.Users.Item.Events.Item {
         public RequestInformation ToPatchRequestInformation(Event body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/events/{event%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

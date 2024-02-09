@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWith
         /// <summary>
         /// Invoke function cell
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function cell";
@@ -80,13 +81,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWith
             return command;
         }
         /// <summary>
-        /// Instantiates a new CellWithRowWithColumnRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CellWithRowWithColumnRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CellWithRowWithColumnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/cell(row={row},column={column})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CellWithRowWithColumnRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CellWithRowWithColumnRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CellWithRowWithColumnRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/cell(row={row},column={column})", rawUrl) {
@@ -94,6 +95,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWith
         /// <summary>
         /// Invoke function cell
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

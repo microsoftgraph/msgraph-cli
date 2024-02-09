@@ -38,6 +38,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
@@ -55,6 +56,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.site entity.";
@@ -71,6 +73,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentTypesNavCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
@@ -87,6 +90,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -102,6 +106,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.site entity.";
@@ -117,6 +122,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDrivesNavCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.site entity.";
@@ -132,6 +138,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExternalColumnsNavCommand() {
             var command = new Command("external-columns");
             command.Description = "Provides operations to manage the externalColumns property of the microsoft.graph.site entity.";
@@ -147,6 +154,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Invoke function getByPath
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getByPath";
@@ -154,6 +162,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var path1Option = new Option<string>("--path1", description: "Usage: path='{path1}'") {
             };
             path1Option.IsRequired = true;
@@ -164,6 +176,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
             command.AddOption(queryOption);
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var path1 = invocationContext.ParseResult.GetValueForOption(path1Option);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -174,6 +187,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
                 var requestInfo = ToGetRequestInformation(q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 if (path1 is not null) requestInfo.PathParameters.Add("path1", path1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -189,6 +203,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.site entity.";
@@ -204,6 +219,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -219,6 +235,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListsNavCommand() {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.site entity.";
@@ -235,6 +252,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOnenoteNavCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.site entity.";
@@ -252,6 +270,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.site entity.";
@@ -268,6 +287,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the permissions property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermissionsNavCommand() {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.site entity.";
@@ -284,6 +304,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSitesNavCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.site entity.";
@@ -299,6 +320,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the termStore property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTermStoreNavCommand() {
             var command = new Command("term-store");
             command.Description = "Provides operations to manage the termStore property of the microsoft.graph.site entity.";
@@ -316,6 +338,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Provides operations to manage the termStores property of the microsoft.graph.site entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTermStoresNavCommand() {
             var command = new Command("term-stores");
             command.Description = "Provides operations to manage the termStores property of the microsoft.graph.site entity.";
@@ -330,13 +353,13 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetByPathWithPath1RequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetByPathWithPath1RequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetByPathWithPath1RequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetByPathWithPath1RequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetByPathWithPath1RequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetByPathWithPath1RequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')", rawUrl) {
@@ -344,6 +367,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
         /// <summary>
         /// Invoke function getByPath
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

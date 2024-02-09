@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsApp {
         /// <summary>
         /// The app that is installed.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The app that is installed.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsApp {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TeamsAppRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsApp{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TeamsAppRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsAppRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsApp{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsApp {
         /// <summary>
         /// The app that is installed.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

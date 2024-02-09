@@ -26,6 +26,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// Delete an administrativeUnit.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an administrativeUnit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0";
@@ -59,6 +60,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.";
@@ -85,6 +87,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// Retrieve the properties and relationships of an administrativeUnit object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an administrativeUnit object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0";
@@ -135,6 +138,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.";
@@ -168,6 +172,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// Update the properties of an administrativeUnit object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an administrativeUnit object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-1.0";
@@ -217,6 +222,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildScopedRoleMembersNavCommand() {
             var command = new Command("scoped-role-members");
             command.Description = "Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.";
@@ -240,13 +246,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AdministrativeUnitItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AdministrativeUnitItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AdministrativeUnitItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AdministrativeUnitItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AdministrativeUnitItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24expand,%24select}", rawUrl) {
@@ -254,6 +260,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Delete an administrativeUnit.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -262,7 +269,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -270,6 +277,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an administrativeUnit object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -286,6 +294,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Update the properties of an administrativeUnit object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +305,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdministrativeUnit body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

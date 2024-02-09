@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenote entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -42,6 +43,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -58,6 +60,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// Create a new OneNote page in the default section of the default notebook. To create a page in a different section in the default notebook, you can use the sectionName query parameter.  Example: ../onenote/pages?sectionName=My%20section The POST /onenote/pages operation is used only to create pages in the current user&apos;s default notebook. If you&apos;re targeting other notebooks, you can create pages in a specified section.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-post-pages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new OneNote page in the default section of the default notebook. To create a page in a different section in the default notebook, you can use the sectionName query parameter.  Example: ../onenote/pages?sectionName=My%20section The POST /onenote/pages operation is used only to create pages in the current user's default notebook. If you're targeting other notebooks, you can create pages in a specified section.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-post-pages?view=graph-rest-1.0";
@@ -108,6 +111,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// Retrieve a list of page objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-pages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of page objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-pages?view=graph-rest-1.0";
@@ -204,13 +208,13 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/pages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PagesRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/onenote/pages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -218,6 +222,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// <summary>
         /// Retrieve a list of page objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         /// <summary>
         /// Create a new OneNote page in the default section of the default notebook. To create a page in a different section in the default notebook, you can use the sectionName query parameter.  Example: ../onenote/pages?sectionName=My%20section The POST /onenote/pages operation is used only to create pages in the current user&apos;s default notebook. If you&apos;re targeting other notebooks, you can create pages in a specified section.  
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +250,7 @@ namespace ApiSdk.Sites.Item.Onenote.Pages {
         public RequestInformation ToPostRequestInformation(OnenotePage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sites/{site%2Did}/onenote/pages", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

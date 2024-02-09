@@ -41,6 +41,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
@@ -66,6 +67,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
@@ -81,6 +83,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCategoriesNavCommand() {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
@@ -103,12 +106,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a microsoftStoreForBusinessApp.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-microsoftstoreforbusinessapp-delete?view=graph-rest-1.0" />
+        /// Deletes a macOSMicrosoftEdgeApp.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-macosmicrosoftedgeapp-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a microsoftStoreForBusinessApp.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-microsoftstoreforbusinessapp-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a macOSMicrosoftEdgeApp.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-macosmicrosoftedgeapp-delete?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -137,12 +141,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsUniversalAppX object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windowsMobileMSI object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsUniversalAppX object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windowsMobileMSI object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmobilemsi-get?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -190,6 +195,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to androidLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphAndroidLobAppByIdNavCommand() {
             var command = new Command("graph-android-lob-app-by-id");
             command.Description = "Casts the previous resource to androidLobApp.";
@@ -213,6 +219,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to androidStoreApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphAndroidStoreAppByIdNavCommand() {
             var command = new Command("graph-android-store-app-by-id");
             command.Description = "Casts the previous resource to androidStoreApp.";
@@ -235,6 +242,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to iosLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphIosLobAppByIdNavCommand() {
             var command = new Command("graph-ios-lob-app-by-id");
             command.Description = "Casts the previous resource to iosLobApp.";
@@ -258,6 +266,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to iosStoreApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphIosStoreAppByIdNavCommand() {
             var command = new Command("graph-ios-store-app-by-id");
             command.Description = "Casts the previous resource to iosStoreApp.";
@@ -280,6 +289,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to iosVppApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphIosVppAppByIdNavCommand() {
             var command = new Command("graph-ios-vpp-app-by-id");
             command.Description = "Casts the previous resource to iosVppApp.";
@@ -302,6 +312,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to macOSDmgApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphMacOSDmgAppByIdNavCommand() {
             var command = new Command("graph-mac-o-s-dmg-app-by-id");
             command.Description = "Casts the previous resource to macOSDmgApp.";
@@ -325,6 +336,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to macOSLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphMacOSLobAppByIdNavCommand() {
             var command = new Command("graph-mac-o-s-lob-app-by-id");
             command.Description = "Casts the previous resource to macOSLobApp.";
@@ -348,6 +360,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to managedAndroidLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphManagedAndroidLobAppByIdNavCommand() {
             var command = new Command("graph-managed-android-lob-app-by-id");
             command.Description = "Casts the previous resource to managedAndroidLobApp.";
@@ -371,6 +384,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to managedIOSLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphManagedIOSLobAppByIdNavCommand() {
             var command = new Command("graph-managed-i-o-s-lob-app-by-id");
             command.Description = "Casts the previous resource to managedIOSLobApp.";
@@ -394,6 +408,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphManagedMobileLobAppByIdNavCommand() {
             var command = new Command("graph-managed-mobile-lob-app-by-id");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
@@ -417,6 +432,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to microsoftStoreForBusinessApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphMicrosoftStoreForBusinessAppByIdNavCommand() {
             var command = new Command("graph-microsoft-store-for-business-app-by-id");
             command.Description = "Casts the previous resource to microsoftStoreForBusinessApp.";
@@ -439,6 +455,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to win32LobApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphWin32LobAppByIdNavCommand() {
             var command = new Command("graph-win32-lob-app-by-id");
             command.Description = "Casts the previous resource to win32LobApp.";
@@ -462,6 +479,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to windowsAppX.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphWindowsAppXByIdNavCommand() {
             var command = new Command("graph-windows-app-x-by-id");
             command.Description = "Casts the previous resource to windowsAppX.";
@@ -485,6 +503,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to windowsMobileMSI.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphWindowsMobileMSIByIdNavCommand() {
             var command = new Command("graph-windows-mobile-m-s-i-by-id");
             command.Description = "Casts the previous resource to windowsMobileMSI.";
@@ -508,6 +527,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to windowsUniversalAppX.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphWindowsUniversalAppXByIdNavCommand() {
             var command = new Command("graph-windows-universal-app-x-by-id");
             command.Description = "Casts the previous resource to windowsUniversalAppX.";
@@ -532,6 +552,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to windowsWebApp.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphWindowsWebAppByIdNavCommand() {
             var command = new Command("graph-windows-web-app-by-id");
             command.Description = "Casts the previous resource to windowsWebApp.";
@@ -552,12 +573,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidLobApp object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-androidlobapp-update?view=graph-rest-1.0" />
+        /// Update the properties of a windowsMicrosoftEdgeApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidLobApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-androidlobapp-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windowsMicrosoftEdgeApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-update?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -602,20 +624,21 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MobileAppItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MobileAppItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MobileAppItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MobileAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a microsoftStoreForBusinessApp.
+        /// Deletes a macOSMicrosoftEdgeApp.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -624,14 +647,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsUniversalAppX object.
+        /// Read properties and relationships of the windowsMobileMSI object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -646,8 +670,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidLobApp object.
+        /// Update the properties of a windowsMicrosoftEdgeApp object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -658,13 +683,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public RequestInformation ToPatchRequestInformation(MobileApp body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsUniversalAppX object.
+        /// Read properties and relationships of the windowsMobileMSI object.
         /// </summary>
         public class MobileAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

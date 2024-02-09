@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric for deviceManagement";
@@ -49,6 +50,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// User experience analytics work from anywhere hardware readiness metrics.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "User experience analytics work from anywhere hardware readiness metrics.";
@@ -93,6 +95,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric in deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric in deviceManagement";
@@ -134,13 +137,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
             return command;
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric{?%24expand,%24select}", rawUrl) {
@@ -148,6 +151,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -156,7 +160,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -164,6 +168,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// User experience analytics work from anywhere hardware readiness metrics.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -180,6 +185,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric in deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -190,7 +196,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwar
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

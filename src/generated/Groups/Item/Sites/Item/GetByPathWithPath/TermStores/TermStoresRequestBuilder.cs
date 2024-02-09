@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
         /// <summary>
         /// The collection of termStores under this site.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of termStores under this site.";
@@ -33,6 +34,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -77,6 +82,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -105,6 +111,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -126,6 +133,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
         /// <summary>
         /// Create new navigation property to termStores for groups
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Create new navigation property to termStores for groups";
@@ -137,6 +145,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -148,6 +160,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -166,6 +179,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -179,13 +193,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TermStoresRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermStoresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TermStoresRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/termStores{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TermStoresRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermStoresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TermStoresRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/termStores{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -193,6 +207,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
         /// <summary>
         /// The collection of termStores under this site.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -209,6 +224,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
         /// <summary>
         /// Create new navigation property to termStores for groups
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +235,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStores {
         public RequestInformation ToPostRequestInformation(Store body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/termStores", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

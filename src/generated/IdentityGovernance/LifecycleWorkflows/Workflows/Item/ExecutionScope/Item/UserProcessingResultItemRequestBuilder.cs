@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.ExecutionS
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow object.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The unique identifier of the Microsoft Entra identity that last modified the workflow object.";
@@ -76,13 +77,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.ExecutionS
             return command;
         }
         /// <summary>
-        /// Instantiates a new UserProcessingResultItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserProcessingResultItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/executionScope/{userProcessingResult%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UserProcessingResultItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserProcessingResultItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/executionScope/{userProcessingResult%2Did}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.ExecutionS
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

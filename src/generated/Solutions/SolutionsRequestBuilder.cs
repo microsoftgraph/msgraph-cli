@@ -25,6 +25,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBookingBusinessesNavCommand() {
             var command = new Command("booking-businesses");
             command.Description = "Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.";
@@ -50,6 +51,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBookingCurrenciesNavCommand() {
             var command = new Command("booking-currencies");
             command.Description = "Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.";
@@ -75,6 +77,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Get solutions
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get solutions";
@@ -119,6 +122,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Update solutions
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update solutions";
@@ -162,6 +166,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Provides operations to manage the virtualEvents property of the microsoft.graph.solutionsRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVirtualEventsNavCommand() {
             var command = new Command("virtual-events");
             command.Description = "Provides operations to manage the virtualEvents property of the microsoft.graph.solutionsRoot entity.";
@@ -184,13 +189,13 @@ namespace ApiSdk.Solutions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SolutionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SolutionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SolutionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SolutionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SolutionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SolutionsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions{?%24expand,%24select}", rawUrl) {
@@ -198,6 +203,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Get solutions
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -214,6 +220,7 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Update solutions
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -224,7 +231,7 @@ namespace ApiSdk.Solutions {
         public RequestInformation ToPatchRequestInformation(SolutionsRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/solutions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Delete navigation property intendedPolicies for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property intendedPolicies for deviceAppManagement";
@@ -62,6 +63,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Zero or more policies admin intended for the app as of now.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Zero or more policies admin intended for the app as of now.";
@@ -118,6 +120,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Update the navigation property intendedPolicies in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property intendedPolicies in deviceAppManagement";
@@ -173,6 +176,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Provides operations to call the targetApps method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTargetAppsNavCommand() {
             var command = new Command("target-apps");
             command.Description = "Provides operations to call the targetApps method.";
@@ -186,13 +190,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             return command;
         }
         /// <summary>
-        /// Instantiates a new ManagedAppPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagedAppPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ManagedAppPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/intendedPolicies/{managedAppPolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ManagedAppPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ManagedAppPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ManagedAppPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/intendedPolicies/{managedAppPolicy%2Did}{?%24expand,%24select}", rawUrl) {
@@ -200,6 +204,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Delete navigation property intendedPolicies for deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -208,7 +213,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/intendedPolicies/{managedAppPolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -216,6 +221,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Zero or more policies admin intended for the app as of now.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +238,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         /// <summary>
         /// Update the navigation property intendedPolicies in deviceAppManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +249,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
         public RequestInformation ToPatchRequestInformation(ManagedAppPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/intendedPolicies/{managedAppPolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

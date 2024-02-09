@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Delete navigation property thumbnails for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property thumbnails for drives";
@@ -67,6 +68,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.";
@@ -129,6 +131,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Update the navigation property thumbnails in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property thumbnails in drives";
@@ -188,13 +191,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ThumbnailSetItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ThumbnailSetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ThumbnailSetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/thumbnails/{thumbnailSet%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ThumbnailSetItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ThumbnailSetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ThumbnailSetItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/thumbnails/{thumbnailSet%2Did}{?%24expand,%24select}", rawUrl) {
@@ -202,6 +205,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Delete navigation property thumbnails for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -210,7 +214,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/thumbnails/{thumbnailSet%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -218,6 +222,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         /// <summary>
         /// Update the navigation property thumbnails in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +250,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
         public RequestInformation ToPatchRequestInformation(ThumbnailSet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/thumbnails/{thumbnailSet%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.CopyToDefaultContentLo
         /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.CopyToDefaultContentLo
             return command;
         }
         /// <summary>
-        /// Instantiates a new CopyToDefaultContentLocationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CopyToDefaultContentLocationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CopyToDefaultContentLocationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}/copyToDefaultContentLocation", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CopyToDefaultContentLocationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CopyToDefaultContentLocationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CopyToDefaultContentLocationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}/copyToDefaultContentLocation", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.CopyToDefaultContentLo
         /// <summary>
         /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Users {
         /// List properties and relationships of the user objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-user-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-user-list?view=graph-rest-1.0";
@@ -119,13 +120,13 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Users {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UsersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UsersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -133,6 +134,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Users {
         /// <summary>
         /// List properties and relationships of the user objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

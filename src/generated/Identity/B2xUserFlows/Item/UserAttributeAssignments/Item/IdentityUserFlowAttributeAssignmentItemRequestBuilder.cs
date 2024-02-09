@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// Delete an identityUserFlowAttributeAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0";
@@ -64,6 +65,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// Read the properties and relationships of an identityUserFlowAttributeAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0";
@@ -121,6 +123,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// Update the properties of a identityUserFlowAttributeAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0";
@@ -176,6 +179,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>
         /// Provides operations to manage the userAttribute property of the microsoft.graph.identityUserFlowAttributeAssignment entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUserAttributeNavCommand() {
             var command = new Command("user-attribute");
             command.Description = "Provides operations to manage the userAttribute property of the microsoft.graph.identityUserFlowAttributeAssignment entity.";
@@ -189,13 +193,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityUserFlowAttributeAssignmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityUserFlowAttributeAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityUserFlowAttributeAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityUserFlowAttributeAssignmentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityUserFlowAttributeAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityUserFlowAttributeAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}{?%24expand,%24select}", rawUrl) {
@@ -203,6 +207,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>
         /// Delete an identityUserFlowAttributeAssignment object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,7 +216,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -219,6 +224,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>
         /// Read the properties and relationships of an identityUserFlowAttributeAssignment object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +241,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>
         /// Update the properties of a identityUserFlowAttributeAssignment object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +252,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         public RequestInformation ToPatchRequestInformation(IdentityUserFlowAttributeAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/{identityUserFlowAttributeAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

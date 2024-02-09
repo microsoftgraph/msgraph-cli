@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         /// Delete conversation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete conversation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0";
@@ -61,12 +62,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return command;
         }
         /// <summary>
-        /// The group&apos;s conversations.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0" />
+        /// Retrieve the properties and relationships of conversation object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's conversations.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of conversation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -113,6 +115,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         /// <summary>
         /// Provides operations to manage the threads property of the microsoft.graph.conversation entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildThreadsNavCommand() {
             var command = new Command("threads");
             command.Description = "Provides operations to manage the threads property of the microsoft.graph.conversation entity.";
@@ -136,13 +139,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ConversationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ConversationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ConversationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ConversationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ConversationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ConversationItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}{?%24select}", rawUrl) {
@@ -150,6 +153,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         /// <summary>
         /// Delete conversation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -158,14 +162,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the properties and relationships of conversation object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -180,7 +185,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the properties and relationships of conversation object.
         /// </summary>
         public class ConversationItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

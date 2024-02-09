@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Delete the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Get the properties and relationships of the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0";
@@ -113,6 +115,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the writable property, color, of the specified outlookCategory object. You can't modify the displayName propertyonce you have created the category.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0";
@@ -166,13 +169,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OutlookCategoryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OutlookCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OutlookCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories/{outlookCategory%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OutlookCategoryItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OutlookCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OutlookCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories/{outlookCategory%2Did}{?%24select}", rawUrl) {
@@ -180,6 +183,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Delete the specified outlookCategory object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,7 +192,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/outlook/masterCategories/{outlookCategory%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -196,6 +200,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Get the properties and relationships of the specified outlookCategory object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -212,6 +217,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +228,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         public RequestInformation ToPatchRequestInformation(OutlookCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/outlook/masterCategories/{outlookCategory%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

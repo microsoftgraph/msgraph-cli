@@ -21,6 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
         /// <summary>
         /// Invoke action assignSensitivityLabel
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action assignSensitivityLabel";
@@ -64,13 +65,13 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AssignSensitivityLabelRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignSensitivityLabelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AssignSensitivityLabelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/assignSensitivityLabel", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AssignSensitivityLabelRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignSensitivityLabelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AssignSensitivityLabelRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/assignSensitivityLabel", rawUrl) {
@@ -78,6 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
         /// <summary>
         /// Invoke action assignSensitivityLabel
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of Microsoft Store for Business licenses in use.</summary>
         public int? UsedLicenseCount { get; set; }
         /// <summary>
-        /// Instantiates a new microsoftStoreForBusinessApp and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftStoreForBusinessApp"/> and sets the default values.
         /// </summary>
         public MicrosoftStoreForBusinessApp() : base() {
             OdataType = "#microsoft.graph.microsoftStoreForBusinessApp";
@@ -40,6 +40,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="MicrosoftStoreForBusinessApp"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MicrosoftStoreForBusinessApp CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -48,6 +49,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"licenseType", n => { LicenseType = n.GetEnumValue<MicrosoftStoreForBusinessLicenseType>(); } },

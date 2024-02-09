@@ -22,6 +22,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
         /// <summary>
         /// The [set] in which the relation is relevant.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The [set] in which the relation is relevant.";
@@ -106,13 +107,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
             return command;
         }
         /// <summary>
-        /// Instantiates a new SetRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/relations/{relation%2Did}/set{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SetRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SetRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}/sets/{set%2Did}/children/{term%2Did}/children/{term%2Did1}/relations/{relation%2Did}/set{?%24expand,%24select}", rawUrl) {
@@ -120,6 +121,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.
         /// <summary>
         /// The [set] in which the relation is relevant.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

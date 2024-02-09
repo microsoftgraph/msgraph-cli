@@ -21,6 +21,7 @@ namespace ApiSdk.IdentityProviders.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -54,13 +55,13 @@ namespace ApiSdk.IdentityProviders.Count {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CountRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProviders/$count{?%24filter,%24search}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CountRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CountRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders/$count{?%24filter,%24search}", rawUrl) {
@@ -68,6 +69,7 @@ namespace ApiSdk.IdentityProviders.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

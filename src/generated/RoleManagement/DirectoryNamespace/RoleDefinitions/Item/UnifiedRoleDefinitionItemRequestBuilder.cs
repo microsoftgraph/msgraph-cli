@@ -24,6 +24,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// Delete a unifiedRoleDefinition object. You can&apos;t delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a unifiedRoleDefinition object. You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0";
@@ -58,6 +59,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-get?view=graph-rest-1.0";
@@ -108,6 +110,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the inheritsPermissionsFrom property of the microsoft.graph.unifiedRoleDefinition entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildInheritsPermissionsFromNavCommand() {
             var command = new Command("inherits-permissions-from");
             command.Description = "Provides operations to manage the inheritsPermissionsFrom property of the microsoft.graph.unifiedRoleDefinition entity.";
@@ -134,6 +137,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-update?view=graph-rest-1.0";
@@ -181,13 +185,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnifiedRoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleDefinitions/{unifiedRoleDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnifiedRoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleDefinitions/{unifiedRoleDefinition%2Did}{?%24expand,%24select}", rawUrl) {
@@ -195,6 +199,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// <summary>
         /// Delete a unifiedRoleDefinition object. You can&apos;t delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +208,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/roleManagement/directory/roleDefinitions/{unifiedRoleDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -211,6 +216,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// <summary>
         /// Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -227,6 +233,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         /// <summary>
         /// Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +244,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         public RequestInformation ToPatchRequestInformation(UnifiedRoleDefinition body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/roleManagement/directory/roleDefinitions/{unifiedRoleDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

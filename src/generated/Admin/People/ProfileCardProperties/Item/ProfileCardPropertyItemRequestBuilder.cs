@@ -23,6 +23,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// Delete the profileCardProperty object specified by its directoryPropertyName from the organization&apos;s profile card, and remove any localized customizations for that property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilecardproperty-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the profileCardProperty object specified by its directoryPropertyName from the organization's profile card, and remove any localized customizations for that property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilecardproperty-delete?view=graph-rest-1.0";
@@ -57,6 +58,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilecardproperty-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilecardproperty-get?view=graph-rest-1.0";
@@ -108,6 +110,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// Update the properties of a profileCardProperty object, identified by its directoryPropertyName property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilecardproperty-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a profileCardProperty object, identified by its directoryPropertyName property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilecardproperty-update?view=graph-rest-1.0";
@@ -155,13 +158,13 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProfileCardPropertyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfileCardPropertyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProfileCardPropertyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProfileCardPropertyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfileCardPropertyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProfileCardPropertyItemRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}{?%24expand,%24select}", rawUrl) {
@@ -169,6 +172,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// <summary>
         /// Delete the profileCardProperty object specified by its directoryPropertyName from the organization&apos;s profile card, and remove any localized customizations for that property.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -177,7 +181,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -185,6 +189,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// <summary>
         /// Retrieve the properties of a profileCardProperty entity. The profileCardProperty is identified by its directoryPropertyName property.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,6 +206,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         /// <summary>
         /// Update the properties of a profileCardProperty object, identified by its directoryPropertyName property.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +217,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
         public RequestInformation ToPatchRequestInformation(ProfileCardProperty body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/admin/people/profileCardProperties/{profileCardProperty%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

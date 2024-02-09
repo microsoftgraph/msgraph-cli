@@ -33,6 +33,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByNavCommand() {
             var command = new Command("created-by");
             command.Description = "Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
@@ -56,6 +57,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-delete?view=graph-rest-1.0";
@@ -89,6 +91,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExecutionScopeNavCommand() {
             var command = new Command("execution-scope");
             command.Description = "Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.";
@@ -114,6 +117,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// Read the properties and relationships of a workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-get?view=graph-rest-1.0";
@@ -164,6 +168,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByNavCommand() {
             var command = new Command("last-modified-by");
             command.Description = "Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
@@ -186,6 +191,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to call the activate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphIdentityGovernanceActivateNavCommand() {
             var command = new Command("microsoft-graph-identity-governance-activate");
             command.Description = "Provides operations to call the activate method.";
@@ -201,6 +207,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to call the createNewVersion method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphIdentityGovernanceCreateNewVersionNavCommand() {
             var command = new Command("microsoft-graph-identity-governance-create-new-version");
             command.Description = "Provides operations to call the createNewVersion method.";
@@ -216,6 +223,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphIdentityGovernanceRestoreNavCommand() {
             var command = new Command("microsoft-graph-identity-governance-restore");
             command.Description = "Provides operations to call the restore method.";
@@ -232,6 +240,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-update?view=graph-rest-1.0";
@@ -281,6 +290,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRunsNavCommand() {
             var command = new Command("runs");
             command.Description = "Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.";
@@ -306,6 +316,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTaskReportsNavCommand() {
             var command = new Command("task-reports");
             command.Description = "Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.";
@@ -331,6 +342,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.";
@@ -356,6 +368,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUserProcessingResultsNavCommand() {
             var command = new Command("user-processing-results");
             command.Description = "Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.";
@@ -381,6 +394,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.";
@@ -403,13 +417,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new WorkflowItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorkflowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkflowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WorkflowItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorkflowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorkflowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}{?%24expand,%24select}", rawUrl) {
@@ -417,6 +431,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -425,7 +440,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -433,6 +448,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Read the properties and relationships of a workflow object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -449,6 +465,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         /// <summary>
         /// Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -459,7 +476,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         public RequestInformation ToPatchRequestInformation(Workflow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         /// Read the properties and relationships of a lifecycleManagementSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0";
@@ -68,6 +69,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         /// Update the properties of a lifecycleManagementSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0";
@@ -109,13 +111,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SettingsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/settings{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SettingsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/settings{?%24expand,%24select}", rawUrl) {
@@ -123,6 +125,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         /// <summary>
         /// Read the properties and relationships of a lifecycleManagementSettings object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -139,6 +142,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         /// <summary>
         /// Update the properties of a lifecycleManagementSettings object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -149,7 +153,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         public RequestInformation ToPatchRequestInformation(LifecycleManagementSettings body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/lifecycleWorkflows/settings", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

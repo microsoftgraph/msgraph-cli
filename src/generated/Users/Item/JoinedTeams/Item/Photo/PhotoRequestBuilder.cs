@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         /// Get the specified profilePhoto or its metadata (profilePhoto properties). The supported sizes of HD photos on Microsoft 365 are as follows: 48x48, 64x64, 96x96, 120x120, 240x240,360x360, 432x432, 504x504, and 648x648. Photos can be any dimension if they&apos;re stored in Microsoft Entra ID. You can get the metadata of the largest available photo or specify a size to get the metadata for that photo size.If the size you request is unavailable, you can still get a smaller size that the user has uploaded and made available.For example, if the user uploads a photo that is 504x504 pixels, all but the 648x648 size of the photo is available for download.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the specified profilePhoto or its metadata (profilePhoto properties). The supported sizes of HD photos on Microsoft 365 are as follows: 48x48, 64x64, 96x96, 120x120, 240x240,360x360, 432x432, 504x504, and 648x648. Photos can be any dimension if they're stored in Microsoft Entra ID. You can get the metadata of the largest available photo or specify a size to get the metadata for that photo size.If the size you request is unavailable, you can still get a smaller size that the user has uploaded and made available.For example, if the user uploads a photo that is 504x504 pixels, all but the 648x648 size of the photo is available for download.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
@@ -96,6 +98,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         /// <summary>
         /// Update the navigation property photo in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property photo in users";
@@ -149,13 +152,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PhotoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PhotoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PhotoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/photo{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PhotoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PhotoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PhotoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/photo{?%24expand,%24select}", rawUrl) {
@@ -163,6 +166,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         /// <summary>
         /// Get the specified profilePhoto or its metadata (profilePhoto properties). The supported sizes of HD photos on Microsoft 365 are as follows: 48x48, 64x64, 96x96, 120x120, 240x240,360x360, 432x432, 504x504, and 648x648. Photos can be any dimension if they&apos;re stored in Microsoft Entra ID. You can get the metadata of the largest available photo or specify a size to get the metadata for that photo size.If the size you request is unavailable, you can still get a smaller size that the user has uploaded and made available.For example, if the user uploads a photo that is 504x504 pixels, all but the 648x648 size of the photo is available for download.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -179,6 +183,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         /// <summary>
         /// Update the navigation property photo in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -189,7 +194,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Photo {
         public RequestInformation ToPatchRequestInformation(ProfilePhoto body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/photo", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

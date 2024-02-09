@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Delete navigation property todo for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property todo for users";
@@ -56,6 +57,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Represents the To Do services available to a user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents the To Do services available to a user.";
@@ -106,6 +108,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.todo entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListsNavCommand() {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.todo entity.";
@@ -132,6 +135,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Update the navigation property todo in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property todo in users";
@@ -179,13 +183,13 @@ namespace ApiSdk.Users.Item.Todo {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TodoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TodoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TodoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TodoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", rawUrl) {
@@ -193,6 +197,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Delete navigation property todo for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,7 +206,7 @@ namespace ApiSdk.Users.Item.Todo {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/todo", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -209,6 +214,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Represents the To Do services available to a user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,6 +231,7 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Update the navigation property todo in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +242,7 @@ namespace ApiSdk.Users.Item.Todo {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Todo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/todo", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

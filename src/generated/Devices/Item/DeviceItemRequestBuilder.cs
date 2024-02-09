@@ -32,6 +32,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -47,6 +48,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -63,6 +65,7 @@ namespace ApiSdk.Devices.Item {
         /// Delete a registered device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a registered device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-delete?view=graph-rest-1.0";
@@ -96,6 +99,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.device entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.device entity.";
@@ -122,6 +126,7 @@ namespace ApiSdk.Devices.Item {
         /// Get the properties and relationships of a device object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a device object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-get?view=graph-rest-1.0";
@@ -172,6 +177,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -187,6 +193,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -202,6 +209,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.device entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.device entity.";
@@ -229,6 +237,7 @@ namespace ApiSdk.Devices.Item {
         /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-update?view=graph-rest-1.0";
@@ -278,6 +287,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRegisteredOwnersNavCommand() {
             var command = new Command("registered-owners");
             command.Description = "Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.";
@@ -307,6 +317,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRegisteredUsersNavCommand() {
             var command = new Command("registered-users");
             command.Description = "Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.";
@@ -336,6 +347,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -351,6 +363,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.";
@@ -375,13 +388,13 @@ namespace ApiSdk.Devices.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeviceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeviceItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceItemRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}{?%24expand,%24select}", rawUrl) {
@@ -389,6 +402,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Delete a registered device.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -397,7 +411,7 @@ namespace ApiSdk.Devices.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/devices/{device%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -405,6 +419,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Get the properties and relationships of a device object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -421,6 +436,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -431,7 +447,7 @@ namespace ApiSdk.Devices.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/devices/{device%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

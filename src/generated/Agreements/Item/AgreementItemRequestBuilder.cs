@@ -25,6 +25,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcceptancesNavCommand() {
             var command = new Command("acceptances");
             command.Description = "Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.";
@@ -50,6 +51,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Delete entity from agreements
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from agreements";
@@ -83,6 +85,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the file property of the microsoft.graph.agreement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFileNavCommand() {
             var command = new Command("file");
             command.Description = "Provides operations to manage the file property of the microsoft.graph.agreement entity.";
@@ -106,6 +109,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the files property of the microsoft.graph.agreement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFilesNavCommand() {
             var command = new Command("files");
             command.Description = "Provides operations to manage the files property of the microsoft.graph.agreement entity.";
@@ -131,6 +135,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Get entity from agreements by key
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entity from agreements by key";
@@ -174,6 +179,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Update entity in agreements
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in agreements";
@@ -221,13 +227,13 @@ namespace ApiSdk.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AgreementItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AgreementItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AgreementItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AgreementItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AgreementItemRequestBuilder(string rawUrl) : base("{+baseurl}/agreements/{agreement%2Did}{?%24select}", rawUrl) {
@@ -235,6 +241,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Delete entity from agreements
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -243,7 +250,7 @@ namespace ApiSdk.Agreements.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/agreements/{agreement%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -251,6 +258,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Get entity from agreements by key
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -267,6 +275,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Update entity in agreements
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +286,7 @@ namespace ApiSdk.Agreements.Item {
         public RequestInformation ToPatchRequestInformation(Agreement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/agreements/{agreement%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

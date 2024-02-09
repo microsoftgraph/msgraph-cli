@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Provides operations to call the createDownloadUrl method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateDownloadUrlNavCommand() {
             var command = new Command("create-download-url");
             command.Description = "Provides operations to call the createDownloadUrl method.";
@@ -39,6 +40,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Deletes a appLogCollectionRequest.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a appLogCollectionRequest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0";
@@ -79,6 +81,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Read properties and relationships of the appLogCollectionRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0";
@@ -136,6 +139,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Update the properties of a appLogCollectionRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0";
@@ -189,13 +193,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Instantiates a new AppLogCollectionRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppLogCollectionRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppLogCollectionRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AppLogCollectionRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppLogCollectionRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppLogCollectionRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}{?%24expand,%24select}", rawUrl) {
@@ -203,6 +207,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Deletes a appLogCollectionRequest.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,7 +216,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -219,6 +224,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Read properties and relationships of the appLogCollectionRequest object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +241,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Update the properties of a appLogCollectionRequest object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +252,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         public RequestInformation ToPatchRequestInformation(AppLogCollectionRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests/{appLogCollectionRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

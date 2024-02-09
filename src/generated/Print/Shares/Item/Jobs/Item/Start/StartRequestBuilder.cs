@@ -23,6 +23,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Start {
         /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0";
@@ -63,13 +64,13 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Start {
             return command;
         }
         /// <summary>
-        /// Instantiates a new StartRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StartRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public StartRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/start", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new StartRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StartRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public StartRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/start", rawUrl) {
@@ -77,6 +78,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Start {
         /// <summary>
         /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityProviders {
         /// <summary>
         /// Provides operations to call the availableProviderTypes method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAvailableProviderTypesNavCommand() {
             var command = new Command("available-provider-types");
             command.Description = "Provides operations to call the availableProviderTypes method.";
@@ -40,6 +41,7 @@ namespace ApiSdk.IdentityProviders {
         /// <summary>
         /// Provides operations to manage the collection of identityProvider entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new IdentityProviderItemRequestBuilder(PathParameters);
@@ -51,6 +53,7 @@ namespace ApiSdk.IdentityProviders {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -67,6 +70,7 @@ namespace ApiSdk.IdentityProviders {
         /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildCreateCommand() {
             var command = new Command("create");
@@ -112,6 +116,7 @@ namespace ApiSdk.IdentityProviders {
         /// Retrieve all identityProviders in the directory.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -203,13 +208,13 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityProvidersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProvidersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityProvidersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProvidersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -217,6 +222,7 @@ namespace ApiSdk.IdentityProviders {
         /// <summary>
         /// Retrieve all identityProviders in the directory.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,6 +240,7 @@ namespace ApiSdk.IdentityProviders {
         /// <summary>
         /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
@@ -245,7 +252,7 @@ namespace ApiSdk.IdentityProviders {
         public RequestInformation ToPostRequestInformation(IdentityProvider body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identityProviders", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

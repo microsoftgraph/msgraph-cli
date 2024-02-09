@@ -22,6 +22,7 @@ namespace ApiSdk.Chats.Item.HideForUser {
         /// Hide a chat for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Hide a chat for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.Chats.Item.HideForUser {
             return command;
         }
         /// <summary>
-        /// Instantiates a new HideForUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="HideForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public HideForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/hideForUser", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new HideForUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="HideForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public HideForUserRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/hideForUser", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.Chats.Item.HideForUser {
         /// <summary>
         /// Hide a chat for a user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

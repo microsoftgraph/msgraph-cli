@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.term entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Create new navigation property to children for groups
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to children for groups";
@@ -132,6 +135,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Children of current term.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Children of current term.";
@@ -258,13 +262,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
             return command;
         }
         /// <summary>
-        /// Instantiates a new ChildrenRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChildrenRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ChildrenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/children/{term%2Did}/children{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ChildrenRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChildrenRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ChildrenRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/children/{term%2Did}/children{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -272,6 +276,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Children of current term.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -288,6 +293,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         /// <summary>
         /// Create new navigation property to children for groups
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +304,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Ch
         public RequestInformation ToPostRequestInformation(Term body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did1}/sets/{set%2Did}/children/{term%2Did}/children", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

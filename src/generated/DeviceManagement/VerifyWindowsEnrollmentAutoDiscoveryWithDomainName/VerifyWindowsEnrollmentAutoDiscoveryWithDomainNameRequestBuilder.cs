@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// <summary>
         /// Invoke function verifyWindowsEnrollmentAutoDiscovery
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function verifyWindowsEnrollmentAutoDiscovery";
@@ -55,13 +56,13 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
             return command;
         }
         /// <summary>
-        /// Instantiates a new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/verifyWindowsEnrollmentAutoDiscovery(domainName='{domainName}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/verifyWindowsEnrollmentAutoDiscovery(domainName='{domainName}')", rawUrl) {
@@ -69,6 +70,7 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// <summary>
         /// Invoke function verifyWindowsEnrollmentAutoDiscovery
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

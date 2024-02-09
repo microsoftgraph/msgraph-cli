@@ -28,6 +28,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.";
@@ -43,6 +44,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
@@ -58,6 +60,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Delete navigation property roleEligibilityScheduleRequests for roleManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleEligibilityScheduleRequests for roleManagement";
@@ -91,6 +94,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.";
@@ -107,6 +111,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0";
@@ -157,6 +162,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Update the navigation property roleEligibilityScheduleRequests in roleManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleEligibilityScheduleRequests in roleManagement";
@@ -206,6 +212,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.";
@@ -221,6 +228,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.";
@@ -236,6 +244,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTargetScheduleNavCommand() {
             var command = new Command("target-schedule");
             command.Description = "Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleEligibilityScheduleRequest entity.";
@@ -249,13 +258,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleEligibilityScheduleRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleEligibilityScheduleRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnifiedRoleEligibilityScheduleRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleEligibilityScheduleRequests/{unifiedRoleEligibilityScheduleRequest%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnifiedRoleEligibilityScheduleRequestItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnifiedRoleEligibilityScheduleRequestItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnifiedRoleEligibilityScheduleRequestItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleEligibilityScheduleRequests/{unifiedRoleEligibilityScheduleRequest%2Did}{?%24expand,%24select}", rawUrl) {
@@ -263,6 +272,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Delete navigation property roleEligibilityScheduleRequests for roleManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -271,7 +281,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/roleManagement/directory/roleEligibilityScheduleRequests/{unifiedRoleEligibilityScheduleRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -279,6 +289,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -295,6 +306,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         /// <summary>
         /// Update the navigation property roleEligibilityScheduleRequests in roleManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -305,7 +317,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         public RequestInformation ToPatchRequestInformation(UnifiedRoleEligibilityScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/roleManagement/directory/roleEligibilityScheduleRequests/{unifiedRoleEligibilityScheduleRequest%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

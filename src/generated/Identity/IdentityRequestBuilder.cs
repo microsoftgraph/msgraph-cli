@@ -27,6 +27,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApiConnectorsNavCommand() {
             var command = new Command("api-connectors");
             command.Description = "Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.";
@@ -52,6 +53,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildB2xUserFlowsNavCommand() {
             var command = new Command("b2x-user-flows");
             command.Description = "Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.";
@@ -77,6 +79,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildConditionalAccessNavCommand() {
             var command = new Command("conditional-access");
             command.Description = "Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.";
@@ -104,6 +107,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Get identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get identity";
@@ -148,6 +152,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIdentityProvidersNavCommand() {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.";
@@ -174,6 +179,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Update identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update identity";
@@ -217,6 +223,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUserFlowAttributesNavCommand() {
             var command = new Command("user-flow-attributes");
             command.Description = "Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.";
@@ -240,13 +247,13 @@ namespace ApiSdk.Identity {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityRequestBuilder(string rawUrl) : base("{+baseurl}/identity{?%24expand,%24select}", rawUrl) {
@@ -254,6 +261,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Get identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -270,6 +278,7 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Update identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +289,7 @@ namespace ApiSdk.Identity {
         public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

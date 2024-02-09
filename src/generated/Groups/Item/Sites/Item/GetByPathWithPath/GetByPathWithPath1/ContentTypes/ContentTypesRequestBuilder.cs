@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         /// Get the collection of [contentType][contentType] resources in a [site][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the collection of [contentType][contentType] resources in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
@@ -34,6 +35,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
+            var path1Option = new Option<string>("--path1", description: "Usage: path='{path1}'") {
+            };
+            path1Option.IsRequired = true;
+            command.AddOption(path1Option);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -78,6 +87,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
+                var path1 = invocationContext.ParseResult.GetValueForOption(path1Option);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -106,6 +117,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
+                if (path1 is not null) requestInfo.PathParameters.Add("path1", path1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -128,6 +141,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         /// Create a new [contentType][] in a [site][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Create a new [contentType][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
@@ -139,6 +153,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
+            var path1Option = new Option<string>("--path1", description: "Usage: path='{path1}'") {
+            };
+            path1Option.IsRequired = true;
+            command.AddOption(path1Option);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -150,6 +172,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
+                var path1 = invocationContext.ParseResult.GetValueForOption(path1Option);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -168,6 +192,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
+                if (path1 is not null) requestInfo.PathParameters.Add("path1", path1);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -181,13 +207,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContentTypesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/contentTypes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContentTypesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentTypesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/contentTypes{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -195,6 +221,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         /// <summary>
         /// Get the collection of [contentType][contentType] resources in a [site][].
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,6 +238,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         /// <summary>
         /// Create a new [contentType][] in a [site][].
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -221,7 +249,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Con
         public RequestInformation ToPostRequestInformation(ContentType body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/contentTypes", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Ran
         /// Get the range object associated with the entire table.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-range?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the range object associated with the entire table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-range?view=graph-rest-1.0";
@@ -75,13 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Ran
             return command;
         }
         /// <summary>
-        /// Instantiates a new RangeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RangeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/range()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RangeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RangeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/range()", rawUrl) {
@@ -89,6 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Ran
         /// <summary>
         /// Get the range object associated with the entire table.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// Delete a samlOrWsFedExternalDomainFederation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a samlOrWsFedExternalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0";
@@ -56,6 +57,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// <summary>
         /// Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.";
@@ -106,6 +108,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// <summary>
         /// Update the navigation property federationConfigurations in directory
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property federationConfigurations in directory";
@@ -153,13 +156,13 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProviderBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProviderBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}{?%24expand,%24select}", rawUrl) {
@@ -167,6 +170,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// <summary>
         /// Delete a samlOrWsFedExternalDomainFederation object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -175,7 +179,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -183,6 +187,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// <summary>
         /// Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed protocol.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -199,6 +204,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         /// <summary>
         /// Update the navigation property federationConfigurations in directory
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -209,7 +215,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         public RequestInformation ToPatchRequestInformation(IdentityProviderBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directory/federationConfigurations/{identityProviderBase%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

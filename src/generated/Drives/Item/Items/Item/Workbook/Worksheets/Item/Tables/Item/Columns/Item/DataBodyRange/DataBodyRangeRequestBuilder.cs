@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// Gets the range object associated with the data body of the column.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-databodyrange?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Gets the range object associated with the data body of the column.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-databodyrange?view=graph-rest-1.0";
@@ -81,13 +82,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Instantiates a new DataBodyRangeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DataBodyRangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DataBodyRangeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/dataBodyRange()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DataBodyRangeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DataBodyRangeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DataBodyRangeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/dataBodyRange()", rawUrl) {
@@ -95,6 +96,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Gets the range object associated with the data body of the column.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

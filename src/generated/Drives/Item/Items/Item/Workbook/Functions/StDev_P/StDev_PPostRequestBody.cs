@@ -18,7 +18,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDev_P {
         public Json Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new stDev_PPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="StDev_PPostRequestBody"/> and sets the default values.
         /// </summary>
         public StDev_PPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -26,6 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDev_P {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="StDev_PPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static StDev_PPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -34,6 +35,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDev_P {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"values", n => { Values = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

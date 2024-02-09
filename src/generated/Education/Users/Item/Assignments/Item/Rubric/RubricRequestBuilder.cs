@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// Remove an educationRubric from an educationAssignment. This method doesn&apos;t delete the rubric itself and can only be performed by teachers.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an educationRubric from an educationAssignment. This method doesn't delete the rubric itself and can only be performed by teachers.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0";
@@ -64,6 +65,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-get-rubric?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-get-rubric?view=graph-rest-1.0";
@@ -121,6 +123,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// Attach an existing educationRubric object to an educationAssignment. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-put-rubric?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Attach an existing educationRubric object to an educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-put-rubric?view=graph-rest-1.0";
@@ -176,6 +179,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
@@ -191,13 +195,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RubricRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RubricRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RubricRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RubricRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RubricRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RubricRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric{?%24expand,%24select}", rawUrl) {
@@ -205,6 +209,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// <summary>
         /// Remove an educationRubric from an educationAssignment. This method doesn&apos;t delete the rubric itself and can only be performed by teachers.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -213,7 +218,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -221,6 +226,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// <summary>
         /// Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -237,6 +243,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         /// <summary>
         /// Attach an existing educationRubric object to an educationAssignment. Only teachers can perform this operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +254,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Rubric {
         public RequestInformation ToPatchRequestInformation(EducationRubric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/rubric", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

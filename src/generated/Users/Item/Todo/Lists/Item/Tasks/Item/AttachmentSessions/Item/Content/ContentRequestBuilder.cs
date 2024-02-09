@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// <summary>
         /// The content streams that are uploaded.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The content streams that are uploaded.";
@@ -78,6 +79,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// <summary>
         /// The content streams that are uploaded.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "The content streams that are uploaded.";
@@ -140,13 +142,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachmentSessions/{attachmentSession%2Did}/content", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachmentSessions/{attachmentSession%2Did}/content", rawUrl) {
@@ -154,6 +156,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// <summary>
         /// The content streams that are uploaded.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -170,6 +173,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// <summary>
         /// The content streams that are uploaded.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

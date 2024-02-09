@@ -25,6 +25,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAllTimeNavCommand() {
             var command = new Command("all-time");
             command.Description = "Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Delete navigation property analytics for sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property analytics for sites";
@@ -73,6 +75,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place in this site.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place in this site.";
@@ -123,6 +126,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemActivityStatsNavCommand() {
             var command = new Command("item-activity-stats");
             command.Description = "Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.";
@@ -148,6 +152,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastSevenDaysNavCommand() {
             var command = new Command("last-seven-days");
             command.Description = "Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.";
@@ -163,6 +168,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Update the navigation property analytics in sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property analytics in sites";
@@ -210,13 +216,13 @@ namespace ApiSdk.Sites.Item.Analytics {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AnalyticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AnalyticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AnalyticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AnalyticsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/analytics{?%24expand,%24select}", rawUrl) {
@@ -224,6 +230,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Delete navigation property analytics for sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,7 +239,7 @@ namespace ApiSdk.Sites.Item.Analytics {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/analytics", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -240,6 +247,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place in this site.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -256,6 +264,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         /// <summary>
         /// Update the navigation property analytics in sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +275,7 @@ namespace ApiSdk.Sites.Item.Analytics {
         public RequestInformation ToPatchRequestInformation(ItemAnalytics body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/analytics", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -25,6 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -45,6 +46,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -61,6 +63,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// Create a new assignment. Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post-assignment?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new assignment. Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-assignment?view=graph-rest-1.0";
@@ -110,6 +113,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -126,6 +130,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher, or an application running with application permissions, can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-assignments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher, or an application running with application permissions, can see all assignment objects for the class. Students can only see assignments that are assigned to them.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-assignments?view=graph-rest-1.0";
@@ -222,13 +227,13 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AssignmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AssignmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -236,6 +241,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher, or an application running with application permissions, can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -252,6 +258,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Create a new assignment. Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +269,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         public RequestInformation ToPostRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/education/classes/{educationClass%2Did}/assignments", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

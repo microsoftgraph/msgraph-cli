@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
         /// <summary>If true the recipient of the invitation needs to sign in in order to access the shared item. Read-only.</summary>
         public bool? SignInRequired { get; set; }
         /// <summary>
-        /// Instantiates a new sharingInvitation and sets the default values.
+        /// Instantiates a new <see cref="SharingInvitation"/> and sets the default values.
         /// </summary>
         public SharingInvitation() {
             AdditionalData = new Dictionary<string, object>();
@@ -51,6 +51,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="SharingInvitation"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SharingInvitation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -59,6 +60,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"email", n => { Email = n.GetStringValue(); } },

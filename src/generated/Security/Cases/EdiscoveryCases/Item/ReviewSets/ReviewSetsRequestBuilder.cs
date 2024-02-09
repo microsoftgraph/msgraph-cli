@@ -24,6 +24,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// <summary>
         /// Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -39,6 +40,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -55,6 +57,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// Create a new ediscoveryReviewSet object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryReviewSet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0";
@@ -105,6 +108,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0";
@@ -201,13 +205,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReviewSetsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReviewSetsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReviewSetsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReviewSetsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReviewSetsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReviewSetsRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -215,6 +219,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// <summary>
         /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,6 +236,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         /// <summary>
         /// Create a new ediscoveryReviewSet object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +247,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         public RequestInformation ToPostRequestInformation(EdiscoveryReviewSet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

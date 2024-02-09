@@ -21,6 +21,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getApplicableContentTypesForList";
@@ -28,6 +29,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var listIdOption = new Option<string>("--list-id", description: "Usage: listId='{listId}'") {
             };
             listIdOption.IsRequired = true;
@@ -62,6 +67,11 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
             };
             orderbyOption.IsRequired = false;
             command.AddOption(orderbyOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -70,6 +80,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var listId = invocationContext.ParseResult.GetValueForOption(listIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
@@ -78,6 +89,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
@@ -94,8 +106,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 if (listId is not null) requestInfo.PathParameters.Add("listId", listId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,20 +130,21 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetApplicableContentTypesForListWithListIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetApplicableContentTypesForListWithListIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetApplicableContentTypesForListWithListIdRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -150,6 +165,16 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetApplicableContentTypesForListWi
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

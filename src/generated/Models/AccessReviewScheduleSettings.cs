@@ -67,7 +67,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether reminders are enabled or disabled. Default value is false.</summary>
         public bool? ReminderNotificationsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new accessReviewScheduleSettings and sets the default values.
+        /// Instantiates a new <see cref="AccessReviewScheduleSettings"/> and sets the default values.
         /// </summary>
         public AccessReviewScheduleSettings() {
             AdditionalData = new Dictionary<string, object>();
@@ -75,6 +75,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="AccessReviewScheduleSettings"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AccessReviewScheduleSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -83,6 +84,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"applyActions", n => { ApplyActions = n.GetCollectionOfObjectValues<AccessReviewApplyAction>(AccessReviewApplyAction.CreateFromDiscriminatorValue)?.ToList(); } },

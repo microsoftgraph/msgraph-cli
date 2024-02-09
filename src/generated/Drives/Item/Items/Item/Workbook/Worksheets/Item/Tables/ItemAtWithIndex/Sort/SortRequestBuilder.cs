@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Delete navigation property sort for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sort for drives";
@@ -37,6 +38,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -46,6 +51,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
@@ -54,6 +60,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -68,6 +75,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// Retrieve the properties and relationships of tablesort object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of tablesort object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0";
@@ -83,6 +91,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -101,6 +113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -116,6 +129,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -130,6 +144,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Update the navigation property sort in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sort in drives";
@@ -145,6 +160,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -157,6 +176,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -176,6 +196,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -189,13 +210,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
             return command;
         }
         /// <summary>
-        /// Instantiates a new SortRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SortRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SortRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})/sort{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SortRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SortRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SortRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})/sort{?%24expand,%24select}", rawUrl) {
@@ -203,6 +224,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Delete navigation property sort for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,7 +233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})/sort", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -219,6 +241,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Retrieve the properties and relationships of tablesort object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +258,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Update the navigation property sort in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         public RequestInformation ToPatchRequestInformation(WorkbookTableSort body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/itemAt(index={index})/sort", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

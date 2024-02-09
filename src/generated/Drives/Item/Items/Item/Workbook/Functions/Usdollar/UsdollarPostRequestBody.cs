@@ -26,7 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar {
         public Json Number { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new usdollarPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="UsdollarPostRequestBody"/> and sets the default values.
         /// </summary>
         public UsdollarPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -34,6 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="UsdollarPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static UsdollarPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -42,6 +43,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"decimals", n => { Decimals = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

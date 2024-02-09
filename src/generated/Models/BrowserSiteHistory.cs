@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         /// <summary>The target environment that the site should open in. The possible values are: internetExplorerMode, internetExplorer11, microsoftEdge, configurable, none, unknownFutureValue.Prior to June 15, 2022, the internetExplorer11 option would allow opening a site in the Internet Explorer 11 (IE11) desktop application. Following the retirement of IE11 on June 15, 2022, the internetExplorer11 option will no longer open an IE11 window and will instead behave the same as the internetExplorerMode option.</summary>
         public BrowserSiteTargetEnvironment? TargetEnvironment { get; set; }
         /// <summary>
-        /// Instantiates a new browserSiteHistory and sets the default values.
+        /// Instantiates a new <see cref="BrowserSiteHistory"/> and sets the default values.
         /// </summary>
         public BrowserSiteHistory() {
             AdditionalData = new Dictionary<string, object>();
@@ -54,6 +54,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="BrowserSiteHistory"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static BrowserSiteHistory CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -62,6 +63,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowRedirect", n => { AllowRedirect = n.GetBoolValue(); } },
