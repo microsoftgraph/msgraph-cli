@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.message entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new AttachmentItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0";
@@ -118,6 +121,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         /// <summary>
         /// Provides operations to call the createUploadSession method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateUploadSessionNavCommand() {
             var command = new Command("create-upload-session");
             command.Description = "Provides operations to call the createUploadSession method.";
@@ -131,12 +135,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0" />
+        /// Retrieve a list of attachment objects attached to a message.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of attachment objects attached to a message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -230,20 +235,21 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
             return command;
         }
         /// <summary>
-        /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// Retrieve a list of attachment objects attached to a message.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -260,6 +266,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         /// <summary>
         /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -270,13 +277,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Att
         public RequestInformation ToPostRequestInformation(Attachment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/attachments", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// Retrieve a list of attachment objects attached to a message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

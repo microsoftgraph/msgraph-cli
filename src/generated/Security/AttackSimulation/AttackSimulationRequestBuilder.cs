@@ -30,6 +30,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Delete navigation property attackSimulation for security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property attackSimulation for security";
@@ -57,6 +58,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the endUserNotifications property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEndUserNotificationsNavCommand() {
             var command = new Command("end-user-notifications");
             command.Description = "Provides operations to manage the endUserNotifications property of the microsoft.graph.attackSimulationRoot entity.";
@@ -82,6 +84,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Get attackSimulation from security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get attackSimulation from security";
@@ -126,6 +129,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the landingPages property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLandingPagesNavCommand() {
             var command = new Command("landing-pages");
             command.Description = "Provides operations to manage the landingPages property of the microsoft.graph.attackSimulationRoot entity.";
@@ -151,6 +155,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the loginPages property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLoginPagesNavCommand() {
             var command = new Command("login-pages");
             command.Description = "Provides operations to manage the loginPages property of the microsoft.graph.attackSimulationRoot entity.";
@@ -176,6 +181,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.";
@@ -201,6 +207,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Update the navigation property attackSimulation in security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property attackSimulation in security";
@@ -244,6 +251,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPayloadsNavCommand() {
             var command = new Command("payloads");
             command.Description = "Provides operations to manage the payloads property of the microsoft.graph.attackSimulationRoot entity.";
@@ -269,6 +277,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSimulationAutomationsNavCommand() {
             var command = new Command("simulation-automations");
             command.Description = "Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.";
@@ -294,6 +303,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSimulationsNavCommand() {
             var command = new Command("simulations");
             command.Description = "Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.";
@@ -319,6 +329,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the trainings property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTrainingsNavCommand() {
             var command = new Command("trainings");
             command.Description = "Provides operations to manage the trainings property of the microsoft.graph.attackSimulationRoot entity.";
@@ -342,13 +353,13 @@ namespace ApiSdk.Security.AttackSimulation {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AttackSimulationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttackSimulationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttackSimulationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AttackSimulationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttackSimulationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttackSimulationRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation{?%24expand,%24select}", rawUrl) {
@@ -356,6 +367,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Delete navigation property attackSimulation for security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -364,7 +376,7 @@ namespace ApiSdk.Security.AttackSimulation {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/attackSimulation", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -372,6 +384,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Get attackSimulation from security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -388,6 +401,7 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Update the navigation property attackSimulation in security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -398,7 +412,7 @@ namespace ApiSdk.Security.AttackSimulation {
         public RequestInformation ToPatchRequestInformation(AttackSimulationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/attackSimulation", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

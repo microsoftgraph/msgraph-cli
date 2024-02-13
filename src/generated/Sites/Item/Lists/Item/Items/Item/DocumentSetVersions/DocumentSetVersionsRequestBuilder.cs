@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// <summary>
         /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -54,6 +56,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// Create a new version of a document set item in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
@@ -116,6 +119,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// Get a list of the versions of a document set item in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
@@ -224,13 +228,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DocumentSetVersionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DocumentSetVersionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DocumentSetVersionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DocumentSetVersionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DocumentSetVersionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DocumentSetVersionsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -238,6 +242,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// <summary>
         /// Get a list of the versions of a document set item in a list.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -254,6 +259,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         /// <summary>
         /// Create a new version of a document set item in a list.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +270,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         public RequestInformation ToPostRequestInformation(DocumentSetVersion body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

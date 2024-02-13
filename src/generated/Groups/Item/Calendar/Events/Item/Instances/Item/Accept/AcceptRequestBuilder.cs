@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
         /// Accept the specified event in a user calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Accept the specified event in a user calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AcceptRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/events/{event%2Did}/instances/{event%2Did1}/accept", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AcceptRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AcceptRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AcceptRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/events/{event%2Did}/instances/{event%2Did1}/accept", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
         /// <summary>
         /// Accept the specified event in a user calendar.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

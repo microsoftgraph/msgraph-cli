@@ -34,6 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyBottomItemsFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyBottomItemsFilterNavCommand() {
             var command = new Command("apply-bottom-items-filter");
             command.Description = "Provides operations to call the applyBottomItemsFilter method.";
@@ -49,6 +50,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyBottomPercentFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyBottomPercentFilterNavCommand() {
             var command = new Command("apply-bottom-percent-filter");
             command.Description = "Provides operations to call the applyBottomPercentFilter method.";
@@ -64,6 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyCellColorFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyCellColorFilterNavCommand() {
             var command = new Command("apply-cell-color-filter");
             command.Description = "Provides operations to call the applyCellColorFilter method.";
@@ -79,6 +82,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyCustomFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyCustomFilterNavCommand() {
             var command = new Command("apply-custom-filter");
             command.Description = "Provides operations to call the applyCustomFilter method.";
@@ -94,6 +98,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyDynamicFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyDynamicFilterNavCommand() {
             var command = new Command("apply-dynamic-filter");
             command.Description = "Provides operations to call the applyDynamicFilter method.";
@@ -109,6 +114,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyFontColorFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyFontColorFilterNavCommand() {
             var command = new Command("apply-font-color-filter");
             command.Description = "Provides operations to call the applyFontColorFilter method.";
@@ -124,6 +130,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyIconFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyIconFilterNavCommand() {
             var command = new Command("apply-icon-filter");
             command.Description = "Provides operations to call the applyIconFilter method.";
@@ -139,6 +146,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the apply method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyNavCommand() {
             var command = new Command("apply");
             command.Description = "Provides operations to call the apply method.";
@@ -154,6 +162,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyTopItemsFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyTopItemsFilterNavCommand() {
             var command = new Command("apply-top-items-filter");
             command.Description = "Provides operations to call the applyTopItemsFilter method.";
@@ -169,6 +178,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyTopPercentFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyTopPercentFilterNavCommand() {
             var command = new Command("apply-top-percent-filter");
             command.Description = "Provides operations to call the applyTopPercentFilter method.";
@@ -184,6 +194,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the applyValuesFilter method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildApplyValuesFilterNavCommand() {
             var command = new Command("apply-values-filter");
             command.Description = "Provides operations to call the applyValuesFilter method.";
@@ -199,6 +210,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
@@ -214,6 +226,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Delete navigation property filter for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property filter for drives";
@@ -265,6 +278,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Retrieve the filter applied to the column. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the filter applied to the column. Read-only.";
@@ -333,6 +347,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Update the navigation property filter in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property filter in drives";
@@ -398,13 +413,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
             return command;
         }
         /// <summary>
-        /// Instantiates a new FilterRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilterRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FilterRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FilterRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilterRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FilterRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter{?%24expand,%24select}", rawUrl) {
@@ -412,6 +427,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Delete navigation property filter for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -420,7 +436,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -428,6 +444,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Retrieve the filter applied to the column. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -444,6 +461,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         /// <summary>
         /// Update the navigation property filter in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -454,7 +472,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public RequestInformation ToPatchRequestInformation(WorkbookFilter body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

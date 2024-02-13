@@ -22,6 +22,7 @@ namespace ApiSdk.DirectoryRoles.GetAvailableExtensionProperties {
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0";
@@ -74,13 +75,13 @@ namespace ApiSdk.DirectoryRoles.GetAvailableExtensionProperties {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetAvailableExtensionPropertiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAvailableExtensionPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/getAvailableExtensionProperties", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetAvailableExtensionPropertiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAvailableExtensionPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/getAvailableExtensionProperties", rawUrl) {
@@ -88,6 +89,7 @@ namespace ApiSdk.DirectoryRoles.GetAvailableExtensionProperties {
         /// <summary>
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

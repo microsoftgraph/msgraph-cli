@@ -22,6 +22,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// <summary>
         /// Delete navigation property assignedToTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignedToTaskBoardFormat for planner";
@@ -62,6 +63,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0";
@@ -119,6 +121,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// Update the navigation property assignedToTaskBoardFormat in planner
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignedToTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0";
@@ -179,13 +182,13 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AssignedToTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignedToTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AssignedToTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AssignedToTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignedToTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AssignedToTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat{?%24expand,%24select}", rawUrl) {
@@ -193,6 +196,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// <summary>
         /// Delete navigation property assignedToTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,7 +205,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/planner/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -209,6 +213,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// <summary>
         /// Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,6 +230,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         /// <summary>
         /// Update the navigation property assignedToTaskBoardFormat in planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +241,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
         public RequestInformation ToPatchRequestInformation(PlannerAssignedToTaskBoardTaskFormat body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/planner/buckets/{plannerBucket%2Did}/tasks/{plannerTask%2Did}/assignedToTaskBoardFormat", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

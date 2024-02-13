@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
         /// Delete a taskFileAttachment object from a todoTask resource.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/taskfileattachment-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a taskFileAttachment object from a todoTask resource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/taskfileattachment-delete?view=graph-rest-1.0";
@@ -92,6 +94,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
         /// Read the properties and relationships of a taskFileAttachment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/taskfileattachment-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a taskFileAttachment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/taskfileattachment-get?view=graph-rest-1.0";
@@ -151,13 +154,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AttachmentBaseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AttachmentBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AttachmentBaseItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AttachmentBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AttachmentBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}{?%24select}", rawUrl) {
@@ -165,6 +168,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
         /// <summary>
         /// Delete a taskFileAttachment object from a todoTask resource.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,7 +177,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachments/{attachmentBase%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -181,6 +185,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item {
         /// <summary>
         /// Read the properties and relationships of a taskFileAttachment object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

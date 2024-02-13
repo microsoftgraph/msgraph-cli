@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Root {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Drives.Item.Root {
         /// Retrieve the metadata for a driveItem in a drive by file system path or ID.item-id is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the metadata for a driveItem in a drive by file system path or ID.item-id is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0";
@@ -88,13 +90,13 @@ namespace ApiSdk.Drives.Item.Root {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RootRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/root{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RootRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RootRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RootRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/root{?%24expand,%24select}", rawUrl) {
@@ -102,6 +104,7 @@ namespace ApiSdk.Drives.Item.Root {
         /// <summary>
         /// Retrieve the metadata for a driveItem in a drive by file system path or ID.item-id is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

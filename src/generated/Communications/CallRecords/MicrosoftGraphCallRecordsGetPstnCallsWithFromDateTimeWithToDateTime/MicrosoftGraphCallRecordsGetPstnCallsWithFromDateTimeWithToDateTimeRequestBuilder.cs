@@ -21,6 +21,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
         /// <summary>
         /// Invoke function getPstnCalls
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getPstnCalls";
@@ -102,13 +103,13 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getPstnCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(string rawUrl) : base("{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getPstnCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -116,6 +117,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCall
         /// <summary>
         /// Invoke function getPstnCalls
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

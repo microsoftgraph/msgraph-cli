@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppConsentRequestsNavCommand() {
             var command = new Command("app-consent-requests");
             command.Description = "Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.";
@@ -49,6 +50,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Delete navigation property appConsent for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property appConsent for identityGovernance";
@@ -76,6 +78,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Get appConsent from identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get appConsent from identityGovernance";
@@ -120,6 +123,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Update the navigation property appConsent in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property appConsent in identityGovernance";
@@ -161,13 +165,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AppConsentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppConsentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppConsentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/appConsent{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AppConsentRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppConsentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppConsentRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/appConsent{?%24expand,%24select}", rawUrl) {
@@ -175,6 +179,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Delete navigation property appConsent for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -183,7 +188,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/appConsent", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -191,6 +196,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Get appConsent from identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,6 +213,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Update the navigation property appConsent in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +224,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         public RequestInformation ToPatchRequestInformation(AppConsentApprovalRoute body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/appConsent", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

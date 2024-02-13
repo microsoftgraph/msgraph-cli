@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop {
         /// <summary>
         /// Invoke function exportDeviceAndAppManagementData
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function exportDeviceAndAppManagementData";
@@ -68,13 +69,13 @@ namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", rawUrl) {
@@ -82,6 +83,7 @@ namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop {
         /// <summary>
         /// Invoke function exportDeviceAndAppManagementData
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

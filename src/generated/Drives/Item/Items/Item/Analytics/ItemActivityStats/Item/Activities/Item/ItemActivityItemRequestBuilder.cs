@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Delete navigation property activities for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property activities for drives";
@@ -74,6 +75,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.";
@@ -95,6 +97,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Exposes the itemActivities represented in this itemActivityStat resource.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Exposes the itemActivities represented in this itemActivityStat resource.";
@@ -163,6 +166,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Update the navigation property activities in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property activities in drives";
@@ -228,13 +232,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
             return command;
         }
         /// <summary>
-        /// Instantiates a new ItemActivityItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemActivityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ItemActivityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ItemActivityItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemActivityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ItemActivityItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}{?%24expand,%24select}", rawUrl) {
@@ -242,6 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Delete navigation property activities for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +255,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -258,6 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Exposes the itemActivities represented in this itemActivityStat resource.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -274,6 +280,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Update the navigation property activities in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -284,7 +291,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         public RequestInformation ToPatchRequestInformation(ItemActivity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

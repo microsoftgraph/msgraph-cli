@@ -23,6 +23,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// Deletes a deviceComplianceUserStatus.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a deviceComplianceUserStatus.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// Read properties and relationships of the deviceComplianceUserStatus object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceComplianceUserStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-get?view=graph-rest-1.0";
@@ -120,6 +122,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// Update the properties of a deviceComplianceUserStatus object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceComplianceUserStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-update?view=graph-rest-1.0";
@@ -173,13 +176,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeviceComplianceUserStatusItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceComplianceUserStatusItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceComplianceUserStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeviceComplianceUserStatusItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceComplianceUserStatusItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceComplianceUserStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24expand,%24select}", rawUrl) {
@@ -187,6 +190,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// <summary>
         /// Deletes a deviceComplianceUserStatus.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -195,7 +199,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -203,6 +207,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// <summary>
         /// Read properties and relationships of the deviceComplianceUserStatus object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,6 +224,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         /// <summary>
         /// Update the properties of a deviceComplianceUserStatus object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +235,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         public RequestInformation ToPatchRequestInformation(DeviceComplianceUserStatus body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

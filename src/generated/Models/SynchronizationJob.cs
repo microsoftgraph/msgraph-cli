@@ -6,6 +6,14 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SynchronizationJob : Entity, IParsable {
+        /// <summary>The bulkUpload property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.BulkUpload? BulkUpload { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.BulkUpload BulkUpload { get; set; }
+#endif
         /// <summary>Schedule used to run the job. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +57,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="SynchronizationJob"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new SynchronizationJob CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -57,8 +66,10 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"bulkUpload", n => { BulkUpload = n.GetObjectValue<ApiSdk.Models.BulkUpload>(ApiSdk.Models.BulkUpload.CreateFromDiscriminatorValue); } },
                 {"schedule", n => { Schedule = n.GetObjectValue<SynchronizationSchedule>(SynchronizationSchedule.CreateFromDiscriminatorValue); } },
                 {"schema", n => { Schema = n.GetObjectValue<SynchronizationSchema>(SynchronizationSchema.CreateFromDiscriminatorValue); } },
                 {"status", n => { Status = n.GetObjectValue<SynchronizationStatus>(SynchronizationStatus.CreateFromDiscriminatorValue); } },
@@ -73,6 +84,7 @@ namespace ApiSdk.Models {
         public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteObjectValue<ApiSdk.Models.BulkUpload>("bulkUpload", BulkUpload);
             writer.WriteObjectValue<SynchronizationSchedule>("schedule", Schedule);
             writer.WriteObjectValue<SynchronizationSchema>("schema", Schema);
             writer.WriteObjectValue<SynchronizationStatus>("status", Status);

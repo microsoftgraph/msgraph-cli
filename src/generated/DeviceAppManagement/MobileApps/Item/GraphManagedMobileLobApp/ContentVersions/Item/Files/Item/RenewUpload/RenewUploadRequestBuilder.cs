@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         /// <summary>
         /// Renews the SAS URI for an application file upload.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Renews the SAS URI for an application file upload.";
@@ -57,13 +58,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
             return command;
         }
         /// <summary>
-        /// Instantiates a new RenewUploadRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RenewUploadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RenewUploadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedMobileLobApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/renewUpload", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RenewUploadRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RenewUploadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RenewUploadRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.managedMobileLobApp/contentVersions/{mobileAppContent%2Did}/files/{mobileAppContentFile%2Did}/renewUpload", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp.Co
         /// <summary>
         /// Renews the SAS URI for an application file upload.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

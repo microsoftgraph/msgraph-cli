@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new AppRoleAssignmentItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0";
@@ -101,6 +104,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// App role assignment for another app or service, granted to this service principal. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0";
@@ -204,13 +208,13 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AppRoleAssignmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppRoleAssignmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppRoleAssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/appRoleAssignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AppRoleAssignmentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppRoleAssignmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppRoleAssignmentsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/appRoleAssignments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -218,6 +222,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// <summary>
         /// App role assignment for another app or service, granted to this service principal. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,6 +239,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         /// <summary>
         /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +250,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         public RequestInformation ToPostRequestInformation(AppRoleAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/appRoleAssignments", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

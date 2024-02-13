@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// Delete an educationRubric object. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an educationRubric object. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-delete?view=graph-rest-1.0";
@@ -57,6 +58,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-get?view=graph-rest-1.0";
@@ -108,6 +110,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-update?view=graph-rest-1.0";
@@ -155,13 +158,13 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new EducationRubricItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationRubricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationRubricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/rubrics/{educationRubric%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new EducationRubricItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationRubricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationRubricItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/rubrics/{educationRubric%2Did}{?%24expand,%24select}", rawUrl) {
@@ -169,6 +172,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// <summary>
         /// Delete an educationRubric object. Only teachers can perform this operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -177,7 +181,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/me/rubrics/{educationRubric%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -185,6 +189,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,6 +206,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         /// <summary>
         /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +217,7 @@ namespace ApiSdk.Education.Me.Rubrics.Item {
         public RequestInformation ToPatchRequestInformation(EducationRubric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/me/rubrics/{educationRubric%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

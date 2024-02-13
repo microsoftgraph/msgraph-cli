@@ -18,6 +18,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
@@ -31,13 +32,13 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ClaimsMappingPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ClaimsMappingPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/claimsMappingPolicies/{claimsMappingPolicy%2Did}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ClaimsMappingPolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ClaimsMappingPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ClaimsMappingPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/claimsMappingPolicies/{claimsMappingPolicy%2Did}", rawUrl) {

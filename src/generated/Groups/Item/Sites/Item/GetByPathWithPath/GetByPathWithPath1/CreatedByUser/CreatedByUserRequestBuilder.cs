@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Identity of the user who created the item. Read-only.";
@@ -33,6 +34,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
+            var path1Option = new Option<string>("--path1", description: "Usage: path='{path1}'") {
+            };
+            path1Option.IsRequired = true;
+            command.AddOption(path1Option);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -50,6 +59,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
+                var path1 = invocationContext.ParseResult.GetValueForOption(path1Option);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -64,6 +75,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
+                if (path1 is not null) requestInfo.PathParameters.Add("path1", path1);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -76,13 +89,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
             return command;
         }
         /// <summary>
-        /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/createdByUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/createdByUser{?%24expand,%24select}", rawUrl) {
@@ -90,6 +103,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Cre
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

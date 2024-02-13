@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Delete navigation property postAttributeCollection for identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property postAttributeCollection for identity";
@@ -57,6 +58,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Get postAttributeCollection from identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get postAttributeCollection from identity";
@@ -107,6 +109,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Update the navigation property postAttributeCollection in identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property postAttributeCollection in identity";
@@ -156,6 +159,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
@@ -173,6 +177,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Provides operations to call the uploadClientCertificate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUploadClientCertificateNavCommand() {
             var command = new Command("upload-client-certificate");
             command.Description = "Provides operations to call the uploadClientCertificate method.";
@@ -186,13 +191,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
             return command;
         }
         /// <summary>
-        /// Instantiates a new PostAttributeCollectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PostAttributeCollectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PostAttributeCollectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postAttributeCollection{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PostAttributeCollectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PostAttributeCollectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PostAttributeCollectionRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postAttributeCollection{?%24expand,%24select}", rawUrl) {
@@ -200,6 +205,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Delete navigation property postAttributeCollection for identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -208,7 +214,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postAttributeCollection", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -216,6 +222,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Get postAttributeCollection from identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +239,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         /// <summary>
         /// Update the navigation property postAttributeCollection in identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +250,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttrib
         public RequestInformation ToPatchRequestInformation(IdentityApiConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/apiConnectorConfiguration/postAttributeCollection", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// <summary>
         /// Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,6 +54,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// <summary>
         /// Create new navigation property to overridesPages for identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to overridesPages for identity";
@@ -108,6 +111,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0";
@@ -210,13 +214,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OverridesPagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OverridesPagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OverridesPagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}/overridesPages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OverridesPagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OverridesPagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OverridesPagesRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}/overridesPages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -224,6 +228,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// <summary>
         /// Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -240,6 +245,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         /// <summary>
         /// Create new navigation property to overridesPages for identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -250,7 +256,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
         public RequestInformation ToPostRequestInformation(UserFlowLanguagePage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}/overridesPages", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

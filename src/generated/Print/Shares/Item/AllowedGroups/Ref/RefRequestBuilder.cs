@@ -23,6 +23,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// Revoke the specified group&apos;s access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Revoke the specified group's access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-delete-allowedgroup?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0";
@@ -148,6 +150,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// Grant the specified group access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Grant the specified group access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-post-allowedgroups?view=graph-rest-1.0";
@@ -185,20 +188,21 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RefRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Revoke the specified group&apos;s access to submit print jobs to the associated printerShare.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,7 +211,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref?@id={%40id}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -215,6 +219,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// <summary>
         /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,6 +236,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         /// <summary>
         /// Grant the specified group access to submit print jobs to the associated printerShare.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +247,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

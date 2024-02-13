@@ -24,6 +24,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
         /// <summary>
         /// Provides operations to manage the cookies property of the microsoft.graph.security.host entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new HostCookieItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -49,6 +51,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
         /// Get a list of hostCookie resources.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-cookies?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of hostCookie resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-cookies?view=graph-rest-1.0";
@@ -145,13 +148,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CookiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CookiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CookiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/cookies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CookiesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CookiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CookiesRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/cookies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -159,6 +162,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
         /// <summary>
         /// Get a list of hostCookie resources.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

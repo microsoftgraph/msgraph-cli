@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
         /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-get-specialfolder?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn't already exist. If a user deletes one, it is recreated when written to again.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-get-specialfolder?view=graph-rest-1.0";
@@ -94,13 +96,13 @@ namespace ApiSdk.Drives.Item.Special.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/special/{driveItem%2Did}{?%24expand,%24select}", rawUrl) {
@@ -108,6 +110,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
         /// <summary>
         /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

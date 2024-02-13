@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// Delete a group object in a term [store].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-group-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a group object in a term [store].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-delete?view=graph-rest-1.0";
@@ -70,6 +71,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// Read the properties and relationships of a term store group object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-group-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a term store group object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-get?view=graph-rest-1.0";
@@ -132,6 +134,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// <summary>
         /// Update the navigation property groups in sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property groups in sites";
@@ -193,6 +196,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// <summary>
         /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSetsNavCommand() {
             var command = new Command("sets");
             command.Description = "Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.";
@@ -216,13 +220,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GroupItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}{?%24expand,%24select}", rawUrl) {
@@ -230,6 +234,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// <summary>
         /// Delete a group object in a term [store].
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -238,7 +243,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -246,6 +251,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// <summary>
         /// Read the properties and relationships of a term store group object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -262,6 +268,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         /// <summary>
         /// Update the navigation property groups in sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -272,7 +279,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Group body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/groups/{group%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

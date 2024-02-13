@@ -11,7 +11,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects {
         /// <summary>The securityEnabledOnly property</summary>
         public bool? SecurityEnabledOnly { get; set; }
         /// <summary>
-        /// Instantiates a new getMemberObjectsPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="GetMemberObjectsPostRequestBody"/> and sets the default values.
         /// </summary>
         public GetMemberObjectsPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -19,6 +19,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="GetMemberObjectsPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static GetMemberObjectsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -27,6 +28,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"securityEnabledOnly", n => { SecurityEnabledOnly = n.GetBoolValue(); } },

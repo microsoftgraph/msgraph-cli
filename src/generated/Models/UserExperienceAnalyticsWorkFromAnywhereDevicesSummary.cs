@@ -72,7 +72,7 @@ namespace ApiSdk.Models {
         /// <summary>The count of windows 10 devices that are Intune and co-managed. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? Windows10DevicesWithoutTenantAttach { get; set; }
         /// <summary>
-        /// Instantiates a new userExperienceAnalyticsWorkFromAnywhereDevicesSummary and sets the default values.
+        /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereDevicesSummary"/> and sets the default values.
         /// </summary>
         public UserExperienceAnalyticsWorkFromAnywhereDevicesSummary() {
             AdditionalData = new Dictionary<string, object>();
@@ -80,6 +80,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="UserExperienceAnalyticsWorkFromAnywhereDevicesSummary"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static UserExperienceAnalyticsWorkFromAnywhereDevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -88,6 +89,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"autopilotDevicesSummary", n => { AutopilotDevicesSummary = n.GetObjectValue<UserExperienceAnalyticsAutopilotDevicesSummary>(UserExperienceAnalyticsAutopilotDevicesSummary.CreateFromDiscriminatorValue); } },

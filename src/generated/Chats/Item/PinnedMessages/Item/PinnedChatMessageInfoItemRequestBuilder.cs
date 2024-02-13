@@ -24,6 +24,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// Unpin a message from a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Unpin a message from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// A collection of all the pinned messages in the chat. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A collection of all the pinned messages in the chat. Nullable.";
@@ -119,6 +121,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMessageNavCommand() {
             var command = new Command("message");
             command.Description = "Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.";
@@ -134,6 +137,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// Update the navigation property pinnedMessages in chats
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property pinnedMessages in chats";
@@ -187,13 +191,13 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PinnedChatMessageInfoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PinnedChatMessageInfoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PinnedChatMessageInfoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PinnedChatMessageInfoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PinnedChatMessageInfoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PinnedChatMessageInfoItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}{?%24expand,%24select}", rawUrl) {
@@ -201,6 +205,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// Unpin a message from a chat.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -209,7 +214,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -217,6 +222,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// A collection of all the pinned messages in the chat. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -233,6 +239,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// Update the navigation property pinnedMessages in chats
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +250,7 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item {
         public RequestInformation ToPatchRequestInformation(PinnedChatMessageInfo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

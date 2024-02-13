@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// Deletes a deviceAndAppManagementRoleDefinition.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a deviceAndAppManagementRoleDefinition.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-delete?view=graph-rest-1.0";
@@ -58,6 +59,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// Read properties and relationships of the deviceAndAppManagementRoleDefinition object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceAndAppManagementRoleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-get?view=graph-rest-1.0";
@@ -106,12 +108,13 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a roleDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0" />
+        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a roleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceAndAppManagementRoleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0";
             var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
@@ -158,6 +161,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the roleAssignments property of the microsoft.graph.roleDefinition entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoleAssignmentsNavCommand() {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.roleDefinition entity.";
@@ -181,13 +185,13 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RoleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RoleDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RoleDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RoleDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}{?%24expand,%24select}", rawUrl) {
@@ -195,6 +199,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// <summary>
         /// Deletes a deviceAndAppManagementRoleDefinition.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +208,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -211,6 +216,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         /// <summary>
         /// Read properties and relationships of the deviceAndAppManagementRoleDefinition object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,8 +231,9 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a roleDefinition object.
+        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +244,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.RoleDefinition body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/roleDefinitions/{roleDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

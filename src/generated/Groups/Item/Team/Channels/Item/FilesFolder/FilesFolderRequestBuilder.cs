@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
@@ -40,6 +41,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
         /// Get the metadata for the location where the files of a channel are stored. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
@@ -94,13 +96,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FilesFolderRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/filesFolder{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FilesFolderRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilesFolderRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FilesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/filesFolder{?%24expand,%24select}", rawUrl) {
@@ -108,6 +110,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder {
         /// <summary>
         /// Get the metadata for the location where the files of a channel are stored. 
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

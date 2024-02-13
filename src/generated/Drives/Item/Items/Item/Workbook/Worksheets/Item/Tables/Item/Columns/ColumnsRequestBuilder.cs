@@ -26,6 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
@@ -41,6 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -58,6 +60,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
@@ -74,6 +77,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// Use this API to create a new TableColumn.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
@@ -141,6 +145,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the itemAt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemAtWithIndexRbCommand() {
             var command = new Command("item-at-with-index");
             command.Description = "Provides operations to call the itemAt method.";
@@ -167,6 +172,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// Retrieve a list of tablecolumn objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0";
@@ -281,13 +287,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Instantiates a new ColumnsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ColumnsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ColumnsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -295,6 +301,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Retrieve a list of tablecolumn objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -311,6 +318,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Use this API to create a new TableColumn.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +329,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         public RequestInformation ToPostRequestInformation(WorkbookTableColumn body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

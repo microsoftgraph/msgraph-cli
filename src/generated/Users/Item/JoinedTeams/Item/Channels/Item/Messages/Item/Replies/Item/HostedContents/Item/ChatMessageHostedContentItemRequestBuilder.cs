@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Delete navigation property hostedContents for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property hostedContents for users";
@@ -103,6 +105,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// Retrieve the properties and relationships of chatMessageHostedContent object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of chatMessageHostedContent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0";
@@ -183,6 +186,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Update the navigation property hostedContents in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property hostedContents in users";
@@ -260,13 +264,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return command;
         }
         /// <summary>
-        /// Instantiates a new ChatMessageHostedContentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChatMessageHostedContentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ChatMessageHostedContentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ChatMessageHostedContentItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ChatMessageHostedContentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ChatMessageHostedContentItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}{?%24expand,%24select}", rawUrl) {
@@ -274,6 +278,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Delete navigation property hostedContents for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -282,7 +287,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -290,6 +295,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Retrieve the properties and relationships of chatMessageHostedContent object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -306,6 +312,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         /// <summary>
         /// Update the navigation property hostedContents in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -316,7 +323,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         public RequestInformation ToPatchRequestInformation(ChatMessageHostedContent body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

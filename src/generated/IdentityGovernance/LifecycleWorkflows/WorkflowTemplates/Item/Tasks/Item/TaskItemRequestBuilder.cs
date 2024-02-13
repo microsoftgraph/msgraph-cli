@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Ta
         /// <summary>
         /// Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.";
@@ -79,6 +80,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Ta
         /// <summary>
         /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.task entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTaskProcessingResultsNavCommand() {
             var command = new Command("task-processing-results");
             command.Description = "Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.task entity.";
@@ -101,13 +103,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Ta
             return command;
         }
         /// <summary>
-        /// Instantiates a new TaskItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflowTemplates/{workflowTemplate%2Did}/tasks/{task%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TaskItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaskItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflowTemplates/{workflowTemplate%2Did}/tasks/{task%2Did}{?%24expand,%24select}", rawUrl) {
@@ -115,6 +117,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item.Ta
         /// <summary>
         /// Represents the configured tasks to execute and their execution sequence within a workflow. This relationship is expanded by default.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

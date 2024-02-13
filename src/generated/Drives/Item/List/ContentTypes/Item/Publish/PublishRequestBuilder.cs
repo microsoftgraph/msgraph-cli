@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
         /// Publishes a [contentType][] present in the content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Publishes a [contentType][] present in the content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/publish", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PublishRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/publish", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Publish {
         /// <summary>
         /// Publishes a [contentType][] present in the content type hub site.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

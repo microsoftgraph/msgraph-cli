@@ -22,6 +22,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property progressTaskBoardFormat for planner";
@@ -62,6 +63,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
@@ -119,6 +121,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// Update the navigation property progressTaskBoardFormat in planner
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property progressTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
@@ -179,13 +182,13 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProgressTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProgressTaskBoardFormatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProgressTaskBoardFormatRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProgressTaskBoardFormatRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProgressTaskBoardFormatRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat{?%24expand,%24select}", rawUrl) {
@@ -193,6 +196,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// <summary>
         /// Delete navigation property progressTaskBoardFormat for planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -201,7 +205,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -209,6 +213,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// <summary>
         /// Retrieve the properties and relationships of plannerProgressTaskBoardTaskFormat object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,6 +230,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         /// <summary>
         /// Update the navigation property progressTaskBoardFormat in planner
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +241,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item.ProgressTaskBoardFormat {
         public RequestInformation ToPatchRequestInformation(PlannerProgressTaskBoardTaskFormat body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/planner/plans/{plannerPlan%2Did}/tasks/{plannerTask%2Did}/progressTaskBoardFormat", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

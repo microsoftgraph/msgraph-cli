@@ -26,6 +26,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClassesNavCommand() {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.";
@@ -52,6 +53,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Get education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get education";
@@ -96,6 +98,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the me property of the microsoft.graph.educationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMeNavCommand() {
             var command = new Command("me");
             command.Description = "Provides operations to manage the me property of the microsoft.graph.educationRoot entity.";
@@ -124,6 +127,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Update education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update education";
@@ -167,6 +171,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.";
@@ -193,6 +198,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUsersNavCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.educationRoot entity.";
@@ -217,13 +223,13 @@ namespace ApiSdk.Education {
             return command;
         }
         /// <summary>
-        /// Instantiates a new EducationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new EducationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24expand,%24select}", rawUrl) {
@@ -231,6 +237,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Get education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,6 +254,7 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Update education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -257,7 +265,7 @@ namespace ApiSdk.Education {
         public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

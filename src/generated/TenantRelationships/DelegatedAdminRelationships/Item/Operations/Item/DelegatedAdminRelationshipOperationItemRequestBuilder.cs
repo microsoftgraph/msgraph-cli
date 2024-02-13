@@ -22,6 +22,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// <summary>
         /// Delete navigation property operations for tenantRelationships
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for tenantRelationships";
@@ -62,6 +63,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// Read the properties of a delegatedAdminRelationshipOperation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationshipoperation-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties of a delegatedAdminRelationshipOperation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationshipoperation-get?view=graph-rest-1.0";
@@ -118,6 +120,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// <summary>
         /// Update the navigation property operations in tenantRelationships
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in tenantRelationships";
@@ -171,13 +174,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return command;
         }
         /// <summary>
-        /// Instantiates a new DelegatedAdminRelationshipOperationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DelegatedAdminRelationshipOperationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DelegatedAdminRelationshipOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/operations/{delegatedAdminRelationshipOperation%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DelegatedAdminRelationshipOperationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DelegatedAdminRelationshipOperationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DelegatedAdminRelationshipOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/operations/{delegatedAdminRelationshipOperation%2Did}{?%24expand,%24select}", rawUrl) {
@@ -185,6 +188,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// <summary>
         /// Delete navigation property operations for tenantRelationships
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -193,7 +197,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/operations/{delegatedAdminRelationshipOperation%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -201,6 +205,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// <summary>
         /// Read the properties of a delegatedAdminRelationshipOperation object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -217,6 +222,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         /// <summary>
         /// Update the navigation property operations in tenantRelationships
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +233,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         public RequestInformation ToPatchRequestInformation(DelegatedAdminRelationshipOperation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/operations/{delegatedAdminRelationshipOperation%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -22,6 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose
         /// Close an eDiscovery case. For details, see Close a case.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-close?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Close an eDiscovery case. For details, see Close a case.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-close?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityCloseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityCloseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityCloseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/microsoft.graph.security.close", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityCloseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityCloseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityCloseRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/microsoft.graph.security.close", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose
         /// <summary>
         /// Close an eDiscovery case. For details, see Close a case.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

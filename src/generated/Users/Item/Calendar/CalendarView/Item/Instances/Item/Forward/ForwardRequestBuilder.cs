@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Forward {
         /// This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;s copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-forward?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee's Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer's copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-forward?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Forward {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ForwardRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ForwardRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ForwardRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/forward", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ForwardRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ForwardRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ForwardRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/forward", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Forward {
         /// <summary>
         /// This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;s copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

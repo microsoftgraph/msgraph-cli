@@ -32,6 +32,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the associateWithHubSites method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssociateWithHubSitesNavCommand() {
             var command = new Command("associate-with-hub-sites");
             command.Description = "Provides operations to call the associateWithHubSites method.";
@@ -47,6 +48,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBaseNavCommand() {
             var command = new Command("base");
             command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
@@ -62,6 +64,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBaseTypesNavCommand() {
             var command = new Command("base-types");
             command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
@@ -86,6 +89,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnLinksNavCommand() {
             var command = new Command("column-links");
             command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
@@ -111,6 +115,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnPositionsNavCommand() {
             var command = new Command("column-positions");
             command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
@@ -135,6 +140,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
@@ -160,6 +166,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the copyToDefaultContentLocation method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCopyToDefaultContentLocationNavCommand() {
             var command = new Command("copy-to-default-content-location");
             command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
@@ -175,6 +182,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Delete navigation property contentTypes for shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property contentTypes for shares";
@@ -214,6 +222,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// The collection of content types present in this list.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of content types present in this list.";
@@ -270,6 +279,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the isPublished method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsPublishedNavCommand() {
             var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
@@ -285,6 +295,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Update the navigation property contentTypes in shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property contentTypes in shares";
@@ -340,6 +351,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPublishNavCommand() {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
@@ -355,6 +367,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the unpublish method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUnpublishNavCommand() {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
@@ -368,13 +381,13 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContentTypeItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/{contentType%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContentTypeItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentTypeItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/{contentType%2Did}{?%24expand,%24select}", rawUrl) {
@@ -382,6 +395,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Delete navigation property contentTypes for shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -390,7 +404,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/{contentType%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -398,6 +412,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// The collection of content types present in this list.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -414,6 +429,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         /// <summary>
         /// Update the navigation property contentTypes in shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -424,7 +440,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         public RequestInformation ToPatchRequestInformation(ContentType body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/{contentType%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

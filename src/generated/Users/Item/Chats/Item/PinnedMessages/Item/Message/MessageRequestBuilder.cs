@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item.Message {
         /// <summary>
         /// Represents details about the chat message that is pinned.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents details about the chat message that is pinned.";
@@ -82,13 +83,13 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item.Message {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MessageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MessageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MessageRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MessageRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", rawUrl) {
@@ -96,6 +97,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item.Message {
         /// <summary>
         /// Represents details about the chat message that is pinned.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

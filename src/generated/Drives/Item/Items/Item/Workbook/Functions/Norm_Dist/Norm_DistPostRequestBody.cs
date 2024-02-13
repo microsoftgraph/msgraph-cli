@@ -42,7 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist {
         public Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new norm_DistPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="Norm_DistPostRequestBody"/> and sets the default values.
         /// </summary>
         public Norm_DistPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -50,6 +50,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Norm_DistPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Norm_DistPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -58,6 +59,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

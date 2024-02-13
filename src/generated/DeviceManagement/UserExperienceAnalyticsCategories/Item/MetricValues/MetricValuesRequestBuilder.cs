@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new UserExperienceAnalyticsMetricItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -50,6 +52,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// Create new navigation property to metricValues for deviceManagement
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to metricValues for deviceManagement";
@@ -99,6 +102,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// The metric values for the user experience analytics category. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The metric values for the user experience analytics category. Read-only.";
@@ -195,13 +199,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
             return command;
         }
         /// <summary>
-        /// Instantiates a new MetricValuesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MetricValuesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MetricValuesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}/metricValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MetricValuesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MetricValuesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MetricValuesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}/metricValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -209,6 +213,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// The metric values for the user experience analytics category. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,6 +230,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         /// <summary>
         /// Create new navigation property to metricValues for deviceManagement
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +241,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricV
         public RequestInformation ToPostRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}/metricValues", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

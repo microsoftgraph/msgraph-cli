@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// Delete an openShift object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an openShift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0";
@@ -69,6 +70,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// Retrieve the properties and relationships of an openshift object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an openshift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0";
@@ -132,6 +134,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// Update the properties of an openShift object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an openShift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0";
@@ -191,13 +194,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OpenShiftItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OpenShiftItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OpenShiftItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/openShifts/{openShift%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OpenShiftItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OpenShiftItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OpenShiftItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/openShifts/{openShift%2Did}{?%24expand,%24select}", rawUrl) {
@@ -205,6 +208,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// <summary>
         /// Delete an openShift object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -213,7 +217,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/openShifts/{openShift%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -221,6 +225,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an openshift object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -237,6 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         /// <summary>
         /// Update the properties of an openShift object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +253,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         public RequestInformation ToPatchRequestInformation(OpenShift body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/openShifts/{openShift%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

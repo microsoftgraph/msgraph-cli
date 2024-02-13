@@ -23,6 +23,7 @@ namespace ApiSdk.Subscriptions {
         /// <summary>
         /// Provides operations to manage the collection of subscription entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.Subscriptions {
         /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-post-subscriptions?view=graph-rest-1.0";
@@ -81,6 +83,7 @@ namespace ApiSdk.Subscriptions {
         /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user's role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-list?view=graph-rest-1.0";
@@ -133,13 +136,13 @@ namespace ApiSdk.Subscriptions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SubscriptionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubscriptionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SubscriptionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/subscriptions{?%24search,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SubscriptionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SubscriptionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SubscriptionsRequestBuilder(string rawUrl) : base("{+baseurl}/subscriptions{?%24search,%24select}", rawUrl) {
@@ -147,6 +150,7 @@ namespace ApiSdk.Subscriptions {
         /// <summary>
         /// Retrieve the properties and relationships of webhook subscriptions, based on the app ID, the user, and the user&apos;s role with a tenant. The content of the response depends on the context in which the app is calling; for details, see the scenarios in the Permissions section.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -163,6 +167,7 @@ namespace ApiSdk.Subscriptions {
         /// <summary>
         /// Subscribes a listener application to receive change notifications when the requested type of changes occur to the specified resource in Microsoft Graph. To identify the resources for which you can create subscriptions and the limitations on subscriptions, see Set up notifications for changes in resource data: Supported resources. Some resources support rich notifications, that is, notifications that include resource data. For more information about these resources, see Set up change notifications that include resource data: Supported resources.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +178,7 @@ namespace ApiSdk.Subscriptions {
         public RequestInformation ToPostRequestInformation(Subscription body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/subscriptions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

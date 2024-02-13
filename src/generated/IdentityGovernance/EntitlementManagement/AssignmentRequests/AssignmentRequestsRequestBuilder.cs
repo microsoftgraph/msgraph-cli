@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// <summary>
         /// Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -43,6 +44,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -59,6 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// In Microsoft Entra Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "In Microsoft Entra Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0";
@@ -102,6 +105,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// <summary>
         /// Provides operations to call the filterByCurrentUser method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFilterByCurrentUserWithOnRbCommand() {
             var command = new Command("filter-by-current-user-with-on");
             command.Description = "Provides operations to call the filterByCurrentUser method.";
@@ -118,6 +122,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0";
@@ -208,13 +213,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AssignmentRequestsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignmentRequestsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AssignmentRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AssignmentRequestsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AssignmentRequestsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AssignmentRequestsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -222,6 +227,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// <summary>
         /// In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -238,6 +244,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         /// <summary>
         /// In Microsoft Entra Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +255,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         public RequestInformation ToPostRequestInformation(AccessPackageAssignmentRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

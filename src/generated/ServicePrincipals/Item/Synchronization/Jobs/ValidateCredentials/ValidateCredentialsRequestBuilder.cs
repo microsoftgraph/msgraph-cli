@@ -21,6 +21,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.ValidateCredentials
         /// <summary>
         /// Invoke action validateCredentials
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action validateCredentials";
@@ -58,13 +59,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.ValidateCredentials
             return command;
         }
         /// <summary>
-        /// Instantiates a new ValidateCredentialsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ValidateCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ValidateCredentialsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/validateCredentials", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ValidateCredentialsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ValidateCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ValidateCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/validateCredentials", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.ValidateCredentials
         /// <summary>
         /// Invoke action validateCredentials
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

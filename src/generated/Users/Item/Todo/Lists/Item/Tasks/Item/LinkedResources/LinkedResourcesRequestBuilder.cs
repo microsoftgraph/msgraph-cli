@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// <summary>
         /// Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new LinkedResourceItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a linkedResource object to track its association. You can also create a linkedResource object while creating a task.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-post-linkedresources?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a linkedResource object to track its association. You can also create a linkedResource object while creating a task.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-post-linkedresources?view=graph-rest-1.0";
@@ -113,6 +116,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-list-linkedresources?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-list-linkedresources?view=graph-rest-1.0";
@@ -221,13 +225,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LinkedResourcesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LinkedResourcesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LinkedResourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/linkedResources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LinkedResourcesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LinkedResourcesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LinkedResourcesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/linkedResources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -235,6 +239,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// <summary>
         /// Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -251,6 +256,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         /// <summary>
         /// Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a linkedResource object to track its association. You can also create a linkedResource object while creating a task.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -261,7 +267,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
         public RequestInformation ToPostRequestInformation(LinkedResource body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/linkedResources", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

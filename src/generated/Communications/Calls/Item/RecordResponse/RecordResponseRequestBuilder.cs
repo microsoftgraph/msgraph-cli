@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
         /// Records a short audio response from the caller.A bot can utilize this to capture a voice response from a caller after they are prompted for a response. For further information on how to handle operations, please review commsOperation This action is not intended to record the entire call. The maximum length of recording is 2 minutes. The recording is not saved permanently by the Cloud Communications Platform and is discarded shortly after the call ends. The bot must download the recording promptly after the recording operation finishes by using the recordingLocation value that&apos;s given in the completed notification.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-record?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Records a short audio response from the caller.A bot can utilize this to capture a voice response from a caller after they are prompted for a response. For further information on how to handle operations, please review commsOperation This action is not intended to record the entire call. The maximum length of recording is 2 minutes. The recording is not saved permanently by the Cloud Communications Platform and is discarded shortly after the call ends. The bot must download the recording promptly after the recording operation finishes by using the recordingLocation value that's given in the completed notification.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-record?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RecordResponseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RecordResponseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RecordResponseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/recordResponse", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RecordResponseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RecordResponseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RecordResponseRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/recordResponse", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
         /// <summary>
         /// Records a short audio response from the caller.A bot can utilize this to capture a voice response from a caller after they are prompted for a response. For further information on how to handle operations, please review commsOperation This action is not intended to record the entire call. The maximum length of recording is 2 minutes. The recording is not saved permanently by the Cloud Communications Platform and is discarded shortly after the call ends. The bot must download the recording promptly after the recording operation finishes by using the recordingLocation value that&apos;s given in the completed notification.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

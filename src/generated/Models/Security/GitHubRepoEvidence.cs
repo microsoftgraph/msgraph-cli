@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security {
         public string RepoId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new gitHubRepoEvidence and sets the default values.
+        /// Instantiates a new <see cref="GitHubRepoEvidence"/> and sets the default values.
         /// </summary>
         public GitHubRepoEvidence() : base() {
             OdataType = "#microsoft.graph.security.gitHubRepoEvidence";
@@ -55,6 +55,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="GitHubRepoEvidence"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new GitHubRepoEvidence CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -63,6 +64,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"baseUrl", n => { BaseUrl = n.GetStringValue(); } },

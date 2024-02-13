@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreateLink {
         /// <summary>
         /// Invoke action createLink
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action createLink";
@@ -87,13 +88,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreateLink {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CreateLinkRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreateLinkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreateLinkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createLink", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CreateLinkRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreateLinkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreateLinkRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/createLink", rawUrl) {
@@ -101,6 +102,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreateLink {
         /// <summary>
         /// Invoke action createLink
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

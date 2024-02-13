@@ -21,6 +21,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         /// <summary>
         /// Invoke action stop
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action stop";
@@ -45,13 +46,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
             return command;
         }
         /// <summary>
-        /// Instantiates a new StopRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public StopRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/stop", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new StopRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="StopRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public StopRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/stop", rawUrl) {
@@ -59,6 +60,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         /// <summary>
         /// Invoke action stop
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

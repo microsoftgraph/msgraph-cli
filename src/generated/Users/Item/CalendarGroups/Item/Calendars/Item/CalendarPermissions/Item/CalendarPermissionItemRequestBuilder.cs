@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// Delete calendarPermission.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendarpermission-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete calendarPermission.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendarpermission-delete?view=graph-rest-1.0";
@@ -75,6 +76,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// Get the specified permissions object of a user or group calendar that has been shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendarpermission-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the specified permissions object of a user or group calendar that has been shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendarpermission-get?view=graph-rest-1.0";
@@ -137,6 +139,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// Update the permissions assigned to an existing share recipient or delegate, through the corresponding &lt;b&gt;calendarPermission&lt;/b&gt; object for a calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendarpermission-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the permissions assigned to an existing share recipient or delegate, through the corresponding <b>calendarPermission</b> object for a calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendarpermission-update?view=graph-rest-1.0";
@@ -202,13 +205,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return command;
         }
         /// <summary>
-        /// Instantiates a new CalendarPermissionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarPermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarPermissionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions/{calendarPermission%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CalendarPermissionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarPermissionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarPermissionItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions/{calendarPermission%2Did}{?%24select}", rawUrl) {
@@ -216,6 +219,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Delete calendarPermission.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +228,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions/{calendarPermission%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -232,6 +236,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Get the specified permissions object of a user or group calendar that has been shared.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -248,6 +253,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Update the permissions assigned to an existing share recipient or delegate, through the corresponding &lt;b&gt;calendarPermission&lt;/b&gt; object for a calendar.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -258,7 +264,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         public RequestInformation ToPatchRequestInformation(CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions/{calendarPermission%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

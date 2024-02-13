@@ -23,6 +23,7 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Provides operations to manage the collection of drive entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -45,6 +46,7 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Add new entity to drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add new entity to drives";
@@ -88,6 +90,7 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Get entities from drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var driveIndexer = new DriveItemRequestBuilder(PathParameters);
             var command = driveIndexer.BuildListNavCommand();
@@ -173,13 +176,13 @@ namespace ApiSdk.Drives {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DrivesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DrivesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DrivesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DrivesRequestBuilder(string rawUrl) : base("{+baseurl}/drives{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -187,6 +190,7 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Get entities from drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,6 +207,7 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Add new entity to drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -213,7 +218,7 @@ namespace ApiSdk.Drives {
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.Drive body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/drives", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

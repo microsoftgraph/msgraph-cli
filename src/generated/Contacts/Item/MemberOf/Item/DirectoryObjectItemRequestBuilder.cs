@@ -24,6 +24,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
         /// <summary>
         /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Groups that this contact is a member of. Read-only. Nullable. Supports $expand.";
@@ -87,6 +88,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
         /// <summary>
         /// Casts the previous resource to administrativeUnit.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphAdministrativeUnitByIdNavCommand() {
             var command = new Command("graph-administrative-unit-by-id");
             command.Description = "Casts the previous resource to administrativeUnit.";
@@ -102,6 +104,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
@@ -115,13 +118,13 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/memberOf/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
@@ -129,6 +132,7 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
         /// <summary>
         /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

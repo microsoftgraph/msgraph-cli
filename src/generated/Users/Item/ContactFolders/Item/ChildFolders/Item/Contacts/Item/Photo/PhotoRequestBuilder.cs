@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// <summary>
         /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Optional contact picture. You can get or set a photo for a contact.";
@@ -100,6 +102,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// <summary>
         /// Update the navigation property photo in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property photo in users";
@@ -165,13 +168,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
             return command;
         }
         /// <summary>
-        /// Instantiates a new PhotoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PhotoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PhotoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PhotoRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PhotoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PhotoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo{?%24select}", rawUrl) {
@@ -179,6 +182,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// <summary>
         /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -195,6 +199,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// <summary>
         /// Update the navigation property photo in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -205,7 +210,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         public RequestInformation ToPatchRequestInformation(ProfilePhoto body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

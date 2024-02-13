@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Delete navigation property protection for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property protection for drives";
@@ -70,6 +71,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// Retrieve the properties and relationships of worksheetprotection object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of worksheetprotection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0";
@@ -132,6 +134,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Update the navigation property protection in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property protection in drives";
@@ -193,6 +196,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Provides operations to call the protect method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildProtectNavCommand() {
             var command = new Command("protect");
             command.Description = "Provides operations to call the protect method.";
@@ -208,6 +212,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Provides operations to call the unprotect method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUnprotectNavCommand() {
             var command = new Command("unprotect");
             command.Description = "Provides operations to call the unprotect method.";
@@ -221,13 +226,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProtectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProtectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection{?%24expand,%24select}", rawUrl) {
@@ -235,6 +240,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Delete navigation property protection for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -243,7 +249,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -251,6 +257,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Retrieve the properties and relationships of worksheetprotection object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -267,6 +274,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Update the navigation property protection in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +285,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         public RequestInformation ToPatchRequestInformation(WorkbookWorksheetProtection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

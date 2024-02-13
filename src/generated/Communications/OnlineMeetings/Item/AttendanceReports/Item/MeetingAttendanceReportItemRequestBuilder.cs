@@ -23,6 +23,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAttendanceRecordsNavCommand() {
             var command = new Command("attendance-records");
             command.Description = "Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.";
@@ -48,6 +49,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Delete navigation property attendanceReports for communications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property attendanceReports for communications";
@@ -87,6 +89,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// The attendance reports of an online meeting. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The attendance reports of an online meeting. Read-only.";
@@ -143,6 +146,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Update the navigation property attendanceReports in communications
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property attendanceReports in communications";
@@ -196,13 +200,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MeetingAttendanceReportItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MeetingAttendanceReportItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MeetingAttendanceReportItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/attendanceReports/{meetingAttendanceReport%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MeetingAttendanceReportItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MeetingAttendanceReportItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MeetingAttendanceReportItemRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/attendanceReports/{meetingAttendanceReport%2Did}{?%24expand,%24select}", rawUrl) {
@@ -210,6 +214,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Delete navigation property attendanceReports for communications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,7 +223,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/attendanceReports/{meetingAttendanceReport%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -226,6 +231,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// The attendance reports of an online meeting. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,6 +248,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Update the navigation property attendanceReports in communications
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +259,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item {
         public RequestInformation ToPatchRequestInformation(MeetingAttendanceReport body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/attendanceReports/{meetingAttendanceReport%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

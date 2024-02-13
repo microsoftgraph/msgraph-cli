@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAuditActivityTypes";
@@ -96,13 +97,13 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetAuditActivityTypesWithCategoryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAuditActivityTypesWithCategoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetAuditActivityTypesWithCategoryRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAuditActivityTypesWithCategoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetAuditActivityTypesWithCategoryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -110,6 +111,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

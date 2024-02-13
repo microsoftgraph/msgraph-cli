@@ -24,16 +24,17 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new IdentityProviderItemRequestBuilder(PathParameters);
-            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -50,6 +51,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         /// Get the identity providers in a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -147,13 +149,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityProvidersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProvidersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/identityProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityProvidersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProvidersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityProvidersRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/identityProviders{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -161,6 +163,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         /// <summary>
         /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

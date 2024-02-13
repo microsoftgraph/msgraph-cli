@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
         /// <summary>
         /// The details of this version of the app.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The details of this version of the app.";
@@ -82,13 +83,13 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TeamsAppDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TeamsAppDefinitionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", rawUrl) {
@@ -96,6 +97,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
         /// <summary>
         /// The details of this version of the app.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

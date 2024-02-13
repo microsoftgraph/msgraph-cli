@@ -23,6 +23,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Get bitlocker from informationProtection
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get bitlocker from informationProtection";
@@ -67,6 +68,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRecoveryKeysNavCommand() {
             var command = new Command("recovery-keys");
             command.Description = "Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.";
@@ -89,13 +91,13 @@ namespace ApiSdk.InformationProtection.Bitlocker {
             return command;
         }
         /// <summary>
-        /// Instantiates a new BitlockerRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BitlockerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public BitlockerRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new BitlockerRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="BitlockerRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public BitlockerRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker{?%24expand,%24select}", rawUrl) {
@@ -103,6 +105,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Get bitlocker from informationProtection
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

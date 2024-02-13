@@ -23,6 +23,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// Delete a timeOff instance from a schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a timeOff instance from a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// Retrieve the properties and relationships of a timeOff object by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a timeOff object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0";
@@ -113,6 +115,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns 404 Not found.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Replace an existing timeOff object. If the specified timeOff object doesn't exist, this method returns 404 Not found.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0";
@@ -166,13 +169,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TimeOffItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TimeOffItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TimeOffItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/schedule/timesOff/{timeOff%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TimeOffItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TimeOffItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TimeOffItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/schedule/timesOff/{timeOff%2Did}{?%24select}", rawUrl) {
@@ -180,6 +183,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// <summary>
         /// Delete a timeOff instance from a schedule.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,7 +192,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/teams/{team%2Did}/schedule/timesOff/{timeOff%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -196,6 +200,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a timeOff object by ID.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -212,6 +217,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         /// <summary>
         /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns 404 Not found.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +228,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
         public RequestInformation ToPatchRequestInformation(TimeOff body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/teams/{team%2Did}/schedule/timesOff/{timeOff%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

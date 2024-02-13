@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// In Microsoft Entra entitlement management, callers can automatically retry a user&apos;s request for access to an access package. It&apos;s performed on an accessPackageAssignmentRequest object whose requestState is in a DeliveryFailed or PartiallyDelivered state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "In Microsoft Entra entitlement management, callers can automatically retry a user's request for access to an access package. It's performed on an accessPackageAssignmentRequest object whose requestState is in a DeliveryFailed or PartiallyDelivered state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new ReprocessRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReprocessRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ReprocessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/reprocess", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ReprocessRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ReprocessRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ReprocessRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/reprocess", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// In Microsoft Entra entitlement management, callers can automatically retry a user&apos;s request for access to an access package. It&apos;s performed on an accessPackageAssignmentRequest object whose requestState is in a DeliveryFailed or PartiallyDelivered state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

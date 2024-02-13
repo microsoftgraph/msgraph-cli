@@ -31,6 +31,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -53,6 +54,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Delete entity from shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from shares";
@@ -86,6 +88,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.";
@@ -108,6 +111,7 @@ namespace ApiSdk.Shares.Item {
         /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/shares-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shares-get?view=graph-rest-1.0";
@@ -158,6 +162,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.";
@@ -182,6 +187,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -204,6 +210,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListItemNavCommand() {
             var command = new Command("list-item");
             command.Description = "Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.";
@@ -219,6 +226,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListNavCommand() {
             var command = new Command("list");
             command.Description = "Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.";
@@ -249,6 +257,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Update entity in shares
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in shares";
@@ -298,6 +307,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermissionNavCommand() {
             var command = new Command("permission");
             command.Description = "Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.";
@@ -321,6 +331,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRootNavCommand() {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.";
@@ -342,6 +353,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSiteNavCommand() {
             var command = new Command("site");
             command.Description = "Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.";
@@ -355,13 +367,13 @@ namespace ApiSdk.Shares.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SharedDriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SharedDriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SharedDriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SharedDriveItemItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SharedDriveItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SharedDriveItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}{?%24expand,%24select}", rawUrl) {
@@ -369,6 +381,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Delete entity from shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -377,7 +390,7 @@ namespace ApiSdk.Shares.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/shares/{sharedDriveItem%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -385,6 +398,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -401,6 +415,7 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Update entity in shares
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -411,7 +426,7 @@ namespace ApiSdk.Shares.Item {
         public RequestInformation ToPatchRequestInformation(SharedDriveItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/shares/{sharedDriveItem%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

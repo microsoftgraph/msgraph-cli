@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport {
         /// Not yet documented
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getcachedreport?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getcachedreport?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetCachedReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetCachedReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetCachedReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getCachedReport", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetCachedReportRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetCachedReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetCachedReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getCachedReport", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetCachedReport {
         /// <summary>
         /// Not yet documented
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

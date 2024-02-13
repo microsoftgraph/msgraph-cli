@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivities.Item {
         /// Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningcourseactivity-get?view=graph-rest-1.0";
@@ -77,13 +78,13 @@ namespace ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivities.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LearningCourseActivityItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LearningCourseActivityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LearningCourseActivityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/employeeExperience/learningCourseActivities/{learningCourseActivity%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LearningCourseActivityItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LearningCourseActivityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LearningCourseActivityItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/employeeExperience/learningCourseActivities/{learningCourseActivity%2Did}{?%24expand,%24select}", rawUrl) {
@@ -91,6 +92,7 @@ namespace ApiSdk.Users.Item.EmployeeExperience.LearningCourseActivities.Item {
         /// <summary>
         /// Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

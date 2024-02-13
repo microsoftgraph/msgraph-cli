@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// <summary>
         /// Delete navigation property stages for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property stages for identityGovernance";
@@ -62,6 +63,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0";
@@ -119,6 +121,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// Approve or deny an approvalStage object in an approval.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Approve or deny an approvalStage object in an approval.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0";
@@ -172,13 +175,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             return command;
         }
         /// <summary>
-        /// Instantiates a new ApprovalStageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ApprovalStageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ApprovalStageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/{approval%2Did}/stages/{approvalStage%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ApprovalStageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ApprovalStageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ApprovalStageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/{approval%2Did}/stages/{approvalStage%2Did}{?%24expand,%24select}", rawUrl) {
@@ -186,6 +189,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// <summary>
         /// Delete navigation property stages for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -194,7 +198,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/{approval%2Did}/stages/{approvalStage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -202,6 +206,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// <summary>
         /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,6 +223,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         /// <summary>
         /// Approve or deny an approvalStage object in an approval.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -228,7 +234,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         public RequestInformation ToPatchRequestInformation(ApprovalStage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/{approval%2Did}/stages/{approvalStage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

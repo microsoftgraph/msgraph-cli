@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Pare
         /// <summary>
         /// The section that contains the page. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The section that contains the page. Read-only.";
@@ -88,13 +89,13 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Pare
             return command;
         }
         /// <summary>
-        /// Instantiates a new ParentSectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ParentSectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ParentSectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ParentSectionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ParentSectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ParentSectionRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", rawUrl) {
@@ -102,6 +103,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Pare
         /// <summary>
         /// The section that contains the page. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
         /// <summary>
         /// The access packages that are incompatible with this package. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The access packages that are incompatible with this package. Read-only.";
@@ -76,13 +77,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
             return command;
         }
         /// <summary>
-        /// Instantiates a new AccessPackageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AccessPackageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/accessPackagesIncompatibleWith/{accessPackage%2Did1}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AccessPackageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AccessPackageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/accessPackagesIncompatibleWith/{accessPackage%2Did1}{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
         /// <summary>
         /// The access packages that are incompatible with this package. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

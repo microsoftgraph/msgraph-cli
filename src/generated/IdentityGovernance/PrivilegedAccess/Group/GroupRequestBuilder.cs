@@ -29,6 +29,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentApprovalsNavCommand() {
             var command = new Command("assignment-approvals");
             command.Description = "Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -55,6 +56,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentScheduleInstancesNavCommand() {
             var command = new Command("assignment-schedule-instances");
             command.Description = "Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -81,6 +83,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentScheduleRequestsNavCommand() {
             var command = new Command("assignment-schedule-requests");
             command.Description = "Provides operations to manage the assignmentScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -107,6 +110,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentSchedulesNavCommand() {
             var command = new Command("assignment-schedules");
             command.Description = "Provides operations to manage the assignmentSchedules property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -133,6 +137,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Delete navigation property group for identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property group for identityGovernance";
@@ -160,6 +165,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEligibilityScheduleInstancesNavCommand() {
             var command = new Command("eligibility-schedule-instances");
             command.Description = "Provides operations to manage the eligibilityScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -186,6 +192,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEligibilityScheduleRequestsNavCommand() {
             var command = new Command("eligibility-schedule-requests");
             command.Description = "Provides operations to manage the eligibilityScheduleRequests property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -212,6 +219,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Provides operations to manage the eligibilitySchedules property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEligibilitySchedulesNavCommand() {
             var command = new Command("eligibility-schedules");
             command.Description = "Provides operations to manage the eligibilitySchedules property of the microsoft.graph.privilegedAccessGroup entity.";
@@ -238,6 +246,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// A group that&apos;s governed through Privileged Identity Management (PIM).
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A group that's governed through Privileged Identity Management (PIM).";
@@ -282,6 +291,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Update the navigation property group in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property group in identityGovernance";
@@ -323,13 +333,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group{?%24expand,%24select}", rawUrl) {
@@ -337,6 +347,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Delete navigation property group for identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -345,7 +356,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/privilegedAccess/group", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -353,6 +364,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// A group that&apos;s governed through Privileged Identity Management (PIM).
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -369,6 +381,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         /// <summary>
         /// Update the navigation property group in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -379,7 +392,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
         public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroup body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/privilegedAccess/group", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

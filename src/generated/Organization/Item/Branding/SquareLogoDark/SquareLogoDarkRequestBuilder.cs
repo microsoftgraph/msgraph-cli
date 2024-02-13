@@ -22,6 +22,7 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark {
         /// A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
@@ -60,6 +61,7 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark {
         /// <summary>
         /// A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.";
@@ -111,13 +113,13 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SquareLogoDarkRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SquareLogoDarkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SquareLogoDarkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/squareLogoDark", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SquareLogoDarkRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SquareLogoDarkRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SquareLogoDarkRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/squareLogoDark", rawUrl) {
@@ -125,6 +127,7 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark {
         /// <summary>
         /// A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -141,6 +144,7 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogoDark {
         /// <summary>
         /// A square dark version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG not larger than 240 x 240 pixels and not more than 10 KB in size. We recommend using a transparent image with no padding around the logo.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

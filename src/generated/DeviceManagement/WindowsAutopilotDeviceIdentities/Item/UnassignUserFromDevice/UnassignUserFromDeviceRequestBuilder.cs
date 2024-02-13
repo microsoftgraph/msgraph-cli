@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
         /// Unassigns the user from an Autopilot device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-unassignuserfromdevice?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Unassigns the user from an Autopilot device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-unassignuserfromdevice?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnassignUserFromDeviceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnassignUserFromDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/unassignUserFromDevice", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnassignUserFromDeviceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnassignUserFromDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnassignUserFromDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}/unassignUserFromDevice", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
         /// <summary>
         /// Unassigns the user from an Autopilot device.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

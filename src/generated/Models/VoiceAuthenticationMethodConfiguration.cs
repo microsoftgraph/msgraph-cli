@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
         /// <summary>true if users can register office phones, otherwise, false.</summary>
         public bool? IsOfficePhoneAllowed { get; set; }
         /// <summary>
-        /// Instantiates a new voiceAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new <see cref="VoiceAuthenticationMethodConfiguration"/> and sets the default values.
         /// </summary>
         public VoiceAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.voiceAuthenticationMethodConfiguration";
@@ -25,6 +25,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="VoiceAuthenticationMethodConfiguration"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new VoiceAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -33,6 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },

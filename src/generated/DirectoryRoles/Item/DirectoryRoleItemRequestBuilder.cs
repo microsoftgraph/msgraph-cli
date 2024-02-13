@@ -29,6 +29,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -44,6 +45,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -59,6 +61,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Delete entity from directoryRoles
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from directoryRoles";
@@ -93,6 +96,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// Retrieve the properties of a directoryRole object. The role must be activated in tenant for a successful response. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryrole-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a directoryRole object. The role must be activated in tenant for a successful response. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryrole-get?view=graph-rest-1.0";
@@ -143,6 +147,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -158,6 +163,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -173,6 +179,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.directoryRole entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.directoryRole entity.";
@@ -204,6 +211,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Update entity in directoryRoles
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in directoryRoles";
@@ -253,6 +261,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -268,6 +277,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildScopedMembersNavCommand() {
             var command = new Command("scoped-members");
             command.Description = "Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.";
@@ -291,13 +301,13 @@ namespace ApiSdk.DirectoryRoles.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryRoleItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryRoleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryRoleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryRoleItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryRoleItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryRoleItemRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}{?%24expand,%24select}", rawUrl) {
@@ -305,6 +315,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Delete entity from directoryRoles
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -313,7 +324,7 @@ namespace ApiSdk.DirectoryRoles.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directoryRoles/{directoryRole%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -321,6 +332,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Retrieve the properties of a directoryRole object. The role must be activated in tenant for a successful response. You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -337,6 +349,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Update entity in directoryRoles
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -347,7 +360,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         public RequestInformation ToPatchRequestInformation(DirectoryRole body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directoryRoles/{directoryRole%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

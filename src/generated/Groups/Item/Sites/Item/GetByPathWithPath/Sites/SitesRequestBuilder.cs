@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
         /// Get a collection of subsites defined for a [site][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a collection of subsites defined for a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0";
@@ -34,6 +35,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -78,6 +83,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -106,6 +112,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -125,13 +132,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
             return command;
         }
         /// <summary>
-        /// Instantiates a new SitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/sites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SitesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SitesRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/sites{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -139,6 +146,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Sites {
         /// <summary>
         /// Get a collection of subsites defined for a [site][].
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

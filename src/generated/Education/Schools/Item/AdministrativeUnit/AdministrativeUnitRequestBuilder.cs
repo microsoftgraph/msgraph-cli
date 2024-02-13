@@ -23,6 +23,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// Get a list of administrativeUnits associated with an educationSchool object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a list of administrativeUnits associated with an educationSchool object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
@@ -73,6 +74,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// <summary>
         /// Update the navigation property administrativeUnit in education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property administrativeUnit in education";
@@ -120,13 +122,13 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AdministrativeUnitRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AdministrativeUnitRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit{?%24expand,%24select}", rawUrl) {
@@ -134,6 +136,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// <summary>
         /// Get a list of administrativeUnits associated with an educationSchool object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -150,6 +153,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         /// <summary>
         /// Update the navigation property administrativeUnit in education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -160,7 +164,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AdministrativeUnit body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/schools/{educationSchool%2Did}/administrativeUnit", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

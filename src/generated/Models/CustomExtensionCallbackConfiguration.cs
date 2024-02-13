@@ -20,7 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>The maximum duration in ISO 8601 format that Microsoft Entra ID will wait for a resume action for the callout it sent to the logic app. The valid range for custom extensions in lifecycle workflows is five minutes to three hours. The valid range for custom extensions in entitlement management is between 5 minutes and 14 days. For example, PT3H refers to three hours, P3D refers to three days, PT10M refers to ten minutes.</summary>
         public TimeSpan? TimeoutDuration { get; set; }
         /// <summary>
-        /// Instantiates a new customExtensionCallbackConfiguration and sets the default values.
+        /// Instantiates a new <see cref="CustomExtensionCallbackConfiguration"/> and sets the default values.
         /// </summary>
         public CustomExtensionCallbackConfiguration() {
             AdditionalData = new Dictionary<string, object>();
@@ -28,6 +28,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="CustomExtensionCallbackConfiguration"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static CustomExtensionCallbackConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -40,6 +41,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },

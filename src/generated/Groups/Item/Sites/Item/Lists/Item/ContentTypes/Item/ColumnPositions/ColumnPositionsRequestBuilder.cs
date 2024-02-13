@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPosit
         /// <summary>
         /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new ColumnDefinitionItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPosit
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -48,6 +50,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPosit
         /// <summary>
         /// Column order information in a content type.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Column order information in a content type.";
@@ -162,13 +165,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPosit
             return command;
         }
         /// <summary>
-        /// Instantiates a new ColumnPositionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnPositionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ColumnPositionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/columnPositions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ColumnPositionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnPositionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ColumnPositionsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/columnPositions{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -176,6 +179,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPosit
         /// <summary>
         /// Column order information in a content type.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -24,6 +24,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -42,6 +43,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -57,6 +59,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// Create new navigation property to jobs for print
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to jobs for print";
@@ -106,6 +109,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// The list of jobs that are queued for printing by the printer/printerShare.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The list of jobs that are queued for printing by the printer/printerShare.";
@@ -202,13 +206,13 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
             return command;
         }
         /// <summary>
-        /// Instantiates a new JobsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="JobsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public JobsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new JobsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="JobsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public JobsRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -216,6 +220,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// The list of jobs that are queued for printing by the printer/printerShare.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +237,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         /// <summary>
         /// Create new navigation property to jobs for print
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +248,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs {
         public RequestInformation ToPostRequestInformation(PrintJob body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/print/shares/{printerShare%2Did}/jobs", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

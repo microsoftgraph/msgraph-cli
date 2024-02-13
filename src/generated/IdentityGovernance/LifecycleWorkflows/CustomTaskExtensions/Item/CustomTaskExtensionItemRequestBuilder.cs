@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedByNavCommand() {
             var command = new Command("created-by");
             command.Description = "Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.";
@@ -47,6 +48,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// Delete a customTaskExtension object. A custom task extension  can only be deleted if it is not referenced in any task objects in a lifecycle workflow.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a customTaskExtension object. A custom task extension  can only be deleted if it is not referenced in any task objects in a lifecycle workflow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-delete?view=graph-rest-1.0";
@@ -81,6 +83,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// Read the properties and relationships of a customTaskExtension object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a customTaskExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-get?view=graph-rest-1.0";
@@ -131,6 +134,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastModifiedByNavCommand() {
             var command = new Command("last-modified-by");
             command.Description = "Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.customTaskExtension entity.";
@@ -154,6 +158,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// Update the properties of a customTaskExtension object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a customTaskExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-customtaskextension-update?view=graph-rest-1.0";
@@ -201,13 +206,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
             return command;
         }
         /// <summary>
-        /// Instantiates a new CustomTaskExtensionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomTaskExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CustomTaskExtensionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/customTaskExtensions/{customTaskExtension%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CustomTaskExtensionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomTaskExtensionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CustomTaskExtensionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/customTaskExtensions/{customTaskExtension%2Did}{?%24expand,%24select}", rawUrl) {
@@ -215,6 +220,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// Delete a customTaskExtension object. A custom task extension  can only be deleted if it is not referenced in any task objects in a lifecycle workflow.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -223,7 +229,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/lifecycleWorkflows/customTaskExtensions/{customTaskExtension%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -231,6 +237,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// Read the properties and relationships of a customTaskExtension object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,6 +254,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// Update the properties of a customTaskExtension object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -257,7 +265,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         public RequestInformation ToPatchRequestInformation(CustomTaskExtension body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/lifecycleWorkflows/customTaskExtensions/{customTaskExtension%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

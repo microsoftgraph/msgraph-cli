@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>When TRUE, indicates that the app should be uninstalled when the device is removed from Intune. When FALSE, indicates that the app will not be uninstalled when the device is removed from Intune.</summary>
         public bool? UninstallOnDeviceRemoval { get; set; }
         /// <summary>
-        /// Instantiates a new macOsLobAppAssignmentSettings and sets the default values.
+        /// Instantiates a new <see cref="MacOsLobAppAssignmentSettings"/> and sets the default values.
         /// </summary>
         public MacOsLobAppAssignmentSettings() : base() {
             OdataType = "#microsoft.graph.macOsLobAppAssignmentSettings";
@@ -20,6 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="MacOsLobAppAssignmentSettings"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new MacOsLobAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -28,6 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"uninstallOnDeviceRemoval", n => { UninstallOnDeviceRemoval = n.GetBoolValue(); } },

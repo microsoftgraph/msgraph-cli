@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// Deletes a termsAndConditionsAcceptanceStatus.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a termsAndConditionsAcceptanceStatus.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-delete?view=graph-rest-1.0";
@@ -64,6 +65,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// Read properties and relationships of the termsAndConditionsAcceptanceStatus object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the termsAndConditionsAcceptanceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-get?view=graph-rest-1.0";
@@ -121,6 +123,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// Update the properties of a termsAndConditionsAcceptanceStatus object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a termsAndConditionsAcceptanceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-update?view=graph-rest-1.0";
@@ -176,6 +179,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// <summary>
         /// Provides operations to manage the termsAndConditions property of the microsoft.graph.termsAndConditionsAcceptanceStatus entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTermsAndConditionsNavCommand() {
             var command = new Command("terms-and-conditions");
             command.Description = "Provides operations to manage the termsAndConditions property of the microsoft.graph.termsAndConditionsAcceptanceStatus entity.";
@@ -189,13 +193,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return command;
         }
         /// <summary>
-        /// Instantiates a new TermsAndConditionsAcceptanceStatusItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermsAndConditionsAcceptanceStatusItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TermsAndConditionsAcceptanceStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/acceptanceStatuses/{termsAndConditionsAcceptanceStatus%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TermsAndConditionsAcceptanceStatusItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermsAndConditionsAcceptanceStatusItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TermsAndConditionsAcceptanceStatusItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/acceptanceStatuses/{termsAndConditionsAcceptanceStatus%2Did}{?%24expand,%24select}", rawUrl) {
@@ -203,6 +207,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// <summary>
         /// Deletes a termsAndConditionsAcceptanceStatus.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,7 +216,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/acceptanceStatuses/{termsAndConditionsAcceptanceStatus%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -219,6 +224,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// <summary>
         /// Read properties and relationships of the termsAndConditionsAcceptanceStatus object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +241,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// <summary>
         /// Update the properties of a termsAndConditionsAcceptanceStatus object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +252,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         public RequestInformation ToPatchRequestInformation(TermsAndConditionsAcceptanceStatus body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/acceptanceStatuses/{termsAndConditionsAcceptanceStatus%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
