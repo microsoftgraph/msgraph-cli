@@ -21,6 +21,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentRemind
         /// <summary>
         /// Invoke action sendVirtualAppointmentReminderSms
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action sendVirtualAppointmentReminderSms";
@@ -58,13 +59,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentRemind
             return command;
         }
         /// <summary>
-        /// Instantiates a new SendVirtualAppointmentReminderSmsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendVirtualAppointmentReminderSmsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public SendVirtualAppointmentReminderSmsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/sendVirtualAppointmentReminderSms", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new SendVirtualAppointmentReminderSmsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="SendVirtualAppointmentReminderSmsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public SendVirtualAppointmentReminderSmsRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/sendVirtualAppointmentReminderSms", rawUrl) {
@@ -72,6 +73,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.SendVirtualAppointmentRemind
         /// <summary>
         /// Invoke action sendVirtualAppointmentReminderSms
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

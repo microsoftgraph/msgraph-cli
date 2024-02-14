@@ -22,6 +22,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// <summary>
         /// The related workflow task
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The related workflow task";
@@ -88,13 +89,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new TaskRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TaskRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}/tasks/{task%2Did}/taskProcessingResults/{taskProcessingResult%2Did}/task{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TaskRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TaskRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TaskRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}/tasks/{task%2Did}/taskProcessingResults/{taskProcessingResult%2Did}/task{?%24expand,%24select}", rawUrl) {
@@ -102,6 +103,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// <summary>
         /// The related workflow task
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

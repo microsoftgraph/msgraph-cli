@@ -22,6 +22,7 @@ namespace ApiSdk.Teams.Item.Archive {
         /// Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team&apos;s name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-archive?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team's name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-archive?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.Teams.Item.Archive {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ArchiveRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ArchiveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/archive", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ArchiveRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ArchiveRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ArchiveRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/archive", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.Teams.Item.Archive {
         /// <summary>
         /// Archive the specified team. When a team is archived, users can no longer send or like messages on any channel in the team, edit the team&apos;s name, description, or other settings, or in general make most changes to the team.Membership changes to the team continue to be allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which may occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To restore a team from its archived state, use the API to unarchive.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

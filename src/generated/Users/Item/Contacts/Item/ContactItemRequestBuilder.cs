@@ -25,6 +25,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// Delete a contact.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a contact.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0";
@@ -64,6 +65,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.contact entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.contact entity.";
@@ -90,6 +92,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user's contact folder:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-get?view=graph-rest-1.0";
@@ -147,6 +150,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// Update the properties of a contact object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contact-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a contact object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contact-update?view=graph-rest-1.0";
@@ -202,6 +206,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.contact entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.contact entity.";
@@ -222,13 +227,13 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ContactItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContactItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ContactItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContactItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", rawUrl) {
@@ -236,6 +241,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// <summary>
         /// Delete a contact.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -244,7 +250,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/contacts/{contact%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -252,6 +258,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -268,6 +275,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         /// <summary>
         /// Update the properties of a contact object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -278,7 +286,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
         public RequestInformation ToPatchRequestInformation(Contact body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/contacts/{contact%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

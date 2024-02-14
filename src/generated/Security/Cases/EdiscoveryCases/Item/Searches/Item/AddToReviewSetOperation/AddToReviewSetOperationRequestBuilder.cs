@@ -22,6 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSe
         /// <summary>
         /// Adds the results of the eDiscovery search to the specified reviewSet.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Adds the results of the eDiscovery search to the specified reviewSet.";
@@ -76,13 +77,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSe
             return command;
         }
         /// <summary>
-        /// Instantiates a new AddToReviewSetOperationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddToReviewSetOperationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AddToReviewSetOperationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/addToReviewSetOperation{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AddToReviewSetOperationRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddToReviewSetOperationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AddToReviewSetOperationRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/addToReviewSetOperation{?%24expand,%24select}", rawUrl) {
@@ -90,6 +91,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSe
         /// <summary>
         /// Adds the results of the eDiscovery search to the specified reviewSet.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

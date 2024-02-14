@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new CalendarPermissionItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0";
@@ -113,6 +116,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0";
@@ -208,13 +212,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return command;
         }
         /// <summary>
-        /// Instantiates a new CalendarPermissionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarPermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarPermissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CalendarPermissionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarPermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarPermissionsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
@@ -222,6 +226,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -238,6 +243,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         /// <summary>
         /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +254,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         public RequestInformation ToPostRequestInformation(CalendarPermission body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarPermissions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

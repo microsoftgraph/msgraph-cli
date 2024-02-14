@@ -29,6 +29,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Gets an item from the ApiSdk.applications.item.owners.item collection
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
@@ -42,6 +43,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -57,6 +59,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
@@ -78,6 +81,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphEndpointNavCommand() {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
@@ -99,6 +103,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -120,6 +125,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
@@ -142,6 +148,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0";
@@ -247,6 +254,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of application entities.";
@@ -262,13 +270,13 @@ namespace ApiSdk.Applications.Item.Owners {
             return command;
         }
         /// <summary>
-        /// Instantiates a new OwnersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OwnersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OwnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/owners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OwnersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OwnersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OwnersRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/owners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -276,6 +284,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// <summary>
         /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

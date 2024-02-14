@@ -23,6 +23,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a conditionalAccessTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0";
@@ -71,13 +72,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ConditionalAccessTemplateItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ConditionalAccessTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ConditionalAccessTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ConditionalAccessTemplateItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ConditionalAccessTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ConditionalAccessTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/templates/{conditionalAccessTemplate%2Did}{?%24expand,%24select}", rawUrl) {
@@ -85,6 +86,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         /// <summary>
         /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

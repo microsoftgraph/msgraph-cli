@@ -22,6 +22,7 @@ namespace ApiSdk.Compliance {
         /// <summary>
         /// Get compliance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get compliance";
@@ -66,6 +67,7 @@ namespace ApiSdk.Compliance {
         /// <summary>
         /// Update compliance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update compliance";
@@ -107,13 +109,13 @@ namespace ApiSdk.Compliance {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ComplianceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ComplianceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ComplianceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/compliance{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ComplianceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ComplianceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ComplianceRequestBuilder(string rawUrl) : base("{+baseurl}/compliance{?%24expand,%24select}", rawUrl) {
@@ -121,6 +123,7 @@ namespace ApiSdk.Compliance {
         /// <summary>
         /// Get compliance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -137,6 +140,7 @@ namespace ApiSdk.Compliance {
         /// <summary>
         /// Update compliance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -147,7 +151,7 @@ namespace ApiSdk.Compliance {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Compliance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/compliance", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

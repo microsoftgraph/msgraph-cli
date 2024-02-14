@@ -22,6 +22,7 @@ namespace ApiSdk.Print.Printers.Create {
         /// Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-create?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-create?view=graph-rest-1.0";
@@ -53,13 +54,13 @@ namespace ApiSdk.Print.Printers.Create {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CreateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/create", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CreateRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreateRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/create", rawUrl) {
@@ -67,6 +68,7 @@ namespace ApiSdk.Print.Printers.Create {
         /// <summary>
         /// Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

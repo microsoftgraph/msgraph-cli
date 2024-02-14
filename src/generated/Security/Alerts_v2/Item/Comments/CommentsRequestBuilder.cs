@@ -23,6 +23,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -38,6 +39,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Sets a new value for the collection of alertComment.";
@@ -93,13 +95,13 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CommentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CommentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts_v2/{alert%2Did}/comments", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CommentsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CommentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/alerts_v2/{alert%2Did}/comments", rawUrl) {
@@ -107,6 +109,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -27,6 +27,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAllowedCalendarSharingRolesWithUserRbCommand() {
             var command = new Command("allowed-calendar-sharing-roles-with-user");
             command.Description = "Provides operations to call the allowedCalendarSharingRoles method.";
@@ -42,6 +43,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCalendarPermissionsNavCommand() {
             var command = new Command("calendar-permissions");
             command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
@@ -67,6 +69,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
@@ -92,6 +95,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
@@ -118,6 +122,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// The group&apos;s calendar. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The group's calendar. Read-only.";
@@ -161,6 +166,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetScheduleNavCommand() {
             var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
@@ -174,13 +180,13 @@ namespace ApiSdk.Groups.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CalendarRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CalendarRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar{?%24select}", rawUrl) {
@@ -188,6 +194,7 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// The group&apos;s calendar. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

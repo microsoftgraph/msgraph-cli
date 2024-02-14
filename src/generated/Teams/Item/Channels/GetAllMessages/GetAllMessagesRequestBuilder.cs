@@ -21,6 +21,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
         /// <summary>
         /// Invoke function getAllMessages
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAllMessages";
@@ -62,6 +63,11 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             };
             orderbyOption.IsRequired = false;
             command.AddOption(orderbyOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -78,6 +84,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
@@ -95,6 +102,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -116,20 +124,21 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetAllMessagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAllMessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/channels/getAllMessages(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", pathParameters) {
+        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/channels/getAllMessages(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetAllMessagesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetAllMessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAllMessagesRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/channels/getAllMessages(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", rawUrl) {
+        public GetAllMessagesRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/channels/getAllMessages(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top,model*}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getAllMessages
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -150,6 +159,16 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

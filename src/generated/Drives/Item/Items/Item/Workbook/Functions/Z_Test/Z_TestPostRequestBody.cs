@@ -34,7 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test {
         public Json X { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new z_TestPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="Z_TestPostRequestBody"/> and sets the default values.
         /// </summary>
         public Z_TestPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -42,6 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Z_TestPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Z_TestPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -50,6 +51,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"array", n => { Array = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

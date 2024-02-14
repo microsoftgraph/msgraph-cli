@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// Deletes a windowsHelloForBusinessAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a windowsHelloForBusinessAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// <summary>
         /// Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeviceNavCommand() {
             var command = new Command("device");
             command.Description = "Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.";
@@ -79,6 +81,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-get?view=graph-rest-1.0";
@@ -133,13 +136,13 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WindowsHelloForBusinessAuthenticationMethodItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod%2Did}{?%24expand,%24select}", rawUrl) {
@@ -147,6 +150,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// <summary>
         /// Deletes a windowsHelloForBusinessAuthenticationMethod object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -155,7 +159,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/authentication/windowsHelloForBusinessMethods/{windowsHelloForBusinessAuthenticationMethod%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -163,6 +167,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// <summary>
         /// Read the properties and relationships of a windowsHelloForBusinessAuthenticationMethod object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

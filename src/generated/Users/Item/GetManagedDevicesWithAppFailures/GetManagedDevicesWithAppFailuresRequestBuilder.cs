@@ -21,6 +21,7 @@ namespace ApiSdk.Users.Item.GetManagedDevicesWithAppFailures {
         /// <summary>
         /// Retrieves the list of devices with failed apps
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieves the list of devices with failed apps";
@@ -96,13 +97,13 @@ namespace ApiSdk.Users.Item.GetManagedDevicesWithAppFailures {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetManagedDevicesWithAppFailuresRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetManagedDevicesWithAppFailuresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetManagedDevicesWithAppFailuresRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/getManagedDevicesWithAppFailures(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetManagedDevicesWithAppFailuresRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetManagedDevicesWithAppFailuresRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetManagedDevicesWithAppFailuresRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/getManagedDevicesWithAppFailures(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
@@ -110,6 +111,7 @@ namespace ApiSdk.Users.Item.GetManagedDevicesWithAppFailures {
         /// <summary>
         /// Retrieves the list of devices with failed apps
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

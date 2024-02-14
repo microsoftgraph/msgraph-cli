@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// Create a new tokenLifetimePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0";
@@ -97,6 +100,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// Get a list of tokenLifetimePolicy objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of tokenLifetimePolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-list?view=graph-rest-1.0";
@@ -187,13 +191,13 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePoliciesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TokenLifetimePoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/tokenLifetimePolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePoliciesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TokenLifetimePoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/policies/tokenLifetimePolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -201,6 +205,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// <summary>
         /// Get a list of tokenLifetimePolicy objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -217,6 +222,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         /// <summary>
         /// Create a new tokenLifetimePolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +233,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies {
         public RequestInformation ToPostRequestInformation(TokenLifetimePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/policies/tokenLifetimePolicies", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

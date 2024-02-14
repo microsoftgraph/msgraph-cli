@@ -24,6 +24,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// <summary>
         /// Provides operations to manage the files property of the microsoft.graph.agreement entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// Create a new localized agreement file.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new localized agreement file.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
@@ -102,6 +105,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.";
@@ -198,13 +202,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FilesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FilesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FilesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FilesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FilesRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -212,6 +216,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// <summary>
         /// PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -228,6 +233,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         /// <summary>
         /// Create a new localized agreement file.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +244,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
         public RequestInformation ToPostRequestInformation(AgreementFileLocalization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}/files", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

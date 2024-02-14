@@ -24,6 +24,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// Create a new windowsInformationProtectionAppLearningSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-create?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new windowsInformationProtectionAppLearningSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-create?view=graph-rest-1.0";
@@ -95,6 +98,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-list?view=graph-rest-1.0";
@@ -185,13 +189,13 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             return command;
         }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionAppLearningSummariesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsInformationProtectionAppLearningSummariesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WindowsInformationProtectionAppLearningSummariesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionAppLearningSummariesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WindowsInformationProtectionAppLearningSummariesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WindowsInformationProtectionAppLearningSummariesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -199,6 +203,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -215,6 +220,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Create a new windowsInformationProtectionAppLearningSummary object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -225,7 +231,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         public RequestInformation ToPostRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -22,6 +22,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// Delete navigation property fields for sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property fields for sites";
@@ -73,6 +74,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// A collection of the fields and values for this version of the list item.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A collection of the fields and values for this version of the list item.";
@@ -141,6 +143,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// Update the navigation property fields in sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property fields in sites";
@@ -206,13 +209,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FieldsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FieldsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FieldsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/fields{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FieldsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FieldsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FieldsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/fields{?%24expand,%24select}", rawUrl) {
@@ -220,6 +223,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// Delete navigation property fields for sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -228,7 +232,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/fields", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -236,6 +240,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// A collection of the fields and values for this version of the list item.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -252,6 +257,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         /// <summary>
         /// Update the navigation property fields in sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +268,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions.Item.Fields {
         public RequestInformation ToPatchRequestInformation(FieldValueSet body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions/{listItemVersion%2Did}/fields", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

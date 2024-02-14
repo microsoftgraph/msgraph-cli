@@ -31,6 +31,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Gets an item from the ApiSdk.directory.administrativeUnits.item.members.item collection
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
@@ -46,6 +47,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -62,6 +64,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Create new navigation property to members for directory
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to members for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
@@ -111,6 +114,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
@@ -132,6 +136,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphDeviceNavCommand() {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
@@ -153,6 +158,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
@@ -174,6 +180,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
@@ -195,6 +202,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -216,6 +224,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
@@ -238,6 +247,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Users and groups that are members of this administrative unit. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
@@ -343,6 +353,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Provides operations to manage the collection of directory entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of directory entities.";
@@ -358,13 +369,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MembersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MembersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MembersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MembersRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -372,6 +383,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -388,6 +400,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// <summary>
         /// Create new navigation property to members for directory
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -398,7 +411,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         public RequestInformation ToPostRequestInformation(DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -25,6 +25,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Gets an item from the ApiSdk.policies.featureRolloutPolicies.item.appliesTo.item collection
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
@@ -34,6 +35,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -50,6 +52,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0";
@@ -99,6 +102,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
@@ -197,6 +201,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Provides operations to manage the collection of policyRoot entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of policyRoot entities.";
@@ -212,13 +217,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AppliesToRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppliesToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AppliesToRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppliesToRequestBuilder(string rawUrl) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -226,6 +231,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,6 +248,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         /// <summary>
         /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +259,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
         public RequestInformation ToPostRequestInformation(DirectoryObject body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

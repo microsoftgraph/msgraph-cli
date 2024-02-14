@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         /// <summary>Active Hours Start</summary>
         public Time? ActiveHoursStart { get; set; }
         /// <summary>
-        /// Instantiates a new windowsUpdateActiveHoursInstall and sets the default values.
+        /// Instantiates a new <see cref="WindowsUpdateActiveHoursInstall"/> and sets the default values.
         /// </summary>
         public WindowsUpdateActiveHoursInstall() : base() {
             OdataType = "#microsoft.graph.windowsUpdateActiveHoursInstall";
@@ -20,6 +20,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="WindowsUpdateActiveHoursInstall"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WindowsUpdateActiveHoursInstall CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -28,6 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activeHoursEnd", n => { ActiveHoursEnd = n.GetTimeValue(); } },

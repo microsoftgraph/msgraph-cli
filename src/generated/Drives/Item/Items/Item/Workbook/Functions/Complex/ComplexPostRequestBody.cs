@@ -34,7 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex {
         public Json Suffix { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new complexPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="ComplexPostRequestBody"/> and sets the default values.
         /// </summary>
         public ComplexPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -42,6 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="ComplexPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ComplexPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -50,6 +51,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"iNum", n => { INum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

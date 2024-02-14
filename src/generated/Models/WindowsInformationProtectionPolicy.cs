@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         /// <summary>Boolean value that sets Windows Hello for Business as a method for signing into Windows.</summary>
         public bool? WindowsHelloForBusinessBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new windowsInformationProtectionPolicy and sets the default values.
+        /// Instantiates a new <see cref="WindowsInformationProtectionPolicy"/> and sets the default values.
         /// </summary>
         public WindowsInformationProtectionPolicy() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionPolicy";
@@ -48,6 +48,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="WindowsInformationProtectionPolicy"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new WindowsInformationProtectionPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -56,6 +57,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"daysWithoutContactBeforeUnenroll", n => { DaysWithoutContactBeforeUnenroll = n.GetIntValue(); } },

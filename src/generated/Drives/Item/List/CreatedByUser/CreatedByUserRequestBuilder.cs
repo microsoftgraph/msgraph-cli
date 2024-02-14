@@ -24,6 +24,7 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Identity of the user who created the item. Read-only.";
@@ -74,6 +75,7 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMailboxSettingsNavCommand() {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
@@ -90,6 +92,7 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -109,13 +112,13 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CreatedByUserRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", rawUrl) {
@@ -123,6 +126,7 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

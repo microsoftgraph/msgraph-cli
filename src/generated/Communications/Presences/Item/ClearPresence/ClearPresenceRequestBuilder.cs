@@ -22,6 +22,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Clear the application's presence session for a user. If it is the user's only presence session, the user's presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0";
@@ -59,13 +60,13 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ClearPresenceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ClearPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ClearPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/clearPresence", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ClearPresenceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ClearPresenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ClearPresenceRequestBuilder(string rawUrl) : base("{+baseurl}/communications/presences/{presence%2Did}/clearPresence", rawUrl) {
@@ -73,6 +74,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         /// <summary>
         /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

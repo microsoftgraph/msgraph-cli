@@ -21,6 +21,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to manage the collection of place entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -34,6 +35,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -49,6 +51,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to roomList.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphRoomListNavCommand() {
             var command = new Command("graph-room-list");
             command.Description = "Casts the previous resource to roomList.";
@@ -70,6 +73,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphRoomNavCommand() {
             var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
@@ -89,13 +93,13 @@ namespace ApiSdk.Places {
             return command;
         }
         /// <summary>
-        /// Instantiates a new PlacesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlacesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PlacesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PlacesRequestBuilder(string rawUrl) : base("{+baseurl}/places", rawUrl) {

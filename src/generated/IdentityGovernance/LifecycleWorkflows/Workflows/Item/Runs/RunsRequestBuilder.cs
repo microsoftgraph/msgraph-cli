@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
         /// <summary>
         /// Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,6 +55,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
         /// Get a list of the run objects and their properties for a lifecycle workflow.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-runs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the run objects and their properties for a lifecycle workflow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-runs?view=graph-rest-1.0";
@@ -151,6 +154,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
         /// <summary>
         /// Provides operations to call the summary method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphIdentityGovernanceSummaryWithStartDateTimeWithEndDateTimeRbCommand() {
             var command = new Command("microsoft-graph-identity-governance-summary-with-start-date-time-with-end-date-time");
             command.Description = "Provides operations to call the summary method.";
@@ -164,13 +168,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RunsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RunsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RunsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RunsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RunsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RunsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/runs{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -178,6 +182,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs {
         /// <summary>
         /// Get a list of the run objects and their properties for a lifecycle workflow.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

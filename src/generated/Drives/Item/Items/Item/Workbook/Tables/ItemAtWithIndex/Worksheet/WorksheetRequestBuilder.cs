@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
         /// <summary>
         /// The worksheet containing the current table. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The worksheet containing the current table. Read-only.";
@@ -33,6 +34,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -50,6 +55,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -64,6 +70,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -76,13 +83,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
             return command;
         }
         /// <summary>
-        /// Instantiates a new WorksheetRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorksheetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorksheetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/worksheet{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WorksheetRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorksheetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorksheetRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/worksheet{?%24expand,%24select}", rawUrl) {
@@ -90,6 +97,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Workshee
         /// <summary>
         /// The worksheet containing the current table. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

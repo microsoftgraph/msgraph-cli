@@ -26,7 +26,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Exc {
         public Json K { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new percentile_ExcPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="Percentile_ExcPostRequestBody"/> and sets the default values.
         /// </summary>
         public Percentile_ExcPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -34,6 +34,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Exc {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Percentile_ExcPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Percentile_ExcPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -42,6 +43,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Exc {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"array", n => { Array = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

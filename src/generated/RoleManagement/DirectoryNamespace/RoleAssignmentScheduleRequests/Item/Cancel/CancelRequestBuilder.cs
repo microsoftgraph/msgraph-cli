@@ -22,6 +22,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// Immediately cancel a unifiedRoleAssignmentScheduleRequest object that is in a Granted status, and have the system automatically delete the canceled request after 30 days. After calling this action, the status of the canceled unifiedRoleAssignmentScheduleRequest changes to Canceled.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Immediately cancel a unifiedRoleAssignmentScheduleRequest object that is in a Granted status, and have the system automatically delete the canceled request after 30 days. After calling this action, the status of the canceled unifiedRoleAssignmentScheduleRequest changes to Canceled.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0";
@@ -46,13 +47,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
             return command;
         }
         /// <summary>
-        /// Instantiates a new CancelRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CancelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/cancel", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CancelRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CancelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CancelRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/cancel", rawUrl) {
@@ -60,6 +61,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Immediately cancel a unifiedRoleAssignmentScheduleRequest object that is in a Granted status, and have the system automatically delete the canceled request after 30 days. After calling this action, the status of the canceled unifiedRoleAssignmentScheduleRequest changes to Canceled.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

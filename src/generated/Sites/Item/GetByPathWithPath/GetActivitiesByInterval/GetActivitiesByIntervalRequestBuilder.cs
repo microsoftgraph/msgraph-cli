@@ -21,6 +21,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
         /// <summary>
         /// Invoke function getActivitiesByInterval
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getActivitiesByInterval";
@@ -28,6 +29,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -58,6 +63,11 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
             };
             orderbyOption.IsRequired = false;
             command.AddOption(orderbyOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
@@ -66,6 +76,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -73,6 +84,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
@@ -89,8 +101,10 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Orderby = orderby;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,20 +124,21 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetActivitiesByIntervalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetActivitiesByIntervalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetActivitiesByIntervalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getActivitiesByInterval(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetActivitiesByIntervalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getActivitiesByInterval(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetActivitiesByIntervalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetActivitiesByIntervalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetActivitiesByIntervalRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getActivitiesByInterval(){?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetActivitiesByIntervalRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getActivitiesByInterval(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
         /// Invoke function getActivitiesByInterval
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -144,6 +159,16 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetActivitiesByInterval {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

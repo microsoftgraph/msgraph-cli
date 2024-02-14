@@ -27,6 +27,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to call the copyToNotebook method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCopyToNotebookNavCommand() {
             var command = new Command("copy-to-notebook");
             command.Description = "Provides operations to call the copyToNotebook method.";
@@ -42,6 +43,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to call the copyToSectionGroup method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCopyToSectionGroupNavCommand() {
             var command = new Command("copy-to-section-group");
             command.Description = "Provides operations to call the copyToSectionGroup method.";
@@ -57,6 +59,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Delete navigation property sections for sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for sites";
@@ -108,6 +111,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// The sections in the section group. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The sections in the section group. Read-only. Nullable.";
@@ -176,6 +180,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPagesNavCommand() {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.";
@@ -201,6 +206,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.";
@@ -216,6 +222,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildParentSectionGroupNavCommand() {
             var command = new Command("parent-section-group");
             command.Description = "Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.";
@@ -231,6 +238,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Update the navigation property sections in sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in sites";
@@ -296,13 +304,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
             return command;
         }
         /// <summary>
-        /// Instantiates a new OnenoteSectionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenoteSectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OnenoteSectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OnenoteSectionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenoteSectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OnenoteSectionItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}{?%24expand,%24select}", rawUrl) {
@@ -310,6 +318,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Delete navigation property sections for sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -318,7 +327,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -326,6 +335,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// The sections in the section group. Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -342,6 +352,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Update the navigation property sections in sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -352,7 +363,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -28,6 +28,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.";
@@ -54,6 +55,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClassesNavCommand() {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationUser entity.";
@@ -78,6 +80,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Delete navigation property me for education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property me for education";
@@ -105,6 +108,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Get me from education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get me from education";
@@ -149,6 +153,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Update the navigation property me in education
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property me in education";
@@ -192,6 +197,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the rubrics property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRubricsNavCommand() {
             var command = new Command("rubrics");
             command.Description = "Provides operations to manage the rubrics property of the microsoft.graph.educationUser entity.";
@@ -217,6 +223,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationUser entity.";
@@ -241,6 +248,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTaughtClassesNavCommand() {
             var command = new Command("taught-classes");
             command.Description = "Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.";
@@ -265,6 +273,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the user property of the microsoft.graph.educationUser entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUserNavCommand() {
             var command = new Command("user");
             command.Description = "Provides operations to manage the user property of the microsoft.graph.educationUser entity.";
@@ -285,13 +294,13 @@ namespace ApiSdk.Education.Me {
             return command;
         }
         /// <summary>
-        /// Instantiates a new MeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MeRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MeRequestBuilder(string rawUrl) : base("{+baseurl}/education/me{?%24expand,%24select}", rawUrl) {
@@ -299,6 +308,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Delete navigation property me for education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -307,7 +317,7 @@ namespace ApiSdk.Education.Me {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/me", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -315,6 +325,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Get me from education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -331,6 +342,7 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Update the navigation property me in education
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -341,7 +353,7 @@ namespace ApiSdk.Education.Me {
         public RequestInformation ToPatchRequestInformation(EducationUser body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/me", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

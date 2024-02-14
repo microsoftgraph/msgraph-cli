@@ -22,6 +22,7 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost {
         /// <summary>
         /// The parent host related to this passiveDnsRecord entry. Generally, this is the value that you can search to discover this passiveDnsRecord value.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The parent host related to this passiveDnsRecord entry. Generally, this is the value that you can search to discover this passiveDnsRecord value.";
@@ -70,13 +71,13 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ParentHostRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ParentHostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ParentHostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ParentHostRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ParentHostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ParentHostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/passiveDnsRecords/{passiveDnsRecord%2Did}/parentHost{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item.ParentHost {
         /// <summary>
         /// The parent host related to this passiveDnsRecord entry. Generally, this is the value that you can search to discover this passiveDnsRecord value.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

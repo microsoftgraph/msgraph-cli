@@ -23,6 +23,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Delete navigation property triggers for security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property triggers for security";
@@ -50,6 +51,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Get triggers from security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get triggers from security";
@@ -94,6 +96,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Update the navigation property triggers in security
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property triggers in security";
@@ -137,6 +140,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRetentionEventsNavCommand() {
             var command = new Command("retention-events");
             command.Description = "Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.";
@@ -160,13 +164,13 @@ namespace ApiSdk.Security.Triggers {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TriggersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TriggersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TriggersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TriggersRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TriggersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TriggersRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers{?%24expand,%24select}", rawUrl) {
@@ -174,6 +178,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Delete navigation property triggers for security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,7 +187,7 @@ namespace ApiSdk.Security.Triggers {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/triggers", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -190,6 +195,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Get triggers from security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,6 +212,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Update the navigation property triggers in security
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -216,7 +223,7 @@ namespace ApiSdk.Security.Triggers {
         public RequestInformation ToPatchRequestInformation(TriggersRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/triggers", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise {
         /// <summary>
         /// Invoke action ceiling_Precise
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action ceiling_Precise";
@@ -75,13 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise {
             return command;
         }
         /// <summary>
-        /// Instantiates a new Ceiling_PreciseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="Ceiling_PreciseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public Ceiling_PreciseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/ceiling_Precise", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new Ceiling_PreciseRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="Ceiling_PreciseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public Ceiling_PreciseRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/ceiling_Precise", rawUrl) {
@@ -89,6 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise {
         /// <summary>
         /// Invoke action ceiling_Precise
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

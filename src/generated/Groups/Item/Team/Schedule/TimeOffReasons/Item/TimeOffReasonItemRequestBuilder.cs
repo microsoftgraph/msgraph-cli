@@ -23,6 +23,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn't remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0";
@@ -63,6 +64,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// Retrieve the properties and relationships of a timeOffReason object by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a timeOffReason object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0";
@@ -113,6 +115,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// Replace an existing timeOffReason. If the specified timeOffReason doesn&apos;t exist, this method returns 404 Not found.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-put?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Replace an existing timeOffReason. If the specified timeOffReason doesn't exist, this method returns 404 Not found.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-put?view=graph-rest-1.0";
@@ -166,13 +169,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TimeOffReasonItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TimeOffReasonItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TimeOffReasonItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffReasons/{timeOffReason%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TimeOffReasonItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TimeOffReasonItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TimeOffReasonItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/timeOffReasons/{timeOffReason%2Did}{?%24select}", rawUrl) {
@@ -180,6 +183,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// <summary>
         /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,7 +192,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/team/schedule/timeOffReasons/{timeOffReason%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -196,6 +200,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a timeOffReason object by ID.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -212,6 +217,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         /// <summary>
         /// Replace an existing timeOffReason. If the specified timeOffReason doesn&apos;t exist, this method returns 404 Not found.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +228,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
         public RequestInformation ToPatchRequestInformation(TimeOffReason body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}/team/schedule/timeOffReasons/{timeOffReason%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

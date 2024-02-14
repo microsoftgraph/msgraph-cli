@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Delete an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
@@ -58,6 +59,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Retrieve the properties of an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -110,6 +112,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Update properties in an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -158,13 +161,13 @@ namespace ApiSdk.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new IdentityProviderItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProviderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public IdentityProviderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProviders/{identityProvider%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new IdentityProviderItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="IdentityProviderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public IdentityProviderItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProviders/{identityProvider%2Did}{?%24expand,%24select}", rawUrl) {
@@ -172,6 +175,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Delete an existing identityProvider.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -181,7 +185,7 @@ namespace ApiSdk.IdentityProviders.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityProviders/{identityProvider%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -189,6 +193,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Retrieve the properties of an existing identityProvider.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -206,6 +211,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Update properties in an existing identityProvider.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
@@ -217,7 +223,7 @@ namespace ApiSdk.IdentityProviders.Item {
         public RequestInformation ToPatchRequestInformation(IdentityProvider body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityProviders/{identityProvider%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

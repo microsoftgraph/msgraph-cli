@@ -25,6 +25,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// <summary>
         /// Provides operations to manage the collection of oAuth2PermissionGrant entities.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new OAuth2PermissionGrantItemRequestBuilder(PathParameters);
@@ -36,6 +37,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,6 +54,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// Create a delegated permission grant represented by an oAuth2PermissionGrant object. A delegated permission grant authorizes a client service principal (representing a client application) to access a resource service principal (representing an API), on behalf of a signed-in user, for the level of access limited by the delegated permissions which were granted.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a delegated permission grant represented by an oAuth2PermissionGrant object. A delegated permission grant authorizes a client service principal (representing a client application) to access a resource service principal (representing an API), on behalf of a signed-in user, for the level of access limited by the delegated permissions which were granted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0";
@@ -95,6 +98,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -111,6 +115,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// Retrieve a list of oAuth2PermissionGrant objects, representing delegated permissions which have been granted for client applications to access APIs on behalf of signed-in users.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of oAuth2PermissionGrant objects, representing delegated permissions which have been granted for client applications to access APIs on behalf of signed-in users.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/oauth2permissiongrant-list?view=graph-rest-1.0";
@@ -201,13 +206,13 @@ namespace ApiSdk.Oauth2PermissionGrants {
             return command;
         }
         /// <summary>
-        /// Instantiates a new Oauth2PermissionGrantsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="Oauth2PermissionGrantsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public Oauth2PermissionGrantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/oauth2PermissionGrants{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new Oauth2PermissionGrantsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="Oauth2PermissionGrantsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public Oauth2PermissionGrantsRequestBuilder(string rawUrl) : base("{+baseurl}/oauth2PermissionGrants{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -215,6 +220,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// <summary>
         /// Retrieve a list of oAuth2PermissionGrant objects, representing delegated permissions which have been granted for client applications to access APIs on behalf of signed-in users.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,6 +237,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         /// <summary>
         /// Create a delegated permission grant represented by an oAuth2PermissionGrant object. A delegated permission grant authorizes a client service principal (representing a client application) to access a resource service principal (representing an API), on behalf of a signed-in user, for the level of access limited by the delegated permissions which were granted.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +248,7 @@ namespace ApiSdk.Oauth2PermissionGrants {
         public RequestInformation ToPostRequestInformation(OAuth2PermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/oauth2PermissionGrants", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

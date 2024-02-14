@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group {
         /// <summary>
         /// Get group from users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get group from users";
@@ -79,6 +80,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -98,13 +100,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/group{?%24expand,%24select}", rawUrl) {
@@ -112,6 +114,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group {
         /// <summary>
         /// Get group from users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

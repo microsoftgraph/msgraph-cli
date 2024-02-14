@@ -23,6 +23,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppliesToNavCommand() {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.";
@@ -48,6 +49,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// Delete a tokenLifetimePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0";
@@ -82,6 +84,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// Retrieve the properties and relationships of a tokenLifetimePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-get?view=graph-rest-1.0";
@@ -133,6 +136,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// Update the properties of a tokenLifetimePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-update?view=graph-rest-1.0";
@@ -180,13 +184,13 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TokenLifetimePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TokenLifetimePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24expand,%24select}", rawUrl) {
@@ -194,6 +198,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// <summary>
         /// Delete a tokenLifetimePolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -202,7 +207,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -210,6 +215,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a tokenLifetimePolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -226,6 +232,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         /// <summary>
         /// Update the properties of a tokenLifetimePolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +243,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         public RequestInformation ToPatchRequestInformation(TokenLifetimePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

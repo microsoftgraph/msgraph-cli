@@ -29,6 +29,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAdditionalSourcesNavCommand() {
             var command = new Command("additional-sources");
             command.Description = "Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.";
@@ -54,6 +55,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddToReviewSetOperationNavCommand() {
             var command = new Command("add-to-review-set-operation");
             command.Description = "Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.";
@@ -69,6 +71,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCustodianSourcesNavCommand() {
             var command = new Command("custodian-sources");
             command.Description = "Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.";
@@ -94,6 +97,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// Delete an ediscoverySearch object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an ediscoverySearch object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-searches?view=graph-rest-1.0";
@@ -134,6 +138,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// Read the properties and relationships of an ediscoverySearch object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an ediscoverySearch object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-get?view=graph-rest-1.0";
@@ -190,6 +195,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLastEstimateStatisticsOperationNavCommand() {
             var command = new Command("last-estimate-statistics-operation");
             command.Description = "Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.";
@@ -205,6 +211,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to call the estimateStatistics method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphSecurityEstimateStatisticsNavCommand() {
             var command = new Command("microsoft-graph-security-estimate-statistics");
             command.Description = "Provides operations to call the estimateStatistics method.";
@@ -220,6 +227,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to call the purgeData method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMicrosoftGraphSecurityPurgeDataNavCommand() {
             var command = new Command("microsoft-graph-security-purge-data");
             command.Description = "Provides operations to call the purgeData method.";
@@ -235,6 +243,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNoncustodialSourcesNavCommand() {
             var command = new Command("noncustodial-sources");
             command.Description = "Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.";
@@ -260,6 +269,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// Update the properties of an ediscoverySearch object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an ediscoverySearch object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-update?view=graph-rest-1.0";
@@ -313,13 +323,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new EdiscoverySearchItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EdiscoverySearchItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public EdiscoverySearchItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new EdiscoverySearchItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="EdiscoverySearchItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public EdiscoverySearchItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}{?%24expand,%24select}", rawUrl) {
@@ -327,6 +337,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Delete an ediscoverySearch object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -335,7 +346,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -343,6 +354,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Read the properties and relationships of an ediscoverySearch object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -359,6 +371,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Update the properties of an ediscoverySearch object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -369,7 +382,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         public RequestInformation ToPatchRequestInformation(EdiscoverySearch body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

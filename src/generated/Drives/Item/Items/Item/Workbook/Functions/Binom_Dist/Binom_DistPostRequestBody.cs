@@ -42,7 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist {
         public Json Trials { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new binom_DistPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="Binom_DistPostRequestBody"/> and sets the default values.
         /// </summary>
         public Binom_DistPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -50,6 +50,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="Binom_DistPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Binom_DistPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -58,6 +59,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

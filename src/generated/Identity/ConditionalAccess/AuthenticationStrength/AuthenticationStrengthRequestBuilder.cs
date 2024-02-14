@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAuthenticationMethodModesNavCommand() {
             var command = new Command("authentication-method-modes");
             command.Description = "Provides operations to manage the authenticationMethodModes property of the microsoft.graph.authenticationStrengthRoot entity.";
@@ -49,6 +50,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Delete navigation property authenticationStrength for identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationStrength for identity";
@@ -76,6 +78,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Get authenticationStrength from identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get authenticationStrength from identity";
@@ -120,6 +123,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Update the navigation property authenticationStrength in identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationStrength in identity";
@@ -163,6 +167,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPoliciesNavCommand() {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policies property of the microsoft.graph.authenticationStrengthRoot entity.";
@@ -186,13 +191,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AuthenticationStrengthRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AuthenticationStrengthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AuthenticationStrengthRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AuthenticationStrengthRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AuthenticationStrengthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AuthenticationStrengthRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength{?%24expand,%24select}", rawUrl) {
@@ -200,6 +205,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Delete navigation property authenticationStrength for identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -208,7 +214,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/conditionalAccess/authenticationStrength", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -216,6 +222,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Get authenticationStrength from identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +239,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         /// <summary>
         /// Update the navigation property authenticationStrength in identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +250,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength {
         public RequestInformation ToPatchRequestInformation(AuthenticationStrengthRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/conditionalAccess/authenticationStrength", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -22,6 +22,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.CleanWindowsDevice {
         /// Clean Windows device
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Clean Windows device\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0";
@@ -65,13 +66,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.CleanWindowsDevice {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CleanWindowsDeviceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CleanWindowsDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CleanWindowsDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/cleanWindowsDevice", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CleanWindowsDeviceRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CleanWindowsDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CleanWindowsDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/cleanWindowsDevice", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.CleanWindowsDevice {
         /// <summary>
         /// Clean Windows device
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

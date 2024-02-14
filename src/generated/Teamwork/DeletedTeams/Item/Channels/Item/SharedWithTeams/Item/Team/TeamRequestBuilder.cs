@@ -22,6 +22,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.T
         /// <summary>
         /// Get team from teamwork
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get team from teamwork";
@@ -82,13 +83,13 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.T
             return command;
         }
         /// <summary>
-        /// Instantiates a new TeamRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}/team{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TeamRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}/team{?%24expand,%24select}", rawUrl) {
@@ -96,6 +97,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.SharedWithTeams.Item.T
         /// <summary>
         /// Get team from teamwork
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

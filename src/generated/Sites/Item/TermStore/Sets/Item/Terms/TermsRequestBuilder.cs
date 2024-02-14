@@ -24,6 +24,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -39,6 +40,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -54,6 +56,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Create new navigation property to terms for sites
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to terms for sites";
@@ -109,6 +112,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Read the properties and relationships of a term object.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Read the properties and relationships of a term object.";
@@ -211,13 +215,13 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TermsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TermsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/terms{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TermsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TermsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TermsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/terms{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -225,6 +229,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Read the properties and relationships of a term object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,6 +246,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         /// <summary>
         /// Create new navigation property to terms for sites
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -251,7 +257,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         public RequestInformation ToPostRequestInformation(Term body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/terms", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

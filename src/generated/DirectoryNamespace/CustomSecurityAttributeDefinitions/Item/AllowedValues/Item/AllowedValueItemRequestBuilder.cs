@@ -22,6 +22,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Delete navigation property allowedValues for directory
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property allowedValues for directory";
@@ -62,6 +63,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// Read the properties and relationships of an allowedValue object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/allowedvalue-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an allowedValue object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/allowedvalue-get?view=graph-rest-1.0";
@@ -119,6 +121,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// Update the properties of an allowedValue object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/allowedvalue-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an allowedValue object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/allowedvalue-update?view=graph-rest-1.0";
@@ -172,13 +175,13 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
             return command;
         }
         /// <summary>
-        /// Instantiates a new AllowedValueItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AllowedValueItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AllowedValueItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues/{allowedValue%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AllowedValueItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AllowedValueItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AllowedValueItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues/{allowedValue%2Did}{?%24expand,%24select}", rawUrl) {
@@ -186,6 +189,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Delete navigation property allowedValues for directory
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -194,7 +198,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues/{allowedValue%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -202,6 +206,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Read the properties and relationships of an allowedValue object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,6 +223,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Update the properties of an allowedValue object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -228,7 +234,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         public RequestInformation ToPatchRequestInformation(AllowedValue body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues/{allowedValue%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

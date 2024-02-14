@@ -37,6 +37,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAndroidManagedAppProtectionsNavCommand() {
             var command = new Command("android-managed-app-protections");
             command.Description = "Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
@@ -62,6 +63,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDefaultManagedAppProtectionsNavCommand() {
             var command = new Command("default-managed-app-protections");
             command.Description = "Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
@@ -86,11 +88,12 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceAppManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-deviceappmanagement-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-deviceappmanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -132,6 +135,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIosManagedAppProtectionsNavCommand() {
             var command = new Command("ios-managed-app-protections");
             command.Description = "Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
@@ -157,6 +161,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedAppPoliciesNavCommand() {
             var command = new Command("managed-app-policies");
             command.Description = "Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.";
@@ -182,6 +187,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedAppRegistrationsNavCommand() {
             var command = new Command("managed-app-registrations");
             command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.";
@@ -208,6 +214,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedAppStatusesNavCommand() {
             var command = new Command("managed-app-statuses");
             command.Description = "Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.";
@@ -233,6 +240,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildManagedEBooksNavCommand() {
             var command = new Command("managed-e-books");
             command.Description = "Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.";
@@ -258,6 +266,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMdmWindowsInformationProtectionPoliciesNavCommand() {
             var command = new Command("mdm-windows-information-protection-policies");
             command.Description = "Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
@@ -283,6 +292,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMobileAppCategoriesNavCommand() {
             var command = new Command("mobile-app-categories");
             command.Description = "Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.";
@@ -308,6 +318,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMobileAppConfigurationsNavCommand() {
             var command = new Command("mobile-app-configurations");
             command.Description = "Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
@@ -333,6 +344,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMobileAppsNavCommand() {
             var command = new Command("mobile-apps");
             command.Description = "Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.";
@@ -373,11 +385,12 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Update the properties of a deviceAppManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -418,6 +431,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSyncMicrosoftStoreForBusinessAppsNavCommand() {
             var command = new Command("sync-microsoft-store-for-business-apps");
             command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
@@ -433,6 +447,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTargetedManagedAppConfigurationsNavCommand() {
             var command = new Command("targeted-managed-app-configurations");
             command.Description = "Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
@@ -458,6 +473,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVppTokensNavCommand() {
             var command = new Command("vpp-tokens");
             command.Description = "Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.";
@@ -483,6 +499,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWindowsInformationProtectionPoliciesNavCommand() {
             var command = new Command("windows-information-protection-policies");
             command.Description = "Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
@@ -506,13 +523,13 @@ namespace ApiSdk.DeviceAppManagement {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceAppManagementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceAppManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DeviceAppManagementRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DeviceAppManagementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DeviceAppManagementRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement{?%24expand,%24select}", rawUrl) {
@@ -520,6 +537,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Read properties and relationships of the deviceAppManagement object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -536,6 +554,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Update the properties of a deviceAppManagement object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -546,7 +565,7 @@ namespace ApiSdk.DeviceAppManagement {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceAppManagement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

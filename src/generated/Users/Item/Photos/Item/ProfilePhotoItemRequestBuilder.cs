@@ -23,6 +23,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
@@ -86,13 +88,13 @@ namespace ApiSdk.Users.Item.Photos.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ProfilePhotoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/photos/{profilePhoto%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ProfilePhotoItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ProfilePhotoItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/photos/{profilePhoto%2Did}{?%24select}", rawUrl) {
@@ -100,6 +102,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

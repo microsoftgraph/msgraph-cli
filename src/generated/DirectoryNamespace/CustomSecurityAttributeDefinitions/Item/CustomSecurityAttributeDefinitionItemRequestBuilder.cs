@@ -23,6 +23,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAllowedValuesNavCommand() {
             var command = new Command("allowed-values");
             command.Description = "Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.";
@@ -48,6 +49,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// <summary>
         /// Delete navigation property customSecurityAttributeDefinitions for directory
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property customSecurityAttributeDefinitions for directory";
@@ -82,6 +84,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// Read the properties and relationships of a customSecurityAttributeDefinition object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a customSecurityAttributeDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-get?view=graph-rest-1.0";
@@ -133,6 +136,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// Update the properties of a customSecurityAttributeDefinition object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a customSecurityAttributeDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-update?view=graph-rest-1.0";
@@ -180,13 +184,13 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CustomSecurityAttributeDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomSecurityAttributeDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CustomSecurityAttributeDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CustomSecurityAttributeDefinitionItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CustomSecurityAttributeDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CustomSecurityAttributeDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}{?%24expand,%24select}", rawUrl) {
@@ -194,6 +198,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// <summary>
         /// Delete navigation property customSecurityAttributeDefinitions for directory
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -202,7 +207,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -210,6 +215,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// <summary>
         /// Read the properties and relationships of a customSecurityAttributeDefinition object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -226,6 +232,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         /// <summary>
         /// Update the properties of a customSecurityAttributeDefinition object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +243,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
         public RequestInformation ToPatchRequestInformation(CustomSecurityAttributeDefinition body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

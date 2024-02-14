@@ -21,6 +21,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
@@ -65,13 +66,13 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Count {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CountRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/$count{?%24filter,%24search}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CountRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CountRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/$count{?%24filter,%24search}", rawUrl) {
@@ -79,6 +80,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

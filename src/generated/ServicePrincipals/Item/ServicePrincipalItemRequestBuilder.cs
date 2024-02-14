@@ -50,6 +50,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addKey method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddKeyNavCommand() {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
@@ -65,6 +66,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addPassword method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddPasswordNavCommand() {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
@@ -80,6 +82,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addTokenSigningCertificate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAddTokenSigningCertificateNavCommand() {
             var command = new Command("add-token-signing-certificate");
             command.Description = "Provides operations to call the addTokenSigningCertificate method.";
@@ -95,6 +98,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.";
@@ -119,6 +123,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppRoleAssignedToNavCommand() {
             var command = new Command("app-role-assigned-to");
             command.Description = "Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.";
@@ -144,6 +149,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAppRoleAssignmentsNavCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.";
@@ -169,6 +175,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -184,6 +191,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -199,6 +207,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildClaimsMappingPoliciesNavCommand() {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.";
@@ -224,6 +233,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreatedObjectsNavCommand() {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.";
@@ -249,6 +259,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDelegatedPermissionClassificationsNavCommand() {
             var command = new Command("delegated-permission-classifications");
             command.Description = "Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.";
@@ -275,6 +286,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// Delete a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0";
@@ -308,6 +320,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEndpointsNavCommand() {
             var command = new Command("endpoints");
             command.Description = "Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.";
@@ -333,6 +346,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFederatedIdentityCredentialsNavCommand() {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.";
@@ -359,6 +373,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0";
@@ -409,6 +424,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -424,6 +440,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -439,6 +456,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.";
@@ -464,6 +482,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.";
@@ -491,6 +510,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOauth2PermissionGrantsNavCommand() {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.";
@@ -515,6 +535,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOwnedObjectsNavCommand() {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.";
@@ -544,6 +565,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOwnersNavCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.";
@@ -573,6 +595,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Update entity in servicePrincipals
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in servicePrincipals";
@@ -622,6 +645,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the remoteDesktopSecurityConfiguration property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRemoteDesktopSecurityConfigurationNavCommand() {
             var command = new Command("remote-desktop-security-configuration");
             command.Description = "Provides operations to manage the remoteDesktopSecurityConfiguration property of the microsoft.graph.servicePrincipal entity.";
@@ -645,6 +669,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the removeKey method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRemoveKeyNavCommand() {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
@@ -660,6 +685,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the removePassword method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRemovePasswordNavCommand() {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
@@ -675,6 +701,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -690,6 +717,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSynchronizationNavCommand() {
             var command = new Command("synchronization");
             command.Description = "Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.";
@@ -716,6 +744,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.";
@@ -740,6 +769,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.";
@@ -764,6 +794,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.";
@@ -789,13 +820,13 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ServicePrincipalItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ServicePrincipalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ServicePrincipalItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ServicePrincipalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ServicePrincipalItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24expand,%24select}", rawUrl) {
@@ -803,6 +834,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Delete a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -811,7 +843,7 @@ namespace ApiSdk.ServicePrincipals.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -819,6 +851,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -835,6 +868,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Update entity in servicePrincipals
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -845,7 +879,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

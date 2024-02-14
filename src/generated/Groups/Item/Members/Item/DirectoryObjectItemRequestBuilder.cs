@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphApplicationByIdNavCommand() {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
@@ -39,6 +40,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphDeviceByIdNavCommand() {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
@@ -54,6 +56,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
@@ -69,6 +72,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphOrgContactByIdNavCommand() {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
@@ -84,6 +88,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphServicePrincipalByIdNavCommand() {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -99,6 +104,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGraphUserByIdNavCommand() {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
@@ -114,6 +120,7 @@ namespace ApiSdk.Groups.Item.Members.Item {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of group entities.";
@@ -127,13 +134,13 @@ namespace ApiSdk.Groups.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/members/{directoryObject%2Did}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DirectoryObjectItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/members/{directoryObject%2Did}", rawUrl) {

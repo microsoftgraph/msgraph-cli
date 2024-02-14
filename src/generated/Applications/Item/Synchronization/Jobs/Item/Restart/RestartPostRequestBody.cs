@@ -18,7 +18,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
         public SynchronizationJobRestartCriteria Criteria { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new restartPostRequestBody and sets the default values.
+        /// Instantiates a new <see cref="RestartPostRequestBody"/> and sets the default values.
         /// </summary>
         public RestartPostRequestBody() {
             AdditionalData = new Dictionary<string, object>();
@@ -26,6 +26,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="RestartPostRequestBody"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static RestartPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -34,6 +35,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"criteria", n => { Criteria = n.GetObjectValue<SynchronizationJobRestartCriteria>(SynchronizationJobRestartCriteria.CreateFromDiscriminatorValue); } },

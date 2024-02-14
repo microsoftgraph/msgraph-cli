@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.AddCopyFromContentTypeHub {
         /// Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a 'push everywhere' to 'pull as needed' approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.AddCopyFromContentTypeHub {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AddCopyFromContentTypeHubRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddCopyFromContentTypeHubRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AddCopyFromContentTypeHubRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/addCopyFromContentTypeHub", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AddCopyFromContentTypeHubRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddCopyFromContentTypeHubRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AddCopyFromContentTypeHubRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/addCopyFromContentTypeHub", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.AddCopyFromContentTypeHub {
         /// <summary>
         /// Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

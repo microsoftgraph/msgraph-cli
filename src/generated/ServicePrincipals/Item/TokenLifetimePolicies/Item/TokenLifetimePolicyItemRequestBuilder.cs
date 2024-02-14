@@ -20,48 +20,9 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
     /// </summary>
     public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a tokenLifetimePolicy object from a service principal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete-tokenlifetimepolicies?view=graph-rest-1.0" />
-        /// </summary>
-        public Command BuildDeleteCommand() {
-            var command = new Command("delete");
-            command.Description = "Remove a tokenLifetimePolicy object from a service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete-tokenlifetimepolicies?view=graph-rest-1.0";
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
-            };
-            servicePrincipalIdOption.IsRequired = true;
-            command.AddOption(servicePrincipalIdOption);
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
-            };
-            tokenLifetimePolicyIdOption.IsRequired = true;
-            command.AddOption(tokenLifetimePolicyIdOption);
-            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
-                var tokenLifetimePolicyId = invocationContext.ParseResult.GetValueForOption(tokenLifetimePolicyIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                var requestInfo = ToDeleteRequestInformation(q => {
-                });
-                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
-                if (tokenLifetimePolicyId is not null) requestInfo.PathParameters.Add("tokenLifetimePolicy%2Did", tokenLifetimePolicyId);
-                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The tokenLifetimePolicies assigned to this service principal.";
@@ -116,36 +77,21 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TokenLifetimePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TokenLifetimePolicyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TokenLifetimePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Remove a tokenLifetimePolicy object from a service principal.
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
-#endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            return requestInfo;
-        }
-        /// <summary>
         /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

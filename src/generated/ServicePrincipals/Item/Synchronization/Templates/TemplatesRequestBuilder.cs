@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// <summary>
         /// Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,6 +38,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,6 +54,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// <summary>
         /// Create new navigation property to templates for servicePrincipals
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to templates for servicePrincipals";
@@ -102,6 +105,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// List the synchronization templates associated with a given application or service principal.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-list-templates?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List the synchronization templates associated with a given application or service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-templates?view=graph-rest-1.0";
@@ -198,13 +202,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TemplatesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/templates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TemplatesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/templates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -212,6 +216,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// <summary>
         /// List the synchronization templates associated with a given application or service principal.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -228,6 +233,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         /// <summary>
         /// Create new navigation property to templates for servicePrincipals
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +244,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates {
         public RequestInformation ToPostRequestInformation(SynchronizationTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/templates", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

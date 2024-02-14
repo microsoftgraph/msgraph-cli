@@ -24,6 +24,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// Removes (unpins) a tab from the specified channel within a team. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-delete-tabs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Removes (unpins) a tab from the specified channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-delete-tabs?view=graph-rest-1.0";
@@ -76,6 +77,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// Retrieve the properties and relationships of the specified tab in a channel within a team. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-tabs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of the specified tab in a channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-tabs?view=graph-rest-1.0";
@@ -145,6 +147,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// Update the properties of the specified tab.This can be used to configure the content of the tab.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-patch-tabs?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of the specified tab.This can be used to configure the content of the tab.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-patch-tabs?view=graph-rest-1.0";
@@ -212,6 +215,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// <summary>
         /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTeamsAppNavCommand() {
             var command = new Command("teams-app");
             command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.";
@@ -225,13 +229,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TeamsTabItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsTabItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TeamsTabItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TeamsTabItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TeamsTabItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TeamsTabItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", rawUrl) {
@@ -239,6 +243,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// <summary>
         /// Removes (unpins) a tab from the specified channel within a team. 
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,7 +252,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -255,6 +260,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// <summary>
         /// Retrieve the properties and relationships of the specified tab in a channel within a team. 
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -271,6 +277,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         /// <summary>
         /// Update the properties of the specified tab.This can be used to configure the content of the tab.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +288,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item {
         public RequestInformation ToPatchRequestInformation(TeamsTab body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/tabs/{teamsTab%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

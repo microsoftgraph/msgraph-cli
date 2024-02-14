@@ -23,6 +23,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftG
         /// Create a new version of the workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Create a new version of the workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-createnewversion?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftG
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/microsoft.graph.identityGovernance.createNewVersion", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/microsoft.graph.identityGovernance.createNewVersion", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftG
         /// <summary>
         /// Create a new version of the workflow object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -28,6 +28,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -44,6 +45,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to call the copyToSection method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCopyToSectionNavCommand() {
             var command = new Command("copy-to-section");
             command.Description = "Provides operations to call the copyToSection method.";
@@ -59,6 +61,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Delete navigation property pages for users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property pages for users";
@@ -110,6 +113,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// The collection of pages in the section.  Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of pages in the section.  Read-only. Nullable.";
@@ -178,6 +182,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOnenotePatchContentNavCommand() {
             var command = new Command("onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
@@ -193,6 +198,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.";
@@ -208,6 +214,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildParentSectionNavCommand() {
             var command = new Command("parent-section");
             command.Description = "Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.";
@@ -223,6 +230,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Update the navigation property pages in users
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property pages in users";
@@ -290,6 +298,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Provides operations to call the preview method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPreviewNavCommand() {
             var command = new Command("preview");
             command.Description = "Provides operations to call the preview method.";
@@ -303,13 +312,13 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
             return command;
         }
         /// <summary>
-        /// Instantiates a new OnenotePageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenotePageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public OnenotePageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new OnenotePageItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="OnenotePageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public OnenotePageItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}{?%24expand,%24select}", rawUrl) {
@@ -317,6 +326,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Delete navigation property pages for users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -325,7 +335,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -333,6 +343,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// The collection of pages in the section.  Read-only. Nullable.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -349,6 +360,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         /// <summary>
         /// Update the navigation property pages in users
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -359,7 +371,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item 
         public RequestInformation ToPatchRequestInformation(OnenotePage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

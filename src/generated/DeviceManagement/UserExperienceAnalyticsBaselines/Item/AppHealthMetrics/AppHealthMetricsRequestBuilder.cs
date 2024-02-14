@@ -22,6 +22,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealt
         /// <summary>
         /// The scores and insights for the application health metrics.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The scores and insights for the application health metrics.";
@@ -70,13 +71,13 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealt
             return command;
         }
         /// <summary>
-        /// Instantiates a new AppHealthMetricsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppHealthMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppHealthMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AppHealthMetricsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AppHealthMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AppHealthMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/appHealthMetrics{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.AppHealt
         /// <summary>
         /// The scores and insights for the application health metrics.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

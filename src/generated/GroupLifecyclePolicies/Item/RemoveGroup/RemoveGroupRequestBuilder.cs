@@ -22,6 +22,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
         /// Removes a group from a lifecycle policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Removes a group from a lifecycle policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-removegroup?view=graph-rest-1.0";
@@ -69,13 +70,13 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
             return command;
         }
         /// <summary>
-        /// Instantiates a new RemoveGroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemoveGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public RemoveGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}/removeGroup", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new RemoveGroupRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="RemoveGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public RemoveGroupRequestBuilder(string rawUrl) : base("{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}/removeGroup", rawUrl) {
@@ -83,6 +84,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup {
         /// <summary>
         /// Removes a group from a lifecycle policy.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

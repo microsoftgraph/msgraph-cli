@@ -21,6 +21,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         /// <summary>
         /// Download Apple push notification certificate signing request
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Download Apple push notification certificate signing request";
@@ -49,13 +50,13 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
             return command;
         }
         /// <summary>
-        /// Instantiates a new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="DownloadApplePushNotificationCertificateSigningRequestRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/applePushNotificationCertificate/downloadApplePushNotificationCertificateSigningRequest()", rawUrl) {
@@ -63,6 +64,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
         /// <summary>
         /// Download Apple push notification certificate signing request
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

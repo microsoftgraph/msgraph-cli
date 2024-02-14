@@ -23,6 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword {
         /// Add a strong password or secret to a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add a strong password or secret to a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0";
@@ -70,13 +71,13 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AddPasswordRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AddPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AddPasswordRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AddPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword {
         /// <summary>
         /// Add a strong password or secret to a servicePrincipal object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

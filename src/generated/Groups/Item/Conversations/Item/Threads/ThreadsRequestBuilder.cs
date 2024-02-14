@@ -24,6 +24,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// <summary>
         /// Provides operations to manage the threads property of the microsoft.graph.conversation entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,6 +39,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -54,6 +56,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-post-threads?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-post-threads?view=graph-rest-1.0";
@@ -110,6 +113,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-list-threads?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get all the threads in a group conversation. Note: You can also get all the threads of a group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-list-threads?view=graph-rest-1.0";
@@ -206,13 +210,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ThreadsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ThreadsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ThreadsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ThreadsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ThreadsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ThreadsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
@@ -220,6 +224,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// <summary>
         /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -236,6 +241,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         /// <summary>
         /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +252,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         public RequestInformation ToPostRequestInformation(ConversationThread body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}/threads", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

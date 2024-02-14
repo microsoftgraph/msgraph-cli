@@ -22,6 +22,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
         /// <summary>
         /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
@@ -33,6 +34,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
+            var pathOption = new Option<string>("--path", description: "Usage: path='{path}'") {
+            };
+            pathOption.IsRequired = true;
+            command.AddOption(pathOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -77,6 +82,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var path = invocationContext.ParseResult.GetValueForOption(pathOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -105,6 +111,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (path is not null) requestInfo.PathParameters.Add("path", path);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -124,13 +131,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ItemsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ItemsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ItemsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -138,6 +145,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Items {
         /// <summary>
         /// Used to address any item contained in this site. This collection can&apos;t be enumerated.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

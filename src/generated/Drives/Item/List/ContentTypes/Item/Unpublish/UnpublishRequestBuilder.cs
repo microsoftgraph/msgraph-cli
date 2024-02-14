@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
         /// Unpublish a [contentType][] from a content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UnpublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UnpublishRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UnpublishRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/unpublish", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
         /// <summary>
         /// Unpublish a [contentType][] from a content type hub site.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

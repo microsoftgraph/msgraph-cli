@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates what actions the sender may take in response to the policy violation. Supported values are: NoneAllowFalsePositiveOverride -- Allows the sender to declare the policyViolation to be an error in the DLP app and its rules, and allow readers to see the message again if the dlpAction hides it.AllowOverrideWithoutJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, without needing to provide an explanation for doing so. AllowOverrideWithJustification -- Allows the sender to override the DLP violation and allow readers to see the message again if the dlpAction hides it, after providing an explanation for doing so.AllowOverrideWithoutJustification and AllowOverrideWithJustification are mutually exclusive.</summary>
         public ChatMessagePolicyViolationVerdictDetailsTypes? VerdictDetails { get; set; }
         /// <summary>
-        /// Instantiates a new chatMessagePolicyViolation and sets the default values.
+        /// Instantiates a new <see cref="ChatMessagePolicyViolation"/> and sets the default values.
         /// </summary>
         public ChatMessagePolicyViolation() {
             AdditionalData = new Dictionary<string, object>();
@@ -47,6 +47,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
+        /// <returns>A <cref="ChatMessagePolicyViolation"></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static ChatMessagePolicyViolation CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -55,6 +56,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
+        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"dlpAction", n => { DlpAction = n.GetEnumValue<ChatMessagePolicyViolationDlpActionTypes>(); } },

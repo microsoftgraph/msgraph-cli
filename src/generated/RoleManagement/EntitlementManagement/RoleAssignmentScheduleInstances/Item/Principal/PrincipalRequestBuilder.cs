@@ -22,6 +22,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// <summary>
         /// The principal that&apos;s getting a role assignment or role eligibility through the request.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The principal that's getting a role assignment or role eligibility through the request.";
@@ -70,13 +71,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return command;
         }
         /// <summary>
-        /// Instantiates a new PrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public PrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/principal{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new PrincipalRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}/principal{?%24expand,%24select}", rawUrl) {
@@ -84,6 +85,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// <summary>
         /// The principal that&apos;s getting a role assignment or role eligibility through the request.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

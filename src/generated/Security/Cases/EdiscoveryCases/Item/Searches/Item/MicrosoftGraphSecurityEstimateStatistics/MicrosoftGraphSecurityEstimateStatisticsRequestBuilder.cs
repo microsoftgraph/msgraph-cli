@@ -22,6 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGrap
         /// Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-estimatestatistics?view=graph-rest-1.0";
@@ -52,13 +53,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGrap
             return command;
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityEstimateStatisticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/microsoft.graph.security.estimateStatistics", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new MicrosoftGraphSecurityEstimateStatisticsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="MicrosoftGraphSecurityEstimateStatisticsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/microsoft.graph.security.estimateStatistics", rawUrl) {
@@ -66,6 +67,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGrap
         /// <summary>
         /// Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

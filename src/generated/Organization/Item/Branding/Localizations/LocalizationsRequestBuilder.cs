@@ -24,6 +24,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// <summary>
         /// Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -43,6 +44,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -59,6 +61,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0";
@@ -109,6 +112,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// Retrieve all localization branding objects, including the default branding.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve all localization branding objects, including the default branding.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
@@ -205,13 +209,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             return command;
         }
         /// <summary>
-        /// Instantiates a new LocalizationsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LocalizationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public LocalizationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new LocalizationsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="LocalizationsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public LocalizationsRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -219,6 +223,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// <summary>
         /// Retrieve all localization branding objects, including the default branding.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,6 +240,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         /// <summary>
         /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +251,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         public RequestInformation ToPostRequestInformation(OrganizationalBrandingLocalization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/organization/{organization%2Did}/branding/localizations", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

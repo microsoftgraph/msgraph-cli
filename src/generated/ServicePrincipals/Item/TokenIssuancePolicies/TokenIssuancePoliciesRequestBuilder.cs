@@ -24,6 +24,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new TokenIssuancePolicyItemRequestBuilder(PathParameters);
@@ -33,6 +34,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -48,6 +50,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
         /// <summary>
         /// The tokenIssuancePolicies assigned to this service principal.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The tokenIssuancePolicies assigned to this service principal.";
@@ -144,13 +147,13 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// Instantiates a new TokenIssuancePoliciesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenIssuancePoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public TokenIssuancePoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/tokenIssuancePolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new TokenIssuancePoliciesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="TokenIssuancePoliciesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public TokenIssuancePoliciesRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/tokenIssuancePolicies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -158,6 +161,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies {
         /// <summary>
         /// The tokenIssuancePolicies assigned to this service principal.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

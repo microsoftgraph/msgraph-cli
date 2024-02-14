@@ -24,6 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDefaultPagesNavCommand() {
             var command = new Command("default-pages");
             command.Description = "Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
@@ -49,6 +50,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Delete navigation property languages for identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property languages for identity";
@@ -89,6 +91,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0";
@@ -145,6 +148,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOverridesPagesNavCommand() {
             var command = new Command("overrides-pages");
             command.Description = "Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
@@ -170,6 +174,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Update the navigation property languages in identity
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property languages in identity";
@@ -223,13 +228,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new UserFlowLanguageConfigurationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserFlowLanguageConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new UserFlowLanguageConfigurationItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="UserFlowLanguageConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public UserFlowLanguageConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
@@ -237,6 +242,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Delete navigation property languages for identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -245,7 +251,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -253,6 +259,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Read the properties and relationships of a userFlowLanguageConfiguration object. These objects represent a language available in a user flow. Note: Language customization is enabled by default in Microsoft Entra user flows.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -269,6 +276,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Update the navigation property languages in identity
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +287,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         public RequestInformation ToPatchRequestInformation(UserFlowLanguageConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages/{userFlowLanguageConfiguration%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

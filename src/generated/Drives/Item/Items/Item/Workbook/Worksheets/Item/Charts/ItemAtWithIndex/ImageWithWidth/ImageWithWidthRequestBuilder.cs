@@ -21,6 +21,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Invoke function image
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function image";
@@ -36,6 +37,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var widthOption = new Option<int?>("--width", description: "Usage: width={width}") {
             };
             widthOption.IsRequired = true;
@@ -48,6 +53,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var workbookWorksheetId = invocationContext.ParseResult.GetValueForOption(workbookWorksheetIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var width = invocationContext.ParseResult.GetValueForOption(widthOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -60,6 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 if (width is not null) requestInfo.PathParameters.Add("width", width);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -73,13 +80,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
             return command;
         }
         /// <summary>
-        /// Instantiates a new ImageWithWidthRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ImageWithWidthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ImageWithWidthRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})/image(width={width})", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ImageWithWidthRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ImageWithWidthRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ImageWithWidthRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})/image(width={width})", rawUrl) {
@@ -87,6 +94,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Invoke function image
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

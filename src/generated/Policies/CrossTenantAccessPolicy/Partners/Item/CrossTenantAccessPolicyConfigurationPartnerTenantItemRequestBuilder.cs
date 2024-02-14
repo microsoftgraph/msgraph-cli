@@ -24,6 +24,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0";
@@ -58,6 +59,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// Read the properties and relationships of a partner-specific configuration.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0";
@@ -108,6 +110,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// <summary>
         /// Provides operations to manage the identitySynchronization property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIdentitySynchronizationNavCommand() {
             var command = new Command("identity-synchronization");
             command.Description = "Provides operations to manage the identitySynchronization property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.";
@@ -126,6 +129,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// Update the properties of a partner-specific configuration.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0";
@@ -173,13 +177,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}{?%24expand,%24select}", rawUrl) {
@@ -187,6 +191,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// <summary>
         /// Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -195,7 +200,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -203,6 +208,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// <summary>
         /// Read the properties and relationships of a partner-specific configuration.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,6 +225,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         /// <summary>
         /// Update the properties of a partner-specific configuration.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +236,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         public RequestInformation ToPatchRequestInformation(CrossTenantAccessPolicyConfigurationPartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/crossTenantAccessPolicy/partners/{crossTenantAccessPolicyConfigurationPartner%2DtenantId}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

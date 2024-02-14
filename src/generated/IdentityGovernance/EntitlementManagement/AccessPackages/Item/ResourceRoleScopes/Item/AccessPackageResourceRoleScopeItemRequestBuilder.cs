@@ -25,6 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0";
@@ -64,6 +65,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// The resource roles and scopes in this access package.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The resource roles and scopes in this access package.";
@@ -120,6 +122,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// Update the navigation property resourceRoleScopes in identityGovernance
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property resourceRoleScopes in identityGovernance";
@@ -175,6 +178,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// Provides operations to manage the role property of the microsoft.graph.accessPackageResourceRoleScope entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoleNavCommand() {
             var command = new Command("role");
             command.Description = "Provides operations to manage the role property of the microsoft.graph.accessPackageResourceRoleScope entity.";
@@ -198,6 +202,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// Provides operations to manage the scope property of the microsoft.graph.accessPackageResourceRoleScope entity.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildScopeNavCommand() {
             var command = new Command("scope");
             command.Description = "Provides operations to manage the scope property of the microsoft.graph.accessPackageResourceRoleScope entity.";
@@ -219,13 +224,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
             return command;
         }
         /// <summary>
-        /// Instantiates a new AccessPackageResourceRoleScopeItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageResourceRoleScopeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AccessPackageResourceRoleScopeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AccessPackageResourceRoleScopeItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AccessPackageResourceRoleScopeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AccessPackageResourceRoleScopeItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}{?%24expand,%24select}", rawUrl) {
@@ -233,6 +238,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -249,6 +255,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// The resource roles and scopes in this access package.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -265,6 +272,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         /// <summary>
         /// Update the navigation property resourceRoleScopes in identityGovernance
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +283,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         public RequestInformation ToPatchRequestInformation(AccessPackageResourceRoleScope body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/resourceRoleScopes/{accessPackageResourceRoleScope%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

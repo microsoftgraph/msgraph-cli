@@ -22,6 +22,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// <summary>
         /// Delete navigation property authenticationFlowsPolicy for policies
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationFlowsPolicy for policies";
@@ -50,6 +51,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// Read the properties and relationships of an authenticationFlowsPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an authenticationFlowsPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0";
@@ -95,6 +97,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// Update the selfServiceSignUp property of an authenticationFlowsPolicy object. The properties id, type, and description cannot be modified.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationflowspolicy-update?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the selfServiceSignUp property of an authenticationFlowsPolicy object. The properties id, type, and description cannot be modified.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationflowspolicy-update?view=graph-rest-1.0";
@@ -136,13 +139,13 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
             return command;
         }
         /// <summary>
-        /// Instantiates a new AuthenticationFlowsPolicyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AuthenticationFlowsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new AuthenticationFlowsPolicyRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="AuthenticationFlowsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public AuthenticationFlowsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/policies/authenticationFlowsPolicy{?%24expand,%24select}", rawUrl) {
@@ -150,6 +153,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// <summary>
         /// Delete navigation property authenticationFlowsPolicy for policies
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -158,7 +162,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/authenticationFlowsPolicy", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -166,6 +170,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// <summary>
         /// Read the properties and relationships of an authenticationFlowsPolicy object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,6 +187,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         /// <summary>
         /// Update the selfServiceSignUp property of an authenticationFlowsPolicy object. The properties id, type, and description cannot be modified.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -192,7 +198,7 @@ namespace ApiSdk.Policies.AuthenticationFlowsPolicy {
         public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationFlowsPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/authenticationFlowsPolicy", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

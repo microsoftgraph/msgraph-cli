@@ -21,6 +21,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod {
         /// <summary>
         /// Invoke function getOneDriveUsageAccountDetail
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOneDriveUsageAccountDetail";
@@ -57,13 +58,13 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GetOneDriveUsageAccountDetailWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOneDriveUsageAccountDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public GetOneDriveUsageAccountDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveUsageAccountDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GetOneDriveUsageAccountDetailWithPeriodRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="GetOneDriveUsageAccountDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public GetOneDriveUsageAccountDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOneDriveUsageAccountDetail(period='{period}')", rawUrl) {
@@ -71,6 +72,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod {
         /// <summary>
         /// Invoke function getOneDriveUsageAccountDetail
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

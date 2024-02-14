@@ -23,6 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
         /// Retrieve a list of tablecolumn objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0";
@@ -34,6 +35,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -78,6 +83,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -106,6 +112,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -128,6 +135,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
         /// Use this API to create a new TableColumn.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
@@ -139,6 +147,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
+            var indexOption = new Option<int?>("--index", description: "Usage: index={index}") {
+            };
+            indexOption.IsRequired = true;
+            command.AddOption(indexOption);
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -150,6 +162,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var index = invocationContext.ParseResult.GetValueForOption(indexOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -168,6 +181,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (index is not null) requestInfo.PathParameters.Add("index", index);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
@@ -181,13 +195,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
             return command;
         }
         /// <summary>
-        /// Instantiates a new ColumnsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/columns{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ColumnsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ColumnsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ColumnsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/columns{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -195,6 +209,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
         /// <summary>
         /// Retrieve a list of tablecolumn objects.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -211,6 +226,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
         /// <summary>
         /// Use this API to create a new TableColumn.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -221,7 +237,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Columns 
         public RequestInformation ToPostRequestInformation(WorkbookTableColumn body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})/columns", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

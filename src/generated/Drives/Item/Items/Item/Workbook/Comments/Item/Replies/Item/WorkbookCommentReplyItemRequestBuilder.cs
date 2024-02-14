@@ -22,6 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// <summary>
         /// Delete navigation property replies for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property replies for drives";
@@ -74,6 +75,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// Retrieve the properties and relationships of workbookCommentReply object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbookcommentreply-get?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of workbookCommentReply object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookcommentreply-get?view=graph-rest-1.0";
@@ -142,6 +144,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// <summary>
         /// Update the navigation property replies in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property replies in drives";
@@ -207,13 +210,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             return command;
         }
         /// <summary>
-        /// Instantiates a new WorkbookCommentReplyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorkbookCommentReplyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkbookCommentReplyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/{workbookCommentReply%2Did}{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new WorkbookCommentReplyItemRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="WorkbookCommentReplyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public WorkbookCommentReplyItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/{workbookCommentReply%2Did}{?%24expand,%24select}", rawUrl) {
@@ -221,6 +224,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// <summary>
         /// Delete navigation property replies for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -229,7 +233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/{workbookCommentReply%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -237,6 +241,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// <summary>
         /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -253,6 +258,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         /// <summary>
         /// Update the navigation property replies in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
         public RequestInformation ToPatchRequestInformation(WorkbookCommentReply body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments/{workbookComment%2Did}/replies/{workbookCommentReply%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

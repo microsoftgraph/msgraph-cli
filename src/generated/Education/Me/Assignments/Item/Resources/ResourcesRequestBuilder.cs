@@ -24,6 +24,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
         /// </summary>
+        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new EducationAssignmentResourceItemRequestBuilder(PathParameters);
@@ -35,6 +36,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,6 +53,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-post-resource?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-post-resource?view=graph-rest-1.0";
@@ -101,6 +104,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0" />
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0";
@@ -197,13 +201,13 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Instantiates a new ResourcesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ResourcesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ResourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/resources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new ResourcesRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="ResourcesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ResourcesRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/resources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
@@ -211,6 +215,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// <summary>
         /// Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -227,6 +232,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         /// <summary>
         /// Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an @odata.type property to indicate which type of resource is being created.
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +243,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         public RequestInformation ToPostRequestInformation(EducationAssignmentResource body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/education/me/assignments/{educationAssignment%2Did}/resources", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -388,6 +388,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the abs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAbsNavCommand() {
             var command = new Command("abs");
             command.Description = "Provides operations to call the abs method.";
@@ -403,6 +404,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the accrIntM method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAccrIntMNavCommand() {
             var command = new Command("accr-int-m");
             command.Description = "Provides operations to call the accrIntM method.";
@@ -418,6 +420,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the accrInt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAccrIntNavCommand() {
             var command = new Command("accr-int");
             command.Description = "Provides operations to call the accrInt method.";
@@ -433,6 +436,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the acosh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcoshNavCommand() {
             var command = new Command("acosh");
             command.Description = "Provides operations to call the acosh method.";
@@ -448,6 +452,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the acos method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcosNavCommand() {
             var command = new Command("acos");
             command.Description = "Provides operations to call the acos method.";
@@ -463,6 +468,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the acoth method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcothNavCommand() {
             var command = new Command("acoth");
             command.Description = "Provides operations to call the acoth method.";
@@ -478,6 +484,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the acot method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAcotNavCommand() {
             var command = new Command("acot");
             command.Description = "Provides operations to call the acot method.";
@@ -493,6 +500,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the amorDegrc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAmorDegrcNavCommand() {
             var command = new Command("amor-degrc");
             command.Description = "Provides operations to call the amorDegrc method.";
@@ -508,6 +516,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the amorLinc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAmorLincNavCommand() {
             var command = new Command("amor-linc");
             command.Description = "Provides operations to call the amorLinc method.";
@@ -523,6 +532,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the and method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAndNavCommand() {
             var command = new Command("and");
             command.Description = "Provides operations to call the and method.";
@@ -538,6 +548,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the arabic method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildArabicNavCommand() {
             var command = new Command("arabic");
             command.Description = "Provides operations to call the arabic method.";
@@ -553,6 +564,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the areas method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAreasNavCommand() {
             var command = new Command("areas");
             command.Description = "Provides operations to call the areas method.";
@@ -568,6 +580,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the asc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAscNavCommand() {
             var command = new Command("asc");
             command.Description = "Provides operations to call the asc method.";
@@ -583,6 +596,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the asinh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAsinhNavCommand() {
             var command = new Command("asinh");
             command.Description = "Provides operations to call the asinh method.";
@@ -598,6 +612,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the asin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAsinNavCommand() {
             var command = new Command("asin");
             command.Description = "Provides operations to call the asin method.";
@@ -613,6 +628,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the atan2 method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAtan2NavCommand() {
             var command = new Command("atan2");
             command.Description = "Provides operations to call the atan2 method.";
@@ -628,6 +644,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the atanh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAtanhNavCommand() {
             var command = new Command("atanh");
             command.Description = "Provides operations to call the atanh method.";
@@ -643,6 +660,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the atan method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAtanNavCommand() {
             var command = new Command("atan");
             command.Description = "Provides operations to call the atan method.";
@@ -658,6 +676,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the aveDev method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAveDevNavCommand() {
             var command = new Command("ave-dev");
             command.Description = "Provides operations to call the aveDev method.";
@@ -673,6 +692,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the averageA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAverageANavCommand() {
             var command = new Command("average-a");
             command.Description = "Provides operations to call the averageA method.";
@@ -688,6 +708,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the averageIf method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAverageIfNavCommand() {
             var command = new Command("average-if");
             command.Description = "Provides operations to call the averageIf method.";
@@ -703,6 +724,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the averageIfs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAverageIfsNavCommand() {
             var command = new Command("average-ifs");
             command.Description = "Provides operations to call the averageIfs method.";
@@ -718,6 +740,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the average method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildAverageNavCommand() {
             var command = new Command("average");
             command.Description = "Provides operations to call the average method.";
@@ -733,6 +756,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bahtText method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBahtTextNavCommand() {
             var command = new Command("baht-text");
             command.Description = "Provides operations to call the bahtText method.";
@@ -748,6 +772,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the base method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBaseNavCommand() {
             var command = new Command("base");
             command.Description = "Provides operations to call the base method.";
@@ -763,6 +788,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the besselI method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBesselINavCommand() {
             var command = new Command("bessel-i");
             command.Description = "Provides operations to call the besselI method.";
@@ -778,6 +804,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the besselJ method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBesselJNavCommand() {
             var command = new Command("bessel-j");
             command.Description = "Provides operations to call the besselJ method.";
@@ -793,6 +820,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the besselK method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBesselKNavCommand() {
             var command = new Command("bessel-k");
             command.Description = "Provides operations to call the besselK method.";
@@ -808,6 +836,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the besselY method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBesselYNavCommand() {
             var command = new Command("bessel-y");
             command.Description = "Provides operations to call the besselY method.";
@@ -823,6 +852,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the beta_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBeta_DistNavCommand() {
             var command = new Command("beta_-dist");
             command.Description = "Provides operations to call the beta_Dist method.";
@@ -838,6 +868,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the beta_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBeta_InvNavCommand() {
             var command = new Command("beta_-inv");
             command.Description = "Provides operations to call the beta_Inv method.";
@@ -853,6 +884,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bin2Dec method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBin2DecNavCommand() {
             var command = new Command("bin2-dec");
             command.Description = "Provides operations to call the bin2Dec method.";
@@ -868,6 +900,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bin2Hex method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBin2HexNavCommand() {
             var command = new Command("bin2-hex");
             command.Description = "Provides operations to call the bin2Hex method.";
@@ -883,6 +916,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bin2Oct method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBin2OctNavCommand() {
             var command = new Command("bin2-oct");
             command.Description = "Provides operations to call the bin2Oct method.";
@@ -898,6 +932,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the binom_Dist_Range method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBinom_Dist_RangeNavCommand() {
             var command = new Command("binom_-dist_-range");
             command.Description = "Provides operations to call the binom_Dist_Range method.";
@@ -913,6 +948,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the binom_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBinom_DistNavCommand() {
             var command = new Command("binom_-dist");
             command.Description = "Provides operations to call the binom_Dist method.";
@@ -928,6 +964,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the binom_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBinom_InvNavCommand() {
             var command = new Command("binom_-inv");
             command.Description = "Provides operations to call the binom_Inv method.";
@@ -943,6 +980,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bitand method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBitandNavCommand() {
             var command = new Command("bitand");
             command.Description = "Provides operations to call the bitand method.";
@@ -958,6 +996,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bitlshift method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBitlshiftNavCommand() {
             var command = new Command("bitlshift");
             command.Description = "Provides operations to call the bitlshift method.";
@@ -973,6 +1012,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bitor method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBitorNavCommand() {
             var command = new Command("bitor");
             command.Description = "Provides operations to call the bitor method.";
@@ -988,6 +1028,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bitrshift method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBitrshiftNavCommand() {
             var command = new Command("bitrshift");
             command.Description = "Provides operations to call the bitrshift method.";
@@ -1003,6 +1044,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the bitxor method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildBitxorNavCommand() {
             var command = new Command("bitxor");
             command.Description = "Provides operations to call the bitxor method.";
@@ -1018,6 +1060,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ceiling_Math method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCeiling_MathNavCommand() {
             var command = new Command("ceiling_-math");
             command.Description = "Provides operations to call the ceiling_Math method.";
@@ -1033,6 +1076,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ceiling_Precise method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCeiling_PreciseNavCommand() {
             var command = new Command("ceiling_-precise");
             command.Description = "Provides operations to call the ceiling_Precise method.";
@@ -1048,6 +1092,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the char method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCharNavCommand() {
             var command = new Command("char");
             command.Description = "Provides operations to call the char method.";
@@ -1063,6 +1108,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the chiSq_Dist_RT method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChiSq_Dist_RTNavCommand() {
             var command = new Command("chi-sq_-dist_-r-t");
             command.Description = "Provides operations to call the chiSq_Dist_RT method.";
@@ -1078,6 +1124,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the chiSq_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChiSq_DistNavCommand() {
             var command = new Command("chi-sq_-dist");
             command.Description = "Provides operations to call the chiSq_Dist method.";
@@ -1093,6 +1140,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the chiSq_Inv_RT method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChiSq_Inv_RTNavCommand() {
             var command = new Command("chi-sq_-inv_-r-t");
             command.Description = "Provides operations to call the chiSq_Inv_RT method.";
@@ -1108,6 +1156,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the chiSq_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChiSq_InvNavCommand() {
             var command = new Command("chi-sq_-inv");
             command.Description = "Provides operations to call the chiSq_Inv method.";
@@ -1123,6 +1172,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the choose method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildChooseNavCommand() {
             var command = new Command("choose");
             command.Description = "Provides operations to call the choose method.";
@@ -1138,6 +1188,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the clean method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCleanNavCommand() {
             var command = new Command("clean");
             command.Description = "Provides operations to call the clean method.";
@@ -1153,6 +1204,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the code method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCodeNavCommand() {
             var command = new Command("code");
             command.Description = "Provides operations to call the code method.";
@@ -1168,6 +1220,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the columns method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to call the columns method.";
@@ -1183,6 +1236,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the combina method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCombinaNavCommand() {
             var command = new Command("combina");
             command.Description = "Provides operations to call the combina method.";
@@ -1198,6 +1252,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the combin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCombinNavCommand() {
             var command = new Command("combin");
             command.Description = "Provides operations to call the combin method.";
@@ -1213,6 +1268,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the complex method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildComplexNavCommand() {
             var command = new Command("complex");
             command.Description = "Provides operations to call the complex method.";
@@ -1228,6 +1284,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the concatenate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildConcatenateNavCommand() {
             var command = new Command("concatenate");
             command.Description = "Provides operations to call the concatenate method.";
@@ -1243,6 +1300,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the confidence_Norm method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildConfidence_NormNavCommand() {
             var command = new Command("confidence_-norm");
             command.Description = "Provides operations to call the confidence_Norm method.";
@@ -1258,6 +1316,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the confidence_T method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildConfidence_TNavCommand() {
             var command = new Command("confidence_-t");
             command.Description = "Provides operations to call the confidence_T method.";
@@ -1273,6 +1332,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the convert method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildConvertNavCommand() {
             var command = new Command("convert");
             command.Description = "Provides operations to call the convert method.";
@@ -1288,6 +1348,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the cosh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoshNavCommand() {
             var command = new Command("cosh");
             command.Description = "Provides operations to call the cosh method.";
@@ -1303,6 +1364,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the cos method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCosNavCommand() {
             var command = new Command("cos");
             command.Description = "Provides operations to call the cos method.";
@@ -1318,6 +1380,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coth method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCothNavCommand() {
             var command = new Command("coth");
             command.Description = "Provides operations to call the coth method.";
@@ -1333,6 +1396,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the cot method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCotNavCommand() {
             var command = new Command("cot");
             command.Description = "Provides operations to call the cot method.";
@@ -1348,6 +1412,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the countA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountANavCommand() {
             var command = new Command("count-a");
             command.Description = "Provides operations to call the countA method.";
@@ -1363,6 +1428,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the countBlank method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountBlankNavCommand() {
             var command = new Command("count-blank");
             command.Description = "Provides operations to call the countBlank method.";
@@ -1378,6 +1444,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the countIf method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountIfNavCommand() {
             var command = new Command("count-if");
             command.Description = "Provides operations to call the countIf method.";
@@ -1393,6 +1460,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the countIfs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountIfsNavCommand() {
             var command = new Command("count-ifs");
             command.Description = "Provides operations to call the countIfs method.";
@@ -1408,6 +1476,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
@@ -1423,6 +1492,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupDayBs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupDayBsNavCommand() {
             var command = new Command("coup-day-bs");
             command.Description = "Provides operations to call the coupDayBs method.";
@@ -1438,6 +1508,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupDays method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupDaysNavCommand() {
             var command = new Command("coup-days");
             command.Description = "Provides operations to call the coupDays method.";
@@ -1453,6 +1524,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupDaysNc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupDaysNcNavCommand() {
             var command = new Command("coup-days-nc");
             command.Description = "Provides operations to call the coupDaysNc method.";
@@ -1468,6 +1540,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupNcd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupNcdNavCommand() {
             var command = new Command("coup-ncd");
             command.Description = "Provides operations to call the coupNcd method.";
@@ -1483,6 +1556,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupNum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupNumNavCommand() {
             var command = new Command("coup-num");
             command.Description = "Provides operations to call the coupNum method.";
@@ -1498,6 +1572,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the coupPcd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCoupPcdNavCommand() {
             var command = new Command("coup-pcd");
             command.Description = "Provides operations to call the coupPcd method.";
@@ -1513,6 +1588,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the csch method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCschNavCommand() {
             var command = new Command("csch");
             command.Description = "Provides operations to call the csch method.";
@@ -1528,6 +1604,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the csc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCscNavCommand() {
             var command = new Command("csc");
             command.Description = "Provides operations to call the csc method.";
@@ -1543,6 +1620,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the cumIPmt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCumIPmtNavCommand() {
             var command = new Command("cum-i-pmt");
             command.Description = "Provides operations to call the cumIPmt method.";
@@ -1558,6 +1636,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the cumPrinc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildCumPrincNavCommand() {
             var command = new Command("cum-princ");
             command.Description = "Provides operations to call the cumPrinc method.";
@@ -1573,6 +1652,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the date method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDateNavCommand() {
             var command = new Command("date");
             command.Description = "Provides operations to call the date method.";
@@ -1588,6 +1668,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the datevalue method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDatevalueNavCommand() {
             var command = new Command("datevalue");
             command.Description = "Provides operations to call the datevalue method.";
@@ -1603,6 +1684,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the daverage method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDaverageNavCommand() {
             var command = new Command("daverage");
             command.Description = "Provides operations to call the daverage method.";
@@ -1618,6 +1700,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the day method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDayNavCommand() {
             var command = new Command("day");
             command.Description = "Provides operations to call the day method.";
@@ -1633,6 +1716,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the days360 method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDays360NavCommand() {
             var command = new Command("days360");
             command.Description = "Provides operations to call the days360 method.";
@@ -1648,6 +1732,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the days method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDaysNavCommand() {
             var command = new Command("days");
             command.Description = "Provides operations to call the days method.";
@@ -1663,6 +1748,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dbcs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDbcsNavCommand() {
             var command = new Command("dbcs");
             command.Description = "Provides operations to call the dbcs method.";
@@ -1678,6 +1764,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the db method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDbNavCommand() {
             var command = new Command("db");
             command.Description = "Provides operations to call the db method.";
@@ -1693,6 +1780,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dcountA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDcountANavCommand() {
             var command = new Command("dcount-a");
             command.Description = "Provides operations to call the dcountA method.";
@@ -1708,6 +1796,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dcount method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDcountNavCommand() {
             var command = new Command("dcount");
             command.Description = "Provides operations to call the dcount method.";
@@ -1723,6 +1812,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ddb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDdbNavCommand() {
             var command = new Command("ddb");
             command.Description = "Provides operations to call the ddb method.";
@@ -1738,6 +1828,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dec2Bin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDec2BinNavCommand() {
             var command = new Command("dec2-bin");
             command.Description = "Provides operations to call the dec2Bin method.";
@@ -1753,6 +1844,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dec2Hex method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDec2HexNavCommand() {
             var command = new Command("dec2-hex");
             command.Description = "Provides operations to call the dec2Hex method.";
@@ -1768,6 +1860,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dec2Oct method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDec2OctNavCommand() {
             var command = new Command("dec2-oct");
             command.Description = "Provides operations to call the dec2Oct method.";
@@ -1783,6 +1876,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the decimal method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDecimalNavCommand() {
             var command = new Command("decimal");
             command.Description = "Provides operations to call the decimal method.";
@@ -1798,6 +1892,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the degrees method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDegreesNavCommand() {
             var command = new Command("degrees");
             command.Description = "Provides operations to call the degrees method.";
@@ -1813,6 +1908,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Delete navigation property functions for drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property functions for drives";
@@ -1852,6 +1948,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -1867,6 +1964,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the devSq method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDevSqNavCommand() {
             var command = new Command("dev-sq");
             command.Description = "Provides operations to call the devSq method.";
@@ -1882,6 +1980,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dget method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDgetNavCommand() {
             var command = new Command("dget");
             command.Description = "Provides operations to call the dget method.";
@@ -1897,6 +1996,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the disc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDiscNavCommand() {
             var command = new Command("disc");
             command.Description = "Provides operations to call the disc method.";
@@ -1912,6 +2012,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dmax method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDmaxNavCommand() {
             var command = new Command("dmax");
             command.Description = "Provides operations to call the dmax method.";
@@ -1927,6 +2028,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dmin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDminNavCommand() {
             var command = new Command("dmin");
             command.Description = "Provides operations to call the dmin method.";
@@ -1942,6 +2044,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dollarDe method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDollarDeNavCommand() {
             var command = new Command("dollar-de");
             command.Description = "Provides operations to call the dollarDe method.";
@@ -1957,6 +2060,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dollarFr method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDollarFrNavCommand() {
             var command = new Command("dollar-fr");
             command.Description = "Provides operations to call the dollarFr method.";
@@ -1972,6 +2076,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dollar method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDollarNavCommand() {
             var command = new Command("dollar");
             command.Description = "Provides operations to call the dollar method.";
@@ -1987,6 +2092,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dproduct method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDproductNavCommand() {
             var command = new Command("dproduct");
             command.Description = "Provides operations to call the dproduct method.";
@@ -2002,6 +2108,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dstDev method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDstDevNavCommand() {
             var command = new Command("dst-dev");
             command.Description = "Provides operations to call the dstDev method.";
@@ -2017,6 +2124,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dstDevP method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDstDevPNavCommand() {
             var command = new Command("dst-dev-p");
             command.Description = "Provides operations to call the dstDevP method.";
@@ -2032,6 +2140,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dsum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDsumNavCommand() {
             var command = new Command("dsum");
             command.Description = "Provides operations to call the dsum method.";
@@ -2047,6 +2156,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the duration method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDurationNavCommand() {
             var command = new Command("duration");
             command.Description = "Provides operations to call the duration method.";
@@ -2062,6 +2172,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dvar method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDvarNavCommand() {
             var command = new Command("dvar");
             command.Description = "Provides operations to call the dvar method.";
@@ -2077,6 +2188,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the dvarP method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildDvarPNavCommand() {
             var command = new Command("dvar-p");
             command.Description = "Provides operations to call the dvarP method.";
@@ -2092,6 +2204,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ecma_Ceiling method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEcma_CeilingNavCommand() {
             var command = new Command("ecma_-ceiling");
             command.Description = "Provides operations to call the ecma_Ceiling method.";
@@ -2107,6 +2220,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the edate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEdateNavCommand() {
             var command = new Command("edate");
             command.Description = "Provides operations to call the edate method.";
@@ -2122,6 +2236,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the effect method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEffectNavCommand() {
             var command = new Command("effect");
             command.Description = "Provides operations to call the effect method.";
@@ -2137,6 +2252,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the eoMonth method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEoMonthNavCommand() {
             var command = new Command("eo-month");
             command.Description = "Provides operations to call the eoMonth method.";
@@ -2152,6 +2268,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the erf_Precise method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildErf_PreciseNavCommand() {
             var command = new Command("erf_-precise");
             command.Description = "Provides operations to call the erf_Precise method.";
@@ -2167,6 +2284,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the erfC_Precise method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildErfC_PreciseNavCommand() {
             var command = new Command("erf-c_-precise");
             command.Description = "Provides operations to call the erfC_Precise method.";
@@ -2182,6 +2300,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the erfC method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildErfCNavCommand() {
             var command = new Command("erf-c");
             command.Description = "Provides operations to call the erfC method.";
@@ -2197,6 +2316,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the erf method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildErfNavCommand() {
             var command = new Command("erf");
             command.Description = "Provides operations to call the erf method.";
@@ -2212,6 +2332,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the error_Type method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildError_TypeNavCommand() {
             var command = new Command("error_-type");
             command.Description = "Provides operations to call the error_Type method.";
@@ -2227,6 +2348,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the even method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildEvenNavCommand() {
             var command = new Command("even");
             command.Description = "Provides operations to call the even method.";
@@ -2242,6 +2364,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the exact method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExactNavCommand() {
             var command = new Command("exact");
             command.Description = "Provides operations to call the exact method.";
@@ -2257,6 +2380,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the exp method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExpNavCommand() {
             var command = new Command("exp");
             command.Description = "Provides operations to call the exp method.";
@@ -2272,6 +2396,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the expon_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildExpon_DistNavCommand() {
             var command = new Command("expon_-dist");
             command.Description = "Provides operations to call the expon_Dist method.";
@@ -2287,6 +2412,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the f_Dist_RT method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildF_Dist_RTNavCommand() {
             var command = new Command("f_-dist_-r-t");
             command.Description = "Provides operations to call the f_Dist_RT method.";
@@ -2302,6 +2428,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the f_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildF_DistNavCommand() {
             var command = new Command("f_-dist");
             command.Description = "Provides operations to call the f_Dist method.";
@@ -2317,6 +2444,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the f_Inv_RT method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildF_Inv_RTNavCommand() {
             var command = new Command("f_-inv_-r-t");
             command.Description = "Provides operations to call the f_Inv_RT method.";
@@ -2332,6 +2460,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the f_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildF_InvNavCommand() {
             var command = new Command("f_-inv");
             command.Description = "Provides operations to call the f_Inv method.";
@@ -2347,6 +2476,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the factDouble method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFactDoubleNavCommand() {
             var command = new Command("fact-double");
             command.Description = "Provides operations to call the factDouble method.";
@@ -2362,6 +2492,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fact method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFactNavCommand() {
             var command = new Command("fact");
             command.Description = "Provides operations to call the fact method.";
@@ -2377,6 +2508,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the false method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFalseNavCommand() {
             var command = new Command("false");
             command.Description = "Provides operations to call the false method.";
@@ -2392,6 +2524,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the findB method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFindBNavCommand() {
             var command = new Command("find-b");
             command.Description = "Provides operations to call the findB method.";
@@ -2407,6 +2540,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the find method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFindNavCommand() {
             var command = new Command("find");
             command.Description = "Provides operations to call the find method.";
@@ -2422,6 +2556,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fisherInv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFisherInvNavCommand() {
             var command = new Command("fisher-inv");
             command.Description = "Provides operations to call the fisherInv method.";
@@ -2437,6 +2572,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fisher method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFisherNavCommand() {
             var command = new Command("fisher");
             command.Description = "Provides operations to call the fisher method.";
@@ -2452,6 +2588,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fixed method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFixedNavCommand() {
             var command = new Command("fixed");
             command.Description = "Provides operations to call the fixed method.";
@@ -2467,6 +2604,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the floor_Math method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFloor_MathNavCommand() {
             var command = new Command("floor_-math");
             command.Description = "Provides operations to call the floor_Math method.";
@@ -2482,6 +2620,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the floor_Precise method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFloor_PreciseNavCommand() {
             var command = new Command("floor_-precise");
             command.Description = "Provides operations to call the floor_Precise method.";
@@ -2497,6 +2636,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFvNavCommand() {
             var command = new Command("fv");
             command.Description = "Provides operations to call the fv method.";
@@ -2512,6 +2652,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the fvschedule method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildFvscheduleNavCommand() {
             var command = new Command("fvschedule");
             command.Description = "Provides operations to call the fvschedule method.";
@@ -2527,6 +2668,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gamma_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGamma_DistNavCommand() {
             var command = new Command("gamma_-dist");
             command.Description = "Provides operations to call the gamma_Dist method.";
@@ -2542,6 +2684,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gamma_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGamma_InvNavCommand() {
             var command = new Command("gamma_-inv");
             command.Description = "Provides operations to call the gamma_Inv method.";
@@ -2557,6 +2700,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gammaLn_Precise method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGammaLn_PreciseNavCommand() {
             var command = new Command("gamma-ln_-precise");
             command.Description = "Provides operations to call the gammaLn_Precise method.";
@@ -2572,6 +2716,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gammaLn method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGammaLnNavCommand() {
             var command = new Command("gamma-ln");
             command.Description = "Provides operations to call the gammaLn method.";
@@ -2587,6 +2732,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gamma method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGammaNavCommand() {
             var command = new Command("gamma");
             command.Description = "Provides operations to call the gamma method.";
@@ -2602,6 +2748,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gauss method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGaussNavCommand() {
             var command = new Command("gauss");
             command.Description = "Provides operations to call the gauss method.";
@@ -2617,6 +2764,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the gcd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGcdNavCommand() {
             var command = new Command("gcd");
             command.Description = "Provides operations to call the gcd method.";
@@ -2632,6 +2780,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the geoMean method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGeoMeanNavCommand() {
             var command = new Command("geo-mean");
             command.Description = "Provides operations to call the geoMean method.";
@@ -2647,6 +2796,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the geStep method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGeStepNavCommand() {
             var command = new Command("ge-step");
             command.Description = "Provides operations to call the geStep method.";
@@ -2662,6 +2812,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Get functions from drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get functions from drives";
@@ -2718,6 +2869,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the harMean method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHarMeanNavCommand() {
             var command = new Command("har-mean");
             command.Description = "Provides operations to call the harMean method.";
@@ -2733,6 +2885,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hex2Bin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHex2BinNavCommand() {
             var command = new Command("hex2-bin");
             command.Description = "Provides operations to call the hex2Bin method.";
@@ -2748,6 +2901,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hex2Dec method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHex2DecNavCommand() {
             var command = new Command("hex2-dec");
             command.Description = "Provides operations to call the hex2Dec method.";
@@ -2763,6 +2917,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hex2Oct method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHex2OctNavCommand() {
             var command = new Command("hex2-oct");
             command.Description = "Provides operations to call the hex2Oct method.";
@@ -2778,6 +2933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hlookup method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHlookupNavCommand() {
             var command = new Command("hlookup");
             command.Description = "Provides operations to call the hlookup method.";
@@ -2793,6 +2949,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hour method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHourNavCommand() {
             var command = new Command("hour");
             command.Description = "Provides operations to call the hour method.";
@@ -2808,6 +2965,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hyperlink method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHyperlinkNavCommand() {
             var command = new Command("hyperlink");
             command.Description = "Provides operations to call the hyperlink method.";
@@ -2823,6 +2981,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the hypGeom_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildHypGeom_DistNavCommand() {
             var command = new Command("hyp-geom_-dist");
             command.Description = "Provides operations to call the hypGeom_Dist method.";
@@ -2838,6 +2997,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the if method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIfNavCommand() {
             var command = new Command("if");
             command.Description = "Provides operations to call the if method.";
@@ -2853,6 +3013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imAbs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImAbsNavCommand() {
             var command = new Command("im-abs");
             command.Description = "Provides operations to call the imAbs method.";
@@ -2868,6 +3029,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imaginary method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImaginaryNavCommand() {
             var command = new Command("imaginary");
             command.Description = "Provides operations to call the imaginary method.";
@@ -2883,6 +3045,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imArgument method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImArgumentNavCommand() {
             var command = new Command("im-argument");
             command.Description = "Provides operations to call the imArgument method.";
@@ -2898,6 +3061,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imConjugate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImConjugateNavCommand() {
             var command = new Command("im-conjugate");
             command.Description = "Provides operations to call the imConjugate method.";
@@ -2913,6 +3077,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imCosh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImCoshNavCommand() {
             var command = new Command("im-cosh");
             command.Description = "Provides operations to call the imCosh method.";
@@ -2928,6 +3093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imCos method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImCosNavCommand() {
             var command = new Command("im-cos");
             command.Description = "Provides operations to call the imCos method.";
@@ -2943,6 +3109,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imCot method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImCotNavCommand() {
             var command = new Command("im-cot");
             command.Description = "Provides operations to call the imCot method.";
@@ -2958,6 +3125,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imCsch method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImCschNavCommand() {
             var command = new Command("im-csch");
             command.Description = "Provides operations to call the imCsch method.";
@@ -2973,6 +3141,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imCsc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImCscNavCommand() {
             var command = new Command("im-csc");
             command.Description = "Provides operations to call the imCsc method.";
@@ -2988,6 +3157,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imDiv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImDivNavCommand() {
             var command = new Command("im-div");
             command.Description = "Provides operations to call the imDiv method.";
@@ -3003,6 +3173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imExp method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImExpNavCommand() {
             var command = new Command("im-exp");
             command.Description = "Provides operations to call the imExp method.";
@@ -3018,6 +3189,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imLn method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImLnNavCommand() {
             var command = new Command("im-ln");
             command.Description = "Provides operations to call the imLn method.";
@@ -3033,6 +3205,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imLog10 method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImLog10NavCommand() {
             var command = new Command("im-log10");
             command.Description = "Provides operations to call the imLog10 method.";
@@ -3048,6 +3221,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imLog2 method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImLog2NavCommand() {
             var command = new Command("im-log2");
             command.Description = "Provides operations to call the imLog2 method.";
@@ -3063,6 +3237,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imPower method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImPowerNavCommand() {
             var command = new Command("im-power");
             command.Description = "Provides operations to call the imPower method.";
@@ -3078,6 +3253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imProduct method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImProductNavCommand() {
             var command = new Command("im-product");
             command.Description = "Provides operations to call the imProduct method.";
@@ -3093,6 +3269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imReal method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImRealNavCommand() {
             var command = new Command("im-real");
             command.Description = "Provides operations to call the imReal method.";
@@ -3108,6 +3285,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSech method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSechNavCommand() {
             var command = new Command("im-sech");
             command.Description = "Provides operations to call the imSech method.";
@@ -3123,6 +3301,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSec method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSecNavCommand() {
             var command = new Command("im-sec");
             command.Description = "Provides operations to call the imSec method.";
@@ -3138,6 +3317,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSinh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSinhNavCommand() {
             var command = new Command("im-sinh");
             command.Description = "Provides operations to call the imSinh method.";
@@ -3153,6 +3333,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSinNavCommand() {
             var command = new Command("im-sin");
             command.Description = "Provides operations to call the imSin method.";
@@ -3168,6 +3349,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSqrt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSqrtNavCommand() {
             var command = new Command("im-sqrt");
             command.Description = "Provides operations to call the imSqrt method.";
@@ -3183,6 +3365,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSub method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSubNavCommand() {
             var command = new Command("im-sub");
             command.Description = "Provides operations to call the imSub method.";
@@ -3198,6 +3381,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imSum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImSumNavCommand() {
             var command = new Command("im-sum");
             command.Description = "Provides operations to call the imSum method.";
@@ -3213,6 +3397,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the imTan method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildImTanNavCommand() {
             var command = new Command("im-tan");
             command.Description = "Provides operations to call the imTan method.";
@@ -3228,6 +3413,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the int method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIntNavCommand() {
             var command = new Command("int");
             command.Description = "Provides operations to call the int method.";
@@ -3243,6 +3429,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the intRate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIntRateNavCommand() {
             var command = new Command("int-rate");
             command.Description = "Provides operations to call the intRate method.";
@@ -3258,6 +3445,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ipmt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIpmtNavCommand() {
             var command = new Command("ipmt");
             command.Description = "Provides operations to call the ipmt method.";
@@ -3273,6 +3461,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the irr method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIrrNavCommand() {
             var command = new Command("irr");
             command.Description = "Provides operations to call the irr method.";
@@ -3288,6 +3477,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isErr method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsErrNavCommand() {
             var command = new Command("is-err");
             command.Description = "Provides operations to call the isErr method.";
@@ -3303,6 +3493,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isError method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsErrorNavCommand() {
             var command = new Command("is-error");
             command.Description = "Provides operations to call the isError method.";
@@ -3318,6 +3509,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isEven method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsEvenNavCommand() {
             var command = new Command("is-even");
             command.Description = "Provides operations to call the isEven method.";
@@ -3333,6 +3525,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isFormula method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsFormulaNavCommand() {
             var command = new Command("is-formula");
             command.Description = "Provides operations to call the isFormula method.";
@@ -3348,6 +3541,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isLogical method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsLogicalNavCommand() {
             var command = new Command("is-logical");
             command.Description = "Provides operations to call the isLogical method.";
@@ -3363,6 +3557,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isNA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsNANavCommand() {
             var command = new Command("is-n-a");
             command.Description = "Provides operations to call the isNA method.";
@@ -3378,6 +3573,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isNonText method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsNonTextNavCommand() {
             var command = new Command("is-non-text");
             command.Description = "Provides operations to call the isNonText method.";
@@ -3393,6 +3589,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isNumber method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsNumberNavCommand() {
             var command = new Command("is-number");
             command.Description = "Provides operations to call the isNumber method.";
@@ -3408,6 +3605,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the iso_Ceiling method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIso_CeilingNavCommand() {
             var command = new Command("iso_-ceiling");
             command.Description = "Provides operations to call the iso_Ceiling method.";
@@ -3423,6 +3621,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isOdd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsOddNavCommand() {
             var command = new Command("is-odd");
             command.Description = "Provides operations to call the isOdd method.";
@@ -3438,6 +3637,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isoWeekNum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsoWeekNumNavCommand() {
             var command = new Command("iso-week-num");
             command.Description = "Provides operations to call the isoWeekNum method.";
@@ -3453,6 +3653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ispmt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIspmtNavCommand() {
             var command = new Command("ispmt");
             command.Description = "Provides operations to call the ispmt method.";
@@ -3468,6 +3669,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isref method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsrefNavCommand() {
             var command = new Command("isref");
             command.Description = "Provides operations to call the isref method.";
@@ -3483,6 +3685,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the isText method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildIsTextNavCommand() {
             var command = new Command("is-text");
             command.Description = "Provides operations to call the isText method.";
@@ -3498,6 +3701,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the kurt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildKurtNavCommand() {
             var command = new Command("kurt");
             command.Description = "Provides operations to call the kurt method.";
@@ -3513,6 +3717,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the large method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLargeNavCommand() {
             var command = new Command("large");
             command.Description = "Provides operations to call the large method.";
@@ -3528,6 +3733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the lcm method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLcmNavCommand() {
             var command = new Command("lcm");
             command.Description = "Provides operations to call the lcm method.";
@@ -3543,6 +3749,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the leftb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLeftbNavCommand() {
             var command = new Command("leftb");
             command.Description = "Provides operations to call the leftb method.";
@@ -3558,6 +3765,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the left method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLeftNavCommand() {
             var command = new Command("left");
             command.Description = "Provides operations to call the left method.";
@@ -3573,6 +3781,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the lenb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLenbNavCommand() {
             var command = new Command("lenb");
             command.Description = "Provides operations to call the lenb method.";
@@ -3588,6 +3797,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the len method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLenNavCommand() {
             var command = new Command("len");
             command.Description = "Provides operations to call the len method.";
@@ -3603,6 +3813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ln method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLnNavCommand() {
             var command = new Command("ln");
             command.Description = "Provides operations to call the ln method.";
@@ -3618,6 +3829,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the log10 method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLog10NavCommand() {
             var command = new Command("log10");
             command.Description = "Provides operations to call the log10 method.";
@@ -3633,6 +3845,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the log method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLogNavCommand() {
             var command = new Command("log");
             command.Description = "Provides operations to call the log method.";
@@ -3648,6 +3861,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the logNorm_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLogNorm_DistNavCommand() {
             var command = new Command("log-norm_-dist");
             command.Description = "Provides operations to call the logNorm_Dist method.";
@@ -3663,6 +3877,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the logNorm_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLogNorm_InvNavCommand() {
             var command = new Command("log-norm_-inv");
             command.Description = "Provides operations to call the logNorm_Inv method.";
@@ -3678,6 +3893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the lookup method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLookupNavCommand() {
             var command = new Command("lookup");
             command.Description = "Provides operations to call the lookup method.";
@@ -3693,6 +3909,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the lower method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildLowerNavCommand() {
             var command = new Command("lower");
             command.Description = "Provides operations to call the lower method.";
@@ -3708,6 +3925,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the match method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMatchNavCommand() {
             var command = new Command("match");
             command.Description = "Provides operations to call the match method.";
@@ -3723,6 +3941,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the maxA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMaxANavCommand() {
             var command = new Command("max-a");
             command.Description = "Provides operations to call the maxA method.";
@@ -3738,6 +3957,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the max method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMaxNavCommand() {
             var command = new Command("max");
             command.Description = "Provides operations to call the max method.";
@@ -3753,6 +3973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the mduration method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMdurationNavCommand() {
             var command = new Command("mduration");
             command.Description = "Provides operations to call the mduration method.";
@@ -3768,6 +3989,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the median method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMedianNavCommand() {
             var command = new Command("median");
             command.Description = "Provides operations to call the median method.";
@@ -3783,6 +4005,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the midb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMidbNavCommand() {
             var command = new Command("midb");
             command.Description = "Provides operations to call the midb method.";
@@ -3798,6 +4021,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the mid method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMidNavCommand() {
             var command = new Command("mid");
             command.Description = "Provides operations to call the mid method.";
@@ -3813,6 +4037,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the minA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMinANavCommand() {
             var command = new Command("min-a");
             command.Description = "Provides operations to call the minA method.";
@@ -3828,6 +4053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the min method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMinNavCommand() {
             var command = new Command("min");
             command.Description = "Provides operations to call the min method.";
@@ -3843,6 +4069,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the minute method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMinuteNavCommand() {
             var command = new Command("minute");
             command.Description = "Provides operations to call the minute method.";
@@ -3858,6 +4085,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the mirr method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMirrNavCommand() {
             var command = new Command("mirr");
             command.Description = "Provides operations to call the mirr method.";
@@ -3873,6 +4101,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the mod method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildModNavCommand() {
             var command = new Command("mod");
             command.Description = "Provides operations to call the mod method.";
@@ -3888,6 +4117,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the month method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMonthNavCommand() {
             var command = new Command("month");
             command.Description = "Provides operations to call the month method.";
@@ -3903,6 +4133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the mround method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMroundNavCommand() {
             var command = new Command("mround");
             command.Description = "Provides operations to call the mround method.";
@@ -3918,6 +4149,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the multiNomial method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildMultiNomialNavCommand() {
             var command = new Command("multi-nomial");
             command.Description = "Provides operations to call the multiNomial method.";
@@ -3933,6 +4165,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the na method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNaNavCommand() {
             var command = new Command("na");
             command.Description = "Provides operations to call the na method.";
@@ -3948,6 +4181,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the negBinom_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNegBinom_DistNavCommand() {
             var command = new Command("neg-binom_-dist");
             command.Description = "Provides operations to call the negBinom_Dist method.";
@@ -3963,6 +4197,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the networkDays_Intl method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNetworkDays_IntlNavCommand() {
             var command = new Command("network-days_-intl");
             command.Description = "Provides operations to call the networkDays_Intl method.";
@@ -3978,6 +4213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the networkDays method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNetworkDaysNavCommand() {
             var command = new Command("network-days");
             command.Description = "Provides operations to call the networkDays method.";
@@ -3993,6 +4229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the n method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNNavCommand() {
             var command = new Command("n");
             command.Description = "Provides operations to call the n method.";
@@ -4008,6 +4245,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the nominal method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNominalNavCommand() {
             var command = new Command("nominal");
             command.Description = "Provides operations to call the nominal method.";
@@ -4023,6 +4261,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the norm_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNorm_DistNavCommand() {
             var command = new Command("norm_-dist");
             command.Description = "Provides operations to call the norm_Dist method.";
@@ -4038,6 +4277,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the norm_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNorm_InvNavCommand() {
             var command = new Command("norm_-inv");
             command.Description = "Provides operations to call the norm_Inv method.";
@@ -4053,6 +4293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the norm_S_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNorm_S_DistNavCommand() {
             var command = new Command("norm_-s_-dist");
             command.Description = "Provides operations to call the norm_S_Dist method.";
@@ -4068,6 +4309,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the norm_S_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNorm_S_InvNavCommand() {
             var command = new Command("norm_-s_-inv");
             command.Description = "Provides operations to call the norm_S_Inv method.";
@@ -4083,6 +4325,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the not method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNotNavCommand() {
             var command = new Command("not");
             command.Description = "Provides operations to call the not method.";
@@ -4098,6 +4341,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the now method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNowNavCommand() {
             var command = new Command("now");
             command.Description = "Provides operations to call the now method.";
@@ -4113,6 +4357,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the nper method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNperNavCommand() {
             var command = new Command("nper");
             command.Description = "Provides operations to call the nper method.";
@@ -4128,6 +4373,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the npv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNpvNavCommand() {
             var command = new Command("npv");
             command.Description = "Provides operations to call the npv method.";
@@ -4143,6 +4389,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the numberValue method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildNumberValueNavCommand() {
             var command = new Command("number-value");
             command.Description = "Provides operations to call the numberValue method.";
@@ -4158,6 +4405,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oct2Bin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOct2BinNavCommand() {
             var command = new Command("oct2-bin");
             command.Description = "Provides operations to call the oct2Bin method.";
@@ -4173,6 +4421,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oct2Dec method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOct2DecNavCommand() {
             var command = new Command("oct2-dec");
             command.Description = "Provides operations to call the oct2Dec method.";
@@ -4188,6 +4437,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oct2Hex method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOct2HexNavCommand() {
             var command = new Command("oct2-hex");
             command.Description = "Provides operations to call the oct2Hex method.";
@@ -4203,6 +4453,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oddFPrice method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOddFPriceNavCommand() {
             var command = new Command("odd-f-price");
             command.Description = "Provides operations to call the oddFPrice method.";
@@ -4218,6 +4469,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oddFYield method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOddFYieldNavCommand() {
             var command = new Command("odd-f-yield");
             command.Description = "Provides operations to call the oddFYield method.";
@@ -4233,6 +4485,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oddLPrice method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOddLPriceNavCommand() {
             var command = new Command("odd-l-price");
             command.Description = "Provides operations to call the oddLPrice method.";
@@ -4248,6 +4501,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the oddLYield method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOddLYieldNavCommand() {
             var command = new Command("odd-l-yield");
             command.Description = "Provides operations to call the oddLYield method.";
@@ -4263,6 +4517,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the odd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOddNavCommand() {
             var command = new Command("odd");
             command.Description = "Provides operations to call the odd method.";
@@ -4278,6 +4533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the or method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildOrNavCommand() {
             var command = new Command("or");
             command.Description = "Provides operations to call the or method.";
@@ -4293,6 +4549,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Update the navigation property functions in drives
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property functions in drives";
@@ -4348,6 +4605,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the pduration method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPdurationNavCommand() {
             var command = new Command("pduration");
             command.Description = "Provides operations to call the pduration method.";
@@ -4363,6 +4621,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the percentile_Exc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPercentile_ExcNavCommand() {
             var command = new Command("percentile_-exc");
             command.Description = "Provides operations to call the percentile_Exc method.";
@@ -4378,6 +4637,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the percentile_Inc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPercentile_IncNavCommand() {
             var command = new Command("percentile_-inc");
             command.Description = "Provides operations to call the percentile_Inc method.";
@@ -4393,6 +4653,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the percentRank_Exc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPercentRank_ExcNavCommand() {
             var command = new Command("percent-rank_-exc");
             command.Description = "Provides operations to call the percentRank_Exc method.";
@@ -4408,6 +4669,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the percentRank_Inc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPercentRank_IncNavCommand() {
             var command = new Command("percent-rank_-inc");
             command.Description = "Provides operations to call the percentRank_Inc method.";
@@ -4423,6 +4685,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the permutationa method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermutationaNavCommand() {
             var command = new Command("permutationa");
             command.Description = "Provides operations to call the permutationa method.";
@@ -4438,6 +4701,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the permut method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPermutNavCommand() {
             var command = new Command("permut");
             command.Description = "Provides operations to call the permut method.";
@@ -4453,6 +4717,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the phi method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPhiNavCommand() {
             var command = new Command("phi");
             command.Description = "Provides operations to call the phi method.";
@@ -4468,6 +4733,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the pi method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPiNavCommand() {
             var command = new Command("pi");
             command.Description = "Provides operations to call the pi method.";
@@ -4483,6 +4749,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the pmt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPmtNavCommand() {
             var command = new Command("pmt");
             command.Description = "Provides operations to call the pmt method.";
@@ -4498,6 +4765,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the poisson_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPoisson_DistNavCommand() {
             var command = new Command("poisson_-dist");
             command.Description = "Provides operations to call the poisson_Dist method.";
@@ -4513,6 +4781,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the power method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPowerNavCommand() {
             var command = new Command("power");
             command.Description = "Provides operations to call the power method.";
@@ -4528,6 +4797,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the ppmt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPpmtNavCommand() {
             var command = new Command("ppmt");
             command.Description = "Provides operations to call the ppmt method.";
@@ -4543,6 +4813,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the priceDisc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPriceDiscNavCommand() {
             var command = new Command("price-disc");
             command.Description = "Provides operations to call the priceDisc method.";
@@ -4558,6 +4829,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the priceMat method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPriceMatNavCommand() {
             var command = new Command("price-mat");
             command.Description = "Provides operations to call the priceMat method.";
@@ -4573,6 +4845,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the price method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPriceNavCommand() {
             var command = new Command("price");
             command.Description = "Provides operations to call the price method.";
@@ -4588,6 +4861,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the product method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildProductNavCommand() {
             var command = new Command("product");
             command.Description = "Provides operations to call the product method.";
@@ -4603,6 +4877,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the proper method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildProperNavCommand() {
             var command = new Command("proper");
             command.Description = "Provides operations to call the proper method.";
@@ -4618,6 +4893,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the pv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildPvNavCommand() {
             var command = new Command("pv");
             command.Description = "Provides operations to call the pv method.";
@@ -4633,6 +4909,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the quartile_Exc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildQuartile_ExcNavCommand() {
             var command = new Command("quartile_-exc");
             command.Description = "Provides operations to call the quartile_Exc method.";
@@ -4648,6 +4925,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the quartile_Inc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildQuartile_IncNavCommand() {
             var command = new Command("quartile_-inc");
             command.Description = "Provides operations to call the quartile_Inc method.";
@@ -4663,6 +4941,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the quotient method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildQuotientNavCommand() {
             var command = new Command("quotient");
             command.Description = "Provides operations to call the quotient method.";
@@ -4678,6 +4957,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the radians method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRadiansNavCommand() {
             var command = new Command("radians");
             command.Description = "Provides operations to call the radians method.";
@@ -4693,6 +4973,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the randBetween method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRandBetweenNavCommand() {
             var command = new Command("rand-between");
             command.Description = "Provides operations to call the randBetween method.";
@@ -4708,6 +4989,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rand method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRandNavCommand() {
             var command = new Command("rand");
             command.Description = "Provides operations to call the rand method.";
@@ -4723,6 +5005,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rank_Avg method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRank_AvgNavCommand() {
             var command = new Command("rank_-avg");
             command.Description = "Provides operations to call the rank_Avg method.";
@@ -4738,6 +5021,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rank_Eq method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRank_EqNavCommand() {
             var command = new Command("rank_-eq");
             command.Description = "Provides operations to call the rank_Eq method.";
@@ -4753,6 +5037,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rate method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRateNavCommand() {
             var command = new Command("rate");
             command.Description = "Provides operations to call the rate method.";
@@ -4768,6 +5053,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the received method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildReceivedNavCommand() {
             var command = new Command("received");
             command.Description = "Provides operations to call the received method.";
@@ -4783,6 +5069,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the replaceB method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildReplaceBNavCommand() {
             var command = new Command("replace-b");
             command.Description = "Provides operations to call the replaceB method.";
@@ -4798,6 +5085,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the replace method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildReplaceNavCommand() {
             var command = new Command("replace");
             command.Description = "Provides operations to call the replace method.";
@@ -4813,6 +5101,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rept method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildReptNavCommand() {
             var command = new Command("rept");
             command.Description = "Provides operations to call the rept method.";
@@ -4828,6 +5117,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rightb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRightbNavCommand() {
             var command = new Command("rightb");
             command.Description = "Provides operations to call the rightb method.";
@@ -4843,6 +5133,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the right method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRightNavCommand() {
             var command = new Command("right");
             command.Description = "Provides operations to call the right method.";
@@ -4858,6 +5149,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the roman method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRomanNavCommand() {
             var command = new Command("roman");
             command.Description = "Provides operations to call the roman method.";
@@ -4873,6 +5165,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the roundDown method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoundDownNavCommand() {
             var command = new Command("round-down");
             command.Description = "Provides operations to call the roundDown method.";
@@ -4888,6 +5181,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the round method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoundNavCommand() {
             var command = new Command("round");
             command.Description = "Provides operations to call the round method.";
@@ -4903,6 +5197,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the roundUp method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRoundUpNavCommand() {
             var command = new Command("round-up");
             command.Description = "Provides operations to call the roundUp method.";
@@ -4918,6 +5213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rows method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRowsNavCommand() {
             var command = new Command("rows");
             command.Description = "Provides operations to call the rows method.";
@@ -4933,6 +5229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the rri method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildRriNavCommand() {
             var command = new Command("rri");
             command.Description = "Provides operations to call the rri method.";
@@ -4948,6 +5245,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sech method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSechNavCommand() {
             var command = new Command("sech");
             command.Description = "Provides operations to call the sech method.";
@@ -4963,6 +5261,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sec method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSecNavCommand() {
             var command = new Command("sec");
             command.Description = "Provides operations to call the sec method.";
@@ -4978,6 +5277,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the second method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSecondNavCommand() {
             var command = new Command("second");
             command.Description = "Provides operations to call the second method.";
@@ -4993,6 +5293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the seriesSum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSeriesSumNavCommand() {
             var command = new Command("series-sum");
             command.Description = "Provides operations to call the seriesSum method.";
@@ -5008,6 +5309,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sheet method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSheetNavCommand() {
             var command = new Command("sheet");
             command.Description = "Provides operations to call the sheet method.";
@@ -5023,6 +5325,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sheets method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSheetsNavCommand() {
             var command = new Command("sheets");
             command.Description = "Provides operations to call the sheets method.";
@@ -5038,6 +5341,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sign method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSignNavCommand() {
             var command = new Command("sign");
             command.Description = "Provides operations to call the sign method.";
@@ -5053,6 +5357,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sinh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSinhNavCommand() {
             var command = new Command("sinh");
             command.Description = "Provides operations to call the sinh method.";
@@ -5068,6 +5373,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sin method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSinNavCommand() {
             var command = new Command("sin");
             command.Description = "Provides operations to call the sin method.";
@@ -5083,6 +5389,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the skew_p method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSkew_pNavCommand() {
             var command = new Command("skew_p");
             command.Description = "Provides operations to call the skew_p method.";
@@ -5098,6 +5405,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the skew method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSkewNavCommand() {
             var command = new Command("skew");
             command.Description = "Provides operations to call the skew method.";
@@ -5113,6 +5421,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sln method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSlnNavCommand() {
             var command = new Command("sln");
             command.Description = "Provides operations to call the sln method.";
@@ -5128,6 +5437,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the small method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSmallNavCommand() {
             var command = new Command("small");
             command.Description = "Provides operations to call the small method.";
@@ -5143,6 +5453,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sqrt method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSqrtNavCommand() {
             var command = new Command("sqrt");
             command.Description = "Provides operations to call the sqrt method.";
@@ -5158,6 +5469,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sqrtPi method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSqrtPiNavCommand() {
             var command = new Command("sqrt-pi");
             command.Description = "Provides operations to call the sqrtPi method.";
@@ -5173,6 +5485,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the standardize method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildStandardizeNavCommand() {
             var command = new Command("standardize");
             command.Description = "Provides operations to call the standardize method.";
@@ -5188,6 +5501,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the stDev_P method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildStDev_PNavCommand() {
             var command = new Command("st-dev_-p");
             command.Description = "Provides operations to call the stDev_P method.";
@@ -5203,6 +5517,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the stDev_S method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildStDev_SNavCommand() {
             var command = new Command("st-dev_-s");
             command.Description = "Provides operations to call the stDev_S method.";
@@ -5218,6 +5533,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the stDevA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildStDevANavCommand() {
             var command = new Command("st-dev-a");
             command.Description = "Provides operations to call the stDevA method.";
@@ -5233,6 +5549,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the stDevPA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildStDevPANavCommand() {
             var command = new Command("st-dev-p-a");
             command.Description = "Provides operations to call the stDevPA method.";
@@ -5248,6 +5565,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the substitute method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubstituteNavCommand() {
             var command = new Command("substitute");
             command.Description = "Provides operations to call the substitute method.";
@@ -5263,6 +5581,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the subtotal method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSubtotalNavCommand() {
             var command = new Command("subtotal");
             command.Description = "Provides operations to call the subtotal method.";
@@ -5278,6 +5597,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sumIf method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSumIfNavCommand() {
             var command = new Command("sum-if");
             command.Description = "Provides operations to call the sumIf method.";
@@ -5293,6 +5613,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sumIfs method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSumIfsNavCommand() {
             var command = new Command("sum-ifs");
             command.Description = "Provides operations to call the sumIfs method.";
@@ -5308,6 +5629,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSumNavCommand() {
             var command = new Command("sum");
             command.Description = "Provides operations to call the sum method.";
@@ -5323,6 +5645,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the sumSq method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSumSqNavCommand() {
             var command = new Command("sum-sq");
             command.Description = "Provides operations to call the sumSq method.";
@@ -5338,6 +5661,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the syd method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildSydNavCommand() {
             var command = new Command("syd");
             command.Description = "Provides operations to call the syd method.";
@@ -5353,6 +5677,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t_Dist_2T method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildT_Dist_2TNavCommand() {
             var command = new Command("t_-dist_2-t");
             command.Description = "Provides operations to call the t_Dist_2T method.";
@@ -5368,6 +5693,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t_Dist_RT method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildT_Dist_RTNavCommand() {
             var command = new Command("t_-dist_-r-t");
             command.Description = "Provides operations to call the t_Dist_RT method.";
@@ -5383,6 +5709,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildT_DistNavCommand() {
             var command = new Command("t_-dist");
             command.Description = "Provides operations to call the t_Dist method.";
@@ -5398,6 +5725,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t_Inv_2T method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildT_Inv_2TNavCommand() {
             var command = new Command("t_-inv_2-t");
             command.Description = "Provides operations to call the t_Inv_2T method.";
@@ -5413,6 +5741,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t_Inv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildT_InvNavCommand() {
             var command = new Command("t_-inv");
             command.Description = "Provides operations to call the t_Inv method.";
@@ -5428,6 +5757,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the tanh method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTanhNavCommand() {
             var command = new Command("tanh");
             command.Description = "Provides operations to call the tanh method.";
@@ -5443,6 +5773,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the tan method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTanNavCommand() {
             var command = new Command("tan");
             command.Description = "Provides operations to call the tan method.";
@@ -5458,6 +5789,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the tbillEq method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTbillEqNavCommand() {
             var command = new Command("tbill-eq");
             command.Description = "Provides operations to call the tbillEq method.";
@@ -5473,6 +5805,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the tbillPrice method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTbillPriceNavCommand() {
             var command = new Command("tbill-price");
             command.Description = "Provides operations to call the tbillPrice method.";
@@ -5488,6 +5821,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the tbillYield method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTbillYieldNavCommand() {
             var command = new Command("tbill-yield");
             command.Description = "Provides operations to call the tbillYield method.";
@@ -5503,6 +5837,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the text method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTextNavCommand() {
             var command = new Command("text");
             command.Description = "Provides operations to call the text method.";
@@ -5518,6 +5853,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the time method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTimeNavCommand() {
             var command = new Command("time");
             command.Description = "Provides operations to call the time method.";
@@ -5533,6 +5869,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the timevalue method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTimevalueNavCommand() {
             var command = new Command("timevalue");
             command.Description = "Provides operations to call the timevalue method.";
@@ -5548,6 +5885,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the t method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTNavCommand() {
             var command = new Command("t");
             command.Description = "Provides operations to call the t method.";
@@ -5563,6 +5901,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the today method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTodayNavCommand() {
             var command = new Command("today");
             command.Description = "Provides operations to call the today method.";
@@ -5578,6 +5917,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the trimMean method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTrimMeanNavCommand() {
             var command = new Command("trim-mean");
             command.Description = "Provides operations to call the trimMean method.";
@@ -5593,6 +5933,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the trim method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTrimNavCommand() {
             var command = new Command("trim");
             command.Description = "Provides operations to call the trim method.";
@@ -5608,6 +5949,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the true method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTrueNavCommand() {
             var command = new Command("true");
             command.Description = "Provides operations to call the true method.";
@@ -5623,6 +5965,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the trunc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTruncNavCommand() {
             var command = new Command("trunc");
             command.Description = "Provides operations to call the trunc method.";
@@ -5638,6 +5981,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the type method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildTypeNavCommand() {
             var command = new Command("type");
             command.Description = "Provides operations to call the type method.";
@@ -5653,6 +5997,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the unichar method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUnicharNavCommand() {
             var command = new Command("unichar");
             command.Description = "Provides operations to call the unichar method.";
@@ -5668,6 +6013,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the unicode method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUnicodeNavCommand() {
             var command = new Command("unicode");
             command.Description = "Provides operations to call the unicode method.";
@@ -5683,6 +6029,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the upper method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUpperNavCommand() {
             var command = new Command("upper");
             command.Description = "Provides operations to call the upper method.";
@@ -5698,6 +6045,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the usdollar method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildUsdollarNavCommand() {
             var command = new Command("usdollar");
             command.Description = "Provides operations to call the usdollar method.";
@@ -5713,6 +6061,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the value method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildValueNavCommand() {
             var command = new Command("value");
             command.Description = "Provides operations to call the value method.";
@@ -5728,6 +6077,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the var_P method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVar_PNavCommand() {
             var command = new Command("var_-p");
             command.Description = "Provides operations to call the var_P method.";
@@ -5743,6 +6093,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the var_S method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVar_SNavCommand() {
             var command = new Command("var_-s");
             command.Description = "Provides operations to call the var_S method.";
@@ -5758,6 +6109,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the varA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVarANavCommand() {
             var command = new Command("var-a");
             command.Description = "Provides operations to call the varA method.";
@@ -5773,6 +6125,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the varPA method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVarPANavCommand() {
             var command = new Command("var-p-a");
             command.Description = "Provides operations to call the varPA method.";
@@ -5788,6 +6141,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the vdb method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVdbNavCommand() {
             var command = new Command("vdb");
             command.Description = "Provides operations to call the vdb method.";
@@ -5803,6 +6157,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the vlookup method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildVlookupNavCommand() {
             var command = new Command("vlookup");
             command.Description = "Provides operations to call the vlookup method.";
@@ -5818,6 +6173,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the weekday method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWeekdayNavCommand() {
             var command = new Command("weekday");
             command.Description = "Provides operations to call the weekday method.";
@@ -5833,6 +6189,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the weekNum method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWeekNumNavCommand() {
             var command = new Command("week-num");
             command.Description = "Provides operations to call the weekNum method.";
@@ -5848,6 +6205,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the weibull_Dist method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWeibull_DistNavCommand() {
             var command = new Command("weibull_-dist");
             command.Description = "Provides operations to call the weibull_Dist method.";
@@ -5863,6 +6221,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the workDay_Intl method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWorkDay_IntlNavCommand() {
             var command = new Command("work-day_-intl");
             command.Description = "Provides operations to call the workDay_Intl method.";
@@ -5878,6 +6237,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the workDay method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildWorkDayNavCommand() {
             var command = new Command("work-day");
             command.Description = "Provides operations to call the workDay method.";
@@ -5893,6 +6253,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the xirr method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildXirrNavCommand() {
             var command = new Command("xirr");
             command.Description = "Provides operations to call the xirr method.";
@@ -5908,6 +6269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the xnpv method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildXnpvNavCommand() {
             var command = new Command("xnpv");
             command.Description = "Provides operations to call the xnpv method.";
@@ -5923,6 +6285,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the xor method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildXorNavCommand() {
             var command = new Command("xor");
             command.Description = "Provides operations to call the xor method.";
@@ -5938,6 +6301,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the yearFrac method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildYearFracNavCommand() {
             var command = new Command("year-frac");
             command.Description = "Provides operations to call the yearFrac method.";
@@ -5953,6 +6317,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the year method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildYearNavCommand() {
             var command = new Command("year");
             command.Description = "Provides operations to call the year method.";
@@ -5968,6 +6333,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the yieldDisc method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildYieldDiscNavCommand() {
             var command = new Command("yield-disc");
             command.Description = "Provides operations to call the yieldDisc method.";
@@ -5983,6 +6349,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the yieldMat method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildYieldMatNavCommand() {
             var command = new Command("yield-mat");
             command.Description = "Provides operations to call the yieldMat method.";
@@ -5998,6 +6365,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the yield method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildYieldNavCommand() {
             var command = new Command("yield");
             command.Description = "Provides operations to call the yield method.";
@@ -6013,6 +6381,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Provides operations to call the z_Test method.
         /// </summary>
+        /// <returns>A <cref="Command"></returns>
         public Command BuildZ_TestNavCommand() {
             var command = new Command("z_-test");
             command.Description = "Provides operations to call the z_Test method.";
@@ -6026,13 +6395,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
             return command;
         }
         /// <summary>
-        /// Instantiates a new FunctionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FunctionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public FunctionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions{?%24expand,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new FunctionsRequestBuilder and sets the default values.
+        /// Instantiates a new <see cref="FunctionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FunctionsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions{?%24expand,%24select}", rawUrl) {
@@ -6040,6 +6409,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Delete navigation property functions for drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -6048,7 +6418,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -6056,6 +6426,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Get functions from drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -6072,6 +6443,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>
         /// Update the navigation property functions in drives
         /// </summary>
+        /// <returns>A <cref="RequestInformation"></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -6082,7 +6454,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         public RequestInformation ToPatchRequestInformation(WorkbookFunctions body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
