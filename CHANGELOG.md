@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1](https://github.com/microsoftgraph/msgraph-cli/compare/v1.3.0...v1.3.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* fix issue with saving auth data when cloud environment is changed ([#432](https://github.com/microsoftgraph/msgraph-cli/issues/432)) ([cba4fad](https://github.com/microsoftgraph/msgraph-cli/commit/cba4fade745ae9ed2261f24e9690cb9255156358))
+
 ## [1.3.0](https://github.com/microsoftgraph/msgraph-cli/compare/v1.2.0...v1.3.0) (2024-02-06)
 
 
