@@ -24,7 +24,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// <summary>
         /// Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -39,7 +39,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// <summary>
         /// Create new navigation property to transcripts for communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to transcripts for communications";
@@ -106,7 +106,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0";
@@ -217,7 +217,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// <summary>
         /// Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,7 +234,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts {
         /// <summary>
         /// Create new navigation property to transcripts for communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

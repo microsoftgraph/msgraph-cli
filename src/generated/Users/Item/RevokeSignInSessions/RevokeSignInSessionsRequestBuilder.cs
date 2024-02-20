@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.RevokeSignInSessions {
         /// Invalidates all the refresh tokens issued to applications for a user (as well as session cookies in a user&apos;s browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time. Typically, this operation is performed (by the user or an administrator) if the user has a lost or stolen device. This operation prevents access to the organization&apos;s data through applications on the device by requiring the user to sign in again to all applications that they have previously consented to, independent of device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-revokesigninsessions?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invalidates all the refresh tokens issued to applications for a user (as well as session cookies in a user's browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time. Typically, this operation is performed (by the user or an administrator) if the user has a lost or stolen device. This operation prevents access to the organization's data through applications on the device by requiring the user to sign in again to all applications that they have previously consented to, independent of device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-revokesigninsessions?view=graph-rest-1.0";
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.RevokeSignInSessions {
         /// <summary>
         /// Invalidates all the refresh tokens issued to applications for a user (as well as session cookies in a user&apos;s browser), by resetting the signInSessionsValidFromDateTime user property to the current date-time. Typically, this operation is performed (by the user or an administrator) if the user has a lost or stolen device. This operation prevents access to the organization&apos;s data through applications on the device by requiring the user to sign in again to all applications that they have previously consented to, independent of device.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,7 +23,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Delete navigation property applePushNotificationCertificate for deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property applePushNotificationCertificate for deviceManagement";
@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDownloadApplePushNotificationCertificateSigningRequestNavCommand() {
             var command = new Command("download-apple-push-notification-certificate-signing-request");
             command.Description = "Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.";
@@ -68,7 +68,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// Read properties and relationships of the applePushNotificationCertificate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the applePushNotificationCertificate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-get?view=graph-rest-1.0";
@@ -114,7 +114,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// Update the properties of a applePushNotificationCertificate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a applePushNotificationCertificate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-update?view=graph-rest-1.0";
@@ -170,7 +170,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Delete navigation property applePushNotificationCertificate for deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -187,7 +187,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Read properties and relationships of the applePushNotificationCertificate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -204,7 +204,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Update the properties of a applePushNotificationCertificate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

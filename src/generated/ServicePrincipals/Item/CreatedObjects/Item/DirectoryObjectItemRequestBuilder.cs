@@ -23,7 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Directory objects created by this service principal. Read-only. Nullable.";
@@ -80,7 +80,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphServicePrincipalByIdNavCommand() {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -108,7 +108,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects.Item {
         /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

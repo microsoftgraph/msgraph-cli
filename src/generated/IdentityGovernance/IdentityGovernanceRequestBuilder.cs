@@ -28,7 +28,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAccessReviewsNavCommand() {
             var command = new Command("access-reviews");
             command.Description = "Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.";
@@ -53,7 +53,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppConsentNavCommand() {
             var command = new Command("app-consent");
             command.Description = "Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.";
@@ -77,7 +77,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEntitlementManagementNavCommand() {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.";
@@ -112,7 +112,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Get identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get identityGovernance";
@@ -157,7 +157,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLifecycleWorkflowsNavCommand() {
             var command = new Command("lifecycle-workflows");
             command.Description = "Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.";
@@ -186,7 +186,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Update identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update identityGovernance";
@@ -230,7 +230,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrivilegedAccessNavCommand() {
             var command = new Command("privileged-access");
             command.Description = "Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.";
@@ -254,7 +254,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTermsOfUseNavCommand() {
             var command = new Command("terms-of-use");
             command.Description = "Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.";
@@ -291,7 +291,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Get identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -308,7 +308,7 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Update identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

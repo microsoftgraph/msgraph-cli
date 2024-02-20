@@ -24,7 +24,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Delete navigation property threads for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property threads for groups";
@@ -70,7 +70,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
@@ -133,7 +133,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Update the navigation property threads in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property threads in groups";
@@ -195,7 +195,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostsNavCommand() {
             var command = new Command("posts");
             command.Description = "Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.";
@@ -220,7 +220,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
@@ -248,7 +248,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Delete navigation property threads for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -265,7 +265,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -282,7 +282,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Update the navigation property threads in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,7 +22,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
         /// <summary>
         /// The application that is linked to the tab. This can&apos;t be changed after tab creation.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab. This can't be changed after tab creation.";
@@ -97,7 +97,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Tabs.Item.TeamsApp {
         /// <summary>
         /// The application that is linked to the tab. This can&apos;t be changed after tab creation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

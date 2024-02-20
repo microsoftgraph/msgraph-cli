@@ -23,7 +23,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Get bitlocker from informationProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get bitlocker from informationProtection";
@@ -68,7 +68,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRecoveryKeysNavCommand() {
             var command = new Command("recovery-keys");
             command.Description = "Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.";
@@ -105,7 +105,7 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Get bitlocker from informationProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

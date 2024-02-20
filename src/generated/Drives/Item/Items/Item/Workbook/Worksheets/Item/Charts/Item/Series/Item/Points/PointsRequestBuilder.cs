@@ -25,7 +25,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to manage the points property of the microsoft.graph.workbookChartSeries entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -39,7 +39,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
@@ -56,7 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// Use this API to create a new ChartPoints.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartseries-post-points?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new ChartPoints.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartseries-post-points?view=graph-rest-1.0";
@@ -130,7 +130,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to call the itemAt method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildItemAtWithIndexRbCommand() {
             var command = new Command("item-at-with-index");
             command.Description = "Provides operations to call the itemAt method.";
@@ -150,13 +150,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Retrieve a list of chartpoints objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartseries-list-points?view=graph-rest-1.0" />
+        /// Retrieve a list of chartpoint objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartpoint-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chartpoints objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartseries-list-points?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of chartpoint objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartpoint-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -286,9 +286,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         public PointsRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/{workbookChartSeries%2Did}/points{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of chartpoints objects.
+        /// Retrieve a list of chartpoint objects.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -305,7 +305,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Use this API to create a new ChartPoints.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -322,7 +322,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of chartpoints objects.
+        /// Retrieve a list of chartpoint objects.
         /// </summary>
         public class PointsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

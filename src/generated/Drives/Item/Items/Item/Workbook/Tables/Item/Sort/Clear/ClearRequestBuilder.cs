@@ -22,7 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Clear {
         /// Clears the sorting that is currently on the table. While this doesn&apos;t modify the table&apos;s ordering, it clears the state of the header buttons.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablesort-clear?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Clears the sorting that is currently on the table. While this doesn't modify the table's ordering, it clears the state of the header buttons.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablesort-clear?view=graph-rest-1.0";
@@ -73,7 +73,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Clear {
         /// <summary>
         /// Clears the sorting that is currently on the table. While this doesn&apos;t modify the table&apos;s ordering, it clears the state of the header buttons.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

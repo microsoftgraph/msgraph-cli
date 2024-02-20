@@ -23,7 +23,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Provides operations to call the createDownloadUrl method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateDownloadUrlNavCommand() {
             var command = new Command("create-download-url");
             command.Description = "Provides operations to call the createDownloadUrl method.";
@@ -40,7 +40,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Deletes a appLogCollectionRequest.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a appLogCollectionRequest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0";
@@ -81,7 +81,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Read properties and relationships of the appLogCollectionRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0";
@@ -139,7 +139,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// Update the properties of a appLogCollectionRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0";
@@ -207,7 +207,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Deletes a appLogCollectionRequest.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Read properties and relationships of the appLogCollectionRequest object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         /// <summary>
         /// Update the properties of a appLogCollectionRequest object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

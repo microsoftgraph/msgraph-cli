@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Photos {
         /// <summary>
         /// Provides operations to manage the photos property of the microsoft.graph.user entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -35,7 +35,7 @@ namespace ApiSdk.Users.Item.Photos {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
@@ -127,7 +127,7 @@ namespace ApiSdk.Users.Item.Photos {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppliedPoliciesNavCommand() {
             var command = new Command("applied-policies");
             command.Description = "Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Delete navigation property managedAppRegistrations for deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property managedAppRegistrations for deviceAppManagement";
@@ -83,13 +83,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedAppRegistration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the androidManagedAppRegistration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedAppRegistration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-get?view=graph-rest-1.0";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -137,7 +137,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the intendedPolicies property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIntendedPoliciesNavCommand() {
             var command = new Command("intended-policies");
             command.Description = "Provides operations to manage the intendedPolicies property of the microsoft.graph.managedAppRegistration entity.";
@@ -163,7 +163,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.";
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Update the navigation property managedAppRegistrations in deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property managedAppRegistrations in deviceAppManagement";
@@ -251,7 +251,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Delete navigation property managedAppRegistrations for deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -266,9 +266,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
+        /// Read properties and relationships of the managedAppRegistration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Update the navigation property managedAppRegistrations in deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -302,7 +302,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the androidManagedAppRegistration object.
+        /// Read properties and relationships of the managedAppRegistration object.
         /// </summary>
         public class ManagedAppRegistrationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

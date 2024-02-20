@@ -23,7 +23,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Copy
         /// Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/page-copytosection?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/page-copytosection?view=graph-rest-1.0";
@@ -103,7 +103,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Copy
         /// <summary>
         /// Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

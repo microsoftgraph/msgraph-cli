@@ -20,12 +20,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.SetUpResourcesFolder {
     /// </summary>
     public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-setupresourcesfolder?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUpResourcesFolder";
+            command.Description = "Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-setupresourcesfolder?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -75,9 +76,9 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.SetUpResourcesFolder {
         public SetUpResourcesFolderRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/setUpResourcesFolder", rawUrl) {
         }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Create a SharePoint folder to upload files for a given educationModule. Only teachers can perform this operation. The teacher determines what resources to upload to the SharePoint folder for the module.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

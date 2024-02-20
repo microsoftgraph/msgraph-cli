@@ -23,7 +23,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// Delete navigation property localizations for agreements
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property localizations for agreements";
@@ -63,7 +63,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The localized version of the terms of use agreement files attached to the agreement.";
@@ -120,7 +120,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// Update the navigation property localizations in agreements
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property localizations in agreements";
@@ -176,7 +176,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.agreementFileLocalization entity.";
@@ -214,7 +214,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// Delete navigation property localizations for agreements
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -248,7 +248,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item {
         /// <summary>
         /// Update the navigation property localizations in agreements
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

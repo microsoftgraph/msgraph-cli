@@ -23,7 +23,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedulinggroup-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// Retrieve the properties and relationships of a schedulingGroup by ID.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedulinggroup-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a schedulingGroup by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-get?view=graph-rest-1.0";
@@ -115,7 +115,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// Replace an existing schedulingGroup. If the specified schedulingGroup doesn&apos;t exist, this method returns 404 Not found.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedulinggroup-put?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Replace an existing schedulingGroup. If the specified schedulingGroup doesn't exist, this method returns 404 Not found.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedulinggroup-put?view=graph-rest-1.0";
@@ -183,7 +183,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// <summary>
         /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a schedulingGroup by ID.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SchedulingGroups.Item {
         /// <summary>
         /// Replace an existing schedulingGroup. If the specified schedulingGroup doesn&apos;t exist, this method returns 404 Not found.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

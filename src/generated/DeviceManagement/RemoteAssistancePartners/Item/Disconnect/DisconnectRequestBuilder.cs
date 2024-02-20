@@ -22,7 +22,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         /// A request to remove the active TeamViewer connector
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-disconnect?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "A request to remove the active TeamViewer connector\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-disconnect?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
         /// <summary>
         /// A request to remove the active TeamViewer connector
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

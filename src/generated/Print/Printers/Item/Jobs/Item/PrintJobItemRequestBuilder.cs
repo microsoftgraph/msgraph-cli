@@ -28,7 +28,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to call the abort method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAbortNavCommand() {
             var command = new Command("abort");
             command.Description = "Provides operations to call the abort method.";
@@ -44,7 +44,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
@@ -60,7 +60,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Delete navigation property jobs for print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property jobs for print";
@@ -100,7 +100,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to manage the documents property of the microsoft.graph.printJob entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDocumentsNavCommand() {
             var command = new Command("documents");
             command.Description = "Provides operations to manage the documents property of the microsoft.graph.printJob entity.";
@@ -126,7 +126,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// The list of jobs that are queued for printing by the printer/printerShare.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of jobs that are queued for printing by the printer/printerShare.";
@@ -183,7 +183,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Update the navigation property jobs in print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property jobs in print";
@@ -239,7 +239,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to call the redirect method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRedirectNavCommand() {
             var command = new Command("redirect");
             command.Description = "Provides operations to call the redirect method.";
@@ -255,7 +255,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to call the start method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildStartNavCommand() {
             var command = new Command("start");
             command.Description = "Provides operations to call the start method.";
@@ -271,7 +271,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.printJob entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.printJob entity.";
@@ -309,7 +309,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Delete navigation property jobs for print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -326,7 +326,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// The list of jobs that are queued for printing by the printer/printerShare.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -343,7 +343,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item {
         /// <summary>
         /// Update the navigation property jobs in print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

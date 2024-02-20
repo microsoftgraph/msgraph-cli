@@ -27,7 +27,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Provides operations to call the addCopyFromContentTypeHub method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddCopyFromContentTypeHubNavCommand() {
             var command = new Command("add-copy-from-content-type-hub");
             command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
@@ -43,7 +43,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Provides operations to call the addCopy method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddCopyNavCommand() {
             var command = new Command("add-copy");
             command.Description = "Provides operations to call the addCopy method.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -82,7 +82,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -98,7 +98,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Create new navigation property to contentTypes for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to contentTypes for drives";
@@ -148,7 +148,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Provides operations to call the getCompatibleHubContentTypes method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCompatibleHubContentTypesNavCommand() {
             var command = new Command("get-compatible-hub-content-types");
             command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
@@ -165,7 +165,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// Get the collection of [contentType][contentType] resources in a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the collection of [contentType][contentType] resources in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
@@ -276,7 +276,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Get the collection of [contentType][contentType] resources in a [list][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -293,7 +293,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes {
         /// <summary>
         /// Create new navigation property to contentTypes for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

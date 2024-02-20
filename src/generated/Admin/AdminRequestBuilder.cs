@@ -26,7 +26,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Provides operations to manage the edge property of the microsoft.graph.admin entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEdgeNavCommand() {
             var command = new Command("edge");
             command.Description = "Provides operations to manage the edge property of the microsoft.graph.admin entity.";
@@ -50,7 +50,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Get admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get admin";
@@ -95,7 +95,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Update admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update admin";
@@ -139,7 +139,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Provides operations to manage the people property of the microsoft.graph.admin entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPeopleNavCommand() {
             var command = new Command("people");
             command.Description = "Provides operations to manage the people property of the microsoft.graph.admin entity.";
@@ -162,7 +162,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceAnnouncementNavCommand() {
             var command = new Command("service-announcement");
             command.Description = "Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.";
@@ -188,7 +188,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSharepointNavCommand() {
             var command = new Command("sharepoint");
             command.Description = "Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.";
@@ -224,7 +224,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Get admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Update admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

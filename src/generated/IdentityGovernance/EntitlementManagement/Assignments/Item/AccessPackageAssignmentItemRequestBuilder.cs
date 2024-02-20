@@ -26,7 +26,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAccessPackageNavCommand() {
             var command = new Command("access-package");
             command.Description = "Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.";
@@ -42,7 +42,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentPolicyNavCommand() {
             var command = new Command("assignment-policy");
             command.Description = "Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.";
@@ -58,7 +58,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Delete navigation property assignments for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for identityGovernance";
@@ -93,7 +93,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0";
@@ -144,7 +144,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Update the navigation property assignments in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in identityGovernance";
@@ -194,7 +194,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to call the reprocess method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReprocessNavCommand() {
             var command = new Command("reprocess");
             command.Description = "Provides operations to call the reprocess method.";
@@ -210,7 +210,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTargetNavCommand() {
             var command = new Command("target");
             command.Description = "Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.";
@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Delete navigation property assignments for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Update the navigation property assignments in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

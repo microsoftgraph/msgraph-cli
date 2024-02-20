@@ -26,7 +26,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -40,7 +40,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to call the confirmCompromised method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildConfirmCompromisedNavCommand() {
             var command = new Command("confirm-compromised");
             command.Description = "Provides operations to call the confirmCompromised method.";
@@ -56,7 +56,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -72,7 +72,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Create new navigation property to riskyUsers for identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to riskyUsers for identityProtection";
@@ -116,7 +116,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to call the dismiss method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDismissNavCommand() {
             var command = new Command("dismiss");
             command.Description = "Provides operations to call the dismiss method.";
@@ -133,7 +133,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// Get a list of the riskyUser objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the riskyUser objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0";
@@ -238,7 +238,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Get a list of the riskyUser objects and their properties.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Create new navigation property to riskyUsers for identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

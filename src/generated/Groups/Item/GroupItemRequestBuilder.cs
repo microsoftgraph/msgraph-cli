@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the acceptedSenders property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAcceptedSendersNavCommand() {
             var command = new Command("accepted-senders");
             command.Description = "Provides operations to manage the acceptedSenders property of the microsoft.graph.group entity.";
@@ -91,7 +91,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the addFavorite method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddFavoriteNavCommand() {
             var command = new Command("add-favorite");
             command.Description = "Provides operations to call the addFavorite method.";
@@ -107,7 +107,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppRoleAssignmentsNavCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.";
@@ -133,7 +133,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the assignLicense method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignLicenseNavCommand() {
             var command = new Command("assign-license");
             command.Description = "Provides operations to call the assignLicense method.";
@@ -149,7 +149,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the calendar property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCalendarNavCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.group entity.";
@@ -175,7 +175,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.group entity.";
@@ -201,7 +201,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the checkGrantedPermissionsForApp method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckGrantedPermissionsForAppNavCommand() {
             var command = new Command("check-granted-permissions-for-app");
             command.Description = "Provides operations to call the checkGrantedPermissionsForApp method.";
@@ -217,7 +217,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -233,7 +233,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -249,7 +249,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the conversations property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildConversationsNavCommand() {
             var command = new Command("conversations");
             command.Description = "Provides operations to manage the conversations property of the microsoft.graph.group entity.";
@@ -275,7 +275,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreatedOnBehalfOfNavCommand() {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.group entity.";
@@ -292,7 +292,7 @@ namespace ApiSdk.Groups.Item {
         /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete?view=graph-rest-1.0";
@@ -326,7 +326,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.group entity.";
@@ -342,7 +342,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDrivesNavCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.group entity.";
@@ -367,7 +367,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.group entity.";
@@ -394,7 +394,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.group entity.";
@@ -421,7 +421,7 @@ namespace ApiSdk.Groups.Item {
         /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren&apos;t_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren&apos;t returned in the $select query.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get?view=graph-rest-1.0";
@@ -472,7 +472,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -488,7 +488,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -504,7 +504,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the groupLifecyclePolicies property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGroupLifecyclePoliciesNavCommand() {
             var command = new Command("group-lifecycle-policies");
             command.Description = "Provides operations to manage the groupLifecyclePolicies property of the microsoft.graph.group entity.";
@@ -530,7 +530,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.group entity.";
@@ -557,7 +557,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.group entity.";
@@ -589,7 +589,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMembersWithLicenseErrorsNavCommand() {
             var command = new Command("members-with-license-errors");
             command.Description = "Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.";
@@ -620,7 +620,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOnenoteNavCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.group entity.";
@@ -649,7 +649,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOwnersNavCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.group entity.";
@@ -682,7 +682,7 @@ namespace ApiSdk.Groups.Item {
         /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0";
@@ -732,7 +732,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the permissionGrants property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPermissionGrantsNavCommand() {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the permissionGrants property of the microsoft.graph.group entity.";
@@ -758,7 +758,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.group entity.";
@@ -781,7 +781,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the photos property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPhotosNavCommand() {
             var command = new Command("photos");
             command.Description = "Provides operations to manage the photos property of the microsoft.graph.group entity.";
@@ -805,7 +805,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the planner property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPlannerNavCommand() {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner property of the microsoft.graph.group entity.";
@@ -829,7 +829,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the rejectedSenders property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRejectedSendersNavCommand() {
             var command = new Command("rejected-senders");
             command.Description = "Provides operations to manage the rejectedSenders property of the microsoft.graph.group entity.";
@@ -855,7 +855,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the removeFavorite method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRemoveFavoriteNavCommand() {
             var command = new Command("remove-favorite");
             command.Description = "Provides operations to call the removeFavorite method.";
@@ -871,7 +871,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the renew method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRenewNavCommand() {
             var command = new Command("renew");
             command.Description = "Provides operations to call the renew method.";
@@ -887,7 +887,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the resetUnseenCount method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResetUnseenCountNavCommand() {
             var command = new Command("reset-unseen-count");
             command.Description = "Provides operations to call the resetUnseenCount method.";
@@ -903,7 +903,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -919,7 +919,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the retryServiceProvisioning method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRetryServiceProvisioningNavCommand() {
             var command = new Command("retry-service-provisioning");
             command.Description = "Provides operations to call the retryServiceProvisioning method.";
@@ -935,7 +935,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -957,7 +957,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.group entity.";
@@ -983,7 +983,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSitesNavCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.group entity.";
@@ -1012,7 +1012,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the subscribeByMail method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubscribeByMailNavCommand() {
             var command = new Command("subscribe-by-mail");
             command.Description = "Provides operations to call the subscribeByMail method.";
@@ -1028,7 +1028,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the team property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTeamNavCommand() {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.group entity.";
@@ -1069,7 +1069,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the threads property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildThreadsNavCommand() {
             var command = new Command("threads");
             command.Description = "Provides operations to manage the threads property of the microsoft.graph.group entity.";
@@ -1095,7 +1095,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.group entity.";
@@ -1122,7 +1122,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTransitiveMembersNavCommand() {
             var command = new Command("transitive-members");
             command.Description = "Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.";
@@ -1153,7 +1153,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the unsubscribeByMail method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnsubscribeByMailNavCommand() {
             var command = new Command("unsubscribe-by-mail");
             command.Description = "Provides operations to call the unsubscribeByMail method.";
@@ -1169,7 +1169,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildValidatePropertiesByIdNavCommand() {
             var command = new Command("validate-properties-by-id");
             command.Description = "Provides operations to call the validateProperties method.";
@@ -1197,7 +1197,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they&apos;re permanently deleted. This isn&apos;t applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -1214,7 +1214,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren&apos;t_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren&apos;t returned in the $select query.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -1231,7 +1231,7 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

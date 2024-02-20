@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount {
         /// Reset the unseenCount of all the posts that the current user hasn&apos;t seen since their last visit. Supported for Microsoft 365 groups only.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-resetunseencount?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reset the unseenCount of all the posts that the current user hasn't seen since their last visit. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-resetunseencount?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount {
         /// <summary>
         /// Reset the unseenCount of all the posts that the current user hasn&apos;t seen since their last visit. Supported for Microsoft 365 groups only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

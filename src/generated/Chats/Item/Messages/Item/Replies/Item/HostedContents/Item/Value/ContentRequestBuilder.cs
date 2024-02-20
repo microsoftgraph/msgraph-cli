@@ -22,7 +22,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Item.Value
         /// Get media content for the navigation property hostedContents from chats
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property hostedContents from chats\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
@@ -79,7 +79,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Item.Value
         /// <summary>
         /// Update media content for the navigation property hostedContents in chats
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property hostedContents in chats";
@@ -158,7 +158,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Item.Value
         /// <summary>
         /// Get media content for the navigation property hostedContents from chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -175,7 +175,7 @@ namespace ApiSdk.Chats.Item.Messages.Item.Replies.Item.HostedContents.Item.Value
         /// <summary>
         /// Update media content for the navigation property hostedContents in chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

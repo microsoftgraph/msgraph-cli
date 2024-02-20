@@ -39,7 +39,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildArticleIndicatorsNavCommand() {
             var command = new Command("article-indicators");
             command.Description = "Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.";
@@ -65,7 +65,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildArticlesNavCommand() {
             var command = new Command("articles");
             command.Description = "Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.";
@@ -91,7 +91,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Delete navigation property threatIntelligence for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property threatIntelligence for security";
@@ -119,7 +119,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Get threatIntelligence from security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get threatIntelligence from security";
@@ -164,7 +164,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostComponentsNavCommand() {
             var command = new Command("host-components");
             command.Description = "Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.";
@@ -190,7 +190,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostCookiesNavCommand() {
             var command = new Command("host-cookies");
             command.Description = "Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.";
@@ -216,7 +216,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostPairsNavCommand() {
             var command = new Command("host-pairs");
             command.Description = "Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.";
@@ -242,7 +242,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostPortsNavCommand() {
             var command = new Command("host-ports");
             command.Description = "Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.";
@@ -268,7 +268,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostsNavCommand() {
             var command = new Command("hosts");
             command.Description = "Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.";
@@ -294,7 +294,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostSslCertificates property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostSslCertificatesNavCommand() {
             var command = new Command("host-ssl-certificates");
             command.Description = "Provides operations to manage the hostSslCertificates property of the microsoft.graph.security.threatIntelligence entity.";
@@ -320,7 +320,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostTrackersNavCommand() {
             var command = new Command("host-trackers");
             command.Description = "Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.";
@@ -346,7 +346,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIntelligenceProfileIndicatorsNavCommand() {
             var command = new Command("intelligence-profile-indicators");
             command.Description = "Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.";
@@ -372,7 +372,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIntelProfilesNavCommand() {
             var command = new Command("intel-profiles");
             command.Description = "Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.";
@@ -398,7 +398,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPassiveDnsRecordsNavCommand() {
             var command = new Command("passive-dns-records");
             command.Description = "Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.";
@@ -424,7 +424,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Update the navigation property threatIntelligence in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property threatIntelligence in security";
@@ -468,7 +468,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the sslCertificates property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSslCertificatesNavCommand() {
             var command = new Command("ssl-certificates");
             command.Description = "Provides operations to manage the sslCertificates property of the microsoft.graph.security.threatIntelligence entity.";
@@ -494,7 +494,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubdomainsNavCommand() {
             var command = new Command("subdomains");
             command.Description = "Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.";
@@ -520,7 +520,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildVulnerabilitiesNavCommand() {
             var command = new Command("vulnerabilities");
             command.Description = "Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.";
@@ -546,7 +546,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the whoisHistoryRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWhoisHistoryRecordsNavCommand() {
             var command = new Command("whois-history-records");
             command.Description = "Provides operations to manage the whoisHistoryRecords property of the microsoft.graph.security.threatIntelligence entity.";
@@ -572,7 +572,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the whoisRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWhoisRecordsNavCommand() {
             var command = new Command("whois-records");
             command.Description = "Provides operations to manage the whoisRecords property of the microsoft.graph.security.threatIntelligence entity.";
@@ -610,7 +610,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Delete navigation property threatIntelligence for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -627,7 +627,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Get threatIntelligence from security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -644,7 +644,7 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Update the navigation property threatIntelligence in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

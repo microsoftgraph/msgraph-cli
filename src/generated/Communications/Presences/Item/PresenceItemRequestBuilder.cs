@@ -27,7 +27,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the clearPresence method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildClearPresenceNavCommand() {
             var command = new Command("clear-presence");
             command.Description = "Provides operations to call the clearPresence method.";
@@ -43,7 +43,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the clearUserPreferredPresence method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildClearUserPreferredPresenceNavCommand() {
             var command = new Command("clear-user-preferred-presence");
             command.Description = "Provides operations to call the clearUserPreferredPresence method.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Delete navigation property presences for communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property presences for communications";
@@ -94,7 +94,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// Get a user&apos;s presence information.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a user's presence information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-get?view=graph-rest-1.0";
@@ -145,7 +145,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Update the navigation property presences in communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property presences in communications";
@@ -195,7 +195,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the setPresence method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetPresenceNavCommand() {
             var command = new Command("set-presence");
             command.Description = "Provides operations to call the setPresence method.";
@@ -211,7 +211,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the setStatusMessage method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetStatusMessageNavCommand() {
             var command = new Command("set-status-message");
             command.Description = "Provides operations to call the setStatusMessage method.";
@@ -227,7 +227,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the setUserPreferredPresence method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetUserPreferredPresenceNavCommand() {
             var command = new Command("set-user-preferred-presence");
             command.Description = "Provides operations to call the setUserPreferredPresence method.";
@@ -255,7 +255,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Delete navigation property presences for communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Get a user&apos;s presence information.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -289,7 +289,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Update the navigation property presences in communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

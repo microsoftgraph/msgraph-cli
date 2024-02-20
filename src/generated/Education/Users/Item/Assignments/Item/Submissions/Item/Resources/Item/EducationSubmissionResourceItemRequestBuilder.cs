@@ -23,7 +23,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to &apos;reset&apos; the resource to its original state. If the resource wasn&apos;t copied from the assignment but was added from the student, the resource is deleted.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to 'reset' the resource to its original state. If the resource wasn't copied from the assignment but was added from the student, the resource is deleted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0";
@@ -76,7 +76,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the &apos;working&apos; resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmissionresource-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the 'working' resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmissionresource-get?view=graph-rest-1.0";
@@ -145,7 +145,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// <summary>
         /// Update the navigation property resources in education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property resources in education";
@@ -225,7 +225,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// <summary>
         /// Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to &apos;reset&apos; the resource to its original state. If the resource wasn&apos;t copied from the assignment but was added from the student, the resource is deleted.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,7 +242,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// <summary>
         /// Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the &apos;working&apos; resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -259,7 +259,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         /// <summary>
         /// Update the navigation property resources in education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

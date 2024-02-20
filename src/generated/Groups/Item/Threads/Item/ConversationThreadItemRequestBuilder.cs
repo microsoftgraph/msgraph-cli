@@ -25,7 +25,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// Delete conversationThread.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0";
@@ -63,13 +63,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0" />
+        /// Get a thread object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0";
+            command.Description = "Get a thread object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -117,7 +117,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// Update conversation thread
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update conversation thread\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0";
@@ -173,7 +173,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// <summary>
         /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostsNavCommand() {
             var command = new Command("posts");
             command.Description = "Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.";
@@ -198,7 +198,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// <summary>
         /// Delete conversationThread.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,9 +241,9 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        /// Get a thread object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -260,7 +260,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         /// <summary>
         /// Update conversation thread
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +277,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        /// Get a thread object.
         /// </summary>
         public class ConversationThreadItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

@@ -24,7 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Provides operations to manage the containedApps property of the microsoft.graph.mobileAppContent entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContainedAppsNavCommand() {
             var command = new Command("contained-apps");
             command.Description = "Provides operations to manage the containedApps property of the microsoft.graph.mobileAppContent entity.";
@@ -50,7 +50,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Delete navigation property contentVersions for deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property contentVersions for deviceAppManagement";
@@ -90,7 +90,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Provides operations to manage the files property of the microsoft.graph.mobileAppContent entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFilesNavCommand() {
             var command = new Command("files");
             command.Description = "Provides operations to manage the files property of the microsoft.graph.mobileAppContent entity.";
@@ -116,7 +116,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// The list of content versions for this app.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of content versions for this app.";
@@ -173,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Update the navigation property contentVersions in deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property contentVersions in deviceAppManagement";
@@ -241,7 +241,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Delete navigation property contentVersions for deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -258,7 +258,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// The list of content versions for this app.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -275,7 +275,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosLobApp.ContentVersi
         /// <summary>
         /// Update the navigation property contentVersions in deviceAppManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

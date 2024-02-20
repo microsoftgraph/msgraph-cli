@@ -22,7 +22,7 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
         /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
         /// <summary>
         /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

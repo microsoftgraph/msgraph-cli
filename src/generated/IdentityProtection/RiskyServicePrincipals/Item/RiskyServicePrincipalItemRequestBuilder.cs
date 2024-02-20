@@ -23,7 +23,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Delete navigation property riskyServicePrincipals for identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskyServicePrincipals for identityProtection";
@@ -58,7 +58,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// Read the properties and relationships of a riskyServicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a riskyServicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0";
@@ -109,7 +109,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.riskyServicePrincipal entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHistoryNavCommand() {
             var command = new Command("history");
             command.Description = "Provides operations to manage the history property of the microsoft.graph.riskyServicePrincipal entity.";
@@ -135,7 +135,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Update the navigation property riskyServicePrincipals in identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskyServicePrincipals in identityProtection";
@@ -197,7 +197,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Delete navigation property riskyServicePrincipals for identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -214,7 +214,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Read the properties and relationships of a riskyServicePrincipal object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Update the navigation property riskyServicePrincipals in identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

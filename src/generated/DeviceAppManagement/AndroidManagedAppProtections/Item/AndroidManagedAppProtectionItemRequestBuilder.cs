@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.androidManagedAppProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppsNavCommand() {
             var command = new Command("apps");
             command.Description = "Provides operations to manage the apps property of the microsoft.graph.androidManagedAppProtection entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppProtection entity.";
@@ -78,7 +78,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// Deletes a androidManagedAppProtection.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a androidManagedAppProtection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-delete?view=graph-rest-1.0";
@@ -112,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Provides operations to manage the deploymentSummary property of the microsoft.graph.androidManagedAppProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeploymentSummaryNavCommand() {
             var command = new Command("deployment-summary");
             command.Description = "Provides operations to manage the deploymentSummary property of the microsoft.graph.androidManagedAppProtection entity.";
@@ -131,7 +131,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// Read properties and relationships of the androidManagedAppProtection object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the androidManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-get?view=graph-rest-1.0";
@@ -183,7 +183,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// Update the properties of a androidManagedAppProtection object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a androidManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-update?view=graph-rest-1.0";
@@ -245,7 +245,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Deletes a androidManagedAppProtection.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -262,7 +262,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Read properties and relationships of the androidManagedAppProtection object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -279,7 +279,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Update the properties of a androidManagedAppProtection object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

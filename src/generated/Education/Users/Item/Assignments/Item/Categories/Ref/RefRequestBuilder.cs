@@ -23,7 +23,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0";
@@ -70,7 +70,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
@@ -162,7 +162,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0";
@@ -220,7 +220,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// <summary>
         /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -237,7 +237,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// <summary>
         /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -254,7 +254,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Categories.Ref {
         /// <summary>
         /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

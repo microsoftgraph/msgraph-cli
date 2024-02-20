@@ -18,7 +18,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Item {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of group entities.";

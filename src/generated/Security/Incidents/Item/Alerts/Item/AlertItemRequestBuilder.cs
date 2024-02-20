@@ -23,7 +23,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item {
         /// <summary>
         /// The comments property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCommentsNavCommand() {
             var command = new Command("comments");
             command.Description = "The comments property";
@@ -45,7 +45,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item {
         /// <summary>
         /// The list of related alerts. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of related alerts. Supports $expand.";
@@ -114,7 +114,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item {
         /// <summary>
         /// The list of related alerts. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

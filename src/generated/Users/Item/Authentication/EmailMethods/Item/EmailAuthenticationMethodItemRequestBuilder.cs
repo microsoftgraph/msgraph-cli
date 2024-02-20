@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// Deletes a user&apos;s emailAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a user's emailAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// Retrieve a user&apos;s single email authentication method object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a user's single email authentication method object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0";
@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// Update a user&apos;s email address represented by an emailAuthenticationMethod object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update a user's email address represented by an emailAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-update?view=graph-rest-1.0";
@@ -190,7 +190,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// <summary>
         /// Deletes a user&apos;s emailAuthenticationMethod object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,7 +207,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// <summary>
         /// Retrieve a user&apos;s single email authentication method object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
         /// <summary>
         /// Update a user&apos;s email address represented by an emailAuthenticationMethod object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

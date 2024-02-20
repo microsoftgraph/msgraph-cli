@@ -27,7 +27,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildActivatedUsingNavCommand() {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.";
@@ -43,7 +43,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -59,7 +59,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Delete navigation property roleAssignmentSchedules for roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignmentSchedules for roleManagement";
@@ -93,7 +93,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -110,7 +110,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// Retrieve the schedule for an active role assignment operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the schedule for an active role assignment operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0";
@@ -161,7 +161,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Update the navigation property roleAssignmentSchedules in roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignmentSchedules in roleManagement";
@@ -211,7 +211,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -227,7 +227,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -255,7 +255,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Delete navigation property roleAssignmentSchedules for roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Retrieve the schedule for an active role assignment operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -289,7 +289,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Update the navigation property roleAssignmentSchedules in roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

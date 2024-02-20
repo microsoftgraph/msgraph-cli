@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
         /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
         /// <summary>
         /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

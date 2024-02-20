@@ -22,7 +22,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Delete navigation property versions for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for identityGovernance";
@@ -68,7 +68,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.";
@@ -131,7 +131,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Update the navigation property versions in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in identityGovernance";
@@ -205,7 +205,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Delete navigation property versions for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -222,7 +222,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         /// <summary>
         /// Update the navigation property versions in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

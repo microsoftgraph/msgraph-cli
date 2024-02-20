@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -47,7 +47,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -63,7 +63,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
@@ -85,7 +85,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDeviceNavCommand() {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
@@ -107,7 +107,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
@@ -129,7 +129,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
@@ -151,7 +151,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -173,7 +173,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
@@ -196,7 +196,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// The direct and transitive members of a group. Nullable.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The direct and transitive members of a group. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
@@ -314,7 +314,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <summary>
         /// The direct and transitive members of a group. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

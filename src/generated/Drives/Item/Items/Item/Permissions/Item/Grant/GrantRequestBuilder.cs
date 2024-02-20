@@ -22,7 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item.Grant {
         /// Grant users access to a link represented by a [permission][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
@@ -107,7 +107,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item.Grant {
         /// <summary>
         /// Grant users access to a link represented by a [permission][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

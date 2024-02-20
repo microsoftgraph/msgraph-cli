@@ -23,7 +23,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Delete navigation property triggers for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property triggers for security";
@@ -51,7 +51,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Get triggers from security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get triggers from security";
@@ -96,7 +96,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Update the navigation property triggers in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property triggers in security";
@@ -140,7 +140,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRetentionEventsNavCommand() {
             var command = new Command("retention-events");
             command.Description = "Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.";
@@ -178,7 +178,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Delete navigation property triggers for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -195,7 +195,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Get triggers from security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -212,7 +212,7 @@ namespace ApiSdk.Security.Triggers {
         /// <summary>
         /// Update the navigation property triggers in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

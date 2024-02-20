@@ -23,7 +23,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppConsentRequestsNavCommand() {
             var command = new Command("app-consent-requests");
             command.Description = "Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.";
@@ -50,7 +50,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Delete navigation property appConsent for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property appConsent for identityGovernance";
@@ -78,7 +78,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Get appConsent from identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get appConsent from identityGovernance";
@@ -123,7 +123,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Update the navigation property appConsent in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property appConsent in identityGovernance";
@@ -179,7 +179,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Delete navigation property appConsent for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -196,7 +196,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Get appConsent from identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -213,7 +213,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Update the navigation property appConsent in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

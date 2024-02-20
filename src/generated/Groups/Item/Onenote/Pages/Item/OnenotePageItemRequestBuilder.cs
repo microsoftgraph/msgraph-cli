@@ -28,7 +28,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
@@ -45,7 +45,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to call the copyToSection method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCopyToSectionNavCommand() {
             var command = new Command("copy-to-section");
             command.Description = "Provides operations to call the copyToSection method.";
@@ -62,7 +62,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// Delete a OneNote page.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/page-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a OneNote page.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/page-delete?view=graph-rest-1.0";
@@ -103,7 +103,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// Retrieve the properties and relationships of a page object. Getting page information Access a page&apos;s metadata by page identifier: Getting page content You can use the page&apos;s content endpoint to get the HTML content of a page: The includeIDs=true query option is used to update pages.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/page-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a page object. Getting page information Access a page's metadata by page identifier: Getting page content You can use the page's content endpoint to get the HTML content of a page: The includeIDs=true query option is used to update pages.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/page-get?view=graph-rest-1.0";
@@ -160,7 +160,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOnenotePatchContentNavCommand() {
             var command = new Command("onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
@@ -176,7 +176,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.";
@@ -192,7 +192,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentSectionNavCommand() {
             var command = new Command("parent-section");
             command.Description = "Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.";
@@ -208,7 +208,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Update the navigation property pages in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property pages in groups";
@@ -264,7 +264,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Provides operations to call the preview method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPreviewNavCommand() {
             var command = new Command("preview");
             command.Description = "Provides operations to call the preview method.";
@@ -292,7 +292,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Delete a OneNote page.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -309,7 +309,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a page object. Getting page information Access a page&apos;s metadata by page identifier: Getting page content You can use the page&apos;s content endpoint to get the HTML content of a page: The includeIDs=true query option is used to update pages.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -326,7 +326,7 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item {
         /// <summary>
         /// Update the navigation property pages in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

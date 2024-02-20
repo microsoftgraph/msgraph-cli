@@ -22,7 +22,7 @@ namespace ApiSdk.Sites.Add {
         /// Follow a user&apos;s site or multiple sites.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-follow?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Follow a user's site or multiple sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-follow?view=graph-rest-1.0";
@@ -89,7 +89,7 @@ namespace ApiSdk.Sites.Add {
         /// <summary>
         /// Follow a user&apos;s site or multiple sites.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

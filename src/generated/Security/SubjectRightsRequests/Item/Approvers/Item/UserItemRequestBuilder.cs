@@ -24,7 +24,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item {
         /// <summary>
         /// Collection of users who can approve the request. Currently only supported for requests of type delete.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Collection of users who can approve the request. Currently only supported for requests of type delete.";
@@ -81,7 +81,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMailboxSettingsNavCommand() {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
@@ -98,7 +98,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -132,7 +132,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Approvers.Item {
         /// <summary>
         /// Collection of users who can approve the request. Currently only supported for requests of type delete.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

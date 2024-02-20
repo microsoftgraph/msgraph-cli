@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// Create a new task object in a specified todoTaskList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new task object in a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0";
@@ -116,7 +116,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -133,7 +133,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the todoTask resources from the tasks navigation property of a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0";
@@ -250,7 +250,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// <summary>
         /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -267,7 +267,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         /// <summary>
         /// Create a new task object in a specified todoTaskList.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

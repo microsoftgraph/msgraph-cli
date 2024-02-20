@@ -24,7 +24,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationModule entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new EducationModuleResourceItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -50,12 +50,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-post-resources?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to resources for education";
+            command.Description = "Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-post-resources?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -106,12 +107,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Get resources from education
+        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-list-resources?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get resources from education";
+            command.Description = "Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-list-resources?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -223,9 +225,9 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
         public ResourcesRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Get resources from education
+        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -240,9 +242,9 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +261,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Get resources from education
+        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

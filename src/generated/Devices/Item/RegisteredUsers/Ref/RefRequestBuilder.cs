@@ -23,7 +23,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// Remove a user as a registered user of the device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-delete-registeredusers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove a user as a registered user of the device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-delete-registeredusers?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0";
@@ -157,7 +157,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// Add a registered user for the device.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-post-registeredusers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add a registered user for the device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-registeredusers?view=graph-rest-1.0";
@@ -209,7 +209,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// <summary>
         /// Remove a user as a registered user of the device.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -226,7 +226,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -243,7 +243,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
         /// <summary>
         /// Add a registered user for the device.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

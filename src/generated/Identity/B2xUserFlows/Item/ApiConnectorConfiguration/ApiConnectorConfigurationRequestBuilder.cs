@@ -24,7 +24,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration {
         /// <summary>
         /// Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.";
@@ -75,7 +75,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration {
         /// <summary>
         /// Provides operations to manage the postAttributeCollection property of the microsoft.graph.userFlowApiConnectorConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostAttributeCollectionNavCommand() {
             var command = new Command("post-attribute-collection");
             command.Description = "Provides operations to manage the postAttributeCollection property of the microsoft.graph.userFlowApiConnectorConfiguration entity.";
@@ -100,7 +100,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration {
         /// <summary>
         /// Provides operations to manage the postFederationSignup property of the microsoft.graph.userFlowApiConnectorConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostFederationSignupNavCommand() {
             var command = new Command("post-federation-signup");
             command.Description = "Provides operations to manage the postFederationSignup property of the microsoft.graph.userFlowApiConnectorConfiguration entity.";
@@ -137,7 +137,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration {
         /// <summary>
         /// Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only obtain the value of this object using Get userFlowApiConnectorConfiguration.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,7 +23,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// <summary>
         /// Provides operations to manage the media for the team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the team entity.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// Get the metadata for the location where the files of a channel are stored. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
@@ -110,7 +110,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// <summary>
         /// Get the metadata for the location where the files of a channel are stored. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

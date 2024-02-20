@@ -20,13 +20,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ProvisionOnDemand {
     /// </summary>
     public class ProvisionOnDemandRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
+        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0";
+            command.Description = "Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -89,9 +89,9 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ProvisionOnDemand {
         public ProvisionOnDemandRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/provisionOnDemand", rawUrl) {
         }
         /// <summary>
-        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
+        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

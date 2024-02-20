@@ -33,7 +33,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the clearFilters method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildClearFiltersNavCommand() {
             var command = new Command("clear-filters");
             command.Description = "Provides operations to call the clearFilters method.";
@@ -49,7 +49,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.";
@@ -66,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the convertToRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildConvertToRangeNavCommand() {
             var command = new Command("convert-to-range");
             command.Description = "Provides operations to call the convertToRange method.";
@@ -82,7 +82,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the dataBodyRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDataBodyRangeNavCommand() {
             var command = new Command("data-body-range");
             command.Description = "Provides operations to call the dataBodyRange method.";
@@ -98,7 +98,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
@@ -147,7 +147,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the headerRowRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHeaderRowRangeNavCommand() {
             var command = new Command("header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
@@ -163,7 +163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
@@ -179,7 +179,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the reapplyFilters method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReapplyFiltersNavCommand() {
             var command = new Command("reapply-filters");
             command.Description = "Provides operations to call the reapplyFilters method.";
@@ -195,7 +195,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRowsNavCommand() {
             var command = new Command("rows");
             command.Description = "Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.";
@@ -212,7 +212,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to manage the sort property of the microsoft.graph.workbookTable entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSortNavCommand() {
             var command = new Command("sort");
             command.Description = "Provides operations to manage the sort property of the microsoft.graph.workbookTable entity.";
@@ -230,7 +230,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to call the totalRowRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTotalRowRangeNavCommand() {
             var command = new Command("total-row-range");
             command.Description = "Provides operations to call the totalRowRange method.";
@@ -246,7 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookTable entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookTable entity.";
@@ -274,7 +274,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -21,7 +21,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         /// <summary>
         /// Invoke action stop
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action stop";
@@ -60,7 +60,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop {
         /// <summary>
         /// Invoke action stop
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

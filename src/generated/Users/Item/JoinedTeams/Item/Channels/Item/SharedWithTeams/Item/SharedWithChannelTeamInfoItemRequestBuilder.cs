@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAllowedMembersNavCommand() {
             var command = new Command("allowed-members");
             command.Description = "Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.";
@@ -50,7 +50,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0";
@@ -103,7 +103,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0";
@@ -172,7 +172,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Update the navigation property sharedWithTeams in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sharedWithTeams in users";
@@ -240,7 +240,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Provides operations to manage the team property of the microsoft.graph.teamInfo entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTeamNavCommand() {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.teamInfo entity.";
@@ -268,7 +268,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -285,7 +285,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -302,7 +302,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         /// <summary>
         /// Update the navigation property sharedWithTeams in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

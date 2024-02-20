@@ -21,7 +21,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -75,7 +75,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

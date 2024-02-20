@@ -25,7 +25,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAcceptancesNavCommand() {
             var command = new Command("acceptances");
             command.Description = "Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Delete entity from agreements
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from agreements";
@@ -85,7 +85,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the file property of the microsoft.graph.agreement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFileNavCommand() {
             var command = new Command("file");
             command.Description = "Provides operations to manage the file property of the microsoft.graph.agreement entity.";
@@ -109,7 +109,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the files property of the microsoft.graph.agreement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFilesNavCommand() {
             var command = new Command("files");
             command.Description = "Provides operations to manage the files property of the microsoft.graph.agreement entity.";
@@ -135,7 +135,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Get entity from agreements by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entity from agreements by key";
@@ -179,7 +179,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Update entity in agreements
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in agreements";
@@ -241,7 +241,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Delete entity from agreements
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -258,7 +258,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Get entity from agreements by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -275,7 +275,7 @@ namespace ApiSdk.Agreements.Item {
         /// <summary>
         /// Update entity in agreements
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

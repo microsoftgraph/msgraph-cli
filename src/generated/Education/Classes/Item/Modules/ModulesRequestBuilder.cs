@@ -24,7 +24,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
         /// <summary>
         /// Provides operations to manage the modules property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -42,7 +42,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -56,12 +56,13 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to modules for education
+        /// Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can&apos;t see the modules until publication.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post-module?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to modules for education";
+            command.Description = "Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can't see the modules until publication.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-module?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -106,12 +107,13 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return command;
         }
         /// <summary>
-        /// Get modules from education
+        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-modules?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get modules from education";
+            command.Description = "Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-modules?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -217,9 +219,9 @@ namespace ApiSdk.Education.Classes.Item.Modules {
         public ModulesRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Get modules from education
+        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -234,9 +236,9 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to modules for education
+        /// Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can&apos;t see the modules until publication.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +255,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return requestInfo;
         }
         /// <summary>
-        /// Get modules from education
+        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
         /// </summary>
         public class ModulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

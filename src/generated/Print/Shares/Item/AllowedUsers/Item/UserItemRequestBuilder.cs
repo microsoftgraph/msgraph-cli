@@ -20,7 +20,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMailboxSettingsNavCommand() {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
@@ -37,7 +37,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item {
         /// <summary>
         /// Provides operations to manage the collection of print entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of print entities.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";

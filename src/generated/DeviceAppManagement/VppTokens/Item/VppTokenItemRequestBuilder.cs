@@ -24,7 +24,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Deletes a vppToken.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a vppToken.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0";
@@ -59,7 +59,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Read properties and relationships of the vppToken object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0";
@@ -111,7 +111,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Update the properties of a vppToken object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0";
@@ -161,7 +161,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Provides operations to call the syncLicenses method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSyncLicensesNavCommand() {
             var command = new Command("sync-licenses");
             command.Description = "Provides operations to call the syncLicenses method.";
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Deletes a vppToken.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,7 +206,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Read properties and relationships of the vppToken object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -223,7 +223,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Update the properties of a vppToken object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

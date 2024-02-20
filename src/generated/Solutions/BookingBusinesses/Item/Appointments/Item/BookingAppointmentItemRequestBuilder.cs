@@ -23,7 +23,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// Delete a bookingAppointment in the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a bookingAppointment in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0";
@@ -81,7 +81,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0";
@@ -139,7 +139,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a bookingAppointment object in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0";
@@ -207,7 +207,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// <summary>
         /// Delete a bookingAppointment in the specified bookingBusiness.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// <summary>
         /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         /// <summary>
         /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

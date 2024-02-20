@@ -28,7 +28,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
@@ -44,7 +44,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -76,7 +76,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -92,7 +92,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -108,7 +108,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the getAllSites method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAllSitesNavCommand() {
             var command = new Command("get-all-sites");
             command.Description = "Provides operations to call the getAllSites method.";
@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The list of SharePoint sites in this group. Access the default site with /sites/root.";
@@ -223,7 +223,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRemoveNavCommand() {
             var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
@@ -251,7 +251,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -24,7 +24,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// <summary>
         /// Provides operations to manage the deviceStatuses property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new ManagedDeviceMobileAppConfigurationDeviceStatusItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// Create a new managedDeviceMobileAppConfigurationDeviceStatus object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-create?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new managedDeviceMobileAppConfigurationDeviceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-create?view=graph-rest-1.0";
@@ -104,7 +104,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-list?view=graph-rest-1.0";
@@ -215,7 +215,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// <summary>
         /// List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,7 +232,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         /// <summary>
         /// Create a new managedDeviceMobileAppConfigurationDeviceStatus object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

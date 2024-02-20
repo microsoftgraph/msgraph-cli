@@ -23,7 +23,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// Deletes a deviceManagementExportJob.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a deviceManagementExportJob.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-delete?view=graph-rest-1.0";
@@ -58,7 +58,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// Read properties and relationships of the deviceManagementExportJob object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceManagementExportJob object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-get?view=graph-rest-1.0";
@@ -110,7 +110,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// Update the properties of a deviceManagementExportJob object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceManagementExportJob object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-update?view=graph-rest-1.0";
@@ -172,7 +172,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// <summary>
         /// Deletes a deviceManagementExportJob.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// <summary>
         /// Read properties and relationships of the deviceManagementExportJob object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,7 +206,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         /// <summary>
         /// Update the properties of a deviceManagementExportJob object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

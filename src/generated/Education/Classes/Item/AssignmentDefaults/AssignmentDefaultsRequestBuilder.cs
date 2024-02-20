@@ -22,7 +22,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// <summary>
         /// Delete navigation property assignmentDefaults for education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentDefaults for education";
@@ -57,7 +57,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don&apos;t want the default behaviors. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don't want the default behaviors. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0";
@@ -109,7 +109,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0";
@@ -171,7 +171,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// <summary>
         /// Delete navigation property assignmentDefaults for education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,7 +188,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// <summary>
         /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don&apos;t want the default behaviors. Only teachers can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -205,7 +205,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
         /// <summary>
         /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

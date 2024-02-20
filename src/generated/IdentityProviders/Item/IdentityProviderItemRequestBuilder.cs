@@ -23,7 +23,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Delete an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
@@ -59,7 +59,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Retrieve the properties of an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -112,7 +112,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// Update properties in an existing identityProvider.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildPatchCommand() {
             var command = new Command("patch");
@@ -175,7 +175,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Delete an existing identityProvider.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -193,7 +193,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Retrieve the properties of an existing identityProvider.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +211,7 @@ namespace ApiSdk.IdentityProviders.Item {
         /// <summary>
         /// Update properties in an existing identityProvider.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]

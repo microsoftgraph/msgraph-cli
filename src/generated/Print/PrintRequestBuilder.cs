@@ -28,7 +28,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildConnectorsNavCommand() {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.print entity.";
@@ -54,7 +54,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Get print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get print";
@@ -99,7 +99,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.print entity.";
@@ -125,7 +125,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Update print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update print";
@@ -169,7 +169,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the printers property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrintersNavCommand() {
             var command = new Command("printers");
             command.Description = "Provides operations to manage the printers property of the microsoft.graph.print entity.";
@@ -195,7 +195,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the services property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServicesNavCommand() {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.print entity.";
@@ -221,7 +221,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the shares property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSharesNavCommand() {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.print entity.";
@@ -247,7 +247,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTaskDefinitionsNavCommand() {
             var command = new Command("task-definitions");
             command.Description = "Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.";
@@ -285,7 +285,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Get print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -302,7 +302,7 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Update print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

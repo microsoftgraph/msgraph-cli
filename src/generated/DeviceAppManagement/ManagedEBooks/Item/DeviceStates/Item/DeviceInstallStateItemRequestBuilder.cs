@@ -23,7 +23,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// Deletes a deviceInstallState.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a deviceInstallState.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// Read properties and relationships of the deviceInstallState object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceInstallState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-get?view=graph-rest-1.0";
@@ -122,7 +122,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// Update the properties of a deviceInstallState object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceInstallState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-deviceinstallstate-update?view=graph-rest-1.0";
@@ -190,7 +190,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// <summary>
         /// Deletes a deviceInstallState.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,7 +207,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// <summary>
         /// Read properties and relationships of the deviceInstallState object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates.Item {
         /// <summary>
         /// Update the properties of a deviceInstallState object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

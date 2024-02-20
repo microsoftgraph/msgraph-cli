@@ -22,7 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// Reapplies all the filters currently on the table.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-reapplyfilters?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reapplies all the filters currently on the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-reapplyfilters?view=graph-rest-1.0";
@@ -79,7 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWi
         /// <summary>
         /// Reapplies all the filters currently on the table.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

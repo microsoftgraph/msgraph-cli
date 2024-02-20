@@ -23,7 +23,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the media for the sharedDriveItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the sharedDriveItem entity.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// <summary>
         /// All driveItems contained in the sharing root. This collection cannot be enumerated.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "All driveItems contained in the sharing root. This collection cannot be enumerated.";
@@ -109,7 +109,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// <summary>
         /// All driveItems contained in the sharing root. This collection cannot be enumerated.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

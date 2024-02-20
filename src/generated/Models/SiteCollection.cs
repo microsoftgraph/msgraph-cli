@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class SiteCollection : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The geographic region code for where this site collection resides. Read-only.</summary>
+        /// <summary>The geographic region code for where this site collection resides. Only present for multi-geo tenants. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DataLocationCode { get; set; }
@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="SiteCollection"></returns>
+        /// <returns>A <see cref="SiteCollection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static SiteCollection CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"dataLocationCode", n => { DataLocationCode = n.GetStringValue(); } },

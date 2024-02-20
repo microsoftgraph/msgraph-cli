@@ -22,7 +22,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Delete entity from certificateBasedAuthConfiguration
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from certificateBasedAuthConfiguration";
@@ -56,7 +56,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Get entity from certificateBasedAuthConfiguration by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entity from certificateBasedAuthConfiguration by key";
@@ -107,7 +107,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Update entity in certificateBasedAuthConfiguration
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in certificateBasedAuthConfiguration";
@@ -169,7 +169,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Delete entity from certificateBasedAuthConfiguration
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -186,7 +186,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Get entity from certificateBasedAuthConfiguration by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +203,7 @@ namespace ApiSdk.CertificateBasedAuthConfiguration.Item {
         /// <summary>
         /// Update entity in certificateBasedAuthConfiguration
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

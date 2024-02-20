@@ -23,7 +23,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// Delete navigation property edge for admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property edge for admin";
@@ -51,7 +51,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// A container for Microsoft Edge resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A container for Microsoft Edge resources. Read-only.";
@@ -96,7 +96,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// Provides operations to manage the internetExplorerMode property of the microsoft.graph.edge entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildInternetExplorerModeNavCommand() {
             var command = new Command("internet-explorer-mode");
             command.Description = "Provides operations to manage the internetExplorerMode property of the microsoft.graph.edge entity.";
@@ -120,7 +120,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// Update the navigation property edge in admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property edge in admin";
@@ -176,7 +176,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// Delete navigation property edge for admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -193,7 +193,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// A container for Microsoft Edge resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -210,7 +210,7 @@ namespace ApiSdk.Admin.Edge {
         /// <summary>
         /// Update the navigation property edge in admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

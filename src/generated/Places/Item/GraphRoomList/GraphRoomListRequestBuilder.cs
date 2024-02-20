@@ -23,7 +23,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.place as microsoft.graph.roomList";
@@ -74,7 +74,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Provides operations to manage the rooms property of the microsoft.graph.roomList entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoomsNavCommand() {
             var command = new Command("rooms");
             command.Description = "Provides operations to manage the rooms property of the microsoft.graph.roomList entity.";
@@ -112,7 +112,7 @@ namespace ApiSdk.Places.Item.GraphRoomList {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.roomList
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
