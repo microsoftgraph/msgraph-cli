@@ -25,7 +25,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the apply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildApplyNavCommand() {
             var command = new Command("apply");
             command.Description = "Provides operations to call the apply method.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
@@ -57,7 +57,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Delete navigation property sort for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sort for drives";
@@ -104,7 +104,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// Retrieve the properties and relationships of tablesort object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of tablesort object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0";
@@ -167,7 +167,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Update the navigation property sort in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sort in drives";
@@ -229,7 +229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the reapply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReapplyNavCommand() {
             var command = new Command("reapply");
             command.Description = "Provides operations to call the reapply method.";
@@ -257,7 +257,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Delete navigation property sort for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -274,7 +274,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Retrieve the properties and relationships of tablesort object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -291,7 +291,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Update the navigation property sort in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

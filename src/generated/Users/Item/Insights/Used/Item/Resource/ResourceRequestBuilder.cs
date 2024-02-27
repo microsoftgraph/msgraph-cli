@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
@@ -91,7 +91,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
         /// <summary>
         /// Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

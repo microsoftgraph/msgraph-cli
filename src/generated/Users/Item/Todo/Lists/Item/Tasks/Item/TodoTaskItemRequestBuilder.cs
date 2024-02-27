@@ -27,7 +27,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttachmentSessionsNavCommand() {
             var command = new Command("attachment-sessions");
             command.Description = "Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.";
@@ -52,7 +52,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.";
@@ -79,7 +79,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChecklistItemsNavCommand() {
             var command = new Command("checklist-items");
             command.Description = "Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.";
@@ -106,7 +106,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// Deletes a todoTask object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-delete?view=graph-rest-1.0";
@@ -152,7 +152,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.todoTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.todoTask entity.";
@@ -179,7 +179,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// Read the properties and relationships of a todoTask object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-get?view=graph-rest-1.0";
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLinkedResourcesNavCommand() {
             var command = new Command("linked-resources");
             command.Description = "Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.";
@@ -269,7 +269,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// Update the properties of a todoTask object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a todoTask object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-update?view=graph-rest-1.0";
@@ -343,7 +343,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Deletes a todoTask object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -360,7 +360,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Read the properties and relationships of a todoTask object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -377,7 +377,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Update the properties of a todoTask object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

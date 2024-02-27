@@ -18,7 +18,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Item {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";

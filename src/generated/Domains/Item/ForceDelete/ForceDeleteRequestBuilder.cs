@@ -22,7 +22,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
         /// Deletes a domain using an asynchronous long-running operation. Prior to calling forceDelete, you must update or remove any references to Exchange as the provisioning service. The following actions are performed as part of this operation: After the domain deletion completes, API operations for the deleted domain will return an HTTP 404 status code. To verify deletion of a domain, you can perform a get domain operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-forcedelete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Deletes a domain using an asynchronous long-running operation. Prior to calling forceDelete, you must update or remove any references to Exchange as the provisioning service. The following actions are performed as part of this operation: After the domain deletion completes, API operations for the deleted domain will return an HTTP 404 status code. To verify deletion of a domain, you can perform a get domain operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-forcedelete?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Domains.Item.ForceDelete {
         /// <summary>
         /// Deletes a domain using an asynchronous long-running operation. Prior to calling forceDelete, you must update or remove any references to Exchange as the provisioning service. The following actions are performed as part of this operation: After the domain deletion completes, API operations for the deleted domain will return an HTTP 404 status code. To verify deletion of a domain, you can perform a get domain operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

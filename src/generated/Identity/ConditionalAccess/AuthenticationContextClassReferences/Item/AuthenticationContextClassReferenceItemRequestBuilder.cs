@@ -23,7 +23,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an authenticationContextClassReference object that's not published or used by a conditional access policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0";
@@ -58,7 +58,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// Retrieve the properties and relationships of a authenticationContextClassReference object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a authenticationContextClassReference object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0";
@@ -110,7 +110,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0";
@@ -172,7 +172,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <summary>
         /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -189,7 +189,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <summary>
         /// Retrieve the properties and relationships of a authenticationContextClassReference object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,7 +206,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <summary>
         /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

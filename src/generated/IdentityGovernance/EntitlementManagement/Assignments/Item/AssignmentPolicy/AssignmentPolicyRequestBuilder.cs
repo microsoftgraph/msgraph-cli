@@ -22,7 +22,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Supports $filter (eq) on the id property and $expand query parameters.";
@@ -85,7 +85,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

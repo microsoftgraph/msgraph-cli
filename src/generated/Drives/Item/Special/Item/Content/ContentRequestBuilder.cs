@@ -22,7 +22,7 @@ namespace ApiSdk.Drives.Item.Special.Item.Content {
         /// <summary>
         /// The content stream, if the item represents a file.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
@@ -73,7 +73,7 @@ namespace ApiSdk.Drives.Item.Special.Item.Content {
         /// <summary>
         /// The content stream, if the item represents a file.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
@@ -138,7 +138,7 @@ namespace ApiSdk.Drives.Item.Special.Item.Content {
         /// <summary>
         /// The content stream, if the item represents a file.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -155,7 +155,7 @@ namespace ApiSdk.Drives.Item.Special.Item.Content {
         /// <summary>
         /// The content stream, if the item represents a file.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

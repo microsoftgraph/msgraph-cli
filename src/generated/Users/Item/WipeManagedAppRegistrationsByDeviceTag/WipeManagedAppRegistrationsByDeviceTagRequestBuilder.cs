@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
         /// Issues a wipe operation on an app registration with specified device tag.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-wipemanagedappregistrationsbydevicetag?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Issues a wipe operation on an app registration with specified device tag.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-wipemanagedappregistrationsbydevicetag?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
         /// <summary>
         /// Issues a wipe operation on an app registration with specified device tag.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -23,7 +23,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// Delete a directory extension definition represented by an extensionProperty object. You can delete only directory extensions that aren&apos;t synced from on-premises active directory (AD).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/extensionproperty-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a directory extension definition represented by an extensionProperty object. You can delete only directory extensions that aren't synced from on-premises active directory (AD).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/extensionproperty-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// Read a directory extension definition represented by an extensionProperty object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/extensionproperty-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read a directory extension definition represented by an extensionProperty object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/extensionproperty-get?view=graph-rest-1.0";
@@ -121,7 +121,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// <summary>
         /// Update the navigation property extensionProperties in applications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensionProperties in applications";
@@ -189,7 +189,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// <summary>
         /// Delete a directory extension definition represented by an extensionProperty object. You can delete only directory extensions that aren&apos;t synced from on-premises active directory (AD).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,7 +206,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// <summary>
         /// Read a directory extension definition represented by an extensionProperty object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -223,7 +223,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
         /// <summary>
         /// Update the navigation property extensionProperties in applications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

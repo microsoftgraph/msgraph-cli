@@ -26,7 +26,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignedToTaskBoardFormatNavCommand() {
             var command = new Command("assigned-to-task-board-format");
             command.Description = "Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -44,7 +44,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBucketTaskBoardFormatNavCommand() {
             var command = new Command("bucket-task-board-format");
             command.Description = "Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -62,7 +62,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Delete navigation property tasks for planner
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property tasks for planner";
@@ -102,7 +102,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerTask entity.";
@@ -120,7 +120,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Read-only. Nullable. Collection of tasks in the plan.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Collection of tasks in the plan.";
@@ -177,7 +177,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Update the navigation property tasks in planner
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property tasks in planner";
@@ -233,7 +233,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildProgressTaskBoardFormatNavCommand() {
             var command = new Command("progress-task-board-format");
             command.Description = "Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
@@ -263,7 +263,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Delete navigation property tasks for planner
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -280,7 +280,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Read-only. Nullable. Collection of tasks in the plan.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -297,7 +297,7 @@ namespace ApiSdk.Planner.Plans.Item.Tasks.Item {
         /// <summary>
         /// Update the navigation property tasks in planner
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

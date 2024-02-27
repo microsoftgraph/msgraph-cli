@@ -22,7 +22,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Delete navigation property authenticationMethodConfigurations for authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationMethodConfigurations for authenticationMethodsPolicy";
@@ -56,7 +56,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.";
@@ -107,7 +107,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Update the navigation property authenticationMethodConfigurations in authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationMethodConfigurations in authenticationMethodsPolicy";
@@ -169,7 +169,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Delete navigation property authenticationMethodConfigurations for authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -186,7 +186,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +203,7 @@ namespace ApiSdk.AuthenticationMethodsPolicy.AuthenticationMethodConfigurations.
         /// <summary>
         /// Update the navigation property authenticationMethodConfigurations in authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

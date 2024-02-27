@@ -23,7 +23,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -39,7 +39,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Sets a new value for the collection of alertComment.";
@@ -115,7 +115,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

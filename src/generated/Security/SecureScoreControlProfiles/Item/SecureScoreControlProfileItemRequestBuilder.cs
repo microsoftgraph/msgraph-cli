@@ -22,7 +22,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// <summary>
         /// Delete navigation property secureScoreControlProfiles for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property secureScoreControlProfiles for security";
@@ -57,7 +57,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// Retrieve the properties and relationships of an securescorecontrolprofile object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of an securescorecontrolprofile object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0";
@@ -109,7 +109,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0";
@@ -171,7 +171,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// <summary>
         /// Delete navigation property secureScoreControlProfiles for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -188,7 +188,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// <summary>
         /// Retrieve the properties and relationships of an securescorecontrolprofile object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -205,7 +205,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
         /// <summary>
         /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

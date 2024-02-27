@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Calendars {
         /// <summary>
         /// Provides operations to manage the calendars property of the microsoft.graph.user entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -42,7 +42,7 @@ namespace ApiSdk.Users.Item.Calendars {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Users.Item.Calendars {
         /// Create a new calendar for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new calendar for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0";
@@ -107,13 +107,13 @@ namespace ApiSdk.Users.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the user's calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
+            command.Description = "Get all the user's calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -213,9 +213,9 @@ namespace ApiSdk.Users.Item.Calendars {
         public CalendarsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendars{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,7 +232,7 @@ namespace ApiSdk.Users.Item.Calendars {
         /// <summary>
         /// Create a new calendar for a user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group. 
+        /// Get all the user&apos;s calendars (/calendars navigation property), get the calendars from the default calendar group or from a specific calendar group.
         /// </summary>
         public class CalendarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -24,7 +24,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Provides operations to call the addGroup method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddGroupNavCommand() {
             var command = new Command("add-group");
             command.Description = "Provides operations to call the addGroup method.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Delete navigation property groupLifecyclePolicies for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property groupLifecyclePolicies for groups";
@@ -80,7 +80,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// The collection of lifecycle policies for this group. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
@@ -137,7 +137,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Update the navigation property groupLifecyclePolicies in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property groupLifecyclePolicies in groups";
@@ -193,7 +193,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Provides operations to call the removeGroup method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRemoveGroupNavCommand() {
             var command = new Command("remove-group");
             command.Description = "Provides operations to call the removeGroup method.";
@@ -221,7 +221,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Delete navigation property groupLifecyclePolicies for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -238,7 +238,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// The collection of lifecycle policies for this group. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Update the navigation property groupLifecyclePolicies in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

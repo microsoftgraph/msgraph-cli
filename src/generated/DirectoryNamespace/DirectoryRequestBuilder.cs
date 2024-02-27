@@ -29,7 +29,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAdministrativeUnitsNavCommand() {
             var command = new Command("administrative-units");
             command.Description = "Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.";
@@ -56,7 +56,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttributeSetsNavCommand() {
             var command = new Command("attribute-sets");
             command.Description = "Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.";
@@ -82,7 +82,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCustomSecurityAttributeDefinitionsNavCommand() {
             var command = new Command("custom-security-attribute-definitions");
             command.Description = "Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.";
@@ -108,7 +108,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeletedItemsNavCommand() {
             var command = new Command("deleted-items");
             command.Description = "Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.";
@@ -142,7 +142,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceLocalCredentialsNavCommand() {
             var command = new Command("device-local-credentials");
             command.Description = "Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.";
@@ -168,7 +168,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFederationConfigurationsNavCommand() {
             var command = new Command("federation-configurations");
             command.Description = "Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.";
@@ -195,7 +195,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Get directory
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get directory";
@@ -240,7 +240,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOnPremisesSynchronizationNavCommand() {
             var command = new Command("on-premises-synchronization");
             command.Description = "Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.";
@@ -266,7 +266,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Update directory
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update directory";
@@ -322,7 +322,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Get directory
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -339,7 +339,7 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Update directory
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

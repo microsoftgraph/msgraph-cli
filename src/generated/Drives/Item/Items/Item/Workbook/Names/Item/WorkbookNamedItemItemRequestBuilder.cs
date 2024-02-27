@@ -24,7 +24,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Delete navigation property names for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property names for drives";
@@ -71,7 +71,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// Retrieve the properties and relationships of nameditem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0";
@@ -135,7 +135,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// Update the properties of nameditem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0";
@@ -197,7 +197,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
@@ -213,7 +213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.";
@@ -241,7 +241,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Delete navigation property names for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -258,7 +258,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Retrieve the properties and relationships of nameditem object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -275,7 +275,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Update the properties of nameditem object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

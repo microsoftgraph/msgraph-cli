@@ -25,7 +25,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.chat entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new ConversationMemberItemRequestBuilder(PathParameters);
@@ -53,7 +53,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -70,7 +70,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// Add a conversationMember to a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add a conversationMember to a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0";
@@ -121,7 +121,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// List all conversation members in a chat or channel.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List all conversation members in a chat or channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-list?view=graph-rest-1.0";
@@ -232,7 +232,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// <summary>
         /// List all conversation members in a chat or channel.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -249,7 +249,7 @@ namespace ApiSdk.Chats.Item.Members {
         /// <summary>
         /// Add a conversationMember to a chat.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

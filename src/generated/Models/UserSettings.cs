@@ -18,10 +18,18 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ShiftPreferences ShiftPreferences { get; set; }
 #endif
+        /// <summary>The windows property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<WindowsSetting>? Windows { get; set; }
+#nullable restore
+#else
+        public List<WindowsSetting> Windows { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="UserSettings"></returns>
+        /// <returns>A <see cref="UserSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new UserSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -30,12 +38,13 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"contributionToContentDiscoveryAsOrganizationDisabled", n => { ContributionToContentDiscoveryAsOrganizationDisabled = n.GetBoolValue(); } },
                 {"contributionToContentDiscoveryDisabled", n => { ContributionToContentDiscoveryDisabled = n.GetBoolValue(); } },
                 {"shiftPreferences", n => { ShiftPreferences = n.GetObjectValue<ApiSdk.Models.ShiftPreferences>(ApiSdk.Models.ShiftPreferences.CreateFromDiscriminatorValue); } },
+                {"windows", n => { Windows = n.GetCollectionOfObjectValues<WindowsSetting>(WindowsSetting.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -48,6 +57,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("contributionToContentDiscoveryAsOrganizationDisabled", ContributionToContentDiscoveryAsOrganizationDisabled);
             writer.WriteBoolValue("contributionToContentDiscoveryDisabled", ContributionToContentDiscoveryDisabled);
             writer.WriteObjectValue<ApiSdk.Models.ShiftPreferences>("shiftPreferences", ShiftPreferences);
+            writer.WriteCollectionOfObjectValues<WindowsSetting>("windows", Windows);
         }
     }
 }

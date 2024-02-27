@@ -22,7 +22,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion {
         /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-restore?view=graph-rest-1.0";
@@ -73,7 +73,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion {
         /// <summary>
         /// Restore a previous version of a ListItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the item.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

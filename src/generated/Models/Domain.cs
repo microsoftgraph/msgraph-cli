@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public bool? IsAdminManaged { get; set; }
         /// <summary>true if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>true if this is the initial domain created by Microsoft Online Services (companyname.onmicrosoft.com). There is only one initial domain per company. Not nullable</summary>
+        /// <summary>true if this is the initial domain created by Microsoft Online Services (contoso.com). There is only one initial domain per company. Not nullable</summary>
         public bool? IsInitial { get; set; }
         /// <summary>true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. Not nullable</summary>
         public bool? IsRoot { get; set; }
@@ -103,7 +103,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Domain"></returns>
+        /// <returns>A <see cref="Domain"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Domain CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -112,7 +112,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"authenticationType", n => { AuthenticationType = n.GetStringValue(); } },

@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// <summary>
         /// Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -45,7 +45,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -62,7 +62,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// Create an online meeting on behalf of a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-onlinemeetings?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create an online meeting on behalf of a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-onlinemeetings?view=graph-rest-1.0";
@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// <summary>
         /// Provides operations to call the createOrGet method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateOrGetNavCommand() {
             var command = new Command("create-or-get");
             command.Description = "Provides operations to call the createOrGet method.";
@@ -129,7 +129,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
@@ -240,7 +240,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// <summary>
         /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -257,7 +257,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
         /// <summary>
         /// Create an online meeting on behalf of a user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

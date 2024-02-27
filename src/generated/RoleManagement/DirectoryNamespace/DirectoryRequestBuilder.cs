@@ -31,7 +31,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Delete navigation property directory for roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property directory for roleManagement";
@@ -59,7 +59,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Get directory from roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get directory from roleManagement";
@@ -104,7 +104,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Update the navigation property directory in roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property directory in roleManagement";
@@ -148,7 +148,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceNamespacesNavCommand() {
             var command = new Command("resource-namespaces");
             command.Description = "Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.";
@@ -174,7 +174,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleAssignmentScheduleInstancesNavCommand() {
             var command = new Command("role-assignment-schedule-instances");
             command.Description = "Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.";
@@ -201,7 +201,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleAssignmentScheduleRequestsNavCommand() {
             var command = new Command("role-assignment-schedule-requests");
             command.Description = "Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.";
@@ -228,7 +228,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleAssignmentSchedulesNavCommand() {
             var command = new Command("role-assignment-schedules");
             command.Description = "Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.";
@@ -255,7 +255,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleAssignmentsNavCommand() {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.";
@@ -281,7 +281,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleDefinitionsNavCommand() {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.";
@@ -307,7 +307,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleEligibilityScheduleInstancesNavCommand() {
             var command = new Command("role-eligibility-schedule-instances");
             command.Description = "Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.";
@@ -334,7 +334,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleEligibilityScheduleRequestsNavCommand() {
             var command = new Command("role-eligibility-schedule-requests");
             command.Description = "Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.";
@@ -361,7 +361,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleEligibilitySchedulesNavCommand() {
             var command = new Command("role-eligibility-schedules");
             command.Description = "Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.";
@@ -400,7 +400,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Delete navigation property directory for roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -417,7 +417,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Get directory from roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -434,7 +434,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Update the navigation property directory in roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

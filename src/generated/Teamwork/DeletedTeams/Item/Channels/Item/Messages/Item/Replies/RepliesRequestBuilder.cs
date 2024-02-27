@@ -25,7 +25,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         /// <summary>
         /// Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -43,7 +43,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -60,7 +60,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         /// Create a new reply to a chatMessage in a specified channel.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
@@ -122,7 +122,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -136,13 +136,13 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
             return command;
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
+            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -260,9 +260,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         public RepliesRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -279,7 +279,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
         /// <summary>
         /// Create a new reply to a chatMessage in a specified channel.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +296,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies 
             return requestInfo;
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
         /// </summary>
         public class RepliesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

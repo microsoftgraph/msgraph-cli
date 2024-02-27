@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Delete navigation property transcripts for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property transcripts for users";
@@ -88,7 +88,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calltranscript-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calltranscript-get?view=graph-rest-1.0";
@@ -151,7 +151,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMetadataContentNavCommand() {
             var command = new Command("metadata-content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -168,7 +168,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Update the navigation property transcripts in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property transcripts in users";
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Delete navigation property transcripts for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -259,7 +259,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -276,7 +276,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts.Item {
         /// <summary>
         /// Update the navigation property transcripts in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

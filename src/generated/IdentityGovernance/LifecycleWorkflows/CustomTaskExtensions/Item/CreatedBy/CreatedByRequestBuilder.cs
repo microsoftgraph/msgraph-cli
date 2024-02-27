@@ -24,7 +24,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// The unique identifier of the Microsoft Entra user that created the custom task extension.Supports $filter(eq, ne) and $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The unique identifier of the Microsoft Entra user that created the custom task extension.Supports $filter(eq, ne) and $expand.";
@@ -75,7 +75,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMailboxSettingsNavCommand() {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
@@ -92,7 +92,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.CustomTaskExtensions.Item
         /// <summary>
         /// The unique identifier of the Microsoft Entra user that created the custom task extension.Supports $filter(eq, ne) and $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

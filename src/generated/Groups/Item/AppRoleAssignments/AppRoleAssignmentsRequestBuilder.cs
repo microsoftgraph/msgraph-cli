@@ -24,7 +24,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new AppRoleAssignmentItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-approleassignments?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-approleassignments?view=graph-rest-1.0";
@@ -104,7 +104,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// Represents the app roles a group has been granted for an application. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
@@ -222,7 +222,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// <summary>
         /// Represents the app roles a group has been granted for an application. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,7 +239,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         /// <summary>
         /// Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

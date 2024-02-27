@@ -24,7 +24,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Delete entity from places
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from places";
@@ -58,7 +58,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphRoomByIdNavCommand() {
             var command = new Command("graph-room-by-id");
             command.Description = "Casts the previous resource to room.";
@@ -74,7 +74,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to roomList.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphRoomListByIdNavCommand() {
             var command = new Command("graph-room-list-by-id");
             command.Description = "Casts the previous resource to roomList.";
@@ -97,7 +97,7 @@ namespace ApiSdk.Places.Item {
         /// Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/place-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/place-update?view=graph-rest-1.0";
@@ -159,7 +159,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Delete entity from places
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -176,7 +176,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

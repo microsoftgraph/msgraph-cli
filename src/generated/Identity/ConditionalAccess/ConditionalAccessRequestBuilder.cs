@@ -27,7 +27,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAuthenticationContextClassReferencesNavCommand() {
             var command = new Command("authentication-context-class-references");
             command.Description = "Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAuthenticationStrengthNavCommand() {
             var command = new Command("authentication-strength");
             command.Description = "Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.";
@@ -78,7 +78,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Delete navigation property conditionalAccess for identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property conditionalAccess for identity";
@@ -106,7 +106,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// the entry point for the Conditional Access (CA) object model.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "the entry point for the Conditional Access (CA) object model.";
@@ -151,7 +151,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildNamedLocationsNavCommand() {
             var command = new Command("named-locations");
             command.Description = "Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.";
@@ -177,7 +177,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Update the navigation property conditionalAccess in identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property conditionalAccess in identity";
@@ -221,7 +221,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPoliciesNavCommand() {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.";
@@ -247,7 +247,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTemplatesNavCommand() {
             var command = new Command("templates");
             command.Description = "Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.";
@@ -284,7 +284,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Delete navigation property conditionalAccess for identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -301,7 +301,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// the entry point for the Conditional Access (CA) object model.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -318,7 +318,7 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Update the navigation property conditionalAccess in identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

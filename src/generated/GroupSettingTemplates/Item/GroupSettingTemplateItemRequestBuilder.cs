@@ -27,7 +27,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -43,7 +43,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -59,7 +59,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Delete entity from groupSettingTemplates
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from groupSettingTemplates";
@@ -94,7 +94,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0";
@@ -145,7 +145,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -161,7 +161,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -177,7 +177,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Update entity in groupSettingTemplates
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in groupSettingTemplates";
@@ -227,7 +227,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -255,7 +255,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Delete entity from groupSettingTemplates
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -289,7 +289,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>
         /// Update entity in groupSettingTemplates
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

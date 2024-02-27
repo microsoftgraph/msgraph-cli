@@ -31,7 +31,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Gets an item from the ApiSdk.directoryRoles.item.members.item collection
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
@@ -47,7 +47,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -63,7 +63,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
@@ -85,7 +85,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDeviceNavCommand() {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
@@ -107,7 +107,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
@@ -129,7 +129,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
@@ -151,7 +151,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -173,7 +173,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
@@ -196,7 +196,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0";
@@ -302,7 +302,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Provides operations to manage the collection of directoryRole entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
@@ -332,7 +332,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         /// <summary>
         /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

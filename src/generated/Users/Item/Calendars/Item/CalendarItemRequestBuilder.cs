@@ -27,7 +27,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to call the allowedCalendarSharingRoles method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAllowedCalendarSharingRolesWithUserRbCommand() {
             var command = new Command("allowed-calendar-sharing-roles-with-user");
             command.Description = "Provides operations to call the allowedCalendarSharingRoles method.";
@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCalendarPermissionsNavCommand() {
             var command = new Command("calendar-permissions");
             command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
@@ -69,7 +69,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
@@ -95,7 +95,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Delete navigation property calendars for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendars for users";
@@ -135,7 +135,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
@@ -162,7 +162,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The user's calendars. Read-only. Nullable.";
@@ -219,7 +219,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetScheduleNavCommand() {
             var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
@@ -235,7 +235,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Update the navigation property calendars in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendars in users";
@@ -303,7 +303,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Delete navigation property calendars for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -320,7 +320,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -337,7 +337,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Update the navigation property calendars in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

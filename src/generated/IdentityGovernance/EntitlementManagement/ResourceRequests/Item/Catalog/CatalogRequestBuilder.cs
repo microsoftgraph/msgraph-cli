@@ -27,7 +27,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAccessPackagesNavCommand() {
             var command = new Command("access-packages");
             command.Description = "Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.";
@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCustomWorkflowExtensionsNavCommand() {
             var command = new Command("custom-workflow-extensions");
             command.Description = "Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.";
@@ -78,7 +78,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Delete navigation property catalog for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property catalog for identityGovernance";
@@ -112,7 +112,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Get catalog from identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get catalog from identityGovernance";
@@ -163,7 +163,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Update the navigation property catalog in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property catalog in identityGovernance";
@@ -213,7 +213,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceRolesNavCommand() {
             var command = new Command("resource-roles");
             command.Description = "Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.";
@@ -239,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceScopesNavCommand() {
             var command = new Command("resource-scopes");
             command.Description = "Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.";
@@ -265,7 +265,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.";
@@ -303,7 +303,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Delete navigation property catalog for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -320,7 +320,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Get catalog from identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -337,7 +337,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         /// <summary>
         /// Update the navigation property catalog in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

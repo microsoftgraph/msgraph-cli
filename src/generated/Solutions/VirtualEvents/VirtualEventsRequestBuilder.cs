@@ -24,7 +24,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Delete navigation property virtualEvents for solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property virtualEvents for solutions";
@@ -52,7 +52,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.virtualEventsRoot entity.";
@@ -78,7 +78,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Get virtualEvents from solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get virtualEvents from solutions";
@@ -123,7 +123,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Update the navigation property virtualEvents in solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property virtualEvents in solutions";
@@ -167,7 +167,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Provides operations to manage the webinars property of the microsoft.graph.virtualEventsRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWebinarsNavCommand() {
             var command = new Command("webinars");
             command.Description = "Provides operations to manage the webinars property of the microsoft.graph.virtualEventsRoot entity.";
@@ -207,7 +207,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Delete navigation property virtualEvents for solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Get virtualEvents from solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Solutions.VirtualEvents {
         /// <summary>
         /// Update the navigation property virtualEvents in solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

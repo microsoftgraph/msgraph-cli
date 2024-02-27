@@ -41,7 +41,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the addLargeGalleryView method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddLargeGalleryViewNavCommand() {
             var command = new Command("add-large-gallery-view");
             command.Description = "Provides operations to call the addLargeGalleryView method.";
@@ -57,7 +57,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the answer method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAnswerNavCommand() {
             var command = new Command("answer");
             command.Description = "Provides operations to call the answer method.";
@@ -73,7 +73,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAudioRoutingGroupsNavCommand() {
             var command = new Command("audio-routing-groups");
             command.Description = "Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.";
@@ -99,7 +99,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the cancelMediaProcessing method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCancelMediaProcessingNavCommand() {
             var command = new Command("cancel-media-processing");
             command.Description = "Provides operations to call the cancelMediaProcessing method.";
@@ -115,7 +115,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the changeScreenSharingRole method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChangeScreenSharingRoleNavCommand() {
             var command = new Command("change-screen-sharing-role");
             command.Description = "Provides operations to call the changeScreenSharingRole method.";
@@ -131,7 +131,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentSharingSessionsNavCommand() {
             var command = new Command("content-sharing-sessions");
             command.Description = "Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.";
@@ -158,7 +158,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-delete?view=graph-rest-1.0";
@@ -193,7 +193,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// Retrieve the properties and relationships of a call object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a call object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-get?view=graph-rest-1.0";
@@ -244,7 +244,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the keepAlive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildKeepAliveNavCommand() {
             var command = new Command("keep-alive");
             command.Description = "Provides operations to call the keepAlive method.";
@@ -260,7 +260,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMuteNavCommand() {
             var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
@@ -276,7 +276,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.call entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.call entity.";
@@ -302,7 +302,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the participants property of the microsoft.graph.call entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParticipantsNavCommand() {
             var command = new Command("participants");
             command.Description = "Provides operations to manage the participants property of the microsoft.graph.call entity.";
@@ -329,7 +329,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Update the navigation property calls in communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property calls in communications";
@@ -379,7 +379,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the playPrompt method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPlayPromptNavCommand() {
             var command = new Command("play-prompt");
             command.Description = "Provides operations to call the playPrompt method.";
@@ -395,7 +395,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the recordResponse method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRecordResponseNavCommand() {
             var command = new Command("record-response");
             command.Description = "Provides operations to call the recordResponse method.";
@@ -411,7 +411,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the redirect method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRedirectNavCommand() {
             var command = new Command("redirect");
             command.Description = "Provides operations to call the redirect method.";
@@ -427,7 +427,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the reject method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRejectNavCommand() {
             var command = new Command("reject");
             command.Description = "Provides operations to call the reject method.";
@@ -443,7 +443,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the sendDtmfTones method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendDtmfTonesNavCommand() {
             var command = new Command("send-dtmf-tones");
             command.Description = "Provides operations to call the sendDtmfTones method.";
@@ -459,7 +459,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the subscribeToTone method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubscribeToToneNavCommand() {
             var command = new Command("subscribe-to-tone");
             command.Description = "Provides operations to call the subscribeToTone method.";
@@ -475,7 +475,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the transfer method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTransferNavCommand() {
             var command = new Command("transfer");
             command.Description = "Provides operations to call the transfer method.";
@@ -491,7 +491,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the unmute method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnmuteNavCommand() {
             var command = new Command("unmute");
             command.Description = "Provides operations to call the unmute method.";
@@ -507,7 +507,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the updateRecordingStatus method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUpdateRecordingStatusNavCommand() {
             var command = new Command("update-recording-status");
             command.Description = "Provides operations to call the updateRecordingStatus method.";
@@ -535,7 +535,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -552,7 +552,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a call object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -569,7 +569,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Update the navigation property calls in communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

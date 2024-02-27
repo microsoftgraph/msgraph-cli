@@ -24,7 +24,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Per-user workflow execution results.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Per-user workflow execution results.";
@@ -81,7 +81,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Provides operations to manage the subject property of the microsoft.graph.identityGovernance.userProcessingResult entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubjectNavCommand() {
             var command = new Command("subject");
             command.Description = "Provides operations to manage the subject property of the microsoft.graph.identityGovernance.userProcessingResult entity.";
@@ -104,7 +104,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTaskProcessingResultsNavCommand() {
             var command = new Command("task-processing-results");
             command.Description = "Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.";
@@ -141,7 +141,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Per-user workflow execution results.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

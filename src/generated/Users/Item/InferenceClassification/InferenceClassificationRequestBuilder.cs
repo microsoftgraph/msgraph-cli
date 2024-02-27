@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         /// <summary>
         /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.";
@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         /// <summary>
         /// Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOverridesNavCommand() {
             var command = new Command("overrides");
             command.Description = "Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.";
@@ -93,7 +93,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         /// <summary>
         /// Update the navigation property inferenceClassification in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property inferenceClassification in users";
@@ -155,7 +155,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         /// <summary>
         /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -172,7 +172,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         /// <summary>
         /// Update the navigation property inferenceClassification in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

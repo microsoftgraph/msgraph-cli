@@ -27,7 +27,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Provides operations to call the dataBodyRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDataBodyRangeNavCommand() {
             var command = new Command("data-body-range");
             command.Description = "Provides operations to call the dataBodyRange method.";
@@ -44,7 +44,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// Deletes the column from the table.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes the column from the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0";
@@ -96,7 +96,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFilterNavCommand() {
             var command = new Command("filter");
             command.Description = "Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.";
@@ -132,7 +132,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// Retrieve the properties and relationships of tablecolumn object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of tablecolumn object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0";
@@ -201,7 +201,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Provides operations to call the headerRowRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHeaderRowRangeNavCommand() {
             var command = new Command("header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
@@ -218,7 +218,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// Update the properties of tablecolumn object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of tablecolumn object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0";
@@ -286,7 +286,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
@@ -302,7 +302,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Provides operations to call the totalRowRange method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTotalRowRangeNavCommand() {
             var command = new Command("total-row-range");
             command.Description = "Provides operations to call the totalRowRange method.";
@@ -330,7 +330,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Deletes the column from the table.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -347,7 +347,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Retrieve the properties and relationships of tablecolumn object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -364,7 +364,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         /// <summary>
         /// Update the properties of tablecolumn object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

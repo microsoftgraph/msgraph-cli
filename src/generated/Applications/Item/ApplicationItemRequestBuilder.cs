@@ -43,7 +43,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the addKey method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddKeyNavCommand() {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the addPassword method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAddPasswordNavCommand() {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
@@ -75,7 +75,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.";
@@ -101,7 +101,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -117,7 +117,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -133,7 +133,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreatedOnBehalfOfNavCommand() {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.";
@@ -150,7 +150,7 @@ namespace ApiSdk.Applications.Item {
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-delete?view=graph-rest-1.0";
@@ -184,7 +184,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExtensionPropertiesNavCommand() {
             var command = new Command("extension-properties");
             command.Description = "Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.";
@@ -210,7 +210,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFederatedIdentityCredentialsNavCommand() {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
@@ -237,7 +237,7 @@ namespace ApiSdk.Applications.Item {
         /// Get the properties and relationships of an application object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of an application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0";
@@ -288,7 +288,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -304,7 +304,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -320,7 +320,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.";
@@ -345,7 +345,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the media for the application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLogoNavCommand() {
             var command = new Command("logo");
             command.Description = "Provides operations to manage the media for the application entity.";
@@ -362,7 +362,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOwnersNavCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.application entity.";
@@ -393,7 +393,7 @@ namespace ApiSdk.Applications.Item {
         /// Update the properties of an application object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0";
@@ -443,7 +443,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the removeKey method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRemoveKeyNavCommand() {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
@@ -459,7 +459,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the removePassword method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRemovePasswordNavCommand() {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
@@ -475,7 +475,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -491,7 +491,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the setVerifiedPublisher method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetVerifiedPublisherNavCommand() {
             var command = new Command("set-verified-publisher");
             command.Description = "Provides operations to call the setVerifiedPublisher method.";
@@ -507,7 +507,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the synchronization property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSynchronizationNavCommand() {
             var command = new Command("synchronization");
             command.Description = "Provides operations to manage the synchronization property of the microsoft.graph.application entity.";
@@ -534,7 +534,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.";
@@ -560,7 +560,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.";
@@ -586,7 +586,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the unsetVerifiedPublisher method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnsetVerifiedPublisherNavCommand() {
             var command = new Command("unset-verified-publisher");
             command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
@@ -614,7 +614,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -631,7 +631,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Get the properties and relationships of an application object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -648,7 +648,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Update the properties of an application object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

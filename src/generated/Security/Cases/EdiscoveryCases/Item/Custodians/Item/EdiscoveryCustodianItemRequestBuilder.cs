@@ -31,7 +31,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Delete navigation property custodians for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property custodians for security";
@@ -72,7 +72,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// Read the properties and relationships of an ediscoveryCustodian object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an ediscoveryCustodian object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-get?view=graph-rest-1.0";
@@ -129,7 +129,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLastIndexOperationNavCommand() {
             var command = new Command("last-index-operation");
             command.Description = "Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.";
@@ -145,7 +145,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the activate method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityActivateNavCommand() {
             var command = new Command("microsoft-graph-security-activate");
             command.Description = "Provides operations to call the activate method.";
@@ -161,7 +161,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityApplyHoldByIdNavCommand() {
             var command = new Command("microsoft-graph-security-apply-hold-by-id");
             command.Description = "Provides operations to call the applyHold method.";
@@ -177,7 +177,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the release method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityReleaseNavCommand() {
             var command = new Command("microsoft-graph-security-release");
             command.Description = "Provides operations to call the release method.";
@@ -193,7 +193,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityRemoveHoldByIdNavCommand() {
             var command = new Command("microsoft-graph-security-remove-hold-by-id");
             command.Description = "Provides operations to call the removeHold method.";
@@ -209,7 +209,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the updateIndex method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityUpdateIndexNavCommand() {
             var command = new Command("microsoft-graph-security-update-index");
             command.Description = "Provides operations to call the updateIndex method.";
@@ -225,7 +225,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Update the navigation property custodians in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property custodians in security";
@@ -281,7 +281,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSiteSourcesNavCommand() {
             var command = new Command("site-sources");
             command.Description = "Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
@@ -307,7 +307,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the unifiedGroupSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnifiedGroupSourcesNavCommand() {
             var command = new Command("unified-group-sources");
             command.Description = "Provides operations to manage the unifiedGroupSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
@@ -333,7 +333,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserSourcesNavCommand() {
             var command = new Command("user-sources");
             command.Description = "Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
@@ -371,7 +371,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Delete navigation property custodians for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -388,7 +388,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Read the properties and relationships of an ediscoveryCustodian object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -405,7 +405,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Update the navigation property custodians in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

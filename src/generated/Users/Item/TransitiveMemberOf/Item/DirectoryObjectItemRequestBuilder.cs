@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.";
@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to administrativeUnit.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphAdministrativeUnitByIdNavCommand() {
             var command = new Command("graph-administrative-unit-by-id");
             command.Description = "Casts the previous resource to administrativeUnit.";
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to directoryRole.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDirectoryRoleByIdNavCommand() {
             var command = new Command("graph-directory-role-by-id");
             command.Description = "Casts the previous resource to directoryRole.";
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
@@ -149,7 +149,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

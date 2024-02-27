@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildActivityNavCommand() {
             var command = new Command("activity");
             command.Description = "Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.";
@@ -39,7 +39,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Delete navigation property historyItems for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property historyItems for users";
@@ -85,7 +85,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the activity&apos;s historyItems.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.";
@@ -146,13 +146,13 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return command;
         }
         /// <summary>
-        /// Create a new or replace an existing history item for an existing user activity.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0" />
+        /// Delete an existing history item for an existing user activity.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Create a new or replace an existing history item for an existing user activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0";
+            command.Description = "Delete an existing history item for an existing user activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -223,7 +223,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Delete navigation property historyItems for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -240,7 +240,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Optional. NavigationProperty/Containment; navigation property to the activity&apos;s historyItems.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,9 +255,9 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new or replace an existing history item for an existing user activity.
+        /// Delete an existing history item for an existing user activity.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

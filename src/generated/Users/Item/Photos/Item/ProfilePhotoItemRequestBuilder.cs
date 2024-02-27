@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
@@ -102,7 +102,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

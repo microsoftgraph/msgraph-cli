@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Delete navigation property shared for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property shared for users";
@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLastSharedMethodNavCommand() {
             var command = new Command("last-shared-method");
             command.Description = "Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.";
@@ -137,7 +137,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Update the navigation property shared in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property shared in users";
@@ -193,7 +193,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Provides operations to manage the resource property of the microsoft.graph.sharedInsight entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceNavCommand() {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.sharedInsight entity.";
@@ -221,7 +221,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Delete navigation property shared for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -238,7 +238,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
         /// <summary>
         /// Update the navigation property shared in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

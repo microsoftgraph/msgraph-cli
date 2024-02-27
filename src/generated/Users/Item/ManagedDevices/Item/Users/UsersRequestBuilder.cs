@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Users {
         /// List properties and relationships of the user objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-user-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-user-list?view=graph-rest-1.0";
@@ -140,7 +140,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Users {
         /// <summary>
         /// List properties and relationships of the user objects.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// <summary>
         /// Delete navigation property windowsProtectionState for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property windowsProtectionState for users";
@@ -63,7 +63,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// <summary>
         /// Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDetectedMalwareStateNavCommand() {
             var command = new Command("detected-malware-state");
             command.Description = "Provides operations to manage the detectedMalwareState property of the microsoft.graph.windowsProtectionState entity.";
@@ -90,7 +90,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// Read properties and relationships of the windowsProtectionState object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the windowsProtectionState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-get?view=graph-rest-1.0";
@@ -148,7 +148,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// Update the properties of a windowsProtectionState object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a windowsProtectionState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-update?view=graph-rest-1.0";
@@ -216,7 +216,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// <summary>
         /// Delete navigation property windowsProtectionState for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -233,7 +233,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// <summary>
         /// Read properties and relationships of the windowsProtectionState object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +250,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
         /// <summary>
         /// Update the properties of a windowsProtectionState object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

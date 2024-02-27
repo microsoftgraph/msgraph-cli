@@ -27,7 +27,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to call the copyToNotebook method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCopyToNotebookNavCommand() {
             var command = new Command("copy-to-notebook");
             command.Description = "Provides operations to call the copyToNotebook method.";
@@ -43,7 +43,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to call the copyToSectionGroup method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCopyToSectionGroupNavCommand() {
             var command = new Command("copy-to-section-group");
             command.Description = "Provides operations to call the copyToSectionGroup method.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Delete navigation property sections for sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for sites";
@@ -105,7 +105,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// The sections in the notebook. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The sections in the notebook. Read-only. Nullable.";
@@ -168,7 +168,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPagesNavCommand() {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.";
@@ -194,7 +194,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.";
@@ -210,7 +210,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentSectionGroupNavCommand() {
             var command = new Command("parent-section-group");
             command.Description = "Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Update the navigation property sections in sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in sites";
@@ -300,7 +300,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Delete navigation property sections for sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -317,7 +317,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// The sections in the notebook. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -334,7 +334,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Update the navigation property sections in sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

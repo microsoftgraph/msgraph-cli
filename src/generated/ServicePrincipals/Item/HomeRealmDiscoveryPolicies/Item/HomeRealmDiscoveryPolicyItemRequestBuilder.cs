@@ -18,7 +18,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";

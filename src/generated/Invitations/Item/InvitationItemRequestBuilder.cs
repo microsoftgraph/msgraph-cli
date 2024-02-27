@@ -23,7 +23,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Delete entity from invitations
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from invitations";
@@ -57,7 +57,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Get entity from invitations by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entity from invitations by key";
@@ -108,7 +108,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildInvitedUserNavCommand() {
             var command = new Command("invited-user");
             command.Description = "Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.";
@@ -131,7 +131,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Update entity in invitations
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in invitations";
@@ -193,7 +193,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Delete entity from invitations
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -210,7 +210,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Get entity from invitations by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -227,7 +227,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Update entity in invitations
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

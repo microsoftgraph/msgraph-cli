@@ -30,7 +30,7 @@ namespace ApiSdk.Domains.Item {
         /// Deletes a domain from a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDomainNameReferencesNavCommand() {
             var command = new Command("domain-name-references");
             command.Description = "Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.";
@@ -89,7 +89,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFederationConfigurationNavCommand() {
             var command = new Command("federation-configuration");
             command.Description = "Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.";
@@ -115,7 +115,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the forceDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildForceDeleteNavCommand() {
             var command = new Command("force-delete");
             command.Description = "Provides operations to call the forceDelete method.";
@@ -132,7 +132,7 @@ namespace ApiSdk.Domains.Item {
         /// Retrieve the properties and relationships of domain object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of domain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-1.0";
@@ -184,7 +184,7 @@ namespace ApiSdk.Domains.Item {
         /// Update the properties of domain object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
@@ -234,7 +234,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the promote method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPromoteNavCommand() {
             var command = new Command("promote");
             command.Description = "Provides operations to call the promote method.";
@@ -250,7 +250,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceConfigurationRecordsNavCommand() {
             var command = new Command("service-configuration-records");
             command.Description = "Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.";
@@ -276,7 +276,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildVerificationDnsRecordsNavCommand() {
             var command = new Command("verification-dns-records");
             command.Description = "Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.";
@@ -302,7 +302,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the verify method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildVerifyNavCommand() {
             var command = new Command("verify");
             command.Description = "Provides operations to call the verify method.";
@@ -330,7 +330,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Deletes a domain from a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -347,7 +347,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -364,7 +364,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Update the properties of domain object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

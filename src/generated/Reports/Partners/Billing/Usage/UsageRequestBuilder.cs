@@ -24,7 +24,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Provides operations to manage the billed property of the microsoft.graph.partners.billing.azureUsage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBilledNavCommand() {
             var command = new Command("billed");
             command.Description = "Provides operations to manage the billed property of the microsoft.graph.partners.billing.azureUsage entity.";
@@ -48,7 +48,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Delete navigation property usage for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property usage for reports";
@@ -76,7 +76,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Represents details for billed and unbilled Azure usage data.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents details for billed and unbilled Azure usage data.";
@@ -121,7 +121,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Update the navigation property usage in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property usage in reports";
@@ -165,7 +165,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Provides operations to manage the unbilled property of the microsoft.graph.partners.billing.azureUsage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnbilledNavCommand() {
             var command = new Command("unbilled");
             command.Description = "Provides operations to manage the unbilled property of the microsoft.graph.partners.billing.azureUsage entity.";
@@ -201,7 +201,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Delete navigation property usage for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -218,7 +218,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Represents details for billed and unbilled Azure usage data.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -235,7 +235,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage {
         /// <summary>
         /// Update the navigation property usage in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,7 +22,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftG
         /// Run a workflow object on-demand. You can run any workflow on-demand, including scheduled workflows. Workflows created from the &apos;Real-time employee termination&apos; template are run on-demand only. When you run a workflow on demand, the tasks are executed regardless of whether the user state matches the scope and trigger execution conditions.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-activate?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Run a workflow object on-demand. You can run any workflow on-demand, including scheduled workflows. Workflows created from the 'Real-time employee termination' template are run on-demand only. When you run a workflow on demand, the tasks are executed regardless of whether the user state matches the scope and trigger execution conditions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-activate?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.MicrosoftG
         /// <summary>
         /// Run a workflow object on-demand. You can run any workflow on-demand, including scheduled workflows. Workflows created from the &apos;Real-time employee termination&apos; template are run on-demand only. When you run a workflow on demand, the tasks are executed regardless of whether the user state matches the scope and trigger execution conditions.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

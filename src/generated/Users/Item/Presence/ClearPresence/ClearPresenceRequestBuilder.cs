@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
         /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Clear the application's presence session for a user. If it is the user's only presence session, the user's presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Users.Item.Presence.ClearPresence {
         /// <summary>
         /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to Offline/Offline. For details about presences sessions, see presence: setPresence.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,7 +22,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Delete navigation property lastMessagePreview for chats
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property lastMessagePreview for chats";
@@ -56,7 +56,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.";
@@ -107,7 +107,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Update the navigation property lastMessagePreview in chats
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property lastMessagePreview in chats";
@@ -169,7 +169,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Delete navigation property lastMessagePreview for chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -186,7 +186,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +203,7 @@ namespace ApiSdk.Chats.Item.LastMessagePreview {
         /// <summary>
         /// Update the navigation property lastMessagePreview in chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

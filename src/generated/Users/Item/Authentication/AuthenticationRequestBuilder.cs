@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Delete navigation property authentication for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authentication for users";
@@ -66,7 +66,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildEmailMethodsNavCommand() {
             var command = new Command("email-methods");
             command.Description = "Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.";
@@ -92,7 +92,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFido2MethodsNavCommand() {
             var command = new Command("fido2-methods");
             command.Description = "Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.";
@@ -117,7 +117,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// The authentication methods that are supported for the user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The authentication methods that are supported for the user.";
@@ -168,7 +168,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the methods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMethodsNavCommand() {
             var command = new Command("methods");
             command.Description = "Provides operations to manage the methods property of the microsoft.graph.authentication entity.";
@@ -194,7 +194,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftAuthenticatorMethodsNavCommand() {
             var command = new Command("microsoft-authenticator-methods");
             command.Description = "Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.";
@@ -219,7 +219,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.authentication entity.";
@@ -245,7 +245,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPasswordMethodsNavCommand() {
             var command = new Command("password-methods");
             command.Description = "Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.";
@@ -271,7 +271,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Update the navigation property authentication in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authentication in users";
@@ -321,7 +321,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPhoneMethodsNavCommand() {
             var command = new Command("phone-methods");
             command.Description = "Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.";
@@ -347,7 +347,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSoftwareOathMethodsNavCommand() {
             var command = new Command("software-oath-methods");
             command.Description = "Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.";
@@ -372,7 +372,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTemporaryAccessPassMethodsNavCommand() {
             var command = new Command("temporary-access-pass-methods");
             command.Description = "Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.";
@@ -398,7 +398,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWindowsHelloForBusinessMethodsNavCommand() {
             var command = new Command("windows-hello-for-business-methods");
             command.Description = "Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.";
@@ -435,7 +435,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Delete navigation property authentication for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -452,7 +452,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// The authentication methods that are supported for the user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -469,7 +469,7 @@ namespace ApiSdk.Users.Item.Authentication {
         /// <summary>
         /// Update the navigation property authentication in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

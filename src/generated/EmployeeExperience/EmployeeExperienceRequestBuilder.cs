@@ -25,7 +25,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Get employeeExperience
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get employeeExperience";
@@ -63,7 +63,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLearningCourseActivitiesNavCommand() {
             var command = new Command("learning-course-activities");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
@@ -89,7 +89,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand() {
             var command = new Command("learning-course-activities-with-externalcourse-activity-id");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
@@ -107,7 +107,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLearningProvidersNavCommand() {
             var command = new Command("learning-providers");
             command.Description = "Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.";
@@ -133,7 +133,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Update employeeExperience
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update employeeExperience";
@@ -189,7 +189,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Get employeeExperience
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -206,7 +206,7 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Update employeeExperience
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

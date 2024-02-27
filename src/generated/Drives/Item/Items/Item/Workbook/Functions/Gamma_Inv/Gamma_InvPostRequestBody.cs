@@ -42,7 +42,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Gamma_InvPostRequestBody"></returns>
+        /// <returns>A <see cref="Gamma_InvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Gamma_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -51,7 +51,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

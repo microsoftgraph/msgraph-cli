@@ -23,7 +23,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Delete navigation property billed for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property billed for reports";
@@ -51,7 +51,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Represents details for billed Azure usage data.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents details for billed Azure usage data.";
@@ -96,7 +96,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Provides operations to call the export method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphPartnersBillingExportNavCommand() {
             var command = new Command("microsoft-graph-partners-billing-export");
             command.Description = "Provides operations to call the export method.";
@@ -112,7 +112,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Update the navigation property billed in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property billed in reports";
@@ -168,7 +168,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Delete navigation property billed for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -185,7 +185,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Represents details for billed Azure usage data.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -202,7 +202,7 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
         /// <summary>
         /// Update the navigation property billed in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

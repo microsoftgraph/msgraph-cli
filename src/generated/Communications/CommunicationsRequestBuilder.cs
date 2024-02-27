@@ -27,7 +27,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCallRecordsNavCommand() {
             var command = new Command("call-records");
             command.Description = "Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.";
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCallsNavCommand() {
             var command = new Command("calls");
             command.Description = "Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.";
@@ -82,7 +82,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Get communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get communications";
@@ -127,7 +127,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to call the getPresencesByUserId method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetPresencesByUserIdNavCommand() {
             var command = new Command("get-presences-by-user-id");
             command.Description = "Provides operations to call the getPresencesByUserId method.";
@@ -143,7 +143,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOnlineMeetingsNavCommand() {
             var command = new Command("online-meetings");
             command.Description = "Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.";
@@ -170,7 +170,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Update communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update communications";
@@ -214,7 +214,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPresencesNavCommand() {
             var command = new Command("presences");
             command.Description = "Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.";
@@ -252,7 +252,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Get communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -269,7 +269,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Update communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

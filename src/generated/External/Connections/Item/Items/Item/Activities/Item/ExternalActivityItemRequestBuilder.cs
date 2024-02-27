@@ -23,7 +23,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Delete navigation property activities for external
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property activities for external";
@@ -69,7 +69,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Returns a list of activities performed on the item. Write-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Returns a list of activities performed on the item. Write-only.";
@@ -132,7 +132,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Update the navigation property activities in external
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property activities in external";
@@ -194,7 +194,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Provides operations to manage the performedBy property of the microsoft.graph.externalConnectors.externalActivity entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPerformedByNavCommand() {
             var command = new Command("performed-by");
             command.Description = "Provides operations to manage the performedBy property of the microsoft.graph.externalConnectors.externalActivity entity.";
@@ -222,7 +222,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Delete navigation property activities for external
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -239,7 +239,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Returns a list of activities performed on the item. Write-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -256,7 +256,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item {
         /// <summary>
         /// Update the navigation property activities in external
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

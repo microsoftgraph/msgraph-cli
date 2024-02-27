@@ -17,7 +17,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="ServiceUserAgent"></returns>
+        /// <returns>A <see cref="ServiceUserAgent"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new ServiceUserAgent CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -26,7 +26,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"role", n => { Role = n.GetEnumValue<ServiceRole>(); } },

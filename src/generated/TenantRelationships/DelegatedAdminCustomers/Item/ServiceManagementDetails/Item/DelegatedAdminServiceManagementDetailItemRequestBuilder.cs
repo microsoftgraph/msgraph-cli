@@ -22,7 +22,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Delete navigation property serviceManagementDetails for tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property serviceManagementDetails for tenantRelationships";
@@ -62,7 +62,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Contains the management details of a service in the customer tenant that's managed by delegated administration.";
@@ -119,7 +119,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Update the navigation property serviceManagementDetails in tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property serviceManagementDetails in tenantRelationships";
@@ -187,7 +187,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Delete navigation property serviceManagementDetails for tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -204,7 +204,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -221,7 +221,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         /// <summary>
         /// Update the navigation property serviceManagementDetails in tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

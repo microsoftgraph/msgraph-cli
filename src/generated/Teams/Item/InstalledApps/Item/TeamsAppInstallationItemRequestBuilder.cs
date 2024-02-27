@@ -26,7 +26,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// Uninstalls an app from the specified team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Uninstalls an app from the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0";
@@ -67,7 +67,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// Retrieve the app installed in the specified team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the app installed in the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0";
@@ -124,7 +124,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Update the navigation property installedApps in teams
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property installedApps in teams";
@@ -180,7 +180,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTeamsAppDefinitionNavCommand() {
             var command = new Command("teams-app-definition");
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
@@ -196,7 +196,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTeamsAppNavCommand() {
             var command = new Command("teams-app");
             command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.";
@@ -212,7 +212,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Provides operations to call the upgrade method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUpgradeNavCommand() {
             var command = new Command("upgrade");
             command.Description = "Provides operations to call the upgrade method.";
@@ -240,7 +240,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Uninstalls an app from the specified team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -257,7 +257,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Retrieve the app installed in the specified team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -274,7 +274,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item {
         /// <summary>
         /// Update the navigation property installedApps in teams
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

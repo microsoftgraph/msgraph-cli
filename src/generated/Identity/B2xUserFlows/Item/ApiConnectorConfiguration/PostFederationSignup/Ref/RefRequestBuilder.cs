@@ -22,7 +22,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Delete ref of navigation property postFederationSignup for identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property postFederationSignup for identity";
@@ -56,7 +56,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Get ref of postFederationSignup from identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get ref of postFederationSignup from identity";
@@ -85,7 +85,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Update the ref of navigation property postFederationSignup in identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update the ref of navigation property postFederationSignup in identity";
@@ -137,7 +137,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Delete ref of navigation property postFederationSignup for identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -154,7 +154,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Get ref of postFederationSignup from identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -171,7 +171,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostFedera
         /// <summary>
         /// Update the ref of navigation property postFederationSignup in identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

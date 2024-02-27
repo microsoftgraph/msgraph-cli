@@ -25,7 +25,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -45,7 +45,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -62,7 +62,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0";
@@ -106,7 +106,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Provides operations to call the filterByCurrentUser method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFilterByCurrentUserWithOnRbCommand() {
             var command = new Command("filter-by-current-user-with-on");
             command.Description = "Provides operations to call the filterByCurrentUser method.";
@@ -123,7 +123,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0";
@@ -228,7 +228,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -245,7 +245,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

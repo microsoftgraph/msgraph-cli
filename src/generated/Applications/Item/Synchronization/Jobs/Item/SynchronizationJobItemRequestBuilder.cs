@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to manage the bulkUpload property of the microsoft.graph.synchronizationJob entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBulkUploadNavCommand() {
             var command = new Command("bulk-upload");
             command.Description = "Provides operations to manage the bulkUpload property of the microsoft.graph.synchronizationJob entity.";
@@ -54,7 +54,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0";
@@ -95,7 +95,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// Retrieve the existing synchronization job and its properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the existing synchronization job and its properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0";
@@ -152,7 +152,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Update the navigation property jobs in applications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property jobs in applications";
@@ -208,7 +208,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to call the pause method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPauseNavCommand() {
             var command = new Command("pause");
             command.Description = "Provides operations to call the pause method.";
@@ -224,7 +224,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to call the provisionOnDemand method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildProvisionOnDemandNavCommand() {
             var command = new Command("provision-on-demand");
             command.Description = "Provides operations to call the provisionOnDemand method.";
@@ -240,7 +240,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to call the restart method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestartNavCommand() {
             var command = new Command("restart");
             command.Description = "Provides operations to call the restart method.";
@@ -256,7 +256,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSchemaNavCommand() {
             var command = new Command("schema");
             command.Description = "Provides operations to manage the schema property of the microsoft.graph.synchronizationJob entity.";
@@ -283,7 +283,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to call the start method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildStartNavCommand() {
             var command = new Command("start");
             command.Description = "Provides operations to call the start method.";
@@ -299,7 +299,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Provides operations to call the validateCredentials method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildValidateCredentialsByIdNavCommand() {
             var command = new Command("validate-credentials-by-id");
             command.Description = "Provides operations to call the validateCredentials method.";
@@ -327,7 +327,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -344,7 +344,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Retrieve the existing synchronization job and its properties.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -361,7 +361,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         /// <summary>
         /// Update the navigation property jobs in applications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

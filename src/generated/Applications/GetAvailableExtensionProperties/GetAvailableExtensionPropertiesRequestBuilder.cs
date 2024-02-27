@@ -22,7 +22,7 @@ namespace ApiSdk.Applications.GetAvailableExtensionProperties {
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0";
@@ -89,7 +89,7 @@ namespace ApiSdk.Applications.GetAvailableExtensionProperties {
         /// <summary>
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

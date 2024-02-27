@@ -22,7 +22,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
         /// Make the scheduling page of a business available to external customers. Set the isPublished property to true, and the publicUrl property to the URL of the scheduling page.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Make the scheduling page of a business available to external customers. Set the isPublished property to true, and the publicUrl property to the URL of the scheduling page.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
         /// <summary>
         /// Make the scheduling page of a business available to external customers. Set the isPublished property to true, and the publicUrl property to the URL of the scheduling page.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

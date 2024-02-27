@@ -22,7 +22,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkout {
         /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0";
@@ -67,7 +67,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkout {
         /// <summary>
         /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

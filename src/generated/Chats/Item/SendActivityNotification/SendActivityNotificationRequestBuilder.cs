@@ -22,7 +22,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
         /// Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
         /// <summary>
         /// Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

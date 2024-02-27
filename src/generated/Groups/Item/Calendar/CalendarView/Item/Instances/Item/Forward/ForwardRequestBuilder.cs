@@ -19,13 +19,13 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Forward {
     /// </summary>
     public class ForwardRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;s copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
+        /// This action allows the organizer or attendee of a meeting event to forward themeeting request to a new recipient. If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this actionalso sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;scopy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-forward?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee's Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer's copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-forward?view=graph-rest-1.0";
+            command.Description = "This action allows the organizer or attendee of a meeting event to forward themeeting request to a new recipient. If the meeting event is forwarded from an attendee's Microsoft 365 mailbox to another recipient, this actionalso sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer'scopy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-forward?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -84,9 +84,9 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Forward {
         public ForwardRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/forward", rawUrl) {
         }
         /// <summary>
-        /// This action allows the organizer or attendee of a meeting event to forward the meeting request to a new recipient.  If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;s copy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
+        /// This action allows the organizer or attendee of a meeting event to forward themeeting request to a new recipient. If the meeting event is forwarded from an attendee&apos;s Microsoft 365 mailbox to another recipient, this actionalso sends a message to notify the organizer of the forwarding, and adds the recipient to the organizer&apos;scopy of the meeting event. This convenience is not available when forwarding from an Outlook.com account.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

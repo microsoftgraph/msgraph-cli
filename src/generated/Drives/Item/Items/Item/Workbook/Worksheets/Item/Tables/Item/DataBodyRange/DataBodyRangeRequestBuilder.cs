@@ -23,7 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Dat
         /// Gets the range object associated with the data body of the table.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-databodyrange?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Gets the range object associated with the data body of the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-databodyrange?view=graph-rest-1.0";
@@ -90,7 +90,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Dat
         /// <summary>
         /// Gets the range object associated with the data body of the table.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

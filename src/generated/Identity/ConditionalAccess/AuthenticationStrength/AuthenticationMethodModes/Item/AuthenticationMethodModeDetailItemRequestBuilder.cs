@@ -22,7 +22,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Delete navigation property authenticationMethodModes for identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationMethodModes for identity";
@@ -56,7 +56,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Names and descriptions of all valid authentication method modes in the system.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Names and descriptions of all valid authentication method modes in the system.";
@@ -107,7 +107,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Update the navigation property authenticationMethodModes in identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationMethodModes in identity";
@@ -169,7 +169,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Delete navigation property authenticationMethodModes for identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -186,7 +186,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Names and descriptions of all valid authentication method modes in the system.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +203,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         /// <summary>
         /// Update the navigation property authenticationMethodModes in identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

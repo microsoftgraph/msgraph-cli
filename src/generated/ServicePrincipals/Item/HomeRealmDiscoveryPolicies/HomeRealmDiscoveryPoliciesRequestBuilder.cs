@@ -25,7 +25,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
         /// <summary>
         /// Gets an item from the ApiSdk.servicePrincipals.item.homeRealmDiscoveryPolicies.item collection
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new HomeRealmDiscoveryPolicyItemRequestBuilder(PathParameters);
@@ -35,7 +35,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,7 +52,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
         /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0";
@@ -151,7 +151,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
@@ -181,7 +181,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies {
         /// <summary>
         /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Delete navigation property submissions for education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property submissions for education";
@@ -71,7 +71,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A submission object represents a student&apos;s work for an assignment. Resources associated with the submission represent this work. Only the assignedTo student can see and modify the submission. A teacher or application with application permissions has full access to all submissions. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the assignment has been released.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmission-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A submission object represents a student's work for an assignment. Resources associated with the submission represent this work. Only the assignedTo student can see and modify the submission. A teacher or application with application permissions has full access to all submissions. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the assignment has been released.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmission-get?view=graph-rest-1.0";
@@ -128,7 +128,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to manage the outcomes property of the microsoft.graph.educationSubmission entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOutcomesNavCommand() {
             var command = new Command("outcomes");
             command.Description = "Provides operations to manage the outcomes property of the microsoft.graph.educationSubmission entity.";
@@ -154,7 +154,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Update the navigation property submissions in education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property submissions in education";
@@ -210,7 +210,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to call the reassign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReassignNavCommand() {
             var command = new Command("reassign");
             command.Description = "Provides operations to call the reassign method.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.";
@@ -252,7 +252,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to call the return method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReturnNavCommand() {
             var command = new Command("return");
             command.Description = "Provides operations to call the return method.";
@@ -268,7 +268,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to call the setUpResourcesFolder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetUpResourcesFolderNavCommand() {
             var command = new Command("set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
@@ -284,7 +284,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to call the submit method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubmitNavCommand() {
             var command = new Command("submit");
             command.Description = "Provides operations to call the submit method.";
@@ -300,7 +300,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubmittedResourcesNavCommand() {
             var command = new Command("submitted-resources");
             command.Description = "Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.";
@@ -326,7 +326,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Provides operations to call the unsubmit method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnsubmitNavCommand() {
             var command = new Command("unsubmit");
             command.Description = "Provides operations to call the unsubmit method.";
@@ -354,7 +354,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Delete navigation property submissions for education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -371,7 +371,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A submission object represents a student&apos;s work for an assignment. Resources associated with the submission represent this work. Only the assignedTo student can see and modify the submission. A teacher or application with application permissions has full access to all submissions. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the assignment has been released.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -388,7 +388,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
         /// <summary>
         /// Update the navigation property submissions in education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

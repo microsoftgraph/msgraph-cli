@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphAppRoleAssignmentByIdNavCommand() {
             var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDeviceByIdNavCommand() {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphEndpointByIdNavCommand() {
             var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
@@ -149,7 +149,7 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

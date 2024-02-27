@@ -22,7 +22,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Restore a printer's default settings to the values specified by the manufacturer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         /// <summary>
         /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

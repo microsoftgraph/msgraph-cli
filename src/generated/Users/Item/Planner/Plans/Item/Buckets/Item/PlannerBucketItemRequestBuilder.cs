@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Delete navigation property buckets for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property buckets for users";
@@ -69,7 +69,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Read-only. Nullable. Collection of buckets in the plan.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
@@ -132,7 +132,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Update the navigation property buckets in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property buckets in users";
@@ -194,7 +194,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.";
@@ -232,7 +232,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Delete navigation property buckets for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Read-only. Nullable. Collection of buckets in the plan.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -266,7 +266,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
         /// <summary>
         /// Update the navigation property buckets in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

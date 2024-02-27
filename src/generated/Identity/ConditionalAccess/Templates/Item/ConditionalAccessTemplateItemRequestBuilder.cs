@@ -23,7 +23,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a conditionalAccessTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesstemplate-get?view=graph-rest-1.0";
@@ -86,7 +86,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
         /// <summary>
         /// Read the properties and relationships of a conditionalAccessTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

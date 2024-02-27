@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
         /// Delete an attachment from a user calendar event, mail message, or group post.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an attachment from a user calendar event, mail message, or group post.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0";
@@ -75,7 +75,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
         /// <summary>
         /// The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
@@ -156,7 +156,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
         /// <summary>
         /// Delete an attachment from a user calendar event, mail message, or group post.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,7 +173,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Attachments.Item {
         /// <summary>
         /// The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

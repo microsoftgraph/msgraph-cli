@@ -26,7 +26,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChildrenNavCommand() {
             var command = new Command("children");
             command.Description = "Provides operations to manage the children property of the microsoft.graph.termStore.set entity.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Delete a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0";
@@ -106,7 +106,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Read the properties and relationships of a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0";
@@ -175,7 +175,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentGroupNavCommand() {
             var command = new Command("parent-group");
             command.Description = "Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.";
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Update the properties of a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0";
@@ -268,7 +268,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRelationsNavCommand() {
             var command = new Command("relations");
             command.Description = "Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.";
@@ -294,7 +294,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTermsNavCommand() {
             var command = new Command("terms");
             command.Description = "Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.";
@@ -332,7 +332,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Delete a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -349,7 +349,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Read the properties and relationships of a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -366,7 +366,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Update the properties of a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

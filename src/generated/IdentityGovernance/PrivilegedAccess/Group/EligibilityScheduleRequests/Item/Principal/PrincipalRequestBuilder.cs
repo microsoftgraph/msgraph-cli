@@ -22,7 +22,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRe
         /// <summary>
         /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.";
@@ -85,7 +85,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRe
         /// <summary>
         /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

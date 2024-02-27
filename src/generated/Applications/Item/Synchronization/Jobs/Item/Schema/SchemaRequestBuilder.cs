@@ -26,7 +26,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Delete navigation property schema for applications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property schema for applications";
@@ -66,7 +66,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDirectoriesNavCommand() {
             var command = new Command("directories");
             command.Description = "Provides operations to manage the directories property of the microsoft.graph.synchronizationSchema entity.";
@@ -92,7 +92,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Provides operations to call the filterOperators method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFilterOperatorsNavCommand() {
             var command = new Command("filter-operators");
             command.Description = "Provides operations to call the filterOperators method.";
@@ -108,7 +108,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Provides operations to call the functions method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFunctionsNavCommand() {
             var command = new Command("functions");
             command.Description = "Provides operations to call the functions method.";
@@ -125,7 +125,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// Retrieve the schema for a given synchronization job or template.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the schema for a given synchronization job or template.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0";
@@ -182,7 +182,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Provides operations to call the parseExpression method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParseExpressionNavCommand() {
             var command = new Command("parse-expression");
             command.Description = "Provides operations to call the parseExpression method.";
@@ -199,7 +199,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0";
@@ -267,7 +267,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Delete navigation property schema for applications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -284,7 +284,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Retrieve the schema for a given synchronization job or template.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -301,7 +301,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
         /// <summary>
         /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

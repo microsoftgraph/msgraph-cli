@@ -23,7 +23,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChannelsNavCommand() {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.";
@@ -50,7 +50,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Delete navigation property deletedTeams for teamwork
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property deletedTeams for teamwork";
@@ -84,7 +84,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// The deleted team.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The deleted team.";
@@ -135,7 +135,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Update the navigation property deletedTeams in teamwork
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deletedTeams in teamwork";
@@ -197,7 +197,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Delete navigation property deletedTeams for teamwork
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -214,7 +214,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// The deleted team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Update the navigation property deletedTeams in teamwork
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

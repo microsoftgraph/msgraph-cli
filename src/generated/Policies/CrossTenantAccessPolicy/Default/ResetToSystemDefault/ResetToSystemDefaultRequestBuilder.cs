@@ -22,7 +22,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0";
@@ -55,7 +55,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         /// <summary>
         /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

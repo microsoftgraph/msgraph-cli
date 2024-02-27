@@ -23,7 +23,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers can&apos;t remove resources marked as &apos;distributeToStudents&apos;, after the assignment has been published to students.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentresource-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers can't remove resources marked as 'distributeToStudents', after the assignment has been published to students.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentresource-delete?view=graph-rest-1.0";
@@ -70,7 +70,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentresource-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentresource-get?view=graph-rest-1.0";
@@ -133,7 +133,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// <summary>
         /// Update the navigation property resources in education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property resources in education";
@@ -207,7 +207,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// <summary>
         /// Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers can&apos;t remove resources marked as &apos;distributeToStudents&apos;, after the assignment has been published to students.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// <summary>
         /// Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources.Item {
         /// <summary>
         /// Update the navigation property resources in education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

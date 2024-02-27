@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// <summary>
         /// Provides operations to manage the childFolders property of the microsoft.graph.contactFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChildFoldersNavCommand() {
             var command = new Command("child-folders");
             command.Description = "Provides operations to manage the childFolders property of the microsoft.graph.contactFolder entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// <summary>
         /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContactsNavCommand() {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.";
@@ -79,7 +79,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// Delete contactFolder other than the default contactFolder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete contactFolder other than the default contactFolder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-delete?view=graph-rest-1.0";
@@ -120,7 +120,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user&apos;s contact folder:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user's contact folder:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-get?view=graph-rest-1.0";
@@ -178,7 +178,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// Update the properties of contactfolder object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of contactfolder object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-update?view=graph-rest-1.0";
@@ -246,7 +246,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// <summary>
         /// Delete contactFolder other than the default contactFolder.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -263,7 +263,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// <summary>
         /// Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user&apos;s contact folder:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -280,7 +280,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
         /// <summary>
         /// Update the properties of contactfolder object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

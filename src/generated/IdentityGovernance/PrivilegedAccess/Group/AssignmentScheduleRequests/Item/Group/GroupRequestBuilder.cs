@@ -23,7 +23,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         /// <summary>
         /// References the group that is the scope of the membership or ownership assignment request through PIM for groups. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "References the group that is the scope of the membership or ownership assignment request through PIM for groups. Supports $expand.";
@@ -74,7 +74,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -108,7 +108,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         /// <summary>
         /// References the group that is the scope of the membership or ownership assignment request through PIM for groups. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

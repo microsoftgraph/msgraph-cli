@@ -35,7 +35,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAxesNavCommand() {
             var command = new Command("axes");
             command.Description = "Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDataLabelsNavCommand() {
             var command = new Command("data-labels");
             command.Description = "Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.";
@@ -71,7 +71,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChart entity.";
@@ -89,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
@@ -144,7 +144,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildImageNavCommand() {
             var command = new Command("image");
             command.Description = "Provides operations to call the image method.";
@@ -160,7 +160,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildImageWithWidthRbCommand() {
             var command = new Command("image-with-width");
             command.Description = "Provides operations to call the image method.";
@@ -176,7 +176,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildImageWithWidthWithHeightRbCommand() {
             var command = new Command("image-with-width-with-height");
             command.Description = "Provides operations to call the image method.";
@@ -192,7 +192,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildImageWithWidthWithHeightWithFittingModeRbCommand() {
             var command = new Command("image-with-width-with-height-with-fitting-mode");
             command.Description = "Provides operations to call the image method.";
@@ -208,7 +208,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLegendNavCommand() {
             var command = new Command("legend");
             command.Description = "Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the series property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSeriesNavCommand() {
             var command = new Command("series");
             command.Description = "Provides operations to manage the series property of the microsoft.graph.workbookChart entity.";
@@ -243,7 +243,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the setData method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetDataNavCommand() {
             var command = new Command("set-data");
             command.Description = "Provides operations to call the setData method.";
@@ -259,7 +259,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the setPosition method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetPositionNavCommand() {
             var command = new Command("set-position");
             command.Description = "Provides operations to call the setPosition method.";
@@ -275,7 +275,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the title property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTitleNavCommand() {
             var command = new Command("title");
             command.Description = "Provides operations to manage the title property of the microsoft.graph.workbookChart entity.";
@@ -293,7 +293,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.";
@@ -321,7 +321,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

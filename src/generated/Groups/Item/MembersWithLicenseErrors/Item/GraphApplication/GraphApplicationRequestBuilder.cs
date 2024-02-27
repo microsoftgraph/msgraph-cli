@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphApplication {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.application";
@@ -98,7 +98,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphApplication {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

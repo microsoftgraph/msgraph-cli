@@ -33,7 +33,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the bundles property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBundlesNavCommand() {
             var command = new Command("bundles");
             command.Description = "Provides operations to manage the bundles property of the microsoft.graph.drive entity.";
@@ -59,7 +59,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -82,7 +82,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Delete entity from drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from drives";
@@ -116,7 +116,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the following property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFollowingNavCommand() {
             var command = new Command("following");
             command.Description = "Provides operations to manage the following property of the microsoft.graph.drive entity.";
@@ -141,7 +141,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Get entity from drives by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entity from drives by key";
@@ -192,7 +192,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.drive entity.";
@@ -218,7 +218,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -241,7 +241,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the list property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListNavCommand() {
             var command = new Command("list");
             command.Description = "Provides operations to manage the list property of the microsoft.graph.drive entity.";
@@ -272,7 +272,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Update entity in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in drives";
@@ -322,7 +322,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRecentNavCommand() {
             var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
@@ -338,7 +338,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRootNavCommand() {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
@@ -360,7 +360,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the search method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSearchWithQRbCommand() {
             var command = new Command("search-with-q");
             command.Description = "Provides operations to call the search method.";
@@ -376,7 +376,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the sharedWithMe method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSharedWithMeNavCommand() {
             var command = new Command("shared-with-me");
             command.Description = "Provides operations to call the sharedWithMe method.";
@@ -392,7 +392,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the special property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSpecialNavCommand() {
             var command = new Command("special");
             command.Description = "Provides operations to manage the special property of the microsoft.graph.drive entity.";
@@ -429,7 +429,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Delete entity from drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -446,7 +446,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Get entity from drives by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -463,7 +463,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Update entity in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

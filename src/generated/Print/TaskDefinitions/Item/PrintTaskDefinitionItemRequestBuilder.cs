@@ -24,7 +24,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// Delete a taskDefinition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/print-delete-taskdefinition?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a taskDefinition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/print-delete-taskdefinition?view=graph-rest-1.0";
@@ -59,7 +59,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// Get details about a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printtaskdefinition-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get details about a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printtaskdefinition-get?view=graph-rest-1.0";
@@ -111,7 +111,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// Update a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/print-update-taskdefinition?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/print-update-taskdefinition?view=graph-rest-1.0";
@@ -161,7 +161,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.printTaskDefinition entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.printTaskDefinition entity.";
@@ -199,7 +199,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// <summary>
         /// Delete a taskDefinition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,7 +216,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// <summary>
         /// Get details about a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -233,7 +233,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item {
         /// <summary>
         /// Update a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

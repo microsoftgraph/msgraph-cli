@@ -27,7 +27,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// The apiConnectorConfiguration property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildApiConnectorConfigurationNavCommand() {
             var command = new Command("api-connector-configuration");
             command.Description = "The apiConnectorConfiguration property";
@@ -51,7 +51,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// Delete a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0";
@@ -86,7 +86,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0";
@@ -137,7 +137,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIdentityProvidersNavCommand() {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
@@ -162,7 +162,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLanguagesNavCommand() {
             var command = new Command("languages");
             command.Description = "Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.";
@@ -188,7 +188,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Update the navigation property b2xUserFlows in identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property b2xUserFlows in identity";
@@ -238,7 +238,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserAttributeAssignmentsNavCommand() {
             var command = new Command("user-attribute-assignments");
             command.Description = "Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.";
@@ -266,7 +266,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserFlowIdentityProvidersNavCommand() {
             var command = new Command("user-flow-identity-providers");
             command.Description = "Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
@@ -304,7 +304,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Delete a b2xIdentityUserFlow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -321,7 +321,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -338,7 +338,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Update the navigation property b2xUserFlows in identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

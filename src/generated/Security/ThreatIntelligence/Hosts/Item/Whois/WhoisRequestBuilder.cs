@@ -23,7 +23,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Whois {
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-whoisrecord-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-whoisrecord-get?view=graph-rest-1.0";
@@ -86,7 +86,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Whois {
         /// <summary>
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

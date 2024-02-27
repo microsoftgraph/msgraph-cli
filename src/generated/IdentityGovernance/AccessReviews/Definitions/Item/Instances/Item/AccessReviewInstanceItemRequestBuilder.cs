@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the acceptRecommendations method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAcceptRecommendationsNavCommand() {
             var command = new Command("accept-recommendations");
             command.Description = "Provides operations to call the acceptRecommendations method.";
@@ -47,7 +47,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the applyDecisions method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildApplyDecisionsNavCommand() {
             var command = new Command("apply-decisions");
             command.Description = "Provides operations to call the applyDecisions method.";
@@ -63,7 +63,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the batchRecordDecisions method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBatchRecordDecisionsNavCommand() {
             var command = new Command("batch-record-decisions");
             command.Description = "Provides operations to call the batchRecordDecisions method.";
@@ -79,7 +79,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContactedReviewersNavCommand() {
             var command = new Command("contacted-reviewers");
             command.Description = "Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.";
@@ -105,7 +105,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDecisionsNavCommand() {
             var command = new Command("decisions");
             command.Description = "Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.";
@@ -132,7 +132,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Delete navigation property instances for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property instances for identityGovernance";
@@ -173,7 +173,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// Read the properties and relationships of an accessReviewInstance object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewinstance-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an accessReviewInstance object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewinstance-get?view=graph-rest-1.0";
@@ -231,7 +231,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// Update the properties of an accessReviewInstance object. Only the reviewers and fallbackReviewers properties can be updated but the scope property is also required in the request body. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewInstance, it&apos;s status must be InProgress.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewinstance-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an accessReviewInstance object. Only the reviewers and fallbackReviewers properties can be updated but the scope property is also required in the request body. You can only add reviewers to the fallbackReviewers property but can't remove existing fallbackReviewers. To update an accessReviewInstance, it's status must be InProgress.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewinstance-update?view=graph-rest-1.0";
@@ -287,7 +287,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the resetDecisions method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResetDecisionsNavCommand() {
             var command = new Command("reset-decisions");
             command.Description = "Provides operations to call the resetDecisions method.";
@@ -303,7 +303,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the sendReminder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendReminderNavCommand() {
             var command = new Command("send-reminder");
             command.Description = "Provides operations to call the sendReminder method.";
@@ -319,7 +319,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildStagesNavCommand() {
             var command = new Command("stages");
             command.Description = "Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.";
@@ -346,7 +346,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the stop method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildStopNavCommand() {
             var command = new Command("stop");
             command.Description = "Provides operations to call the stop method.";
@@ -374,7 +374,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Delete navigation property instances for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -391,7 +391,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Read the properties and relationships of an accessReviewInstance object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -408,7 +408,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Update the properties of an accessReviewInstance object. Only the reviewers and fallbackReviewers properties can be updated but the scope property is also required in the request body. You can only add reviewers to the fallbackReviewers property but can&apos;t remove existing fallbackReviewers. To update an accessReviewInstance, it&apos;s status must be InProgress.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,7 +22,7 @@ namespace ApiSdk.Groups.Item.UnsubscribeByMail {
         /// Calling this method prevents the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-unsubscribebymail?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Calling this method prevents the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-unsubscribebymail?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Groups.Item.UnsubscribeByMail {
         /// <summary>
         /// Calling this method prevents the current user from receiving email notifications for this group about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,7 +23,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Provides operations to manage the billing property of the microsoft.graph.partners entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBillingNavCommand() {
             var command = new Command("billing");
             command.Description = "Provides operations to manage the billing property of the microsoft.graph.partners entity.";
@@ -49,7 +49,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Delete navigation property partners for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property partners for reports";
@@ -77,7 +77,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Represents billing details for a Microsoft direct partner.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents billing details for a Microsoft direct partner.";
@@ -122,7 +122,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Update the navigation property partners in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property partners in reports";
@@ -178,7 +178,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Delete navigation property partners for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -195,7 +195,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Represents billing details for a Microsoft direct partner.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -212,7 +212,7 @@ namespace ApiSdk.Reports.Partners {
         /// <summary>
         /// Update the navigation property partners in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -24,7 +24,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Provides operations to manage the catalog property of the microsoft.graph.accessPackageResourceRequest entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCatalogNavCommand() {
             var command = new Command("catalog");
             command.Description = "Provides operations to manage the catalog property of the microsoft.graph.accessPackageResourceRequest entity.";
@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Delete navigation property resourceRequests for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property resourceRequests for identityGovernance";
@@ -86,7 +86,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Represents a request to add or remove a resource to or from a catalog respectively.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents a request to add or remove a resource to or from a catalog respectively.";
@@ -137,7 +137,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Update the navigation property resourceRequests in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property resourceRequests in identityGovernance";
@@ -187,7 +187,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Provides operations to manage the resource property of the microsoft.graph.accessPackageResourceRequest entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceNavCommand() {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.accessPackageResourceRequest entity.";
@@ -225,7 +225,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Delete navigation property resourceRequests for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,7 +242,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Represents a request to add or remove a resource to or from a catalog respectively.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -259,7 +259,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item 
         /// <summary>
         /// Update the navigation property resourceRequests in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

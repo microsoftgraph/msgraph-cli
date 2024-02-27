@@ -25,7 +25,7 @@ namespace ApiSdk.Chats {
         /// <summary>
         /// Provides operations to manage the collection of chat entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -50,7 +50,7 @@ namespace ApiSdk.Chats {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -67,7 +67,7 @@ namespace ApiSdk.Chats {
         /// Create a new chat object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-post?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new chat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-post?view=graph-rest-1.0";
@@ -111,7 +111,7 @@ namespace ApiSdk.Chats {
         /// <summary>
         /// Provides operations to call the getAllMessages method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAllMessagesNavCommand() {
             var command = new Command("get-all-messages");
             command.Description = "Provides operations to call the getAllMessages method.";
@@ -128,7 +128,7 @@ namespace ApiSdk.Chats {
         /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0";
@@ -233,7 +233,7 @@ namespace ApiSdk.Chats {
         /// <summary>
         /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +250,7 @@ namespace ApiSdk.Chats {
         /// <summary>
         /// Create a new chat object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

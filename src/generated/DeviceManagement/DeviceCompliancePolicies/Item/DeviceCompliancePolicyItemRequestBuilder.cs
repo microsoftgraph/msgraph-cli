@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -57,7 +57,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
@@ -71,13 +71,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a androidCompliancePolicy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-delete?view=graph-rest-1.0" />
+        /// Deletes a androidWorkProfileCompliancePolicy.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecompliancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a androidCompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a androidWorkProfileCompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecompliancepolicy-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -108,7 +108,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceSettingStateSummariesNavCommand() {
             var command = new Command("device-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -134,7 +134,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceStatusesNavCommand() {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -160,7 +160,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceStatusOverviewNavCommand() {
             var command = new Command("device-status-overview");
             command.Description = "Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -176,13 +176,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the iosCompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscompliancepolicy-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the macOSCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the iosCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscompliancepolicy-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -228,13 +228,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidCompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-update?view=graph-rest-1.0" />
+        /// Update the properties of a androidWorkProfileCompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecompliancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a androidWorkProfileCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilecompliancepolicy-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -281,7 +281,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to call the scheduleActionsForRules method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildScheduleActionsForRulesNavCommand() {
             var command = new Command("schedule-actions-for-rules");
             command.Description = "Provides operations to call the scheduleActionsForRules method.";
@@ -297,7 +297,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildScheduledActionsForRuleNavCommand() {
             var command = new Command("scheduled-actions-for-rule");
             command.Description = "Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -323,7 +323,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserStatusesNavCommand() {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -349,7 +349,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserStatusOverviewNavCommand() {
             var command = new Command("user-status-overview");
             command.Description = "Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
@@ -377,9 +377,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         public DeviceCompliancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a androidCompliancePolicy.
+        /// Deletes a androidWorkProfileCompliancePolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -394,9 +394,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
+        /// Read properties and relationships of the iosCompliancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -411,9 +411,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidCompliancePolicy object.
+        /// Update the properties of a androidWorkProfileCompliancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -430,7 +430,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
+        /// Read properties and relationships of the iosCompliancePolicy object.
         /// </summary>
         public class DeviceCompliancePolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

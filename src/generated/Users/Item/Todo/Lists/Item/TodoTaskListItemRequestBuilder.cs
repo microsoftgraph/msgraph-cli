@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// Deletes a todoTaskList object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a todoTaskList object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-delete?view=graph-rest-1.0";
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.todoTaskList entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.todoTaskList entity.";
@@ -92,7 +92,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// Read the properties and relationships of a todoTaskList object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a todoTaskList object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-get?view=graph-rest-1.0";
@@ -150,7 +150,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// Update the properties of a todoTaskList object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a todoTaskList object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-update?view=graph-rest-1.0";
@@ -206,7 +206,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.";
@@ -245,7 +245,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// <summary>
         /// Deletes a todoTaskList object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// <summary>
         /// Read the properties and relationships of a todoTaskList object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -279,7 +279,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         /// <summary>
         /// Update the properties of a todoTaskList object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

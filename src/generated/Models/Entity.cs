@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Entity"></returns>
+        /// <returns>A <see cref="Entity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static Entity CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -176,6 +176,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.chatMessageInfo" => new ChatMessageInfo(),
                 "#microsoft.graph.checklistItem" => new ChecklistItem(),
                 "#microsoft.graph.claimsMappingPolicy" => new ClaimsMappingPolicy(),
+                "#microsoft.graph.cloudClipboardItem" => new CloudClipboardItem(),
+                "#microsoft.graph.cloudClipboardRoot" => new CloudClipboardRoot(),
                 "#microsoft.graph.columnDefinition" => new ColumnDefinition(),
                 "#microsoft.graph.columnLink" => new ColumnLink(),
                 "#microsoft.graph.commsOperation" => new CommsOperation(),
@@ -207,6 +209,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.delegatedAdminRelationshipRequest" => new DelegatedAdminRelationshipRequest(),
                 "#microsoft.graph.delegatedAdminServiceManagementDetail" => new DelegatedAdminServiceManagementDetail(),
                 "#microsoft.graph.delegatedPermissionClassification" => new DelegatedPermissionClassification(),
+                "#microsoft.graph.deletedChat" => new DeletedChat(),
                 "#microsoft.graph.deletedItemContainer" => new DeletedItemContainer(),
                 "#microsoft.graph.deletedTeam" => new DeletedTeam(),
                 "#microsoft.graph.deltaParticipants" => new DeltaParticipants(),
@@ -249,6 +252,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.deviceManagementPartner" => new DeviceManagementPartner(),
                 "#microsoft.graph.deviceManagementReports" => new DeviceManagementReports(),
                 "#microsoft.graph.deviceManagementTroubleshootingEvent" => new DeviceManagementTroubleshootingEvent(),
+                "#microsoft.graph.deviceRegistrationPolicy" => new DeviceRegistrationPolicy(),
                 "#microsoft.graph.directory" => new DirectoryObject1(),
                 "#microsoft.graph.directoryAudit" => new DirectoryAudit(),
                 "#microsoft.graph.directoryDefinition" => new DirectoryDefinition(),
@@ -560,6 +564,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.rbacApplication" => new RbacApplication(),
                 "#microsoft.graph.recordOperation" => new RecordOperation(),
                 "#microsoft.graph.referenceAttachment" => new ReferenceAttachment(),
+                "#microsoft.graph.relyingPartyDetailedSummary" => new RelyingPartyDetailedSummary(),
                 "#microsoft.graph.remoteAssistancePartner" => new RemoteAssistancePartner(),
                 "#microsoft.graph.remoteDesktopSecurityConfiguration" => new RemoteDesktopSecurityConfiguration(),
                 "#microsoft.graph.request" => new Request(),
@@ -833,6 +838,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.windowsPhone81CustomConfiguration" => new WindowsPhone81CustomConfiguration(),
                 "#microsoft.graph.windowsPhone81GeneralConfiguration" => new WindowsPhone81GeneralConfiguration(),
                 "#microsoft.graph.windowsProtectionState" => new WindowsProtectionState(),
+                "#microsoft.graph.windowsSetting" => new WindowsSetting(),
+                "#microsoft.graph.windowsSettingInstance" => new WindowsSettingInstance(),
                 "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
                 "#microsoft.graph.windowsUniversalAppXContainedApp" => new WindowsUniversalAppXContainedApp(),
                 "#microsoft.graph.windowsUpdateForBusinessConfiguration" => new WindowsUpdateForBusinessConfiguration(),
@@ -891,7 +898,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"id", n => { Id = n.GetStringValue(); } },

@@ -24,7 +24,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphApplicationByIdNavCommand() {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
@@ -40,7 +40,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDeviceByIdNavCommand() {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
@@ -56,7 +56,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
@@ -72,7 +72,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphOrgContactByIdNavCommand() {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
@@ -88,7 +88,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphServicePrincipalByIdNavCommand() {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -104,7 +104,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphUserByIdNavCommand() {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
@@ -120,7 +120,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item {
         /// <summary>
         /// Provides operations to manage the collection of directoryRole entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefByIdNavCommand() {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";

@@ -2,6 +2,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.Settings.ShiftPreferences;
+using ApiSdk.Users.Item.Settings.Windows;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -23,7 +24,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Delete navigation property settings for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property settings for users";
@@ -58,7 +59,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/usersettings-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/usersettings-get?view=graph-rest-1.0";
@@ -110,7 +111,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/usersettings-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/usersettings-update?view=graph-rest-1.0";
@@ -160,7 +161,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildShiftPreferencesNavCommand() {
             var command = new Command("shift-preferences");
             command.Description = "Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.";
@@ -170,6 +171,32 @@ namespace ApiSdk.Users.Item.Settings {
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the windows property of the microsoft.graph.userSettings entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWindowsNavCommand() {
+            var command = new Command("windows");
+            command.Description = "Provides operations to manage the windows property of the microsoft.graph.userSettings entity.";
+            var builder = new WindowsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }
@@ -190,7 +217,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Delete navigation property settings for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -207,7 +234,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +251,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

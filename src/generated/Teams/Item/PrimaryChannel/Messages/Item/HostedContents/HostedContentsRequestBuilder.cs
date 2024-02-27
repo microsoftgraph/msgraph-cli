@@ -24,7 +24,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// <summary>
         /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,7 +38,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -54,7 +54,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// <summary>
         /// Create new navigation property to hostedContents for teams
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to hostedContents for teams";
@@ -111,7 +111,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
@@ -228,7 +228,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// <summary>
         /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -245,7 +245,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.HostedContents {
         /// <summary>
         /// Create new navigation property to hostedContents for teams
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

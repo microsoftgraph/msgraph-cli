@@ -22,7 +22,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "An abstract definition that is used to create a printTask when triggered by a print event. Read-only.";
@@ -91,7 +91,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

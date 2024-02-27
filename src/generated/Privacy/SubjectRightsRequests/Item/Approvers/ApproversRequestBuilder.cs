@@ -24,7 +24,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Approvers {
         /// <summary>
         /// Provides operations to manage the approvers property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -37,7 +37,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Approvers {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Approvers {
         /// <summary>
         /// Collection of users who can approve the request. Currently only supported for requests of type delete.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildListCommand() {
             var command = new Command("list");
@@ -165,7 +165,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Approvers {
         /// <summary>
         /// Collection of users who can approve the request. Currently only supported for requests of type delete.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

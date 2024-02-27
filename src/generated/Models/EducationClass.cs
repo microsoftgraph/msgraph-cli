@@ -96,7 +96,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>How this class was created. Possible values are: sis, manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
-        /// <summary>The name of the external source this resources was generated from.</summary>
+        /// <summary>The name of the external source this resource was generated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalSourceDetail { get; set; }
@@ -136,7 +136,7 @@ namespace ApiSdk.Models {
 #else
         public List<EducationUser> Members { get; set; }
 #endif
-        /// <summary>The modules property</summary>
+        /// <summary>All modules in the class. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationModule>? Modules { get; set; }
@@ -171,7 +171,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EducationClass"></returns>
+        /// <returns>A <see cref="EducationClass"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationClass CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -180,7 +180,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"assignmentCategories", n => { AssignmentCategories = n.GetCollectionOfObjectValues<EducationCategory>(EducationCategory.CreateFromDiscriminatorValue)?.ToList(); } },

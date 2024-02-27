@@ -22,7 +22,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item.Host {
         /// <summary>
         /// The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.";
@@ -85,7 +85,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item.Host {
         /// <summary>
         /// The host related to this component. This is a reverse navigation property. When navigating to components from a host, this should be assumed to be a return reference.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

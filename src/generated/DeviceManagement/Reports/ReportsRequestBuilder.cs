@@ -41,7 +41,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Delete navigation property reports for deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property reports for deviceManagement";
@@ -69,7 +69,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExportJobsNavCommand() {
             var command = new Command("export-jobs");
             command.Description = "Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.";
@@ -95,7 +95,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCachedReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCachedReportNavCommand() {
             var command = new Command("get-cached-report");
             command.Description = "Provides operations to call the getCachedReport method.";
@@ -112,7 +112,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// Read properties and relationships of the deviceManagementReports object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceManagementReports object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-get?view=graph-rest-1.0";
@@ -157,7 +157,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCompliancePolicyNonComplianceReportNavCommand() {
             var command = new Command("get-compliance-policy-non-compliance-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceReport method.";
@@ -173,7 +173,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCompliancePolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-compliance-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.";
@@ -189,7 +189,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getComplianceSettingNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetComplianceSettingNonComplianceReportNavCommand() {
             var command = new Command("get-compliance-setting-non-compliance-report");
             command.Description = "Provides operations to call the getComplianceSettingNonComplianceReport method.";
@@ -205,7 +205,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetConfigurationPolicyNonComplianceReportNavCommand() {
             var command = new Command("get-configuration-policy-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceReport method.";
@@ -221,7 +221,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetConfigurationPolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-configuration-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.";
@@ -237,7 +237,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationSettingNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetConfigurationSettingNonComplianceReportNavCommand() {
             var command = new Command("get-configuration-setting-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationSettingNonComplianceReport method.";
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetDeviceManagementIntentPerSettingContributingProfilesNavCommand() {
             var command = new Command("get-device-management-intent-per-setting-contributing-profiles");
             command.Description = "Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.";
@@ -269,7 +269,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentSettingsReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetDeviceManagementIntentSettingsReportNavCommand() {
             var command = new Command("get-device-management-intent-settings-report");
             command.Description = "Provides operations to call the getDeviceManagementIntentSettingsReport method.";
@@ -285,7 +285,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetDeviceNonComplianceReportNavCommand() {
             var command = new Command("get-device-non-compliance-report");
             command.Description = "Provides operations to call the getDeviceNonComplianceReport method.";
@@ -301,7 +301,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetDevicesWithoutCompliancePolicyReportNavCommand() {
             var command = new Command("get-devices-without-compliance-policy-report");
             command.Description = "Provides operations to call the getDevicesWithoutCompliancePolicyReport method.";
@@ -317,7 +317,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getHistoricalReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetHistoricalReportNavCommand() {
             var command = new Command("get-historical-report");
             command.Description = "Provides operations to call the getHistoricalReport method.";
@@ -333,7 +333,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getNoncompliantDevicesAndSettingsReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetNoncompliantDevicesAndSettingsReportNavCommand() {
             var command = new Command("get-noncompliant-devices-and-settings-report");
             command.Description = "Provides operations to call the getNoncompliantDevicesAndSettingsReport method.";
@@ -349,7 +349,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceMetadata method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetPolicyNonComplianceMetadataNavCommand() {
             var command = new Command("get-policy-non-compliance-metadata");
             command.Description = "Provides operations to call the getPolicyNonComplianceMetadata method.";
@@ -365,7 +365,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetPolicyNonComplianceReportNavCommand() {
             var command = new Command("get-policy-non-compliance-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceReport method.";
@@ -381,7 +381,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceSummaryReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetPolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceSummaryReport method.";
@@ -397,7 +397,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getReportFilters method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetReportFiltersNavCommand() {
             var command = new Command("get-report-filters");
             command.Description = "Provides operations to call the getReportFilters method.";
@@ -413,7 +413,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getSettingNonComplianceReport method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetSettingNonComplianceReportNavCommand() {
             var command = new Command("get-setting-non-compliance-report");
             command.Description = "Provides operations to call the getSettingNonComplianceReport method.";
@@ -430,7 +430,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// Update the properties of a deviceManagementReports object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceManagementReports object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-update?view=graph-rest-1.0";
@@ -486,7 +486,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Delete navigation property reports for deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -503,7 +503,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Read properties and relationships of the deviceManagementReports object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -520,7 +520,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Update the properties of a deviceManagementReports object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

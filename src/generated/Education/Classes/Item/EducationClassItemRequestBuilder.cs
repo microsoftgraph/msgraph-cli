@@ -31,7 +31,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentCategoriesNavCommand() {
             var command = new Command("assignment-categories");
             command.Description = "Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.";
@@ -58,7 +58,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentDefaultsNavCommand() {
             var command = new Command("assignment-defaults");
             command.Description = "Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.";
@@ -76,7 +76,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentSettingsNavCommand() {
             var command = new Command("assignment-settings");
             command.Description = "Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.";
@@ -100,7 +100,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.";
@@ -128,7 +128,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-delete?view=graph-rest-1.0";
@@ -163,7 +163,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you&apos;re using the delegated token, the user will only see classes in which they are members.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-get?view=graph-rest-1.0";
@@ -214,7 +214,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGroupNavCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.educationClass entity.";
@@ -236,7 +236,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.educationClass entity.";
@@ -262,7 +262,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the modules property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildModulesNavCommand() {
             var command = new Command("modules");
             command.Description = "Provides operations to manage the modules property of the microsoft.graph.educationClass entity.";
@@ -289,7 +289,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// Update the properties of an educationClass object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationClass object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-update?view=graph-rest-1.0";
@@ -339,7 +339,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationClass entity.";
@@ -364,7 +364,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTeachersNavCommand() {
             var command = new Command("teachers");
             command.Description = "Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.";
@@ -402,7 +402,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -419,7 +419,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you&apos;re using the delegated token, the user will only see classes in which they are members.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -436,7 +436,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Update the properties of an educationClass object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

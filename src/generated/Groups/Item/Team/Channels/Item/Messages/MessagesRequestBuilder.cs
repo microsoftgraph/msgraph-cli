@@ -25,7 +25,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -44,7 +44,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -58,13 +58,13 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified channel or a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0" />
+        /// Send a new chatMessage in the specified channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Send a new chatMessage in the specified channel or a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0";
+            command.Description = "Send a new chatMessage in the specified channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -117,7 +117,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -134,7 +134,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
         /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the tenantId property on the channel).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the tenantId property on the channel).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0";
@@ -251,7 +251,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
         /// <summary>
         /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the tenantId property on the channel).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -266,9 +266,9 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified channel or a chat.
+        /// Send a new chatMessage in the specified channel.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

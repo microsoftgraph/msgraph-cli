@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Delete navigation property planner for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property planner for users";
@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Entry-point to the Planner resource that might exist for a user. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
@@ -109,7 +109,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Update the navigation property planner in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property planner in users";
@@ -166,7 +166,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPlansNavCommand() {
             var command = new Command("plans");
             command.Description = "Provides operations to manage the plans property of the microsoft.graph.plannerUser entity.";
@@ -192,7 +192,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerUser entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerUser entity.";
@@ -230,7 +230,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Delete navigation property planner for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -247,7 +247,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Entry-point to the Planner resource that might exist for a user. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -264,7 +264,7 @@ namespace ApiSdk.Users.Item.Planner {
         /// <summary>
         /// Update the navigation property planner in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

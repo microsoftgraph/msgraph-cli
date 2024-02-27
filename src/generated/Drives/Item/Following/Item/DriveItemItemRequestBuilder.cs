@@ -23,7 +23,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// <summary>
         /// The list of items the user is following. Only in OneDrive for Business.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of items the user is following. Only in OneDrive for Business.";
@@ -109,7 +109,7 @@ namespace ApiSdk.Drives.Item.Following.Item {
         /// <summary>
         /// The list of items the user is following. Only in OneDrive for Business.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

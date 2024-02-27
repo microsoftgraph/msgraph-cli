@@ -23,7 +23,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-incompatibleaccesspackage?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-incompatibleaccesspackages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-incompatibleaccesspackages?view=graph-rest-1.0";
@@ -150,7 +150,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// Add an accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add an accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-post-incompatibleaccesspackage?view=graph-rest-1.0";
@@ -202,7 +202,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// <summary>
         /// Remove an access package from the list of access packages that have been marked as incompatible on an accessPackage.  
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,7 +219,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// <summary>
         /// Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -236,7 +236,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// <summary>
         /// Add an accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.  
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

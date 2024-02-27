@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Delete the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Get the properties and relationships of the specified outlookCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0";
@@ -115,7 +115,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the writable property, color, of the specified outlookCategory object. You can't modify the displayName propertyonce you have created the category.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0";
@@ -183,7 +183,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Delete the specified outlookCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -200,7 +200,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Get the properties and relationships of the specified outlookCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         /// <summary>
         /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName propertyonce you have created the category.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
