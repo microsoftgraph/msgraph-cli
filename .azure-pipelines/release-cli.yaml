@@ -84,8 +84,8 @@ extends:
     # test ----------> | build ->   |            |
     #                  |            | sign       |
     # checkFormat ----------------> |------------| -> upload
-    #                               | binaryScan |
-    # srcScan --------------------> |            |
+    #                               |            |
+    # SDL                           |            |
     stages:
       - stage: test
         displayName: Run tests
