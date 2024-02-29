@@ -70,8 +70,10 @@ extends:
     sdl:
       credscan:
         suppressionsFile: $(Build.SourcesDirectory)/.azure-pipelines/config/CredScanSuppressions.json
+        os: windows
       policheck:
         exclusionFile: $(Build.SourcesDirectory)/.azure-pipelines/config/PoliCheckExclusions.xml
+        os: windows
 
 
     # test ----------> | build ->   |            |
