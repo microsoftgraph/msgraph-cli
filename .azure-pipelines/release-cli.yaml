@@ -93,9 +93,6 @@ extends:
       - stage: test
         displayName: Run tests
         dependsOn: []
-        pool:
-          image: ubuntu-latest
-          os: linux
         jobs:
           - job: test
             displayName: Run tests
@@ -253,8 +250,6 @@ extends:
 
       - stage: sign
         displayName: ESRP signing
-        pool:
-          os: windows
         dependsOn: [build]
         # Only sign binaries if we're building a tag.
         condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forceNugetPublish }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
@@ -290,6 +285,8 @@ extends:
               matrix:
                 'Windows-x64':
                   rid: win-x64
+                  pool: Azure-Pipelines-1ESPT-ExDShared
+                  image: windows-latest
                   os: windows
                   packageType: "zip"
                   compressionProgram: "none"
@@ -323,6 +320,8 @@ extends:
                   inlineNotarizeOperation: ""
                 nuget:
                   rid: nuget
+                  pool: Azure-Pipelines-1ESPT-ExDShared
+                  image: windows-latest
                   os: windows
                   packageType: "zip"
                   compressionProgram: "none"
@@ -388,6 +387,8 @@ extends:
 
                 'MacOS-x64':
                   rid: osx-x64
+                  pool: Azure Pipelines
+                  image: macOS-11
                   os: macOS
                   packageType: "tar"
                   compressionProgram: "gzip"
@@ -397,6 +398,8 @@ extends:
                   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
                 'MacOS-ARM':
                   rid: osx-arm64
+                  pool: Azure Pipelines
+                  image: macOS-12
                   os: macOS
                   packageType: "tar"
                   compressionProgram: "gzip"
@@ -406,6 +409,8 @@ extends:
                   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             displayName: ESRP Signing
             pool:
+              name: $(pool)
+              image: $(image)
               os: $(os)
             steps:
               - template: .azure-pipelines/templates/setup-powershell-environment.yml@self
