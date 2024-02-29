@@ -448,18 +448,9 @@ extends:
                       if ((-not [bool]::Parse($shouldSign)) -and '$(rid)' -eq 'nuget') {
                         $shouldSign = '$(forceNugetPublish)'
                       }
-                      $shouldNotarize = '$(notarize)'
-                      $notarizeOp = '$(inlineNotarizeOperation)'
-                      $isNuget = $rid -eq 'nuget'
-                      $isDarwin = $rid.StartsWith('osx')
                       $workDir = Join-Path -Path '$(artifactsDownloadLocation)' -ChildPath '$(rid)'
                       $downloadDir = Join-Path -Path $workDir -ChildPath 'build-output-$(rid)'
-                      Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
-                      Write-Host "##vso[task.setvariable variable=IS_NUGET]$isNuget"
-                      Write-Host "##vso[task.setvariable variable=IS_MACOS]$isDarwin"
                       Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
-                      Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
-                      Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
                       Write-Host "##vso[task.setvariable variable=WORKING_DIR]$workDir"
                       Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$downloadDir"
                     verbosePreference: '$(OUTPUT_PREFERENCE)'
@@ -476,14 +467,13 @@ extends:
                   - ${{ if ne(parameters.simulate, 'true') }}:
                     - task: UseDotNet@2
                       displayName: 'Use .NET 8'
-                      condition: and(false, succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
                       inputs:
                         version: 8.x
 
                     - template: .azure-pipelines/templates/nuget-packages.yaml@self
                       parameters:
                         vstsFeedName: ${{variables.internalFeed}}
-                        enabled: $(IS_NUGET)
+                        enabled: true
 
                     - task: DotNetCoreCLI@2
                       displayName: "build nuget tool"
@@ -510,7 +500,7 @@ extends:
                     targetType: inline
                     script: |
                       $path = '$(ARTIFACTS_PATH)'
-                      if ('$(IS_NUGET)'.ToLower() -eq 'true' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
+                      if ('${{ pool.rid }}' -eq 'nuget' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
                         $path = './src/obj/$(buildConfiguration)/net8.0'
                       }
                       Write-Verbose "Checking if $path has files"
@@ -541,7 +531,7 @@ extends:
                       debugPreference: '$(OUTPUT_PREFERENCE)'
                       informationPreference: '$(OUTPUT_PREFERENCE)'
                     displayName: Compute zip name
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'true'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                   - task: PowerShell@2
                     inputs:
@@ -560,7 +550,7 @@ extends:
                       debugPreference: '$(OUTPUT_PREFERENCE)'
                       informationPreference: '$(OUTPUT_PREFERENCE)'
                     displayName: Extract archive
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'True'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                 - ${{ if startsWith(pool.rid, 'osx') }}:
                   - template: .azure-pipelines/templates/prepare-unsigned-executable-darwin.yaml@self
@@ -568,27 +558,26 @@ extends:
                       executablePath: $(SIGN_PATH)
                       executableName: mgc
                       zipName: $(ZIP_NAME)
-                      targetRuntime: $(rid)
-                      enabled: $(IS_MACOS)
+                      targetRuntime: ${{ pool.rid }}
+                      enabled: true
                       certificateName: $(CERTIFICATE_ID)
 
                   - pwsh: |
                       Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
                     displayName: Compute ESRP filter pattern osx
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_MACOS'], 'true'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                 - ${{ if or(eq(pool.rid, 'nuget'), startsWith(pool.rid, 'win')) }}:
                   - pwsh: |
                       Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
                     displayName: Compute ESRP filter pattern Windows/Nuget
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['IS_NUGET'], 'true')))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                 - ${{ if ne(parameters.simulate, 'true') }}:
                   # ESRP needs .NET 6
                   - ${{ if eq(pool.rid, 'nuget') }}:
                     - task: UseDotNet@2
                       displayName: 'Change to .NET 6'
-                      condition: and(false, succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
                       inputs:
                         version: 6.x
 
@@ -603,7 +592,7 @@ extends:
                       Pattern: $(ESRP_FILE_PATTERN)
                       inlineOperation: $(inlineSignOperation)
                       SessionTimeout: 20
-                    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                   - ${{ if and(eq(variables.notarize, 'true'), startsWith(pool.rid, 'osx')) }}:
                     - task: EsrpCodeSigning@2
@@ -617,14 +606,14 @@ extends:
                         Pattern: $(ESRP_FILE_PATTERN)
                         inlineOperation: $(inlineNotarizeOperation)
                         SessionTimeout: 20
-                      condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
+                      condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                   - ${{ if eq(pool.rid, 'nuget') }}:
                     - pwsh: |
                         dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(SIGN_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg -v d
                       workingDirectory: $(Build.SourcesDirectory)
                       displayName: DotNet pack (nuget)
-                      condition: and(false, succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+                      condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                     - task: EsrpCodeSigning@2
                       displayName: 'ESRP CodeSigning (Sign Nuget)'
@@ -637,14 +626,14 @@ extends:
                         Pattern: "*.nupkg"
                         inlineOperation: $(inlineNugetSignOperation)
                         SessionTimeout: 20
-                      condition: and(false, succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
+                      condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                     - pwsh: |
                         $artifactsPath = '$(SIGN_PATH)'
                         Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
-                      condition: and(false, succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
+                      condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-                - ${{ if ne(parameters.simulate, 'true') }}:
+                - ${{ if eq(parameters.simulate, 'true') }}:
                   - task: PowerShell@2
                     displayName: Simulate ESRP
                     inputs:
@@ -673,7 +662,7 @@ extends:
                       verbosePreference: '$(OUTPUT_PREFERENCE)'
                       debugPreference: '$(OUTPUT_PREFERENCE)'
                       informationPreference: '$(OUTPUT_PREFERENCE)'
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq('${{ parameters.simulate }}', 'true'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                 - ${{ if startsWith(pool.rid, 'win') }}:
                   - task: PowerShell@2
@@ -688,7 +677,7 @@ extends:
                       debugPreference: '$(OUTPUT_PREFERENCE)'
                       informationPreference: '$(OUTPUT_PREFERENCE)'
                     displayName: Compress signed files (Windows)
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'win'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
                 - ${{ if startsWith(pool.rid, 'osx') }}:
                   - task: PowerShell@2
@@ -704,7 +693,7 @@ extends:
                       debugPreference: '$(OUTPUT_PREFERENCE)'
                       informationPreference: '$(OUTPUT_PREFERENCE)'
                     displayName: Update signed files (MacOS)
-                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
+                    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
               # https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/1es-pipeline-templates/features/outputs
               templateContext:
