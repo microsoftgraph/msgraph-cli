@@ -249,7 +249,7 @@ extends:
       - stage: sign
         displayName: ESRP signing
         pool:
-          vmImage: windows-latest
+          os: windows
         dependsOn: [build]
         # Only sign binaries if we're building a tag.
         condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forceNugetPublish }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
@@ -285,7 +285,7 @@ extends:
               matrix:
                 'Windows-x64':
                   rid: win-x64
-                  vmImage: windows-latest
+                  os: windows
                   packageType: "zip"
                   compressionProgram: "none"
                   sign: true
@@ -318,7 +318,7 @@ extends:
                   inlineNotarizeOperation: ""
                 nuget:
                   rid: nuget
-                  vmImage: windows-latest
+                  os: windows
                   packageType: "zip"
                   compressionProgram: "none"
                   sign: true
@@ -383,7 +383,7 @@ extends:
 
                 'MacOS-x64':
                   rid: osx-x64
-                  vmImage: macOS-11
+                  os: macOS
                   packageType: "tar"
                   compressionProgram: "gzip"
                   sign: true
@@ -392,7 +392,7 @@ extends:
                   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
                 'MacOS-ARM':
                   rid: osx-arm64
-                  vmImage: macOS-12
+                  os: macOS
                   packageType: "tar"
                   compressionProgram: "gzip"
                   sign: true
@@ -401,7 +401,7 @@ extends:
                   inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
             displayName: ESRP Signing
             pool:
-              vmImage: $(vmImage)
+              os: $(os)
             steps:
               - template: .azure-pipelines/templates/setup-powershell-environment.yml@self
 
