@@ -94,7 +94,7 @@ extends:
                 version: 8.x
 
             # Restore NuGet packages (enables cache by default)
-            - template: templates/nuget-packages.yaml@self
+            - template: .azure-pipelines/templates/nuget-packages.yaml@self
               parameters:
                 vstsFeedName: ${{variables.internalFeed}}
 
@@ -139,7 +139,7 @@ extends:
                   version: 8.x
 
               - ${{ if ne(parameters.simulate, 'true') }}:
-                - template: templates/nuget-packages.yaml@self
+                - template: .azure-pipelines/templates/nuget-packages.yaml@self
                   parameters:
                     extraRestoreArgs: -p:PublishReadyToRun=true
                     vstsFeedName: ${{variables.internalFeed}}
@@ -149,7 +149,7 @@ extends:
                 condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
                 displayName: DotNet publish
 
-              - template: templates/setup-powershell-environment.yml@self
+              - template: .azure-pipelines/templates/setup-powershell-environment.yml@self
 
               - task: PowerShell@2
                 inputs:
@@ -206,7 +206,7 @@ extends:
                 version: 8.x
 
             # Restore NuGet packages (enables cache by default)
-            - template: templates/nuget-packages.yaml@self
+            - template: .azure-pipelines/templates/nuget-packages.yaml@self
               parameters:
                 vstsFeedName: ${{variables.internalFeed}}
 
@@ -224,7 +224,7 @@ extends:
       #       displayName: Scanning source
       #       condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
       #       steps:
-      #         - template: templates/compliance-checks.yaml@self
+      #         - template: .azure-pipelines/templates/compliance-checks.yaml@self
       #           parameters:
       #             scanSource: true
 
@@ -385,7 +385,7 @@ extends:
             pool:
               vmImage: $(vmImage)
             steps:
-              - template: templates/setup-powershell-environment.yml@self
+              - template: .azure-pipelines/templates/setup-powershell-environment.yml@self
 
               - task: PowerShell@2
                 inputs:
@@ -437,7 +437,7 @@ extends:
                   version: 8.x
 
               - ${{ if ne(parameters.simulate, 'true') }}:
-                - template: templates/nuget-packages.yaml@self
+                - template: .azure-pipelines/templates/nuget-packages.yaml@self
                   parameters:
                     vstsFeedName: ${{variables.internalFeed}}
                     enabled: $(IS_NUGET)
@@ -519,7 +519,7 @@ extends:
                 displayName: Extract archive
                 condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'True'))
 
-              - template: templates/prepare-unsigned-executable-darwin.yaml@self
+              - template: .azure-pipelines/templates/prepare-unsigned-executable-darwin.yaml@self
                 parameters:
                   executablePath: $(SIGN_PATH)
                   executableName: mgc
@@ -675,7 +675,7 @@ extends:
       #       displayName: Scanning binaries
       #       condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
       #       steps:
-      #         - template: templates/compliance-checks.yaml@self
+      #         - template: .azure-pipelines/templates/compliance-checks.yaml@self
       #           parameters:
       #             artifactsDownloadLocation: $(artifactsDownloadLocation)
       #             scanBinary: true
