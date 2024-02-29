@@ -91,6 +91,11 @@ extends:
             displayName: Run tests
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             steps:
+            - pwsh: git config --global core.longpaths true
+              displayName: Enable git's long file paths on Windows
+
+            - checkout: self
+
             - task: UseDotNet@2
               displayName: 'Use .NET 8'
               inputs:
@@ -135,6 +140,11 @@ extends:
                   compressionProgram: "gzip"
               # maxParallel: 2
             steps:
+              - pwsh: git config --global core.longpaths true
+                displayName: Enable git's long file paths on Windows
+
+              - checkout: self
+
               - task: UseDotNet@2
                 displayName: 'Use .NET 8'
                 condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
@@ -203,6 +213,11 @@ extends:
             displayName: Check formatting
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             steps:
+            - pwsh: git config --global core.longpaths true
+              displayName: Enable git's long file paths on Windows
+
+            - checkout: self
+
             - task: UseDotNet@2
               displayName: 'Use .NET 8'
               inputs:
