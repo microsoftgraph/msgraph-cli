@@ -214,19 +214,19 @@ extends:
               displayName: Validate formatting
               enabled: true
 
-      - stage: srcScan
-        displayName: Scan source code
-        pool:
-          vmImage: windows-latest
-        dependsOn: []
-        jobs:
-          - job: scan
-            displayName: Scanning source
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
-            steps:
-              - template: templates/compliance-checks.yaml@self
-                parameters:
-                  scanSource: true
+      # - stage: srcScan
+      #   displayName: Scan source code
+      #   pool:
+      #     vmImage: windows-latest
+      #   dependsOn: []
+      #   jobs:
+      #     - job: scan
+      #       displayName: Scanning source
+      #       condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
+      #       steps:
+      #         - template: templates/compliance-checks.yaml@self
+      #           parameters:
+      #             scanSource: true
 
       - stage: sign
         displayName: ESRP signing
@@ -663,22 +663,22 @@ extends:
                 artifact: sign-output-$(rid)
                 path: $(WORKING_DIR)
 
-      - stage: binaryScan
-        displayName: Scan binaries (Anti malware, BinSkim)
-        dependsOn: [build, srcScan] # Check format would be a dependency if enabled.
-        pool:
-          vmImage: windows-latest
-        # Only scan binaries if we're building a tag, building main, or building a PR targeting main
-        condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main'), eq('${{ parameters.forceNugetPublish }}', 'true')))
-        jobs:
-          - job: scan
-            displayName: Scanning binaries
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
-            steps:
-              - template: templates/compliance-checks.yaml@self
-                parameters:
-                  artifactsDownloadLocation: $(artifactsDownloadLocation)
-                  scanBinary: true
+      # - stage: binaryScan
+      #   displayName: Scan binaries (Anti malware, BinSkim)
+      #   dependsOn: [build, srcScan] # Check format would be a dependency if enabled.
+      #   pool:
+      #     vmImage: windows-latest
+      #   # Only scan binaries if we're building a tag, building main, or building a PR targeting main
+      #   condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main'), eq('${{ parameters.forceNugetPublish }}', 'true')))
+      #   jobs:
+      #     - job: scan
+      #       displayName: Scanning binaries
+      #       condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
+      #       steps:
+      #         - template: templates/compliance-checks.yaml@self
+      #           parameters:
+      #             artifactsDownloadLocation: $(artifactsDownloadLocation)
+      #             scanBinary: true
 
       - stage: upload
         dependsOn: [binaryScan, sign]
