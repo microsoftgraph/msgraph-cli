@@ -68,12 +68,13 @@ extends:
       os: linux # OS of the image. This value cannot be a variable. Allowed values: windows, linux, macOS
 
     sdl:
+      sourceAnalysisPool:
+        name: Azure-Pipelines-1ESPT-ExDShared
+        os: windows
       credscan:
         suppressionsFile: $(Build.SourcesDirectory)/.azure-pipelines/config/CredScanSuppressions.json
-        os: windows
       policheck:
         exclusionFile: $(Build.SourcesDirectory)/.azure-pipelines/config/PoliCheckExclusions.xml
-        os: windows
 
 
     # test ----------> | build ->   |            |
