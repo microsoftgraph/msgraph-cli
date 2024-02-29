@@ -186,6 +186,7 @@ extends:
               - output: pipelineArtifact
                 # Only publish artifacts if they exist
                 condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'True'))
+                displayName: Upload build output
                 artifact: build-output-$(rid)
                 path: $(outputDir)-$(rid)
 
@@ -657,9 +658,10 @@ extends:
             templateContext:
               outputs:
               - output: pipelineArtifact
+                condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+                displayName: Upload signed output
                 artifact: sign-output-$(rid)
                 path: $(WORKING_DIR)
-                condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
       - stage: binaryScan
         displayName: Scan binaries (Anti malware, BinSkim)
@@ -705,30 +707,31 @@ extends:
                     $(artifactsDownloadLocation)/sign-output-*/*.tar*
                     $(artifactsDownloadLocation)/sign-output-*/*.zip
 
-          - deployment: deployNuget
-            displayName: Deploy Nuget
-            dependsOn: []
-            environment: microsoftgraph-nuget-org
-            # Disable nuget deployment until performance is improved.
-            condition: false
-            # condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
-            strategy:
-              runOnce:
-                deploy:
-                  pool:
-                    vmImage: ubuntu-latest
-                  steps:
-                    - task: DownloadPipelineArtifact@2
-                      displayName: Download nupkg from artifacts
-                      inputs:
-                        artifact: sign-output-nuget
-                        source: current
-                        path: $(artifactsDownloadLocation)/nuget
-                    - task: NuGetCommand@2
-                      displayName: "NuGet push"
-                      inputs:
-                        command: push
-                        packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;!$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.symbols.nupkg;"
-                        nuGetFeedType: external
-                        publishFeedCredentials: "microsoftgraph NuGet connection"
+          ## Uncomment when NuGet deployment is re-enabled
+          # - deployment: deployNuget
+          #   displayName: Deploy Nuget
+          #   dependsOn: []
+          #   environment: microsoftgraph-nuget-org
+          #   # Disable nuget deployment until performance is improved.
+          #   condition: false
+          #   # condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
+          #   strategy:
+          #     runOnce:
+          #       deploy:
+          #         pool:
+          #           vmImage: ubuntu-latest
+          #         steps:
+          #           - task: DownloadPipelineArtifact@2
+          #             displayName: Download nupkg from artifacts
+          #             inputs:
+          #               artifact: sign-output-nuget
+          #               source: current
+          #               path: $(artifactsDownloadLocation)/nuget
+          #           - task: NuGetCommand@2
+          #             displayName: "NuGet push"
+          #             inputs:
+          #               command: push
+          #               packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;!$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.symbols.nupkg;"
+          #               nuGetFeedType: external
+          #               publishFeedCredentials: "microsoftgraph NuGet connection"
 
