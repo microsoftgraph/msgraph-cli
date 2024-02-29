@@ -65,11 +65,18 @@ extends:
   parameters:
     pool:
       name: Azure-Pipelines-1ESPT-ExDShared
+      image: ubuntu-latest
       os: linux # OS of the image. This value cannot be a variable. Allowed values: windows, linux, macOS
 
     sdl:
+      customCheckout:
+        steps:
+          - pwsh: git config --global core.longpaths true
+            displayName: Enable git's long file paths on Windows
+          - checkout: self
       sourceAnalysisPool:
         name: Azure-Pipelines-1ESPT-ExDShared
+        image: windows-latest
         os: windows
       credscan:
         suppressionsFile: $(Build.SourcesDirectory)/.azure-pipelines/config/CredScanSuppressions.json
@@ -87,6 +94,7 @@ extends:
         displayName: Run tests
         dependsOn: []
         pool:
+          image: ubuntu-latest
           os: linux
         jobs:
           - job: test
