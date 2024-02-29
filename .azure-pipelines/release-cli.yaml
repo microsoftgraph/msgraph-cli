@@ -64,7 +64,9 @@ extends:
 
   parameters:
     pool:
-      name: Azure-Pipelines-1ESPT-ExDShared
+      # MacOS images aren't available in 1ES templates
+      # https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/1es-pipeline-templates/onboarding/macos-support
+      name: Azure Pipelines
       image: ubuntu-latest
       os: linux # OS of the image. This value cannot be a variable. Allowed values: windows, linux, macOS
 
