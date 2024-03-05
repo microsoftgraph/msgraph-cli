@@ -22,7 +22,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0";
@@ -74,7 +74,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// <summary>
         /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

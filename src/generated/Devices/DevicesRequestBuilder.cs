@@ -28,7 +28,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -51,7 +51,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -68,7 +68,7 @@ namespace ApiSdk.Devices {
         /// Create and register a new device in the organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create and register a new device in the organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0";
@@ -112,7 +112,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -128,7 +128,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
@@ -144,7 +144,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
@@ -161,7 +161,7 @@ namespace ApiSdk.Devices {
         /// Retrieve a list of device objects registered in the organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of device objects registered in the organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list?view=graph-rest-1.0";
@@ -261,7 +261,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
@@ -289,7 +289,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Retrieve a list of device objects registered in the organization.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -306,7 +306,7 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Create and register a new device in the organization.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

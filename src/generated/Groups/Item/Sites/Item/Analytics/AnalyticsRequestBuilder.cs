@@ -25,7 +25,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAllTimeNavCommand() {
             var command = new Command("all-time");
             command.Description = "Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Delete navigation property analytics for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property analytics for groups";
@@ -81,7 +81,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place in this site.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place in this site.";
@@ -138,7 +138,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildItemActivityStatsNavCommand() {
             var command = new Command("item-activity-stats");
             command.Description = "Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.";
@@ -164,7 +164,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLastSevenDaysNavCommand() {
             var command = new Command("last-seven-days");
             command.Description = "Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.";
@@ -180,7 +180,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Update the navigation property analytics in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property analytics in groups";
@@ -248,7 +248,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Delete navigation property analytics for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -265,7 +265,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Analytics about the view activities that took place in this site.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -282,7 +282,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics {
         /// <summary>
         /// Update the navigation property analytics in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

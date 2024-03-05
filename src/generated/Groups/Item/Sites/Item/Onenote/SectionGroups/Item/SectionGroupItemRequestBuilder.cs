@@ -26,7 +26,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Delete navigation property sectionGroups for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sectionGroups for groups";
@@ -73,7 +73,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// Retrieve the properties and relationships of a sectionGroup object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a sectionGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0";
@@ -136,7 +136,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.";
@@ -152,7 +152,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildParentSectionGroupNavCommand() {
             var command = new Command("parent-section-group");
             command.Description = "Provides operations to manage the parentSectionGroup property of the microsoft.graph.sectionGroup entity.";
@@ -168,7 +168,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Update the navigation property sectionGroups in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sectionGroups in groups";
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSectionsNavCommand() {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.";
@@ -256,7 +256,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSubSectionGroupsNavCommand() {
             var command = new Command("sub-section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.";
@@ -293,7 +293,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Delete navigation property sectionGroups for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -310,7 +310,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a sectionGroup object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -327,7 +327,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item {
         /// <summary>
         /// Update the navigation property sectionGroups in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

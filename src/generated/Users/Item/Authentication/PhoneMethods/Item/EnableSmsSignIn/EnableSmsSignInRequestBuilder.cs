@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/phoneauthenticationmethod-enablesmssignin?view=graph-rest-1.0";
@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn {
         /// <summary>
         /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -25,7 +25,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -57,7 +57,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -74,7 +74,7 @@ namespace ApiSdk.Communications.Calls {
         /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0";
@@ -118,7 +118,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Retrieve the properties and relationships of a call object.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the properties and relationships of a call object.";
@@ -211,7 +211,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to call the logTeleconferenceDeviceQuality method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLogTeleconferenceDeviceQualityNavCommand() {
             var command = new Command("log-teleconference-device-quality");
             command.Description = "Provides operations to call the logTeleconferenceDeviceQuality method.";
@@ -239,7 +239,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Retrieve the properties and relationships of a call object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -256,7 +256,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

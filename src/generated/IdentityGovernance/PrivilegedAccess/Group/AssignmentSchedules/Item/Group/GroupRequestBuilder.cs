@@ -21,12 +21,12 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
     /// </summary>
     public class GroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
+        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.";
+            command.Description = "References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.";
             var privilegedAccessGroupAssignmentScheduleIdOption = new Option<string>("--privileged-access-group-assignment-schedule-id", description: "The unique identifier of privilegedAccessGroupAssignmentSchedule") {
             };
             privilegedAccessGroupAssignmentScheduleIdOption.IsRequired = true;
@@ -74,7 +74,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -106,9 +106,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
         public GroupRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/group{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
+        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -123,7 +123,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
             return requestInfo;
         }
         /// <summary>
-        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.
+        /// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.
         /// </summary>
         public class GroupRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

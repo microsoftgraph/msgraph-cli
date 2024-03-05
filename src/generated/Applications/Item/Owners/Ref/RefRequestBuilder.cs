@@ -23,7 +23,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// Remove an owner from an application. As a recommended best practice, apps should have at least two owners.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-delete-owners?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an owner from an application. As a recommended best practice, apps should have at least two owners.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-delete-owners?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0";
@@ -157,7 +157,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// Add an owner to an application by posting to the owners collection.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Add an owner to an application by posting to the owners collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-owners?view=graph-rest-1.0";
@@ -209,7 +209,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// <summary>
         /// Remove an owner from an application. As a recommended best practice, apps should have at least two owners.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -226,7 +226,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// <summary>
         /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -243,7 +243,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
         /// <summary>
         /// Add an owner to an application by posting to the owners collection.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

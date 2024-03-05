@@ -25,7 +25,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// <summary>
         /// Gets an item from the ApiSdk.education.classes.item.teachers.item collection
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var commands = new List<Command>();
             var builder = new EducationUserItemRequestBuilder(PathParameters);
@@ -35,7 +35,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,7 +52,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
@@ -151,7 +151,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
@@ -181,7 +181,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         /// <summary>
         /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

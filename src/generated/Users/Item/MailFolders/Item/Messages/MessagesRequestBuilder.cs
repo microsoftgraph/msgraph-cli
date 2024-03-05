@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -50,7 +50,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// Use this API to create a new Message in a mailfolder.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
@@ -123,7 +123,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
@@ -140,7 +140,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
@@ -257,7 +257,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// <summary>
         /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -274,7 +274,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         /// <summary>
         /// Use this API to create a new Message in a mailfolder.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

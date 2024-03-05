@@ -24,7 +24,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// Delete a permission object on a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-delete-permission?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a permission object on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-delete-permission?view=graph-rest-1.0";
@@ -65,7 +65,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// Retrieve the properties and relationships of a permission object on a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-get-permission?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a permission object on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-get-permission?view=graph-rest-1.0";
@@ -122,7 +122,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGrantNavCommand() {
             var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
@@ -139,7 +139,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// Update an application permission object on a site. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-update-permission?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update an application permission object on a site. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-update-permission?view=graph-rest-1.0";
@@ -207,7 +207,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// <summary>
         /// Delete a permission object on a site.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a permission object on a site.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// <summary>
         /// Update an application permission object on a site. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

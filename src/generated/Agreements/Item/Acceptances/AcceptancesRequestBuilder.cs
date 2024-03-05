@@ -24,7 +24,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new AgreementAcceptanceItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,7 +52,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// <summary>
         /// Create new navigation property to acceptances for agreements
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to acceptances for agreements";
@@ -103,7 +103,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// Get the details about the acceptance records for a specific agreement.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the details about the acceptance records for a specific agreement.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0";
@@ -214,7 +214,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// <summary>
         /// Get the details about the acceptance records for a specific agreement.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         /// <summary>
         /// Create new navigation property to acceptances for agreements
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

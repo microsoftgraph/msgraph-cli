@@ -25,7 +25,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Delete navigation property security for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property security for reports";
@@ -53,7 +53,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationRepeatOffenders method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAttackSimulationRepeatOffendersNavCommand() {
             var command = new Command("get-attack-simulation-repeat-offenders");
             command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
@@ -69,7 +69,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAttackSimulationSimulationUserCoverageNavCommand() {
             var command = new Command("get-attack-simulation-simulation-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
@@ -85,7 +85,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetAttackSimulationTrainingUserCoverageNavCommand() {
             var command = new Command("get-attack-simulation-training-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
@@ -101,7 +101,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Represents an abstract type that contains resources for attack simulation and training reports.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents an abstract type that contains resources for attack simulation and training reports.";
@@ -146,7 +146,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Update the navigation property security in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property security in reports";
@@ -202,7 +202,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Delete navigation property security for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,7 +219,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Represents an abstract type that contains resources for attack simulation and training reports.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -236,7 +236,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Update the navigation property security in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

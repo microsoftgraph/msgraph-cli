@@ -23,7 +23,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Revoke the specified user's access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0";
@@ -64,7 +64,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0";
@@ -150,7 +150,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// Grant the specified user access to submit print jobs to the associated printerShare.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-post-allowedusers?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Grant the specified user access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-post-allowedusers?view=graph-rest-1.0";
@@ -202,7 +202,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// <summary>
         /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -219,7 +219,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// <summary>
         /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -236,7 +236,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Ref {
         /// <summary>
         /// Grant the specified user access to submit print jobs to the associated printerShare.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

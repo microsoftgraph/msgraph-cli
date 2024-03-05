@@ -22,7 +22,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents.Item.Valu
         /// Get media content for the navigation property hostedContents from teams
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property hostedContents from teams\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
@@ -85,7 +85,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents.Item.Valu
         /// <summary>
         /// Update media content for the navigation property hostedContents in teams
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property hostedContents in teams";
@@ -164,7 +164,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents.Item.Valu
         /// <summary>
         /// Get media content for the navigation property hostedContents from teams
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -181,7 +181,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents.Item.Valu
         /// <summary>
         /// Update media content for the navigation property hostedContents in teams
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

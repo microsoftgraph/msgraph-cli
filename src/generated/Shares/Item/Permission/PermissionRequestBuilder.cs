@@ -23,7 +23,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Delete navigation property permission for shares
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property permission for shares";
@@ -57,7 +57,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Used to access the permission representing the underlying sharing link
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used to access the permission representing the underlying sharing link";
@@ -108,7 +108,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGrantNavCommand() {
             var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
@@ -124,7 +124,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Update the navigation property permission in shares
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property permission in shares";
@@ -186,7 +186,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Delete navigation property permission for shares
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -203,7 +203,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Used to access the permission representing the underlying sharing link
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -220,7 +220,7 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Update the navigation property permission in shares
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttendanceReportsNavCommand() {
             var command = new Command("attendance-reports");
             command.Description = "Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.";
@@ -55,7 +55,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the media for the cloudCommunications entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttendeeReportNavCommand() {
             var command = new Command("attendee-report");
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
@@ -72,7 +72,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Delete navigation property onlineMeetings for communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property onlineMeetings for communications";
@@ -106,7 +106,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Get onlineMeetings from communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get onlineMeetings from communications";
@@ -157,7 +157,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to call the getVirtualAppointmentJoinWebUrl method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetVirtualAppointmentJoinWebUrlNavCommand() {
             var command = new Command("get-virtual-appointment-join-web-url");
             command.Description = "Provides operations to call the getVirtualAppointmentJoinWebUrl method.";
@@ -173,7 +173,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Update the navigation property onlineMeetings in communications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property onlineMeetings in communications";
@@ -223,7 +223,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRecordingsNavCommand() {
             var command = new Command("recordings");
             command.Description = "Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.";
@@ -249,7 +249,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to call the sendVirtualAppointmentReminderSms method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendVirtualAppointmentReminderSmsNavCommand() {
             var command = new Command("send-virtual-appointment-reminder-sms");
             command.Description = "Provides operations to call the sendVirtualAppointmentReminderSms method.";
@@ -265,7 +265,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to call the sendVirtualAppointmentSms method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendVirtualAppointmentSmsNavCommand() {
             var command = new Command("send-virtual-appointment-sms");
             command.Description = "Provides operations to call the sendVirtualAppointmentSms method.";
@@ -281,7 +281,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTranscriptsNavCommand() {
             var command = new Command("transcripts");
             command.Description = "Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.";
@@ -319,7 +319,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Delete navigation property onlineMeetings for communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -336,7 +336,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Get onlineMeetings from communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -353,7 +353,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         /// <summary>
         /// Update the navigation property onlineMeetings in communications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

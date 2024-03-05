@@ -25,7 +25,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBucketsNavCommand() {
             var command = new Command("buckets");
             command.Description = "Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Delete navigation property plans for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property plans for groups";
@@ -91,7 +91,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.";
@@ -109,7 +109,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Read-only. Nullable. Returns the plannerPlans owned by the group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns the plannerPlans owned by the group.";
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Update the navigation property plans in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property plans in groups";
@@ -222,7 +222,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.";
@@ -260,7 +260,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Delete navigation property plans for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -277,7 +277,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Read-only. Nullable. Returns the plannerPlans owned by the group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -294,7 +294,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Update the navigation property plans in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

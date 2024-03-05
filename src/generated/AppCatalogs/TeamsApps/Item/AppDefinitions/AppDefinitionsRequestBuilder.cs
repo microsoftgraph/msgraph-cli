@@ -24,7 +24,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// <summary>
         /// Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -38,7 +38,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -55,7 +55,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the distributionMethod property for the app must be set to organization. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the distributionMethod property for the app must be set to organization. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0";
@@ -105,7 +105,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// <summary>
         /// The details for each version of the app.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The details for each version of the app.";
@@ -216,7 +216,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// <summary>
         /// The details for each version of the app.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -233,7 +233,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         /// <summary>
         /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the distributionMethod property for the app must be set to organization. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

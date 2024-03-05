@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.";
@@ -56,7 +56,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
@@ -70,13 +70,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a windows10GeneralConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10generalconfiguration-delete?view=graph-rest-1.0" />
+        /// Deletes a iosDeviceFeaturesConfiguration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a windows10GeneralConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10generalconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a iosDeviceFeaturesConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosdevicefeaturesconfiguration-delete?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -107,7 +107,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceSettingStateSummariesNavCommand() {
             var command = new Command("device-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceConfiguration entity.";
@@ -133,7 +133,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceStatusesNavCommand() {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceConfiguration entity.";
@@ -159,7 +159,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeviceStatusOverviewNavCommand() {
             var command = new Command("device-status-overview");
             command.Description = "Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.";
@@ -175,13 +175,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10GeneralConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10generalconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windows10TeamGeneralConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10teamgeneralconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windows10GeneralConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10generalconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windows10TeamGeneralConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10teamgeneralconfiguration-get?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -229,7 +229,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to call the getOmaSettingPlainTextValue method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetOmaSettingPlainTextValueWithSecretReferenceValueIdRbCommand() {
             var command = new Command("get-oma-setting-plain-text-value-with-secret-reference-value-id");
             command.Description = "Provides operations to call the getOmaSettingPlainTextValue method.";
@@ -243,13 +243,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidGeneralDeviceConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidgeneraldeviceconfiguration-update?view=graph-rest-1.0" />
+        /// Update the properties of a macOSDeviceFeaturesConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macosdevicefeaturesconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidGeneralDeviceConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidgeneraldeviceconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a macOSDeviceFeaturesConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macosdevicefeaturesconfiguration-update?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -296,7 +296,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserStatusesNavCommand() {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.deviceConfiguration entity.";
@@ -322,7 +322,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserStatusOverviewNavCommand() {
             var command = new Command("user-status-overview");
             command.Description = "Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceConfiguration entity.";
@@ -350,9 +350,9 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         public DeviceConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a windows10GeneralConfiguration.
+        /// Deletes a iosDeviceFeaturesConfiguration.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -367,9 +367,9 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10GeneralConfiguration object.
+        /// Read properties and relationships of the windows10TeamGeneralConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -384,9 +384,9 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidGeneralDeviceConfiguration object.
+        /// Update the properties of a macOSDeviceFeaturesConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -403,7 +403,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windows10GeneralConfiguration object.
+        /// Read properties and relationships of the windows10TeamGeneralConfiguration object.
         /// </summary>
         public class DeviceConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

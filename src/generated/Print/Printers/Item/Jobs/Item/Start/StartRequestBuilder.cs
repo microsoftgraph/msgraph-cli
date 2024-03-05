@@ -23,7 +23,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Start {
         /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0";
@@ -78,7 +78,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Start {
         /// <summary>
         /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending jobs are completed, aborted, or canceled.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

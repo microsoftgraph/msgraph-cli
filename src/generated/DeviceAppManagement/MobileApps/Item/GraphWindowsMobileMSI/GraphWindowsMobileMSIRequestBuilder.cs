@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCategoriesNavCommand() {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
@@ -76,7 +76,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentVersionsNavCommand() {
             var command = new Command("content-versions");
             command.Description = "Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.";
@@ -102,7 +102,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI";
@@ -165,7 +165,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

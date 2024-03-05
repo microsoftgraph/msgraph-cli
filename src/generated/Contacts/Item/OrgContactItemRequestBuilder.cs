@@ -33,7 +33,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
@@ -49,7 +49,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
@@ -65,7 +65,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Delete entity from contacts
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from contacts";
@@ -99,7 +99,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDirectReportsNavCommand() {
             var command = new Command("direct-reports");
             command.Description = "Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.";
@@ -127,7 +127,7 @@ namespace ApiSdk.Contacts.Item {
         /// Get the properties and relationships of an organizational contact.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of an organizational contact.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-get?view=graph-rest-1.0";
@@ -178,7 +178,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
@@ -194,7 +194,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
@@ -210,7 +210,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the manager property of the microsoft.graph.orgContact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildManagerNavCommand() {
             var command = new Command("manager");
             command.Description = "Provides operations to manage the manager property of the microsoft.graph.orgContact entity.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.";
@@ -253,7 +253,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Update entity in contacts
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in contacts";
@@ -303,7 +303,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
@@ -319,7 +319,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to call the retryServiceProvisioning method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRetryServiceProvisioningNavCommand() {
             var command = new Command("retry-service-provisioning");
             command.Description = "Provides operations to call the retryServiceProvisioning method.";
@@ -335,7 +335,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServiceProvisioningErrorsNavCommand() {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
@@ -357,7 +357,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.";
@@ -396,7 +396,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Delete entity from contacts
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -413,7 +413,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Get the properties and relationships of an organizational contact.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -430,7 +430,7 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>
         /// Update entity in contacts
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

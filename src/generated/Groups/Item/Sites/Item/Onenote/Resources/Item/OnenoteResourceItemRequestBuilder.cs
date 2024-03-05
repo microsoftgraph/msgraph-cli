@@ -23,7 +23,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// Delete navigation property resources for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property resources for groups";
@@ -86,7 +86,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// The image and other file resources in OneNote pages. Getting a resources collection isn&apos;t supported, but you can get the binary content of a specific resource. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The image and other file resources in OneNote pages. Getting a resources collection isn't supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
@@ -149,7 +149,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// Update the navigation property resources in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property resources in groups";
@@ -223,7 +223,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// Delete navigation property resources for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -240,7 +240,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// The image and other file resources in OneNote pages. Getting a resources collection isn&apos;t supported, but you can get the binary content of a specific resource. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -257,7 +257,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Resources.Item {
         /// <summary>
         /// Update the navigation property resources in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

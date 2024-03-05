@@ -28,7 +28,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A list of group members with license errors from this group-based license assignment. Read-only.";
@@ -92,7 +92,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphApplicationByIdNavCommand() {
             var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
@@ -108,7 +108,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphDeviceByIdNavCommand() {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
@@ -140,7 +140,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphOrgContactByIdNavCommand() {
             var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
@@ -156,7 +156,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphServicePrincipalByIdNavCommand() {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
@@ -172,7 +172,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphUserByIdNavCommand() {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
@@ -200,7 +200,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

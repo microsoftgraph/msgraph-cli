@@ -29,7 +29,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBackgroundImageNavCommand() {
             var command = new Command("background-image");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -46,7 +46,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBannerLogoNavCommand() {
             var command = new Command("banner-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -63,7 +63,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCustomCSSNavCommand() {
             var command = new Command("custom-c-s-s");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -81,7 +81,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0";
@@ -121,7 +121,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFaviconNavCommand() {
             var command = new Command("favicon");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -139,7 +139,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0";
@@ -196,7 +196,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHeaderLogoNavCommand() {
             var command = new Command("header-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -214,7 +214,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// Update the properties of an organizationalBrandingLocalization object for a specific localization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an organizationalBrandingLocalization object for a specific localization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0";
@@ -270,7 +270,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSquareLogoDarkNavCommand() {
             var command = new Command("square-logo-dark");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -287,7 +287,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSquareLogoNavCommand() {
             var command = new Command("square-logo");
             command.Description = "Provides operations to manage the media for the organization entity.";
@@ -316,7 +316,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -333,7 +333,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -350,7 +350,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         /// <summary>
         /// Update the properties of an organizationalBrandingLocalization object for a specific localization.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

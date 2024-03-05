@@ -22,7 +22,7 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
         /// Syncs Intune account with Microsoft Store For Business
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-syncmicrosoftstoreforbusinessapps?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Syncs Intune account with Microsoft Store For Business\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-syncmicrosoftstoreforbusinessapps?view=graph-rest-1.0";
@@ -55,7 +55,7 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
         /// <summary>
         /// Syncs Intune account with Microsoft Store For Business
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

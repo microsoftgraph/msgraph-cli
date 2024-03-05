@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class PrivilegedAccessGroupAssignmentSchedule : PrivilegedAccessSchedule, IParsable {
-        /// <summary>The identifier of the membership or ownership assignment to the group that is governed by PIM. Required. The possible values are: owner, member, unknownFutureValue. Supports $filter (eq).</summary>
+        /// <summary>The identifier of the membership or ownership assignment to the group that is governed through PIM. Required. The possible values are: owner, member, unknownFutureValue. Supports $filter (eq).</summary>
         public PrivilegedAccessGroupRelationships? AccessId { get; set; }
-        /// <summary>When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.</summary>
+        /// <summary>When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it&apos;s null. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PrivilegedAccessGroupEligibilitySchedule? ActivatedUsing { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the membership or ownership assignment for the principal is granted through activation or direct assignment. Required. The possible values are: assigned, activated, unknownFutureValue. Supports $filter (eq).</summary>
         public PrivilegedAccessGroupAssignmentType? AssignmentType { get; set; }
-        /// <summary>References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand.</summary>
+        /// <summary>References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports $expand and $select nested in $expand for select properties like id, displayName, and mail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Group? Group { get; set; }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the assignment is derived from a direct group assignment or through a transitive assignment. The possible values are: direct, group, unknownFutureValue. Supports $filter (eq).</summary>
         public PrivilegedAccessGroupMemberType? MemberType { get; set; }
-        /// <summary>References the principal that&apos;s in the scope of this membership or ownership assignment request to the group that&apos;s governed by PIM. Supports $expand.</summary>
+        /// <summary>References the principal that&apos;s in the scope of this membership or ownership assignment request to the group that&apos;s governed through PIM. Supports $expand and $select nested in $expand for id only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DirectoryObject? Principal { get; set; }
@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="PrivilegedAccessGroupAssignmentSchedule"></returns>
+        /// <returns>A <see cref="PrivilegedAccessGroupAssignmentSchedule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new PrivilegedAccessGroupAssignmentSchedule CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"accessId", n => { AccessId = n.GetEnumValue<PrivilegedAccessGroupRelationships>(); } },

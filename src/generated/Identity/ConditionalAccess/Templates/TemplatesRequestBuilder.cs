@@ -24,7 +24,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
         /// <summary>
         /// Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new ConditionalAccessTemplateItemRequestBuilder(PathParameters);
@@ -34,7 +34,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
         /// Get a list of the conditionalAccessTemplate objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the conditionalAccessTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0";
@@ -156,7 +156,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
         /// <summary>
         /// Get a list of the conditionalAccessTemplate objects and their properties.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

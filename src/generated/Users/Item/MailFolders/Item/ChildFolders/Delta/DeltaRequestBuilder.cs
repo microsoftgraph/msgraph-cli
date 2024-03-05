@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Delta {
         /// Get a set of mail folders that have been added, deleted, or removed from the user&apos;s mailbox. A delta function call for mail folders in a mailbox is similar to a GET request, except that by appropriatelyapplying state tokens in one or more of these calls,you can query for incremental changes in the mail folders. This allows you to maintain and synchronizea local store of a user&apos;s mail folders without having to fetch all the mail folders of that mailbox from the server every time.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-delta?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a set of mail folders that have been added, deleted, or removed from the user's mailbox. A delta function call for mail folders in a mailbox is similar to a GET request, except that by appropriatelyapplying state tokens in one or more of these calls,you can query for incremental changes in the mail folders. This allows you to maintain and synchronizea local store of a user's mail folders without having to fetch all the mail folders of that mailbox from the server every time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-delta?view=graph-rest-1.0";
@@ -139,7 +139,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Delta {
         /// <summary>
         /// Get a set of mail folders that have been added, deleted, or removed from the user&apos;s mailbox. A delta function call for mail folders in a mailbox is similar to a GET request, except that by appropriatelyapplying state tokens in one or more of these calls,you can query for incremental changes in the mail folders. This allows you to maintain and synchronizea local store of a user&apos;s mail folders without having to fetch all the mail folders of that mailbox from the server every time.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

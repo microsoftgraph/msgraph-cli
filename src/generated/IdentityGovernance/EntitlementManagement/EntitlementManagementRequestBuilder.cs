@@ -34,7 +34,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAccessPackageAssignmentApprovalsNavCommand() {
             var command = new Command("access-package-assignment-approvals");
             command.Description = "Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.";
@@ -61,7 +61,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAccessPackagesNavCommand() {
             var command = new Command("access-packages");
             command.Description = "Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.";
@@ -88,7 +88,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignmentPolicies property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentPoliciesNavCommand() {
             var command = new Command("assignment-policies");
             command.Description = "Provides operations to manage the assignmentPolicies property of the microsoft.graph.entitlementManagement entity.";
@@ -114,7 +114,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentRequestsNavCommand() {
             var command = new Command("assignment-requests");
             command.Description = "Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.";
@@ -141,7 +141,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.";
@@ -170,7 +170,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the catalogs property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCatalogsNavCommand() {
             var command = new Command("catalogs");
             command.Description = "Provides operations to manage the catalogs property of the microsoft.graph.entitlementManagement entity.";
@@ -196,7 +196,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildConnectedOrganizationsNavCommand() {
             var command = new Command("connected-organizations");
             command.Description = "Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.";
@@ -222,7 +222,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Delete navigation property entitlementManagement for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property entitlementManagement for identityGovernance";
@@ -250,7 +250,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Get entitlementManagement from identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get entitlementManagement from identityGovernance";
@@ -295,7 +295,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Update the navigation property entitlementManagement in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property entitlementManagement in identityGovernance";
@@ -339,7 +339,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the resourceEnvironments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceEnvironmentsNavCommand() {
             var command = new Command("resource-environments");
             command.Description = "Provides operations to manage the resourceEnvironments property of the microsoft.graph.entitlementManagement entity.";
@@ -365,7 +365,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the resourceRequests property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceRequestsNavCommand() {
             var command = new Command("resource-requests");
             command.Description = "Provides operations to manage the resourceRequests property of the microsoft.graph.entitlementManagement entity.";
@@ -391,7 +391,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the resourceRoleScopes property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourceRoleScopesNavCommand() {
             var command = new Command("resource-role-scopes");
             command.Description = "Provides operations to manage the resourceRoleScopes property of the microsoft.graph.entitlementManagement entity.";
@@ -417,7 +417,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.entitlementManagement entity.";
@@ -443,7 +443,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.";
@@ -473,7 +473,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Delete navigation property entitlementManagement for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -490,7 +490,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Get entitlementManagement from identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -507,7 +507,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Update the navigation property entitlementManagement in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

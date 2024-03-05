@@ -25,7 +25,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property serviceAnnouncement for admin";
@@ -53,7 +53,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// A container for service communications resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "A container for service communications resources. Read-only.";
@@ -98,7 +98,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHealthOverviewsNavCommand() {
             var command = new Command("health-overviews");
             command.Description = "Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.";
@@ -124,7 +124,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIssuesNavCommand() {
             var command = new Command("issues");
             command.Description = "Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.";
@@ -150,7 +150,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.";
@@ -182,7 +182,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Update the navigation property serviceAnnouncement in admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property serviceAnnouncement in admin";
@@ -238,7 +238,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// A container for service communications resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Update the navigation property serviceAnnouncement in admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

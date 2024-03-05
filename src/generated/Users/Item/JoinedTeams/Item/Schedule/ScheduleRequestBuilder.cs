@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Delete navigation property schedule for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property schedule for users";
@@ -73,7 +73,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the provisionStatus property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the provisionStatusCode property. Clients can also inspect the configuration of the schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the provisionStatus property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the provisionStatusCode property. Clients can also inspect the configuration of the schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-get?view=graph-rest-1.0";
@@ -130,7 +130,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOfferShiftRequestsNavCommand() {
             var command = new Command("offer-shift-requests");
             command.Description = "Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.";
@@ -156,7 +156,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOpenShiftChangeRequestsNavCommand() {
             var command = new Command("open-shift-change-requests");
             command.Description = "Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.";
@@ -182,7 +182,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOpenShiftsNavCommand() {
             var command = new Command("open-shifts");
             command.Description = "Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.";
@@ -208,7 +208,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Update the navigation property schedule in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update the navigation property schedule in users";
@@ -264,7 +264,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSchedulingGroupsNavCommand() {
             var command = new Command("scheduling-groups");
             command.Description = "Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.";
@@ -290,7 +290,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to call the share method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildShareNavCommand() {
             var command = new Command("share");
             command.Description = "Provides operations to call the share method.";
@@ -306,7 +306,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildShiftsNavCommand() {
             var command = new Command("shifts");
             command.Description = "Provides operations to manage the shifts property of the microsoft.graph.schedule entity.";
@@ -332,7 +332,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSwapShiftsChangeRequestsNavCommand() {
             var command = new Command("swap-shifts-change-requests");
             command.Description = "Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.";
@@ -358,7 +358,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTimeOffReasonsNavCommand() {
             var command = new Command("time-off-reasons");
             command.Description = "Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.";
@@ -384,7 +384,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTimeOffRequestsNavCommand() {
             var command = new Command("time-off-requests");
             command.Description = "Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.";
@@ -410,7 +410,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTimesOffNavCommand() {
             var command = new Command("times-off");
             command.Description = "Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.";
@@ -448,7 +448,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Delete navigation property schedule for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -465,7 +465,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the provisionStatus property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the provisionStatusCode property. Clients can also inspect the configuration of the schedule.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -482,7 +482,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
         /// <summary>
         /// Update the navigation property schedule in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

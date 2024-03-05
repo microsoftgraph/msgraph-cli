@@ -22,7 +22,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item {
         /// <summary>
         /// The identity providers included in the user flow.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand() {
             var command = new Command("get");
@@ -92,7 +92,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item {
         /// <summary>
         /// The identity providers included in the user flow.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

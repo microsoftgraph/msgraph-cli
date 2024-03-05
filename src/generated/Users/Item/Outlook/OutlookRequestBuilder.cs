@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Get outlook from users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get outlook from users";
@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMasterCategoriesNavCommand() {
             var command = new Command("master-categories");
             command.Description = "Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.";
@@ -96,7 +96,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedLanguages method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSupportedLanguagesNavCommand() {
             var command = new Command("supported-languages");
             command.Description = "Provides operations to call the supportedLanguages method.";
@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSupportedTimeZonesNavCommand() {
             var command = new Command("supported-time-zones");
             command.Description = "Provides operations to call the supportedTimeZones method.";
@@ -128,7 +128,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSupportedTimeZonesWithTimeZoneStandardRbCommand() {
             var command = new Command("supported-time-zones-with-time-zone-standard");
             command.Description = "Provides operations to call the supportedTimeZones method.";
@@ -156,7 +156,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Get outlook from users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

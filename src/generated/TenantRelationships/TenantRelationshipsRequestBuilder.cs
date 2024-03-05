@@ -26,7 +26,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDelegatedAdminCustomersNavCommand() {
             var command = new Command("delegated-admin-customers");
             command.Description = "Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.";
@@ -52,7 +52,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDelegatedAdminRelationshipsNavCommand() {
             var command = new Command("delegated-admin-relationships");
             command.Description = "Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.";
@@ -78,7 +78,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to call the findTenantInformationByDomainName method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFindTenantInformationByDomainNameWithDomainNameRbCommand() {
             var command = new Command("find-tenant-information-by-domain-name-with-domain-name");
             command.Description = "Provides operations to call the findTenantInformationByDomainName method.";
@@ -94,7 +94,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to call the findTenantInformationByTenantId method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFindTenantInformationByTenantIdWithTenantIdRbCommand() {
             var command = new Command("find-tenant-information-by-tenant-id-with-tenant-id");
             command.Description = "Provides operations to call the findTenantInformationByTenantId method.";
@@ -110,7 +110,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Get tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get tenantRelationships";
@@ -155,7 +155,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Update tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update tenantRelationships";
@@ -211,7 +211,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Get tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -228,7 +228,7 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Update tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -28,7 +28,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Delete navigation property onenote for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property onenote for users";
@@ -62,7 +62,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Get onenote from users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get onenote from users";
@@ -113,7 +113,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildNotebooksNavCommand() {
             var command = new Command("notebooks");
             command.Description = "Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.";
@@ -141,7 +141,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.onenote entity.";
@@ -167,7 +167,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPagesNavCommand() {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenote entity.";
@@ -193,7 +193,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Update the navigation property onenote in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property onenote in users";
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.onenote entity.";
@@ -269,7 +269,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSectionGroupsNavCommand() {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.";
@@ -295,7 +295,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSectionsNavCommand() {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.onenote entity.";
@@ -333,7 +333,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Delete navigation property onenote for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -350,7 +350,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Get onenote from users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -367,7 +367,7 @@ namespace ApiSdk.Users.Item.Onenote {
         /// <summary>
         /// Update the navigation property onenote in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

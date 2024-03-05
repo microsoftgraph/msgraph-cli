@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// Retrieve the chat of the specified user and Teams app.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
@@ -92,7 +92,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         /// <summary>
         /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

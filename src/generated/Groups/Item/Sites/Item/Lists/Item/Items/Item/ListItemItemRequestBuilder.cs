@@ -32,7 +32,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.listItem entity.";
@@ -48,7 +48,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreatedByUserNavCommand() {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
@@ -71,7 +71,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the createLink method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateLinkNavCommand() {
             var command = new Command("create-link");
             command.Description = "Provides operations to call the createLink method.";
@@ -88,7 +88,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// Removes an item from a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Removes an item from a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
@@ -140,7 +140,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDocumentSetVersionsNavCommand() {
             var command = new Command("document-set-versions");
             command.Description = "Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.";
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.";
@@ -188,7 +188,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the fields property of the microsoft.graph.listItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFieldsNavCommand() {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItem entity.";
@@ -206,7 +206,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetActivitiesByIntervalNavCommand() {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
@@ -222,7 +222,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
             var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
@@ -239,7 +239,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// Returns the metadata for an [item][] in a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Returns the metadata for an [item][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
@@ -308,7 +308,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLastModifiedByUserNavCommand() {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
@@ -331,7 +331,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Update the navigation property items in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property items in groups";
@@ -399,7 +399,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.listItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.listItem entity.";
@@ -437,7 +437,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Removes an item from a [list][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -454,7 +454,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Returns the metadata for an [item][] in a [list][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -471,7 +471,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Update the navigation property items in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

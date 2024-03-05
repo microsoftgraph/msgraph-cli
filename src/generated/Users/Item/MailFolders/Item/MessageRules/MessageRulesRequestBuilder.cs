@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// <summary>
         /// Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new MessageRuleItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// Create a messageRule object by specifying a set of conditions and actions. Outlook carries out those actions if an incoming message in the user&apos;s Inbox meets the specified conditions.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a messageRule object by specifying a set of conditions and actions. Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0";
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// Get all the messageRule objects defined for the user&apos;s inbox.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get all the messageRule objects defined for the user's inbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0";
@@ -214,7 +214,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// <summary>
         /// Get all the messageRule objects defined for the user&apos;s inbox.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules {
         /// <summary>
         /// Create a messageRule object by specifying a set of conditions and actions. Outlook carries out those actions if an incoming message in the user&apos;s Inbox meets the specified conditions.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

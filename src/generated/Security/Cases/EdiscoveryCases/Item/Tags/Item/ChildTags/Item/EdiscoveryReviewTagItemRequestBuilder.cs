@@ -22,7 +22,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item.ChildTags.Item {
         /// <summary>
         /// Returns the tags that are a child of a tag.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Returns the tags that are a child of a tag.";
@@ -97,7 +97,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item.ChildTags.Item {
         /// <summary>
         /// Returns the tags that are a child of a tag.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

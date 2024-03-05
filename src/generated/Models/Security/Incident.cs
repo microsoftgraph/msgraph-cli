@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<string> CustomTags { get; set; }
 #endif
-        /// <summary>The description property</summary>
+        /// <summary>Description of the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string IncidentWebUrl { get; set; }
 #endif
-        /// <summary>The lastModifiedBy property</summary>
+        /// <summary>The identity that last modified the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LastModifiedBy { get; set; }
@@ -78,7 +78,7 @@ namespace ApiSdk.Models.Security {
 #endif
         /// <summary>Time when the incident was last updated.</summary>
         public DateTimeOffset? LastUpdateDateTime { get; set; }
-        /// <summary>Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.</summary>
+        /// <summary>Only populated in case an incident is grouped with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RedirectIncidentId { get; set; }
@@ -90,7 +90,7 @@ namespace ApiSdk.Models.Security {
         public AlertSeverity? Severity { get; set; }
         /// <summary>The status property</summary>
         public IncidentStatus? Status { get; set; }
-        /// <summary>The systemTags property</summary>
+        /// <summary>The system tags associated with the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SystemTags { get; set; }
@@ -109,7 +109,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Incident"></returns>
+        /// <returns>A <see cref="Incident"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Incident CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -118,7 +118,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"alerts", n => { Alerts = n.GetCollectionOfObjectValues<Alert>(Alert.CreateFromDiscriminatorValue)?.ToList(); } },

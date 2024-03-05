@@ -26,7 +26,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -42,7 +42,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Delete navigation property roleEligibilitySchedules for roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleEligibilitySchedules for roleManagement";
@@ -76,7 +76,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -93,7 +93,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// Retrieve the schedule for a role eligibility operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedule-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the schedule for a role eligibility operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedule-get?view=graph-rest-1.0";
@@ -144,7 +144,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Update the navigation property roleEligibilitySchedules in roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleEligibilitySchedules in roleManagement";
@@ -194,7 +194,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -210,7 +210,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.";
@@ -238,7 +238,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Delete navigation property roleEligibilitySchedules for roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -255,7 +255,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Retrieve the schedule for a role eligibility operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -272,7 +272,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
         /// <summary>
         /// Update the navigation property roleEligibilitySchedules in roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

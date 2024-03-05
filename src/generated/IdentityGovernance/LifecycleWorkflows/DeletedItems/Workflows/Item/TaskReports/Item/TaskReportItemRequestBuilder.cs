@@ -25,7 +25,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Represents the aggregation of task execution data for tasks within a workflow object.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents the aggregation of task execution data for tasks within a workflow object.";
@@ -82,7 +82,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTaskDefinitionNavCommand() {
             var command = new Command("task-definition");
             command.Description = "Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.";
@@ -98,7 +98,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTaskNavCommand() {
             var command = new Command("task");
             command.Description = "Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.";
@@ -114,7 +114,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTaskProcessingResultsNavCommand() {
             var command = new Command("task-processing-results");
             command.Description = "Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.taskReport entity.";
@@ -151,7 +151,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Represents the aggregation of task execution data for tasks within a workflow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

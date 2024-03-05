@@ -22,7 +22,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.ExecutionS
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow object.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The unique identifier of the Microsoft Entra identity that last modified the workflow object.";
@@ -91,7 +91,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.ExecutionS
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

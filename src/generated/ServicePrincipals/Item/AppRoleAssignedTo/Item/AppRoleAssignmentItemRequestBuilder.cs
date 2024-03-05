@@ -23,7 +23,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// Deletes an appRoleAssignment that a user, group, or client service principal has been granted for a resource service principal.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes an appRoleAssignment that a user, group, or client service principal has been granted for a resource service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0";
@@ -63,7 +63,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// <summary>
         /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
@@ -120,7 +120,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// <summary>
         /// Update the navigation property appRoleAssignedTo in servicePrincipals
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property appRoleAssignedTo in servicePrincipals";
@@ -188,7 +188,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// <summary>
         /// Deletes an appRoleAssignment that a user, group, or client service principal has been granted for a resource service principal.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -205,7 +205,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// <summary>
         /// App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -222,7 +222,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
         /// <summary>
         /// Update the navigation property appRoleAssignedTo in servicePrincipals
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

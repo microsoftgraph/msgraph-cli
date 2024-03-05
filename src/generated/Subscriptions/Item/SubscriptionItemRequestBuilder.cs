@@ -24,7 +24,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-delete?view=graph-rest-1.0";
@@ -59,7 +59,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-get?view=graph-rest-1.0";
@@ -104,7 +104,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscription-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscription-update?view=graph-rest-1.0";
@@ -154,7 +154,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>
         /// Provides operations to call the reauthorize method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReauthorizeNavCommand() {
             var command = new Command("reauthorize");
             command.Description = "Provides operations to call the reauthorize method.";
@@ -182,7 +182,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>
         /// Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -199,7 +199,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -216,7 +216,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>
         /// Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

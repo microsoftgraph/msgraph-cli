@@ -27,7 +27,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
@@ -80,7 +80,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
@@ -96,7 +96,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Get posts from groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get posts from groups";
@@ -165,7 +165,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildInReplyToNavCommand() {
             var command = new Command("in-reply-to");
             command.Description = "Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.";
@@ -190,7 +190,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
@@ -218,7 +218,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Get posts from groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -21,7 +21,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to manage the collection of place entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -35,7 +35,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to roomList.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphRoomListNavCommand() {
             var command = new Command("graph-room-list");
             command.Description = "Casts the previous resource to roomList.";
@@ -73,7 +73,7 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGraphRoomNavCommand() {
             var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";

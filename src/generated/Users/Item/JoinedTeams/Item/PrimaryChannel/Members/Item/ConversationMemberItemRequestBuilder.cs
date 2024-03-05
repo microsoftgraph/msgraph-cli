@@ -23,7 +23,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// Delete a conversationMember from a channel.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a conversationMember from a channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-delete?view=graph-rest-1.0";
@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// Get a conversationMember from a channel.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a conversationMember from a channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-members?view=graph-rest-1.0";
@@ -134,7 +134,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0";
@@ -208,7 +208,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// <summary>
         /// Delete a conversationMember from a channel.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -225,7 +225,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// <summary>
         /// Get a conversationMember from a channel.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -242,7 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item {
         /// <summary>
         /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

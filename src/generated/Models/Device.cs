@@ -70,6 +70,14 @@ namespace ApiSdk.Models {
 #else
         public string EnrollmentProfileName { get; set; }
 #endif
+        /// <summary>The enrollmentType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnrollmentType { get; set; }
+#nullable restore
+#else
+        public string EnrollmentType { get; set; }
+#endif
         /// <summary>The collection of open extensions defined for the device. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -82,6 +90,24 @@ namespace ApiSdk.Models {
         public bool? IsCompliant { get; set; }
         /// <summary>true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).</summary>
         public bool? IsManaged { get; set; }
+        /// <summary>The isRooted property</summary>
+        public bool? IsRooted { get; set; }
+        /// <summary>The managementType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ManagementType { get; set; }
+#nullable restore
+#else
+        public string ManagementType { get; set; }
+#endif
+        /// <summary>Manufacturer of the device. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Manufacturer { get; set; }
+#nullable restore
+#else
+        public string Manufacturer { get; set; }
+#endif
         /// <summary>Application identifier used to register device into MDM. Read-only. Supports $filter (eq, ne, not, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,6 +123,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<DirectoryObject> MemberOf { get; set; }
+#endif
+        /// <summary>Model of the device. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Model { get; set; }
+#nullable restore
+#else
+        public string Model { get; set; }
 #endif
         /// <summary>The last time at which the object was synced with the on-premises directory. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z Read-only. Supports $filter (eq, ne, not, ge, le, in).</summary>
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
@@ -193,7 +227,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Device"></returns>
+        /// <returns>A <see cref="Device"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new Device CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -202,7 +236,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
@@ -216,11 +250,16 @@ namespace ApiSdk.Models {
                 {"deviceVersion", n => { DeviceVersion = n.GetIntValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"enrollmentProfileName", n => { EnrollmentProfileName = n.GetStringValue(); } },
+                {"enrollmentType", n => { EnrollmentType = n.GetStringValue(); } },
                 {"extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isCompliant", n => { IsCompliant = n.GetBoolValue(); } },
                 {"isManaged", n => { IsManaged = n.GetBoolValue(); } },
+                {"isRooted", n => { IsRooted = n.GetBoolValue(); } },
+                {"managementType", n => { ManagementType = n.GetStringValue(); } },
+                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
                 {"mdmAppId", n => { MdmAppId = n.GetStringValue(); } },
                 {"memberOf", n => { MemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"model", n => { Model = n.GetStringValue(); } },
                 {"onPremisesLastSyncDateTime", n => { OnPremisesLastSyncDateTime = n.GetDateTimeOffsetValue(); } },
                 {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 {"onPremisesSyncEnabled", n => { OnPremisesSyncEnabled = n.GetBoolValue(); } },
@@ -254,11 +293,16 @@ namespace ApiSdk.Models {
             writer.WriteIntValue("deviceVersion", DeviceVersion);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("enrollmentProfileName", EnrollmentProfileName);
+            writer.WriteStringValue("enrollmentType", EnrollmentType);
             writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
             writer.WriteBoolValue("isCompliant", IsCompliant);
             writer.WriteBoolValue("isManaged", IsManaged);
+            writer.WriteBoolValue("isRooted", IsRooted);
+            writer.WriteStringValue("managementType", ManagementType);
+            writer.WriteStringValue("manufacturer", Manufacturer);
             writer.WriteStringValue("mdmAppId", MdmAppId);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("memberOf", MemberOf);
+            writer.WriteStringValue("model", Model);
             writer.WriteDateTimeOffsetValue("onPremisesLastSyncDateTime", OnPremisesLastSyncDateTime);
             writer.WriteStringValue("onPremisesSecurityIdentifier", OnPremisesSecurityIdentifier);
             writer.WriteBoolValue("onPremisesSyncEnabled", OnPremisesSyncEnabled);

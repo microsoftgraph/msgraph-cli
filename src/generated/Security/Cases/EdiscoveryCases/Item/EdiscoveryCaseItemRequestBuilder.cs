@@ -31,7 +31,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCustodiansNavCommand() {
             var command = new Command("custodians");
             command.Description = "Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -60,7 +60,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// Delete an ediscoveryCase object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0";
@@ -95,7 +95,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// Read the properties and relationships of an ediscoveryCase object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0";
@@ -146,7 +146,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to call the close method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityCloseNavCommand() {
             var command = new Command("microsoft-graph-security-close");
             command.Description = "Provides operations to call the close method.";
@@ -162,7 +162,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to call the reopen method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMicrosoftGraphSecurityReopenNavCommand() {
             var command = new Command("microsoft-graph-security-reopen");
             command.Description = "Provides operations to call the reopen method.";
@@ -178,7 +178,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildNoncustodialDataSourcesNavCommand() {
             var command = new Command("noncustodial-data-sources");
             command.Description = "Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -206,7 +206,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -233,7 +233,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// Update the properties of an ediscoveryCase object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0";
@@ -283,7 +283,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildReviewSetsNavCommand() {
             var command = new Command("review-sets");
             command.Description = "Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -309,7 +309,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSearchesNavCommand() {
             var command = new Command("searches");
             command.Description = "Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -335,7 +335,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -359,7 +359,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTagsNavCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.";
@@ -398,7 +398,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Delete an ediscoveryCase object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -415,7 +415,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Read the properties and relationships of an ediscoveryCase object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -432,7 +432,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Update the properties of an ediscoveryCase object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -24,7 +24,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new RiskyUserHistoryItemItemRequestBuilder(PathParameters);
@@ -36,7 +36,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         /// <summary>
         /// Create new navigation property to history for identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to history for identityProtection";
@@ -100,13 +100,13 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0" />
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the riskyUserHistoryItems from the history navigation property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a riskyUserHistoryItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -212,9 +212,9 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         public HistoryRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}/history{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         /// <summary>
         /// Create new navigation property to history for identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

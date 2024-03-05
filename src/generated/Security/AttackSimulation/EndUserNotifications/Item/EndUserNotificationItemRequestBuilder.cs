@@ -23,7 +23,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Delete navigation property endUserNotifications for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property endUserNotifications for security";
@@ -57,7 +57,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.endUserNotification entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.endUserNotification entity.";
@@ -83,7 +83,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Represents an end user&apos;s notification for an attack simulation training.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents an end user's notification for an attack simulation training.";
@@ -134,7 +134,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Update the navigation property endUserNotifications in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property endUserNotifications in security";
@@ -196,7 +196,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Delete navigation property endUserNotifications for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -213,7 +213,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Represents an end user&apos;s notification for an attack simulation training.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -230,7 +230,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item {
         /// <summary>
         /// Update the navigation property endUserNotifications in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

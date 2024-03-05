@@ -22,7 +22,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Delta {
         /// Get a set of contact folders that have been added, deleted, or removed from the user&apos;s mailbox. A delta function call for contact folders in a mailbox is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contact folders. This allows you to maintain and synchronize a local store of a user&apos;s contact folders without having to fetch all the contact folders of that mailbox from the server every time.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-delta?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get a set of contact folders that have been added, deleted, or removed from the user's mailbox. A delta function call for contact folders in a mailbox is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contact folders. This allows you to maintain and synchronize a local store of a user's contact folders without having to fetch all the contact folders of that mailbox from the server every time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-delta?view=graph-rest-1.0";
@@ -133,7 +133,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Delta {
         /// <summary>
         /// Get a set of contact folders that have been added, deleted, or removed from the user&apos;s mailbox. A delta function call for contact folders in a mailbox is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the contact folders. This allows you to maintain and synchronize a local store of a user&apos;s contact folders without having to fetch all the contact folders of that mailbox from the server every time.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.";
@@ -52,7 +52,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Deletes a windowsInformationProtectionPolicy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a windowsInformationProtectionPolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-delete?view=graph-rest-1.0";
@@ -86,7 +86,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildExemptAppLockerFilesNavCommand() {
             var command = new Command("exempt-app-locker-files");
             command.Description = "Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
@@ -113,7 +113,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Read properties and relationships of the windowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the windowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-get?view=graph-rest-1.0";
@@ -165,7 +165,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Update the properties of a windowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a windowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-update?view=graph-rest-1.0";
@@ -215,7 +215,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildProtectedAppLockerFilesNavCommand() {
             var command = new Command("protected-app-locker-files");
             command.Description = "Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
@@ -253,7 +253,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Deletes a windowsInformationProtectionPolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -270,7 +270,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Read properties and relationships of the windowsInformationProtectionPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -287,7 +287,7 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Update the properties of a windowsInformationProtectionPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

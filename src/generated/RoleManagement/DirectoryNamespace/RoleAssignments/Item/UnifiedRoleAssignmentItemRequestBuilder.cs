@@ -26,7 +26,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.";
@@ -45,7 +45,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// Delete a unifiedRoleAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignment-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a unifiedRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-delete?view=graph-rest-1.0";
@@ -79,7 +79,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.";
@@ -96,7 +96,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// Retrieve the properties and relationships of a unifiedRoleAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignment-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a unifiedRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignment-get?view=graph-rest-1.0";
@@ -147,7 +147,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Update the navigation property roleAssignments in roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignments in roleManagement";
@@ -197,7 +197,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.";
@@ -213,7 +213,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.";
@@ -241,7 +241,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Delete a unifiedRoleAssignment object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -258,7 +258,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a unifiedRoleAssignment object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -275,7 +275,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Update the navigation property roleAssignments in roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

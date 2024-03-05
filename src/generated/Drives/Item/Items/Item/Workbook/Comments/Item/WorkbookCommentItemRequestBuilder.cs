@@ -23,7 +23,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Delete navigation property comments for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property comments for drives";
@@ -69,7 +69,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Represents a collection of comments in a workbook.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Represents a collection of comments in a workbook.";
@@ -132,7 +132,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Update the navigation property comments in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property comments in drives";
@@ -194,7 +194,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRepliesNavCommand() {
             var command = new Command("replies");
             command.Description = "Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.";
@@ -232,7 +232,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Delete navigation property comments for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -249,7 +249,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Represents a collection of comments in a workbook.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -266,7 +266,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Update the navigation property comments in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

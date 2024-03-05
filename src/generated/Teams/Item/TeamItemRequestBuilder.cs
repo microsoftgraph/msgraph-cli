@@ -40,7 +40,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAllChannelsNavCommand() {
             var command = new Command("all-channels");
             command.Description = "Provides operations to manage the allChannels property of the microsoft.graph.team entity.";
@@ -65,7 +65,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to call the archive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildArchiveNavCommand() {
             var command = new Command("archive");
             command.Description = "Provides operations to call the archive method.";
@@ -81,7 +81,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildChannelsNavCommand() {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.team entity.";
@@ -108,7 +108,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to call the clone method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCloneNavCommand() {
             var command = new Command("clone");
             command.Description = "Provides operations to call the clone method.";
@@ -124,7 +124,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to call the completeMigration method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCompleteMigrationNavCommand() {
             var command = new Command("complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
@@ -140,7 +140,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Delete entity from teams
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from teams";
@@ -175,7 +175,7 @@ namespace ApiSdk.Teams.Item {
         /// Retrieve the properties and relationships of the specified team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
@@ -226,7 +226,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGroupNavCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.team entity.";
@@ -248,7 +248,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIncomingChannelsNavCommand() {
             var command = new Command("incoming-channels");
             command.Description = "Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.";
@@ -273,7 +273,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildInstalledAppsNavCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.team entity.";
@@ -299,7 +299,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
@@ -326,7 +326,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.team entity.";
@@ -353,7 +353,7 @@ namespace ApiSdk.Teams.Item {
         /// Update the properties of the specified team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-update?view=graph-rest-1.0";
@@ -403,7 +403,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPermissionGrantsNavCommand() {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.";
@@ -429,7 +429,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.team entity.";
@@ -452,7 +452,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPrimaryChannelNavCommand() {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
@@ -484,7 +484,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the schedule property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildScheduleNavCommand() {
             var command = new Command("schedule");
             command.Description = "Provides operations to manage the schedule property of the microsoft.graph.team entity.";
@@ -517,7 +517,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendActivityNotificationNavCommand() {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
@@ -533,7 +533,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTagsNavCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.team entity.";
@@ -559,7 +559,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to manage the template property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTemplateNavCommand() {
             var command = new Command("template");
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
@@ -575,7 +575,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnarchiveNavCommand() {
             var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
@@ -603,7 +603,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Delete entity from teams
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -620,7 +620,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Retrieve the properties and relationships of the specified team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -637,7 +637,7 @@ namespace ApiSdk.Teams.Item {
         /// <summary>
         /// Update the properties of the specified team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

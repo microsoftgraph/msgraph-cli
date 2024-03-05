@@ -23,7 +23,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// Delete a feedback resource from a submission. This can only be done by a teacher.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a feedback resource from a submission. This can only be done by a teacher.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0";
@@ -69,7 +69,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// <summary>
         /// Get outcomes from education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get outcomes from education";
@@ -133,7 +133,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationOutcome object. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0";
@@ -207,7 +207,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// <summary>
         /// Delete a feedback resource from a submission. This can only be done by a teacher.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -224,7 +224,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// <summary>
         /// Get outcomes from education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -241,7 +241,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes.Item {
         /// <summary>
         /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

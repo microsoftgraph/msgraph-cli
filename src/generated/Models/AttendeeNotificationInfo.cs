@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The phoneNumber property</summary>
+        /// <summary>The phone number of the external attendee. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public string PhoneNumber { get; set; }
 #endif
-        /// <summary>The timeZone property</summary>
+        /// <summary>The time zone of the external attendee. The timeZone property can be set to any of the time zones currently supported by Windows. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TimeZone { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="AttendeeNotificationInfo"></returns>
+        /// <returns>A <see cref="AttendeeNotificationInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static AttendeeNotificationInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },

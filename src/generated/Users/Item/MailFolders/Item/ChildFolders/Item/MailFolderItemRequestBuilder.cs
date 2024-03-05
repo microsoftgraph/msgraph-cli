@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCopyNavCommand() {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
@@ -42,7 +42,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Delete navigation property childFolders for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property childFolders for users";
@@ -88,7 +88,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// The collection of child folders in the mailFolder.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The collection of child folders in the mailFolder.";
@@ -157,7 +157,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMessageRulesNavCommand() {
             var command = new Command("message-rules");
             command.Description = "Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.";
@@ -183,7 +183,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.";
@@ -210,7 +210,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildMoveNavCommand() {
             var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
@@ -226,7 +226,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Update the navigation property childFolders in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property childFolders in users";
@@ -300,7 +300,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Delete navigation property childFolders for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -317,7 +317,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// The collection of child folders in the mailFolder.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -334,7 +334,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Update the navigation property childFolders in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

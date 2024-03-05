@@ -24,7 +24,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Delete navigation property versions for shares
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for shares";
@@ -70,7 +70,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildFieldsNavCommand() {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.";
@@ -89,7 +89,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// Retrieve the metadata for a specific version of a ListItem.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the metadata for a specific version of a ListItem.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0";
@@ -152,7 +152,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Update the navigation property versions in shares
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in shares";
@@ -214,7 +214,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to call the restoreVersion method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRestoreVersionNavCommand() {
             var command = new Command("restore-version");
             command.Description = "Provides operations to call the restoreVersion method.";
@@ -242,7 +242,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Delete navigation property versions for shares
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -259,7 +259,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Retrieve the metadata for a specific version of a ListItem.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -276,7 +276,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Update the navigation property versions in shares
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

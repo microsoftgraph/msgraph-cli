@@ -26,7 +26,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// Delete an attack simulation campaign for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulation-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete an attack simulation campaign for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulation-delete?view=graph-rest-1.0";
@@ -61,7 +61,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// Get an attack simulation campaign for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulation-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get an attack simulation campaign for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulation-get?view=graph-rest-1.0";
@@ -112,7 +112,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Provides operations to manage the landingPage property of the microsoft.graph.simulation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLandingPageNavCommand() {
             var command = new Command("landing-page");
             command.Description = "Provides operations to manage the landingPage property of the microsoft.graph.simulation entity.";
@@ -128,7 +128,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Provides operations to manage the loginPage property of the microsoft.graph.simulation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLoginPageNavCommand() {
             var command = new Command("login-page");
             command.Description = "Provides operations to manage the loginPage property of the microsoft.graph.simulation entity.";
@@ -145,7 +145,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// Update an attack simulation campaign for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulation-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update an attack simulation campaign for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulation-update?view=graph-rest-1.0";
@@ -195,7 +195,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Provides operations to manage the payload property of the microsoft.graph.simulation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPayloadNavCommand() {
             var command = new Command("payload");
             command.Description = "Provides operations to manage the payload property of the microsoft.graph.simulation entity.";
@@ -223,7 +223,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Delete an attack simulation campaign for a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -240,7 +240,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Get an attack simulation campaign for a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -257,7 +257,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
         /// <summary>
         /// Update an attack simulation campaign for a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

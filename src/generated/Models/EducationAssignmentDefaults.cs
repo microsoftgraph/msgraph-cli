@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
         public EducationAddToCalendarOptions? AddToCalendarAction { get; set; }
         /// <summary>Class-level default value for due time field. Default value is 23:59:00.</summary>
         public Time? DueTime { get; set; }
-        /// <summary>Default Teams channel to which notifications will be sent. Default value is null.</summary>
+        /// <summary>Default Teams channel to which notifications are sent. Default value is null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotificationChannelUrl { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EducationAssignmentDefaults"></returns>
+        /// <returns>A <see cref="EducationAssignmentDefaults"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new EducationAssignmentDefaults CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"addToCalendarAction", n => { AddToCalendarAction = n.GetEnumValue<EducationAddToCalendarOptions>(); } },

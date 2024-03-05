@@ -20,12 +20,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
     /// </summary>
     public class PrincipalRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The principal that&apos;s getting a role assignment through the request. Supports $expand.
+        /// The principal that&apos;s getting a role assignment through the request. Supports $expand and $select nested in $expand for id only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The principal that's getting a role assignment through the request. Supports $expand.";
+            command.Description = "The principal that's getting a role assignment through the request. Supports $expand and $select nested in $expand for id only.";
             var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
@@ -83,9 +83,9 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}/principal{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// The principal that&apos;s getting a role assignment through the request. Supports $expand.
+        /// The principal that&apos;s getting a role assignment through the request. Supports $expand and $select nested in $expand for id only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -100,7 +100,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return requestInfo;
         }
         /// <summary>
-        /// The principal that&apos;s getting a role assignment through the request. Supports $expand.
+        /// The principal that&apos;s getting a role assignment through the request. Supports $expand and $select nested in $expand for id only.
         /// </summary>
         public class PrincipalRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

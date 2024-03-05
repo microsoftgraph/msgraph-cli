@@ -24,7 +24,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Provides operations to manage the media for the admin entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttachmentsArchiveNavCommand() {
             var command = new Command("attachments-archive");
             command.Description = "Provides operations to manage the media for the admin entity.";
@@ -41,7 +41,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.";
@@ -67,7 +67,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Delete navigation property messages for admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for admin";
@@ -102,7 +102,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-get?view=graph-rest-1.0";
@@ -153,7 +153,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in admin";
@@ -215,7 +215,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Delete navigation property messages for admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,7 +232,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -249,7 +249,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

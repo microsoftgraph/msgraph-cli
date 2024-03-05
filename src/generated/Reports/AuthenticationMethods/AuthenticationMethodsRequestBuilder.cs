@@ -27,7 +27,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Delete navigation property authenticationMethods for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationMethods for reports";
@@ -55,7 +55,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Container for navigation properties for Microsoft Entra authentication methods resources.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Container for navigation properties for Microsoft Entra authentication methods resources.";
@@ -100,7 +100,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Update the navigation property authenticationMethods in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationMethods in reports";
@@ -144,7 +144,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUserRegistrationDetailsNavCommand() {
             var command = new Command("user-registration-details");
             command.Description = "Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.";
@@ -170,7 +170,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Provides operations to call the usersRegisteredByFeature method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUsersRegisteredByFeatureNavCommand() {
             var command = new Command("users-registered-by-feature");
             command.Description = "Provides operations to call the usersRegisteredByFeature method.";
@@ -186,7 +186,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Provides operations to call the usersRegisteredByFeature method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRbCommand() {
             var command = new Command("users-registered-by-feature-with-included-user-types-with-included-user-roles");
             command.Description = "Provides operations to call the usersRegisteredByFeature method.";
@@ -202,7 +202,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Provides operations to call the usersRegisteredByMethod method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUsersRegisteredByMethodNavCommand() {
             var command = new Command("users-registered-by-method");
             command.Description = "Provides operations to call the usersRegisteredByMethod method.";
@@ -218,7 +218,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Provides operations to call the usersRegisteredByMethod method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRbCommand() {
             var command = new Command("users-registered-by-method-with-included-user-types-with-included-user-roles");
             command.Description = "Provides operations to call the usersRegisteredByMethod method.";
@@ -246,7 +246,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Delete navigation property authenticationMethods for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -263,7 +263,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Container for navigation properties for Microsoft Entra authentication methods resources.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -280,7 +280,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
         /// <summary>
         /// Update the navigation property authenticationMethods in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

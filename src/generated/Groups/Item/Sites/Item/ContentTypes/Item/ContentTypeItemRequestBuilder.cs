@@ -32,7 +32,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the associateWithHubSites method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildAssociateWithHubSitesNavCommand() {
             var command = new Command("associate-with-hub-sites");
             command.Description = "Provides operations to call the associateWithHubSites method.";
@@ -48,7 +48,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBaseNavCommand() {
             var command = new Command("base");
             command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
@@ -64,7 +64,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBaseTypesNavCommand() {
             var command = new Command("base-types");
             command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
@@ -89,7 +89,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildColumnLinksNavCommand() {
             var command = new Command("column-links");
             command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
@@ -115,7 +115,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildColumnPositionsNavCommand() {
             var command = new Command("column-positions");
             command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
@@ -140,7 +140,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.contentType entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
@@ -166,7 +166,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the copyToDefaultContentLocation method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCopyToDefaultContentLocationNavCommand() {
             var command = new Command("copy-to-default-content-location");
             command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
@@ -183,7 +183,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// Remove a [content type][contentType] from a [list][] or a [site][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove a [content type][contentType] from a [list][] or a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0";
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0";
@@ -293,7 +293,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the isPublished method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildIsPublishedNavCommand() {
             var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
@@ -310,7 +310,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// Update a [content type][contentType].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update a [content type][contentType].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0";
@@ -372,7 +372,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPublishNavCommand() {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
@@ -388,7 +388,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the unpublish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnpublishNavCommand() {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
@@ -416,7 +416,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Remove a [content type][contentType] from a [list][] or a [site][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -433,7 +433,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -450,7 +450,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item {
         /// <summary>
         /// Update a [content type][contentType].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -24,7 +24,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// <summary>
         /// Provides operations to manage the collection of groupLifecyclePolicy entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var commands = new List<Command>();
@@ -39,7 +39,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
@@ -56,7 +56,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// Creates a new groupLifecyclePolicy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Creates a new groupLifecyclePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0";
@@ -101,7 +101,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// List all the groupLifecyclePolicies.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/grouplifecyclepolicy-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List all the groupLifecyclePolicies.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/grouplifecyclepolicy-list?view=graph-rest-1.0";
@@ -206,7 +206,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// <summary>
         /// List all the groupLifecyclePolicies.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -223,7 +223,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
         /// <summary>
         /// Creates a new groupLifecyclePolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

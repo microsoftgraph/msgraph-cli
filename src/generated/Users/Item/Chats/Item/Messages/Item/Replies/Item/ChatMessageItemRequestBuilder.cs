@@ -27,7 +27,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Delete navigation property replies for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property replies for users";
@@ -80,7 +80,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// Retrieve a single message or a message reply in a channel or a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
@@ -149,7 +149,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildHostedContentsNavCommand() {
             var command = new Command("hosted-contents");
             command.Description = "Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.";
@@ -175,7 +175,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Update the navigation property replies in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property replies in users";
@@ -243,7 +243,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the setReaction method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSetReactionNavCommand() {
             var command = new Command("set-reaction");
             command.Description = "Provides operations to call the setReaction method.";
@@ -259,7 +259,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the softDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSoftDeleteNavCommand() {
             var command = new Command("soft-delete");
             command.Description = "Provides operations to call the softDelete method.";
@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the undoSoftDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUndoSoftDeleteNavCommand() {
             var command = new Command("undo-soft-delete");
             command.Description = "Provides operations to call the undoSoftDelete method.";
@@ -291,7 +291,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the unsetReaction method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildUnsetReactionNavCommand() {
             var command = new Command("unset-reaction");
             command.Description = "Provides operations to call the unsetReaction method.";
@@ -319,7 +319,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Delete navigation property replies for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -336,7 +336,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -353,7 +353,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item {
         /// <summary>
         /// Update the navigation property replies in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

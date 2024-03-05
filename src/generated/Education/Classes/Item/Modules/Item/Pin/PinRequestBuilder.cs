@@ -20,12 +20,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Pin {
     /// </summary>
     public class PinRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action pin
+        /// Pin an educationModule in the class work list. This action sets the isPinned property to true for an educationModule. Only teachers can perform this action and only one module at a time can be pinned in the class work list.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-pin?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action pin";
+            command.Description = "Pin an educationModule in the class work list. This action sets the isPinned property to true for an educationModule. Only teachers can perform this action and only one module at a time can be pinned in the class work list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-pin?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -75,9 +76,9 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Pin {
         public PinRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/pin", rawUrl) {
         }
         /// <summary>
-        /// Invoke action pin
+        /// Pin an educationModule in the class work list. This action sets the isPinned property to true for an educationModule. Only teachers can perform this action and only one module at a time can be pinned in the class work list.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

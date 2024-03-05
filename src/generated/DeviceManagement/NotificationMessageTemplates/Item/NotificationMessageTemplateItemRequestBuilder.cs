@@ -25,7 +25,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Deletes a notificationMessageTemplate.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Deletes a notificationMessageTemplate.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0";
@@ -60,7 +60,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Read properties and relationships of the notificationMessageTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the notificationMessageTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0";
@@ -111,7 +111,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildLocalizedNotificationMessagesNavCommand() {
             var command = new Command("localized-notification-messages");
             command.Description = "Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.";
@@ -138,7 +138,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Update the properties of a notificationMessageTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a notificationMessageTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0";
@@ -188,7 +188,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to call the sendTestMessage method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildSendTestMessageNavCommand() {
             var command = new Command("send-test-message");
             command.Description = "Provides operations to call the sendTestMessage method.";
@@ -216,7 +216,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Deletes a notificationMessageTemplate.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -233,7 +233,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Read properties and relationships of the notificationMessageTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -250,7 +250,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Update the properties of a notificationMessageTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

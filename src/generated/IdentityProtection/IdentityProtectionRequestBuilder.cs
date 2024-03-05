@@ -26,7 +26,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Get identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get identityProtection";
@@ -71,7 +71,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Update identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update identityProtection";
@@ -115,7 +115,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRiskDetectionsNavCommand() {
             var command = new Command("risk-detections");
             command.Description = "Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.";
@@ -141,7 +141,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRiskyServicePrincipalsNavCommand() {
             var command = new Command("risky-service-principals");
             command.Description = "Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.";
@@ -169,7 +169,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildRiskyUsersNavCommand() {
             var command = new Command("risky-users");
             command.Description = "Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.";
@@ -197,7 +197,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildServicePrincipalRiskDetectionsNavCommand() {
             var command = new Command("service-principal-risk-detections");
             command.Description = "Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.";
@@ -235,7 +235,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Get identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -252,7 +252,7 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Update identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

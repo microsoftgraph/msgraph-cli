@@ -23,7 +23,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Delete navigation property threatAssessmentRequests for informationProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property threatAssessmentRequests for informationProtection";
@@ -58,7 +58,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/threatassessmentrequest-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/threatassessmentrequest-get?view=graph-rest-1.0";
@@ -109,7 +109,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Update the navigation property threatAssessmentRequests in informationProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property threatAssessmentRequests in informationProtection";
@@ -159,7 +159,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildResultsNavCommand() {
             var command = new Command("results");
             command.Description = "Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.";
@@ -197,7 +197,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Delete navigation property threatAssessmentRequests for informationProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -214,7 +214,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -231,7 +231,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Update the navigation property threatAssessmentRequests in informationProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

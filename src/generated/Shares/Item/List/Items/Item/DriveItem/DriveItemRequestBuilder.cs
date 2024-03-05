@@ -23,7 +23,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DriveItem {
         /// <summary>
         /// Provides operations to manage the media for the sharedDriveItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the sharedDriveItem entity.";
@@ -40,7 +40,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DriveItem {
         /// <summary>
         /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
@@ -109,7 +109,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DriveItem {
         /// <summary>
         /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

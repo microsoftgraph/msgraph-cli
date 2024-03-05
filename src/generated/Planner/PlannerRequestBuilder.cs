@@ -25,7 +25,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.planner entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildBucketsNavCommand() {
             var command = new Command("buckets");
             command.Description = "Provides operations to manage the buckets property of the microsoft.graph.planner entity.";
@@ -51,7 +51,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Get planner
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get planner";
@@ -96,7 +96,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Update planner
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update planner";
@@ -140,7 +140,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Provides operations to manage the plans property of the microsoft.graph.planner entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildPlansNavCommand() {
             var command = new Command("plans");
             command.Description = "Provides operations to manage the plans property of the microsoft.graph.planner entity.";
@@ -166,7 +166,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.planner entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.planner entity.";
@@ -204,7 +204,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Get planner
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -221,7 +221,7 @@ namespace ApiSdk.Planner {
         /// <summary>
         /// Update planner
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

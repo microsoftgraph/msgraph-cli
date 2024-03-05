@@ -20,12 +20,12 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRe
     /// </summary>
     public class PrincipalRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand.
+        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand and $select nested in $expand for id only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand.";
+            command.Description = "References the principal that's in the scope of the membership or ownership eligibility request through the group that's governed by PIM. Supports $expand and $select nested in $expand for id only.";
             var privilegedAccessGroupEligibilityScheduleRequestIdOption = new Option<string>("--privileged-access-group-eligibility-schedule-request-id", description: "The unique identifier of privilegedAccessGroupEligibilityScheduleRequest") {
             };
             privilegedAccessGroupEligibilityScheduleRequestIdOption.IsRequired = true;
@@ -83,9 +83,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRe
         public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests/{privilegedAccessGroupEligibilityScheduleRequest%2Did}/principal{?%24expand,%24select}", rawUrl) {
         }
         /// <summary>
-        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand.
+        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand and $select nested in $expand for id only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -100,7 +100,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleRe
             return requestInfo;
         }
         /// <summary>
-        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand.
+        /// References the principal that&apos;s in the scope of the membership or ownership eligibility request through the group that&apos;s governed by PIM. Supports $expand and $select nested in $expand for id only.
         /// </summary>
         public class PrincipalRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
