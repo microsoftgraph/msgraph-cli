@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum BookingReminderRecipients {
+    public enum BookingReminderRecipients
+    {
         [EnumMember(Value = "allAttendees")]
         AllAttendees,
         [EnumMember(Value = "staff")]

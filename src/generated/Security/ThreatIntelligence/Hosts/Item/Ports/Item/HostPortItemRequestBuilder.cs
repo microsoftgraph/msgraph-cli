@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.Item {
     /// <summary>
     /// Provides operations to manage the ports property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class HostPortItemRequestBuilder : BaseCliRequestBuilder {
+    public class HostPortItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The hostPorts associated with a host.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The hostPorts associated with a host.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.Item {
         /// Instantiates a new <see cref="HostPortItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostPortItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/ports/{hostPort%2Did}{?%24expand,%24select}", pathParameters) {
+        public HostPortItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/ports/{hostPort%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="HostPortItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostPortItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/ports/{hostPort%2Did}{?%24expand,%24select}", rawUrl) {
+        public HostPortItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/ports/{hostPort%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The hostPorts associated with a host.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostPortItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostPortItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostPortItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostPortItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports.Item {
         /// <summary>
         /// The hostPorts associated with a host.
         /// </summary>
-        public class HostPortItemRequestBuilderGetQueryParameters {
+        public class HostPortItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

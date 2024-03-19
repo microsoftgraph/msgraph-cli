@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
-    public class Indicator : ApiSdk.Models.Entity, IParsable {
+    public class Indicator : ApiSdk.Models.Entity, IParsable 
+    {
         /// <summary>The artifact property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -19,12 +20,14 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Indicator"></returns>
+        /// <returns>A <see cref="Indicator"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Indicator CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Indicator CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
-            return mappingValue switch {
+            return mappingValue switch
+            {
                 "#microsoft.graph.security.articleIndicator" => new ArticleIndicator(),
                 "#microsoft.graph.security.intelligenceProfileIndicator" => new IntelligenceProfileIndicator(),
                 _ => new Indicator(),
@@ -33,9 +36,11 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"artifact", n => { Artifact = n.GetObjectValue<ApiSdk.Models.Security.Artifact>(ApiSdk.Models.Security.Artifact.CreateFromDiscriminatorValue); } },
                 {"source", n => { Source = n.GetEnumValue<IndicatorSource>(); } },
             };
@@ -44,7 +49,8 @@ namespace ApiSdk.Models.Security {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.Security.Artifact>("artifact", Artifact);

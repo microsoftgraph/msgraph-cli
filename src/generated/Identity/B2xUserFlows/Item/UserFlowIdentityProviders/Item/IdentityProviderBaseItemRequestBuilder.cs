@@ -14,12 +14,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item {
     /// <summary>
     /// Builds and executes requests for operations under \identity\b2xUserFlows\{b2xIdentityUserFlow-id}\userFlowIdentityProviders\{identityProviderBase-id}
     /// </summary>
-    public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder {
+    public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefByIdNavCommand()
+        {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
             var builder = new RefRequestBuilder(PathParameters);
@@ -35,13 +37,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item {
         /// Instantiates a new <see cref="IdentityProviderBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}", pathParameters) {
+        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="IdentityProviderBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}", rawUrl) {
+        public IdentityProviderBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}", rawUrl)
+        {
         }
     }
 }

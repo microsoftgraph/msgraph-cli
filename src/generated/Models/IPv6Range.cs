@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// IPv6 Range definition.
     /// </summary>
-    public class IPv6Range : IpRange, IParsable {
+    public class IPv6Range : IpRange, IParsable 
+    {
         /// <summary>Lower address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -28,24 +29,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="IPv6Range"/> and sets the default values.
         /// </summary>
-        public IPv6Range() : base() {
+        public IPv6Range() : base()
+        {
             OdataType = "#microsoft.graph.iPv6Range";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="IPv6Range"></returns>
+        /// <returns>A <see cref="IPv6Range"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IPv6Range CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new IPv6Range CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IPv6Range();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"lowerAddress", n => { LowerAddress = n.GetStringValue(); } },
                 {"upperAddress", n => { UpperAddress = n.GetStringValue(); } },
             };
@@ -54,7 +59,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("lowerAddress", LowerAddress);

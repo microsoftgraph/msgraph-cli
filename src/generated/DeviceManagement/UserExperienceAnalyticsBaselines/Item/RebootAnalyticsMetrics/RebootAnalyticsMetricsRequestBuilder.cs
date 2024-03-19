@@ -18,12 +18,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAn
     /// <summary>
     /// Provides operations to manage the rebootAnalyticsMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class RebootAnalyticsMetricsRequestBuilder : BaseCliRequestBuilder {
+    public class RebootAnalyticsMetricsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The scores and insights for the reboot analytics metrics.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The scores and insights for the reboot analytics metrics.";
             var userExperienceAnalyticsBaselineIdOption = new Option<string>("--user-experience-analytics-baseline-id", description: "The unique identifier of userExperienceAnalyticsBaseline") {
@@ -74,25 +76,29 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAn
         /// Instantiates a new <see cref="RebootAnalyticsMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RebootAnalyticsMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", pathParameters) {
+        public RebootAnalyticsMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RebootAnalyticsMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RebootAnalyticsMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", rawUrl) {
+        public RebootAnalyticsMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/rebootAnalyticsMetrics{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The scores and insights for the reboot analytics metrics.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RebootAnalyticsMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RebootAnalyticsMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RebootAnalyticsMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RebootAnalyticsMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.RebootAn
         /// <summary>
         /// The scores and insights for the reboot analytics metrics.
         /// </summary>
-        public class RebootAnalyticsMetricsRequestBuilderGetQueryParameters {
+        public class RebootAnalyticsMetricsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

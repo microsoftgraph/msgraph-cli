@@ -23,12 +23,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
     /// <summary>
     /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
     /// </summary>
-    public class B2xIdentityUserFlowItemRequestBuilder : BaseCliRequestBuilder {
+    public class B2xIdentityUserFlowItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The apiConnectorConfiguration property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApiConnectorConfigurationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApiConnectorConfigurationNavCommand()
+        {
             var command = new Command("api-connector-configuration");
             command.Description = "The apiConnectorConfiguration property";
             var builder = new ApiConnectorConfigurationRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// Delete a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
@@ -86,8 +89,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
@@ -137,8 +141,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityProvidersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityProvidersNavCommand()
+        {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
@@ -162,8 +167,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLanguagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLanguagesNavCommand()
+        {
             var command = new Command("languages");
             command.Description = "Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new LanguagesRequestBuilder(PathParameters);
@@ -188,8 +194,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Update the navigation property b2xUserFlows in identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property b2xUserFlows in identity";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
@@ -238,8 +245,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserAttributeAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserAttributeAssignmentsNavCommand()
+        {
             var command = new Command("user-attribute-assignments");
             command.Description = "Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new UserAttributeAssignmentsRequestBuilder(PathParameters);
@@ -266,8 +274,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserFlowIdentityProvidersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserFlowIdentityProvidersNavCommand()
+        {
             var command = new Command("user-flow-identity-providers");
             command.Description = "Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new UserFlowIdentityProvidersRequestBuilder(PathParameters);
@@ -293,25 +302,29 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// Instantiates a new <see cref="B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public B2xIdentityUserFlowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", pathParameters) {
+        public B2xIdentityUserFlowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="B2xIdentityUserFlowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public B2xIdentityUserFlowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", rawUrl) {
+        public B2xIdentityUserFlowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a b2xIdentityUserFlow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -321,14 +334,16 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<B2xIdentityUserFlowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -338,15 +353,17 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Update the navigation property b2xUserFlows in identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(B2xIdentityUserFlow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}", PathParameters);
@@ -357,7 +374,8 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// </summary>
-        public class B2xIdentityUserFlowItemRequestBuilderGetQueryParameters {
+        public class B2xIdentityUserFlowItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

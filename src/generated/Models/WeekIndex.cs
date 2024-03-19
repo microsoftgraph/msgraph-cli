@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum WeekIndex {
+    public enum WeekIndex
+    {
         [EnumMember(Value = "first")]
         First,
         [EnumMember(Value = "second")]

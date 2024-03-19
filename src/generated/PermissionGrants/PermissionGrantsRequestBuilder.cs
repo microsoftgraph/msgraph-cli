@@ -23,12 +23,14 @@ namespace ApiSdk.PermissionGrants {
     /// <summary>
     /// Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
     /// </summary>
-    public class PermissionGrantsRequestBuilder : BaseCliRequestBuilder {
+    public class PermissionGrantsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new ResourceSpecificPermissionGrantItemRequestBuilder(PathParameters);
@@ -45,8 +47,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Add new entity to permissionGrants
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Add new entity to permissionGrants";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -89,8 +92,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeltaNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeltaNavCommand()
+        {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -105,8 +109,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetAvailableExtensionPropertiesNavCommand()
+        {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -121,8 +126,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByIdsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByIdsNavCommand()
+        {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -137,8 +143,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Get entities from permissionGrants
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get entities from permissionGrants";
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
@@ -212,8 +219,9 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildValidatePropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildValidatePropertiesNavCommand()
+        {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
@@ -229,25 +237,29 @@ namespace ApiSdk.PermissionGrants {
         /// Instantiates a new <see cref="PermissionGrantsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PermissionGrantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/permissionGrants{?%24expand,%24filter,%24orderby,%24search,%24select}", pathParameters) {
+        public PermissionGrantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/permissionGrants{?%24expand,%24filter,%24orderby,%24search,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PermissionGrantsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PermissionGrantsRequestBuilder(string rawUrl) : base("{+baseurl}/permissionGrants{?%24expand,%24filter,%24orderby,%24search,%24select}", rawUrl) {
+        public PermissionGrantsRequestBuilder(string rawUrl) : base("{+baseurl}/permissionGrants{?%24expand,%24filter,%24orderby,%24search,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get entities from permissionGrants
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionGrantsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionGrantsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionGrantsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PermissionGrantsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -257,15 +269,17 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Add new entity to permissionGrants
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/permissionGrants", PathParameters);
@@ -276,7 +290,8 @@ namespace ApiSdk.PermissionGrants {
         /// <summary>
         /// Get entities from permissionGrants
         /// </summary>
-        public class PermissionGrantsRequestBuilderGetQueryParameters {
+        public class PermissionGrantsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

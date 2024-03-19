@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// The user experience analytics device for work from anywhere report.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereDevice : Entity, IParsable {
+    public class UserExperienceAnalyticsWorkFromAnywhereDevice : Entity, IParsable 
+    {
         /// <summary>When TRUE, indicates the intune device&apos;s autopilot profile is assigned. When FALSE, indicates it&apos;s not Assigned. Supports: $select, $OrderBy. Read-only.</summary>
         public bool? AutoPilotProfileAssigned { get; set; }
         /// <summary>When TRUE, indicates the intune device&apos;s autopilot is registered. When FALSE, indicates it&apos;s not registered. Supports: $select, $OrderBy. Read-only.</summary>
@@ -146,18 +147,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="UserExperienceAnalyticsWorkFromAnywhereDevice"></returns>
+        /// <returns>A <see cref="UserExperienceAnalyticsWorkFromAnywhereDevice"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new UserExperienceAnalyticsWorkFromAnywhereDevice CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new UserExperienceAnalyticsWorkFromAnywhereDevice CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserExperienceAnalyticsWorkFromAnywhereDevice();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"autoPilotProfileAssigned", n => { AutoPilotProfileAssigned = n.GetBoolValue(); } },
                 {"autoPilotRegistered", n => { AutoPilotRegistered = n.GetBoolValue(); } },
                 {"azureAdDeviceId", n => { AzureAdDeviceId = n.GetStringValue(); } },
@@ -198,7 +202,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("autoPilotProfileAssigned", AutoPilotProfileAssigned);

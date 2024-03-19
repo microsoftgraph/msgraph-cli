@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ActivityType {
+    public enum ActivityType
+    {
         [EnumMember(Value = "signin")]
         Signin,
         [EnumMember(Value = "user")]

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RegistryHive {
+    public enum RegistryHive
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "currentConfig")]

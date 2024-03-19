@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum HostReputationRuleSeverity {
+    public enum HostReputationRuleSeverity
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "low")]

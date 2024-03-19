@@ -17,12 +17,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
     /// <summary>
     /// Provides operations to call the allowedCalendarSharingRoles method.
     /// </summary>
-    public class AllowedCalendarSharingRolesWithUserRequestBuilder : BaseCliRequestBuilder {
+    public class AllowedCalendarSharingRolesWithUserRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function allowedCalendarSharingRoles
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function allowedCalendarSharingRoles";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -118,25 +120,29 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
         /// Instantiates a new <see cref="AllowedCalendarSharingRolesWithUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/allowedCalendarSharingRoles(User='{User}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/allowedCalendarSharingRoles(User='{User}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AllowedCalendarSharingRolesWithUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllowedCalendarSharingRolesWithUserRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/allowedCalendarSharingRoles(User='{User}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public AllowedCalendarSharingRolesWithUserRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/allowedCalendarSharingRoles(User='{User}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function allowedCalendarSharingRoles
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -146,7 +152,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSh
         /// <summary>
         /// Invoke function allowedCalendarSharingRoles
         /// </summary>
-        public class AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters {
+        public class AllowedCalendarSharingRolesWithUserRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

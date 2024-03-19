@@ -17,13 +17,15 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
     /// <summary>
     /// Provides operations to call the setMobileDeviceManagementAuthority method.
     /// </summary>
-    public class SetMobileDeviceManagementAuthorityRequestBuilder : BaseCliRequestBuilder {
+    public class SetMobileDeviceManagementAuthorityRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Set mobile device management authority
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-setmobiledevicemanagementauthority?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Set mobile device management authority\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-setmobiledevicemanagementauthority?view=graph-rest-1.0";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
@@ -60,25 +62,29 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
         /// Instantiates a new <see cref="SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetMobileDeviceManagementAuthorityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", pathParameters) {
+        public SetMobileDeviceManagementAuthorityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SetMobileDeviceManagementAuthorityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetMobileDeviceManagementAuthorityRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", rawUrl) {
+        public SetMobileDeviceManagementAuthorityRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/setMobileDeviceManagementAuthority", rawUrl)
+        {
         }
         /// <summary>
         /// Set mobile device management authority
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

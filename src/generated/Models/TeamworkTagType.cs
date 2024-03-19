@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamworkTagType {
+    public enum TeamworkTagType
+    {
         [EnumMember(Value = "standard")]
         Standard,
         [EnumMember(Value = "unknownFutureValue")]

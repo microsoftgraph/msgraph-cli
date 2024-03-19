@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Owner type of device.</summary>
-    public enum ManagedDeviceOwnerType {
+    public enum ManagedDeviceOwnerType
+    {
         /// <summary>Unknown.</summary>
         [EnumMember(Value = "unknown")]
         Unknown,

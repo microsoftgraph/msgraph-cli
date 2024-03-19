@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
     /// <summary>
     /// Provides operations to call the syncLicenses method.
     /// </summary>
-    public class SyncLicensesRequestBuilder : BaseCliRequestBuilder {
+    public class SyncLicensesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
@@ -61,25 +63,29 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
         /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SyncLicensesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", pathParameters) {
+        public SyncLicensesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SyncLicensesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SyncLicensesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", rawUrl) {
+        public SyncLicensesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}/syncLicenses", rawUrl)
+        {
         }
         /// <summary>
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
     /// <summary>
     /// Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class WindowsInformationProtectionAppLearningSummaryItemRequestBuilder : BaseCliRequestBuilder {
+    public class WindowsInformationProtectionAppLearningSummaryItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a windowsInformationProtectionAppLearningSummary.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a windowsInformationProtectionAppLearningSummary.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-delete?view=graph-rest-1.0";
             var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
@@ -58,8 +60,9 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// Read properties and relationships of the windowsInformationProtectionAppLearningSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the windowsInformationProtectionAppLearningSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-get?view=graph-rest-1.0";
             var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
@@ -110,8 +113,9 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// Update the properties of a windowsInformationProtectionAppLearningSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a windowsInformationProtectionAppLearningSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-update?view=graph-rest-1.0";
             var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
@@ -161,25 +165,29 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// Instantiates a new <see cref="WindowsInformationProtectionAppLearningSummaryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}{?%24expand,%24select}", pathParameters) {
+        public WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WindowsInformationProtectionAppLearningSummaryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}{?%24expand,%24select}", rawUrl) {
+        public WindowsInformationProtectionAppLearningSummaryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a windowsInformationProtectionAppLearningSummary.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -189,14 +197,16 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Read properties and relationships of the windowsInformationProtectionAppLearningSummary object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,15 +216,17 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Update the properties of a windowsInformationProtectionAppLearningSummary object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionAppLearningSummary body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries/{windowsInformationProtectionAppLearningSummary%2Did}", PathParameters);
@@ -225,7 +237,8 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         /// <summary>
         /// Read properties and relationships of the windowsInformationProtectionAppLearningSummary object.
         /// </summary>
-        public class WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters {
+        public class WindowsInformationProtectionAppLearningSummaryItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

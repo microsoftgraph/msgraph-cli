@@ -4,7 +4,8 @@ using System;
 namespace ApiSdk.Models {
     /// <summary>Product Status of Windows Defender</summary>
     [Flags]
-    public enum WindowsDefenderProductStatus {
+    public enum WindowsDefenderProductStatus
+    {
         /// <summary>No status</summary>
         [EnumMember(Value = "noStatus")]
         NoStatus = 1,

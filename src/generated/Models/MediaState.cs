@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum MediaState {
+    public enum MediaState
+    {
         [EnumMember(Value = "active")]
         Active,
         [EnumMember(Value = "inactive")]

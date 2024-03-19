@@ -19,12 +19,14 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
     /// <summary>
     /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
     /// </summary>
-    public class DelegatedAdminCustomerItemRequestBuilder : BaseCliRequestBuilder {
+    public class DelegatedAdminCustomerItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property delegatedAdminCustomers for tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property delegatedAdminCustomers for tenantRelationships";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
@@ -58,8 +60,9 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// Read the properties of a delegatedAdminCustomer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties of a delegatedAdminCustomer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
@@ -109,8 +112,9 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Update the navigation property delegatedAdminCustomers in tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property delegatedAdminCustomers in tenantRelationships";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
@@ -159,8 +163,9 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServiceManagementDetailsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServiceManagementDetailsNavCommand()
+        {
             var command = new Command("service-management-details");
             command.Description = "Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.";
             var builder = new ServiceManagementDetailsRequestBuilder(PathParameters);
@@ -186,25 +191,29 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// Instantiates a new <see cref="DelegatedAdminCustomerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DelegatedAdminCustomerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}{?%24expand,%24select}", pathParameters) {
+        public DelegatedAdminCustomerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DelegatedAdminCustomerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DelegatedAdminCustomerItemRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}{?%24expand,%24select}", rawUrl) {
+        public DelegatedAdminCustomerItemRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property delegatedAdminCustomers for tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Read the properties of a delegatedAdminCustomer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminCustomerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminCustomerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminCustomerItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DelegatedAdminCustomerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Update the navigation property delegatedAdminCustomers in tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DelegatedAdminCustomer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DelegatedAdminCustomer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DelegatedAdminCustomer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DelegatedAdminCustomer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Read the properties of a delegatedAdminCustomer object.
         /// </summary>
-        public class DelegatedAdminCustomerItemRequestBuilderGetQueryParameters {
+        public class DelegatedAdminCustomerItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

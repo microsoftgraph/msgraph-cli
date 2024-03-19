@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum FileHashType {
+    public enum FileHashType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "sha1")]

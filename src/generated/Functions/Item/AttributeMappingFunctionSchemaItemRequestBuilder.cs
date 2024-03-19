@@ -18,12 +18,14 @@ namespace ApiSdk.Functions.Item {
     /// <summary>
     /// Provides operations to manage the collection of attributeMappingFunctionSchema entities.
     /// </summary>
-    public class AttributeMappingFunctionSchemaItemRequestBuilder : BaseCliRequestBuilder {
+    public class AttributeMappingFunctionSchemaItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete entity from functions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete entity from functions";
             var attributeMappingFunctionSchemaIdOption = new Option<string>("--attribute-mapping-function-schema-id", description: "The unique identifier of attributeMappingFunctionSchema") {
@@ -56,8 +58,9 @@ namespace ApiSdk.Functions.Item {
         /// <summary>
         /// Get entity from functions by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get entity from functions by key";
             var attributeMappingFunctionSchemaIdOption = new Option<string>("--attribute-mapping-function-schema-id", description: "The unique identifier of attributeMappingFunctionSchema") {
@@ -107,8 +110,9 @@ namespace ApiSdk.Functions.Item {
         /// <summary>
         /// Update entity in functions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update entity in functions";
             var attributeMappingFunctionSchemaIdOption = new Option<string>("--attribute-mapping-function-schema-id", description: "The unique identifier of attributeMappingFunctionSchema") {
@@ -158,25 +162,29 @@ namespace ApiSdk.Functions.Item {
         /// Instantiates a new <see cref="AttributeMappingFunctionSchemaItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttributeMappingFunctionSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", pathParameters) {
+        public AttributeMappingFunctionSchemaItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AttributeMappingFunctionSchemaItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttributeMappingFunctionSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", rawUrl) {
+        public AttributeMappingFunctionSchemaItemRequestBuilder(string rawUrl) : base("{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete entity from functions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -186,14 +194,16 @@ namespace ApiSdk.Functions.Item {
         /// <summary>
         /// Get entity from functions by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -203,15 +213,17 @@ namespace ApiSdk.Functions.Item {
         /// <summary>
         /// Update entity in functions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AttributeMappingFunctionSchema body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AttributeMappingFunctionSchema body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AttributeMappingFunctionSchema body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AttributeMappingFunctionSchema body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/functions/{attributeMappingFunctionSchema%2Did}", PathParameters);
@@ -222,7 +234,8 @@ namespace ApiSdk.Functions.Item {
         /// <summary>
         /// Get entity from functions by key
         /// </summary>
-        public class AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters {
+        public class AttributeMappingFunctionSchemaItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

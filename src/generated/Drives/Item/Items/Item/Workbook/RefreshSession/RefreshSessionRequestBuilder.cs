@@ -17,13 +17,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession {
     /// <summary>
     /// Provides operations to call the refreshSession method.
     /// </summary>
-    public class RefreshSessionRequestBuilder : BaseCliRequestBuilder {
+    public class RefreshSessionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Use this API to refresh an existing workbook session.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbook-refreshsession?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Use this API to refresh an existing workbook session.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbook-refreshsession?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -56,25 +58,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession {
         /// Instantiates a new <see cref="RefreshSessionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefreshSessionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/refreshSession", pathParameters) {
+        public RefreshSessionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/refreshSession", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RefreshSessionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefreshSessionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/refreshSession", rawUrl) {
+        public RefreshSessionRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/refreshSession", rawUrl)
+        {
         }
         /// <summary>
         /// Use this API to refresh an existing workbook session.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

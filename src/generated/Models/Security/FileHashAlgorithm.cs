@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum FileHashAlgorithm {
+    public enum FileHashAlgorithm
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "md5")]

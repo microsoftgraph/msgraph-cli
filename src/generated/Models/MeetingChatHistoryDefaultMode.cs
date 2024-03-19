@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum MeetingChatHistoryDefaultMode {
+    public enum MeetingChatHistoryDefaultMode
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "all")]

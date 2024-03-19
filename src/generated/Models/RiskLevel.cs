@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RiskLevel {
+    public enum RiskLevel
+    {
         [EnumMember(Value = "low")]
         Low,
         [EnumMember(Value = "medium")]

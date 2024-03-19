@@ -36,12 +36,14 @@ namespace ApiSdk.Groups.Item.Team {
     /// <summary>
     /// Provides operations to manage the team property of the microsoft.graph.group entity.
     /// </summary>
-    public class TeamRequestBuilder : BaseCliRequestBuilder {
+    public class TeamRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAllChannelsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAllChannelsNavCommand()
+        {
             var command = new Command("all-channels");
             command.Description = "Provides operations to manage the allChannels property of the microsoft.graph.team entity.";
             var builder = new AllChannelsRequestBuilder(PathParameters);
@@ -65,8 +67,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the archive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildArchiveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildArchiveNavCommand()
+        {
             var command = new Command("archive");
             command.Description = "Provides operations to call the archive method.";
             var builder = new ArchiveRequestBuilder(PathParameters);
@@ -81,8 +84,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildChannelsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildChannelsNavCommand()
+        {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.team entity.";
             var builder = new ChannelsRequestBuilder(PathParameters);
@@ -108,8 +112,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the clone method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCloneNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCloneNavCommand()
+        {
             var command = new Command("clone");
             command.Description = "Provides operations to call the clone method.";
             var builder = new CloneRequestBuilder(PathParameters);
@@ -124,8 +129,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the completeMigration method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCompleteMigrationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCompleteMigrationNavCommand()
+        {
             var command = new Command("complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
             var builder = new CompleteMigrationRequestBuilder(PathParameters);
@@ -140,8 +146,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Delete navigation property team for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property team for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -174,8 +181,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// The team associated with this group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The team associated with this group.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -225,8 +233,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupNavCommand()
+        {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.team entity.";
             var builder = new GroupRequestBuilder(PathParameters);
@@ -247,8 +256,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIncomingChannelsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIncomingChannelsNavCommand()
+        {
             var command = new Command("incoming-channels");
             command.Description = "Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.";
             var builder = new IncomingChannelsRequestBuilder(PathParameters);
@@ -272,8 +282,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInstalledAppsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInstalledAppsNavCommand()
+        {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.team entity.";
             var builder = new InstalledAppsRequestBuilder(PathParameters);
@@ -298,8 +309,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMembersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMembersNavCommand()
+        {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
             var builder = new MembersRequestBuilder(PathParameters);
@@ -325,8 +337,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOperationsNavCommand()
+        {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.team entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
@@ -351,8 +364,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPermissionGrantsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPermissionGrantsNavCommand()
+        {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.";
             var builder = new PermissionGrantsRequestBuilder(PathParameters);
@@ -377,8 +391,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPhotoNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPhotoNavCommand()
+        {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.team entity.";
             var builder = new PhotoRequestBuilder(PathParameters);
@@ -400,8 +415,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrimaryChannelNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrimaryChannelNavCommand()
+        {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
             var builder = new PrimaryChannelRequestBuilder(PathParameters);
@@ -432,8 +448,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Update the navigation property team in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPutCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPutCommand()
+        {
             var command = new Command("put");
             command.Description = "Update the navigation property team in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -482,8 +499,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the schedule property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildScheduleNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildScheduleNavCommand()
+        {
             var command = new Command("schedule");
             command.Description = "Provides operations to manage the schedule property of the microsoft.graph.team entity.";
             var builder = new ScheduleRequestBuilder(PathParameters);
@@ -515,8 +533,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSendActivityNotificationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSendActivityNotificationNavCommand()
+        {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
             var builder = new SendActivityNotificationRequestBuilder(PathParameters);
@@ -531,8 +550,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTagsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTagsNavCommand()
+        {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.team entity.";
             var builder = new TagsRequestBuilder(PathParameters);
@@ -557,8 +577,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the template property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTemplateNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTemplateNavCommand()
+        {
             var command = new Command("template");
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
             var builder = new TemplateRequestBuilder(PathParameters);
@@ -573,8 +594,9 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnarchiveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnarchiveNavCommand()
+        {
             var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters);
@@ -590,25 +612,29 @@ namespace ApiSdk.Groups.Item.Team {
         /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team{?%24expand,%24select}", pathParameters) {
+        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team{?%24expand,%24select}", rawUrl) {
+        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property team for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/team", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -618,14 +644,16 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// The team associated with this group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -635,15 +663,17 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Update the navigation property team in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Team body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Team body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Team body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Team body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/groups/{group%2Did}/team", PathParameters);
@@ -654,7 +684,8 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// The team associated with this group.
         /// </summary>
-        public class TeamRequestBuilderGetQueryParameters {
+        public class TeamRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

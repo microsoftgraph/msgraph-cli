@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
     /// <summary>
     /// Provides operations to manage the reputation property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class ReputationRequestBuilder : BaseCliRequestBuilder {
+    public class ReputationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property reputation for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property reputation for security";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -57,8 +59,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// Get the properties and relationships of a hostReputation object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-get-reputation?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a hostReputation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-get-reputation?view=graph-rest-1.0";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -108,8 +111,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// <summary>
         /// Update the navigation property reputation in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property reputation in security";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -159,25 +163,29 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// Instantiates a new <see cref="ReputationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ReputationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", pathParameters) {
+        public ReputationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ReputationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ReputationRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", rawUrl) {
+        public ReputationRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property reputation for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -187,14 +195,16 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// <summary>
         /// Get the properties and relationships of a hostReputation object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ReputationRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ReputationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ReputationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ReputationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -204,15 +214,17 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// <summary>
         /// Update the navigation property reputation in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(HostReputation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(HostReputation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(HostReputation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(HostReputation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/reputation", PathParameters);
@@ -223,7 +235,8 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation {
         /// <summary>
         /// Get the properties and relationships of a hostReputation object.
         /// </summary>
-        public class ReputationRequestBuilderGetQueryParameters {
+        public class ReputationRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

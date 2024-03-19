@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum IosUpdatesInstallStatus {
+    public enum IosUpdatesInstallStatus
+    {
         [EnumMember(Value = "deviceOsHigherThanDesiredOsVersion")]
         DeviceOsHigherThanDesiredOsVersion,
         [EnumMember(Value = "sharedDeviceUserLoggedInError")]

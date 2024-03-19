@@ -19,12 +19,14 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.GraphAppRoleAssignment {
     /// <summary>
     /// Casts the previous resource to appRoleAssignment.
     /// </summary>
-    public class GraphAppRoleAssignmentRequestBuilder : BaseCliRequestBuilder {
+    public class GraphAppRoleAssignmentRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -39,8 +41,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.GraphAppRoleAssignment {
         /// <summary>
         /// Get the items of type microsoft.graph.appRoleAssignment in the microsoft.graph.directoryObject collection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the items of type microsoft.graph.appRoleAssignment in the microsoft.graph.directoryObject collection";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
@@ -146,25 +149,29 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.GraphAppRoleAssignment {
         /// Instantiates a new <see cref="GraphAppRoleAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphAppRoleAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/graph.appRoleAssignment{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GraphAppRoleAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/graph.appRoleAssignment{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphAppRoleAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphAppRoleAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/graph.appRoleAssignment{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GraphAppRoleAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners/graph.appRoleAssignment{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the items of type microsoft.graph.appRoleAssignment in the microsoft.graph.directoryObject collection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -174,7 +181,8 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.GraphAppRoleAssignment {
         /// <summary>
         /// Get the items of type microsoft.graph.appRoleAssignment in the microsoft.graph.directoryObject collection
         /// </summary>
-        public class GraphAppRoleAssignmentRequestBuilderGetQueryParameters {
+        public class GraphAppRoleAssignmentRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

@@ -19,12 +19,14 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
     /// <summary>
     /// Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder {
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentNavCommand()
+        {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -40,8 +42,9 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
         /// <summary>
         /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -98,25 +101,29 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", pathParameters) {
+        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", rawUrl) {
+        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/driveItem{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -126,7 +133,8 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem {
         /// <summary>
         /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
         /// </summary>
-        public class DriveItemRequestBuilderGetQueryParameters {
+        public class DriveItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrivilegedAccessGroupRelationships {
+    public enum PrivilegedAccessGroupRelationships
+    {
         [EnumMember(Value = "owner")]
         Owner,
         [EnumMember(Value = "member")]

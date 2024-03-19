@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ChatMessageType {
+    public enum ChatMessageType
+    {
         [EnumMember(Value = "message")]
         Message,
         [EnumMember(Value = "chatEvent")]

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SynchronizationSecret {
+    public enum SynchronizationSecret
+    {
         [EnumMember(Value = "None")]
         None,
         [EnumMember(Value = "UserName")]

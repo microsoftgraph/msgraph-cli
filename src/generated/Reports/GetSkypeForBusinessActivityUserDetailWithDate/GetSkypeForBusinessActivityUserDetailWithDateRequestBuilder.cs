@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate {
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessActivityUserDetail method.
     /// </summary>
-    public class GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder {
+    public class GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getSkypeForBusinessActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getSkypeForBusinessActivityUserDetail";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate {
         /// Instantiates a new <see cref="GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessActivityUserDetail(date={date})", pathParameters) {
+        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessActivityUserDetail(date={date})", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessActivityUserDetail(date={date})", rawUrl) {
+        public GetSkypeForBusinessActivityUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessActivityUserDetail(date={date})", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

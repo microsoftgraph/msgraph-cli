@@ -20,12 +20,14 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
     /// <summary>
     /// Provides operations to manage the whoisRecords property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class WhoisRecordItemRequestBuilder : BaseCliRequestBuilder {
+    public class WhoisRecordItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property whoisRecords for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property whoisRecords for security";
             var whoisRecordIdOption = new Option<string>("--whois-record-id", description: "The unique identifier of whoisRecord") {
@@ -59,8 +61,9 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-whoisrecord-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-whoisrecord-get?view=graph-rest-1.0";
             var whoisRecordIdOption = new Option<string>("--whois-record-id", description: "The unique identifier of whoisRecord") {
@@ -110,8 +113,9 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.security.whoisRecord entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHistoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHistoryNavCommand()
+        {
             var command = new Command("history");
             command.Description = "Provides operations to manage the history property of the microsoft.graph.security.whoisRecord entity.";
             var builder = new HistoryRequestBuilder(PathParameters);
@@ -135,8 +139,9 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Provides operations to manage the host property of the microsoft.graph.security.whoisBaseRecord entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostNavCommand()
+        {
             var command = new Command("host");
             command.Description = "Provides operations to manage the host property of the microsoft.graph.security.whoisBaseRecord entity.";
             var builder = new HostRequestBuilder(PathParameters);
@@ -151,8 +156,9 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Update the navigation property whoisRecords in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property whoisRecords in security";
             var whoisRecordIdOption = new Option<string>("--whois-record-id", description: "The unique identifier of whoisRecord") {
@@ -202,25 +208,29 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// Instantiates a new <see cref="WhoisRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WhoisRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", pathParameters) {
+        public WhoisRecordItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WhoisRecordItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WhoisRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", rawUrl) {
+        public WhoisRecordItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property whoisRecords for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -230,14 +240,16 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WhoisRecordItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WhoisRecordItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WhoisRecordItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WhoisRecordItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -247,15 +259,17 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Update the navigation property whoisRecords in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WhoisRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WhoisRecord body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WhoisRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WhoisRecord body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/threatIntelligence/whoisRecords/{whoisRecord%2Did}", PathParameters);
@@ -266,7 +280,8 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item {
         /// <summary>
         /// Get the specified whoisRecord resource.  Specify the desired whoisRecord in one of the following two ways:- Identify a host and get its current whoisRecord. - Specify an id value to get the corresponding whoisRecord.
         /// </summary>
-        public class WhoisRecordItemRequestBuilderGetQueryParameters {
+        public class WhoisRecordItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -24,12 +24,14 @@ namespace ApiSdk.Print {
     /// <summary>
     /// Provides operations to manage the print singleton.
     /// </summary>
-    public class PrintRequestBuilder : BaseCliRequestBuilder {
+    public class PrintRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildConnectorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildConnectorsNavCommand()
+        {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.print entity.";
             var builder = new ConnectorsRequestBuilder(PathParameters);
@@ -54,8 +56,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Get print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get print";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -99,8 +102,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOperationsNavCommand()
+        {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.print entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
@@ -125,8 +129,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Update print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update print";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -169,8 +174,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the printers property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrintersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrintersNavCommand()
+        {
             var command = new Command("printers");
             command.Description = "Provides operations to manage the printers property of the microsoft.graph.print entity.";
             var builder = new PrintersRequestBuilder(PathParameters);
@@ -195,8 +201,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the services property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServicesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServicesNavCommand()
+        {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.print entity.";
             var builder = new ServicesRequestBuilder(PathParameters);
@@ -221,8 +228,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the shares property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharesNavCommand()
+        {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.print entity.";
             var builder = new SharesRequestBuilder(PathParameters);
@@ -247,8 +255,9 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTaskDefinitionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTaskDefinitionsNavCommand()
+        {
             var command = new Command("task-definitions");
             command.Description = "Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.";
             var builder = new TaskDefinitionsRequestBuilder(PathParameters);
@@ -274,25 +283,29 @@ namespace ApiSdk.Print {
         /// Instantiates a new <see cref="PrintRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print{?%24expand,%24select}", pathParameters) {
+        public PrintRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrintRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintRequestBuilder(string rawUrl) : base("{+baseurl}/print{?%24expand,%24select}", rawUrl) {
+        public PrintRequestBuilder(string rawUrl) : base("{+baseurl}/print{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -302,15 +315,17 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Update print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Print body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Print body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Print body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Print body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/print", PathParameters);
@@ -321,7 +336,8 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Get print
         /// </summary>
-        public class PrintRequestBuilderGetQueryParameters {
+        public class PrintRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

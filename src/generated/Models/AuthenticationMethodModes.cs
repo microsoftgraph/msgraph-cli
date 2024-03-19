@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum AuthenticationMethodModes {
+    public enum AuthenticationMethodModes
+    {
         [EnumMember(Value = "password")]
         Password = 1,
         [EnumMember(Value = "voice")]

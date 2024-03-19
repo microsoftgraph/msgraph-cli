@@ -30,12 +30,14 @@ namespace ApiSdk.Security {
     /// <summary>
     /// Provides operations to manage the security singleton.
     /// </summary>
-    public class SecurityRequestBuilder : BaseCliRequestBuilder {
+    public class SecurityRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAlerts_v2NavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAlerts_v2NavCommand()
+        {
             var command = new Command("alerts_v2");
             command.Description = "Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.";
             var builder = new Alerts_v2RequestBuilder(PathParameters);
@@ -60,8 +62,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the alerts property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAlertsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAlertsNavCommand()
+        {
             var command = new Command("alerts");
             command.Description = "Provides operations to manage the alerts property of the microsoft.graph.security entity.";
             var builder = new AlertsRequestBuilder(PathParameters);
@@ -86,8 +89,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAttackSimulationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAttackSimulationNavCommand()
+        {
             var command = new Command("attack-simulation");
             command.Description = "Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.";
             var builder = new AttackSimulationRequestBuilder(PathParameters);
@@ -117,8 +121,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the cases property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCasesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCasesNavCommand()
+        {
             var command = new Command("cases");
             command.Description = "Provides operations to manage the cases property of the microsoft.graph.security entity.";
             var builder = new CasesRequestBuilder(PathParameters);
@@ -141,8 +146,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Get security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get security";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -186,8 +192,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the incidents property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIncidentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIncidentsNavCommand()
+        {
             var command = new Command("incidents");
             command.Description = "Provides operations to manage the incidents property of the microsoft.graph.security entity.";
             var builder = new IncidentsRequestBuilder(PathParameters);
@@ -212,8 +219,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to call the runHuntingQuery method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand()
+        {
             var command = new Command("microsoft-graph-security-run-hunting-query");
             command.Description = "Provides operations to call the runHuntingQuery method.";
             var builder = new MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(PathParameters);
@@ -228,8 +236,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Update security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -272,8 +281,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSecureScoreControlProfilesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSecureScoreControlProfilesNavCommand()
+        {
             var command = new Command("secure-score-control-profiles");
             command.Description = "Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.";
             var builder = new SecureScoreControlProfilesRequestBuilder(PathParameters);
@@ -298,8 +308,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the secureScores property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSecureScoresNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSecureScoresNavCommand()
+        {
             var command = new Command("secure-scores");
             command.Description = "Provides operations to manage the secureScores property of the microsoft.graph.security entity.";
             var builder = new SecureScoresRequestBuilder(PathParameters);
@@ -324,8 +335,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubjectRightsRequestsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubjectRightsRequestsNavCommand()
+        {
             var command = new Command("subject-rights-requests");
             command.Description = "Provides operations to manage the subjectRightsRequests property of the microsoft.graph.security entity.";
             var builder = new SubjectRightsRequestsRequestBuilder(PathParameters);
@@ -350,8 +362,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildThreatIntelligenceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildThreatIntelligenceNavCommand()
+        {
             var command = new Command("threat-intelligence");
             command.Description = "Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.";
             var builder = new ThreatIntelligenceRequestBuilder(PathParameters);
@@ -390,8 +403,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the triggers property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTriggersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTriggersNavCommand()
+        {
             var command = new Command("triggers");
             command.Description = "Provides operations to manage the triggers property of the microsoft.graph.security entity.";
             var builder = new TriggersRequestBuilder(PathParameters);
@@ -414,8 +428,9 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTriggerTypesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTriggerTypesNavCommand()
+        {
             var command = new Command("trigger-types");
             command.Description = "Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.";
             var builder = new TriggerTypesRequestBuilder(PathParameters);
@@ -439,25 +454,29 @@ namespace ApiSdk.Security {
         /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SecurityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security{?%24expand,%24select}", pathParameters) {
+        public SecurityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SecurityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SecurityRequestBuilder(string rawUrl) : base("{+baseurl}/security{?%24expand,%24select}", rawUrl) {
+        public SecurityRequestBuilder(string rawUrl) : base("{+baseurl}/security{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SecurityRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -467,15 +486,17 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Update security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Security body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security", PathParameters);
@@ -486,7 +507,8 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Get security
         /// </summary>
-        public class SecurityRequestBuilderGetQueryParameters {
+        public class SecurityRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

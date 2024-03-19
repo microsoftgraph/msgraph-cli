@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CrossTenantAccessPolicyTargetConfigurationAccessType {
+    public enum CrossTenantAccessPolicyTargetConfigurationAccessType
+    {
         [EnumMember(Value = "allowed")]
         Allowed,
         [EnumMember(Value = "blocked")]

@@ -9,7 +9,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the windows10TeamGeneralConfiguration resource.
     /// </summary>
-    public class Windows10TeamGeneralConfiguration : DeviceConfiguration, IParsable {
+    public class Windows10TeamGeneralConfiguration : DeviceConfiguration, IParsable 
+    {
         /// <summary>Indicates whether or not to Block Azure Operational Insights.</summary>
         public bool? AzureOperationalInsightsBlockTelemetry { get; set; }
         /// <summary>The Azure Operational Insights workspace id.</summary>
@@ -71,24 +72,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Windows10TeamGeneralConfiguration"/> and sets the default values.
         /// </summary>
-        public Windows10TeamGeneralConfiguration() : base() {
+        public Windows10TeamGeneralConfiguration() : base()
+        {
             OdataType = "#microsoft.graph.windows10TeamGeneralConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Windows10TeamGeneralConfiguration"></returns>
+        /// <returns>A <see cref="Windows10TeamGeneralConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Windows10TeamGeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Windows10TeamGeneralConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Windows10TeamGeneralConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"azureOperationalInsightsBlockTelemetry", n => { AzureOperationalInsightsBlockTelemetry = n.GetBoolValue(); } },
                 {"azureOperationalInsightsWorkspaceId", n => { AzureOperationalInsightsWorkspaceId = n.GetStringValue(); } },
                 {"azureOperationalInsightsWorkspaceKey", n => { AzureOperationalInsightsWorkspaceKey = n.GetStringValue(); } },
@@ -115,7 +120,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("azureOperationalInsightsBlockTelemetry", AzureOperationalInsightsBlockTelemetry);

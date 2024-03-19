@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum QuarantineReason {
+    public enum QuarantineReason
+    {
         [EnumMember(Value = "EncounteredBaseEscrowThreshold")]
         EncounteredBaseEscrowThreshold,
         [EnumMember(Value = "EncounteredTotalEscrowThreshold")]

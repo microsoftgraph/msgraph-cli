@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamsAppResourceSpecificPermissionType {
+    public enum TeamsAppResourceSpecificPermissionType
+    {
         [EnumMember(Value = "delegated")]
         Delegated,
         [EnumMember(Value = "application")]

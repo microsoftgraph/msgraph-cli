@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrivilegedAccessGroupAssignmentType {
+    public enum PrivilegedAccessGroupAssignmentType
+    {
         [EnumMember(Value = "assigned")]
         Assigned,
         [EnumMember(Value = "activated")]

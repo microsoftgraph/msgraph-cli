@@ -19,12 +19,14 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
     /// <summary>
     /// Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.
     /// </summary>
-    public class ParentGroupRequestBuilder : BaseCliRequestBuilder {
+    public class ParentGroupRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property parentGroup for sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property parentGroup for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -63,8 +65,9 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// The parent [group] that contains the set.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The parent [group] that contains the set.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -120,8 +123,9 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// Update the navigation property parentGroup in sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property parentGroup in sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -176,8 +180,9 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetsNavCommand()
+        {
             var command = new Command("sets");
             command.Description = "Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.";
             var builder = new ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.SetsRequestBuilder(PathParameters);
@@ -203,25 +208,29 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// Instantiates a new <see cref="ParentGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup{?%24expand,%24select}", pathParameters) {
+        public ParentGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ParentGroupRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentGroupRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup{?%24expand,%24select}", rawUrl) {
+        public ParentGroupRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property parentGroup for sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,14 +240,16 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// The parent [group] that contains the set.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentGroupRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentGroupRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentGroupRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentGroupRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -248,15 +259,17 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// Update the navigation property parentGroup in sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Group body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Group body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Group body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Group body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup", PathParameters);
@@ -267,7 +280,8 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup {
         /// <summary>
         /// The parent [group] that contains the set.
         /// </summary>
-        public class ParentGroupRequestBuilderGetQueryParameters {
+        public class ParentGroupRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

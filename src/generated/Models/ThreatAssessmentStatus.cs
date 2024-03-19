@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ThreatAssessmentStatus {
+    public enum ThreatAssessmentStatus
+    {
         [EnumMember(Value = "pending")]
         Pending,
         [EnumMember(Value = "completed")]

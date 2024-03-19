@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName.SetPosition {
-    public class SetPositionPostRequestBody : IAdditionalDataHolder, IParsable {
+    public class SetPositionPostRequestBody : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The endCell property</summary>
@@ -28,24 +29,28 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Instantiates a new <see cref="SetPositionPostRequestBody"/> and sets the default values.
         /// </summary>
-        public SetPositionPostRequestBody() {
+        public SetPositionPostRequestBody()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="SetPositionPostRequestBody"></returns>
+        /// <returns>A <see cref="SetPositionPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SetPositionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SetPositionPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SetPositionPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"endCell", n => { EndCell = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"startCell", n => { StartCell = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
@@ -54,7 +59,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<Json>("endCell", EndCell);
             writer.WriteObjectValue<Json>("startCell", StartCell);

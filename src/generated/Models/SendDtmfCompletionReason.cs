@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SendDtmfCompletionReason {
+    public enum SendDtmfCompletionReason
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "completedSuccessfully")]

@@ -26,12 +26,14 @@ namespace ApiSdk.Education.Me.Assignments.Item {
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder {
+    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCategoriesNavCommand()
+        {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
@@ -58,8 +60,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Delete navigation property assignments for education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
@@ -92,8 +95,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Assignments belonging to the user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Assignments belonging to the user.";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
@@ -143,8 +147,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGradingCategoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGradingCategoryNavCommand()
+        {
             var command = new Command("grading-category");
             command.Description = "Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.";
             var builder = new GradingCategoryRequestBuilder(PathParameters);
@@ -159,8 +164,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Update the navigation property assignments in education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
@@ -209,8 +215,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPublishNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPublishNavCommand()
+        {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -225,8 +232,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildResourcesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildResourcesNavCommand()
+        {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.";
             var builder = new ResourcesRequestBuilder(PathParameters);
@@ -251,8 +259,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRubricNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRubricNavCommand()
+        {
             var command = new Command("rubric");
             command.Description = "Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.";
             var builder = new RubricRequestBuilder(PathParameters);
@@ -275,8 +284,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to call the setUpFeedbackResourcesFolder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetUpFeedbackResourcesFolderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetUpFeedbackResourcesFolderNavCommand()
+        {
             var command = new Command("set-up-feedback-resources-folder");
             command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
             var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters);
@@ -291,8 +301,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to call the setUpResourcesFolder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetUpResourcesFolderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetUpResourcesFolderNavCommand()
+        {
             var command = new Command("set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
             var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
@@ -307,8 +318,9 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubmissionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubmissionsNavCommand()
+        {
             var command = new Command("submissions");
             command.Description = "Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.";
             var builder = new SubmissionsRequestBuilder(PathParameters);
@@ -334,25 +346,29 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// Instantiates a new <see cref="EducationAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}{?%24expand,%24select}", pathParameters) {
+        public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}{?%24expand,%24select}", rawUrl) {
+        public EducationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property assignments for education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/me/assignments/{educationAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -362,14 +378,16 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Assignments belonging to the user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -379,15 +397,17 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Update the navigation property assignments in education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/me/assignments/{educationAssignment%2Did}", PathParameters);
@@ -398,7 +418,8 @@ namespace ApiSdk.Education.Me.Assignments.Item {
         /// <summary>
         /// Assignments belonging to the user.
         /// </summary>
-        public class EducationAssignmentItemRequestBuilderGetQueryParameters {
+        public class EducationAssignmentItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

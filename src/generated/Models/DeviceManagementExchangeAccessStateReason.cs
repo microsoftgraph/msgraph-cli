@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Device Exchange Access State Reason.</summary>
-    public enum DeviceManagementExchangeAccessStateReason {
+    public enum DeviceManagementExchangeAccessStateReason
+    {
         /// <summary>No access state reason discovered from Exchange</summary>
         [EnumMember(Value = "none")]
         None,

@@ -17,13 +17,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Prot
     /// <summary>
     /// Provides operations to call the protect method.
     /// </summary>
-    public class ProtectRequestBuilder : BaseCliRequestBuilder {
+    public class ProtectRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Protect a worksheet. It throws if the worksheet has been protected.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheetprotection-protect?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Protect a worksheet. It throws if the worksheet has been protected.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetprotection-protect?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -75,26 +77,30 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Prot
         /// Instantiates a new <see cref="ProtectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ProtectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/protect", pathParameters) {
+        public ProtectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/protect", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ProtectRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ProtectRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/protect", rawUrl) {
+        public ProtectRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/protect", rawUrl)
+        {
         }
         /// <summary>
         /// Protect a worksheet. It throws if the worksheet has been protected.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ProtectPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ProtectPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ProtectPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ProtectPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

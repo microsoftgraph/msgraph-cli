@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SubjectRightsRequestStageStatus {
+    public enum SubjectRightsRequestStageStatus
+    {
         [EnumMember(Value = "notStarted")]
         NotStarted,
         [EnumMember(Value = "current")]

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ContactRelationship {
+    public enum ContactRelationship
+    {
         [EnumMember(Value = "parent")]
         Parent,
         [EnumMember(Value = "relative")]

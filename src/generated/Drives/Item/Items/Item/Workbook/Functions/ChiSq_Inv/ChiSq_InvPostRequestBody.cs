@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv {
-    public class ChiSq_InvPostRequestBody : IAdditionalDataHolder, IParsable {
+    public class ChiSq_InvPostRequestBody : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The degFreedom property</summary>
@@ -28,24 +29,28 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv {
         /// <summary>
         /// Instantiates a new <see cref="ChiSq_InvPostRequestBody"/> and sets the default values.
         /// </summary>
-        public ChiSq_InvPostRequestBody() {
+        public ChiSq_InvPostRequestBody()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="ChiSq_InvPostRequestBody"></returns>
+        /// <returns>A <see cref="ChiSq_InvPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ChiSq_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ChiSq_InvPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ChiSq_InvPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"degFreedom", n => { DegFreedom = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"probability", n => { Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
@@ -54,7 +59,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<Json>("degFreedom", DegFreedom);
             writer.WriteObjectValue<Json>("probability", Probability);

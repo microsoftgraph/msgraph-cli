@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class Contact : OutlookItem, IParsable {
+    public class Contact : OutlookItem, IParsable 
+    {
         /// <summary>The name of the contact&apos;s assistant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -128,7 +129,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> HomePhones { get; set; }
 #endif
-        /// <summary>The imAddresses property</summary>
+        /// <summary>The contact&apos;s instant messaging (IM) addresses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ImAddresses { get; set; }
@@ -136,7 +137,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ImAddresses { get; set; }
 #endif
-        /// <summary>The initials property</summary>
+        /// <summary>The contact&apos;s initials.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Initials { get; set; }
@@ -144,7 +145,7 @@ namespace ApiSdk.Models {
 #else
         public string Initials { get; set; }
 #endif
-        /// <summary>The jobTitle property</summary>
+        /// <summary>The contact’s job title.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? JobTitle { get; set; }
@@ -152,7 +153,7 @@ namespace ApiSdk.Models {
 #else
         public string JobTitle { get; set; }
 #endif
-        /// <summary>The manager property</summary>
+        /// <summary>The name of the contact&apos;s manager.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Manager { get; set; }
@@ -160,7 +161,7 @@ namespace ApiSdk.Models {
 #else
         public string Manager { get; set; }
 #endif
-        /// <summary>The middleName property</summary>
+        /// <summary>The contact&apos;s middle name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MiddleName { get; set; }
@@ -168,7 +169,7 @@ namespace ApiSdk.Models {
 #else
         public string MiddleName { get; set; }
 #endif
-        /// <summary>The mobilePhone property</summary>
+        /// <summary>The contact&apos;s mobile phone number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MobilePhone { get; set; }
@@ -184,7 +185,7 @@ namespace ApiSdk.Models {
 #else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The nickName property</summary>
+        /// <summary>The contact&apos;s nickname.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NickName { get; set; }
@@ -192,7 +193,7 @@ namespace ApiSdk.Models {
 #else
         public string NickName { get; set; }
 #endif
-        /// <summary>The officeLocation property</summary>
+        /// <summary>The location of the contact&apos;s office.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OfficeLocation { get; set; }
@@ -200,7 +201,7 @@ namespace ApiSdk.Models {
 #else
         public string OfficeLocation { get; set; }
 #endif
-        /// <summary>The otherAddress property</summary>
+        /// <summary>Other addresses for the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PhysicalAddress? OtherAddress { get; set; }
@@ -208,7 +209,7 @@ namespace ApiSdk.Models {
 #else
         public PhysicalAddress OtherAddress { get; set; }
 #endif
-        /// <summary>The parentFolderId property</summary>
+        /// <summary>The ID of the contact&apos;s parent folder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ParentFolderId { get; set; }
@@ -216,7 +217,7 @@ namespace ApiSdk.Models {
 #else
         public string ParentFolderId { get; set; }
 #endif
-        /// <summary>The personalNotes property</summary>
+        /// <summary>The user&apos;s notes about the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PersonalNotes { get; set; }
@@ -232,7 +233,7 @@ namespace ApiSdk.Models {
 #else
         public ProfilePhoto Photo { get; set; }
 #endif
-        /// <summary>The profession property</summary>
+        /// <summary>The contact&apos;s profession.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Profession { get; set; }
@@ -248,7 +249,7 @@ namespace ApiSdk.Models {
 #else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The spouseName property</summary>
+        /// <summary>The name of the contact&apos;s spouse/partner.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SpouseName { get; set; }
@@ -256,7 +257,7 @@ namespace ApiSdk.Models {
 #else
         public string SpouseName { get; set; }
 #endif
-        /// <summary>The surname property</summary>
+        /// <summary>The contact&apos;s surname.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Surname { get; set; }
@@ -264,7 +265,7 @@ namespace ApiSdk.Models {
 #else
         public string Surname { get; set; }
 #endif
-        /// <summary>The title property</summary>
+        /// <summary>The contact&apos;s title.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Title { get; set; }
@@ -272,7 +273,7 @@ namespace ApiSdk.Models {
 #else
         public string Title { get; set; }
 #endif
-        /// <summary>The yomiCompanyName property</summary>
+        /// <summary>The phonetic Japanese company name of the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiCompanyName { get; set; }
@@ -280,7 +281,7 @@ namespace ApiSdk.Models {
 #else
         public string YomiCompanyName { get; set; }
 #endif
-        /// <summary>The yomiGivenName property</summary>
+        /// <summary>The phonetic Japanese given name (first name) of the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiGivenName { get; set; }
@@ -288,7 +289,7 @@ namespace ApiSdk.Models {
 #else
         public string YomiGivenName { get; set; }
 #endif
-        /// <summary>The yomiSurname property</summary>
+        /// <summary>The phonetic Japanese surname (last name)  of the contact.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? YomiSurname { get; set; }
@@ -299,24 +300,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Contact"/> and sets the default values.
         /// </summary>
-        public Contact() : base() {
+        public Contact() : base()
+        {
             OdataType = "#microsoft.graph.contact";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Contact"></returns>
+        /// <returns>A <see cref="Contact"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Contact CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Contact CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Contact();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"assistantName", n => { AssistantName = n.GetStringValue(); } },
                 {"birthday", n => { Birthday = n.GetDateTimeOffsetValue(); } },
                 {"businessAddress", n => { BusinessAddress = n.GetObjectValue<PhysicalAddress>(PhysicalAddress.CreateFromDiscriminatorValue); } },
@@ -360,7 +365,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("assistantName", AssistantName);

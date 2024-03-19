@@ -18,12 +18,14 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Children.Item.S
     /// <summary>
     /// Provides operations to manage the set property of the microsoft.graph.termStore.term entity.
     /// </summary>
-    public class SetRequestBuilder : BaseCliRequestBuilder {
+    public class SetRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The [set] in which the term is created.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The [set] in which the term is created.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -98,25 +100,29 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Children.Item.S
         /// Instantiates a new <see cref="SetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", pathParameters) {
+        public SetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", rawUrl) {
+        public SetRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/children/{term%2Did1}/set{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The [set] in which the term is created.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -126,7 +132,8 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Children.Item.S
         /// <summary>
         /// The [set] in which the term is created.
         /// </summary>
-        public class SetRequestBuilderGetQueryParameters {
+        public class SetRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

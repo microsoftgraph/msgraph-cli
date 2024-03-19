@@ -17,13 +17,15 @@ namespace ApiSdk.Applications.Item.RemovePassword {
     /// <summary>
     /// Provides operations to call the removePassword method.
     /// </summary>
-    public class RemovePasswordRequestBuilder : BaseCliRequestBuilder {
+    public class RemovePasswordRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Remove a password from an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Remove a password from an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -63,26 +65,30 @@ namespace ApiSdk.Applications.Item.RemovePassword {
         /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/removePassword", pathParameters) {
+        public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/removePassword", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RemovePasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/removePassword", rawUrl) {
+        public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/removePassword", rawUrl)
+        {
         }
         /// <summary>
         /// Remove a password from an application.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(RemovePasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum ServicePrincipalType {
+    public enum ServicePrincipalType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "application")]

@@ -25,12 +25,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
     /// <summary>
     /// Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class AccessPackageItemRequestBuilder : BaseCliRequestBuilder {
+    public class AccessPackageItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAccessPackagesIncompatibleWithNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAccessPackagesIncompatibleWithNavCommand()
+        {
             var command = new Command("access-packages-incompatible-with");
             command.Description = "Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.";
             var builder = new AccessPackagesIncompatibleWithRequestBuilder(PathParameters);
@@ -54,8 +56,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to manage the assignmentPolicies property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentPoliciesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentPoliciesNavCommand()
+        {
             var command = new Command("assignment-policies");
             command.Description = "Provides operations to manage the assignmentPolicies property of the microsoft.graph.accessPackage entity.";
             var builder = new AssignmentPoliciesRequestBuilder(PathParameters);
@@ -80,8 +83,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to manage the catalog property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCatalogNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCatalogNavCommand()
+        {
             var command = new Command("catalog");
             command.Description = "Provides operations to manage the catalog property of the microsoft.graph.accessPackage entity.";
             var builder = new CatalogRequestBuilder(PathParameters);
@@ -97,8 +101,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
@@ -131,8 +136,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to call the getApplicablePolicyRequirements method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetApplicablePolicyRequirementsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetApplicablePolicyRequirementsNavCommand()
+        {
             var command = new Command("get-applicable-policy-requirements");
             command.Description = "Provides operations to call the getApplicablePolicyRequirements method.";
             var builder = new GetApplicablePolicyRequirementsRequestBuilder(PathParameters);
@@ -145,13 +151,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0" />
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an accessPackage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-get?view=graph-rest-1.0";
+            command.Description = "Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -199,8 +206,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIncompatibleAccessPackagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIncompatibleAccessPackagesNavCommand()
+        {
             var command = new Command("incompatible-access-packages");
             command.Description = "Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.";
             var builder = new IncompatibleAccessPackagesRequestBuilder(PathParameters);
@@ -225,8 +233,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIncompatibleGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIncompatibleGroupsNavCommand()
+        {
             var command = new Command("incompatible-groups");
             command.Description = "Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.";
             var builder = new IncompatibleGroupsRequestBuilder(PathParameters);
@@ -252,8 +261,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update an existing accessPackage object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
@@ -302,8 +312,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildResourceRoleScopesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildResourceRoleScopesNavCommand()
+        {
             var command = new Command("resource-role-scopes");
             command.Description = "Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.";
             var builder = new ResourceRoleScopesRequestBuilder(PathParameters);
@@ -329,25 +340,29 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AccessPackageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", pathParameters) {
+        public AccessPackageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AccessPackageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AccessPackageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", rawUrl) {
+        public AccessPackageItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -355,16 +370,18 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object.
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -374,15 +391,17 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         /// <summary>
         /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}", PathParameters);
@@ -391,9 +410,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackage object.
+        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
         /// </summary>
-        public class AccessPackageItemRequestBuilderGetQueryParameters {
+        public class AccessPackageItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

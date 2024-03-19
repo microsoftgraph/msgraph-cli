@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Possible values for welcome screen meeting information.</summary>
-    public enum WelcomeScreenMeetingInformation {
+    public enum WelcomeScreenMeetingInformation
+    {
         /// <summary>User Defined, default value, no intent.</summary>
         [EnumMember(Value = "userDefined")]
         UserDefined,

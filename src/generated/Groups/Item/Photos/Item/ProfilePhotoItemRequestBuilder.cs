@@ -19,12 +19,14 @@ namespace ApiSdk.Groups.Item.Photos.Item {
     /// <summary>
     /// Provides operations to manage the photos property of the microsoft.graph.group entity.
     /// </summary>
-    public class ProfilePhotoItemRequestBuilder : BaseCliRequestBuilder {
+    public class ProfilePhotoItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentNavCommand()
+        {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -40,8 +42,9 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -91,25 +94,29 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ProfilePhotoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", pathParameters) {
+        public ProfilePhotoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ProfilePhotoItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ProfilePhotoItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", rawUrl) {
+        public ProfilePhotoItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos/{profilePhoto%2Did}{?%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -119,7 +126,8 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
-        public class ProfilePhotoItemRequestBuilderGetQueryParameters {
+        public class ProfilePhotoItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

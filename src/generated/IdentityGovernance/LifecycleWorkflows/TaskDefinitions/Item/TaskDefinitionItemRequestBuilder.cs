@@ -18,13 +18,15 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
     /// <summary>
     /// Provides operations to manage the taskDefinitions property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     /// </summary>
-    public class TaskDefinitionItemRequestBuilder : BaseCliRequestBuilder {
+    public class TaskDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Read the details of a built-in workflow task.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-taskdefinition-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the details of a built-in workflow task.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-taskdefinition-get?view=graph-rest-1.0";
             var taskDefinitionIdOption = new Option<string>("--task-definition-id", description: "The unique identifier of taskDefinition") {
@@ -75,25 +77,29 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
         /// Instantiates a new <see cref="TaskDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TaskDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", pathParameters) {
+        public TaskDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TaskDefinitionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TaskDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", rawUrl) {
+        public TaskDefinitionItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/taskDefinitions/{taskDefinition%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read the details of a built-in workflow task.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskDefinitionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskDefinitionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskDefinitionItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskDefinitionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -103,7 +109,8 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
         /// <summary>
         /// Read the details of a built-in workflow task.
         /// </summary>
-        public class TaskDefinitionItemRequestBuilderGetQueryParameters {
+        public class TaskDefinitionItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -21,12 +21,14 @@ namespace ApiSdk.Users.Item.Insights {
     /// <summary>
     /// Provides operations to manage the insights property of the microsoft.graph.user entity.
     /// </summary>
-    public class InsightsRequestBuilder : BaseCliRequestBuilder {
+    public class InsightsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property insights for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property insights for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -59,8 +61,9 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Get insights from users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get insights from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -110,8 +113,9 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Update the navigation property insights in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property insights in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -160,8 +164,9 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharedNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharedNavCommand()
+        {
             var command = new Command("shared");
             command.Description = "Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new SharedRequestBuilder(PathParameters);
@@ -186,8 +191,9 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTrendingNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTrendingNavCommand()
+        {
             var command = new Command("trending");
             command.Description = "Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new TrendingRequestBuilder(PathParameters);
@@ -212,8 +218,9 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUsedNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUsedNavCommand()
+        {
             var command = new Command("used");
             command.Description = "Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new UsedRequestBuilder(PathParameters);
@@ -239,25 +246,29 @@ namespace ApiSdk.Users.Item.Insights {
         /// Instantiates a new <see cref="InsightsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InsightsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", pathParameters) {
+        public InsightsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="InsightsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InsightsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", rawUrl) {
+        public InsightsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property insights for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/insights", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -267,14 +278,16 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Get insights from users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InsightsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InsightsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InsightsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InsightsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -284,15 +297,17 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Update the navigation property insights in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OfficeGraphInsights body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(OfficeGraphInsights body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(OfficeGraphInsights body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(OfficeGraphInsights body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/insights", PathParameters);
@@ -303,7 +318,8 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Get insights from users
         /// </summary>
-        public class InsightsRequestBuilderGetQueryParameters {
+        public class InsightsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId
     /// <summary>
     /// Provides operations to call the findTenantInformationByTenantId method.
     /// </summary>
-    public class FindTenantInformationByTenantIdWithTenantIdRequestBuilder : BaseCliRequestBuilder {
+    public class FindTenantInformationByTenantIdWithTenantIdRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function findTenantInformationByTenantId
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function findTenantInformationByTenantId";
             var tenantIdOption = new Option<string>("--tenant-id", description: "Usage: tenantId='{tenantId}'") {
@@ -60,25 +62,29 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId
         /// Instantiates a new <see cref="FindTenantInformationByTenantIdWithTenantIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FindTenantInformationByTenantIdWithTenantIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/findTenantInformationByTenantId(tenantId='{tenantId}')", pathParameters) {
+        public FindTenantInformationByTenantIdWithTenantIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/findTenantInformationByTenantId(tenantId='{tenantId}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="FindTenantInformationByTenantIdWithTenantIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FindTenantInformationByTenantIdWithTenantIdRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/findTenantInformationByTenantId(tenantId='{tenantId}')", rawUrl) {
+        public FindTenantInformationByTenantIdWithTenantIdRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/findTenantInformationByTenantId(tenantId='{tenantId}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function findTenantInformationByTenantId
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

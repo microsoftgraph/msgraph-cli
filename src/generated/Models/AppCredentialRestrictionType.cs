@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AppCredentialRestrictionType {
+    public enum AppCredentialRestrictionType
+    {
         [EnumMember(Value = "passwordAddition")]
         PasswordAddition,
         [EnumMember(Value = "passwordLifetime")]

@@ -18,13 +18,15 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
     /// </summary>
-    public class ServicePrincipalsWithAppIdRequestBuilder : BaseCliRequestBuilder {
+    public class ServicePrincipalsWithAppIdRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0";
             var appIdOption = new Option<string>("--app-id", description: "Alternate key of servicePrincipal") {
@@ -58,8 +60,9 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0";
             var appIdOption = new Option<string>("--app-id", description: "Alternate key of servicePrincipal") {
@@ -109,8 +112,9 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Update entity in servicePrincipals by appId
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update entity in servicePrincipals by appId";
             var appIdOption = new Option<string>("--app-id", description: "Alternate key of servicePrincipal") {
@@ -160,25 +164,29 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// Instantiates a new <see cref="ServicePrincipalsWithAppIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServicePrincipalsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", pathParameters) {
+        public ServicePrincipalsWithAppIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ServicePrincipalsWithAppIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ServicePrincipalsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", rawUrl) {
+        public ServicePrincipalsWithAppIdRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals(appId='{appId}'){?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a servicePrincipal object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/servicePrincipals(appId='{appId}')", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -188,14 +196,16 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -205,15 +215,17 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Update entity in servicePrincipals by appId
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/servicePrincipals(appId='{appId}')", PathParameters);
@@ -224,7 +236,8 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// </summary>
-        public class ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters {
+        public class ServicePrincipalsWithAppIdRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

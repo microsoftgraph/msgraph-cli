@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum IndicatorSource {
+    public enum IndicatorSource
+    {
         [EnumMember(Value = "microsoft")]
         Microsoft,
         [EnumMember(Value = "osint")]

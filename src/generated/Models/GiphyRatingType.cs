@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum GiphyRatingType {
+    public enum GiphyRatingType
+    {
         [EnumMember(Value = "strict")]
         Strict,
         [EnumMember(Value = "moderate")]

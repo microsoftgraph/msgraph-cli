@@ -21,12 +21,14 @@ namespace ApiSdk.EmployeeExperience {
     /// <summary>
     /// Provides operations to manage the employeeExperience singleton.
     /// </summary>
-    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder {
+    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get employeeExperience
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get employeeExperience";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -63,8 +65,9 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLearningCourseActivitiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLearningCourseActivitiesNavCommand()
+        {
             var command = new Command("learning-course-activities");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
             var builder = new LearningCourseActivitiesRequestBuilder(PathParameters);
@@ -89,8 +92,9 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLearningCourseActivitiesWithExternalcourseActivityIdRbCommand()
+        {
             var command = new Command("learning-course-activities-with-externalcourse-activity-id");
             command.Description = "Provides operations to manage the learningCourseActivities property of the microsoft.graph.employeeExperience entity.";
             var builder = new LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder(PathParameters);
@@ -107,8 +111,9 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLearningProvidersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLearningProvidersNavCommand()
+        {
             var command = new Command("learning-providers");
             command.Description = "Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.";
             var builder = new LearningProvidersRequestBuilder(PathParameters);
@@ -133,8 +138,9 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Update employeeExperience
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update employeeExperience";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -178,25 +184,29 @@ namespace ApiSdk.EmployeeExperience {
         /// Instantiates a new <see cref="EmployeeExperienceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EmployeeExperienceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience{?%24select}", pathParameters) {
+        public EmployeeExperienceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience{?%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EmployeeExperienceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EmployeeExperienceRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience{?%24select}", rawUrl) {
+        public EmployeeExperienceRequestBuilder(string rawUrl) : base("{+baseurl}/employeeExperience{?%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get employeeExperience
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EmployeeExperienceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,15 +216,17 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Update employeeExperience
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EmployeeExperience body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EmployeeExperience body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EmployeeExperience body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.EmployeeExperience body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/employeeExperience", PathParameters);
@@ -225,7 +237,8 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Get employeeExperience
         /// </summary>
-        public class EmployeeExperienceRequestBuilderGetQueryParameters {
+        public class EmployeeExperienceRequestBuilderGetQueryParameters 
+        {
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

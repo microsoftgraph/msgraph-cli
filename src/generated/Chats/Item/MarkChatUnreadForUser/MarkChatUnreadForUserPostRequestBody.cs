@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
-    public class MarkChatUnreadForUserPostRequestBody : IAdditionalDataHolder, IParsable {
+    public class MarkChatUnreadForUserPostRequestBody : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The lastMessageReadDateTime property</summary>
@@ -22,24 +23,28 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
         /// <summary>
         /// Instantiates a new <see cref="MarkChatUnreadForUserPostRequestBody"/> and sets the default values.
         /// </summary>
-        public MarkChatUnreadForUserPostRequestBody() {
+        public MarkChatUnreadForUserPostRequestBody()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MarkChatUnreadForUserPostRequestBody"></returns>
+        /// <returns>A <see cref="MarkChatUnreadForUserPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MarkChatUnreadForUserPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static MarkChatUnreadForUserPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MarkChatUnreadForUserPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"lastMessageReadDateTime", n => { LastMessageReadDateTime = n.GetDateTimeOffsetValue(); } },
                 {"user", n => { User = n.GetObjectValue<TeamworkUserIdentity>(TeamworkUserIdentity.CreateFromDiscriminatorValue); } },
             };
@@ -48,7 +53,8 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("lastMessageReadDateTime", LastMessageReadDateTime);
             writer.WriteObjectValue<TeamworkUserIdentity>("user", User);

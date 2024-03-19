@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public class TaskObject : ApiSdk.Models.Entity, IParsable {
+    public class TaskObject : ApiSdk.Models.Entity, IParsable 
+    {
         /// <summary>Arguments included within the task.  For guidance to configure this property, see Configure the arguments for built-in Lifecycle Workflow tasks. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -16,7 +17,7 @@ namespace ApiSdk.Models.IdentityGovernance {
 #endif
         /// <summary>The category property</summary>
         public LifecycleTaskCategory? Category { get; set; }
-        /// <summary>A boolean value that specifies whether, if this task fails, the workflow will stop, and subsequent tasks will not run. Optional.</summary>
+        /// <summary>A boolean value that specifies whether, if this task fails, the workflow stops, and subsequent tasks aren&apos;t run. Optional.</summary>
         public bool? ContinueOnError { get; set; }
         /// <summary>A string that describes the purpose of the task for administrative use. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,11 +35,11 @@ namespace ApiSdk.Models.IdentityGovernance {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>An integer that states in what order the task will run in a workflow.Supports $orderby.</summary>
+        /// <summary>An integer that states in what order the task runs in a workflow.Supports $orderby.</summary>
         public int? ExecutionSequence { get; set; }
         /// <summary>A boolean value that denotes whether the task is set to run or not. Optional.Supports $filter(eq, ne) and orderBy.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>A unique template identifier for the task. For more information about the tasks that Lifecycle Workflows currently supports and their unique identifiers, see supported tasks. Required.Supports $filter(eq, ne).</summary>
+        /// <summary>A unique template identifier for the task. For more information about the tasks that Lifecycle Workflows currently supports and their unique identifiers, see Configure the arguments for built-in Lifecycle Workflow tasks. Required.Supports $filter(eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TaskDefinitionId { get; set; }
@@ -57,18 +58,21 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="TaskObject"></returns>
+        /// <returns>A <see cref="TaskObject"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new TaskObject CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new TaskObject CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TaskObject();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"arguments", n => { Arguments = n.GetCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>(ApiSdk.Models.KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"category", n => { Category = n.GetEnumValue<LifecycleTaskCategory>(); } },
                 {"continueOnError", n => { ContinueOnError = n.GetBoolValue(); } },
@@ -84,7 +88,8 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.KeyValuePair>("arguments", Arguments);

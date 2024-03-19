@@ -20,12 +20,14 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
     /// <summary>
     /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder {
+    public class EdiscoveryReviewTagItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildChildTagsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildChildTagsNavCommand()
+        {
             var command = new Command("child-tags");
             command.Description = "Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.";
             var builder = new ChildTagsRequestBuilder(PathParameters);
@@ -50,8 +52,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// Remove an ediscoveryReviewTag object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Remove an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
@@ -91,8 +94,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// Read the properties and relationships of an ediscoveryReviewTag object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
@@ -148,8 +152,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Provides operations to manage the parent property of the microsoft.graph.security.ediscoveryReviewTag entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildParentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildParentNavCommand()
+        {
             var command = new Command("parent");
             command.Description = "Provides operations to manage the parent property of the microsoft.graph.security.ediscoveryReviewTag entity.";
             var builder = new ParentRequestBuilder(PathParameters);
@@ -165,8 +170,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// Update the properties of an ediscoveryReviewTag object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
@@ -222,25 +228,29 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// Instantiates a new <see cref="EdiscoveryReviewTagItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EdiscoveryReviewTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24expand,%24select}", pathParameters) {
+        public EdiscoveryReviewTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EdiscoveryReviewTagItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EdiscoveryReviewTagItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24expand,%24select}", rawUrl) {
+        public EdiscoveryReviewTagItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Remove an ediscoveryReviewTag object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -250,14 +260,16 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Read the properties and relationships of an ediscoveryReviewTag object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewTagItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewTagItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewTagItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryReviewTagItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -267,15 +279,17 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Update the properties of an ediscoveryReviewTag object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewTag body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewTag body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewTag body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EdiscoveryReviewTag body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}", PathParameters);
@@ -286,7 +300,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Read the properties and relationships of an ediscoveryReviewTag object.
         /// </summary>
-        public class EdiscoveryReviewTagItemRequestBuilderGetQueryParameters {
+        public class EdiscoveryReviewTagItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SubjectRightsRequestStatus {
+    public enum SubjectRightsRequestStatus
+    {
         [EnumMember(Value = "active")]
         Active,
         [EnumMember(Value = "closed")]

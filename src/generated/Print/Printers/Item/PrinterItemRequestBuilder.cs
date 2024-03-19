@@ -23,12 +23,14 @@ namespace ApiSdk.Print.Printers.Item {
     /// <summary>
     /// Provides operations to manage the printers property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrinterItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrinterItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.printer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildConnectorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildConnectorsNavCommand()
+        {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.printer entity.";
             var builder = new ConnectorsRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// Delete (unregister) a printer.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete (unregister) a printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-delete?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -88,8 +91,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// Retrieve the properties and relationships of a printer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a printer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-get?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -139,8 +143,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildJobsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildJobsNavCommand()
+        {
             var command = new Command("jobs");
             command.Description = "Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.";
             var builder = new JobsRequestBuilder(PathParameters);
@@ -166,8 +171,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// Update the properties of a printer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a printer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-update?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -216,8 +222,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to call the restoreFactoryDefaults method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRestoreFactoryDefaultsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRestoreFactoryDefaultsNavCommand()
+        {
             var command = new Command("restore-factory-defaults");
             command.Description = "Provides operations to call the restoreFactoryDefaults method.";
             var builder = new RestoreFactoryDefaultsRequestBuilder(PathParameters);
@@ -232,8 +239,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to manage the shares property of the microsoft.graph.printer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharesNavCommand()
+        {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.printer entity.";
             var builder = new SharesRequestBuilder(PathParameters);
@@ -257,8 +265,9 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTaskTriggersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTaskTriggersNavCommand()
+        {
             var command = new Command("task-triggers");
             command.Description = "Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.";
             var builder = new TaskTriggersRequestBuilder(PathParameters);
@@ -284,25 +293,29 @@ namespace ApiSdk.Print.Printers.Item {
         /// Instantiates a new <see cref="PrinterItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrinterItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrinterItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrinterItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrinterItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrinterItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete (unregister) a printer.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/print/printers/{printer%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -312,14 +325,16 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -329,15 +344,17 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Update the properties of a printer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Printer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Printer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Printer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Printer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/print/printers/{printer%2Did}", PathParameters);
@@ -348,7 +365,8 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printer object.
         /// </summary>
-        public class PrinterItemRequestBuilderGetQueryParameters {
+        public class PrinterItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

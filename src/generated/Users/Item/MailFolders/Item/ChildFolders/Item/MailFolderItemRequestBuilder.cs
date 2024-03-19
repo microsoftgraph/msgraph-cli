@@ -22,12 +22,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
     /// <summary>
     /// Provides operations to manage the childFolders property of the microsoft.graph.mailFolder entity.
     /// </summary>
-    public class MailFolderItemRequestBuilder : BaseCliRequestBuilder {
+    public class MailFolderItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCopyNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCopyNavCommand()
+        {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
             var builder = new CopyRequestBuilder(PathParameters);
@@ -42,8 +44,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Delete navigation property childFolders for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property childFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -88,8 +91,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// The collection of child folders in the mailFolder.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The collection of child folders in the mailFolder.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -157,8 +161,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMessageRulesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMessageRulesNavCommand()
+        {
             var command = new Command("message-rules");
             command.Description = "Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.";
             var builder = new MessageRulesRequestBuilder(PathParameters);
@@ -183,8 +188,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMessagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMessagesNavCommand()
+        {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
@@ -210,8 +216,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMoveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMoveNavCommand()
+        {
             var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters);
@@ -226,8 +233,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Update the navigation property childFolders in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property childFolders in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -289,25 +297,29 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// Instantiates a new <see cref="MailFolderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", pathParameters) {
+        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MailFolderItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MailFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", rawUrl) {
+        public MailFolderItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}{?%24expand,%24select,includeHiddenFolders*}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property childFolders for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -317,14 +329,16 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// The collection of child folders in the mailFolder.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MailFolderItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -334,15 +348,17 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Update the navigation property childFolders in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MailFolder body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}", PathParameters);
@@ -353,7 +369,8 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// The collection of child folders in the mailFolder.
         /// </summary>
-        public class MailFolderItemRequestBuilderGetQueryParameters {
+        public class MailFolderItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

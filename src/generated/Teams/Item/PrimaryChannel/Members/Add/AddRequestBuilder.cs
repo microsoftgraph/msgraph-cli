@@ -17,13 +17,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Add {
     /// <summary>
     /// Provides operations to call the add method.
     /// </summary>
-    public class AddRequestBuilder : BaseCliRequestBuilder {
+    public class AddRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
@@ -84,26 +86,30 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Add {
         /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/add", pathParameters) {
+        public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/add", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AddRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/add", rawUrl) {
+        public AddRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/members/add", rawUrl)
+        {
         }
         /// <summary>
         /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

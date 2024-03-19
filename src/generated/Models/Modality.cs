@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum Modality {
+    public enum Modality
+    {
         [EnumMember(Value = "audio")]
         Audio,
         [EnumMember(Value = "video")]

@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsAppDefinition {
     /// <summary>
     /// Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
     /// </summary>
-    public class TeamsAppDefinitionRequestBuilder : BaseCliRequestBuilder {
+    public class TeamsAppDefinitionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The details of this version of the app.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The details of this version of the app.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsAppDefinition {
         /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", pathParameters) {
+        public TeamsAppDefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TeamsAppDefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", rawUrl) {
+        public TeamsAppDefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/teamsAppDefinition{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The details of this version of the app.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppDefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.TeamsAppDefinition {
         /// <summary>
         /// The details of this version of the app.
         /// </summary>
-        public class TeamsAppDefinitionRequestBuilderGetQueryParameters {
+        public class TeamsAppDefinitionRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -17,12 +17,14 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp {
     /// <summary>
     /// Provides operations to call the checkGrantedPermissionsForApp method.
     /// </summary>
-    public class CheckGrantedPermissionsForAppRequestBuilder : BaseCliRequestBuilder {
+    public class CheckGrantedPermissionsForAppRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke action checkGrantedPermissionsForApp
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Invoke action checkGrantedPermissionsForApp";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -70,25 +72,29 @@ namespace ApiSdk.Groups.Item.CheckGrantedPermissionsForApp {
         /// Instantiates a new <see cref="CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CheckGrantedPermissionsForAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", pathParameters) {
+        public CheckGrantedPermissionsForAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CheckGrantedPermissionsForAppRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CheckGrantedPermissionsForAppRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", rawUrl) {
+        public CheckGrantedPermissionsForAppRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/checkGrantedPermissionsForApp", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke action checkGrantedPermissionsForApp
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

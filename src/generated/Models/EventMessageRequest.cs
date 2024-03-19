@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class EventMessageRequest : EventMessage, IParsable {
+    public class EventMessageRequest : EventMessage, IParsable 
+    {
         /// <summary>True if the meeting organizer allows invitees to propose a new time when responding, false otherwise. Optional. Default is true.</summary>
         public bool? AllowNewTimeProposals { get; set; }
         /// <summary>The meetingRequestType property</summary>
@@ -39,24 +40,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="EventMessageRequest"/> and sets the default values.
         /// </summary>
-        public EventMessageRequest() : base() {
+        public EventMessageRequest() : base()
+        {
             OdataType = "#microsoft.graph.eventMessageRequest";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EventMessageRequest"></returns>
+        /// <returns>A <see cref="EventMessageRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EventMessageRequest CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new EventMessageRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EventMessageRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"allowNewTimeProposals", n => { AllowNewTimeProposals = n.GetBoolValue(); } },
                 {"meetingRequestType", n => { MeetingRequestType = n.GetEnumValue<MeetingRequestType>(); } },
                 {"previousEndDateTime", n => { PreviousEndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
@@ -69,7 +74,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("allowNewTimeProposals", AllowNewTimeProposals);

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum UnifiedRoleManagementPolicyRuleTargetOperations {
+    public enum UnifiedRoleManagementPolicyRuleTargetOperations
+    {
         [EnumMember(Value = "all")]
         All,
         [EnumMember(Value = "activate")]

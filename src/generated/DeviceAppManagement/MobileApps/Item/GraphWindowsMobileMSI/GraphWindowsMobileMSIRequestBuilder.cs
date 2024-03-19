@@ -21,12 +21,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
     /// <summary>
     /// Casts the previous resource to windowsMobileMSI.
     /// </summary>
-    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder {
+    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCategoriesNavCommand()
+        {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
@@ -76,8 +79,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentVersionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentVersionsNavCommand()
+        {
             var command = new Command("content-versions");
             command.Description = "Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.";
             var builder = new ContentVersionsRequestBuilder(PathParameters);
@@ -102,8 +106,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
@@ -154,25 +159,29 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// Instantiates a new <see cref="GraphWindowsMobileMSIRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphWindowsMobileMSIRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsMobileMSI{?%24expand,%24select}", pathParameters) {
+        public GraphWindowsMobileMSIRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsMobileMSI{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphWindowsMobileMSIRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphWindowsMobileMSIRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsMobileMSI{?%24expand,%24select}", rawUrl) {
+        public GraphWindowsMobileMSIRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsMobileMSI{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -182,7 +191,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsMobileMSI
         /// </summary>
-        public class GraphWindowsMobileMSIRequestBuilderGetQueryParameters {
+        public class GraphWindowsMobileMSIRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item.Host {
     /// <summary>
     /// Provides operations to manage the host property of the microsoft.graph.security.hostTracker entity.
     /// </summary>
-    public class HostRequestBuilder : BaseCliRequestBuilder {
+    public class HostRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The host related to this hostTracker. When navigating to a hostTracker from a host, this should be assumed to be a return reference.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The host related to this hostTracker. When navigating to a hostTracker from a host, this should be assumed to be a return reference.";
             var hostTrackerIdOption = new Option<string>("--host-tracker-id", description: "The unique identifier of hostTracker") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item.Host {
         /// Instantiates a new <see cref="HostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostTrackers/{hostTracker%2Did}/host{?%24expand,%24select}", pathParameters) {
+        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostTrackers/{hostTracker%2Did}/host{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="HostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostTrackers/{hostTracker%2Did}/host{?%24expand,%24select}", rawUrl) {
+        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostTrackers/{hostTracker%2Did}/host{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The host related to this hostTracker. When navigating to a hostTracker from a host, this should be assumed to be a return reference.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item.Host {
         /// <summary>
         /// The host related to this hostTracker. When navigating to a hostTracker from a host, this should be assumed to be a return reference.
         /// </summary>
-        public class HostRequestBuilderGetQueryParameters {
+        public class HostRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

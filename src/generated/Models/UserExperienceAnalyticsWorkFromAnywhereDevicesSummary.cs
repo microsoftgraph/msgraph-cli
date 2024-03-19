@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// The user experience analytics Work From Anywhere metrics devices summary.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary : IAdditionalDataHolder, IParsable {
+    public class UserExperienceAnalyticsWorkFromAnywhereDevicesSummary : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The user experience analytics work from anywhere Autopilot devices summary. Read-only.</summary>
@@ -74,24 +75,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="UserExperienceAnalyticsWorkFromAnywhereDevicesSummary"/> and sets the default values.
         /// </summary>
-        public UserExperienceAnalyticsWorkFromAnywhereDevicesSummary() {
+        public UserExperienceAnalyticsWorkFromAnywhereDevicesSummary()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="UserExperienceAnalyticsWorkFromAnywhereDevicesSummary"></returns>
+        /// <returns>A <see cref="UserExperienceAnalyticsWorkFromAnywhereDevicesSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static UserExperienceAnalyticsWorkFromAnywhereDevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static UserExperienceAnalyticsWorkFromAnywhereDevicesSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new UserExperienceAnalyticsWorkFromAnywhereDevicesSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"autopilotDevicesSummary", n => { AutopilotDevicesSummary = n.GetObjectValue<UserExperienceAnalyticsAutopilotDevicesSummary>(UserExperienceAnalyticsAutopilotDevicesSummary.CreateFromDiscriminatorValue); } },
                 {"cloudIdentityDevicesSummary", n => { CloudIdentityDevicesSummary = n.GetObjectValue<UserExperienceAnalyticsCloudIdentityDevicesSummary>(UserExperienceAnalyticsCloudIdentityDevicesSummary.CreateFromDiscriminatorValue); } },
                 {"cloudManagementDevicesSummary", n => { CloudManagementDevicesSummary = n.GetObjectValue<UserExperienceAnalyticsCloudManagementDevicesSummary>(UserExperienceAnalyticsCloudManagementDevicesSummary.CreateFromDiscriminatorValue); } },
@@ -113,7 +118,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<UserExperienceAnalyticsAutopilotDevicesSummary>("autopilotDevicesSummary", AutopilotDevicesSummary);
             writer.WriteObjectValue<UserExperienceAnalyticsCloudIdentityDevicesSummary>("cloudIdentityDevicesSummary", CloudIdentityDevicesSummary);

@@ -17,13 +17,15 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
     /// <summary>
     /// Provides operations to call the markChatUnreadForUser method.
     /// </summary>
-    public class MarkChatUnreadForUserRequestBuilder : BaseCliRequestBuilder {
+    public class MarkChatUnreadForUserRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Mark a chat as unread for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Mark a chat as unread for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-markchatunreadforuser?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -63,26 +65,30 @@ namespace ApiSdk.Chats.Item.MarkChatUnreadForUser {
         /// Instantiates a new <see cref="MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MarkChatUnreadForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/markChatUnreadForUser", pathParameters) {
+        public MarkChatUnreadForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/markChatUnreadForUser", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MarkChatUnreadForUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MarkChatUnreadForUserRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/markChatUnreadForUser", rawUrl) {
+        public MarkChatUnreadForUserRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/markChatUnreadForUser", rawUrl)
+        {
         }
         /// <summary>
         /// Mark a chat as unread for a user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(MarkChatUnreadForUserPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

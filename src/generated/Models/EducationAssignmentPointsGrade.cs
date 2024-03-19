@@ -5,30 +5,35 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class EducationAssignmentPointsGrade : EducationAssignmentGrade, IParsable {
+    public class EducationAssignmentPointsGrade : EducationAssignmentGrade, IParsable 
+    {
         /// <summary>Number of points a teacher is giving this submission object.</summary>
         public float? Points { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="EducationAssignmentPointsGrade"/> and sets the default values.
         /// </summary>
-        public EducationAssignmentPointsGrade() : base() {
+        public EducationAssignmentPointsGrade() : base()
+        {
             OdataType = "#microsoft.graph.educationAssignmentPointsGrade";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EducationAssignmentPointsGrade"></returns>
+        /// <returns>A <see cref="EducationAssignmentPointsGrade"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationAssignmentPointsGrade CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new EducationAssignmentPointsGrade CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationAssignmentPointsGrade();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"points", n => { Points = n.GetFloatValue(); } },
             };
         }
@@ -36,7 +41,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteFloatValue("points", Points);

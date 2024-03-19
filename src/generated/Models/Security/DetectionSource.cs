@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum DetectionSource {
+    public enum DetectionSource
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "microsoftDefenderForEndpoint")]

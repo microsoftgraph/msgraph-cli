@@ -18,12 +18,14 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod {
     /// <summary>
     /// Provides operations to call the usersRegisteredByMethod method.
     /// </summary>
-    public class UsersRegisteredByMethodRequestBuilder : BaseCliRequestBuilder {
+    public class UsersRegisteredByMethodRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function usersRegisteredByMethod
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function usersRegisteredByMethod";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
@@ -54,25 +56,29 @@ namespace ApiSdk.Reports.AuthenticationMethods.UsersRegisteredByMethod {
         /// Instantiates a new <see cref="UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UsersRegisteredByMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", pathParameters) {
+        public UsersRegisteredByMethodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UsersRegisteredByMethodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UsersRegisteredByMethodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", rawUrl) {
+        public UsersRegisteredByMethodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/authenticationMethods/usersRegisteredByMethod()", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function usersRegisteredByMethod
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

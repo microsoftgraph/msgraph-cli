@@ -25,13 +25,15 @@ namespace ApiSdk.Domains.Item {
     /// <summary>
     /// Provides operations to manage the collection of domain entities.
     /// </summary>
-    public class DomainItemRequestBuilder : BaseCliRequestBuilder {
+    public class DomainItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a domain from a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
@@ -64,8 +66,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDomainNameReferencesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDomainNameReferencesNavCommand()
+        {
             var command = new Command("domain-name-references");
             command.Description = "Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.";
             var builder = new DomainNameReferencesRequestBuilder(PathParameters);
@@ -89,8 +92,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFederationConfigurationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFederationConfigurationNavCommand()
+        {
             var command = new Command("federation-configuration");
             command.Description = "Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.";
             var builder = new FederationConfigurationRequestBuilder(PathParameters);
@@ -115,8 +119,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the forceDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildForceDeleteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildForceDeleteNavCommand()
+        {
             var command = new Command("force-delete");
             command.Description = "Provides operations to call the forceDelete method.";
             var builder = new ForceDeleteRequestBuilder(PathParameters);
@@ -132,8 +137,9 @@ namespace ApiSdk.Domains.Item {
         /// Retrieve the properties and relationships of domain object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of domain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-get?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
@@ -184,8 +190,9 @@ namespace ApiSdk.Domains.Item {
         /// Update the properties of domain object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
@@ -234,8 +241,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the promote method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPromoteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPromoteNavCommand()
+        {
             var command = new Command("promote");
             command.Description = "Provides operations to call the promote method.";
             var builder = new PromoteRequestBuilder(PathParameters);
@@ -250,8 +258,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServiceConfigurationRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServiceConfigurationRecordsNavCommand()
+        {
             var command = new Command("service-configuration-records");
             command.Description = "Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.";
             var builder = new ServiceConfigurationRecordsRequestBuilder(PathParameters);
@@ -276,8 +285,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildVerificationDnsRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildVerificationDnsRecordsNavCommand()
+        {
             var command = new Command("verification-dns-records");
             command.Description = "Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.";
             var builder = new VerificationDnsRecordsRequestBuilder(PathParameters);
@@ -302,8 +312,9 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the verify method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildVerifyNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildVerifyNavCommand()
+        {
             var command = new Command("verify");
             command.Description = "Provides operations to call the verify method.";
             var builder = new VerifyRequestBuilder(PathParameters);
@@ -319,25 +330,29 @@ namespace ApiSdk.Domains.Item {
         /// Instantiates a new <see cref="DomainItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DomainItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", pathParameters) {
+        public DomainItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DomainItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DomainItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", rawUrl) {
+        public DomainItemRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a domain from a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/domains/{domain%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -347,14 +362,16 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DomainItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DomainItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DomainItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DomainItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -364,15 +381,17 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Update the properties of domain object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Domain body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Domain body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Domain body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Domain body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/domains/{domain%2Did}", PathParameters);
@@ -383,7 +402,8 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// </summary>
-        public class DomainItemRequestBuilderGetQueryParameters {
+        public class DomainItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

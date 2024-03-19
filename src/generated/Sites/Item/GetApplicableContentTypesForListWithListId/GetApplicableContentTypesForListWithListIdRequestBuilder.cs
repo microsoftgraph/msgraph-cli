@@ -17,12 +17,14 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
     /// <summary>
     /// Provides operations to call the getApplicableContentTypesForList method.
     /// </summary>
-    public class GetApplicableContentTypesForListWithListIdRequestBuilder : BaseCliRequestBuilder {
+    public class GetApplicableContentTypesForListWithListIdRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getApplicableContentTypesForList";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -127,25 +129,29 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         /// Instantiates a new <see cref="GetApplicableContentTypesForListWithListIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetApplicableContentTypesForListWithListIdRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetApplicableContentTypesForListWithListIdRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -155,7 +161,8 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         /// <summary>
         /// Invoke function getApplicableContentTypesForList
         /// </summary>
-        public class GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters {
+        public class GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum EventStatusType {
+    public enum EventStatusType
+    {
         [EnumMember(Value = "pending")]
         Pending,
         [EnumMember(Value = "error")]

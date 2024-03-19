@@ -20,12 +20,14 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo {
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
     /// </summary>
-    public class AppliesToRequestBuilder : BaseCliRequestBuilder {
+    public class AppliesToRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
@@ -34,8 +36,9 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -51,8 +54,9 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo {
         /// List application and service principal objects that are assigned an appManagementPolicy policy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "List application and service principal objects that are assigned an appManagementPolicy policy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-list-appliesto?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
@@ -151,25 +155,29 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo {
         /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppliesToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public AppliesToRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AppliesToRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppliesToRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public AppliesToRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}/appliesTo{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// List application and service principal objects that are assigned an appManagementPolicy policy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppliesToRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -179,7 +187,8 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo {
         /// <summary>
         /// List application and service principal objects that are assigned an appManagementPolicy policy object.
         /// </summary>
-        public class AppliesToRequestBuilderGetQueryParameters {
+        public class AppliesToRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

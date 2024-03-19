@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamworkApplicationIdentityType {
+    public enum TeamworkApplicationIdentityType
+    {
         [EnumMember(Value = "aadApplication")]
         AadApplication,
         [EnumMember(Value = "bot")]

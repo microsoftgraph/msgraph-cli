@@ -17,6 +17,7 @@ using ApiSdk.Sites.Item.LastModifiedByUser;
 using ApiSdk.Sites.Item.Lists;
 using ApiSdk.Sites.Item.Onenote;
 using ApiSdk.Sites.Item.Operations;
+using ApiSdk.Sites.Item.Pages;
 using ApiSdk.Sites.Item.Permissions;
 using ApiSdk.Sites.Item.Sites;
 using ApiSdk.Sites.Item.TermStore;
@@ -38,12 +39,14 @@ namespace ApiSdk.Sites.Item {
     /// <summary>
     /// Provides operations to manage the collection of site entities.
     /// </summary>
-    public class SiteItemRequestBuilder : BaseCliRequestBuilder {
+    public class SiteItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAnalyticsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAnalyticsNavCommand()
+        {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
             var builder = new AnalyticsRequestBuilder(PathParameters);
@@ -68,8 +71,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildColumnsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildColumnsNavCommand()
+        {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.site entity.";
             var builder = new ColumnsRequestBuilder(PathParameters);
@@ -94,8 +98,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentTypesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentTypesNavCommand()
+        {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
@@ -123,8 +128,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreatedByUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreatedByUserNavCommand()
+        {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
             var builder = new CreatedByUserRequestBuilder(PathParameters);
@@ -146,8 +152,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDriveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDriveNavCommand()
+        {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.site entity.";
             var builder = new DriveRequestBuilder(PathParameters);
@@ -162,8 +169,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDrivesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDrivesNavCommand()
+        {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.site entity.";
             var builder = new DrivesRequestBuilder(PathParameters);
@@ -187,8 +195,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExternalColumnsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExternalColumnsNavCommand()
+        {
             var command = new Command("external-columns");
             command.Description = "Provides operations to manage the externalColumns property of the microsoft.graph.site entity.";
             var builder = new ExternalColumnsRequestBuilder(PathParameters);
@@ -212,8 +221,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetActivitiesByIntervalNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetActivitiesByIntervalNavCommand()
+        {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
@@ -228,8 +238,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand()
+        {
             var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
@@ -244,8 +255,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to call the getApplicableContentTypesForList method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetApplicableContentTypesForListWithListIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetApplicableContentTypesForListWithListIdRbCommand()
+        {
             var command = new Command("get-applicable-content-types-for-list-with-list-id");
             command.Description = "Provides operations to call the getApplicableContentTypesForList method.";
             var builder = new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters);
@@ -260,8 +272,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to call the getByPath method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByPathWithPathRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByPathWithPathRbCommand()
+        {
             var command = new Command("get-by-path-with-path");
             command.Description = "Provides operations to call the getByPath method.";
             var builder = new GetByPathWithPathRequestBuilder(PathParameters);
@@ -284,6 +297,7 @@ namespace ApiSdk.Sites.Item {
             nonExecCommands.Add(builder.BuildListsNavCommand());
             nonExecCommands.Add(builder.BuildOnenoteNavCommand());
             nonExecCommands.Add(builder.BuildOperationsNavCommand());
+            nonExecCommands.Add(builder.BuildPagesNavCommand());
             nonExecCommands.Add(builder.BuildPermissionsNavCommand());
             nonExecCommands.Add(builder.BuildSitesNavCommand());
             nonExecCommands.Add(builder.BuildTermStoreNavCommand());
@@ -302,8 +316,9 @@ namespace ApiSdk.Sites.Item {
         /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -353,8 +368,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildItemsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildItemsNavCommand()
+        {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.site entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
@@ -378,8 +394,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLastModifiedByUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLastModifiedByUserNavCommand()
+        {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
             var builder = new LastModifiedByUserRequestBuilder(PathParameters);
@@ -401,8 +418,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListsNavCommand()
+        {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.site entity.";
             var builder = new ListsRequestBuilder(PathParameters);
@@ -427,8 +445,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOnenoteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOnenoteNavCommand()
+        {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.site entity.";
             var builder = new OnenoteRequestBuilder(PathParameters);
@@ -456,8 +475,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOperationsNavCommand()
+        {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.site entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
@@ -480,10 +500,39 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the pages property of the microsoft.graph.site entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPagesNavCommand()
+        {
+            var command = new Command("pages");
+            command.Description = "Provides operations to manage the pages property of the microsoft.graph.site entity.";
+            var builder = new PagesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGraphSitePageNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update entity in sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update entity in sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -532,8 +581,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the permissions property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPermissionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPermissionsNavCommand()
+        {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.site entity.";
             var builder = new PermissionsRequestBuilder(PathParameters);
@@ -558,8 +608,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubSitesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubSitesNavCommand()
+        {
             var command = new Command("sub-sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.site entity.";
             var builder = new ApiSdk.Sites.Item.Sites.SitesRequestBuilder(PathParameters);
@@ -583,8 +634,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the termStore property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTermStoreNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTermStoreNavCommand()
+        {
             var command = new Command("term-store");
             command.Description = "Provides operations to manage the termStore property of the microsoft.graph.site entity.";
             var builder = new TermStoreRequestBuilder(PathParameters);
@@ -608,8 +660,9 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Provides operations to manage the termStores property of the microsoft.graph.site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTermStoresNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTermStoresNavCommand()
+        {
             var command = new Command("term-stores");
             command.Description = "Provides operations to manage the termStores property of the microsoft.graph.site entity.";
             var builder = new TermStoresRequestBuilder(PathParameters);
@@ -635,25 +688,29 @@ namespace ApiSdk.Sites.Item {
         /// Instantiates a new <see cref="SiteItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", pathParameters) {
+        public SiteItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SiteItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", rawUrl) {
+        public SiteItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -663,15 +720,17 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Update entity in sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Site body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}", PathParameters);
@@ -682,7 +741,8 @@ namespace ApiSdk.Sites.Item {
         /// <summary>
         /// Retrieve properties and relationships for a [site][] resource.A site resource represents a team site in SharePoint.
         /// </summary>
-        public class SiteItemRequestBuilderGetQueryParameters {
+        public class SiteItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

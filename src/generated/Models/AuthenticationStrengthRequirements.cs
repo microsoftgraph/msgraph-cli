@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum AuthenticationStrengthRequirements {
+    public enum AuthenticationStrengthRequirements
+    {
         [EnumMember(Value = "none")]
         None = 1,
         [EnumMember(Value = "mfa")]

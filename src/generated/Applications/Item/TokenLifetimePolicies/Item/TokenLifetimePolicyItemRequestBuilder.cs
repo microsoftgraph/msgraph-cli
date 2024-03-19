@@ -14,12 +14,14 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\tokenLifetimePolicies\{tokenLifetimePolicy-id}
     /// </summary>
-    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder {
+    public class TokenLifetimePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefByIdNavCommand()
+        {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new RefRequestBuilder(PathParameters);
@@ -35,13 +37,15 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
         /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TokenLifetimePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", pathParameters) {
+        public TokenLifetimePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TokenLifetimePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TokenLifetimePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", rawUrl) {
+        public TokenLifetimePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies/{tokenLifetimePolicy%2Did}", rawUrl)
+        {
         }
     }
 }

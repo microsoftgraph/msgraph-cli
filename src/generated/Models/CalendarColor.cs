@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CalendarColor {
+    public enum CalendarColor
+    {
         [EnumMember(Value = "auto")]
         Auto,
         [EnumMember(Value = "lightBlue")]

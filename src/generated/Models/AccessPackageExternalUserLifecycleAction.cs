@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AccessPackageExternalUserLifecycleAction {
+    public enum AccessPackageExternalUserLifecycleAction
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "blockSignIn")]

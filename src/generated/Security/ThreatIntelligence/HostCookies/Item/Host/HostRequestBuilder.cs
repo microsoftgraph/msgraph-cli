@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item.Host {
     /// <summary>
     /// Provides operations to manage the host property of the microsoft.graph.security.hostCookie entity.
     /// </summary>
-    public class HostRequestBuilder : BaseCliRequestBuilder {
+    public class HostRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Indicates that a cookie of this name and domain was found related to this host.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Indicates that a cookie of this name and domain was found related to this host.";
             var hostCookieIdOption = new Option<string>("--host-cookie-id", description: "The unique identifier of hostCookie") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item.Host {
         /// Instantiates a new <see cref="HostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostCookies/{hostCookie%2Did}/host{?%24expand,%24select}", pathParameters) {
+        public HostRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostCookies/{hostCookie%2Did}/host{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="HostRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostCookies/{hostCookie%2Did}/host{?%24expand,%24select}", rawUrl) {
+        public HostRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostCookies/{hostCookie%2Did}/host{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Indicates that a cookie of this name and domain was found related to this host.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Security.ThreatIntelligence.HostCookies.Item.Host {
         /// <summary>
         /// Indicates that a cookie of this name and domain was found related to this host.
         /// </summary>
-        public class HostRequestBuilderGetQueryParameters {
+        public class HostRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum EducationGender {
+    public enum EducationGender
+    {
         [EnumMember(Value = "female")]
         Female,
         [EnumMember(Value = "male")]

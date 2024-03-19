@@ -18,12 +18,14 @@ namespace ApiSdk.Teams.Item.AllChannels.Item {
     /// <summary>
     /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
     /// </summary>
-    public class ChannelItemRequestBuilder : BaseCliRequestBuilder {
+    public class ChannelItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "List of channels either hosted in or shared with the team (incoming channels).";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Teams.Item.AllChannels.Item {
         /// Instantiates a new <see cref="ChannelItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", pathParameters) {
+        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ChannelItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", rawUrl) {
+        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/allChannels/{channel%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Teams.Item.AllChannels.Item {
         /// <summary>
         /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
-        public class ChannelItemRequestBuilderGetQueryParameters {
+        public class ChannelItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public enum LifecycleWorkflowProcessingStatus {
+    public enum LifecycleWorkflowProcessingStatus
+    {
         [EnumMember(Value = "queued")]
         Queued,
         [EnumMember(Value = "inProgress")]

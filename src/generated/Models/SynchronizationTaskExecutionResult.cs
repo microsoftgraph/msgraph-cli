@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SynchronizationTaskExecutionResult {
+    public enum SynchronizationTaskExecutionResult
+    {
         [EnumMember(Value = "Succeeded")]
         Succeeded,
         [EnumMember(Value = "Failed")]

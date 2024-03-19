@@ -42,12 +42,14 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
     /// <summary>
     /// Provides operations to manage the managedDevices property of the microsoft.graph.user entity.
     /// </summary>
-    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder {
+    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the bypassActivationLock method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildBypassActivationLockNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildBypassActivationLockNavCommand()
+        {
             var command = new Command("bypass-activation-lock");
             command.Description = "Provides operations to call the bypassActivationLock method.";
             var builder = new BypassActivationLockRequestBuilder(PathParameters);
@@ -62,8 +64,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the cleanWindowsDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCleanWindowsDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCleanWindowsDeviceNavCommand()
+        {
             var command = new Command("clean-windows-device");
             command.Description = "Provides operations to call the cleanWindowsDevice method.";
             var builder = new CleanWindowsDeviceRequestBuilder(PathParameters);
@@ -78,8 +81,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Delete navigation property managedDevices for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property managedDevices for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -118,8 +122,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the deleteUserFromSharedAppleDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteUserFromSharedAppleDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteUserFromSharedAppleDeviceNavCommand()
+        {
             var command = new Command("delete-user-from-shared-apple-device");
             command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
             var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters);
@@ -134,8 +139,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceCategoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceCategoryNavCommand()
+        {
             var command = new Command("device-category");
             command.Description = "Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceCategoryRequestBuilder(PathParameters);
@@ -152,8 +158,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceCompliancePolicyStatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceCompliancePolicyStatesNavCommand()
+        {
             var command = new Command("device-compliance-policy-states");
             command.Description = "Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceCompliancePolicyStatesRequestBuilder(PathParameters);
@@ -178,8 +185,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceConfigurationStatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceConfigurationStatesNavCommand()
+        {
             var command = new Command("device-configuration-states");
             command.Description = "Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceConfigurationStatesRequestBuilder(PathParameters);
@@ -204,8 +212,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the disableLostMode method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDisableLostModeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDisableLostModeNavCommand()
+        {
             var command = new Command("disable-lost-mode");
             command.Description = "Provides operations to call the disableLostMode method.";
             var builder = new DisableLostModeRequestBuilder(PathParameters);
@@ -220,8 +229,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// The managed devices associated with the user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The managed devices associated with the user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -277,8 +287,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the locateDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLocateDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLocateDeviceNavCommand()
+        {
             var command = new Command("locate-device");
             command.Description = "Provides operations to call the locateDevice method.";
             var builder = new LocateDeviceRequestBuilder(PathParameters);
@@ -293,8 +304,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLogCollectionRequestsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLogCollectionRequestsNavCommand()
+        {
             var command = new Command("log-collection-requests");
             command.Description = "Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.";
             var builder = new LogCollectionRequestsRequestBuilder(PathParameters);
@@ -319,8 +331,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLogoutSharedAppleDeviceActiveUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLogoutSharedAppleDeviceActiveUserNavCommand()
+        {
             var command = new Command("logout-shared-apple-device-active-user");
             command.Description = "Provides operations to call the logoutSharedAppleDeviceActiveUser method.";
             var builder = new LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters);
@@ -335,8 +348,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Update the navigation property managedDevices in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property managedDevices in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -391,8 +405,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the rebootNow method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRebootNowNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRebootNowNavCommand()
+        {
             var command = new Command("reboot-now");
             command.Description = "Provides operations to call the rebootNow method.";
             var builder = new RebootNowRequestBuilder(PathParameters);
@@ -407,8 +422,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the recoverPasscode method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRecoverPasscodeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRecoverPasscodeNavCommand()
+        {
             var command = new Command("recover-passcode");
             command.Description = "Provides operations to call the recoverPasscode method.";
             var builder = new RecoverPasscodeRequestBuilder(PathParameters);
@@ -423,8 +439,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the remoteLock method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRemoteLockNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRemoteLockNavCommand()
+        {
             var command = new Command("remote-lock");
             command.Description = "Provides operations to call the remoteLock method.";
             var builder = new RemoteLockRequestBuilder(PathParameters);
@@ -439,8 +456,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the requestRemoteAssistance method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRequestRemoteAssistanceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRequestRemoteAssistanceNavCommand()
+        {
             var command = new Command("request-remote-assistance");
             command.Description = "Provides operations to call the requestRemoteAssistance method.";
             var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters);
@@ -455,8 +473,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the resetPasscode method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildResetPasscodeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildResetPasscodeNavCommand()
+        {
             var command = new Command("reset-passcode");
             command.Description = "Provides operations to call the resetPasscode method.";
             var builder = new ResetPasscodeRequestBuilder(PathParameters);
@@ -471,8 +490,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the retire method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRetireNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRetireNavCommand()
+        {
             var command = new Command("retire");
             command.Description = "Provides operations to call the retire method.";
             var builder = new RetireRequestBuilder(PathParameters);
@@ -487,8 +507,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the shutDown method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildShutDownNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildShutDownNavCommand()
+        {
             var command = new Command("shut-down");
             command.Description = "Provides operations to call the shutDown method.";
             var builder = new ShutDownRequestBuilder(PathParameters);
@@ -503,8 +524,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the syncDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSyncDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSyncDeviceNavCommand()
+        {
             var command = new Command("sync-device");
             command.Description = "Provides operations to call the syncDevice method.";
             var builder = new SyncDeviceRequestBuilder(PathParameters);
@@ -519,8 +541,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the updateWindowsDeviceAccount method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUpdateWindowsDeviceAccountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUpdateWindowsDeviceAccountNavCommand()
+        {
             var command = new Command("update-windows-device-account");
             command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
             var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters);
@@ -535,8 +558,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUsersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUsersNavCommand()
+        {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.managedDevice entity.";
             var builder = new ApiSdk.Users.Item.ManagedDevices.Item.Users.UsersRequestBuilder(PathParameters);
@@ -551,8 +575,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the windowsDefenderScan method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWindowsDefenderScanNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWindowsDefenderScanNavCommand()
+        {
             var command = new Command("windows-defender-scan");
             command.Description = "Provides operations to call the windowsDefenderScan method.";
             var builder = new WindowsDefenderScanRequestBuilder(PathParameters);
@@ -567,8 +592,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the windowsDefenderUpdateSignatures method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWindowsDefenderUpdateSignaturesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWindowsDefenderUpdateSignaturesNavCommand()
+        {
             var command = new Command("windows-defender-update-signatures");
             command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
             var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters);
@@ -583,8 +609,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWindowsProtectionStateNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWindowsProtectionStateNavCommand()
+        {
             var command = new Command("windows-protection-state");
             command.Description = "Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.";
             var builder = new WindowsProtectionStateRequestBuilder(PathParameters);
@@ -607,8 +634,9 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the wipe method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWipeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWipeNavCommand()
+        {
             var command = new Command("wipe");
             command.Description = "Provides operations to call the wipe method.";
             var builder = new WipeRequestBuilder(PathParameters);
@@ -624,25 +652,29 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// Instantiates a new <see cref="ManagedDeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", pathParameters) {
+        public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ManagedDeviceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedDeviceItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", rawUrl) {
+        public ManagedDeviceItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property managedDevices for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -652,14 +684,16 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// The managed devices associated with the user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -669,15 +703,17 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Update the navigation property managedDevices in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ManagedDevice body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}", PathParameters);
@@ -688,7 +724,8 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// The managed devices associated with the user.
         /// </summary>
-        public class ManagedDeviceItemRequestBuilderGetQueryParameters {
+        public class ManagedDeviceItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

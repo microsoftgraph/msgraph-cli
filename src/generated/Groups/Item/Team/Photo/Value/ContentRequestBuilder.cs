@@ -17,13 +17,15 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
     /// <summary>
     /// Provides operations to manage the media for the group entity.
     /// </summary>
-    public class ContentRequestBuilder : BaseCliRequestBuilder {
+    public class ContentRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get media content for the navigation property photo from groups
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -67,8 +69,9 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
         /// <summary>
         /// Update media content for the navigation property photo in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPutCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPutCommand()
+        {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -117,25 +120,29 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", pathParameters) {
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", rawUrl) {
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", rawUrl)
+        {
         }
         /// <summary>
         /// Get media content for the navigation property photo from groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -145,15 +152,17 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
         /// <summary>
         /// Update media content for the navigation property photo in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/groups/{group%2Did}/team/photo/$value", PathParameters);
@@ -165,7 +174,8 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
         /// <summary>
         /// Get media content for the navigation property photo from groups
         /// </summary>
-        public class ContentRequestBuilderGetQueryParameters {
+        public class ContentRequestBuilderGetQueryParameters 
+        {
             /// <summary>Format of the content</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

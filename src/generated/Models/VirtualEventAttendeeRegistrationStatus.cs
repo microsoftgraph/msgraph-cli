@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum VirtualEventAttendeeRegistrationStatus {
+    public enum VirtualEventAttendeeRegistrationStatus
+    {
         [EnumMember(Value = "registered")]
         Registered,
         [EnumMember(Value = "canceled")]

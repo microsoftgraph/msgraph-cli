@@ -17,13 +17,15 @@ namespace ApiSdk.DirectoryRoleTemplates.GetAvailableExtensionProperties {
     /// <summary>
     /// Provides operations to call the getAvailableExtensionProperties method.
     /// </summary>
-    public class GetAvailableExtensionPropertiesRequestBuilder : BaseCliRequestBuilder {
+    public class GetAvailableExtensionPropertiesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -78,26 +80,30 @@ namespace ApiSdk.DirectoryRoleTemplates.GetAvailableExtensionProperties {
         /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAvailableExtensionPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/getAvailableExtensionProperties", pathParameters) {
+        public GetAvailableExtensionPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates/getAvailableExtensionProperties", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetAvailableExtensionPropertiesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAvailableExtensionPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/getAvailableExtensionProperties", rawUrl) {
+        public GetAvailableExtensionPropertiesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates/getAvailableExtensionProperties", rawUrl)
+        {
         }
         /// <summary>
         /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetAvailableExtensionPropertiesPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

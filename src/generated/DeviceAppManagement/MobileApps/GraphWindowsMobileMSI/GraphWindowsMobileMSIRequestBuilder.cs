@@ -19,12 +19,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphWindowsMobileMSI {
     /// <summary>
     /// Casts the previous resource to windowsMobileMSI.
     /// </summary>
-    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder {
+    public class GraphWindowsMobileMSIRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -39,8 +41,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the items of type microsoft.graph.windowsMobileMSI in the microsoft.graph.mobileApp collection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the items of type microsoft.graph.windowsMobileMSI in the microsoft.graph.mobileApp collection";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -133,25 +136,29 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphWindowsMobileMSI {
         /// Instantiates a new <see cref="GraphWindowsMobileMSIRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphWindowsMobileMSIRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.windowsMobileMSI{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GraphWindowsMobileMSIRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.windowsMobileMSI{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphWindowsMobileMSIRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphWindowsMobileMSIRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.windowsMobileMSI{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GraphWindowsMobileMSIRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.windowsMobileMSI{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the items of type microsoft.graph.windowsMobileMSI in the microsoft.graph.mobileApp collection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsMobileMSIRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -161,7 +168,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphWindowsMobileMSI {
         /// <summary>
         /// Get the items of type microsoft.graph.windowsMobileMSI in the microsoft.graph.mobileApp collection
         /// </summary>
-        public class GraphWindowsMobileMSIRequestBuilderGetQueryParameters {
+        public class GraphWindowsMobileMSIRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

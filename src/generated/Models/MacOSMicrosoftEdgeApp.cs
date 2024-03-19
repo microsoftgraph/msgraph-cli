@@ -8,30 +8,35 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Contains properties and inherited properties for the macOS Microsoft Edge App.
     /// </summary>
-    public class MacOSMicrosoftEdgeApp : MobileApp, IParsable {
+    public class MacOSMicrosoftEdgeApp : MobileApp, IParsable 
+    {
         /// <summary>The enum to specify the channels for Microsoft Edge apps.</summary>
         public MicrosoftEdgeChannel? Channel { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="MacOSMicrosoftEdgeApp"/> and sets the default values.
         /// </summary>
-        public MacOSMicrosoftEdgeApp() : base() {
+        public MacOSMicrosoftEdgeApp() : base()
+        {
             OdataType = "#microsoft.graph.macOSMicrosoftEdgeApp";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MacOSMicrosoftEdgeApp"></returns>
+        /// <returns>A <see cref="MacOSMicrosoftEdgeApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOSMicrosoftEdgeApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new MacOSMicrosoftEdgeApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MacOSMicrosoftEdgeApp();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"channel", n => { Channel = n.GetEnumValue<MicrosoftEdgeChannel>(); } },
             };
         }
@@ -39,7 +44,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<MicrosoftEdgeChannel>("channel", Channel);

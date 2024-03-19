@@ -19,12 +19,14 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
     /// <summary>
     /// Builds and executes requests for operations under \security\incidents\{incident-id}\alerts\{alert-id}\comments
     /// </summary>
-    public class CommentsRequestBuilder : BaseCliRequestBuilder {
+    public class CommentsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -39,8 +41,9 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Sets a new value for the collection of alertComment.";
             var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
@@ -104,26 +107,30 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item.Comments {
         /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CommentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/incidents/{incident%2Did}/alerts/{alert%2Did}/comments", pathParameters) {
+        public CommentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/incidents/{incident%2Did}/alerts/{alert%2Did}/comments", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CommentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/incidents/{incident%2Did}/alerts/{alert%2Did}/comments", rawUrl) {
+        public CommentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/incidents/{incident%2Did}/alerts/{alert%2Did}/comments", rawUrl)
+        {
         }
         /// <summary>
         /// Sets a new value for the collection of alertComment.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(List<AlertComment> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

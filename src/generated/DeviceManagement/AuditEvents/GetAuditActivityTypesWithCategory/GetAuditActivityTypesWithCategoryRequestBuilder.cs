@@ -17,12 +17,14 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
     /// <summary>
     /// Provides operations to call the getAuditActivityTypes method.
     /// </summary>
-    public class GetAuditActivityTypesWithCategoryRequestBuilder : BaseCliRequestBuilder {
+    public class GetAuditActivityTypesWithCategoryRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getAuditActivityTypes";
             var categoryOption = new Option<string>("--category", description: "Usage: category='{category}'") {
@@ -100,25 +102,29 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// Instantiates a new <see cref="GetAuditActivityTypesWithCategoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetAuditActivityTypesWithCategoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAuditActivityTypesWithCategoryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public GetAuditActivityTypesWithCategoryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -128,7 +134,8 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
-        public class GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters {
+        public class GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

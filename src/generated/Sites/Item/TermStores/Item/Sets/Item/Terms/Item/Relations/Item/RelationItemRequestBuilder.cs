@@ -21,12 +21,14 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
     /// <summary>
     /// Provides operations to manage the relations property of the microsoft.graph.termStore.term entity.
     /// </summary>
-    public class RelationItemRequestBuilder : BaseCliRequestBuilder {
+    public class RelationItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property relations for sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property relations for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -83,8 +85,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFromTermNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFromTermNavCommand()
+        {
             var command = new Command("from-term");
             command.Description = "Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new FromTermRequestBuilder(PathParameters);
@@ -99,8 +102,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// To indicate which terms are related to the current term as either pinned or reused.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -174,8 +178,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// Update the navigation property relations in sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property relations in sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -248,8 +253,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetNavCommand()
+        {
             var command = new Command("set");
             command.Description = "Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.";
             var builder = new SetRequestBuilder(PathParameters);
@@ -264,8 +270,9 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildToTermNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildToTermNavCommand()
+        {
             var command = new Command("to-term");
             command.Description = "Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new ToTermRequestBuilder(PathParameters);
@@ -281,25 +288,29 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// Instantiates a new <see cref="RelationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RelationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}{?%24expand,%24select}", pathParameters) {
+        public RelationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RelationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RelationItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}{?%24expand,%24select}", rawUrl) {
+        public RelationItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property relations for sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -309,14 +320,16 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// To indicate which terms are related to the current term as either pinned or reused.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -326,15 +339,17 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// Update the navigation property relations in sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/terms/{term%2Did}/relations/{relation%2Did}", PathParameters);
@@ -345,7 +360,8 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Terms.Item.Relations.Item 
         /// <summary>
         /// To indicate which terms are related to the current term as either pinned or reused.
         /// </summary>
-        public class RelationItemRequestBuilderGetQueryParameters {
+        public class RelationItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

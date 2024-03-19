@@ -22,12 +22,14 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
     /// <summary>
     /// Provides operations to manage the webinars property of the microsoft.graph.virtualEventsRoot entity.
     /// </summary>
-    public class WebinarsRequestBuilder : BaseCliRequestBuilder {
+    public class WebinarsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the webinars property of the microsoft.graph.virtualEventsRoot entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new VirtualEventWebinarItemRequestBuilder(PathParameters);
@@ -41,8 +43,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -57,8 +60,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Create new navigation property to webinars for solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create new navigation property to webinars for solutions";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -101,8 +105,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Provides operations to call the getByUserIdAndRole method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByUserIdAndRoleWithUserIdWithRoleRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByUserIdAndRoleWithUserIdWithRoleRbCommand()
+        {
             var command = new Command("get-by-user-id-and-role-with-user-id-with-role");
             command.Description = "Provides operations to call the getByUserIdAndRole method.";
             var builder = new GetByUserIdAndRoleWithUserIdWithRoleRequestBuilder(PathParameters);
@@ -117,8 +122,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Provides operations to call the getByUserRole method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByUserRoleWithRoleRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByUserRoleWithRoleRbCommand()
+        {
             var command = new Command("get-by-user-role-with-role");
             command.Description = "Provides operations to call the getByUserRole method.";
             var builder = new GetByUserRoleWithRoleRequestBuilder(PathParameters);
@@ -134,8 +140,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// Get the list of all virtualEventWebinar objects created in the tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get the list of all virtualEventWebinar objects created in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -228,25 +235,29 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// Instantiates a new <see cref="WebinarsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WebinarsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public WebinarsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WebinarsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WebinarsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public WebinarsRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the list of all virtualEventWebinar objects created in the tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WebinarsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WebinarsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WebinarsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WebinarsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -256,15 +267,17 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Create new navigation property to webinars for solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/solutions/virtualEvents/webinars", PathParameters);
@@ -275,7 +288,8 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         /// <summary>
         /// Get the list of all virtualEventWebinar objects created in the tenant.
         /// </summary>
-        public class WebinarsRequestBuilderGetQueryParameters {
+        public class WebinarsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

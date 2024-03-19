@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class PhoneAuthenticationMethod : AuthenticationMethod, IParsable {
+    public class PhoneAuthenticationMethod : AuthenticationMethod, IParsable 
+    {
         /// <summary>The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they don&apos;t match the required format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -21,24 +22,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="PhoneAuthenticationMethod"/> and sets the default values.
         /// </summary>
-        public PhoneAuthenticationMethod() : base() {
+        public PhoneAuthenticationMethod() : base()
+        {
             OdataType = "#microsoft.graph.phoneAuthenticationMethod";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="PhoneAuthenticationMethod"></returns>
+        /// <returns>A <see cref="PhoneAuthenticationMethod"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new PhoneAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new PhoneAuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PhoneAuthenticationMethod();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
                 {"phoneType", n => { PhoneType = n.GetEnumValue<AuthenticationPhoneType>(); } },
                 {"smsSignInState", n => { SmsSignInState = n.GetEnumValue<AuthenticationMethodSignInState>(); } },
@@ -48,7 +53,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("phoneNumber", PhoneNumber);

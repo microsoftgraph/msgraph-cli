@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Storage locations where managed apps can potentially store their data</summary>
-    public enum ManagedAppDataStorageLocation {
+    public enum ManagedAppDataStorageLocation
+    {
         /// <summary>OneDrive for business</summary>
         [EnumMember(Value = "oneDriveForBusiness")]
         OneDriveForBusiness,

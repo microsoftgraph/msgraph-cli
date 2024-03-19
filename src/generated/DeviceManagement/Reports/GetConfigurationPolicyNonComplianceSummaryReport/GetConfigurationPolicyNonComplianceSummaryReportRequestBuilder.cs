@@ -17,13 +17,15 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
     /// <summary>
     /// Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
     /// </summary>
-    public class GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder : BaseCliRequestBuilder {
+    public class GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Not yet documented
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getconfigurationpolicynoncompliancesummaryreport?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getconfigurationpolicynoncompliancesummaryreport?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -69,26 +71,30 @@ namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceSum
         /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", pathParameters) {
+        public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", rawUrl) {
+        public GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/reports/getConfigurationPolicyNonComplianceSummaryReport", rawUrl)
+        {
         }
         /// <summary>
         /// Not yet documented
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetConfigurationPolicyNonComplianceSummaryReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

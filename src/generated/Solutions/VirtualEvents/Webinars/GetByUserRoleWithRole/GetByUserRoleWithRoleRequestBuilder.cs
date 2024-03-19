@@ -17,12 +17,14 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
     /// <summary>
     /// Provides operations to call the getByUserRole method.
     /// </summary>
-    public class GetByUserRoleWithRoleRequestBuilder : BaseCliRequestBuilder {
+    public class GetByUserRoleWithRoleRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getByUserRole
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getByUserRole";
             var roleOption = new Option<string>("--role", description: "Usage: role='{role}'") {
@@ -121,25 +123,29 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
         /// Instantiates a new <see cref="GetByUserRoleWithRoleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetByUserRoleWithRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetByUserRoleWithRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetByUserRoleWithRoleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetByUserRoleWithRoleRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetByUserRoleWithRoleRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/getByUserRole(role='{role}'){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getByUserRole
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetByUserRoleWithRoleRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetByUserRoleWithRoleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetByUserRoleWithRoleRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetByUserRoleWithRoleRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -149,7 +155,8 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
         /// <summary>
         /// Invoke function getByUserRole
         /// </summary>
-        public class GetByUserRoleWithRoleRequestBuilderGetQueryParameters {
+        public class GetByUserRoleWithRoleRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

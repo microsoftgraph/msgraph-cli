@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ProvisioningAction {
+    public enum ProvisioningAction
+    {
         [EnumMember(Value = "other")]
         Other,
         [EnumMember(Value = "create")]

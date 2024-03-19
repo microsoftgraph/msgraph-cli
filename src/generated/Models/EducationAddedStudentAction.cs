@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum EducationAddedStudentAction {
+    public enum EducationAddedStudentAction
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "assignIfOpen")]

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum ExportFileStructure {
+    public enum ExportFileStructure
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "directory")]

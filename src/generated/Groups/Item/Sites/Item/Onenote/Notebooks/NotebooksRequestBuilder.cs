@@ -22,12 +22,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
     /// <summary>
     /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
     /// </summary>
-    public class NotebooksRequestBuilder : BaseCliRequestBuilder {
+    public class NotebooksRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new NotebookItemRequestBuilder(PathParameters);
@@ -42,8 +44,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -59,8 +62,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// Create a new OneNote notebook.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create a new OneNote notebook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -115,8 +119,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Provides operations to call the getNotebookFromWebUrl method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetNotebookFromWebUrlNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetNotebookFromWebUrlNavCommand()
+        {
             var command = new Command("get-notebook-from-web-url");
             command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
             var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters);
@@ -131,8 +136,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Provides operations to call the getRecentNotebooks method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetRecentNotebooksWithIncludePersonalNotebooksRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetRecentNotebooksWithIncludePersonalNotebooksRbCommand()
+        {
             var command = new Command("get-recent-notebooks-with-include-personal-notebooks");
             command.Description = "Provides operations to call the getRecentNotebooks method.";
             var builder = new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters);
@@ -148,8 +154,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// Retrieve a list of notebook objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Retrieve a list of notebook objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -254,25 +261,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// Instantiates a new <see cref="NotebooksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public NotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public NotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="NotebooksRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public NotebooksRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public NotebooksRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve a list of notebook objects.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebooksRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -282,15 +293,17 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Create a new OneNote notebook.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks", PathParameters);
@@ -301,7 +314,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Retrieve a list of notebook objects.
         /// </summary>
-        public class NotebooksRequestBuilderGetQueryParameters {
+        public class NotebooksRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

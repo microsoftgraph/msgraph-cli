@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum ChatMessageActions {
+    public enum ChatMessageActions
+    {
         [EnumMember(Value = "reactionAdded")]
         ReactionAdded = 1,
         [EnumMember(Value = "reactionRemoved")]

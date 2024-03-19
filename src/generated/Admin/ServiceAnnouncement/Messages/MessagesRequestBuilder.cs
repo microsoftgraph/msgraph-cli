@@ -26,12 +26,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
     /// <summary>
     /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
     /// </summary>
-    public class MessagesRequestBuilder : BaseCliRequestBuilder {
+    public class MessagesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the archive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildArchiveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildArchiveNavCommand()
+        {
             var command = new Command("archive");
             command.Description = "Provides operations to call the archive method.";
             var builder = new ArchiveRequestBuilder(PathParameters);
@@ -46,8 +48,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new ServiceUpdateMessageItemRequestBuilder(PathParameters);
@@ -61,8 +64,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -77,8 +81,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Create new navigation property to messages for admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create new navigation property to messages for admin";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -121,8 +126,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the favorite method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFavoriteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFavoriteNavCommand()
+        {
             var command = new Command("favorite");
             command.Description = "Provides operations to call the favorite method.";
             var builder = new FavoriteRequestBuilder(PathParameters);
@@ -138,8 +144,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -231,8 +238,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markRead method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMarkReadNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMarkReadNavCommand()
+        {
             var command = new Command("mark-read");
             command.Description = "Provides operations to call the markRead method.";
             var builder = new MarkReadRequestBuilder(PathParameters);
@@ -247,8 +255,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markUnread method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMarkUnreadNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMarkUnreadNavCommand()
+        {
             var command = new Command("mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
             var builder = new MarkUnreadRequestBuilder(PathParameters);
@@ -263,8 +272,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnarchiveNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnarchiveNavCommand()
+        {
             var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters);
@@ -279,8 +289,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unfavorite method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnfavoriteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnfavoriteNavCommand()
+        {
             var command = new Command("unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
             var builder = new UnfavoriteRequestBuilder(PathParameters);
@@ -296,25 +307,29 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// Instantiates a new <see cref="MessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public MessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MessagesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MessagesRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public MessagesRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessagesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessagesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -324,15 +339,17 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Create new navigation property to messages for admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServiceUpdateMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/admin/serviceAnnouncement/messages", PathParameters);
@@ -343,7 +360,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
         /// </summary>
-        public class MessagesRequestBuilderGetQueryParameters {
+        public class MessagesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

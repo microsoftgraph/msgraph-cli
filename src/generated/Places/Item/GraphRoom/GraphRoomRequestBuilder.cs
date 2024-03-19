@@ -18,12 +18,14 @@ namespace ApiSdk.Places.Item.GraphRoom {
     /// <summary>
     /// Casts the previous resource to room.
     /// </summary>
-    public class GraphRoomRequestBuilder : BaseCliRequestBuilder {
+    public class GraphRoomRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.room
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.place as microsoft.graph.room";
             var placeIdOption = new Option<string>("--place-id", description: "The unique identifier of place") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Places.Item.GraphRoom {
         /// Instantiates a new <see cref="GraphRoomRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphRoomRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", pathParameters) {
+        public GraphRoomRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphRoomRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphRoomRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", rawUrl) {
+        public GraphRoomRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}/graph.room{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.room
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphRoomRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Places.Item.GraphRoom {
         /// <summary>
         /// Get the item of type microsoft.graph.place as microsoft.graph.room
         /// </summary>
-        public class GraphRoomRequestBuilderGetQueryParameters {
+        public class GraphRoomRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

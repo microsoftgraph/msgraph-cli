@@ -18,12 +18,14 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomain
     /// <summary>
     /// Provides operations to call the findTenantInformationByDomainName method.
     /// </summary>
-    public class FindTenantInformationByDomainNameWithDomainNameRequestBuilder : BaseCliRequestBuilder {
+    public class FindTenantInformationByDomainNameWithDomainNameRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function findTenantInformationByDomainName
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function findTenantInformationByDomainName";
             var domainNameOption = new Option<string>("--domain-name", description: "Usage: domainName='{domainName}'") {
@@ -60,25 +62,29 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomain
         /// Instantiates a new <see cref="FindTenantInformationByDomainNameWithDomainNameRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FindTenantInformationByDomainNameWithDomainNameRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/findTenantInformationByDomainName(domainName='{domainName}')", pathParameters) {
+        public FindTenantInformationByDomainNameWithDomainNameRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/findTenantInformationByDomainName(domainName='{domainName}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="FindTenantInformationByDomainNameWithDomainNameRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FindTenantInformationByDomainNameWithDomainNameRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/findTenantInformationByDomainName(domainName='{domainName}')", rawUrl) {
+        public FindTenantInformationByDomainNameWithDomainNameRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships/findTenantInformationByDomainName(domainName='{domainName}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function findTenantInformationByDomainName
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

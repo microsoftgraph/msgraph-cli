@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RiskEventType {
+    public enum RiskEventType
+    {
         [EnumMember(Value = "unlikelyTravel")]
         UnlikelyTravel,
         [EnumMember(Value = "anonymizedIPAddress")]

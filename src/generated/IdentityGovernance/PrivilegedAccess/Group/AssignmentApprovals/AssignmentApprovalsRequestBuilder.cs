@@ -21,12 +21,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
     /// <summary>
     /// Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class AssignmentApprovalsRequestBuilder : BaseCliRequestBuilder {
+    public class AssignmentApprovalsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new ApprovalItemRequestBuilder(PathParameters);
@@ -39,8 +41,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -55,8 +58,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Create new navigation property to assignmentApprovals for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create new navigation property to assignmentApprovals for identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -99,8 +103,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Provides operations to call the filterByCurrentUser method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFilterByCurrentUserWithOnRbCommand()
+        {
             var command = new Command("filter-by-current-user-with-on");
             command.Description = "Provides operations to call the filterByCurrentUser method.";
             var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
@@ -115,8 +120,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Get assignmentApprovals from identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get assignmentApprovals from identityGovernance";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -209,25 +215,29 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// Instantiates a new <see cref="AssignmentApprovalsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignmentApprovalsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public AssignmentApprovalsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AssignmentApprovalsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignmentApprovalsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public AssignmentApprovalsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get assignmentApprovals from identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentApprovalsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentApprovalsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentApprovalsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentApprovalsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -237,15 +247,17 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Create new navigation property to assignmentApprovals for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Approval body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Approval body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Approval body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Approval body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentApprovals", PathParameters);
@@ -256,7 +268,8 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals {
         /// <summary>
         /// Get assignmentApprovals from identityGovernance
         /// </summary>
-        public class AssignmentApprovalsRequestBuilderGetQueryParameters {
+        public class AssignmentApprovalsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

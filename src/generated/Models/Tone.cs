@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum Tone {
+    public enum Tone
+    {
         [EnumMember(Value = "tone0")]
         Tone0,
         [EnumMember(Value = "tone1")]

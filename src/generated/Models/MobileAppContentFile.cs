@@ -8,21 +8,22 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Contains properties for a single installer file that is associated with a given mobileAppContent version.
     /// </summary>
-    public class MobileAppContentFile : Entity, IParsable {
+    public class MobileAppContentFile : Entity, IParsable 
+    {
         /// <summary>The Azure Storage URI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AzureStorageUri { get; set; }
+        public string? AzureStorageUri { get; private set; }
 #nullable restore
 #else
-        public string AzureStorageUri { get; set; }
+        public string AzureStorageUri { get; private set; }
 #endif
         /// <summary>The time the Azure storage Uri expires.</summary>
-        public DateTimeOffset? AzureStorageUriExpirationDateTime { get; set; }
+        public DateTimeOffset? AzureStorageUriExpirationDateTime { get; private set; }
         /// <summary>The time the file was created.</summary>
-        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>A value indicating whether the file is committed.</summary>
-        public bool? IsCommitted { get; set; }
+        public bool? IsCommitted { get; private set; }
         /// <summary>The manifest information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -48,18 +49,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MobileAppContentFile"></returns>
+        /// <returns>A <see cref="MobileAppContentFile"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MobileAppContentFile CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new MobileAppContentFile CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MobileAppContentFile();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"azureStorageUri", n => { AzureStorageUri = n.GetStringValue(); } },
                 {"azureStorageUriExpirationDateTime", n => { AzureStorageUriExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -75,13 +79,10 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteStringValue("azureStorageUri", AzureStorageUri);
-            writer.WriteDateTimeOffsetValue("azureStorageUriExpirationDateTime", AzureStorageUriExpirationDateTime);
-            writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
-            writer.WriteBoolValue("isCommitted", IsCommitted);
             writer.WriteByteArrayValue("manifest", Manifest);
             writer.WriteStringValue("name", Name);
             writer.WriteLongValue("size", Size);

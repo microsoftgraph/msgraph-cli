@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Operating System restart category.</summary>
-    public enum UserExperienceAnalyticsOperatingSystemRestartCategory {
+    public enum UserExperienceAnalyticsOperatingSystemRestartCategory
+    {
         /// <summary>Default. Set to unknown if device operating system restart category has not yet been calculated.</summary>
         [EnumMember(Value = "unknown")]
         Unknown,

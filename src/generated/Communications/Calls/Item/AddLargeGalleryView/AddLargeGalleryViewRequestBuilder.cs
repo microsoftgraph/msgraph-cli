@@ -18,13 +18,15 @@ namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView {
     /// <summary>
     /// Provides operations to call the addLargeGalleryView method.
     /// </summary>
-    public class AddLargeGalleryViewRequestBuilder : BaseCliRequestBuilder {
+    public class AddLargeGalleryViewRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-addlargegalleryview?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-addlargegalleryview?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
@@ -74,26 +76,30 @@ namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView {
         /// Instantiates a new <see cref="AddLargeGalleryViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AddLargeGalleryViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/addLargeGalleryView", pathParameters) {
+        public AddLargeGalleryViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/addLargeGalleryView", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AddLargeGalleryViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AddLargeGalleryViewRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/addLargeGalleryView", rawUrl) {
+        public AddLargeGalleryViewRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/addLargeGalleryView", rawUrl)
+        {
         }
         /// <summary>
         /// Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AddLargeGalleryViewPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddLargeGalleryViewPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AddLargeGalleryViewPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddLargeGalleryViewPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

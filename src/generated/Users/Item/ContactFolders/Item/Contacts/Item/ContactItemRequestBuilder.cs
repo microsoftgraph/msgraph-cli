@@ -20,12 +20,14 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
     /// <summary>
     /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.
     /// </summary>
-    public class ContactItemRequestBuilder : BaseCliRequestBuilder {
+    public class ContactItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property contacts for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property contacts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -70,8 +72,9 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.contact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExtensionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExtensionsNavCommand()
+        {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.contact entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
@@ -96,8 +99,9 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The contacts in the folder. Navigation property. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -159,8 +163,9 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Update the navigation property contacts in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property contacts in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -221,8 +226,9 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.contact entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPhotoNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPhotoNavCommand()
+        {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.contact entity.";
             var builder = new PhotoRequestBuilder(PathParameters);
@@ -245,25 +251,29 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// Instantiates a new <see cref="ContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContactItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", pathParameters) {
+        public ContactItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContactItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContactItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", rawUrl) {
+        public ContactItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property contacts for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -273,14 +283,16 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContactItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContactItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContactItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContactItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -290,15 +302,17 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Update the navigation property contacts in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Contact body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Contact body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Contact body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Contact body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts/{contact%2Did}", PathParameters);
@@ -309,7 +323,8 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
-        public class ContactItemRequestBuilderGetQueryParameters {
+        public class ContactItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

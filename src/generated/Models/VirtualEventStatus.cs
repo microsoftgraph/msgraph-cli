@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum VirtualEventStatus {
+    public enum VirtualEventStatus
+    {
         [EnumMember(Value = "draft")]
         Draft,
         [EnumMember(Value = "published")]

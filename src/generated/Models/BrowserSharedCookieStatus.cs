@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum BrowserSharedCookieStatus {
+    public enum BrowserSharedCookieStatus
+    {
         /// <summary>A sharedcookie that has been published</summary>
         [EnumMember(Value = "published")]
         Published,

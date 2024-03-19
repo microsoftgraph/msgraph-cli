@@ -19,12 +19,14 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
     /// <summary>
     /// Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class FeatureRolloutPolicyItemRequestBuilder : BaseCliRequestBuilder {
+    public class FeatureRolloutPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.featureRolloutPolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppliesToNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppliesToNavCommand()
+        {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.featureRolloutPolicy entity.";
             var builder = new AppliesToRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// Delete a featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
@@ -86,8 +89,9 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
@@ -138,8 +142,9 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// Update the properties of featureRolloutPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-update?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
@@ -189,25 +194,29 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// Instantiates a new <see cref="FeatureRolloutPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FeatureRolloutPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", pathParameters) {
+        public FeatureRolloutPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="FeatureRolloutPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public FeatureRolloutPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", rawUrl) {
+        public FeatureRolloutPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a featureRolloutPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -217,14 +226,16 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FeatureRolloutPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FeatureRolloutPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FeatureRolloutPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<FeatureRolloutPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -234,15 +245,17 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// <summary>
         /// Update the properties of featureRolloutPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(FeatureRolloutPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(FeatureRolloutPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(FeatureRolloutPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(FeatureRolloutPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}", PathParameters);
@@ -253,7 +266,8 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a featureRolloutPolicy object.
         /// </summary>
-        public class FeatureRolloutPolicyItemRequestBuilderGetQueryParameters {
+        public class FeatureRolloutPolicyItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

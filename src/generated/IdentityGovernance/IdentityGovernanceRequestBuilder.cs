@@ -24,12 +24,14 @@ namespace ApiSdk.IdentityGovernance {
     /// <summary>
     /// Provides operations to manage the identityGovernance singleton.
     /// </summary>
-    public class IdentityGovernanceRequestBuilder : BaseCliRequestBuilder {
+    public class IdentityGovernanceRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAccessReviewsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAccessReviewsNavCommand()
+        {
             var command = new Command("access-reviews");
             command.Description = "Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.";
             var builder = new AccessReviewsRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppConsentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppConsentNavCommand()
+        {
             var command = new Command("app-consent");
             command.Description = "Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.";
             var builder = new AppConsentRequestBuilder(PathParameters);
@@ -77,8 +80,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildEntitlementManagementNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildEntitlementManagementNavCommand()
+        {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.";
             var builder = new EntitlementManagementRequestBuilder(PathParameters);
@@ -112,8 +116,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Get identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get identityGovernance";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -157,8 +162,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLifecycleWorkflowsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLifecycleWorkflowsNavCommand()
+        {
             var command = new Command("lifecycle-workflows");
             command.Description = "Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.";
             var builder = new LifecycleWorkflowsRequestBuilder(PathParameters);
@@ -186,8 +192,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Update identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -230,8 +237,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrivilegedAccessNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrivilegedAccessNavCommand()
+        {
             var command = new Command("privileged-access");
             command.Description = "Provides operations to manage the privilegedAccess property of the microsoft.graph.identityGovernance entity.";
             var builder = new PrivilegedAccessRequestBuilder(PathParameters);
@@ -254,8 +262,9 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTermsOfUseNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTermsOfUseNavCommand()
+        {
             var command = new Command("terms-of-use");
             command.Description = "Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.";
             var builder = new TermsOfUseRequestBuilder(PathParameters);
@@ -280,25 +289,29 @@ namespace ApiSdk.IdentityGovernance {
         /// Instantiates a new <see cref="IdentityGovernanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", pathParameters) {
+        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="IdentityGovernanceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityGovernanceRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", rawUrl) {
+        public IdentityGovernanceRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -308,15 +321,17 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Update identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance", PathParameters);
@@ -327,7 +342,8 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Get identityGovernance
         /// </summary>
-        public class IdentityGovernanceRequestBuilderGetQueryParameters {
+        public class IdentityGovernanceRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

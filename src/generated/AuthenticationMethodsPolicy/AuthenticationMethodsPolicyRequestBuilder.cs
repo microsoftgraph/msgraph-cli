@@ -19,12 +19,14 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
     /// <summary>
     /// Provides operations to manage the authenticationMethodsPolicy singleton.
     /// </summary>
-    public class AuthenticationMethodsPolicyRequestBuilder : BaseCliRequestBuilder {
+    public class AuthenticationMethodsPolicyRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAuthenticationMethodConfigurationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAuthenticationMethodConfigurationsNavCommand()
+        {
             var command = new Command("authentication-method-configurations");
             command.Description = "Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.";
             var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters);
@@ -49,8 +51,9 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// <summary>
         /// Get authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get authenticationMethodsPolicy";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -94,8 +97,9 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// <summary>
         /// Update authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update authenticationMethodsPolicy";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -139,25 +143,29 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// Instantiates a new <see cref="AuthenticationMethodsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationMethodsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", pathParameters) {
+        public AuthenticationMethodsPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AuthenticationMethodsPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuthenticationMethodsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", rawUrl) {
+        public AuthenticationMethodsPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/authenticationMethodsPolicy{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationMethodsPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -167,15 +175,17 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// <summary>
         /// Update authenticationMethodsPolicy
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AuthenticationMethodsPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/authenticationMethodsPolicy", PathParameters);
@@ -186,7 +196,8 @@ namespace ApiSdk.AuthenticationMethodsPolicy {
         /// <summary>
         /// Get authenticationMethodsPolicy
         /// </summary>
-        public class AuthenticationMethodsPolicyRequestBuilderGetQueryParameters {
+        public class AuthenticationMethodsPolicyRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

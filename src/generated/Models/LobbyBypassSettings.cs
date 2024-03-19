@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class LobbyBypassSettings : IAdditionalDataHolder, IParsable {
+    public class LobbyBypassSettings : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Specifies whether or not to always let dial-in callers bypass the lobby. Optional.</summary>
@@ -23,24 +24,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="LobbyBypassSettings"/> and sets the default values.
         /// </summary>
-        public LobbyBypassSettings() {
+        public LobbyBypassSettings()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="LobbyBypassSettings"></returns>
+        /// <returns>A <see cref="LobbyBypassSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static LobbyBypassSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static LobbyBypassSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new LobbyBypassSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"isDialInBypassEnabled", n => { IsDialInBypassEnabled = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"scope", n => { Scope = n.GetEnumValue<LobbyBypassScope>(); } },
@@ -50,7 +55,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("isDialInBypassEnabled", IsDialInBypassEnabled);
             writer.WriteStringValue("@odata.type", OdataType);

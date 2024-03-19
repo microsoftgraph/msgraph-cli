@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ThreatAssessmentRequestSource {
+    public enum ThreatAssessmentRequestSource
+    {
         [EnumMember(Value = "undefined")]
         Undefined,
         [EnumMember(Value = "user")]

@@ -19,12 +19,14 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
     /// <summary>
     /// Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
     /// </summary>
-    public class RiskyServicePrincipalItemRequestBuilder : BaseCliRequestBuilder {
+    public class RiskyServicePrincipalItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property riskyServicePrincipals for identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskyServicePrincipals for identityProtection";
             var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
@@ -58,8 +60,9 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// Read the properties and relationships of a riskyServicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a riskyServicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyserviceprincipal-get?view=graph-rest-1.0";
             var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
@@ -109,8 +112,9 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.riskyServicePrincipal entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHistoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHistoryNavCommand()
+        {
             var command = new Command("history");
             command.Description = "Provides operations to manage the history property of the microsoft.graph.riskyServicePrincipal entity.";
             var builder = new HistoryRequestBuilder(PathParameters);
@@ -135,8 +139,9 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Update the navigation property riskyServicePrincipals in identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskyServicePrincipals in identityProtection";
             var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
@@ -186,25 +191,29 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// Instantiates a new <see cref="RiskyServicePrincipalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RiskyServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}{?%24expand,%24select}", pathParameters) {
+        public RiskyServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RiskyServicePrincipalItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RiskyServicePrincipalItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}{?%24expand,%24select}", rawUrl) {
+        public RiskyServicePrincipalItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property riskyServicePrincipals for identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Read the properties and relationships of a riskyServicePrincipal object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyServicePrincipalItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyServicePrincipalItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyServicePrincipalItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyServicePrincipalItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Update the navigation property riskyServicePrincipals in identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RiskyServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RiskyServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(RiskyServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RiskyServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityProtection/riskyServicePrincipals/{riskyServicePrincipal%2Did}", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
         /// <summary>
         /// Read the properties and relationships of a riskyServicePrincipal object.
         /// </summary>
-        public class RiskyServicePrincipalItemRequestBuilderGetQueryParameters {
+        public class RiskyServicePrincipalItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

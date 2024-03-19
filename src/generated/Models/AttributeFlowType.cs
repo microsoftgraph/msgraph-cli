@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AttributeFlowType {
+    public enum AttributeFlowType
+    {
         [EnumMember(Value = "Always")]
         Always,
         [EnumMember(Value = "ObjectAddOnly")]

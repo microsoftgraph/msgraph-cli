@@ -22,12 +22,14 @@ namespace ApiSdk.IdentityProtection {
     /// <summary>
     /// Provides operations to manage the identityProtectionRoot singleton.
     /// </summary>
-    public class IdentityProtectionRequestBuilder : BaseCliRequestBuilder {
+    public class IdentityProtectionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get identityProtection";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -71,8 +73,9 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Update identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update identityProtection";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -115,8 +118,9 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRiskDetectionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRiskDetectionsNavCommand()
+        {
             var command = new Command("risk-detections");
             command.Description = "Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskDetectionsRequestBuilder(PathParameters);
@@ -141,8 +145,9 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRiskyServicePrincipalsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRiskyServicePrincipalsNavCommand()
+        {
             var command = new Command("risky-service-principals");
             command.Description = "Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyServicePrincipalsRequestBuilder(PathParameters);
@@ -169,8 +174,9 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRiskyUsersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRiskyUsersNavCommand()
+        {
             var command = new Command("risky-users");
             command.Description = "Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyUsersRequestBuilder(PathParameters);
@@ -197,8 +203,9 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServicePrincipalRiskDetectionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServicePrincipalRiskDetectionsNavCommand()
+        {
             var command = new Command("service-principal-risk-detections");
             command.Description = "Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new ServicePrincipalRiskDetectionsRequestBuilder(PathParameters);
@@ -224,25 +231,29 @@ namespace ApiSdk.IdentityProtection {
         /// Instantiates a new <see cref="IdentityProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection{?%24expand,%24select}", pathParameters) {
+        public IdentityProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="IdentityProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection{?%24expand,%24select}", rawUrl) {
+        public IdentityProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -252,15 +263,17 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Update identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(IdentityProtectionRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityProtection", PathParameters);
@@ -271,7 +284,8 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Get identityProtection
         /// </summary>
-        public class IdentityProtectionRequestBuilderGetQueryParameters {
+        public class IdentityProtectionRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

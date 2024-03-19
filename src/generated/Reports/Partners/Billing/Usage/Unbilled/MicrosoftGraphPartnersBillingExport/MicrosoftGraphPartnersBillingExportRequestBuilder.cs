@@ -18,15 +18,17 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled.MicrosoftGraphPartnersB
     /// <summary>
     /// Provides operations to call the export method.
     /// </summary>
-    public class MicrosoftGraphPartnersBillingExportRequestBuilder : BaseCliRequestBuilder {
+    public class MicrosoftGraphPartnersBillingExportRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
-        /// Export the unbilled Azure usage data for a specific billing period and a given currency.
+        /// Export unbilled Azure usage data for a specific billing period and currency.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/partners-billing-unbilledusage-export?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
-            command.Description = "Export the unbilled Azure usage data for a specific billing period and a given currency.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/partners-billing-unbilledusage-export?view=graph-rest-1.0";
+            command.Description = "Export unbilled Azure usage data for a specific billing period and currency.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/partners-billing-unbilledusage-export?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -68,26 +70,30 @@ namespace ApiSdk.Reports.Partners.Billing.Usage.Unbilled.MicrosoftGraphPartnersB
         /// Instantiates a new <see cref="MicrosoftGraphPartnersBillingExportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MicrosoftGraphPartnersBillingExportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", pathParameters) {
+        public MicrosoftGraphPartnersBillingExportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MicrosoftGraphPartnersBillingExportRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MicrosoftGraphPartnersBillingExportRequestBuilder(string rawUrl) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", rawUrl) {
+        public MicrosoftGraphPartnersBillingExportRequestBuilder(string rawUrl) : base("{+baseurl}/reports/partners/billing/usage/unbilled/microsoft.graph.partners.billing.export", rawUrl)
+        {
         }
         /// <summary>
-        /// Export the unbilled Azure usage data for a specific billing period and a given currency.
+        /// Export unbilled Azure usage data for a specific billing period and currency.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ExportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ExportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ExportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ExportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

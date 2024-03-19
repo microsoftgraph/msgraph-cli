@@ -17,12 +17,14 @@ namespace ApiSdk.Contacts.Item.RetryServiceProvisioning {
     /// <summary>
     /// Provides operations to call the retryServiceProvisioning method.
     /// </summary>
-    public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder {
+    public class RetryServiceProvisioningRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke action retryServiceProvisioning
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Invoke action retryServiceProvisioning";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
@@ -49,25 +51,29 @@ namespace ApiSdk.Contacts.Item.RetryServiceProvisioning {
         /// Instantiates a new <see cref="RetryServiceProvisioningRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RetryServiceProvisioningRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", pathParameters) {
+        public RetryServiceProvisioningRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RetryServiceProvisioningRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RetryServiceProvisioningRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", rawUrl) {
+        public RetryServiceProvisioningRequestBuilder(string rawUrl) : base("{+baseurl}/contacts/{orgContact%2Did}/retryServiceProvisioning", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke action retryServiceProvisioning
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PermissionType {
+    public enum PermissionType
+    {
         [EnumMember(Value = "delegatedUserConsentable")]
         DelegatedUserConsentable,
         [EnumMember(Value = "delegated")]

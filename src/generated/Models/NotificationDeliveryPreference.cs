@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum NotificationDeliveryPreference {
+    public enum NotificationDeliveryPreference
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "deliverImmedietly")]

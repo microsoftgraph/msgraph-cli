@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum BehaviorDuringRetentionPeriod {
+    public enum BehaviorDuringRetentionPeriod
+    {
         [EnumMember(Value = "doNotRetain")]
         DoNotRetain,
         [EnumMember(Value = "retain")]

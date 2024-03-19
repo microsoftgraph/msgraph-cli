@@ -17,12 +17,14 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWeb
     /// <summary>
     /// Provides operations to call the getVirtualAppointmentJoinWebUrl method.
     /// </summary>
-    public class GetVirtualAppointmentJoinWebUrlRequestBuilder : BaseCliRequestBuilder {
+    public class GetVirtualAppointmentJoinWebUrlRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getVirtualAppointmentJoinWebUrl
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getVirtualAppointmentJoinWebUrl";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
@@ -59,25 +61,29 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWeb
         /// Instantiates a new <see cref="GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetVirtualAppointmentJoinWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", pathParameters) {
+        public GetVirtualAppointmentJoinWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetVirtualAppointmentJoinWebUrlRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetVirtualAppointmentJoinWebUrlRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", rawUrl) {
+        public GetVirtualAppointmentJoinWebUrlRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/getVirtualAppointmentJoinWebUrl()", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getVirtualAppointmentJoinWebUrl
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

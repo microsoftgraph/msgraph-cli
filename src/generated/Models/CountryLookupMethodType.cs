@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CountryLookupMethodType {
+    public enum CountryLookupMethodType
+    {
         [EnumMember(Value = "clientIpAddress")]
         ClientIpAddress,
         [EnumMember(Value = "authenticatorAppGps")]

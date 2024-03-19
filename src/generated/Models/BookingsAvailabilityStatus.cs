@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum BookingsAvailabilityStatus {
+    public enum BookingsAvailabilityStatus
+    {
         [EnumMember(Value = "available")]
         Available,
         [EnumMember(Value = "busy")]

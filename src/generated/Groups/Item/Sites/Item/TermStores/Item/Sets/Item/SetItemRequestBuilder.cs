@@ -22,12 +22,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
     /// <summary>
     /// Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
     /// </summary>
-    public class SetItemRequestBuilder : BaseCliRequestBuilder {
+    public class SetItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildChildrenNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildChildrenNavCommand()
+        {
             var command = new Command("children");
             command.Description = "Provides operations to manage the children property of the microsoft.graph.termStore.set entity.";
             var builder = new ChildrenRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Delete a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -106,8 +109,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Read the properties and relationships of a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -175,8 +179,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildParentGroupNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildParentGroupNavCommand()
+        {
             var command = new Command("parent-group");
             command.Description = "Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.";
             var builder = new ParentGroupRequestBuilder(PathParameters);
@@ -200,8 +205,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Update the properties of a set object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -268,8 +274,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRelationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRelationsNavCommand()
+        {
             var command = new Command("relations");
             command.Description = "Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.";
             var builder = new RelationsRequestBuilder(PathParameters);
@@ -294,8 +301,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTermsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTermsNavCommand()
+        {
             var command = new Command("terms");
             command.Description = "Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.";
             var builder = new TermsRequestBuilder(PathParameters);
@@ -321,25 +329,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// Instantiates a new <see cref="SetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}{?%24expand,%24select}", pathParameters) {
+        public SetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SetItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}{?%24expand,%24select}", rawUrl) {
+        public SetItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -349,14 +361,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Read the properties and relationships of a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SetItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -366,15 +380,17 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Update the properties of a set object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Set body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Set body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Set body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TermStore.Set body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}", PathParameters);
@@ -385,7 +401,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         /// <summary>
         /// Read the properties and relationships of a set object.
         /// </summary>
-        public class SetItemRequestBuilderGetQueryParameters {
+        public class SetItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

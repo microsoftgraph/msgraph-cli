@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PlannerContainerType {
+    public enum PlannerContainerType
+    {
         [EnumMember(Value = "group")]
         Group,
         [EnumMember(Value = "unknownFutureValue")]

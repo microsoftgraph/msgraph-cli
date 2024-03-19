@@ -91,12 +91,14 @@ namespace ApiSdk {
     /// <summary>
     /// The main entry point of the SDK, exposes the configuration and the fluent API.
     /// </summary>
-    public class GraphClient : BaseCliRequestBuilder {
+    public class GraphClient : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the admin singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAdminNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAdminNavCommand()
+        {
             var command = new Command("admin");
             command.Description = "Provides operations to manage the admin singleton.";
             var builder = new AdminRequestBuilder(PathParameters);
@@ -104,6 +106,7 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildEdgeNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMicrosoft365AppsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildPeopleNavCommand());
             nonExecCommands.Add(builder.BuildServiceAnnouncementNavCommand());
@@ -121,8 +124,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of agreementAcceptance entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAgreementAcceptancesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAgreementAcceptancesNavCommand()
+        {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the collection of agreementAcceptance entities.";
             var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
@@ -146,8 +150,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of agreement entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAgreementsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAgreementsNavCommand()
+        {
             var command = new Command("agreements");
             command.Description = "Provides operations to manage the collection of agreement entities.";
             var builder = new AgreementsRequestBuilder(PathParameters);
@@ -171,8 +176,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the appCatalogs singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppCatalogsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppCatalogsNavCommand()
+        {
             var command = new Command("app-catalogs");
             command.Description = "Provides operations to manage the appCatalogs singleton.";
             var builder = new AppCatalogsRequestBuilder(PathParameters);
@@ -194,8 +200,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApplicationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApplicationsNavCommand()
+        {
             var command = new Command("applications");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new ApplicationsRequestBuilder(PathParameters);
@@ -224,8 +231,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApplicationsWithAppIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApplicationsWithAppIdRbCommand()
+        {
             var command = new Command("applications-with-app-id");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new ApplicationsWithAppIdRequestBuilder(PathParameters);
@@ -242,8 +250,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApplicationsWithUniqueNameRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApplicationsWithUniqueNameRbCommand()
+        {
             var command = new Command("applications-with-unique-name");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new ApplicationsWithUniqueNameRequestBuilder(PathParameters);
@@ -260,8 +269,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of applicationTemplate entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApplicationTemplatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApplicationTemplatesNavCommand()
+        {
             var command = new Command("application-templates");
             command.Description = "Provides operations to manage the collection of applicationTemplate entities.";
             var builder = new ApplicationTemplatesRequestBuilder(PathParameters);
@@ -285,8 +295,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the auditLogRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAuditLogsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAuditLogsNavCommand()
+        {
             var command = new Command("audit-logs");
             command.Description = "Provides operations to manage the auditLogRoot singleton.";
             var builder = new AuditLogsRequestBuilder(PathParameters);
@@ -310,8 +321,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of authenticationMethodConfiguration entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAuthenticationMethodConfigurationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAuthenticationMethodConfigurationsNavCommand()
+        {
             var command = new Command("authentication-method-configurations");
             command.Description = "Provides operations to manage the collection of authenticationMethodConfiguration entities.";
             var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters);
@@ -336,8 +348,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the authenticationMethodsPolicy singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAuthenticationMethodsPolicyNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAuthenticationMethodsPolicyNavCommand()
+        {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy singleton.";
             var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
@@ -359,8 +372,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of certificateBasedAuthConfiguration entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCertificateBasedAuthConfigurationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCertificateBasedAuthConfigurationNavCommand()
+        {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the collection of certificateBasedAuthConfiguration entities.";
             var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
@@ -385,8 +399,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of chat entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildChatsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildChatsNavCommand()
+        {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the collection of chat entities.";
             var builder = new ChatsRequestBuilder(PathParameters);
@@ -412,8 +427,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the cloudCommunications singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCommunicationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCommunicationsNavCommand()
+        {
             var command = new Command("communications");
             command.Description = "Provides operations to manage the cloudCommunications singleton.";
             var builder = new CommunicationsRequestBuilder(PathParameters);
@@ -439,8 +455,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the compliance singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildComplianceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildComplianceNavCommand()
+        {
             var command = new Command("compliance");
             command.Description = "Provides operations to manage the compliance singleton.";
             var builder = new ComplianceRequestBuilder(PathParameters);
@@ -456,8 +473,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of externalConnection entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildConnectionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildConnectionsNavCommand()
+        {
             var command = new Command("connections");
             command.Description = "Provides operations to manage the collection of externalConnection entities.";
             var builder = new ConnectionsRequestBuilder(PathParameters);
@@ -482,8 +500,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of orgContact entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContactsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContactsNavCommand()
+        {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the collection of orgContact entities.";
             var builder = new ContactsRequestBuilder(PathParameters);
@@ -512,8 +531,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of contract entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContractsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContractsNavCommand()
+        {
             var command = new Command("contracts");
             command.Description = "Provides operations to manage the collection of contract entities.";
             var builder = new ContractsRequestBuilder(PathParameters);
@@ -542,8 +562,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of dataPolicyOperation entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDataPolicyOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDataPolicyOperationsNavCommand()
+        {
             var command = new Command("data-policy-operations");
             command.Description = "Provides operations to manage the collection of dataPolicyOperation entities.";
             var builder = new DataPolicyOperationsRequestBuilder(PathParameters);
@@ -568,8 +589,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the deviceAppManagement singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceAppManagementNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceAppManagementNavCommand()
+        {
             var command = new Command("device-app-management");
             command.Description = "Provides operations to manage the deviceAppManagement singleton.";
             var builder = new DeviceAppManagementRequestBuilder(PathParameters);
@@ -605,8 +627,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the deviceManagement singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceManagementNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceManagementNavCommand()
+        {
             var command = new Command("device-management");
             command.Description = "Provides operations to manage the deviceManagement singleton.";
             var builder = new DeviceManagementRequestBuilder(PathParameters);
@@ -688,8 +711,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDevicesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDevicesNavCommand()
+        {
             var command = new Command("devices");
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new DevicesRequestBuilder(PathParameters);
@@ -718,8 +742,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDevicesWithDeviceIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDevicesWithDeviceIdRbCommand()
+        {
             var command = new Command("devices-with-device-id");
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new DevicesWithDeviceIdRequestBuilder(PathParameters);
@@ -736,8 +761,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the directory singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryNavCommand()
+        {
             var command = new Command("directory");
             command.Description = "Provides operations to manage the directory singleton.";
             var builder = new DirectoryRequestBuilder(PathParameters);
@@ -765,8 +791,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of directoryObject entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryObjectsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryObjectsNavCommand()
+        {
             var command = new Command("directory-objects");
             command.Description = "Provides operations to manage the collection of directoryObject entities.";
             var builder = new DirectoryObjectsRequestBuilder(PathParameters);
@@ -795,8 +822,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of directoryRole entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryRolesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryRolesNavCommand()
+        {
             var command = new Command("directory-roles");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
             var builder = new DirectoryRolesRequestBuilder(PathParameters);
@@ -825,8 +853,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of directoryRole entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryRolesWithRoleTemplateIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryRolesWithRoleTemplateIdRbCommand()
+        {
             var command = new Command("directory-roles-with-role-template-id");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
             var builder = new DirectoryRolesWithRoleTemplateIdRequestBuilder(PathParameters);
@@ -843,8 +872,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of directoryRoleTemplate entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryRoleTemplatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryRoleTemplatesNavCommand()
+        {
             var command = new Command("directory-role-templates");
             command.Description = "Provides operations to manage the collection of directoryRoleTemplate entities.";
             var builder = new DirectoryRoleTemplatesRequestBuilder(PathParameters);
@@ -873,8 +903,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of domainDnsRecord entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDomainDnsRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDomainDnsRecordsNavCommand()
+        {
             var command = new Command("domain-dns-records");
             command.Description = "Provides operations to manage the collection of domainDnsRecord entities.";
             var builder = new DomainDnsRecordsRequestBuilder(PathParameters);
@@ -899,8 +930,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of domain entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDomainsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDomainsNavCommand()
+        {
             var command = new Command("domains");
             command.Description = "Provides operations to manage the collection of domain entities.";
             var builder = new DomainsRequestBuilder(PathParameters);
@@ -925,8 +957,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of drive entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDrivesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDrivesNavCommand()
+        {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the collection of drive entities.";
             var builder = new DrivesRequestBuilder(PathParameters);
@@ -950,8 +983,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the educationRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildEducationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildEducationNavCommand()
+        {
             var command = new Command("education");
             command.Description = "Provides operations to manage the educationRoot singleton.";
             var builder = new EducationRequestBuilder(PathParameters);
@@ -976,8 +1010,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the employeeExperience singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildEmployeeExperienceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildEmployeeExperienceNavCommand()
+        {
             var command = new Command("employee-experience");
             command.Description = "Provides operations to manage the employeeExperience singleton.";
             var builder = new EmployeeExperienceRequestBuilder(PathParameters);
@@ -1001,8 +1036,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the external singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExternalNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExternalNavCommand()
+        {
             var command = new Command("external");
             command.Description = "Provides operations to manage the external singleton.";
             var builder = new ExternalRequestBuilder(PathParameters);
@@ -1024,8 +1060,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of filterOperatorSchema entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFilterOperatorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFilterOperatorsNavCommand()
+        {
             var command = new Command("filter-operators");
             command.Description = "Provides operations to manage the collection of filterOperatorSchema entities.";
             var builder = new FilterOperatorsRequestBuilder(PathParameters);
@@ -1050,8 +1087,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of attributeMappingFunctionSchema entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFunctionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFunctionsNavCommand()
+        {
             var command = new Command("functions");
             command.Description = "Provides operations to manage the collection of attributeMappingFunctionSchema entities.";
             var builder = new FunctionsRequestBuilder(PathParameters);
@@ -1076,8 +1114,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of groupLifecyclePolicy entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupLifecyclePoliciesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupLifecyclePoliciesNavCommand()
+        {
             var command = new Command("group-lifecycle-policies");
             command.Description = "Provides operations to manage the collection of groupLifecyclePolicy entities.";
             var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters);
@@ -1102,8 +1141,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of groupSetting entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupSettingsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupSettingsNavCommand()
+        {
             var command = new Command("group-settings");
             command.Description = "Provides operations to manage the collection of groupSetting entities.";
             var builder = new GroupSettingsRequestBuilder(PathParameters);
@@ -1128,8 +1168,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of groupSettingTemplate entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupSettingTemplatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupSettingTemplatesNavCommand()
+        {
             var command = new Command("group-setting-templates");
             command.Description = "Provides operations to manage the collection of groupSettingTemplate entities.";
             var builder = new GroupSettingTemplatesRequestBuilder(PathParameters);
@@ -1158,8 +1199,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupsNavCommand()
+        {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the collection of group entities.";
             var builder = new GroupsRequestBuilder(PathParameters);
@@ -1188,8 +1230,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupsWithUniqueNameRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupsWithUniqueNameRbCommand()
+        {
             var command = new Command("groups-with-unique-name");
             command.Description = "Provides operations to manage the collection of group entities.";
             var builder = new GroupsWithUniqueNameRequestBuilder(PathParameters);
@@ -1206,8 +1249,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the identityGovernance singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityGovernanceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityGovernanceNavCommand()
+        {
             var command = new Command("identity-governance");
             command.Description = "Provides operations to manage the identityGovernance singleton.";
             var builder = new IdentityGovernanceRequestBuilder(PathParameters);
@@ -1234,8 +1278,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the identityContainer singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityNavCommand()
+        {
             var command = new Command("identity");
             command.Description = "Provides operations to manage the identityContainer singleton.";
             var builder = new IdentityRequestBuilder(PathParameters);
@@ -1261,8 +1306,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the identityProtectionRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityProtectionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityProtectionNavCommand()
+        {
             var command = new Command("identity-protection");
             command.Description = "Provides operations to manage the identityProtectionRoot singleton.";
             var builder = new IdentityProtectionRequestBuilder(PathParameters);
@@ -1287,8 +1333,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of identityProvider entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityProvidersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityProvidersNavCommand()
+        {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the collection of identityProvider entities.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
@@ -1314,8 +1361,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the informationProtection singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInformationProtectionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInformationProtectionNavCommand()
+        {
             var command = new Command("information-protection");
             command.Description = "Provides operations to manage the informationProtection singleton.";
             var builder = new InformationProtectionRequestBuilder(PathParameters);
@@ -1338,8 +1386,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of invitation entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInvitationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInvitationsNavCommand()
+        {
             var command = new Command("invitations");
             command.Description = "Provides operations to manage the collection of invitation entities.";
             var builder = new InvitationsRequestBuilder(PathParameters);
@@ -1364,8 +1413,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of oAuth2PermissionGrant entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOauth2PermissionGrantsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOauth2PermissionGrantsNavCommand()
+        {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the collection of oAuth2PermissionGrant entities.";
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
@@ -1391,8 +1441,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of organization entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOrganizationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOrganizationNavCommand()
+        {
             var command = new Command("organization");
             command.Description = "Provides operations to manage the collection of organization entities.";
             var builder = new OrganizationRequestBuilder(PathParameters);
@@ -1421,8 +1472,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPermissionGrantsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPermissionGrantsNavCommand()
+        {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the collection of resourceSpecificPermissionGrant entities.";
             var builder = new PermissionGrantsRequestBuilder(PathParameters);
@@ -1450,8 +1502,9 @@ namespace ApiSdk {
         /// <summary>
         /// The places property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPlacesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPlacesNavCommand()
+        {
             var command = new Command("places");
             command.Description = "The places property";
             var builder = new PlacesRequestBuilder(PathParameters);
@@ -1470,8 +1523,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the planner singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPlannerNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPlannerNavCommand()
+        {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner singleton.";
             var builder = new PlannerRequestBuilder(PathParameters);
@@ -1495,8 +1549,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the policyRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPoliciesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPoliciesNavCommand()
+        {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policyRoot singleton.";
             var builder = new PoliciesRequestBuilder(PathParameters);
@@ -1513,6 +1568,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildConditionalAccessPoliciesNavCommand());
             nonExecCommands.Add(builder.BuildCrossTenantAccessPolicyNavCommand());
             nonExecCommands.Add(builder.BuildDefaultAppManagementPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceRegistrationPolicyNavCommand());
             nonExecCommands.Add(builder.BuildFeatureRolloutPoliciesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildHomeRealmDiscoveryPoliciesNavCommand());
@@ -1536,8 +1592,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the print singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrintNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrintNavCommand()
+        {
             var command = new Command("print");
             command.Description = "Provides operations to manage the print singleton.";
             var builder = new PrintRequestBuilder(PathParameters);
@@ -1564,8 +1621,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the privacy singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrivacyNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrivacyNavCommand()
+        {
             var command = new Command("privacy");
             command.Description = "Provides operations to manage the privacy singleton.";
             var builder = new PrivacyRequestBuilder(PathParameters);
@@ -1587,8 +1645,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the reportRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildReportsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildReportsNavCommand()
+        {
             var command = new Command("reports");
             command.Description = "Provides operations to manage the reportRoot singleton.";
             var builder = new ReportsRequestBuilder(PathParameters);
@@ -1641,6 +1700,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildGetOneDriveUsageFileCountsWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetOneDriveUsageStorageWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRbCommand());
+            nonExecCommands.Add(builder.BuildGetRelyingPartyDetailedSummaryWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetSharePointActivityFileCountsWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetSharePointActivityPagesWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetSharePointActivityUserCountsWithPeriodRbCommand());
@@ -1717,8 +1777,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the roleManagement singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRoleManagementNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRoleManagementNavCommand()
+        {
             var command = new Command("role-management");
             command.Description = "Provides operations to manage the roleManagement singleton.";
             var builder = new RoleManagementRequestBuilder(PathParameters);
@@ -1741,8 +1802,9 @@ namespace ApiSdk {
         /// <summary>
         /// Instantiates a new <see cref="GraphClient"/> and sets the default values.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRootCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRootCommand()
+        {
             var command = new RootCommand();
             command.Description = "Instantiates a new GraphClient and sets the default values.";
             command.AddCommand(BuildAdminNavCommand());
@@ -1823,8 +1885,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of schemaExtension entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSchemaExtensionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSchemaExtensionsNavCommand()
+        {
             var command = new Command("schema-extensions");
             command.Description = "Provides operations to manage the collection of schemaExtension entities.";
             var builder = new SchemaExtensionsRequestBuilder(PathParameters);
@@ -1849,8 +1912,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of scopedRoleMembership entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildScopedRoleMembershipsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildScopedRoleMembershipsNavCommand()
+        {
             var command = new Command("scoped-role-memberships");
             command.Description = "Provides operations to manage the collection of scopedRoleMembership entities.";
             var builder = new ScopedRoleMembershipsRequestBuilder(PathParameters);
@@ -1875,15 +1939,19 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the searchEntity singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSearchNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSearchNavCommand()
+        {
             var command = new Command("search");
             command.Description = "Provides operations to manage the searchEntity singleton.";
             var builder = new SearchRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAcronymsNavCommand());
+            nonExecCommands.Add(builder.BuildBookmarksNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildQnasNavCommand());
             nonExecCommands.Add(builder.BuildQueryNavCommand());
             foreach (var cmd in execCommands)
             {
@@ -1898,8 +1966,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the security singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSecurityNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSecurityNavCommand()
+        {
             var command = new Command("security");
             command.Description = "Provides operations to manage the security singleton.";
             var builder = new SecurityRequestBuilder(PathParameters);
@@ -1932,8 +2001,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServicePrincipalsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServicePrincipalsNavCommand()
+        {
             var command = new Command("service-principals");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new ServicePrincipalsRequestBuilder(PathParameters);
@@ -1962,8 +2032,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServicePrincipalsWithAppIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServicePrincipalsWithAppIdRbCommand()
+        {
             var command = new Command("service-principals-with-app-id");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new ServicePrincipalsWithAppIdRequestBuilder(PathParameters);
@@ -1980,8 +2051,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of sharedDriveItem entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharesNavCommand()
+        {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the collection of sharedDriveItem entities.";
             var builder = new SharesRequestBuilder(PathParameters);
@@ -2006,8 +2078,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of site entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSitesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSitesNavCommand()
+        {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the collection of site entities.";
             var builder = new SitesRequestBuilder(PathParameters);
@@ -2035,8 +2108,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the solutionsRoot singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSolutionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSolutionsNavCommand()
+        {
             var command = new Command("solutions");
             command.Description = "Provides operations to manage the solutionsRoot singleton.";
             var builder = new SolutionsRequestBuilder(PathParameters);
@@ -2060,8 +2134,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of subscribedSku entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubscribedSkusNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubscribedSkusNavCommand()
+        {
             var command = new Command("subscribed-skus");
             command.Description = "Provides operations to manage the collection of subscribedSku entities.";
             var builder = new SubscribedSkusRequestBuilder(PathParameters);
@@ -2085,8 +2160,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of subscription entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubscriptionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubscriptionsNavCommand()
+        {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the collection of subscription entities.";
             var builder = new SubscriptionsRequestBuilder(PathParameters);
@@ -2110,8 +2186,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of team entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeamsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeamsNavCommand()
+        {
             var command = new Command("teams");
             command.Description = "Provides operations to manage the collection of team entities.";
             var builder = new TeamsRequestBuilder(PathParameters);
@@ -2137,8 +2214,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of teamsTemplate entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeamsTemplatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeamsTemplatesNavCommand()
+        {
             var command = new Command("teams-templates");
             command.Description = "Provides operations to manage the collection of teamsTemplate entities.";
             var builder = new TeamsTemplatesRequestBuilder(PathParameters);
@@ -2163,13 +2241,15 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the teamwork singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeamworkNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeamworkNavCommand()
+        {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork singleton.";
             var builder = new TeamworkRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDeletedChatsNavCommand());
             nonExecCommands.Add(builder.BuildDeletedTeamsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -2189,8 +2269,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the tenantRelationship singleton.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTenantRelationshipsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTenantRelationshipsNavCommand()
+        {
             var command = new Command("tenant-relationships");
             command.Description = "Provides operations to manage the tenantRelationship singleton.";
             var builder = new TenantRelationshipsRequestBuilder(PathParameters);
@@ -2215,8 +2296,9 @@ namespace ApiSdk {
         /// <summary>
         /// Provides operations to manage the collection of user entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUsersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUsersNavCommand()
+        {
             var command = new Command("users");
             command.AddAlias("me");
             command.Description = "Provides operations to manage the collection of user entities.";
@@ -2246,7 +2328,8 @@ namespace ApiSdk {
         /// <summary>
         /// Instantiates a new <see cref="GraphClient"/> and sets the default values.
         /// </summary>
-        public GraphClient() : base("{+baseurl}", new Dictionary<string, object>()) {
+        public GraphClient() : base("{+baseurl}", new Dictionary<string, object>())
+        {
         }
     }
 }

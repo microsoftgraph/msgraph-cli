@@ -27,12 +27,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
     /// <summary>
     /// Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceCompliancePolicyItemRequestBuilder : BaseCliRequestBuilder {
+    public class DeviceCompliancePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -57,8 +59,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignNavCommand()
+        {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
@@ -71,13 +74,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a androidCompliancePolicy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-delete?view=graph-rest-1.0" />
+        /// Deletes a windows81CompliancePolicy.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
-            command.Description = "Deletes a androidCompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a windows81CompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -108,8 +112,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceSettingStateSummariesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceSettingStateSummariesNavCommand()
+        {
             var command = new Command("device-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceSettingStateSummariesRequestBuilder(PathParameters);
@@ -134,8 +139,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceStatusesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceStatusesNavCommand()
+        {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceStatusesRequestBuilder(PathParameters);
@@ -160,8 +166,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceStatusOverviewNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceStatusOverviewNavCommand()
+        {
             var command = new Command("device-status-overview");
             command.Description = "Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceStatusOverviewRequestBuilder(PathParameters);
@@ -176,13 +183,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81compliancepolicy-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the macOSCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windowsPhone81CompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81compliancepolicy-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -228,13 +236,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidCompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-update?view=graph-rest-1.0" />
+        /// Update the properties of a windows10MobileCompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windows10MobileCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -281,8 +290,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to call the scheduleActionsForRules method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildScheduleActionsForRulesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildScheduleActionsForRulesNavCommand()
+        {
             var command = new Command("schedule-actions-for-rules");
             command.Description = "Provides operations to call the scheduleActionsForRules method.";
             var builder = new ScheduleActionsForRulesRequestBuilder(PathParameters);
@@ -297,8 +307,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildScheduledActionsForRuleNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildScheduledActionsForRuleNavCommand()
+        {
             var command = new Command("scheduled-actions-for-rule");
             command.Description = "Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new ScheduledActionsForRuleRequestBuilder(PathParameters);
@@ -323,8 +334,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserStatusesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserStatusesNavCommand()
+        {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new UserStatusesRequestBuilder(PathParameters);
@@ -349,8 +361,9 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserStatusOverviewNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserStatusOverviewNavCommand()
+        {
             var command = new Command("user-status-overview");
             command.Description = "Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new UserStatusOverviewRequestBuilder(PathParameters);
@@ -368,25 +381,29 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// Instantiates a new <see cref="DeviceCompliancePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceCompliancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24expand,%24select}", pathParameters) {
+        public DeviceCompliancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeviceCompliancePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceCompliancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24expand,%24select}", rawUrl) {
+        public DeviceCompliancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
-        /// Deletes a androidCompliancePolicy.
+        /// Deletes a windows81CompliancePolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -394,16 +411,18 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
+        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCompliancePolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCompliancePolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCompliancePolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCompliancePolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -411,17 +430,19 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidCompliancePolicy object.
+        /// Update the properties of a windows10MobileCompliancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DeviceCompliancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DeviceCompliancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DeviceCompliancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DeviceCompliancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}", PathParameters);
@@ -430,9 +451,10 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the macOSCompliancePolicy object.
+        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
         /// </summary>
-        public class DeviceCompliancePolicyItemRequestBuilderGetQueryParameters {
+        public class DeviceCompliancePolicyItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

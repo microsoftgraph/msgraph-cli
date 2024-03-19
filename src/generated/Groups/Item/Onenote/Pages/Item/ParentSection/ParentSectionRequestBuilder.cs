@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection {
     /// <summary>
     /// Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.
     /// </summary>
-    public class ParentSectionRequestBuilder : BaseCliRequestBuilder {
+    public class ParentSectionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The section that contains the page. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The section that contains the page. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection {
         /// Instantiates a new <see cref="ParentSectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentSectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", pathParameters) {
+        public ParentSectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ParentSectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentSectionRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", rawUrl) {
+        public ParentSectionRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/onenote/pages/{onenotePage%2Did}/parentSection{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The section that contains the page. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentSectionRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentSectionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentSectionRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentSectionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Groups.Item.Onenote.Pages.Item.ParentSection {
         /// <summary>
         /// The section that contains the page. Read-only.
         /// </summary>
-        public class ParentSectionRequestBuilderGetQueryParameters {
+        public class ParentSectionRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

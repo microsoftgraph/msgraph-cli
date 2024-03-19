@@ -18,12 +18,14 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
     /// <summary>
     /// Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.
     /// </summary>
-    public class DefinitionRequestBuilder : BaseCliRequestBuilder {
+    public class DefinitionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "An abstract definition that is used to create a printTask when triggered by a print event. Read-only.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// Instantiates a new <see cref="DefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", pathParameters) {
+        public DefinitionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DefinitionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", rawUrl) {
+        public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefinitionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefinitionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         /// <summary>
         /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
-        public class DefinitionRequestBuilderGetQueryParameters {
+        public class DefinitionRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

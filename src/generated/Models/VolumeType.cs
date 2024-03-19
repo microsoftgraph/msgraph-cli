@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum VolumeType {
+    public enum VolumeType
+    {
         [EnumMember(Value = "operatingSystemVolume")]
         OperatingSystemVolume,
         [EnumMember(Value = "fixedDataVolume")]

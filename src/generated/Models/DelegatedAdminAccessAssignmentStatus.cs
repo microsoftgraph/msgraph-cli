@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum DelegatedAdminAccessAssignmentStatus {
+    public enum DelegatedAdminAccessAssignmentStatus
+    {
         [EnumMember(Value = "pending")]
         Pending,
         [EnumMember(Value = "active")]

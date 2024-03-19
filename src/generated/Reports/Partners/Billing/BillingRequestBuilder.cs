@@ -3,6 +3,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Partners.Billing;
 using ApiSdk.Reports.Partners.Billing.Manifests;
 using ApiSdk.Reports.Partners.Billing.Operations;
+using ApiSdk.Reports.Partners.Billing.Reconciliation;
 using ApiSdk.Reports.Partners.Billing.Usage;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -21,12 +22,14 @@ namespace ApiSdk.Reports.Partners.Billing {
     /// <summary>
     /// Provides operations to manage the billing property of the microsoft.graph.partners entity.
     /// </summary>
-    public class BillingRequestBuilder : BaseCliRequestBuilder {
+    public class BillingRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property billing for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property billing for reports";
             var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
@@ -53,8 +56,9 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Represents billing details for billed and unbilled data.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Represents billing details for billed and unbilled data.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -98,8 +102,9 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Provides operations to manage the manifests property of the microsoft.graph.partners.billing.billing entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildManifestsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildManifestsNavCommand()
+        {
             var command = new Command("manifests");
             command.Description = "Provides operations to manage the manifests property of the microsoft.graph.partners.billing.billing entity.";
             var builder = new ManifestsRequestBuilder(PathParameters);
@@ -124,8 +129,9 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.partners.billing.billing entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOperationsNavCommand()
+        {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.partners.billing.billing entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
@@ -150,8 +156,9 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Update the navigation property billing in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property billing in reports";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -192,10 +199,36 @@ namespace ApiSdk.Reports.Partners.Billing {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the reconciliation property of the microsoft.graph.partners.billing.billing entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildReconciliationNavCommand()
+        {
+            var command = new Command("reconciliation");
+            command.Description = "Provides operations to manage the reconciliation property of the microsoft.graph.partners.billing.billing entity.";
+            var builder = new ReconciliationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBilledNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the usage property of the microsoft.graph.partners.billing.billing entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUsageNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUsageNavCommand()
+        {
             var command = new Command("usage");
             command.Description = "Provides operations to manage the usage property of the microsoft.graph.partners.billing.billing entity.";
             var builder = new UsageRequestBuilder(PathParameters);
@@ -220,25 +253,29 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// Instantiates a new <see cref="BillingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BillingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/partners/billing{?%24expand,%24select}", pathParameters) {
+        public BillingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/partners/billing{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="BillingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BillingRequestBuilder(string rawUrl) : base("{+baseurl}/reports/partners/billing{?%24expand,%24select}", rawUrl) {
+        public BillingRequestBuilder(string rawUrl) : base("{+baseurl}/reports/partners/billing{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property billing for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/reports/partners/billing", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -248,14 +285,16 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Represents billing details for billed and unbilled data.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BillingRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BillingRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BillingRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BillingRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -265,15 +304,17 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Update the navigation property billing in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Partners.Billing.Billing body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Partners.Billing.Billing body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Partners.Billing.Billing body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Partners.Billing.Billing body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/reports/partners/billing", PathParameters);
@@ -284,7 +325,8 @@ namespace ApiSdk.Reports.Partners.Billing {
         /// <summary>
         /// Represents billing details for billed and unbilled data.
         /// </summary>
-        public class BillingRequestBuilderGetQueryParameters {
+        public class BillingRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

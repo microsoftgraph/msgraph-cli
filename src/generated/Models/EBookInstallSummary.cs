@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Contains properties for the installation summary of a book for a device.
     /// </summary>
-    public class EBookInstallSummary : Entity, IParsable {
+    public class EBookInstallSummary : Entity, IParsable 
+    {
         /// <summary>Number of Devices that have failed to install this book.</summary>
         public int? FailedDeviceCount { get; set; }
         /// <summary>Number of Users that have 1 or more device that failed to install this book.</summary>
@@ -24,18 +25,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EBookInstallSummary"></returns>
+        /// <returns>A <see cref="EBookInstallSummary"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EBookInstallSummary CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new EBookInstallSummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EBookInstallSummary();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"failedDeviceCount", n => { FailedDeviceCount = n.GetIntValue(); } },
                 {"failedUserCount", n => { FailedUserCount = n.GetIntValue(); } },
                 {"installedDeviceCount", n => { InstalledDeviceCount = n.GetIntValue(); } },
@@ -48,7 +52,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("failedDeviceCount", FailedDeviceCount);

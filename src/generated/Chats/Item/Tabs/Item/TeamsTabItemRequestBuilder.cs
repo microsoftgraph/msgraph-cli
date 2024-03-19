@@ -19,13 +19,15 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
     /// <summary>
     /// Provides operations to manage the tabs property of the microsoft.graph.chat entity.
     /// </summary>
-    public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder {
+    public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Remove (unpin) a tab from the specified chat. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-tabs?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Remove (unpin) a tab from the specified chat. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-tabs?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -65,8 +67,9 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-tabs?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of the specified tab in a chat. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-tabs?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -123,8 +126,9 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-patch-tabs?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-patch-tabs?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -179,8 +183,9 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// <summary>
         /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeamsAppNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeamsAppNavCommand()
+        {
             var command = new Command("teams-app");
             command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.";
             var builder = new TeamsAppRequestBuilder(PathParameters);
@@ -196,25 +201,29 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// Instantiates a new <see cref="TeamsTabItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsTabItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", pathParameters) {
+        public TeamsTabItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TeamsTabItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsTabItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", rawUrl) {
+        public TeamsTabItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Remove (unpin) a tab from the specified chat. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -224,14 +233,16 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// <summary>
         /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTabItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTabItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTabItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsTabItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -241,15 +252,17 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// <summary>
         /// Update the properties of the specified tab in a chat. This can be used to configure the content of the tab.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TeamsTab body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TeamsTab body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TeamsTab body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TeamsTab body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/chats/{chat%2Did}/tabs/{teamsTab%2Did}", PathParameters);
@@ -260,7 +273,8 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
         /// <summary>
         /// Retrieve the properties and relationships of the specified tab in a chat. 
         /// </summary>
-        public class TeamsTabItemRequestBuilderGetQueryParameters {
+        public class TeamsTabItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

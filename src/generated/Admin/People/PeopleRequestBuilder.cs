@@ -20,13 +20,15 @@ namespace ApiSdk.Admin.People {
     /// <summary>
     /// Provides operations to manage the people property of the microsoft.graph.admin entity.
     /// </summary>
-    public class PeopleRequestBuilder : BaseCliRequestBuilder {
+    public class PeopleRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Retrieve the properties and relationships of a peopleAdminSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/peopleadminsettings-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a peopleAdminSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/peopleadminsettings-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -70,8 +72,9 @@ namespace ApiSdk.Admin.People {
         /// <summary>
         /// Provides operations to manage the profileCardProperties property of the microsoft.graph.peopleAdminSettings entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildProfileCardPropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildProfileCardPropertiesNavCommand()
+        {
             var command = new Command("profile-card-properties");
             command.Description = "Provides operations to manage the profileCardProperties property of the microsoft.graph.peopleAdminSettings entity.";
             var builder = new ProfileCardPropertiesRequestBuilder(PathParameters);
@@ -96,8 +99,9 @@ namespace ApiSdk.Admin.People {
         /// <summary>
         /// Provides operations to manage the pronouns property of the microsoft.graph.peopleAdminSettings entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPronounsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPronounsNavCommand()
+        {
             var command = new Command("pronouns");
             command.Description = "Provides operations to manage the pronouns property of the microsoft.graph.peopleAdminSettings entity.";
             var builder = new PronounsRequestBuilder(PathParameters);
@@ -114,25 +118,29 @@ namespace ApiSdk.Admin.People {
         /// Instantiates a new <see cref="PeopleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PeopleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people{?%24expand,%24select}", pathParameters) {
+        public PeopleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/people{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PeopleRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PeopleRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people{?%24expand,%24select}", rawUrl) {
+        public PeopleRequestBuilder(string rawUrl) : base("{+baseurl}/admin/people{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve the properties and relationships of a peopleAdminSettings object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PeopleRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -142,7 +150,8 @@ namespace ApiSdk.Admin.People {
         /// <summary>
         /// Retrieve the properties and relationships of a peopleAdminSettings object.
         /// </summary>
-        public class PeopleRequestBuilderGetQueryParameters {
+        public class PeopleRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

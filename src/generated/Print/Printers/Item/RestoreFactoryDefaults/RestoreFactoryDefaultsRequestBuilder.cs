@@ -17,13 +17,15 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
     /// <summary>
     /// Provides operations to call the restoreFactoryDefaults method.
     /// </summary>
-    public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder {
+    public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Restore a printer's default settings to the values specified by the manufacturer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -50,25 +52,29 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         /// Instantiates a new <see cref="RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RestoreFactoryDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", pathParameters) {
+        public RestoreFactoryDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RestoreFactoryDefaultsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RestoreFactoryDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", rawUrl) {
+        public RestoreFactoryDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", rawUrl)
+        {
         }
         /// <summary>
         /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

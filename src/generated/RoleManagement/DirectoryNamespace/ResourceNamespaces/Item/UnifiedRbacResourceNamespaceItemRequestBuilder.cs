@@ -19,12 +19,14 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
     /// <summary>
     /// Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRbacResourceNamespaceItemRequestBuilder : BaseCliRequestBuilder {
+    public class UnifiedRbacResourceNamespaceItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property resourceNamespaces for roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property resourceNamespaces for roleManagement";
             var unifiedRbacResourceNamespaceIdOption = new Option<string>("--unified-rbac-resource-namespace-id", description: "The unique identifier of unifiedRbacResourceNamespace") {
@@ -57,8 +59,9 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Get resourceNamespaces from roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get resourceNamespaces from roleManagement";
             var unifiedRbacResourceNamespaceIdOption = new Option<string>("--unified-rbac-resource-namespace-id", description: "The unique identifier of unifiedRbacResourceNamespace") {
@@ -108,8 +111,9 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Update the navigation property resourceNamespaces in roleManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property resourceNamespaces in roleManagement";
             var unifiedRbacResourceNamespaceIdOption = new Option<string>("--unified-rbac-resource-namespace-id", description: "The unique identifier of unifiedRbacResourceNamespace") {
@@ -158,8 +162,9 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Provides operations to manage the resourceActions property of the microsoft.graph.unifiedRbacResourceNamespace entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildResourceActionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildResourceActionsNavCommand()
+        {
             var command = new Command("resource-actions");
             command.Description = "Provides operations to manage the resourceActions property of the microsoft.graph.unifiedRbacResourceNamespace entity.";
             var builder = new ResourceActionsRequestBuilder(PathParameters);
@@ -185,25 +190,29 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// Instantiates a new <see cref="UnifiedRbacResourceNamespaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRbacResourceNamespaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", pathParameters) {
+        public UnifiedRbacResourceNamespaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UnifiedRbacResourceNamespaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UnifiedRbacResourceNamespaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", rawUrl) {
+        public UnifiedRbacResourceNamespaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property resourceNamespaces for roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -213,14 +222,16 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Get resourceNamespaces from roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -230,15 +241,17 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Update the navigation property resourceNamespaces in roleManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UnifiedRbacResourceNamespace body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRbacResourceNamespace body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UnifiedRbacResourceNamespace body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRbacResourceNamespace body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/roleManagement/directory/resourceNamespaces/{unifiedRbacResourceNamespace%2Did}", PathParameters);
@@ -249,7 +262,8 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.ResourceNamespaces.Item {
         /// <summary>
         /// Get resourceNamespaces from roleManagement
         /// </summary>
-        public class UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters {
+        public class UnifiedRbacResourceNamespaceItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

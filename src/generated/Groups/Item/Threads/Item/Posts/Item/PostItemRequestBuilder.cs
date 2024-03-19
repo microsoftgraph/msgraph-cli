@@ -23,12 +23,14 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
     /// <summary>
     /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
     /// </summary>
-    public class PostItemRequestBuilder : BaseCliRequestBuilder {
+    public class PostItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAttachmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAttachmentsNavCommand()
+        {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
@@ -54,8 +56,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExtensionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExtensionsNavCommand()
+        {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
@@ -80,8 +83,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildForwardNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildForwardNavCommand()
+        {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
@@ -96,8 +100,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Get posts from groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get posts from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -159,8 +164,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInReplyToNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInReplyToNavCommand()
+        {
             var command = new Command("in-reply-to");
             command.Description = "Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.";
             var builder = new InReplyToRequestBuilder(PathParameters);
@@ -184,8 +190,9 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildReplyNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildReplyNavCommand()
+        {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters);
@@ -201,25 +208,29 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// Instantiates a new <see cref="PostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24expand,%24select}", pathParameters) {
+        public PostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PostItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24expand,%24select}", rawUrl) {
+        public PostItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get posts from groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -229,7 +240,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Get posts from groups
         /// </summary>
-        public class PostItemRequestBuilderGetQueryParameters {
+        public class PostItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

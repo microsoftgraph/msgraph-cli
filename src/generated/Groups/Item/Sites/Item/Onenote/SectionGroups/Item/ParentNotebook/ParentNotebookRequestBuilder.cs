@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.ParentNoteboo
     /// <summary>
     /// Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.
     /// </summary>
-    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder {
+    public class ParentNotebookRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The notebook that contains the section group. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The notebook that contains the section group. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -86,25 +88,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.ParentNoteboo
         /// Instantiates a new <see cref="ParentNotebookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ParentNotebookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", pathParameters) {
+        public ParentNotebookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ParentNotebookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ParentNotebookRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", rawUrl) {
+        public ParentNotebookRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/parentNotebook{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The notebook that contains the section group. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentNotebookRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentNotebookRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentNotebookRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ParentNotebookRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -114,7 +120,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.ParentNoteboo
         /// <summary>
         /// The notebook that contains the section group. Read-only.
         /// </summary>
-        public class ParentNotebookRequestBuilderGetQueryParameters {
+        public class ParentNotebookRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

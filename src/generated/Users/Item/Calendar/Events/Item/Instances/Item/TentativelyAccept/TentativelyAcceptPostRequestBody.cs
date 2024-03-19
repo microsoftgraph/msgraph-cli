@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.TentativelyAccept {
-    public class TentativelyAcceptPostRequestBody : IAdditionalDataHolder, IParsable {
+    public class TentativelyAcceptPostRequestBody : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The Comment property</summary>
@@ -30,24 +31,28 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.TentativelyAccep
         /// <summary>
         /// Instantiates a new <see cref="TentativelyAcceptPostRequestBody"/> and sets the default values.
         /// </summary>
-        public TentativelyAcceptPostRequestBody() {
+        public TentativelyAcceptPostRequestBody()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="TentativelyAcceptPostRequestBody"></returns>
+        /// <returns>A <see cref="TentativelyAcceptPostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static TentativelyAcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static TentativelyAcceptPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new TentativelyAcceptPostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"Comment", n => { Comment = n.GetStringValue(); } },
                 {"ProposedNewTime", n => { ProposedNewTime = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
                 {"SendResponse", n => { SendResponse = n.GetBoolValue(); } },
@@ -57,7 +62,8 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.TentativelyAccep
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("Comment", Comment);
             writer.WriteObjectValue<TimeSlot>("ProposedNewTime", ProposedNewTime);

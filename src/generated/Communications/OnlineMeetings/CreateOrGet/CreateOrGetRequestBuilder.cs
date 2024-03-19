@@ -18,13 +18,15 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
     /// <summary>
     /// Provides operations to call the createOrGet method.
     /// </summary>
-    public class CreateOrGetRequestBuilder : BaseCliRequestBuilder {
+    public class CreateOrGetRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -68,26 +70,30 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
         /// Instantiates a new <see cref="CreateOrGetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CreateOrGetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/createOrGet", pathParameters) {
+        public CreateOrGetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/createOrGet", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CreateOrGetRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CreateOrGetRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/createOrGet", rawUrl) {
+        public CreateOrGetRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/createOrGet", rawUrl)
+        {
         }
         /// <summary>
         /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(CreateOrGetPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

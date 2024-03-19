@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.CallRecords {
-    public enum UserFeedbackRating {
+    public enum UserFeedbackRating
+    {
         [EnumMember(Value = "notRated")]
         NotRated,
         [EnumMember(Value = "bad")]

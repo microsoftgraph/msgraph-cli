@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RiskDetail {
+    public enum RiskDetail
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "adminGeneratedTemporaryPassword")]
@@ -33,5 +34,11 @@ namespace ApiSdk.Models {
         AdminConfirmedServicePrincipalCompromised,
         [EnumMember(Value = "adminDismissedAllRiskForServicePrincipal")]
         AdminDismissedAllRiskForServicePrincipal,
+        [EnumMember(Value = "userChangedPasswordOnPremises")]
+        UserChangedPasswordOnPremises,
+        [EnumMember(Value = "adminDismissedRiskForSignIn")]
+        AdminDismissedRiskForSignIn,
+        [EnumMember(Value = "adminConfirmedAccountSafe")]
+        AdminConfirmedAccountSafe,
     }
 }

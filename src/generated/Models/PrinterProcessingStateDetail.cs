@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrinterProcessingStateDetail {
+    public enum PrinterProcessingStateDetail
+    {
         [EnumMember(Value = "paused")]
         Paused,
         [EnumMember(Value = "mediaJam")]

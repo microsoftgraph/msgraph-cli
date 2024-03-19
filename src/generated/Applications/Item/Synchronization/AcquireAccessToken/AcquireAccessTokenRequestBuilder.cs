@@ -17,13 +17,15 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
     /// <summary>
     /// Provides operations to call the acquireAccessToken method.
     /// </summary>
-    public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder {
+    public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -63,26 +65,30 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
         /// Instantiates a new <see cref="AcquireAccessTokenRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AcquireAccessTokenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/acquireAccessToken", pathParameters) {
+        public AcquireAccessTokenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/acquireAccessToken", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AcquireAccessTokenRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AcquireAccessTokenRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/acquireAccessToken", rawUrl) {
+        public AcquireAccessTokenRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/acquireAccessToken", rawUrl)
+        {
         }
         /// <summary>
         /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AcquireAccessTokenPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AcquireAccessTokenPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AcquireAccessTokenPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AcquireAccessTokenPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

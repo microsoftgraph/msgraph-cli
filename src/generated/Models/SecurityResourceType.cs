@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SecurityResourceType {
+    public enum SecurityResourceType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "attacked")]

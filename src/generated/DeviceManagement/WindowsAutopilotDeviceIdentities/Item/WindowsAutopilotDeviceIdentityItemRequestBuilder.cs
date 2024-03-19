@@ -21,12 +21,14 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
     /// <summary>
     /// Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class WindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder {
+    public class WindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the assignUserToDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignUserToDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignUserToDeviceNavCommand()
+        {
             var command = new Command("assign-user-to-device");
             command.Description = "Provides operations to call the assignUserToDevice method.";
             var builder = new AssignUserToDeviceRequestBuilder(PathParameters);
@@ -42,8 +44,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// Deletes a windowsAutopilotDeviceIdentity.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a windowsAutopilotDeviceIdentity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-delete?view=graph-rest-1.0";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
@@ -77,8 +80,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the windowsAutopilotDeviceIdentity object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-get?view=graph-rest-1.0";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
@@ -128,8 +132,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
@@ -178,8 +183,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Provides operations to call the unassignUserFromDevice method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnassignUserFromDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnassignUserFromDeviceNavCommand()
+        {
             var command = new Command("unassign-user-from-device");
             command.Description = "Provides operations to call the unassignUserFromDevice method.";
             var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters);
@@ -194,8 +200,9 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Provides operations to call the updateDeviceProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUpdateDevicePropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUpdateDevicePropertiesNavCommand()
+        {
             var command = new Command("update-device-properties");
             command.Description = "Provides operations to call the updateDeviceProperties method.";
             var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters);
@@ -211,25 +218,29 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// Instantiates a new <see cref="WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", pathParameters) {
+        public WindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WindowsAutopilotDeviceIdentityItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsAutopilotDeviceIdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", rawUrl) {
+        public WindowsAutopilotDeviceIdentityItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a windowsAutopilotDeviceIdentity.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -239,14 +250,16 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -256,15 +269,17 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsAutopilotDeviceIdentity body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/windowsAutopilotDeviceIdentities/{windowsAutopilotDeviceIdentity%2Did}", PathParameters);
@@ -275,7 +290,8 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
         /// </summary>
-        public class WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters {
+        public class WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

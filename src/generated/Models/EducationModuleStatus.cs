@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum EducationModuleStatus {
+    public enum EducationModuleStatus
+    {
         [EnumMember(Value = "draft")]
         Draft,
         [EnumMember(Value = "published")]

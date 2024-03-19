@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum GoogleCloudLocationType {
+    public enum GoogleCloudLocationType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "regional")]

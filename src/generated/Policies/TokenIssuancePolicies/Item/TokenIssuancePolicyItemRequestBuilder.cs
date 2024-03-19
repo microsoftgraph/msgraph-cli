@@ -19,12 +19,14 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
     /// <summary>
     /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder {
+    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppliesToNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppliesToNavCommand()
+        {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.";
             var builder = new AppliesToRequestBuilder(PathParameters);
@@ -49,8 +51,9 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// Delete a tokenIssuancePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
@@ -83,8 +86,9 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// <summary>
         /// The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
@@ -135,8 +139,9 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// Update the properties of a tokenIssuancePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
@@ -186,25 +191,29 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// Instantiates a new <see cref="TokenIssuancePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TokenIssuancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}{?%24expand,%24select}", pathParameters) {
+        public TokenIssuancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TokenIssuancePolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TokenIssuancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}{?%24expand,%24select}", rawUrl) {
+        public TokenIssuancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a tokenIssuancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// <summary>
         /// The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TokenIssuancePolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TokenIssuancePolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TokenIssuancePolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TokenIssuancePolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// <summary>
         /// Update the properties of a tokenIssuancePolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TokenIssuancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TokenIssuancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TokenIssuancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TokenIssuancePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         /// <summary>
         /// The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.
         /// </summary>
-        public class TokenIssuancePolicyItemRequestBuilderGetQueryParameters {
+        public class TokenIssuancePolicyItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

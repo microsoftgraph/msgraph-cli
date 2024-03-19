@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AuthenticationMethodTargetType {
+    public enum AuthenticationMethodTargetType
+    {
         [EnumMember(Value = "user")]
         User,
         [EnumMember(Value = "group")]

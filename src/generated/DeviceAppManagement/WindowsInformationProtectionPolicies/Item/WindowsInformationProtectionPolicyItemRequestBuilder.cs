@@ -21,12 +21,14 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
     /// <summary>
     /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class WindowsInformationProtectionPolicyItemRequestBuilder : BaseCliRequestBuilder {
+    public class WindowsInformationProtectionPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -52,8 +54,9 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Deletes a windowsInformationProtectionPolicy.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a windowsInformationProtectionPolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-delete?view=graph-rest-1.0";
             var windowsInformationProtectionPolicyIdOption = new Option<string>("--windows-information-protection-policy-id", description: "The unique identifier of windowsInformationProtectionPolicy") {
@@ -86,8 +89,9 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExemptAppLockerFilesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExemptAppLockerFilesNavCommand()
+        {
             var command = new Command("exempt-app-locker-files");
             command.Description = "Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
             var builder = new ExemptAppLockerFilesRequestBuilder(PathParameters);
@@ -113,8 +117,9 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Read properties and relationships of the windowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the windowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-get?view=graph-rest-1.0";
             var windowsInformationProtectionPolicyIdOption = new Option<string>("--windows-information-protection-policy-id", description: "The unique identifier of windowsInformationProtectionPolicy") {
@@ -165,8 +170,9 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Update the properties of a windowsInformationProtectionPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a windowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotectionpolicy-update?view=graph-rest-1.0";
             var windowsInformationProtectionPolicyIdOption = new Option<string>("--windows-information-protection-policy-id", description: "The unique identifier of windowsInformationProtectionPolicy") {
@@ -215,8 +221,9 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildProtectedAppLockerFilesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildProtectedAppLockerFilesNavCommand()
+        {
             var command = new Command("protected-app-locker-files");
             command.Description = "Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
             var builder = new ProtectedAppLockerFilesRequestBuilder(PathParameters);
@@ -242,25 +249,29 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// Instantiates a new <see cref="WindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WindowsInformationProtectionPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", pathParameters) {
+        public WindowsInformationProtectionPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WindowsInformationProtectionPolicyItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WindowsInformationProtectionPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", rawUrl) {
+        public WindowsInformationProtectionPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a windowsInformationProtectionPolicy.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -270,14 +281,16 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Read properties and relationships of the windowsInformationProtectionPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -287,15 +300,17 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Update the properties of a windowsInformationProtectionPolicy object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WindowsInformationProtectionPolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/windowsInformationProtectionPolicies/{windowsInformationProtectionPolicy%2Did}", PathParameters);
@@ -306,7 +321,8 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
         /// <summary>
         /// Read properties and relationships of the windowsInformationProtectionPolicy object.
         /// </summary>
-        public class WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters {
+        public class WindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
