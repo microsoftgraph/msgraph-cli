@@ -17,13 +17,15 @@ namespace ApiSdk.Groups.Item.Team.CompleteMigration {
     /// <summary>
     /// Provides operations to call the completeMigration method.
     /// </summary>
-    public class CompleteMigrationRequestBuilder : BaseCliRequestBuilder {
+    public class CompleteMigrationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Complete the message migration process by removing migration mode from a team. Migration mode is a special state where certain operations are barred, like message POST and membership operations during the data migration process. After a completeMigration request is made, you can&apos;t import additional messages into the team. You can add members to the team after the request returns a successful response.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-completemigration?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Complete the message migration process by removing migration mode from a team. Migration mode is a special state where certain operations are barred, like message POST and membership operations during the data migration process. After a completeMigration request is made, you can't import additional messages into the team. You can add members to the team after the request returns a successful response.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-completemigration?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -50,25 +52,29 @@ namespace ApiSdk.Groups.Item.Team.CompleteMigration {
         /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CompleteMigrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/completeMigration", pathParameters) {
+        public CompleteMigrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/completeMigration", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CompleteMigrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CompleteMigrationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/completeMigration", rawUrl) {
+        public CompleteMigrationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/completeMigration", rawUrl)
+        {
         }
         /// <summary>
         /// Complete the message migration process by removing migration mode from a team. Migration mode is a special state where certain operations are barred, like message POST and membership operations during the data migration process. After a completeMigration request is made, you can&apos;t import additional messages into the team. You can add members to the team after the request returns a successful response.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

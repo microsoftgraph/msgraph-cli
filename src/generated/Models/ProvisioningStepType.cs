@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ProvisioningStepType {
+    public enum ProvisioningStepType
+    {
         [EnumMember(Value = "import")]
         Import,
         [EnumMember(Value = "scoping")]

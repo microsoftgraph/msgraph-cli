@@ -20,12 +20,14 @@ namespace ApiSdk.Places.Item {
     /// <summary>
     /// Provides operations to manage the collection of place entities.
     /// </summary>
-    public class PlaceItemRequestBuilder : BaseCliRequestBuilder {
+    public class PlaceItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete entity from places
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete entity from places";
             var placeIdOption = new Option<string>("--place-id", description: "The unique identifier of place") {
@@ -58,8 +60,9 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphRoomByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphRoomByIdNavCommand()
+        {
             var command = new Command("graph-room-by-id");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
@@ -74,8 +77,9 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to roomList.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphRoomListByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphRoomListByIdNavCommand()
+        {
             var command = new Command("graph-room-list-by-id");
             command.Description = "Casts the previous resource to roomList.";
             var builder = new GraphRoomListRequestBuilder(PathParameters);
@@ -97,8 +101,9 @@ namespace ApiSdk.Places.Item {
         /// Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/place-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/place-update?view=graph-rest-1.0";
             var placeIdOption = new Option<string>("--place-id", description: "The unique identifier of place") {
@@ -148,25 +153,29 @@ namespace ApiSdk.Places.Item {
         /// Instantiates a new <see cref="PlaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}", pathParameters) {
+        public PlaceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places/{place%2Did}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PlaceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}", rawUrl) {
+        public PlaceItemRequestBuilder(string rawUrl) : base("{+baseurl}/places/{place%2Did}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete entity from places
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -176,15 +185,17 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Update the properties of place object, which can be a room or roomList. You can identify the room or roomList by specifying the id or emailAddress property.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Place body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum IncludedUserTypes {
+    public enum IncludedUserTypes
+    {
         [EnumMember(Value = "all")]
         All,
         [EnumMember(Value = "member")]

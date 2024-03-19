@@ -17,13 +17,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
     /// <summary>
     /// Provides operations to call the markUnread method.
     /// </summary>
-    public class MarkUnreadRequestBuilder : BaseCliRequestBuilder {
+    public class MarkUnreadRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Mark a list of serviceUpdateMessages as unread for the signed in user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Mark a list of serviceUpdateMessages as unread for the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -67,26 +69,30 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
         /// Instantiates a new <see cref="MarkUnreadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MarkUnreadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", pathParameters) {
+        public MarkUnreadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MarkUnreadRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MarkUnreadRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", rawUrl) {
+        public MarkUnreadRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", rawUrl)
+        {
         }
         /// <summary>
         /// Mark a list of serviceUpdateMessages as unread for the signed in user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(MarkUnreadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(MarkUnreadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(MarkUnreadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(MarkUnreadPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

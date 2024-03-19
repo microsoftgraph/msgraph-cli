@@ -17,13 +17,15 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
     /// <summary>
     /// Provides operations to call the confirmCompromised method.
     /// </summary>
-    public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder {
+    public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Confirm one or more riskyUser objects as compromised. This action sets the targeted user's risk level to high.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -57,26 +59,30 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
         /// Instantiates a new <see cref="ConfirmCompromisedRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ConfirmCompromisedRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", pathParameters) {
+        public ConfirmCompromisedRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ConfirmCompromisedRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ConfirmCompromisedRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", rawUrl) {
+        public ConfirmCompromisedRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", rawUrl)
+        {
         }
         /// <summary>
         /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ConfirmCompromisedPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ConfirmCompromisedPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ConfirmCompromisedPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ConfirmCompromisedPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

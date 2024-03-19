@@ -19,12 +19,14 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
     /// <summary>
     /// Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder {
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the media for the site entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentNavCommand()
+        {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the site entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -40,8 +42,9 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// <summary>
         /// Exposes the driveItem that was the target of this activity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Exposes the driveItem that was the target of this activity.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -104,25 +107,29 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", pathParameters) {
+        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", rawUrl) {
+        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Exposes the driveItem that was the target of this activity.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -132,7 +139,8 @@ namespace ApiSdk.Sites.Item.Analytics.ItemActivityStats.Item.Activities.Item.Dri
         /// <summary>
         /// Exposes the driveItem that was the target of this activity.
         /// </summary>
-        public class DriveItemRequestBuilderGetQueryParameters {
+        public class DriveItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item.PerformedB
     /// <summary>
     /// Provides operations to manage the performedBy property of the microsoft.graph.externalConnectors.externalActivity entity.
     /// </summary>
-    public class PerformedByRequestBuilder : BaseCliRequestBuilder {
+    public class PerformedByRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Represents an identity used to identify who is responsible for the activity.";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
@@ -86,25 +88,29 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item.PerformedB
         /// Instantiates a new <see cref="PerformedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PerformedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", pathParameters) {
+        public PerformedByRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PerformedByRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PerformedByRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", rawUrl) {
+        public PerformedByRequestBuilder(string rawUrl) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}/activities/{externalActivity%2Did}/performedBy{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PerformedByRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PerformedByRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PerformedByRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PerformedByRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -114,7 +120,8 @@ namespace ApiSdk.External.Connections.Item.Items.Item.Activities.Item.PerformedB
         /// <summary>
         /// Represents an identity used to identify who is responsible for the activity.
         /// </summary>
-        public class PerformedByRequestBuilderGetQueryParameters {
+        public class PerformedByRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

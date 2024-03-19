@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute {
-    public class SubstitutePostRequestBody : IAdditionalDataHolder, IParsable {
+    public class SubstitutePostRequestBody : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The instanceNum property</summary>
@@ -44,24 +45,28 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute {
         /// <summary>
         /// Instantiates a new <see cref="SubstitutePostRequestBody"/> and sets the default values.
         /// </summary>
-        public SubstitutePostRequestBody() {
+        public SubstitutePostRequestBody()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="SubstitutePostRequestBody"></returns>
+        /// <returns>A <see cref="SubstitutePostRequestBody"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SubstitutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SubstitutePostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SubstitutePostRequestBody();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"instanceNum", n => { InstanceNum = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"newText", n => { NewText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"oldText", n => { OldText = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
@@ -72,7 +77,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<Json>("instanceNum", InstanceNum);
             writer.WriteObjectValue<Json>("newText", NewText);

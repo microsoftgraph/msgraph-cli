@@ -20,13 +20,15 @@ namespace ApiSdk.Education.Users.Item.User {
     /// <summary>
     /// Provides operations to manage the user property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class UserRequestBuilder : BaseCliRequestBuilder {
+    public class UserRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Retrieve the simple directory user that corresponds to this educationUser.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the simple directory user that corresponds to this educationUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
@@ -76,8 +78,9 @@ namespace ApiSdk.Education.Users.Item.User {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMailboxSettingsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMailboxSettingsNavCommand()
+        {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
             var builder = new MailboxSettingsRequestBuilder(PathParameters);
@@ -93,8 +96,9 @@ namespace ApiSdk.Education.Users.Item.User {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServiceProvisioningErrorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServiceProvisioningErrorsNavCommand()
+        {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
             var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
@@ -116,25 +120,29 @@ namespace ApiSdk.Education.Users.Item.User {
         /// Instantiates a new <see cref="UserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", pathParameters) {
+        public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", rawUrl) {
+        public UserRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve the simple directory user that corresponds to this educationUser.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -144,7 +152,8 @@ namespace ApiSdk.Education.Users.Item.User {
         /// <summary>
         /// Retrieve the simple directory user that corresponds to this educationUser.
         /// </summary>
-        public class UserRequestBuilderGetQueryParameters {
+        public class UserRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

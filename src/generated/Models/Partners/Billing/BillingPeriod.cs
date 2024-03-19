@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Partners.Billing {
-    public enum BillingPeriod {
+    public enum BillingPeriod
+    {
         [EnumMember(Value = "current")]
         Current,
         [EnumMember(Value = "last")]

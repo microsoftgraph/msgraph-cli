@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Policy used to configure detailed management settings targeted to specific security groups and for a specified set of apps on an iOS device
     /// </summary>
-    public class IosManagedAppProtection : TargetedManagedAppProtection, IParsable {
+    public class IosManagedAppProtection : TargetedManagedAppProtection, IParsable 
+    {
         /// <summary>Represents the level to which app data is encrypted for managed apps</summary>
         public ManagedAppDataEncryptionType? AppDataEncryptionType { get; set; }
         /// <summary>List of apps to which the policy is deployed.</summary>
@@ -50,24 +51,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="IosManagedAppProtection"/> and sets the default values.
         /// </summary>
-        public IosManagedAppProtection() : base() {
+        public IosManagedAppProtection() : base()
+        {
             OdataType = "#microsoft.graph.iosManagedAppProtection";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="IosManagedAppProtection"></returns>
+        /// <returns>A <see cref="IosManagedAppProtection"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new IosManagedAppProtection CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosManagedAppProtection();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"appDataEncryptionType", n => { AppDataEncryptionType = n.GetEnumValue<ManagedAppDataEncryptionType>(); } },
                 {"apps", n => { Apps = n.GetCollectionOfObjectValues<ManagedMobileApp>(ManagedMobileApp.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"customBrowserProtocol", n => { CustomBrowserProtocol = n.GetStringValue(); } },
@@ -81,7 +86,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<ManagedAppDataEncryptionType>("appDataEncryptionType", AppDataEncryptionType);

@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class WorkforceIntegration : ChangeTrackedEntity, IParsable {
+    public class WorkforceIntegration : ChangeTrackedEntity, IParsable 
+    {
         /// <summary>API version for the call back URL. Start with 1.</summary>
         public int? ApiVersion { get; set; }
         /// <summary>Name of the workforce integration.</summary>
@@ -39,24 +40,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="WorkforceIntegration"/> and sets the default values.
         /// </summary>
-        public WorkforceIntegration() : base() {
+        public WorkforceIntegration() : base()
+        {
             OdataType = "#microsoft.graph.workforceIntegration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="WorkforceIntegration"></returns>
+        /// <returns>A <see cref="WorkforceIntegration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkforceIntegration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new WorkforceIntegration CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkforceIntegration();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"apiVersion", n => { ApiVersion = n.GetIntValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"encryption", n => { Encryption = n.GetObjectValue<WorkforceIntegrationEncryption>(WorkforceIntegrationEncryption.CreateFromDiscriminatorValue); } },
@@ -69,7 +74,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("apiVersion", ApiVersion);

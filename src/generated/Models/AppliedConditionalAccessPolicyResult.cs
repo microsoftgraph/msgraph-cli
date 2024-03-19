@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AppliedConditionalAccessPolicyResult {
+    public enum AppliedConditionalAccessPolicyResult
+    {
         [EnumMember(Value = "success")]
         Success,
         [EnumMember(Value = "failure")]

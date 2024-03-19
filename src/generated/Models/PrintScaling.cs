@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrintScaling {
+    public enum PrintScaling
+    {
         [EnumMember(Value = "auto")]
         Auto,
         [EnumMember(Value = "shrinkToFit")]

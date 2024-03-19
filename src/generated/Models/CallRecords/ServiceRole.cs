@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.CallRecords {
-    public enum ServiceRole {
+    public enum ServiceRole
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "customBot")]

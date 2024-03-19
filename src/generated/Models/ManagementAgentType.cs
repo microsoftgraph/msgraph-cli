@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ManagementAgentType {
+    public enum ManagementAgentType
+    {
         /// <summary>The device is managed by Exchange server.</summary>
         [EnumMember(Value = "eas")]
         Eas,

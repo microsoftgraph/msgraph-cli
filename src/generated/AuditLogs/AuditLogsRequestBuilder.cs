@@ -21,12 +21,14 @@ namespace ApiSdk.AuditLogs {
     /// <summary>
     /// Provides operations to manage the auditLogRoot singleton.
     /// </summary>
-    public class AuditLogsRequestBuilder : BaseCliRequestBuilder {
+    public class AuditLogsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDirectoryAuditsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDirectoryAuditsNavCommand()
+        {
             var command = new Command("directory-audits");
             command.Description = "Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.";
             var builder = new DirectoryAuditsRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Get auditLogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get auditLogs";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -96,8 +99,9 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Update auditLogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update auditLogs";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -140,8 +144,9 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildProvisioningNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildProvisioningNavCommand()
+        {
             var command = new Command("provisioning");
             command.Description = "Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.";
             var builder = new ProvisioningRequestBuilder(PathParameters);
@@ -166,8 +171,9 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSignInsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSignInsNavCommand()
+        {
             var command = new Command("sign-ins");
             command.Description = "Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.";
             var builder = new SignInsRequestBuilder(PathParameters);
@@ -193,25 +199,29 @@ namespace ApiSdk.AuditLogs {
         /// Instantiates a new <see cref="AuditLogsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuditLogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/auditLogs{?%24expand,%24select}", pathParameters) {
+        public AuditLogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/auditLogs{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AuditLogsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AuditLogsRequestBuilder(string rawUrl) : base("{+baseurl}/auditLogs{?%24expand,%24select}", rawUrl) {
+        public AuditLogsRequestBuilder(string rawUrl) : base("{+baseurl}/auditLogs{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get auditLogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuditLogsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuditLogsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuditLogsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuditLogsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -221,15 +231,17 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Update auditLogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AuditLogRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AuditLogRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AuditLogRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AuditLogRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/auditLogs", PathParameters);
@@ -240,7 +252,8 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Get auditLogs
         /// </summary>
-        public class AuditLogsRequestBuilderGetQueryParameters {
+        public class AuditLogsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

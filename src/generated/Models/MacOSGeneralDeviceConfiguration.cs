@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSGeneralDeviceConfiguration resource.
     /// </summary>
-    public class MacOSGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
+    public class MacOSGeneralDeviceConfiguration : DeviceConfiguration, IParsable 
+    {
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
         /// <summary>List of apps in the compliance (either allow list or block list, controlled by CompliantAppListType). This collection can contain a maximum of 10000 elements.</summary>
@@ -48,24 +49,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="MacOSGeneralDeviceConfiguration"/> and sets the default values.
         /// </summary>
-        public MacOSGeneralDeviceConfiguration() : base() {
+        public MacOSGeneralDeviceConfiguration() : base()
+        {
             OdataType = "#microsoft.graph.macOSGeneralDeviceConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MacOSGeneralDeviceConfiguration"></returns>
+        /// <returns>A <see cref="MacOSGeneralDeviceConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MacOSGeneralDeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new MacOSGeneralDeviceConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MacOSGeneralDeviceConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"compliantAppListType", n => { CompliantAppListType = n.GetEnumValue<AppListType>(); } },
                 {"compliantAppsList", n => { CompliantAppsList = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"emailInDomainSuffixes", n => { EmailInDomainSuffixes = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -84,7 +89,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<AppListType>("compliantAppListType", CompliantAppListType);

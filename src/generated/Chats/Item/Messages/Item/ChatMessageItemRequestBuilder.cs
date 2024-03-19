@@ -24,12 +24,14 @@ namespace ApiSdk.Chats.Item.Messages.Item {
     /// <summary>
     /// Provides operations to manage the messages property of the microsoft.graph.chat entity.
     /// </summary>
-    public class ChatMessageItemRequestBuilder : BaseCliRequestBuilder {
+    public class ChatMessageItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property messages for chats
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for chats";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -69,8 +71,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// Retrieve a single message or a message reply in a channel or a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -126,8 +129,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostedContentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostedContentsNavCommand()
+        {
             var command = new Command("hosted-contents");
             command.Description = "Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.";
             var builder = new HostedContentsRequestBuilder(PathParameters);
@@ -152,8 +156,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in chats
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in chats";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -208,8 +213,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRepliesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRepliesNavCommand()
+        {
             var command = new Command("replies");
             command.Description = "Provides operations to manage the replies property of the microsoft.graph.chatMessage entity.";
             var builder = new RepliesRequestBuilder(PathParameters);
@@ -235,8 +241,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to call the setReaction method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetReactionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetReactionNavCommand()
+        {
             var command = new Command("set-reaction");
             command.Description = "Provides operations to call the setReaction method.";
             var builder = new SetReactionRequestBuilder(PathParameters);
@@ -251,8 +258,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to call the softDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSoftDeleteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSoftDeleteNavCommand()
+        {
             var command = new Command("soft-delete");
             command.Description = "Provides operations to call the softDelete method.";
             var builder = new SoftDeleteRequestBuilder(PathParameters);
@@ -267,8 +275,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to call the undoSoftDelete method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUndoSoftDeleteNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUndoSoftDeleteNavCommand()
+        {
             var command = new Command("undo-soft-delete");
             command.Description = "Provides operations to call the undoSoftDelete method.";
             var builder = new UndoSoftDeleteRequestBuilder(PathParameters);
@@ -283,8 +292,9 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Provides operations to call the unsetReaction method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnsetReactionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnsetReactionNavCommand()
+        {
             var command = new Command("unset-reaction");
             command.Description = "Provides operations to call the unsetReaction method.";
             var builder = new UnsetReactionRequestBuilder(PathParameters);
@@ -300,25 +310,29 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// Instantiates a new <see cref="ChatMessageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChatMessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}{?%24expand,%24select}", pathParameters) {
+        public ChatMessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ChatMessageItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChatMessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}{?%24expand,%24select}", rawUrl) {
+        public ChatMessageItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property messages for chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -328,14 +342,16 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatMessageItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -345,15 +361,17 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Update the navigation property messages in chats
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ChatMessage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/chats/{chat%2Did}/messages/{chatMessage%2Did}", PathParameters);
@@ -364,7 +382,8 @@ namespace ApiSdk.Chats.Item.Messages.Item {
         /// <summary>
         /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
-        public class ChatMessageItemRequestBuilderGetQueryParameters {
+        public class ChatMessageItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// An abstract class containing the base properties for Intune mobile apps. Note: Listing mobile apps with `$expand=assignments` has been deprecated. Instead get the list of apps without the `$expand` query on `assignments`. Then, perform the expansion on individual applications.
     /// </summary>
-    public class MobileApp : Entity, IParsable {
+    public class MobileApp : Entity, IParsable 
+    {
         /// <summary>The list of group assignments for this mobile app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -26,7 +27,7 @@ namespace ApiSdk.Models {
         public List<MobileAppCategory> Categories { get; set; }
 #endif
         /// <summary>The date and time the app was created.</summary>
-        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>The description of the app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -70,7 +71,7 @@ namespace ApiSdk.Models {
         public MimeContent LargeIcon { get; set; }
 #endif
         /// <summary>The date and time the app was last modified.</summary>
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; private set; }
         /// <summary>Notes for the app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -108,12 +109,14 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MobileApp"></returns>
+        /// <returns>A <see cref="MobileApp"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new MobileApp CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
-            return mappingValue switch {
+            return mappingValue switch
+            {
                 "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
                 "#microsoft.graph.androidStoreApp" => new AndroidStoreApp(),
                 "#microsoft.graph.iosiPadOSWebClip" => new IosiPadOSWebClip(),
@@ -146,9 +149,11 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<MobileAppAssignment>(MobileAppAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"categories", n => { Categories = n.GetCollectionOfObjectValues<MobileAppCategory>(MobileAppCategory.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -170,19 +175,18 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<MobileAppAssignment>("assignments", Assignments);
             writer.WriteCollectionOfObjectValues<MobileAppCategory>("categories", Categories);
-            writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("developer", Developer);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("informationUrl", InformationUrl);
             writer.WriteBoolValue("isFeatured", IsFeatured);
             writer.WriteObjectValue<MimeContent>("largeIcon", LargeIcon);
-            writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("notes", Notes);
             writer.WriteStringValue("owner", Owner);
             writer.WriteStringValue("privacyInformationUrl", PrivacyInformationUrl);

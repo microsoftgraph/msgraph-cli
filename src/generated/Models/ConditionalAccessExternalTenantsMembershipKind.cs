@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ConditionalAccessExternalTenantsMembershipKind {
+    public enum ConditionalAccessExternalTenantsMembershipKind
+    {
         [EnumMember(Value = "all")]
         All,
         [EnumMember(Value = "enumerated")]

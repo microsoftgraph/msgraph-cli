@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ConditionalAccessDevicePlatform {
+    public enum ConditionalAccessDevicePlatform
+    {
         [EnumMember(Value = "android")]
         Android,
         [EnumMember(Value = "iOS")]

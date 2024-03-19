@@ -25,12 +25,14 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
     /// <summary>
     /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
     /// </summary>
-    public class RegisteredOwnersRequestBuilder : BaseCliRequestBuilder {
+    public class RegisteredOwnersRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Gets an item from the ApiSdk.devices.item.registeredOwners.item collection
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
@@ -43,8 +45,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -59,8 +62,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphAppRoleAssignmentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphAppRoleAssignmentNavCommand()
+        {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -81,8 +85,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphEndpointNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphEndpointNavCommand()
+        {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
@@ -103,8 +108,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphServicePrincipalNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphServicePrincipalNavCommand()
+        {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
@@ -125,8 +131,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphUserNavCommand()
+        {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
@@ -148,8 +155,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
@@ -254,8 +262,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefNavCommand()
+        {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new RefRequestBuilder(PathParameters);
@@ -273,25 +282,29 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Instantiates a new <see cref="RegisteredOwnersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RegisteredOwnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public RegisteredOwnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RegisteredOwnersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RegisteredOwnersRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public RegisteredOwnersRequestBuilder(string rawUrl) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -301,7 +314,8 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
-        public class RegisteredOwnersRequestBuilderGetQueryParameters {
+        public class RegisteredOwnersRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

@@ -18,12 +18,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
     /// <summary>
     /// Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
     /// </summary>
-    public class AssignmentPolicyRequestBuilder : BaseCliRequestBuilder {
+    public class AssignmentPolicyRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read-only. Supports $filter (eq) on the id property and $expand query parameters.";
             var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
@@ -74,25 +76,29 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
         /// Instantiates a new <see cref="AssignmentPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AssignmentPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", pathParameters) {
+        public AssignmentPolicyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AssignmentPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AssignmentPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", rawUrl) {
+        public AssignmentPolicyRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/assignmentPolicy{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentPolicyRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AssignmentPolicyRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Assig
         /// <summary>
         /// Read-only. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        public class AssignmentPolicyRequestBuilderGetQueryParameters {
+        public class AssignmentPolicyRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

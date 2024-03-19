@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ChatType {
+    public enum ChatType
+    {
         [EnumMember(Value = "oneOnOne")]
         OneOnOne,
         [EnumMember(Value = "group")]

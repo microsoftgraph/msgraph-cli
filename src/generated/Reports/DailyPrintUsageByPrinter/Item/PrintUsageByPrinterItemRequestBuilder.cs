@@ -18,12 +18,14 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
     /// <summary>
     /// Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
     /// </summary>
-    public class PrintUsageByPrinterItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrintUsageByPrinterItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property dailyPrintUsageByPrinter for reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property dailyPrintUsageByPrinter for reports";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
@@ -57,8 +59,9 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
@@ -108,8 +111,9 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// <summary>
         /// Update the navigation property dailyPrintUsageByPrinter in reports
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property dailyPrintUsageByPrinter in reports";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
@@ -159,25 +163,29 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// Instantiates a new <see cref="PrintUsageByPrinterItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintUsageByPrinterItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrintUsageByPrinterItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrintUsageByPrinterItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintUsageByPrinterItemRequestBuilder(string rawUrl) : base("{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrintUsageByPrinterItemRequestBuilder(string rawUrl) : base("{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property dailyPrintUsageByPrinter for reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -187,14 +195,16 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// <summary>
         /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintUsageByPrinterItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintUsageByPrinterItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintUsageByPrinterItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintUsageByPrinterItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -204,15 +214,17 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// <summary>
         /// Update the navigation property dailyPrintUsageByPrinter in reports
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrintUsageByPrinter body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintUsageByPrinter body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrintUsageByPrinter body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintUsageByPrinter body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/reports/dailyPrintUsageByPrinter/{printUsageByPrinter%2Did}", PathParameters);
@@ -223,7 +235,8 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
         /// <summary>
         /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// </summary>
-        public class PrintUsageByPrinterItemRequestBuilderGetQueryParameters {
+        public class PrintUsageByPrinterItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// SharedPC Account Manager Policy. Only applies when the account manager is enabled.
     /// </summary>
-    public class SharedPCAccountManagerPolicy : IAdditionalDataHolder, IParsable {
+    public class SharedPCAccountManagerPolicy : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Possible values for when accounts are deleted on a shared PC.</summary>
         public SharedPCAccountDeletionPolicyType? AccountDeletionPolicy { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,24 +31,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="SharedPCAccountManagerPolicy"/> and sets the default values.
         /// </summary>
-        public SharedPCAccountManagerPolicy() {
+        public SharedPCAccountManagerPolicy()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="SharedPCAccountManagerPolicy"></returns>
+        /// <returns>A <see cref="SharedPCAccountManagerPolicy"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static SharedPCAccountManagerPolicy CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static SharedPCAccountManagerPolicy CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new SharedPCAccountManagerPolicy();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"accountDeletionPolicy", n => { AccountDeletionPolicy = n.GetEnumValue<SharedPCAccountDeletionPolicyType>(); } },
                 {"cacheAccountsAboveDiskFreePercentage", n => { CacheAccountsAboveDiskFreePercentage = n.GetIntValue(); } },
                 {"inactiveThresholdDays", n => { InactiveThresholdDays = n.GetIntValue(); } },
@@ -59,7 +64,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<SharedPCAccountDeletionPolicyType>("accountDeletionPolicy", AccountDeletionPolicy);
             writer.WriteIntValue("cacheAccountsAboveDiskFreePercentage", CacheAccountsAboveDiskFreePercentage);

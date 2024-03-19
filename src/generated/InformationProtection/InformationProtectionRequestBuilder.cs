@@ -20,12 +20,14 @@ namespace ApiSdk.InformationProtection {
     /// <summary>
     /// Provides operations to manage the informationProtection singleton.
     /// </summary>
-    public class InformationProtectionRequestBuilder : BaseCliRequestBuilder {
+    public class InformationProtectionRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildBitlockerNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildBitlockerNavCommand()
+        {
             var command = new Command("bitlocker");
             command.Description = "Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.";
             var builder = new BitlockerRequestBuilder(PathParameters);
@@ -46,8 +48,9 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Get informationProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get informationProtection";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -91,8 +94,9 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Update informationProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update informationProtection";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -135,8 +139,9 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildThreatAssessmentRequestsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildThreatAssessmentRequestsNavCommand()
+        {
             var command = new Command("threat-assessment-requests");
             command.Description = "Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.";
             var builder = new ThreatAssessmentRequestsRequestBuilder(PathParameters);
@@ -162,25 +167,29 @@ namespace ApiSdk.InformationProtection {
         /// Instantiates a new <see cref="InformationProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InformationProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection{?%24expand,%24select}", pathParameters) {
+        public InformationProtectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="InformationProtectionRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public InformationProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection{?%24expand,%24select}", rawUrl) {
+        public InformationProtectionRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get informationProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InformationProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InformationProtectionRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InformationProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<InformationProtectionRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -190,15 +199,17 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Update informationProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.InformationProtection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.InformationProtection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.InformationProtection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.InformationProtection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/informationProtection", PathParameters);
@@ -209,7 +220,8 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Get informationProtection
         /// </summary>
-        public class InformationProtectionRequestBuilderGetQueryParameters {
+        public class InformationProtectionRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

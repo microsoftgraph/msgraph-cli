@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class DateTimeColumn : IAdditionalDataHolder, IParsable {
+    public class DateTimeColumn : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>How the value should be presented in the UX. Must be one of default, friendly, or standard. See below for more details. If unspecified, treated as default.</summary>
@@ -35,24 +36,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="DateTimeColumn"/> and sets the default values.
         /// </summary>
-        public DateTimeColumn() {
+        public DateTimeColumn()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="DateTimeColumn"></returns>
+        /// <returns>A <see cref="DateTimeColumn"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static DateTimeColumn CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static DateTimeColumn CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DateTimeColumn();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"displayAs", n => { DisplayAs = n.GetStringValue(); } },
                 {"format", n => { Format = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -62,7 +67,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("displayAs", DisplayAs);
             writer.WriteStringValue("format", Format);

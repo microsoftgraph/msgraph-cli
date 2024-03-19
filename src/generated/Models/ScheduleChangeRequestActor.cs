@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ScheduleChangeRequestActor {
+    public enum ScheduleChangeRequestActor
+    {
         [EnumMember(Value = "sender")]
         Sender,
         [EnumMember(Value = "recipient")]

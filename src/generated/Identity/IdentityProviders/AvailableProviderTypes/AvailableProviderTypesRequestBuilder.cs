@@ -17,12 +17,14 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
     /// <summary>
     /// Provides operations to call the availableProviderTypes method.
     /// </summary>
-    public class AvailableProviderTypesRequestBuilder : BaseCliRequestBuilder {
+    public class AvailableProviderTypesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function availableProviderTypes
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function availableProviderTypes";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -94,25 +96,29 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
         /// Instantiates a new <see cref="AvailableProviderTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AvailableProviderTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders/availableProviderTypes(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public AvailableProviderTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders/availableProviderTypes(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AvailableProviderTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AvailableProviderTypesRequestBuilder(string rawUrl) : base("{+baseurl}/identity/identityProviders/availableProviderTypes(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public AvailableProviderTypesRequestBuilder(string rawUrl) : base("{+baseurl}/identity/identityProviders/availableProviderTypes(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function availableProviderTypes
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AvailableProviderTypesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AvailableProviderTypesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AvailableProviderTypesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AvailableProviderTypesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -122,7 +128,8 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
         /// <summary>
         /// Invoke function availableProviderTypes
         /// </summary>
-        public class AvailableProviderTypesRequestBuilderGetQueryParameters {
+        public class AvailableProviderTypesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

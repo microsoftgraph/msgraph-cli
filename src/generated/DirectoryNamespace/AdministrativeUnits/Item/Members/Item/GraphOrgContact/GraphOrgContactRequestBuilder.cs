@@ -18,12 +18,14 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphO
     /// <summary>
     /// Casts the previous resource to orgContact.
     /// </summary>
-    public class GraphOrgContactRequestBuilder : BaseCliRequestBuilder {
+    public class GraphOrgContactRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
@@ -87,25 +89,29 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphO
         /// Instantiates a new <see cref="GraphOrgContactRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphOrgContactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", pathParameters) {
+        public GraphOrgContactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphOrgContactRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphOrgContactRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", rawUrl) {
+        public GraphOrgContactRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/graph.orgContact{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphOrgContactRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphOrgContactRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphOrgContactRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphOrgContactRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -115,7 +121,8 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.GraphO
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact
         /// </summary>
-        public class GraphOrgContactRequestBuilderGetQueryParameters {
+        public class GraphOrgContactRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -19,12 +19,14 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
     /// <summary>
     /// Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.
     /// </summary>
-    public class TeamsAppItemRequestBuilder : BaseCliRequestBuilder {
+    public class TeamsAppItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppDefinitionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppDefinitionsNavCommand()
+        {
             var command = new Command("app-definitions");
             command.Description = "Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.";
             var builder = new AppDefinitionsRequestBuilder(PathParameters);
@@ -50,8 +52,9 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// Delete an app from an organization&apos;s app catalog (the tenant app catalog). To delete an app, the distributionMethod property for the app must be set to organization. You can also use this API to remove a submitted app from the review process.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamsapp-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete an app from an organization's app catalog (the tenant app catalog). To delete an app, the distributionMethod property for the app must be set to organization. You can also use this API to remove a submitted app from the review process.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamsapp-delete?view=graph-rest-1.0";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
@@ -84,8 +87,9 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Get teamsApps from appCatalogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get teamsApps from appCatalogs";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
@@ -135,8 +139,9 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Update the navigation property teamsApps in appCatalogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property teamsApps in appCatalogs";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
@@ -186,25 +191,29 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// Instantiates a new <see cref="TeamsAppItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamsAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}{?%24expand,%24select}", pathParameters) {
+        public TeamsAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TeamsAppItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamsAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}{?%24expand,%24select}", rawUrl) {
+        public TeamsAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete an app from an organization&apos;s app catalog (the tenant app catalog). To delete an app, the distributionMethod property for the app must be set to organization. You can also use this API to remove a submitted app from the review process.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Get teamsApps from appCatalogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamsAppItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Update the navigation property teamsApps in appCatalogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsApp body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsApp body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsApp body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.TeamsApp body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Get teamsApps from appCatalogs
         /// </summary>
-        public class TeamsAppItemRequestBuilderGetQueryParameters {
+        public class TeamsAppItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

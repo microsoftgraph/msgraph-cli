@@ -19,13 +19,15 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
     /// <summary>
     /// Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class VppTokenItemRequestBuilder : BaseCliRequestBuilder {
+    public class VppTokenItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a vppToken.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a vppToken.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
@@ -59,8 +61,9 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Read properties and relationships of the vppToken object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
@@ -111,8 +114,9 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Update the properties of a vppToken object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
@@ -161,8 +165,9 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Provides operations to call the syncLicenses method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSyncLicensesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSyncLicensesNavCommand()
+        {
             var command = new Command("sync-licenses");
             command.Description = "Provides operations to call the syncLicenses method.";
             var builder = new SyncLicensesRequestBuilder(PathParameters);
@@ -178,25 +183,29 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// Instantiates a new <see cref="VppTokenItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public VppTokenItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}{?%24expand,%24select}", pathParameters) {
+        public VppTokenItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="VppTokenItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public VppTokenItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}{?%24expand,%24select}", rawUrl) {
+        public VppTokenItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a vppToken.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,14 +215,16 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Read properties and relationships of the vppToken object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VppTokenItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VppTokenItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VppTokenItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VppTokenItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -223,15 +234,17 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Update the properties of a vppToken object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(VppToken body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(VppToken body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(VppToken body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(VppToken body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}", PathParameters);
@@ -242,7 +255,8 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Read properties and relationships of the vppToken object.
         /// </summary>
-        public class VppTokenItemRequestBuilderGetQueryParameters {
+        public class VppTokenItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

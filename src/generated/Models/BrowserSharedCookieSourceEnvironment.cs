@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum BrowserSharedCookieSourceEnvironment {
+    public enum BrowserSharedCookieSourceEnvironment
+    {
         /// <summary>Share session cookies from Microsoft Edge to Internet Explorer.</summary>
         [EnumMember(Value = "microsoftEdge")]
         MicrosoftEdge,

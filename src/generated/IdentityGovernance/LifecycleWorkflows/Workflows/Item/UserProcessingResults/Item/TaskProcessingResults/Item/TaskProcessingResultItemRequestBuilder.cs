@@ -21,12 +21,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
     /// <summary>
     /// Provides operations to manage the taskProcessingResults property of the microsoft.graph.identityGovernance.userProcessingResult entity.
     /// </summary>
-    public class TaskProcessingResultItemRequestBuilder : BaseCliRequestBuilder {
+    public class TaskProcessingResultItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The associated individual task execution.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The associated individual task execution.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
@@ -88,8 +90,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Provides operations to call the resume method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMicrosoftGraphIdentityGovernanceResumeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMicrosoftGraphIdentityGovernanceResumeNavCommand()
+        {
             var command = new Command("microsoft-graph-identity-governance-resume");
             command.Description = "Provides operations to call the resume method.";
             var builder = new MicrosoftGraphIdentityGovernanceResumeRequestBuilder(PathParameters);
@@ -104,8 +107,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubjectNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubjectNavCommand()
+        {
             var command = new Command("subject");
             command.Description = "Provides operations to manage the subject property of the microsoft.graph.identityGovernance.taskProcessingResult entity.";
             var builder = new SubjectRequestBuilder(PathParameters);
@@ -127,8 +131,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTaskNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTaskNavCommand()
+        {
             var command = new Command("task");
             command.Description = "Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskProcessingResult entity.";
             var builder = new TaskRequestBuilder(PathParameters);
@@ -144,25 +149,29 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// Instantiates a new <see cref="TaskProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TaskProcessingResultItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", pathParameters) {
+        public TaskProcessingResultItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TaskProcessingResultItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TaskProcessingResultItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", rawUrl) {
+        public TaskProcessingResultItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/userProcessingResults/{userProcessingResult%2Did}/taskProcessingResults/{taskProcessingResult%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The associated individual task execution.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TaskProcessingResultItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -172,7 +181,8 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.UserProces
         /// <summary>
         /// The associated individual task execution.
         /// </summary>
-        public class TaskProcessingResultItemRequestBuilderGetQueryParameters {
+        public class TaskProcessingResultItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

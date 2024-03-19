@@ -17,13 +17,15 @@ namespace ApiSdk.Domains.Item.Promote {
     /// <summary>
     /// Provides operations to call the promote method.
     /// </summary>
-    public class PromoteRequestBuilder : BaseCliRequestBuilder {
+    public class PromoteRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
@@ -60,25 +62,29 @@ namespace ApiSdk.Domains.Item.Promote {
         /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PromoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/promote", pathParameters) {
+        public PromoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/promote", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PromoteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PromoteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/promote", rawUrl) {
+        public PromoteRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/promote", rawUrl)
+        {
         }
         /// <summary>
         /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

@@ -24,12 +24,14 @@ namespace ApiSdk.Users {
     /// <summary>
     /// Provides operations to manage the collection of user entities.
     /// </summary>
-    public class UsersRequestBuilder : BaseCliRequestBuilder {
+    public class UsersRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of user entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new UserItemRequestBuilder(PathParameters);
@@ -46,6 +48,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildChatsNavCommand());
             commands.Add(builder.BuildCheckMemberGroupsNavCommand());
             commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildCloudClipboardNavCommand());
             commands.Add(builder.BuildContactFoldersNavCommand());
             commands.Add(builder.BuildContactsNavCommand());
             commands.Add(builder.BuildCreatedObjectsNavCommand());
@@ -114,8 +117,9 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -128,13 +132,14 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0" />
+        /// Create a new user object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
-            command.Description = "Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0";
+            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -175,8 +180,9 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeltaNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeltaNavCommand()
+        {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -191,8 +197,9 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetAvailableExtensionPropertiesNavCommand()
+        {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -207,8 +214,9 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByIdsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByIdsNavCommand()
+        {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -222,12 +230,13 @@ namespace ApiSdk.Users {
         }
         /// <summary>
         /// List properties and relationships of the user objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -318,8 +327,9 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildValidatePropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildValidatePropertiesNavCommand()
+        {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
@@ -335,25 +345,29 @@ namespace ApiSdk.Users {
         /// Instantiates a new <see cref="UsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", pathParameters) {
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UsersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", rawUrl) {
+        public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/users{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// List properties and relationships of the user objects.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -361,17 +375,19 @@ namespace ApiSdk.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.
+        /// Create a new user object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users", PathParameters);
@@ -382,7 +398,8 @@ namespace ApiSdk.Users {
         /// <summary>
         /// List properties and relationships of the user objects.
         /// </summary>
-        public class UsersRequestBuilderGetQueryParameters {
+        public class UsersRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

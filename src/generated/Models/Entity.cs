@@ -4,6 +4,7 @@ using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.IdentityGovernance;
 using ApiSdk.Models.Partners.Billing;
 using ApiSdk.Models.Partners;
+using ApiSdk.Models.Search;
 using ApiSdk.Models.Security;
 using ApiSdk.Models.TermStore;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -12,7 +13,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class Entity : IAdditionalDataHolder, IParsable {
+    public class Entity : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The unique identifier for an entity. Read-only.</summary>
@@ -34,18 +36,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Entity"/> and sets the default values.
         /// </summary>
-        public Entity() {
+        public Entity()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Entity"></returns>
+        /// <returns>A <see cref="Entity"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static Entity CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static Entity CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
-            return mappingValue switch {
+            return mappingValue switch
+            {
                 "#microsoft.graph.aadUserConversationMember" => new AadUserConversationMember(),
                 "#microsoft.graph.accessPackage" => new AccessPackage(),
                 "#microsoft.graph.accessPackageAssignment" => new AccessPackageAssignment(),
@@ -77,6 +82,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.addLargeGalleryViewOperation" => new AddLargeGalleryViewOperation(),
                 "#microsoft.graph.adminConsentRequestPolicy" => new AdminConsentRequestPolicy(),
                 "#microsoft.graph.administrativeUnit" => new AdministrativeUnit(),
+                "#microsoft.graph.adminMicrosoft365Apps" => new AdminMicrosoft365Apps(),
                 "#microsoft.graph.agreement" => new Agreement(),
                 "#microsoft.graph.agreementAcceptance" => new AgreementAcceptance(),
                 "#microsoft.graph.agreementFile" => new AgreementFile(),
@@ -140,6 +146,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.b2xIdentityUserFlow" => new B2xIdentityUserFlow(),
                 "#microsoft.graph.baseItem" => new BaseItem(),
                 "#microsoft.graph.baseItemVersion" => new BaseItemVersion(),
+                "#microsoft.graph.baseSitePage" => new BaseSitePage(),
                 "#microsoft.graph.bitlocker" => new Bitlocker(),
                 "#microsoft.graph.bitlockerRecoveryKey" => new BitlockerRecoveryKey(),
                 "#microsoft.graph.bookingAppointment" => new BookingAppointment(),
@@ -167,6 +174,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.callRecords.session" => new Session(),
                 "#microsoft.graph.callTranscript" => new CallTranscript(),
                 "#microsoft.graph.cancelMediaProcessingOperation" => new CancelMediaProcessingOperation(),
+                "#microsoft.graph.canvasLayout" => new CanvasLayout(),
                 "#microsoft.graph.certificateBasedAuthConfiguration" => new CertificateBasedAuthConfiguration(),
                 "#microsoft.graph.changeTrackedEntity" => new ChangeTrackedEntity(),
                 "#microsoft.graph.channel" => new Channel(),
@@ -176,6 +184,17 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.chatMessageInfo" => new ChatMessageInfo(),
                 "#microsoft.graph.checklistItem" => new ChecklistItem(),
                 "#microsoft.graph.claimsMappingPolicy" => new ClaimsMappingPolicy(),
+                "#microsoft.graph.cloudClipboardItem" => new CloudClipboardItem(),
+                "#microsoft.graph.cloudClipboardRoot" => new CloudClipboardRoot(),
+                "#microsoft.graph.cloudPC" => new CloudPC(),
+                "#microsoft.graph.cloudPcAuditEvent" => new CloudPcAuditEvent(),
+                "#microsoft.graph.cloudPcDeviceImage" => new CloudPcDeviceImage(),
+                "#microsoft.graph.cloudPcGalleryImage" => new CloudPcGalleryImage(),
+                "#microsoft.graph.cloudPcOnPremisesConnection" => new CloudPcOnPremisesConnection(),
+                "#microsoft.graph.cloudPcProvisioningPolicy" => new CloudPcProvisioningPolicy(),
+                "#microsoft.graph.cloudPcProvisioningPolicyAssignment" => new CloudPcProvisioningPolicyAssignment(),
+                "#microsoft.graph.cloudPcUserSetting" => new CloudPcUserSetting(),
+                "#microsoft.graph.cloudPcUserSettingAssignment" => new CloudPcUserSettingAssignment(),
                 "#microsoft.graph.columnDefinition" => new ColumnDefinition(),
                 "#microsoft.graph.columnLink" => new ColumnLink(),
                 "#microsoft.graph.commsOperation" => new CommsOperation(),
@@ -207,6 +226,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.delegatedAdminRelationshipRequest" => new DelegatedAdminRelationshipRequest(),
                 "#microsoft.graph.delegatedAdminServiceManagementDetail" => new DelegatedAdminServiceManagementDetail(),
                 "#microsoft.graph.delegatedPermissionClassification" => new DelegatedPermissionClassification(),
+                "#microsoft.graph.deletedChat" => new DeletedChat(),
                 "#microsoft.graph.deletedItemContainer" => new DeletedItemContainer(),
                 "#microsoft.graph.deletedTeam" => new DeletedTeam(),
                 "#microsoft.graph.deltaParticipants" => new DeltaParticipants(),
@@ -244,11 +264,13 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.deviceLocalCredentialInfo" => new DeviceLocalCredentialInfo(),
                 "#microsoft.graph.deviceLogCollectionResponse" => new DeviceLogCollectionResponse(),
                 "#microsoft.graph.deviceManagement" => new DeviceManagement(),
+                "#microsoft.graph.deviceManagementCachedReportConfiguration" => new DeviceManagementCachedReportConfiguration(),
                 "#microsoft.graph.deviceManagementExchangeConnector" => new DeviceManagementExchangeConnector(),
                 "#microsoft.graph.deviceManagementExportJob" => new DeviceManagementExportJob(),
                 "#microsoft.graph.deviceManagementPartner" => new DeviceManagementPartner(),
                 "#microsoft.graph.deviceManagementReports" => new DeviceManagementReports(),
                 "#microsoft.graph.deviceManagementTroubleshootingEvent" => new DeviceManagementTroubleshootingEvent(),
+                "#microsoft.graph.deviceRegistrationPolicy" => new DeviceRegistrationPolicy(),
                 "#microsoft.graph.directory" => new DirectoryObject1(),
                 "#microsoft.graph.directoryAudit" => new DirectoryAudit(),
                 "#microsoft.graph.directoryDefinition" => new DirectoryDefinition(),
@@ -332,6 +354,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.groupSetting" => new GroupSetting(),
                 "#microsoft.graph.groupSettingTemplate" => new GroupSettingTemplate(),
                 "#microsoft.graph.homeRealmDiscoveryPolicy" => new HomeRealmDiscoveryPolicy(),
+                "#microsoft.graph.horizontalSection" => new HorizontalSection(),
+                "#microsoft.graph.horizontalSectionColumn" => new HorizontalSectionColumn(),
                 "#microsoft.graph.identityApiConnector" => new IdentityApiConnector(),
                 "#microsoft.graph.identityBuiltInUserFlowAttribute" => new IdentityBuiltInUserFlowAttribute(),
                 "#microsoft.graph.identityContainer" => new IdentityContainer(),
@@ -398,6 +422,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.localizedNotificationMessage" => new LocalizedNotificationMessage(),
                 "#microsoft.graph.loginPage" => new LoginPage(),
                 "#microsoft.graph.longRunningOperation" => new LongRunningOperation(),
+                "#microsoft.graph.m365AppsInstallationOptions" => new M365AppsInstallationOptions(),
                 "#microsoft.graph.macOSCompliancePolicy" => new MacOSCompliancePolicy(),
                 "#microsoft.graph.macOSCustomConfiguration" => new MacOSCustomConfiguration(),
                 "#microsoft.graph.macOSDeviceFeaturesConfiguration" => new MacOSDeviceFeaturesConfiguration(),
@@ -492,8 +517,10 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.participantLeftNotification" => new ParticipantLeftNotification(),
                 "#microsoft.graph.partners" => new ApiSdk.Models.Partners.Partners(),
                 "#microsoft.graph.partners.billing.azureUsage" => new AzureUsage(),
+                "#microsoft.graph.partners.billing.billedReconciliation" => new BilledReconciliation(),
                 "#microsoft.graph.partners.billing.billedUsage" => new BilledUsage(),
                 "#microsoft.graph.partners.billing.billing" => new ApiSdk.Models.Partners.Billing.Billing(),
+                "#microsoft.graph.partners.billing.billingReconciliation" => new BillingReconciliation(),
                 "#microsoft.graph.partners.billing.exportSuccessOperation" => new ExportSuccessOperation(),
                 "#microsoft.graph.partners.billing.failedOperation" => new FailedOperation(),
                 "#microsoft.graph.partners.billing.manifest" => new Manifest(),
@@ -560,6 +587,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.rbacApplication" => new RbacApplication(),
                 "#microsoft.graph.recordOperation" => new RecordOperation(),
                 "#microsoft.graph.referenceAttachment" => new ReferenceAttachment(),
+                "#microsoft.graph.relyingPartyDetailedSummary" => new RelyingPartyDetailedSummary(),
                 "#microsoft.graph.remoteAssistancePartner" => new RemoteAssistancePartner(),
                 "#microsoft.graph.remoteDesktopSecurityConfiguration" => new RemoteDesktopSecurityConfiguration(),
                 "#microsoft.graph.request" => new Request(),
@@ -583,6 +611,10 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.schedulingGroup" => new SchedulingGroup(),
                 "#microsoft.graph.schemaExtension" => new SchemaExtension(),
                 "#microsoft.graph.scopedRoleMembership" => new ScopedRoleMembership(),
+                "#microsoft.graph.search.acronym" => new Acronym(),
+                "#microsoft.graph.search.bookmark" => new Bookmark(),
+                "#microsoft.graph.search.qna" => new Qna(),
+                "#microsoft.graph.search.searchAnswer" => new SearchAnswer(),
                 "#microsoft.graph.searchEntity" => new SearchEntity(),
                 "#microsoft.graph.sectionGroup" => new SectionGroup(),
                 "#microsoft.graph.secureScore" => new SecureScore(),
@@ -671,6 +703,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.simulationAutomationRun" => new SimulationAutomationRun(),
                 "#microsoft.graph.singleValueLegacyExtendedProperty" => new SingleValueLegacyExtendedProperty(),
                 "#microsoft.graph.site" => new Site(),
+                "#microsoft.graph.sitePage" => new SitePage(),
                 "#microsoft.graph.skypeForBusinessUserConversationMember" => new SkypeForBusinessUserConversationMember(),
                 "#microsoft.graph.skypeUserConversationMember" => new SkypeUserConversationMember(),
                 "#microsoft.graph.smsAuthenticationMethodConfiguration" => new SmsAuthenticationMethodConfiguration(),
@@ -679,6 +712,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.softwareOathAuthenticationMethod" => new SoftwareOathAuthenticationMethod(),
                 "#microsoft.graph.softwareOathAuthenticationMethodConfiguration" => new SoftwareOathAuthenticationMethodConfiguration(),
                 "#microsoft.graph.softwareUpdateStatusSummary" => new SoftwareUpdateStatusSummary(),
+                "#microsoft.graph.standardWebPart" => new StandardWebPart(),
                 "#microsoft.graph.startHoldMusicOperation" => new StartHoldMusicOperation(),
                 "#microsoft.graph.stopHoldMusicOperation" => new StopHoldMusicOperation(),
                 "#microsoft.graph.stsPolicy" => new StsPolicy(),
@@ -723,6 +757,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.termStore.set" => new ApiSdk.Models.TermStore.Set(),
                 "#microsoft.graph.termStore.store" => new Store(),
                 "#microsoft.graph.termStore.term" => new Term(),
+                "#microsoft.graph.textWebPart" => new TextWebPart(),
                 "#microsoft.graph.threatAssessmentRequest" => new ThreatAssessmentRequest(),
                 "#microsoft.graph.threatAssessmentResult" => new ThreatAssessmentResult(),
                 "#microsoft.graph.thumbnailSet" => new ThumbnailSet(),
@@ -796,6 +831,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.userSettings" => new UserSettings(),
                 "#microsoft.graph.userSignInInsight" => new UserSignInInsight(),
                 "#microsoft.graph.userTeamwork" => new UserTeamwork(),
+                "#microsoft.graph.verticalSection" => new VerticalSection(),
                 "#microsoft.graph.virtualEndpoint" => new VirtualEndpoint(),
                 "#microsoft.graph.virtualEvent" => new VirtualEvent(),
                 "#microsoft.graph.virtualEventRegistration" => new VirtualEventRegistration(),
@@ -805,10 +841,12 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.voiceAuthenticationMethodConfiguration" => new VoiceAuthenticationMethodConfiguration(),
                 "#microsoft.graph.vppToken" => new VppToken(),
                 "#microsoft.graph.webApp" => new WebApp(),
+                "#microsoft.graph.webPart" => new WebPart(),
                 "#microsoft.graph.win32LobApp" => new Win32LobApp(),
                 "#microsoft.graph.windows10CompliancePolicy" => new Windows10CompliancePolicy(),
                 "#microsoft.graph.windows10CustomConfiguration" => new Windows10CustomConfiguration(),
                 "#microsoft.graph.windows10EndpointProtectionConfiguration" => new Windows10EndpointProtectionConfiguration(),
+                "#microsoft.graph.windows10EnrollmentCompletionPageConfiguration" => new Windows10EnrollmentCompletionPageConfiguration(),
                 "#microsoft.graph.windows10EnterpriseModernAppManagementConfiguration" => new Windows10EnterpriseModernAppManagementConfiguration(),
                 "#microsoft.graph.windows10GeneralConfiguration" => new Windows10GeneralConfiguration(),
                 "#microsoft.graph.windows10MobileCompliancePolicy" => new Windows10MobileCompliancePolicy(),
@@ -833,6 +871,8 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.windowsPhone81CustomConfiguration" => new WindowsPhone81CustomConfiguration(),
                 "#microsoft.graph.windowsPhone81GeneralConfiguration" => new WindowsPhone81GeneralConfiguration(),
                 "#microsoft.graph.windowsProtectionState" => new WindowsProtectionState(),
+                "#microsoft.graph.windowsSetting" => new WindowsSetting(),
+                "#microsoft.graph.windowsSettingInstance" => new WindowsSettingInstance(),
                 "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),
                 "#microsoft.graph.windowsUniversalAppXContainedApp" => new WindowsUniversalAppXContainedApp(),
                 "#microsoft.graph.windowsUpdateForBusinessConfiguration" => new WindowsUpdateForBusinessConfiguration(),
@@ -891,9 +931,11 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -902,7 +944,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);

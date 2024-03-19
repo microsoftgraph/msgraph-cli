@@ -17,13 +17,15 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
     /// <summary>
     /// Provides operations to call the setVerifiedPublisher method.
     /// </summary>
-    public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
+    public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -63,26 +65,30 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         /// Instantiates a new <see cref="SetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", pathParameters) {
+        public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SetVerifiedPublisherRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", rawUrl) {
+        public SetVerifiedPublisherRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", rawUrl)
+        {
         }
         /// <summary>
         /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(SetVerifiedPublisherPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

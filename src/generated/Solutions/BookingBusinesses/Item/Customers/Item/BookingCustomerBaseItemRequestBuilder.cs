@@ -18,13 +18,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
     /// <summary>
     /// Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
     /// </summary>
-    public class BookingCustomerBaseItemRequestBuilder : BaseCliRequestBuilder {
+    public class BookingCustomerBaseItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete the specified bookingCustomer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete the specified bookingCustomer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -64,8 +66,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// Get the properties and relationships of a bookingCustomer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a bookingCustomer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -122,8 +125,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// Update the properties of a bookingCustomer object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a bookingCustomer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -179,25 +183,29 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// Instantiates a new <see cref="BookingCustomerBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BookingCustomerBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}{?%24expand,%24select}", pathParameters) {
+        public BookingCustomerBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="BookingCustomerBaseItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BookingCustomerBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}{?%24expand,%24select}", rawUrl) {
+        public BookingCustomerBaseItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete the specified bookingCustomer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -207,14 +215,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// <summary>
         /// Get the properties and relationships of a bookingCustomer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingCustomerBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingCustomerBaseItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingCustomerBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingCustomerBaseItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -224,15 +234,17 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// <summary>
         /// Update the properties of a bookingCustomer object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(BookingCustomerBase body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(BookingCustomerBase body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(BookingCustomerBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(BookingCustomerBase body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}", PathParameters);
@@ -243,7 +255,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         /// <summary>
         /// Get the properties and relationships of a bookingCustomer object.
         /// </summary>
-        public class BookingCustomerBaseItemRequestBuilderGetQueryParameters {
+        public class BookingCustomerBaseItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum EndpointType {
+    public enum EndpointType
+    {
         [EnumMember(Value = "default")]
         Default,
         [EnumMember(Value = "voicemail")]

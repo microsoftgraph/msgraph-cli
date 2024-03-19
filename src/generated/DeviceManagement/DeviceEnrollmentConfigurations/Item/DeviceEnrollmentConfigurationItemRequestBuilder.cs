@@ -21,12 +21,14 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
     /// <summary>
     /// Provides operations to manage the deviceEnrollmentConfigurations property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceEnrollmentConfigurationItemRequestBuilder : BaseCliRequestBuilder {
+    public class DeviceEnrollmentConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignNavCommand()
+        {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
@@ -65,13 +68,14 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-delete?view=graph-rest-1.0" />
+        /// Deletes a deviceEnrollmentLimitConfiguration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentlimitconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
-            command.Description = "Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a deviceEnrollmentLimitConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentlimitconfiguration-delete?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -100,13 +104,14 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the deviceEnrollmentWindowsHelloForBusinessConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentwindowshelloforbusinessconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceEnrollmentWindowsHelloForBusinessConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentwindowshelloforbusinessconfiguration-get?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -152,13 +157,14 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-update?view=graph-rest-1.0" />
+        /// Update the properties of a deviceEnrollmentWindowsHelloForBusinessConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentwindowshelloforbusinessconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceEnrollmentWindowsHelloForBusinessConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceenrollmentwindowshelloforbusinessconfiguration-update?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -205,8 +211,9 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>
         /// Provides operations to call the setPriority method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetPriorityNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetPriorityNavCommand()
+        {
             var command = new Command("set-priority");
             command.Description = "Provides operations to call the setPriority method.";
             var builder = new SetPriorityRequestBuilder(PathParameters);
@@ -222,25 +229,29 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// Instantiates a new <see cref="DeviceEnrollmentConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceEnrollmentConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}{?%24expand,%24select}", pathParameters) {
+        public DeviceEnrollmentConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeviceEnrollmentConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceEnrollmentConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
+        public DeviceEnrollmentConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
-        /// Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.
+        /// Deletes a deviceEnrollmentLimitConfiguration.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -248,16 +259,18 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Read properties and relationships of the deviceEnrollmentWindowsHelloForBusinessConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -265,17 +278,19 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Update the properties of a deviceEnrollmentWindowsHelloForBusinessConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DeviceEnrollmentConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}", PathParameters);
@@ -284,9 +299,10 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Read properties and relationships of the deviceEnrollmentWindowsHelloForBusinessConfiguration object.
         /// </summary>
-        public class DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters {
+        public class DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
     /// <summary>
     /// Provides operations to call the deviceConfigurationDeviceActivity method.
     /// </summary>
-    public class DeviceConfigurationDeviceActivityRequestBuilder : BaseCliRequestBuilder {
+    public class DeviceConfigurationDeviceActivityRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Metadata for the device configuration device activity report
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Metadata for the device configuration device activity report";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
@@ -54,25 +56,29 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
         /// Instantiates a new <see cref="DeviceConfigurationDeviceActivityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceConfigurationDeviceActivityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/deviceConfigurationDeviceActivity()", pathParameters) {
+        public DeviceConfigurationDeviceActivityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/deviceConfigurationDeviceActivity()", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeviceConfigurationDeviceActivityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceConfigurationDeviceActivityRequestBuilder(string rawUrl) : base("{+baseurl}/reports/deviceConfigurationDeviceActivity()", rawUrl) {
+        public DeviceConfigurationDeviceActivityRequestBuilder(string rawUrl) : base("{+baseurl}/reports/deviceConfigurationDeviceActivity()", rawUrl)
+        {
         }
         /// <summary>
         /// Metadata for the device configuration device activity report
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

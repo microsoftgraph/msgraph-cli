@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum BookingType {
+    public enum BookingType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "standard")]

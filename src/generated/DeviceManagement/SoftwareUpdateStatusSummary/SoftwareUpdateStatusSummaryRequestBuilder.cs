@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
     /// <summary>
     /// Provides operations to manage the softwareUpdateStatusSummary property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class SoftwareUpdateStatusSummaryRequestBuilder : BaseCliRequestBuilder {
+    public class SoftwareUpdateStatusSummaryRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Read properties and relationships of the softwareUpdateStatusSummary object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-softwareupdatestatussummary-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the softwareUpdateStatusSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-softwareupdatestatussummary-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -69,25 +71,29 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         /// Instantiates a new <see cref="SoftwareUpdateStatusSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SoftwareUpdateStatusSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/softwareUpdateStatusSummary{?%24expand,%24select}", pathParameters) {
+        public SoftwareUpdateStatusSummaryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/softwareUpdateStatusSummary{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SoftwareUpdateStatusSummaryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SoftwareUpdateStatusSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/softwareUpdateStatusSummary{?%24expand,%24select}", rawUrl) {
+        public SoftwareUpdateStatusSummaryRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/softwareUpdateStatusSummary{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read properties and relationships of the softwareUpdateStatusSummary object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -97,7 +103,8 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         /// <summary>
         /// Read properties and relationships of the softwareUpdateStatusSummary object.
         /// </summary>
-        public class SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters {
+        public class SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

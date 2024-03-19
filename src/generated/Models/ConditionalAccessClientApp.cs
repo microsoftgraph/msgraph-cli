@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ConditionalAccessClientApp {
+    public enum ConditionalAccessClientApp
+    {
         [EnumMember(Value = "all")]
         All,
         [EnumMember(Value = "browser")]

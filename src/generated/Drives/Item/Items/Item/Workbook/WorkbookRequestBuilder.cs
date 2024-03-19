@@ -30,12 +30,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
     /// <summary>
     /// Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class WorkbookRequestBuilder : BaseCliRequestBuilder {
+    public class WorkbookRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the application property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApplicationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApplicationNavCommand()
+        {
             var command = new Command("application");
             command.Description = "Provides operations to manage the application property of the microsoft.graph.workbook entity.";
             var builder = new ApplicationRequestBuilder(PathParameters);
@@ -58,8 +60,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to call the closeSession method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCloseSessionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCloseSessionNavCommand()
+        {
             var command = new Command("close-session");
             command.Description = "Provides operations to call the closeSession method.";
             var builder = new CloseSessionRequestBuilder(PathParameters);
@@ -74,8 +77,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the comments property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCommentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCommentsNavCommand()
+        {
             var command = new Command("comments");
             command.Description = "Provides operations to manage the comments property of the microsoft.graph.workbook entity.";
             var builder = new CommentsRequestBuilder(PathParameters);
@@ -100,8 +104,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to call the createSession method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateSessionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateSessionNavCommand()
+        {
             var command = new Command("create-session");
             command.Description = "Provides operations to call the createSession method.";
             var builder = new CreateSessionRequestBuilder(PathParameters);
@@ -116,8 +121,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Delete navigation property workbook for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property workbook for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -156,8 +162,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the functions property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFunctionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFunctionsNavCommand()
+        {
             var command = new Command("functions");
             command.Description = "Provides operations to manage the functions property of the microsoft.graph.workbook entity.";
             var builder = new FunctionsRequestBuilder(PathParameters);
@@ -545,8 +552,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet&apos;s contents. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet's contents. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -602,8 +610,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the names property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildNamesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildNamesNavCommand()
+        {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbook entity.";
             var builder = new NamesRequestBuilder(PathParameters);
@@ -630,8 +639,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOperationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOperationsNavCommand()
+        {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.workbook entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
@@ -656,8 +666,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Update the navigation property workbook in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property workbook in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -712,8 +723,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to call the refreshSession method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefreshSessionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefreshSessionNavCommand()
+        {
             var command = new Command("refresh-session");
             command.Description = "Provides operations to call the refreshSession method.";
             var builder = new RefreshSessionRequestBuilder(PathParameters);
@@ -728,8 +740,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to call the sessionInfoResource method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSessionInfoResourceWithKeyRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSessionInfoResourceWithKeyRbCommand()
+        {
             var command = new Command("session-info-resource-with-key");
             command.Description = "Provides operations to call the sessionInfoResource method.";
             var builder = new SessionInfoResourceWithKeyRequestBuilder(PathParameters);
@@ -744,8 +757,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to call the tableRowOperationResult method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTableRowOperationResultWithKeyRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTableRowOperationResultWithKeyRbCommand()
+        {
             var command = new Command("table-row-operation-result-with-key");
             command.Description = "Provides operations to call the tableRowOperationResult method.";
             var builder = new TableRowOperationResultWithKeyRequestBuilder(PathParameters);
@@ -760,8 +774,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the tables property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTablesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTablesNavCommand()
+        {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbook entity.";
             var builder = new TablesRequestBuilder(PathParameters);
@@ -788,8 +803,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWorksheetsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWorksheetsNavCommand()
+        {
             var command = new Command("worksheets");
             command.Description = "Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.";
             var builder = new WorksheetsRequestBuilder(PathParameters);
@@ -816,25 +832,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// Instantiates a new <see cref="WorkbookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", pathParameters) {
+        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WorkbookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkbookRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", rawUrl) {
+        public WorkbookRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property workbook for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -844,14 +864,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet&apos;s contents. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -861,15 +883,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// Update the navigation property workbook in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook", PathParameters);
@@ -880,7 +904,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <summary>
         /// For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet&apos;s contents. Nullable.
         /// </summary>
-        public class WorkbookRequestBuilderGetQueryParameters {
+        public class WorkbookRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -25,12 +25,14 @@ namespace ApiSdk.DirectoryNamespace {
     /// <summary>
     /// Provides operations to manage the directory singleton.
     /// </summary>
-    public class DirectoryRequestBuilder : BaseCliRequestBuilder {
+    public class DirectoryRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAdministrativeUnitsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAdministrativeUnitsNavCommand()
+        {
             var command = new Command("administrative-units");
             command.Description = "Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.";
             var builder = new AdministrativeUnitsRequestBuilder(PathParameters);
@@ -56,8 +58,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAttributeSetsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAttributeSetsNavCommand()
+        {
             var command = new Command("attribute-sets");
             command.Description = "Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.";
             var builder = new AttributeSetsRequestBuilder(PathParameters);
@@ -82,8 +85,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCustomSecurityAttributeDefinitionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCustomSecurityAttributeDefinitionsNavCommand()
+        {
             var command = new Command("custom-security-attribute-definitions");
             command.Description = "Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.";
             var builder = new CustomSecurityAttributeDefinitionsRequestBuilder(PathParameters);
@@ -108,8 +112,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeletedItemsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeletedItemsNavCommand()
+        {
             var command = new Command("deleted-items");
             command.Description = "Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.";
             var builder = new DeletedItemsRequestBuilder(PathParameters);
@@ -142,8 +147,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeviceLocalCredentialsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeviceLocalCredentialsNavCommand()
+        {
             var command = new Command("device-local-credentials");
             command.Description = "Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.";
             var builder = new DeviceLocalCredentialsRequestBuilder(PathParameters);
@@ -168,8 +174,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFederationConfigurationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFederationConfigurationsNavCommand()
+        {
             var command = new Command("federation-configurations");
             command.Description = "Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.";
             var builder = new FederationConfigurationsRequestBuilder(PathParameters);
@@ -195,8 +202,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Get directory
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get directory";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -240,8 +248,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildOnPremisesSynchronizationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildOnPremisesSynchronizationNavCommand()
+        {
             var command = new Command("on-premises-synchronization");
             command.Description = "Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.";
             var builder = new OnPremisesSynchronizationRequestBuilder(PathParameters);
@@ -266,8 +275,9 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Update directory
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update directory";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -311,25 +321,29 @@ namespace ApiSdk.DirectoryNamespace {
         /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory{?%24expand,%24select}", pathParameters) {
+        public DirectoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryRequestBuilder(string rawUrl) : base("{+baseurl}/directory{?%24expand,%24select}", rawUrl) {
+        public DirectoryRequestBuilder(string rawUrl) : base("{+baseurl}/directory{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get directory
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -339,15 +353,17 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Update directory
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(DirectoryObject1 body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/directory", PathParameters);
@@ -358,7 +374,8 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Get directory
         /// </summary>
-        public class DirectoryRequestBuilderGetQueryParameters {
+        public class DirectoryRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principa
     /// <summary>
     /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.
     /// </summary>
-    public class PrincipalRequestBuilder : BaseCliRequestBuilder {
+    public class PrincipalRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Referencing the assigned principal. Read-only. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Referencing the assigned principal. Read-only. Supports $expand.";
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
@@ -74,25 +76,29 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principa
         /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}/principal{?%24expand,%24select}", pathParameters) {
+        public PrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}/principal{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}/principal{?%24expand,%24select}", rawUrl) {
+        public PrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}/principal{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Referencing the assigned principal. Read-only. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principa
         /// <summary>
         /// Referencing the assigned principal. Read-only. Supports $expand.
         /// </summary>
-        public class PrincipalRequestBuilderGetQueryParameters {
+        public class PrincipalRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

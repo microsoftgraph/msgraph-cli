@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
     /// <summary>
     /// Provides operations to manage the deviceCategories property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceCategoryItemRequestBuilder : BaseCliRequestBuilder {
+    public class DeviceCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a deviceCategory.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a deviceCategory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-delete?view=graph-rest-1.0";
             var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
@@ -58,8 +60,9 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// Read properties and relationships of the deviceCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the deviceCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-get?view=graph-rest-1.0";
             var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
@@ -110,8 +113,9 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// Update the properties of a deviceCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a deviceCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-devicecategory-update?view=graph-rest-1.0";
             var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
@@ -161,25 +165,29 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// Instantiates a new <see cref="DeviceCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}{?%24expand,%24select}", pathParameters) {
+        public DeviceCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeviceCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}{?%24expand,%24select}", rawUrl) {
+        public DeviceCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a deviceCategory.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -189,14 +197,16 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// <summary>
         /// Read properties and relationships of the deviceCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,15 +216,17 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// <summary>
         /// Update the properties of a deviceCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.DeviceCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/deviceCategories/{deviceCategory%2Did}", PathParameters);
@@ -225,7 +237,8 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
         /// <summary>
         /// Read properties and relationships of the deviceCategory object.
         /// </summary>
-        public class DeviceCategoryItemRequestBuilderGetQueryParameters {
+        public class DeviceCategoryItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

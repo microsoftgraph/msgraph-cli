@@ -6,9 +6,10 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     /// <summary>
-    /// Entity representing a job to export a report
+    /// Entity representing a job to export a report.
     /// </summary>
-    public class DeviceManagementExportJob : Entity, IParsable {
+    public class DeviceManagementExportJob : Entity, IParsable 
+    {
         /// <summary>Time that the exported report expires</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>Filters applied on the report</summary>
@@ -19,9 +20,9 @@ namespace ApiSdk.Models {
 #else
         public string Filter { get; set; }
 #endif
-        /// <summary>Possible values for the file format of a report</summary>
+        /// <summary>Possible values for the file format of a report.</summary>
         public DeviceManagementReportFileFormat? Format { get; set; }
-        /// <summary>Configures how the requested export job is localized</summary>
+        /// <summary>Configures how the requested export job is localized.</summary>
         public DeviceManagementExportJobLocalizationType? LocalizationType { get; set; }
         /// <summary>Name of the report</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -49,7 +50,7 @@ namespace ApiSdk.Models {
 #else
         public string SnapshotId { get; set; }
 #endif
-        /// <summary>Possible statuses associated with a generated report</summary>
+        /// <summary>Possible statuses associated with a generated report.</summary>
         public DeviceManagementReportStatus? Status { get; set; }
         /// <summary>Temporary location of the exported report</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,18 +63,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="DeviceManagementExportJob"></returns>
+        /// <returns>A <see cref="DeviceManagementExportJob"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new DeviceManagementExportJob CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new DeviceManagementExportJob CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new DeviceManagementExportJob();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"filter", n => { Filter = n.GetStringValue(); } },
                 {"format", n => { Format = n.GetEnumValue<DeviceManagementReportFileFormat>(); } },
@@ -90,7 +94,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("expirationDateTime", ExpirationDateTime);

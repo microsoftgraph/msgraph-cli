@@ -23,12 +23,14 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
     /// <summary>
     /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class TargetedManagedAppConfigurationItemRequestBuilder : BaseCliRequestBuilder {
+    public class TargetedManagedAppConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppsNavCommand()
+        {
             var command = new Command("apps");
             command.Description = "Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.";
             var builder = new AppsRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -79,8 +82,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignNavCommand()
+        {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
@@ -96,8 +100,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// Deletes a targetedManagedAppConfiguration.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a targetedManagedAppConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-delete?view=graph-rest-1.0";
             var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
@@ -130,8 +135,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the deploymentSummary property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeploymentSummaryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeploymentSummaryNavCommand()
+        {
             var command = new Command("deployment-summary");
             command.Description = "Provides operations to manage the deploymentSummary property of the microsoft.graph.targetedManagedAppConfiguration entity.";
             var builder = new DeploymentSummaryRequestBuilder(PathParameters);
@@ -149,8 +155,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// Read properties and relationships of the targetedManagedAppConfiguration object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the targetedManagedAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-get?view=graph-rest-1.0";
             var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
@@ -201,8 +208,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// Update the properties of a targetedManagedAppConfiguration object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a targetedManagedAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-update?view=graph-rest-1.0";
             var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
@@ -251,8 +259,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to call the targetApps method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTargetAppsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTargetAppsNavCommand()
+        {
             var command = new Command("target-apps");
             command.Description = "Provides operations to call the targetApps method.";
             var builder = new TargetAppsRequestBuilder(PathParameters);
@@ -268,25 +277,29 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// Instantiates a new <see cref="TargetedManagedAppConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TargetedManagedAppConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}{?%24expand,%24select}", pathParameters) {
+        public TargetedManagedAppConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TargetedManagedAppConfigurationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TargetedManagedAppConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}{?%24expand,%24select}", rawUrl) {
+        public TargetedManagedAppConfigurationItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a targetedManagedAppConfiguration.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -296,14 +309,16 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Read properties and relationships of the targetedManagedAppConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -313,15 +328,17 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Update the properties of a targetedManagedAppConfiguration object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations/{targetedManagedAppConfiguration%2Did}", PathParameters);
@@ -332,7 +349,8 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Read properties and relationships of the targetedManagedAppConfiguration object.
         /// </summary>
-        public class TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters {
+        public class TargetedManagedAppConfigurationItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

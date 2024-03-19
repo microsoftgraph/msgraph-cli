@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum MessageActionFlag {
+    public enum MessageActionFlag
+    {
         [EnumMember(Value = "any")]
         Any,
         [EnumMember(Value = "call")]

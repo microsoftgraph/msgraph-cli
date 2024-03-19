@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TimeOffReasonIconType {
+    public enum TimeOffReasonIconType
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "car")]

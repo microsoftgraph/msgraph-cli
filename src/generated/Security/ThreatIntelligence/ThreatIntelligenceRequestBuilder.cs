@@ -35,12 +35,14 @@ namespace ApiSdk.Security.ThreatIntelligence {
     /// <summary>
     /// Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.
     /// </summary>
-    public class ThreatIntelligenceRequestBuilder : BaseCliRequestBuilder {
+    public class ThreatIntelligenceRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildArticleIndicatorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildArticleIndicatorsNavCommand()
+        {
             var command = new Command("article-indicators");
             command.Description = "Provides operations to manage the articleIndicators property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new ArticleIndicatorsRequestBuilder(PathParameters);
@@ -65,8 +67,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildArticlesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildArticlesNavCommand()
+        {
             var command = new Command("articles");
             command.Description = "Provides operations to manage the articles property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new ArticlesRequestBuilder(PathParameters);
@@ -91,8 +94,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Delete navigation property threatIntelligence for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property threatIntelligence for security";
             var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
@@ -119,8 +123,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Get threatIntelligence from security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get threatIntelligence from security";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -164,8 +169,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostComponentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostComponentsNavCommand()
+        {
             var command = new Command("host-components");
             command.Description = "Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostComponentsRequestBuilder(PathParameters);
@@ -190,8 +196,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostCookiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostCookiesNavCommand()
+        {
             var command = new Command("host-cookies");
             command.Description = "Provides operations to manage the hostCookies property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostCookiesRequestBuilder(PathParameters);
@@ -216,8 +223,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostPairsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostPairsNavCommand()
+        {
             var command = new Command("host-pairs");
             command.Description = "Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostPairsRequestBuilder(PathParameters);
@@ -242,8 +250,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostPortsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostPortsNavCommand()
+        {
             var command = new Command("host-ports");
             command.Description = "Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostPortsRequestBuilder(PathParameters);
@@ -268,8 +277,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostsNavCommand()
+        {
             var command = new Command("hosts");
             command.Description = "Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostsRequestBuilder(PathParameters);
@@ -294,8 +304,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostSslCertificates property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostSslCertificatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostSslCertificatesNavCommand()
+        {
             var command = new Command("host-ssl-certificates");
             command.Description = "Provides operations to manage the hostSslCertificates property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostSslCertificatesRequestBuilder(PathParameters);
@@ -320,8 +331,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostTrackersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostTrackersNavCommand()
+        {
             var command = new Command("host-trackers");
             command.Description = "Provides operations to manage the hostTrackers property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostTrackersRequestBuilder(PathParameters);
@@ -346,8 +358,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIntelligenceProfileIndicatorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIntelligenceProfileIndicatorsNavCommand()
+        {
             var command = new Command("intelligence-profile-indicators");
             command.Description = "Provides operations to manage the intelligenceProfileIndicators property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new IntelligenceProfileIndicatorsRequestBuilder(PathParameters);
@@ -372,8 +385,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIntelProfilesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIntelProfilesNavCommand()
+        {
             var command = new Command("intel-profiles");
             command.Description = "Provides operations to manage the intelProfiles property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new IntelProfilesRequestBuilder(PathParameters);
@@ -398,8 +412,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPassiveDnsRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPassiveDnsRecordsNavCommand()
+        {
             var command = new Command("passive-dns-records");
             command.Description = "Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new PassiveDnsRecordsRequestBuilder(PathParameters);
@@ -424,8 +439,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Update the navigation property threatIntelligence in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property threatIntelligence in security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -468,8 +484,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the sslCertificates property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSslCertificatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSslCertificatesNavCommand()
+        {
             var command = new Command("ssl-certificates");
             command.Description = "Provides operations to manage the sslCertificates property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new SslCertificatesRequestBuilder(PathParameters);
@@ -494,8 +511,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubdomainsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubdomainsNavCommand()
+        {
             var command = new Command("subdomains");
             command.Description = "Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new SubdomainsRequestBuilder(PathParameters);
@@ -520,8 +538,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildVulnerabilitiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildVulnerabilitiesNavCommand()
+        {
             var command = new Command("vulnerabilities");
             command.Description = "Provides operations to manage the vulnerabilities property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new VulnerabilitiesRequestBuilder(PathParameters);
@@ -546,8 +565,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the whoisHistoryRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWhoisHistoryRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWhoisHistoryRecordsNavCommand()
+        {
             var command = new Command("whois-history-records");
             command.Description = "Provides operations to manage the whoisHistoryRecords property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new WhoisHistoryRecordsRequestBuilder(PathParameters);
@@ -572,8 +592,9 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Provides operations to manage the whoisRecords property of the microsoft.graph.security.threatIntelligence entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWhoisRecordsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWhoisRecordsNavCommand()
+        {
             var command = new Command("whois-records");
             command.Description = "Provides operations to manage the whoisRecords property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new WhoisRecordsRequestBuilder(PathParameters);
@@ -599,25 +620,29 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// Instantiates a new <see cref="ThreatIntelligenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ThreatIntelligenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", pathParameters) {
+        public ThreatIntelligenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ThreatIntelligenceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ThreatIntelligenceRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", rawUrl) {
+        public ThreatIntelligenceRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property threatIntelligence for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/threatIntelligence", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -627,14 +652,16 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Get threatIntelligence from security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ThreatIntelligenceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ThreatIntelligenceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ThreatIntelligenceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ThreatIntelligenceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -644,15 +671,17 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Update the navigation property threatIntelligence in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.ThreatIntelligence body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.ThreatIntelligence body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.ThreatIntelligence body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.ThreatIntelligence body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/threatIntelligence", PathParameters);
@@ -663,7 +692,8 @@ namespace ApiSdk.Security.ThreatIntelligence {
         /// <summary>
         /// Get threatIntelligence from security
         /// </summary>
-        public class ThreatIntelligenceRequestBuilderGetQueryParameters {
+        public class ThreatIntelligenceRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

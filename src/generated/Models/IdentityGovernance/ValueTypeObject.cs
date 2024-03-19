@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public enum ValueTypeObject {
+    public enum ValueTypeObject
+    {
         [EnumMember(Value = "enum")]
         Enum,
         [EnumMember(Value = "string")]

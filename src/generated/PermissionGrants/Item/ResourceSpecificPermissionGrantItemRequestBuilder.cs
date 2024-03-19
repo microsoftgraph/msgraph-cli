@@ -23,12 +23,14 @@ namespace ApiSdk.PermissionGrants.Item {
     /// <summary>
     /// Provides operations to manage the collection of resourceSpecificPermissionGrant entities.
     /// </summary>
-    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder {
+    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCheckMemberGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCheckMemberGroupsNavCommand()
+        {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -43,8 +45,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCheckMemberObjectsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCheckMemberObjectsNavCommand()
+        {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -59,8 +62,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Delete entity from permissionGrants
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete entity from permissionGrants";
             var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
@@ -93,8 +97,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Get entity from permissionGrants by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get entity from permissionGrants by key";
             var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
@@ -144,8 +149,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetMemberGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetMemberGroupsNavCommand()
+        {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -160,8 +166,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetMemberObjectsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetMemberObjectsNavCommand()
+        {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -176,8 +183,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Update entity in permissionGrants
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update entity in permissionGrants";
             var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
@@ -226,8 +234,9 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRestoreNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRestoreNavCommand()
+        {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -243,25 +252,29 @@ namespace ApiSdk.PermissionGrants.Item {
         /// Instantiates a new <see cref="ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ResourceSpecificPermissionGrantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", pathParameters) {
+        public ResourceSpecificPermissionGrantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ResourceSpecificPermissionGrantItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ResourceSpecificPermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", rawUrl) {
+        public ResourceSpecificPermissionGrantItemRequestBuilder(string rawUrl) : base("{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete entity from permissionGrants
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -271,14 +284,16 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Get entity from permissionGrants by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -288,15 +303,17 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Update entity in permissionGrants
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ResourceSpecificPermissionGrant body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/permissionGrants/{resourceSpecificPermissionGrant%2Did}", PathParameters);
@@ -307,7 +324,8 @@ namespace ApiSdk.PermissionGrants.Item {
         /// <summary>
         /// Get entity from permissionGrants by key
         /// </summary>
-        public class ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters {
+        public class ResourceSpecificPermissionGrantItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

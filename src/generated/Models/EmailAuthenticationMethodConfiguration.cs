@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class EmailAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable {
+    public class EmailAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable 
+    {
         /// <summary>Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn&apos;t use public preview have email OTP enabled beginning in October 2021.</summary>
         public ExternalEmailOtpState? AllowExternalIdToUseEmailOtp { get; set; }
         /// <summary>A collection of groups that are enabled to use the authentication method.</summary>
@@ -19,24 +20,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="EmailAuthenticationMethodConfiguration"/> and sets the default values.
         /// </summary>
-        public EmailAuthenticationMethodConfiguration() : base() {
+        public EmailAuthenticationMethodConfiguration() : base()
+        {
             OdataType = "#microsoft.graph.emailAuthenticationMethodConfiguration";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EmailAuthenticationMethodConfiguration"></returns>
+        /// <returns>A <see cref="EmailAuthenticationMethodConfiguration"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EmailAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new EmailAuthenticationMethodConfiguration CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EmailAuthenticationMethodConfiguration();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"allowExternalIdToUseEmailOtp", n => { AllowExternalIdToUseEmailOtp = n.GetEnumValue<ExternalEmailOtpState>(); } },
                 {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<AuthenticationMethodTarget>(AuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
             };
@@ -45,7 +50,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<ExternalEmailOtpState>("allowExternalIdToUseEmailOtp", AllowExternalIdToUseEmailOtp);

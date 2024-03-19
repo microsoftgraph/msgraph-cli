@@ -17,12 +17,14 @@ namespace ApiSdk.Groups.Item.Photo.Value {
     /// <summary>
     /// Provides operations to manage the media for the group entity.
     /// </summary>
-    public class ContentRequestBuilder : BaseCliRequestBuilder {
+    public class ContentRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get media content for the navigation property photo from groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -60,8 +62,9 @@ namespace ApiSdk.Groups.Item.Photo.Value {
         /// <summary>
         /// Update media content for the navigation property photo in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPutCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPutCommand()
+        {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -110,25 +113,29 @@ namespace ApiSdk.Groups.Item.Photo.Value {
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photo/$value", pathParameters) {
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photo/$value", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photo/$value", rawUrl) {
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photo/$value", rawUrl)
+        {
         }
         /// <summary>
         /// Get media content for the navigation property photo from groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -138,15 +145,17 @@ namespace ApiSdk.Groups.Item.Photo.Value {
         /// <summary>
         /// Update media content for the navigation property photo in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);

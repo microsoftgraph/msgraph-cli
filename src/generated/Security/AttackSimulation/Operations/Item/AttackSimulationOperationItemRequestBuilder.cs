@@ -18,12 +18,14 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class AttackSimulationOperationItemRequestBuilder : BaseCliRequestBuilder {
+    public class AttackSimulationOperationItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property operations for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for security";
             var attackSimulationOperationIdOption = new Option<string>("--attack-simulation-operation-id", description: "The unique identifier of attackSimulationOperation") {
@@ -57,8 +59,9 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// Get an attack simulation operation to track a long-running operation request for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationoperation-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get an attack simulation operation to track a long-running operation request for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationoperation-get?view=graph-rest-1.0";
             var attackSimulationOperationIdOption = new Option<string>("--attack-simulation-operation-id", description: "The unique identifier of attackSimulationOperation") {
@@ -108,8 +111,9 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// <summary>
         /// Update the navigation property operations in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in security";
             var attackSimulationOperationIdOption = new Option<string>("--attack-simulation-operation-id", description: "The unique identifier of attackSimulationOperation") {
@@ -159,25 +163,29 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// Instantiates a new <see cref="AttackSimulationOperationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttackSimulationOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}{?%24expand,%24select}", pathParameters) {
+        public AttackSimulationOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AttackSimulationOperationItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttackSimulationOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}{?%24expand,%24select}", rawUrl) {
+        public AttackSimulationOperationItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property operations for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -187,14 +195,16 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// <summary>
         /// Get an attack simulation operation to track a long-running operation request for a tenant.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationOperationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationOperationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationOperationItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AttackSimulationOperationItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -204,15 +214,17 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// <summary>
         /// Update the navigation property operations in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AttackSimulationOperation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AttackSimulationOperation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AttackSimulationOperation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AttackSimulationOperation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/attackSimulation/operations/{attackSimulationOperation%2Did}", PathParameters);
@@ -223,7 +235,8 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
         /// <summary>
         /// Get an attack simulation operation to track a long-running operation request for a tenant.
         /// </summary>
-        public class AttackSimulationOperationItemRequestBuilderGetQueryParameters {
+        public class AttackSimulationOperationItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

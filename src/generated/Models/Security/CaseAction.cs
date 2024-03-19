@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum CaseAction {
+    public enum CaseAction
+    {
         [EnumMember(Value = "contentExport")]
         ContentExport,
         [EnumMember(Value = "applyTags")]

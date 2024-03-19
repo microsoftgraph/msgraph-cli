@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CallRecordingStatus {
+    public enum CallRecordingStatus
+    {
         [EnumMember(Value = "success")]
         Success,
         [EnumMember(Value = "failure")]

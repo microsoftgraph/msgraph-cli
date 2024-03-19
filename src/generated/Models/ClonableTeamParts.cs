@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum ClonableTeamParts {
+    public enum ClonableTeamParts
+    {
         [EnumMember(Value = "apps")]
         Apps = 1,
         [EnumMember(Value = "tabs")]

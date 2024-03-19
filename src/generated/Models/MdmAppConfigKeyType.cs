@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>App configuration key types.</summary>
-    public enum MdmAppConfigKeyType {
+    public enum MdmAppConfigKeyType
+    {
         [EnumMember(Value = "stringType")]
         StringType,
         [EnumMember(Value = "integerType")]

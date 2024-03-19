@@ -18,14 +18,17 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
     /// <summary>
     /// Provides operations to manage the resources property of the microsoft.graph.educationModule entity.
     /// </summary>
-    public class EducationModuleResourceItemRequestBuilder : BaseCliRequestBuilder {
+    public class EducationModuleResourceItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
-        /// Delete navigation property resources for education
+        /// Delete a specific educationModuleResource attached to a module. Only teachers in the class can remove a resource.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmoduleresource-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
-            command.Description = "Delete navigation property resources for education";
+            command.Description = "Delete a specific educationModuleResource attached to a module. Only teachers in the class can remove a resource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmoduleresource-delete?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -66,12 +69,14 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
             return command;
         }
         /// <summary>
-        /// Get resources from education
+        /// Get the properties of a resource associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmoduleresource-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "Get resources from education";
+            command.Description = "Get the properties of a resource associated with a module. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmoduleresource-get?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -129,12 +134,14 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property resources in education
+        /// Update a resource in a module. Only teachers can perform this operation. The only one property that can be updated is displayName, for all resource types.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmoduleresource-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
-            command.Description = "Update the navigation property resources in education";
+            command.Description = "Update a resource in a module. Only teachers can perform this operation. The only one property that can be updated is displayName, for all resource types.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmoduleresource-update?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -194,25 +201,29 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
         /// Instantiates a new <see cref="EducationModuleResourceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationModuleResourceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}{?%24expand,%24select}", pathParameters) {
+        public EducationModuleResourceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationModuleResourceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationModuleResourceItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}{?%24expand,%24select}", rawUrl) {
+        public EducationModuleResourceItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
-        /// Delete navigation property resources for education
+        /// Delete a specific educationModuleResource attached to a module. Only teachers in the class can remove a resource.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -220,16 +231,18 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get resources from education
+        /// Get the properties of a resource associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationModuleResourceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationModuleResourceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationModuleResourceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationModuleResourceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -237,17 +250,19 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property resources in education
+        /// Update a resource in a module. Only teachers can perform this operation. The only one property that can be updated is displayName, for all resource types.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationModuleResource body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationModuleResource body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationModuleResource body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationModuleResource body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/classes/{educationClass%2Did}/modules/{educationModule%2Did}/resources/{educationModuleResource%2Did}", PathParameters);
@@ -256,9 +271,10 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get resources from education
+        /// Get the properties of a resource associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
-        public class EducationModuleResourceItemRequestBuilderGetQueryParameters {
+        public class EducationModuleResourceItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

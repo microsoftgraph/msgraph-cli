@@ -18,13 +18,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
     /// <summary>
     /// Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
     /// </summary>
-    public class TeamRequestBuilder : BaseCliRequestBuilder {
+    public class TeamRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
+        /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
-        public Command BuildGetCommand() {
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Information about the Microsoft Teams team that was created for the request.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
@@ -75,26 +77,30 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", pathParameters) {
+        public TeamRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TeamRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", rawUrl) {
+        public TeamRequestBuilder(string rawUrl) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/team{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TeamRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -104,7 +110,8 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Team {
         /// <summary>
         /// Information about the Microsoft Teams team that was created for the request.
         /// </summary>
-        public class TeamRequestBuilderGetQueryParameters {
+        public class TeamRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

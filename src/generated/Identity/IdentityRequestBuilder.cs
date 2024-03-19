@@ -23,12 +23,14 @@ namespace ApiSdk.Identity {
     /// <summary>
     /// Provides operations to manage the identityContainer singleton.
     /// </summary>
-    public class IdentityRequestBuilder : BaseCliRequestBuilder {
+    public class IdentityRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildApiConnectorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildApiConnectorsNavCommand()
+        {
             var command = new Command("api-connectors");
             command.Description = "Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.";
             var builder = new ApiConnectorsRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildB2xUserFlowsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildB2xUserFlowsNavCommand()
+        {
             var command = new Command("b2x-user-flows");
             command.Description = "Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.";
             var builder = new B2xUserFlowsRequestBuilder(PathParameters);
@@ -77,27 +80,20 @@ namespace ApiSdk.Identity {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
+        /// The conditionalAccess property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildConditionalAccessNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildConditionalAccessNavCommand()
+        {
             var command = new Command("conditional-access");
-            command.Description = "Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.";
+            command.Description = "The conditionalAccess property";
             var builder = new ConditionalAccessRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAuthenticationContextClassReferencesNavCommand());
             nonExecCommands.Add(builder.BuildAuthenticationStrengthNavCommand());
-            execCommands.Add(builder.BuildDeleteCommand());
-            execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildNamedLocationsNavCommand());
-            execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildPoliciesNavCommand());
             nonExecCommands.Add(builder.BuildTemplatesNavCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
             foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
@@ -107,8 +103,9 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Get identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get identity";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -152,8 +149,9 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIdentityProvidersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIdentityProvidersNavCommand()
+        {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
@@ -179,8 +177,9 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Update identity
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update identity";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -223,8 +222,9 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserFlowAttributesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserFlowAttributesNavCommand()
+        {
             var command = new Command("user-flow-attributes");
             command.Description = "Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.";
             var builder = new UserFlowAttributesRequestBuilder(PathParameters);
@@ -250,25 +250,29 @@ namespace ApiSdk.Identity {
         /// Instantiates a new <see cref="IdentityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity{?%24expand,%24select}", pathParameters) {
+        public IdentityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="IdentityRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public IdentityRequestBuilder(string rawUrl) : base("{+baseurl}/identity{?%24expand,%24select}", rawUrl) {
+        public IdentityRequestBuilder(string rawUrl) : base("{+baseurl}/identity{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -278,15 +282,17 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Update identity
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(IdentityContainer body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity", PathParameters);
@@ -297,7 +303,8 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Get identity
         /// </summary>
-        public class IdentityRequestBuilderGetQueryParameters {
+        public class IdentityRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -19,12 +19,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
     /// <summary>
     /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
     /// </summary>
-    public class ItemActivityStatItemRequestBuilder : BaseCliRequestBuilder {
+    public class ItemActivityStatItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildActivitiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildActivitiesNavCommand()
+        {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.";
             var builder = new ActivitiesRequestBuilder(PathParameters);
@@ -49,8 +51,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Delete navigation property itemActivityStats for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property itemActivityStats for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -95,8 +98,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Get itemActivityStats from drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get itemActivityStats from drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -158,8 +162,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Update the navigation property itemActivityStats in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property itemActivityStats in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -221,25 +226,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// Instantiates a new <see cref="ItemActivityStatItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemActivityStatItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}{?%24expand,%24select}", pathParameters) {
+        public ItemActivityStatItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ItemActivityStatItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ItemActivityStatItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}{?%24expand,%24select}", rawUrl) {
+        public ItemActivityStatItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property itemActivityStats for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -249,14 +258,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Get itemActivityStats from drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemActivityStatItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemActivityStatItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemActivityStatItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ItemActivityStatItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -266,15 +277,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Update the navigation property itemActivityStats in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ItemActivityStat body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ItemActivityStat body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ItemActivityStat body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ItemActivityStat body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}", PathParameters);
@@ -285,7 +298,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Get itemActivityStats from drives
         /// </summary>
-        public class ItemActivityStatItemRequestBuilderGetQueryParameters {
+        public class ItemActivityStatItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

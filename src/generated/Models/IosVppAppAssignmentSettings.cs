@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Contains properties used to assign an iOS VPP mobile app to a group.
     /// </summary>
-    public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable {
+    public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable 
+    {
         /// <summary>Whether or not to use device licensing.</summary>
         public bool? UseDeviceLicensing { get; set; }
         /// <summary>The VPN Configuration Id to apply for this app.</summary>
@@ -22,24 +23,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="IosVppAppAssignmentSettings"/> and sets the default values.
         /// </summary>
-        public IosVppAppAssignmentSettings() : base() {
+        public IosVppAppAssignmentSettings() : base()
+        {
             OdataType = "#microsoft.graph.iosVppAppAssignmentSettings";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="IosVppAppAssignmentSettings"></returns>
+        /// <returns>A <see cref="IosVppAppAssignmentSettings"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new IosVppAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new IosVppAppAssignmentSettings CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosVppAppAssignmentSettings();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"useDeviceLicensing", n => { UseDeviceLicensing = n.GetBoolValue(); } },
                 {"vpnConfigurationId", n => { VpnConfigurationId = n.GetStringValue(); } },
             };
@@ -48,7 +53,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("useDeviceLicensing", UseDeviceLicensing);

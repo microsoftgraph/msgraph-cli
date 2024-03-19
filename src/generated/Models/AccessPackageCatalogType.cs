@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AccessPackageCatalogType {
+    public enum AccessPackageCatalogType
+    {
         [EnumMember(Value = "userManaged")]
         UserManaged,
         [EnumMember(Value = "serviceDefault")]

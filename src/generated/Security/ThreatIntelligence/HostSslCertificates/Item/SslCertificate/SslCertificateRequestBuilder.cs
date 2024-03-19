@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item.SslCertifi
     /// <summary>
     /// Provides operations to manage the sslCertificate property of the microsoft.graph.security.hostSslCertificate entity.
     /// </summary>
-    public class SslCertificateRequestBuilder : BaseCliRequestBuilder {
+    public class SslCertificateRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The sslCertificate for this hostSslCertificate.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The sslCertificate for this hostSslCertificate.";
             var hostSslCertificateIdOption = new Option<string>("--host-ssl-certificate-id", description: "The unique identifier of hostSslCertificate") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item.SslCertifi
         /// Instantiates a new <see cref="SslCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}/sslCertificate{?%24expand,%24select}", pathParameters) {
+        public SslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}/sslCertificate{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SslCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}/sslCertificate{?%24expand,%24select}", rawUrl) {
+        public SslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostSslCertificates/{hostSslCertificate%2Did}/sslCertificate{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The sslCertificate for this hostSslCertificate.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SslCertificateRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Security.ThreatIntelligence.HostSslCertificates.Item.SslCertifi
         /// <summary>
         /// The sslCertificate for this hostSslCertificate.
         /// </summary>
-        public class SslCertificateRequestBuilderGetQueryParameters {
+        public class SslCertificateRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

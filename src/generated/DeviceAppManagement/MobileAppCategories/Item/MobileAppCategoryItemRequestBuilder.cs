@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
     /// <summary>
     /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder {
+    public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a mobileAppCategory.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a mobileAppCategory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-delete?view=graph-rest-1.0";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
@@ -58,8 +60,9 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// Read properties and relationships of the mobileAppCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the mobileAppCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-get?view=graph-rest-1.0";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
@@ -110,8 +113,9 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// Update the properties of a mobileAppCategory object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a mobileAppCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-update?view=graph-rest-1.0";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
@@ -161,25 +165,29 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// Instantiates a new <see cref="MobileAppCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MobileAppCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}{?%24expand,%24select}", pathParameters) {
+        public MobileAppCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MobileAppCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MobileAppCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}{?%24expand,%24select}", rawUrl) {
+        public MobileAppCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a mobileAppCategory.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -189,14 +197,16 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// <summary>
         /// Read properties and relationships of the mobileAppCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,15 +216,17 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// <summary>
         /// Update the properties of a mobileAppCategory object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MobileAppCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MobileAppCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MobileAppCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MobileAppCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/mobileAppCategories/{mobileAppCategory%2Did}", PathParameters);
@@ -225,7 +237,8 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         /// <summary>
         /// Read properties and relationships of the mobileAppCategory object.
         /// </summary>
-        public class MobileAppCategoryItemRequestBuilderGetQueryParameters {
+        public class MobileAppCategoryItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

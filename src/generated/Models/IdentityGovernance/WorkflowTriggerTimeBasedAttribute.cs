@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public enum WorkflowTriggerTimeBasedAttribute {
+    public enum WorkflowTriggerTimeBasedAttribute
+    {
         [EnumMember(Value = "employeeHireDate")]
         EmployeeHireDate,
         [EnumMember(Value = "employeeLeaveDateTime")]

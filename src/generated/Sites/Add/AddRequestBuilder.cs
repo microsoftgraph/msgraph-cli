@@ -17,13 +17,15 @@ namespace ApiSdk.Sites.Add {
     /// <summary>
     /// Provides operations to call the add method.
     /// </summary>
-    public class AddRequestBuilder : BaseCliRequestBuilder {
+    public class AddRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Follow a user&apos;s site or multiple sites.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-follow?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Follow a user's site or multiple sites.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-follow?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -78,26 +80,30 @@ namespace ApiSdk.Sites.Add {
         /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/add", pathParameters) {
+        public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/add", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AddRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AddRequestBuilder(string rawUrl) : base("{+baseurl}/sites/add", rawUrl) {
+        public AddRequestBuilder(string rawUrl) : base("{+baseurl}/sites/add", rawUrl)
+        {
         }
         /// <summary>
         /// Follow a user&apos;s site or multiple sites.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

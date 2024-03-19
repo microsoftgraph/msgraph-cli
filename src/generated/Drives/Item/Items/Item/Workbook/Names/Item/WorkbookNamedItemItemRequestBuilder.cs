@@ -20,12 +20,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
     /// <summary>
     /// Provides operations to manage the names property of the microsoft.graph.workbook entity.
     /// </summary>
-    public class WorkbookNamedItemItemRequestBuilder : BaseCliRequestBuilder {
+    public class WorkbookNamedItemItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property names for drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property names for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -71,8 +73,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// Retrieve the properties and relationships of nameditem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -135,8 +138,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// Update the properties of nameditem object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -197,8 +201,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRangeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRangeNavCommand()
+        {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
             var builder = new RangeRequestBuilder(PathParameters);
@@ -213,8 +218,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWorksheetNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWorksheetNavCommand()
+        {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.";
             var builder = new WorksheetRequestBuilder(PathParameters);
@@ -230,25 +236,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// Instantiates a new <see cref="WorkbookNamedItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkbookNamedItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}{?%24expand,%24select}", pathParameters) {
+        public WorkbookNamedItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WorkbookNamedItemItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkbookNamedItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}{?%24expand,%24select}", rawUrl) {
+        public WorkbookNamedItemItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property names for drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -258,14 +268,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Retrieve the properties and relationships of nameditem object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookNamedItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookNamedItemItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookNamedItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookNamedItemItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -275,15 +287,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Update the properties of nameditem object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(WorkbookNamedItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WorkbookNamedItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(WorkbookNamedItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(WorkbookNamedItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names/{workbookNamedItem%2Did}", PathParameters);
@@ -294,7 +308,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Retrieve the properties and relationships of nameditem object.
         /// </summary>
-        public class WorkbookNamedItemItemRequestBuilderGetQueryParameters {
+        public class WorkbookNamedItemItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

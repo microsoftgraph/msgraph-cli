@@ -21,12 +21,14 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
     /// <summary>
     /// Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
     /// </summary>
-    public class ServiceAnnouncementRequestBuilder : BaseCliRequestBuilder {
+    public class ServiceAnnouncementRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property serviceAnnouncement for admin";
             var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
@@ -53,8 +55,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// A container for service communications resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "A container for service communications resources. Read-only.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -98,8 +101,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHealthOverviewsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHealthOverviewsNavCommand()
+        {
             var command = new Command("health-overviews");
             command.Description = "Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new HealthOverviewsRequestBuilder(PathParameters);
@@ -124,8 +128,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildIssuesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildIssuesNavCommand()
+        {
             var command = new Command("issues");
             command.Description = "Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new IssuesRequestBuilder(PathParameters);
@@ -150,8 +155,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMessagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMessagesNavCommand()
+        {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
@@ -182,8 +188,9 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Update the navigation property serviceAnnouncement in admin
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property serviceAnnouncement in admin";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -227,25 +234,29 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// Instantiates a new <see cref="ServiceAnnouncementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServiceAnnouncementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", pathParameters) {
+        public ServiceAnnouncementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ServiceAnnouncementRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ServiceAnnouncementRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", rawUrl) {
+        public ServiceAnnouncementRequestBuilder(string rawUrl) : base("{+baseurl}/admin/serviceAnnouncement{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property serviceAnnouncement for admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/admin/serviceAnnouncement", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -255,14 +266,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// A container for service communications resources. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServiceAnnouncementRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -272,15 +285,17 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Update the navigation property serviceAnnouncement in admin
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ServiceAnnouncement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ServiceAnnouncement body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ServiceAnnouncement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.ServiceAnnouncement body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/admin/serviceAnnouncement", PathParameters);
@@ -291,7 +306,8 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// A container for service communications resources. Read-only.
         /// </summary>
-        public class ServiceAnnouncementRequestBuilderGetQueryParameters {
+        public class ServiceAnnouncementRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

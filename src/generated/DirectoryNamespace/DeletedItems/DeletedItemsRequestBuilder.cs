@@ -29,17 +29,20 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
     /// <summary>
     /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
     /// </summary>
-    public class DeletedItemsRequestBuilder : BaseCliRequestBuilder {
+    public class DeletedItemsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildCheckMemberGroupsNavCommand());
             commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());
@@ -55,8 +58,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -71,8 +75,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetAvailableExtensionPropertiesNavCommand()
+        {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -87,8 +92,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByIdsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByIdsNavCommand()
+        {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -103,8 +109,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to administrativeUnit.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphAdministrativeUnitNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphAdministrativeUnitNavCommand()
+        {
             var command = new Command("graph-administrative-unit");
             command.Description = "Casts the previous resource to administrativeUnit.";
             var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
@@ -125,8 +132,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphApplicationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphApplicationNavCommand()
+        {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
@@ -147,8 +155,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphDeviceNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphDeviceNavCommand()
+        {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
@@ -169,8 +178,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphGroupNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphGroupNavCommand()
+        {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
@@ -191,8 +201,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphServicePrincipalNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphServicePrincipalNavCommand()
+        {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
@@ -213,8 +224,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphUserNavCommand()
+        {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
@@ -235,8 +247,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -328,8 +341,9 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildValidatePropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildValidatePropertiesNavCommand()
+        {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
@@ -345,25 +359,29 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// Instantiates a new <see cref="DeletedItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeletedItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public DeletedItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeletedItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeletedItemsRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public DeletedItemsRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deletedItems{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeletedItemsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -373,7 +391,8 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
-        public class DeletedItemsRequestBuilderGetQueryParameters {
+        public class DeletedItemsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

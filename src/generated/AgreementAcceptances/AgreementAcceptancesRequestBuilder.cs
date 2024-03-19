@@ -19,12 +19,14 @@ namespace ApiSdk.AgreementAcceptances {
     /// <summary>
     /// Provides operations to manage the collection of agreementAcceptance entities.
     /// </summary>
-    public class AgreementAcceptancesRequestBuilder : BaseCliRequestBuilder {
+    public class AgreementAcceptancesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of agreementAcceptance entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var builder = new AgreementAcceptanceItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
@@ -35,8 +37,9 @@ namespace ApiSdk.AgreementAcceptances {
         /// <summary>
         /// Add new entity to agreementAcceptances
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Add new entity to agreementAcceptances";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -79,8 +82,9 @@ namespace ApiSdk.AgreementAcceptances {
         /// <summary>
         /// Get entities from agreementAcceptances
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get entities from agreementAcceptances";
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
@@ -135,25 +139,29 @@ namespace ApiSdk.AgreementAcceptances {
         /// Instantiates a new <see cref="AgreementAcceptancesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AgreementAcceptancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreementAcceptances{?%24search,%24select}", pathParameters) {
+        public AgreementAcceptancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreementAcceptances{?%24search,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AgreementAcceptancesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AgreementAcceptancesRequestBuilder(string rawUrl) : base("{+baseurl}/agreementAcceptances{?%24search,%24select}", rawUrl) {
+        public AgreementAcceptancesRequestBuilder(string rawUrl) : base("{+baseurl}/agreementAcceptances{?%24search,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get entities from agreementAcceptances
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementAcceptancesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementAcceptancesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementAcceptancesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AgreementAcceptancesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -163,15 +171,17 @@ namespace ApiSdk.AgreementAcceptances {
         /// <summary>
         /// Add new entity to agreementAcceptances
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AgreementAcceptance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AgreementAcceptance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AgreementAcceptance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AgreementAcceptance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/agreementAcceptances", PathParameters);
@@ -182,7 +192,8 @@ namespace ApiSdk.AgreementAcceptances {
         /// <summary>
         /// Get entities from agreementAcceptances
         /// </summary>
-        public class AgreementAcceptancesRequestBuilderGetQueryParameters {
+        public class AgreementAcceptancesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Search items by search phrases</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

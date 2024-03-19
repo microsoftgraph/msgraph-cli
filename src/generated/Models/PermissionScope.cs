@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class PermissionScope : IAdditionalDataHolder, IParsable {
+    public class PermissionScope : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>A description of the delegated permissions, intended to be read by an administrator granting the permission on behalf of all users. This text appears in tenant-wide admin consent experiences.</summary>
@@ -79,24 +80,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="PermissionScope"/> and sets the default values.
         /// </summary>
-        public PermissionScope() {
+        public PermissionScope()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="PermissionScope"></returns>
+        /// <returns>A <see cref="PermissionScope"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static PermissionScope CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static PermissionScope CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new PermissionScope();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"adminConsentDescription", n => { AdminConsentDescription = n.GetStringValue(); } },
                 {"adminConsentDisplayName", n => { AdminConsentDisplayName = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetGuidValue(); } },
@@ -113,7 +118,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("adminConsentDescription", AdminConsentDescription);
             writer.WriteStringValue("adminConsentDisplayName", AdminConsentDisplayName);

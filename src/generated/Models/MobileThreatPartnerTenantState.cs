@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Partner state of this tenant.</summary>
-    public enum MobileThreatPartnerTenantState {
+    public enum MobileThreatPartnerTenantState
+    {
         /// <summary>Partner is unavailable.</summary>
         [EnumMember(Value = "unavailable")]
         Unavailable,
@@ -16,5 +17,8 @@ namespace ApiSdk.Models {
         /// <summary>Partner is unresponsive.</summary>
         [EnumMember(Value = "unresponsive")]
         Unresponsive,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        [EnumMember(Value = "unknownFutureValue")]
+        UnknownFutureValue,
     }
 }

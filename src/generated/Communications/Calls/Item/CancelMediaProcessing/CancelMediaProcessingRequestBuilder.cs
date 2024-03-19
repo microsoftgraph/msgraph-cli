@@ -18,13 +18,15 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
     /// <summary>
     /// Provides operations to call the cancelMediaProcessing method.
     /// </summary>
-    public class CancelMediaProcessingRequestBuilder : BaseCliRequestBuilder {
+    public class CancelMediaProcessingRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-cancelmediaprocessing?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
@@ -74,26 +76,30 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         /// Instantiates a new <see cref="CancelMediaProcessingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CancelMediaProcessingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/cancelMediaProcessing", pathParameters) {
+        public CancelMediaProcessingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/cancelMediaProcessing", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CancelMediaProcessingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CancelMediaProcessingRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/cancelMediaProcessing", rawUrl) {
+        public CancelMediaProcessingRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/cancelMediaProcessing", rawUrl)
+        {
         }
         /// <summary>
         /// Cancels processing for any in-progress media operations. Media operations refer to the IVR operations playPrompt and recordResponse, which are by default queued to process in order. The cancelMediaProcessing method cancels any operation that is in-process as well as operations that are queued. For example, this method can be used to clean up the IVR operation queue for a new media operation. However, it will not cancel a subscribeToTone operation because it operates independent of any operation queue.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(CancelMediaProcessingPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

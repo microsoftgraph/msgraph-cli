@@ -22,12 +22,14 @@ namespace ApiSdk.Users.Item.Outlook {
     /// <summary>
     /// Provides operations to manage the outlook property of the microsoft.graph.user entity.
     /// </summary>
-    public class OutlookRequestBuilder : BaseCliRequestBuilder {
+    public class OutlookRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get outlook from users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get outlook from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -70,8 +72,9 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMasterCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMasterCategoriesNavCommand()
+        {
             var command = new Command("master-categories");
             command.Description = "Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.";
             var builder = new MasterCategoriesRequestBuilder(PathParameters);
@@ -96,8 +99,9 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedLanguages method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSupportedLanguagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSupportedLanguagesNavCommand()
+        {
             var command = new Command("supported-languages");
             command.Description = "Provides operations to call the supportedLanguages method.";
             var builder = new SupportedLanguagesRequestBuilder(PathParameters);
@@ -112,8 +116,9 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSupportedTimeZonesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSupportedTimeZonesNavCommand()
+        {
             var command = new Command("supported-time-zones");
             command.Description = "Provides operations to call the supportedTimeZones method.";
             var builder = new SupportedTimeZonesRequestBuilder(PathParameters);
@@ -128,8 +133,9 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSupportedTimeZonesWithTimeZoneStandardRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSupportedTimeZonesWithTimeZoneStandardRbCommand()
+        {
             var command = new Command("supported-time-zones-with-time-zone-standard");
             command.Description = "Provides operations to call the supportedTimeZones method.";
             var builder = new SupportedTimeZonesWithTimeZoneStandardRequestBuilder(PathParameters);
@@ -145,25 +151,29 @@ namespace ApiSdk.Users.Item.Outlook {
         /// Instantiates a new <see cref="OutlookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OutlookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook{?%24select}", pathParameters) {
+        public OutlookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook{?%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="OutlookRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public OutlookRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook{?%24select}", rawUrl) {
+        public OutlookRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook{?%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get outlook from users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OutlookRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OutlookRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OutlookRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OutlookRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -173,7 +183,8 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Get outlook from users
         /// </summary>
-        public class OutlookRequestBuilderGetQueryParameters {
+        public class OutlookRequestBuilderGetQueryParameters 
+        {
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
     /// <summary>
     /// Provides operations to call the getTeamsDeviceUsageUserCounts method.
     /// </summary>
-    public class GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder {
+    public class GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getTeamsDeviceUsageUserCounts
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getTeamsDeviceUsageUserCounts";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod {
         /// Instantiates a new <see cref="GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsDeviceUsageUserCounts(period='{period}')", pathParameters) {
+        public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsDeviceUsageUserCounts(period='{period}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getTeamsDeviceUsageUserCounts(period='{period}')", rawUrl) {
+        public GetTeamsDeviceUsageUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getTeamsDeviceUsageUserCounts(period='{period}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getTeamsDeviceUsageUserCounts
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

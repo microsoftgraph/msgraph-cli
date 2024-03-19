@@ -17,12 +17,14 @@ namespace ApiSdk.Sites.Item.ContentTypes.GetCompatibleHubContentTypes {
     /// <summary>
     /// Provides operations to call the getCompatibleHubContentTypes method.
     /// </summary>
-    public class GetCompatibleHubContentTypesRequestBuilder : BaseCliRequestBuilder {
+    public class GetCompatibleHubContentTypesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getCompatibleHubContentTypes
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getCompatibleHubContentTypes";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -121,25 +123,29 @@ namespace ApiSdk.Sites.Item.ContentTypes.GetCompatibleHubContentTypes {
         /// Instantiates a new <see cref="GetCompatibleHubContentTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetCompatibleHubContentTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/getCompatibleHubContentTypes(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetCompatibleHubContentTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/getCompatibleHubContentTypes(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetCompatibleHubContentTypesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetCompatibleHubContentTypesRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/contentTypes/getCompatibleHubContentTypes(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetCompatibleHubContentTypesRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/contentTypes/getCompatibleHubContentTypes(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getCompatibleHubContentTypes
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetCompatibleHubContentTypesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetCompatibleHubContentTypesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetCompatibleHubContentTypesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetCompatibleHubContentTypesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -149,7 +155,8 @@ namespace ApiSdk.Sites.Item.ContentTypes.GetCompatibleHubContentTypes {
         /// <summary>
         /// Invoke function getCompatibleHubContentTypes
         /// </summary>
-        public class GetCompatibleHubContentTypesRequestBuilderGetQueryParameters {
+        public class GetCompatibleHubContentTypesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

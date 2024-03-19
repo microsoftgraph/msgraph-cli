@@ -17,13 +17,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.RemoteLock {
     /// <summary>
     /// Provides operations to call the remoteLock method.
     /// </summary>
-    public class RemoteLockRequestBuilder : BaseCliRequestBuilder {
+    public class RemoteLockRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Remote lock
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddevice-remotelock?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Remote lock\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddevice-remotelock?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -56,25 +58,29 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.RemoteLock {
         /// Instantiates a new <see cref="RemoteLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RemoteLockRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/remoteLock", pathParameters) {
+        public RemoteLockRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/remoteLock", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RemoteLockRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RemoteLockRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/remoteLock", rawUrl) {
+        public RemoteLockRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/remoteLock", rawUrl)
+        {
         }
         /// <summary>
         /// Remote lock
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

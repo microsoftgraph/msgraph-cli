@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
     /// <summary>
     /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
     /// </summary>
-    public class GetAttackSimulationSimulationUserCoverageRequestBuilder : BaseCliRequestBuilder {
+    public class GetAttackSimulationSimulationUserCoverageRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getAttackSimulationSimulationUserCoverage
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getAttackSimulationSimulationUserCoverage";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -94,25 +96,29 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
         /// Instantiates a new <see cref="GetAttackSimulationSimulationUserCoverageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAttackSimulationSimulationUserCoverageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public GetAttackSimulationSimulationUserCoverageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetAttackSimulationSimulationUserCoverageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAttackSimulationSimulationUserCoverageRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public GetAttackSimulationSimulationUserCoverageRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationSimulationUserCoverage(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getAttackSimulationSimulationUserCoverage
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -122,7 +128,8 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage {
         /// <summary>
         /// Invoke function getAttackSimulationSimulationUserCoverage
         /// </summary>
-        public class GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters {
+        public class GetAttackSimulationSimulationUserCoverageRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

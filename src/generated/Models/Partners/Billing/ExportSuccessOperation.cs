@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.Partners.Billing {
-    public class ExportSuccessOperation : Operation, IParsable {
+    public class ExportSuccessOperation : Operation, IParsable 
+    {
         /// <summary>The resourceLocation property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -17,18 +18,21 @@ namespace ApiSdk.Models.Partners.Billing {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="ExportSuccessOperation"></returns>
+        /// <returns>A <see cref="ExportSuccessOperation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new ExportSuccessOperation CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new ExportSuccessOperation CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ExportSuccessOperation();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"resourceLocation", n => { ResourceLocation = n.GetObjectValue<Manifest>(Manifest.CreateFromDiscriminatorValue); } },
             };
         }
@@ -36,7 +40,8 @@ namespace ApiSdk.Models.Partners.Billing {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<Manifest>("resourceLocation", ResourceLocation);

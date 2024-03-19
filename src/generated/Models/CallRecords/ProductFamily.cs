@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.CallRecords {
-    public enum ProductFamily {
+    public enum ProductFamily
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "teams")]

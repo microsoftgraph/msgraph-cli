@@ -18,12 +18,14 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item.Message {
     /// <summary>
     /// Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.
     /// </summary>
-    public class MessageRequestBuilder : BaseCliRequestBuilder {
+    public class MessageRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Represents details about the chat message that is pinned.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Represents details about the chat message that is pinned.";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item.Message {
         /// Instantiates a new <see cref="MessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MessageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", pathParameters) {
+        public MessageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MessageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MessageRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", rawUrl) {
+        public MessageRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}/message{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Represents details about the chat message that is pinned.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessageRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessageRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessageRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MessageRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Chats.Item.PinnedMessages.Item.Message {
         /// <summary>
         /// Represents details about the chat message that is pinned.
         /// </summary>
-        public class MessageRequestBuilderGetQueryParameters {
+        public class MessageRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

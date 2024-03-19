@@ -18,13 +18,15 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
     /// <summary>
     /// Provides operations to call the reprocessLicenseAssignment method.
     /// </summary>
-    public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder {
+    public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ReprocessLicenseAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", pathParameters) {
+        public ReprocessLicenseAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ReprocessLicenseAssignmentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ReprocessLicenseAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", rawUrl) {
+        public ReprocessLicenseAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", rawUrl)
+        {
         }
         /// <summary>
         /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

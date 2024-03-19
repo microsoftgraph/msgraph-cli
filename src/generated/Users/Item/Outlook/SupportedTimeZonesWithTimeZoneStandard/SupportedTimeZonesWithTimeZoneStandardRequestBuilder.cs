@@ -17,12 +17,14 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
     /// <summary>
     /// Provides operations to call the supportedTimeZones method.
     /// </summary>
-    public class SupportedTimeZonesWithTimeZoneStandardRequestBuilder : BaseCliRequestBuilder {
+    public class SupportedTimeZonesWithTimeZoneStandardRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function supportedTimeZones
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function supportedTimeZones";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -106,25 +108,29 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// Instantiates a new <see cref="SupportedTimeZonesWithTimeZoneStandardRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SupportedTimeZonesWithTimeZoneStandardRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public SupportedTimeZonesWithTimeZoneStandardRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/supportedTimeZones(TimeZoneStandard='{TimeZoneStandard}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function supportedTimeZones
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -134,7 +140,8 @@ namespace ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard {
         /// <summary>
         /// Invoke function supportedTimeZones
         /// </summary>
-        public class SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters {
+        public class SupportedTimeZonesWithTimeZoneStandardRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

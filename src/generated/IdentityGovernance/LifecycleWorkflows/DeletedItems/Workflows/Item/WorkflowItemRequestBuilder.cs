@@ -29,12 +29,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
     /// <summary>
     /// Provides operations to manage the workflows property of the microsoft.graph.deletedItemContainer entity.
     /// </summary>
-    public class WorkflowItemRequestBuilder : BaseCliRequestBuilder {
+    public class WorkflowItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreatedByNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreatedByNavCommand()
+        {
             var command = new Command("created-by");
             command.Description = "Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new CreatedByRequestBuilder(PathParameters);
@@ -57,8 +59,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// Delete a workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
@@ -91,8 +94,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExecutionScopeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExecutionScopeNavCommand()
+        {
             var command = new Command("execution-scope");
             command.Description = "Provides operations to manage the executionScope property of the microsoft.graph.identityGovernance.workflow entity.";
             var builder = new ExecutionScopeRequestBuilder(PathParameters);
@@ -117,8 +121,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// Retrieve a deleted workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve a deleted workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
@@ -168,8 +173,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLastModifiedByNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLastModifiedByNavCommand()
+        {
             var command = new Command("last-modified-by");
             command.Description = "Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new LastModifiedByRequestBuilder(PathParameters);
@@ -191,8 +197,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to call the activate method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMicrosoftGraphIdentityGovernanceActivateNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMicrosoftGraphIdentityGovernanceActivateNavCommand()
+        {
             var command = new Command("microsoft-graph-identity-governance-activate");
             command.Description = "Provides operations to call the activate method.";
             var builder = new MicrosoftGraphIdentityGovernanceActivateRequestBuilder(PathParameters);
@@ -207,8 +214,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to call the createNewVersion method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMicrosoftGraphIdentityGovernanceCreateNewVersionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMicrosoftGraphIdentityGovernanceCreateNewVersionNavCommand()
+        {
             var command = new Command("microsoft-graph-identity-governance-create-new-version");
             command.Description = "Provides operations to call the createNewVersion method.";
             var builder = new MicrosoftGraphIdentityGovernanceCreateNewVersionRequestBuilder(PathParameters);
@@ -223,8 +231,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMicrosoftGraphIdentityGovernanceRestoreNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMicrosoftGraphIdentityGovernanceRestoreNavCommand()
+        {
             var command = new Command("microsoft-graph-identity-governance-restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new MicrosoftGraphIdentityGovernanceRestoreRequestBuilder(PathParameters);
@@ -239,8 +248,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRunsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRunsNavCommand()
+        {
             var command = new Command("runs");
             command.Description = "Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.";
             var builder = new RunsRequestBuilder(PathParameters);
@@ -265,8 +275,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTaskReportsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTaskReportsNavCommand()
+        {
             var command = new Command("task-reports");
             command.Description = "Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.";
             var builder = new TaskReportsRequestBuilder(PathParameters);
@@ -291,8 +302,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTasksNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTasksNavCommand()
+        {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new TasksRequestBuilder(PathParameters);
@@ -317,8 +329,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUserProcessingResultsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUserProcessingResultsNavCommand()
+        {
             var command = new Command("user-processing-results");
             command.Description = "Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.";
             var builder = new UserProcessingResultsRequestBuilder(PathParameters);
@@ -343,8 +356,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildVersionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildVersionsNavCommand()
+        {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.";
             var builder = new VersionsRequestBuilder(PathParameters);
@@ -369,25 +383,29 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// Instantiates a new <see cref="WorkflowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkflowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}{?%24expand,%24select}", pathParameters) {
+        public WorkflowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WorkflowItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkflowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}{?%24expand,%24select}", rawUrl) {
+        public WorkflowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a workflow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -397,14 +415,16 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Retrieve a deleted workflow object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -414,7 +434,8 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         /// <summary>
         /// Retrieve a deleted workflow object.
         /// </summary>
-        public class WorkflowItemRequestBuilderGetQueryParameters {
+        public class WorkflowItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

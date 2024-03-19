@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public enum WorkflowExecutionType {
+    public enum WorkflowExecutionType
+    {
         [EnumMember(Value = "scheduled")]
         Scheduled,
         [EnumMember(Value = "onDemand")]

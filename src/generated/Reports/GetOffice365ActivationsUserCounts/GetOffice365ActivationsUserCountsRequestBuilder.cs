@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserCounts {
     /// <summary>
     /// Provides operations to call the getOffice365ActivationsUserCounts method.
     /// </summary>
-    public class GetOffice365ActivationsUserCountsRequestBuilder : BaseCliRequestBuilder {
+    public class GetOffice365ActivationsUserCountsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getOffice365ActivationsUserCounts
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ActivationsUserCounts";
             var outputFileOption = new Option<FileInfo>("--output-file");
@@ -55,25 +57,29 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserCounts {
         /// Instantiates a new <see cref="GetOffice365ActivationsUserCountsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetOffice365ActivationsUserCountsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationsUserCounts()", pathParameters) {
+        public GetOffice365ActivationsUserCountsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationsUserCounts()", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetOffice365ActivationsUserCountsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetOffice365ActivationsUserCountsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActivationsUserCounts()", rawUrl) {
+        public GetOffice365ActivationsUserCountsRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getOffice365ActivationsUserCounts()", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getOffice365ActivationsUserCounts
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

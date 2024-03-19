@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum OnlineMeetingVideoDisabledReason {
+    public enum OnlineMeetingVideoDisabledReason
+    {
         [EnumMember(Value = "watermarkProtection")]
         WatermarkProtection = 1,
         [EnumMember(Value = "unknownFutureValue")]

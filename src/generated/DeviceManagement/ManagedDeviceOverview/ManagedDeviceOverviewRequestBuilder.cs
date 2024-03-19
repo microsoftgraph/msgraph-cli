@@ -18,13 +18,15 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
     /// <summary>
     /// Provides operations to manage the managedDeviceOverview property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ManagedDeviceOverviewRequestBuilder : BaseCliRequestBuilder {
+    public class ManagedDeviceOverviewRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Read properties and relationships of the managedDeviceOverview object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the managedDeviceOverview object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -69,25 +71,29 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
         /// Instantiates a new <see cref="ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", pathParameters) {
+        public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ManagedDeviceOverviewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ManagedDeviceOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", rawUrl) {
+        public ManagedDeviceOverviewRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read properties and relationships of the managedDeviceOverview object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedDeviceOverviewRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -97,7 +103,8 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
         /// <summary>
         /// Read properties and relationships of the managedDeviceOverview object.
         /// </summary>
-        public class ManagedDeviceOverviewRequestBuilderGetQueryParameters {
+        public class ManagedDeviceOverviewRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

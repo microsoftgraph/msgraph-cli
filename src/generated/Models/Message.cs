@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class Message : OutlookItem, IParsable {
+    public class Message : OutlookItem, IParsable 
+    {
         /// <summary>The fileAttachment and itemAttachment attachments for the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -88,11 +89,11 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the message has attachments. This property doesn&apos;t include inline attachments, so if a message contains only inline attachments, this property is false. To verify the existence of inline attachments, parse the body property to look for a src attribute, such as &lt;IMG src=&apos;cid:image001.jpg@01D26CD8.6C05F070&apos;&gt;.</summary>
         public bool? HasAttachments { get; set; }
-        /// <summary>The importance property</summary>
+        /// <summary>The importance of the message. The possible values are: low, normal, and high.</summary>
         public ApiSdk.Models.Importance? Importance { get; set; }
-        /// <summary>The inferenceClassification property</summary>
+        /// <summary>The classification of the message for the user, based on inferred relevance or importance, or on an explicit override. The possible values are: focused or other.</summary>
         public InferenceClassificationType? InferenceClassification { get; set; }
-        /// <summary>The internetMessageHeaders property</summary>
+        /// <summary>A collection of message headers defined by RFC5322. The set includes message headers indicating the network path taken by a message from the sender to the recipient. It can also contain custom message headers that hold app data for the message.  Returned only on applying a $select query option. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<InternetMessageHeader>? InternetMessageHeaders { get; set; }
@@ -100,7 +101,7 @@ namespace ApiSdk.Models {
 #else
         public List<InternetMessageHeader> InternetMessageHeaders { get; set; }
 #endif
-        /// <summary>The internetMessageId property</summary>
+        /// <summary>The message ID in the format specified by RFC2822.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InternetMessageId { get; set; }
@@ -108,13 +109,13 @@ namespace ApiSdk.Models {
 #else
         public string InternetMessageId { get; set; }
 #endif
-        /// <summary>The isDeliveryReceiptRequested property</summary>
+        /// <summary>Indicates whether a read receipt is requested for the message.</summary>
         public bool? IsDeliveryReceiptRequested { get; set; }
-        /// <summary>The isDraft property</summary>
+        /// <summary>Indicates whether the message is a draft. A message is a draft if it hasn&apos;t been sent yet.</summary>
         public bool? IsDraft { get; set; }
-        /// <summary>The isRead property</summary>
+        /// <summary>Indicates whether the message has been read.</summary>
         public bool? IsRead { get; set; }
-        /// <summary>The isReadReceiptRequested property</summary>
+        /// <summary>Indicates whether a read receipt is requested for the message.</summary>
         public bool? IsReadReceiptRequested { get; set; }
         /// <summary>The collection of multi-value extended properties defined for the message. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -124,7 +125,7 @@ namespace ApiSdk.Models {
 #else
         public List<MultiValueLegacyExtendedProperty> MultiValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The parentFolderId property</summary>
+        /// <summary>The unique identifier for the message&apos;s parent mailFolder.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ParentFolderId { get; set; }
@@ -132,9 +133,9 @@ namespace ApiSdk.Models {
 #else
         public string ParentFolderId { get; set; }
 #endif
-        /// <summary>The receivedDateTime property</summary>
+        /// <summary>The date and time the message was received.  The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ReceivedDateTime { get; set; }
-        /// <summary>The replyTo property</summary>
+        /// <summary>The email addresses to use when replying.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Recipient>? ReplyTo { get; set; }
@@ -142,7 +143,7 @@ namespace ApiSdk.Models {
 #else
         public List<Recipient> ReplyTo { get; set; }
 #endif
-        /// <summary>The sender property</summary>
+        /// <summary>The account that is actually used to generate the message. In most cases, this value is the same as the from property. You can set this property to a different value when sending a message from a shared mailbox, for a shared calendar, or as a delegate. In any case, the value must correspond to the actual mailbox used. Find out more about setting the from and sender properties of a message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Recipient? Sender { get; set; }
@@ -150,7 +151,7 @@ namespace ApiSdk.Models {
 #else
         public Recipient Sender { get; set; }
 #endif
-        /// <summary>The sentDateTime property</summary>
+        /// <summary>The date and time the message was sent.  The date and time information uses ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? SentDateTime { get; set; }
         /// <summary>The collection of single-value extended properties defined for the message. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -160,7 +161,7 @@ namespace ApiSdk.Models {
 #else
         public List<SingleValueLegacyExtendedProperty> SingleValueExtendedProperties { get; set; }
 #endif
-        /// <summary>The subject property</summary>
+        /// <summary>The subject of the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -168,7 +169,7 @@ namespace ApiSdk.Models {
 #else
         public string Subject { get; set; }
 #endif
-        /// <summary>The toRecipients property</summary>
+        /// <summary>The To: recipients for the message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Recipient>? ToRecipients { get; set; }
@@ -176,7 +177,7 @@ namespace ApiSdk.Models {
 #else
         public List<Recipient> ToRecipients { get; set; }
 #endif
-        /// <summary>The uniqueBody property</summary>
+        /// <summary>The part of the body of the message that is unique to the current message. uniqueBody is not returned by default but can be retrieved for a given message by use of the ?$select=uniqueBody query. It can be in HTML or text format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? UniqueBody { get; set; }
@@ -184,7 +185,7 @@ namespace ApiSdk.Models {
 #else
         public ItemBody UniqueBody { get; set; }
 #endif
-        /// <summary>The webLink property</summary>
+        /// <summary>The URL to open the message in Outlook on the web.You can append an ispopout argument to the end of the URL to change how the message is displayed. If ispopout is not present or if it is set to 1, then the message is shown in a popout window. If ispopout is set to 0, the browser shows the message in the Outlook on the web review pane.The message opens in the browser if you are signed in to your mailbox via Outlook on the web. You are prompted to sign in if you are not already signed in with the browser.This URL cannot be accessed from within an iFrame.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? WebLink { get; set; }
@@ -195,18 +196,21 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Message"/> and sets the default values.
         /// </summary>
-        public Message() : base() {
+        public Message() : base()
+        {
             OdataType = "#microsoft.graph.message";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Message"></returns>
+        /// <returns>A <see cref="Message"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Message CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Message CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
-            return mappingValue switch {
+            return mappingValue switch
+            {
                 "#microsoft.graph.calendarSharingMessage" => new CalendarSharingMessage(),
                 "#microsoft.graph.eventMessage" => new EventMessage(),
                 "#microsoft.graph.eventMessageRequest" => new EventMessageRequest(),
@@ -217,9 +221,11 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"attachments", n => { Attachments = n.GetCollectionOfObjectValues<Attachment>(Attachment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"bccRecipients", n => { BccRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
@@ -256,7 +262,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<Attachment>("attachments", Attachments);

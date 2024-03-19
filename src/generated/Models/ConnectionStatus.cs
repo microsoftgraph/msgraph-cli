@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ConnectionStatus {
+    public enum ConnectionStatus
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "attempted")]

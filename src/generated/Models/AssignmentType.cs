@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AssignmentType {
+    public enum AssignmentType
+    {
         [EnumMember(Value = "required")]
         Required,
         [EnumMember(Value = "recommended")]

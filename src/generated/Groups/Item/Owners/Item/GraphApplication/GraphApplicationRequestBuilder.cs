@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.Owners.Item.GraphApplication {
     /// <summary>
     /// Casts the previous resource to application.
     /// </summary>
-    public class GraphApplicationRequestBuilder : BaseCliRequestBuilder {
+    public class GraphApplicationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.application";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -87,25 +89,29 @@ namespace ApiSdk.Groups.Item.Owners.Item.GraphApplication {
         /// Instantiates a new <see cref="GraphApplicationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphApplicationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/graph.application{?%24expand,%24select}", pathParameters) {
+        public GraphApplicationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/graph.application{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphApplicationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphApplicationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/graph.application{?%24expand,%24select}", rawUrl) {
+        public GraphApplicationRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/graph.application{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphApplicationRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphApplicationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphApplicationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphApplicationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -115,7 +121,8 @@ namespace ApiSdk.Groups.Item.Owners.Item.GraphApplication {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.application
         /// </summary>
-        public class GraphApplicationRequestBuilderGetQueryParameters {
+        public class GraphApplicationRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

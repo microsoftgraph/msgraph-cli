@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SearchAlterationType {
+    public enum SearchAlterationType
+    {
         [EnumMember(Value = "suggestion")]
         Suggestion,
         [EnumMember(Value = "modification")]

@@ -18,12 +18,14 @@ namespace ApiSdk.Education.Me.Classes.Item {
     /// <summary>
     /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder {
+    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Classes to which the user belongs. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Classes to which the user belongs. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Education.Me.Classes.Item {
         /// Instantiates a new <see cref="EducationClassItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters) {
+        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationClassItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl) {
+        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Classes to which the user belongs. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Education.Me.Classes.Item {
         /// <summary>
         /// Classes to which the user belongs. Nullable.
         /// </summary>
-        public class EducationClassItemRequestBuilderGetQueryParameters {
+        public class EducationClassItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

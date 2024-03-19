@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SimulationAutomationRunStatus {
+    public enum SimulationAutomationRunStatus
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "running")]

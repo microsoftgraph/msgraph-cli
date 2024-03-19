@@ -17,12 +17,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
     /// <summary>
     /// Provides operations to call the getUserIdsWithFlaggedAppRegistration method.
     /// </summary>
-    public class GetUserIdsWithFlaggedAppRegistrationRequestBuilder : BaseCliRequestBuilder {
+    public class GetUserIdsWithFlaggedAppRegistrationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getUserIdsWithFlaggedAppRegistration
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -94,25 +96,29 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// Instantiates a new <see cref="GetUserIdsWithFlaggedAppRegistrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetUserIdsWithFlaggedAppRegistrationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public GetUserIdsWithFlaggedAppRegistrationRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/getUserIdsWithFlaggedAppRegistration(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getUserIdsWithFlaggedAppRegistration
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -122,7 +128,8 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         /// <summary>
         /// Invoke function getUserIdsWithFlaggedAppRegistration
         /// </summary>
-        public class GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters {
+        public class GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

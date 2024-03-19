@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AllowInvitesFrom {
+    public enum AllowInvitesFrom
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "adminsAndGuestInviters")]

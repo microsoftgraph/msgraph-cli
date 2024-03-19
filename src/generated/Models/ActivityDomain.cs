@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ActivityDomain {
+    public enum ActivityDomain
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "work")]

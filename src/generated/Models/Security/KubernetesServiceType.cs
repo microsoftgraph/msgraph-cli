@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum KubernetesServiceType {
+    public enum KubernetesServiceType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "clusterIP")]

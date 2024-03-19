@@ -29,12 +29,14 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.group entity.
     /// </summary>
-    public class EventItemRequestBuilder : BaseCliRequestBuilder {
+    public class EventItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the accept method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAcceptNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAcceptNavCommand()
+        {
             var command = new Command("accept");
             command.Description = "Provides operations to call the accept method.";
             var builder = new AcceptRequestBuilder(PathParameters);
@@ -49,8 +51,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAttachmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAttachmentsNavCommand()
+        {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
@@ -76,8 +79,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCalendarNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCalendarNavCommand()
+        {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
             var builder = new CalendarRequestBuilder(PathParameters);
@@ -92,8 +96,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCancelNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCancelNavCommand()
+        {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
@@ -108,8 +113,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the decline method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeclineNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeclineNavCommand()
+        {
             var command = new Command("decline");
             command.Description = "Provides operations to call the decline method.";
             var builder = new DeclineRequestBuilder(PathParameters);
@@ -124,8 +130,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the dismissReminder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDismissReminderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDismissReminderNavCommand()
+        {
             var command = new Command("dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
             var builder = new DismissReminderRequestBuilder(PathParameters);
@@ -140,8 +147,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildExtensionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildExtensionsNavCommand()
+        {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
@@ -166,8 +174,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildForwardNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildForwardNavCommand()
+        {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
@@ -182,8 +191,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// The calendar view for the calendar. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The calendar view for the calendar. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -244,8 +254,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.event entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInstancesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInstancesNavCommand()
+        {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
             var builder = new InstancesRequestBuilder(PathParameters);
@@ -270,8 +281,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the snoozeReminder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSnoozeReminderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSnoozeReminderNavCommand()
+        {
             var command = new Command("snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
             var builder = new SnoozeReminderRequestBuilder(PathParameters);
@@ -286,8 +298,9 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the tentativelyAccept method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTentativelyAcceptNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTentativelyAcceptNavCommand()
+        {
             var command = new Command("tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
             var builder = new TentativelyAcceptRequestBuilder(PathParameters);
@@ -303,25 +316,29 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", rawUrl) {
+        public EventItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -331,7 +348,8 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// The calendar view for the calendar. Read-only.
         /// </summary>
-        public class EventItemRequestBuilderGetQueryParameters {
+        public class EventItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

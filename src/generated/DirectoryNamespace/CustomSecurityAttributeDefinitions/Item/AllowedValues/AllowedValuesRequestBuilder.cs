@@ -20,12 +20,14 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
     /// <summary>
     /// Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
     /// </summary>
-    public class AllowedValuesRequestBuilder : BaseCliRequestBuilder {
+    public class AllowedValuesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var builder = new AllowedValueItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
@@ -36,8 +38,9 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -53,8 +56,9 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// Create a new allowedValue object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-post-allowedvalues?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create a new allowedValue object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-post-allowedvalues?view=graph-rest-1.0";
             var customSecurityAttributeDefinitionIdOption = new Option<string>("--custom-security-attribute-definition-id", description: "The unique identifier of customSecurityAttributeDefinition") {
@@ -104,8 +108,9 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// Get a list of the allowedValue objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-list-allowedvalues?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get a list of the allowedValue objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-list-allowedvalues?view=graph-rest-1.0";
             var customSecurityAttributeDefinitionIdOption = new Option<string>("--custom-security-attribute-definition-id", description: "The unique identifier of customSecurityAttributeDefinition") {
@@ -204,25 +209,29 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// Instantiates a new <see cref="AllowedValuesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllowedValuesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public AllowedValuesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AllowedValuesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllowedValuesRequestBuilder(string rawUrl) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public AllowedValuesRequestBuilder(string rawUrl) : base("{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get a list of the allowedValue objects and their properties.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedValuesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedValuesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedValuesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllowedValuesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -232,15 +241,17 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Create a new allowedValue object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AllowedValue body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AllowedValue body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AllowedValue body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AllowedValue body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/directory/customSecurityAttributeDefinitions/{customSecurityAttributeDefinition%2Did}/allowedValues", PathParameters);
@@ -251,7 +262,8 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.Allo
         /// <summary>
         /// Get a list of the allowedValue objects and their properties.
         /// </summary>
-        public class AllowedValuesRequestBuilderGetQueryParameters {
+        public class AllowedValuesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

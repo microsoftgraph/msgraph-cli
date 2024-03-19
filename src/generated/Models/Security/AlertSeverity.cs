@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum AlertSeverity {
+    public enum AlertSeverity
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "informational")]

@@ -18,12 +18,14 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
     /// <summary>
     /// Provides operations to manage the termStore property of the microsoft.graph.site entity.
     /// </summary>
-    public class TermStoreRequestBuilder : BaseCliRequestBuilder {
+    public class TermStoreRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property termStore for sites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property termStore for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -69,8 +71,9 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// Read the properties and relationships of a store object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -133,8 +136,9 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// Update the properties of a store object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -196,25 +200,29 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// Instantiates a new <see cref="TermStoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TermStoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore{?%24expand,%24select}", pathParameters) {
+        public TermStoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TermStoreRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TermStoreRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore{?%24expand,%24select}", rawUrl) {
+        public TermStoreRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property termStore for sites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -224,14 +232,16 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// <summary>
         /// Read the properties and relationships of a store object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermStoreRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermStoreRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermStoreRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TermStoreRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -241,15 +251,17 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// <summary>
         /// Update the properties of a store object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Store body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Store body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Store body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Store body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/sites/{site%2Did}/getByPath(path='{path}')/getByPath(path='{path1}')/termStore", PathParameters);
@@ -260,7 +272,8 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1.TermStore {
         /// <summary>
         /// Read the properties and relationships of a store object.
         /// </summary>
-        public class TermStoreRequestBuilderGetQueryParameters {
+        public class TermStoreRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

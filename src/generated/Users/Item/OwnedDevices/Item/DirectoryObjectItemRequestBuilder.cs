@@ -21,12 +21,14 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
     /// <summary>
     /// Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -89,8 +91,9 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphAppRoleAssignmentByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphAppRoleAssignmentByIdNavCommand()
+        {
             var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -105,8 +108,9 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphDeviceByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphDeviceByIdNavCommand()
+        {
             var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
@@ -121,8 +125,9 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphEndpointByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphEndpointByIdNavCommand()
+        {
             var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
@@ -138,25 +143,29 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/ownedDevices/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/ownedDevices/{directoryObject%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/ownedDevices/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
+        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/ownedDevices/{directoryObject%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -166,7 +175,8 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
         /// </summary>
-        public class DirectoryObjectItemRequestBuilderGetQueryParameters {
+        public class DirectoryObjectItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -26,12 +26,14 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder {
+    public class EducationAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCategoriesNavCommand()
+        {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
@@ -59,8 +61,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// Delete an existing assignment. Only teachers within a class can delete assignments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete an existing assignment. Only teachers within a class can delete assignments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -97,13 +100,14 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, the response value for the status property is unknownFutureValue.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0";
+            command.Description = "Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, the response value for the status property is unknownFutureValue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -157,8 +161,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGradingCategoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGradingCategoryNavCommand()
+        {
             var command = new Command("grading-category");
             command.Description = "Provides operations to manage the gradingCategory property of the microsoft.graph.educationAssignment entity.";
             var builder = new GradingCategoryRequestBuilder(PathParameters);
@@ -174,8 +179,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an assignment with publish action. Don&apos;t use a PATCH operation for this purpose.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an assignment with publish action. Don't use a PATCH operation for this purpose.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-update?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -230,8 +236,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPublishNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPublishNavCommand()
+        {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -246,8 +253,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildResourcesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildResourcesNavCommand()
+        {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.";
             var builder = new ResourcesRequestBuilder(PathParameters);
@@ -272,8 +280,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRubricNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRubricNavCommand()
+        {
             var command = new Command("rubric");
             command.Description = "Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.";
             var builder = new RubricRequestBuilder(PathParameters);
@@ -296,8 +305,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to call the setUpFeedbackResourcesFolder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetUpFeedbackResourcesFolderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetUpFeedbackResourcesFolderNavCommand()
+        {
             var command = new Command("set-up-feedback-resources-folder");
             command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
             var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters);
@@ -312,8 +322,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to call the setUpResourcesFolder method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetUpResourcesFolderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetUpResourcesFolderNavCommand()
+        {
             var command = new Command("set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
             var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
@@ -328,8 +339,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubmissionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubmissionsNavCommand()
+        {
             var command = new Command("submissions");
             command.Description = "Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.";
             var builder = new SubmissionsRequestBuilder(PathParameters);
@@ -355,25 +367,29 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// Instantiates a new <see cref="EducationAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24expand,%24select}", pathParameters) {
+        public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationAssignmentItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24expand,%24select}", rawUrl) {
+        public EducationAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete an existing assignment. Only teachers within a class can delete assignments.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -381,16 +397,18 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, the response value for the status property is unknownFutureValue.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -400,15 +418,17 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an assignment with publish action. Don&apos;t use a PATCH operation for this purpose.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}", PathParameters);
@@ -417,9 +437,10 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class. You can use the Prefer header in your request to get the inactive status in case the assignment is deactivated; otherwise, the response value for the status property is unknownFutureValue.
         /// </summary>
-        public class EducationAssignmentItemRequestBuilderGetQueryParameters {
+        public class EducationAssignmentItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

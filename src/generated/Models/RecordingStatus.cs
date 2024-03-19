@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RecordingStatus {
+    public enum RecordingStatus
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "notRecording")]

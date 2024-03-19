@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum CaseOperationStatus {
+    public enum CaseOperationStatus
+    {
         [EnumMember(Value = "notStarted")]
         NotStarted,
         [EnumMember(Value = "submissionFailed")]

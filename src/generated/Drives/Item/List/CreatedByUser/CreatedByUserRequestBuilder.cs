@@ -20,12 +20,14 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
     /// <summary>
     /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
     /// </summary>
-    public class CreatedByUserRequestBuilder : BaseCliRequestBuilder {
+    public class CreatedByUserRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Identity of the user who created the item. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -75,8 +77,9 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// The mailboxSettings property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMailboxSettingsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMailboxSettingsNavCommand()
+        {
             var command = new Command("mailbox-settings");
             command.Description = "The mailboxSettings property";
             var builder = new MailboxSettingsRequestBuilder(PathParameters);
@@ -92,8 +95,9 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServiceProvisioningErrorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServiceProvisioningErrorsNavCommand()
+        {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
             var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
@@ -115,25 +119,29 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", pathParameters) {
+        public CreatedByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CreatedByUserRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", rawUrl) {
+        public CreatedByUserRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/createdByUser{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByUserRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByUserRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByUserRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CreatedByUserRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -143,7 +151,8 @@ namespace ApiSdk.Drives.Item.List.CreatedByUser {
         /// <summary>
         /// Identity of the user who created the item. Read-only.
         /// </summary>
-        public class CreatedByUserRequestBuilderGetQueryParameters {
+        public class CreatedByUserRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -19,12 +19,14 @@ namespace ApiSdk.SubscribedSkus {
     /// <summary>
     /// Provides operations to manage the collection of subscribedSku entities.
     /// </summary>
-    public class SubscribedSkusRequestBuilder : BaseCliRequestBuilder {
+    public class SubscribedSkusRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of subscribedSku entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var builder = new SubscribedSkuItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
@@ -35,8 +37,9 @@ namespace ApiSdk.SubscribedSkus {
         /// <summary>
         /// Add new entity to subscribedSkus
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Add new entity to subscribedSkus";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -80,8 +83,9 @@ namespace ApiSdk.SubscribedSkus {
         /// Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0";
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
@@ -143,25 +147,29 @@ namespace ApiSdk.SubscribedSkus {
         /// Instantiates a new <see cref="SubscribedSkusRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SubscribedSkusRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", pathParameters) {
+        public SubscribedSkusRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SubscribedSkusRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SubscribedSkusRequestBuilder(string rawUrl) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", rawUrl) {
+        public SubscribedSkusRequestBuilder(string rawUrl) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubscribedSkusRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubscribedSkusRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubscribedSkusRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SubscribedSkusRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -171,15 +179,17 @@ namespace ApiSdk.SubscribedSkus {
         /// <summary>
         /// Add new entity to subscribedSkus
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(SubscribedSku body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(SubscribedSku body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(SubscribedSku body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(SubscribedSku body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/subscribedSkus", PathParameters);
@@ -190,7 +200,8 @@ namespace ApiSdk.SubscribedSkus {
         /// <summary>
         /// Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.
         /// </summary>
-        public class SubscribedSkusRequestBuilderGetQueryParameters {
+        public class SubscribedSkusRequestBuilderGetQueryParameters 
+        {
             /// <summary>Order items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

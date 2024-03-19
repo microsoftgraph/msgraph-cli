@@ -17,12 +17,14 @@ namespace ApiSdk.Sites.GetAllSites {
     /// <summary>
     /// Provides operations to call the getAllSites method.
     /// </summary>
-    public class GetAllSitesRequestBuilder : BaseCliRequestBuilder {
+    public class GetAllSitesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getAllSites
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getAllSites";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -115,25 +117,29 @@ namespace ApiSdk.Sites.GetAllSites {
         /// Instantiates a new <see cref="GetAllSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAllSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/getAllSites(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public GetAllSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/getAllSites(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetAllSitesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAllSitesRequestBuilder(string rawUrl) : base("{+baseurl}/sites/getAllSites(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public GetAllSitesRequestBuilder(string rawUrl) : base("{+baseurl}/sites/getAllSites(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getAllSites
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllSitesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllSitesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllSitesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAllSitesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -143,7 +149,8 @@ namespace ApiSdk.Sites.GetAllSites {
         /// <summary>
         /// Invoke function getAllSites
         /// </summary>
-        public class GetAllSitesRequestBuilderGetQueryParameters {
+        public class GetAllSitesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

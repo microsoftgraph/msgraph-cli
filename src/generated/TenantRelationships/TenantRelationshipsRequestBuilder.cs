@@ -22,12 +22,14 @@ namespace ApiSdk.TenantRelationships {
     /// <summary>
     /// Provides operations to manage the tenantRelationship singleton.
     /// </summary>
-    public class TenantRelationshipsRequestBuilder : BaseCliRequestBuilder {
+    public class TenantRelationshipsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDelegatedAdminCustomersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDelegatedAdminCustomersNavCommand()
+        {
             var command = new Command("delegated-admin-customers");
             command.Description = "Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.";
             var builder = new DelegatedAdminCustomersRequestBuilder(PathParameters);
@@ -52,8 +54,9 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDelegatedAdminRelationshipsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDelegatedAdminRelationshipsNavCommand()
+        {
             var command = new Command("delegated-admin-relationships");
             command.Description = "Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.";
             var builder = new DelegatedAdminRelationshipsRequestBuilder(PathParameters);
@@ -78,8 +81,9 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to call the findTenantInformationByDomainName method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFindTenantInformationByDomainNameWithDomainNameRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFindTenantInformationByDomainNameWithDomainNameRbCommand()
+        {
             var command = new Command("find-tenant-information-by-domain-name-with-domain-name");
             command.Description = "Provides operations to call the findTenantInformationByDomainName method.";
             var builder = new FindTenantInformationByDomainNameWithDomainNameRequestBuilder(PathParameters);
@@ -94,8 +98,9 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to call the findTenantInformationByTenantId method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFindTenantInformationByTenantIdWithTenantIdRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFindTenantInformationByTenantIdWithTenantIdRbCommand()
+        {
             var command = new Command("find-tenant-information-by-tenant-id-with-tenant-id");
             command.Description = "Provides operations to call the findTenantInformationByTenantId method.";
             var builder = new FindTenantInformationByTenantIdWithTenantIdRequestBuilder(PathParameters);
@@ -110,8 +115,9 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Get tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get tenantRelationships";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -155,8 +161,9 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Update tenantRelationships
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update tenantRelationships";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -200,25 +207,29 @@ namespace ApiSdk.TenantRelationships {
         /// Instantiates a new <see cref="TenantRelationshipsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TenantRelationshipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships{?%24expand,%24select}", pathParameters) {
+        public TenantRelationshipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TenantRelationshipsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TenantRelationshipsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships{?%24expand,%24select}", rawUrl) {
+        public TenantRelationshipsRequestBuilder(string rawUrl) : base("{+baseurl}/tenantRelationships{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TenantRelationshipsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TenantRelationshipsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TenantRelationshipsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TenantRelationshipsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -228,15 +239,17 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Update tenantRelationships
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TenantRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TenantRelationship body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TenantRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TenantRelationship body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/tenantRelationships", PathParameters);
@@ -247,7 +260,8 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Get tenantRelationships
         /// </summary>
-        public class TenantRelationshipsRequestBuilderGetQueryParameters {
+        public class TenantRelationshipsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

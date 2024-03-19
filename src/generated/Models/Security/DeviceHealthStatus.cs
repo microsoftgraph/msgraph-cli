@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum DeviceHealthStatus {
+    public enum DeviceHealthStatus
+    {
         [EnumMember(Value = "active")]
         Active,
         [EnumMember(Value = "inactive")]

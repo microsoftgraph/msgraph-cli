@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ThreatAssessmentResultType {
+    public enum ThreatAssessmentResultType
+    {
         [EnumMember(Value = "checkPolicy")]
         CheckPolicy,
         [EnumMember(Value = "rescan")]

@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrintOperationProcessingState {
+    public enum PrintOperationProcessingState
+    {
         [EnumMember(Value = "notStarted")]
         NotStarted,
         [EnumMember(Value = "running")]

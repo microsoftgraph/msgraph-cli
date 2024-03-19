@@ -21,12 +21,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
     /// <summary>
     /// Provides operations to manage the versions property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class WorkflowVersionVersionNumberItemRequestBuilder : BaseCliRequestBuilder {
+    public class WorkflowVersionVersionNumberItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreatedByNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreatedByNavCommand()
+        {
             var command = new Command("created-by");
             command.Description = "Provides operations to manage the createdBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new CreatedByRequestBuilder(PathParameters);
@@ -49,8 +51,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// Read the properties and relationships of a workflowVersion object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a workflowVersion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
@@ -106,8 +109,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// <summary>
         /// Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLastModifiedByNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLastModifiedByNavCommand()
+        {
             var command = new Command("last-modified-by");
             command.Description = "Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new LastModifiedByRequestBuilder(PathParameters);
@@ -129,8 +133,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTasksNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTasksNavCommand()
+        {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.";
             var builder = new TasksRequestBuilder(PathParameters);
@@ -156,25 +161,29 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// Instantiates a new <see cref="WorkflowVersionVersionNumberItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkflowVersionVersionNumberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}{?%24expand,%24select}", pathParameters) {
+        public WorkflowVersionVersionNumberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WorkflowVersionVersionNumberItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WorkflowVersionVersionNumberItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}{?%24expand,%24select}", rawUrl) {
+        public WorkflowVersionVersionNumberItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/versions/{workflowVersion%2DversionNumber}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read the properties and relationships of a workflowVersion object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -184,7 +193,8 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         /// <summary>
         /// Read the properties and relationships of a workflowVersion object.
         /// </summary>
-        public class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters {
+        public class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

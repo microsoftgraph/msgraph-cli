@@ -18,12 +18,14 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource {
     /// <summary>
     /// Provides operations to manage the resource property of the microsoft.graph.trending entity.
     /// </summary>
-    public class ResourceRequestBuilder : BaseCliRequestBuilder {
+    public class ResourceRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Used for navigating to the trending document.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Used for navigating to the trending document.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource {
         /// Instantiates a new <see cref="ResourceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ResourceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/trending/{trending%2Did}/resource{?%24expand,%24select}", pathParameters) {
+        public ResourceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/insights/trending/{trending%2Did}/resource{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ResourceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ResourceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/trending/{trending%2Did}/resource{?%24expand,%24select}", rawUrl) {
+        public ResourceRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/trending/{trending%2Did}/resource{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Used for navigating to the trending document.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ResourceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource {
         /// <summary>
         /// Used for navigating to the trending document.
         /// </summary>
-        public class ResourceRequestBuilderGetQueryParameters {
+        public class ResourceRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

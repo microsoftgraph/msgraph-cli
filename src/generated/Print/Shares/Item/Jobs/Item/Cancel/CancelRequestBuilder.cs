@@ -17,13 +17,15 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Cancel {
     /// <summary>
     /// Provides operations to call the cancel method.
     /// </summary>
-    public class CancelRequestBuilder : BaseCliRequestBuilder {
+    public class CancelRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
@@ -56,25 +58,29 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Cancel {
         /// Instantiates a new <see cref="CancelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/cancel", pathParameters) {
+        public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/cancel", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CancelRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CancelRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/cancel", rawUrl) {
+        public CancelRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/cancel", rawUrl)
+        {
         }
         /// <summary>
         /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

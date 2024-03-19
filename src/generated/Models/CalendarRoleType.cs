@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CalendarRoleType {
+    public enum CalendarRoleType
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "freeBusyRead")]

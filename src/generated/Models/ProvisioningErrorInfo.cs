@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class ProvisioningErrorInfo : IAdditionalDataHolder, IParsable {
+    public class ProvisioningErrorInfo : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Additional details if there&apos;s error.</summary>
@@ -53,24 +54,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="ProvisioningErrorInfo"/> and sets the default values.
         /// </summary>
-        public ProvisioningErrorInfo() {
+        public ProvisioningErrorInfo()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="ProvisioningErrorInfo"></returns>
+        /// <returns>A <see cref="ProvisioningErrorInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static ProvisioningErrorInfo CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static ProvisioningErrorInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new ProvisioningErrorInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"additionalDetails", n => { AdditionalDetails = n.GetStringValue(); } },
                 {"errorCategory", n => { ErrorCategory = n.GetEnumValue<ProvisioningStatusErrorCategory>(); } },
                 {"errorCode", n => { ErrorCode = n.GetStringValue(); } },
@@ -83,7 +88,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("additionalDetails", AdditionalDetails);
             writer.WriteEnumValue<ProvisioningStatusErrorCategory>("errorCategory", ErrorCategory);

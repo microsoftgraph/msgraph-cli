@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamSpecialization {
+    public enum TeamSpecialization
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "educationStandard")]

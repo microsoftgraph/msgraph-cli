@@ -21,12 +21,14 @@ namespace ApiSdk.Planner.Plans.Item {
     /// <summary>
     /// Provides operations to manage the plans property of the microsoft.graph.planner entity.
     /// </summary>
-    public class PlannerPlanItemRequestBuilder : BaseCliRequestBuilder {
+    public class PlannerPlanItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildBucketsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildBucketsNavCommand()
+        {
             var command = new Command("buckets");
             command.Description = "Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.";
             var builder = new BucketsRequestBuilder(PathParameters);
@@ -52,8 +54,9 @@ namespace ApiSdk.Planner.Plans.Item {
         /// Delete a plannerPlan object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplan-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a plannerPlan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplan-delete?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
@@ -86,8 +89,9 @@ namespace ApiSdk.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDetailsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDetailsNavCommand()
+        {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.";
             var builder = new DetailsRequestBuilder(PathParameters);
@@ -105,8 +109,9 @@ namespace ApiSdk.Planner.Plans.Item {
         /// Retrieve the properties and relationships of a plannerplan object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplan-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a plannerplan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplan-get?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
@@ -157,8 +162,9 @@ namespace ApiSdk.Planner.Plans.Item {
         /// Update the properties of a plannerPlan object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplan-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a plannerPlan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplan-update?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
@@ -207,8 +213,9 @@ namespace ApiSdk.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTasksNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTasksNavCommand()
+        {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.";
             var builder = new TasksRequestBuilder(PathParameters);
@@ -234,25 +241,29 @@ namespace ApiSdk.Planner.Plans.Item {
         /// Instantiates a new <see cref="PlannerPlanItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlannerPlanItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", pathParameters) {
+        public PlannerPlanItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PlannerPlanItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlannerPlanItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", rawUrl) {
+        public PlannerPlanItemRequestBuilder(string rawUrl) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a plannerPlan object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/planner/plans/{plannerPlan%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -262,14 +273,16 @@ namespace ApiSdk.Planner.Plans.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a plannerplan object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerPlanItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerPlanItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerPlanItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PlannerPlanItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -279,15 +292,17 @@ namespace ApiSdk.Planner.Plans.Item {
         /// <summary>
         /// Update the properties of a plannerPlan object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PlannerPlan body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PlannerPlan body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PlannerPlan body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PlannerPlan body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/planner/plans/{plannerPlan%2Did}", PathParameters);
@@ -298,7 +313,8 @@ namespace ApiSdk.Planner.Plans.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a plannerplan object.
         /// </summary>
-        public class PlannerPlanItemRequestBuilderGetQueryParameters {
+        public class PlannerPlanItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -19,12 +19,14 @@ namespace ApiSdk.Users.Item.Todo {
     /// <summary>
     /// Provides operations to manage the todo property of the microsoft.graph.user entity.
     /// </summary>
-    public class TodoRequestBuilder : BaseCliRequestBuilder {
+    public class TodoRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property todo for users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property todo for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -57,8 +59,9 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Represents the To Do services available to a user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Represents the To Do services available to a user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -108,8 +111,9 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.todo entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListsNavCommand()
+        {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.todo entity.";
             var builder = new ListsRequestBuilder(PathParameters);
@@ -135,8 +139,9 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Update the navigation property todo in users
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property todo in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -186,25 +191,29 @@ namespace ApiSdk.Users.Item.Todo {
         /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TodoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", pathParameters) {
+        public TodoRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TodoRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TodoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", rawUrl) {
+        public TodoRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property todo for users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/todo", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Represents the To Do services available to a user.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TodoRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Update the navigation property todo in users
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Todo body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Todo body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Todo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Todo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/todo", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Represents the To Do services available to a user.
         /// </summary>
-        public class TodoRequestBuilderGetQueryParameters {
+        public class TodoRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

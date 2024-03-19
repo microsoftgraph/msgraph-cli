@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ExternalEmailOtpState {
+    public enum ExternalEmailOtpState
+    {
         [EnumMember(Value = "default")]
         Default,
         [EnumMember(Value = "enabled")]

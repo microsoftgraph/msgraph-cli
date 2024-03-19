@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum MeetingMessageType {
+    public enum MeetingMessageType
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "meetingRequest")]

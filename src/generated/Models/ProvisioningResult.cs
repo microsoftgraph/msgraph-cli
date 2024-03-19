@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ProvisioningResult {
+    public enum ProvisioningResult
+    {
         [EnumMember(Value = "success")]
         Success,
         [EnumMember(Value = "failure")]

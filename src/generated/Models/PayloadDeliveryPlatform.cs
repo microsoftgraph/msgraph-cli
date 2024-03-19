@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PayloadDeliveryPlatform {
+    public enum PayloadDeliveryPlatform
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "sms")]

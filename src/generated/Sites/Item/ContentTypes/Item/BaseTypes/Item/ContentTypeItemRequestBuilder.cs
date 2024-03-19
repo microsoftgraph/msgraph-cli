@@ -18,12 +18,14 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.BaseTypes.Item {
     /// <summary>
     /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
     /// </summary>
-    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder {
+    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The collection of content types that are ancestors of this content type.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
@@ -86,25 +88,29 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.BaseTypes.Item {
         /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", pathParameters) {
+        public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentTypeItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentTypeItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", rawUrl) {
+        public ContentTypeItemRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/baseTypes/{contentType%2Did1}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentTypeItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -114,7 +120,8 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.BaseTypes.Item {
         /// <summary>
         /// The collection of content types that are ancestors of this content type.
         /// </summary>
-        public class ContentTypeItemRequestBuilderGetQueryParameters {
+        public class ContentTypeItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

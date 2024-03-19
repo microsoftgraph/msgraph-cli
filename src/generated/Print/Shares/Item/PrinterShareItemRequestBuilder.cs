@@ -22,12 +22,14 @@ namespace ApiSdk.Print.Shares.Item {
     /// <summary>
     /// Provides operations to manage the shares property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the allowedGroups property of the microsoft.graph.printerShare entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAllowedGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAllowedGroupsNavCommand()
+        {
             var command = new Command("allowed-groups");
             command.Description = "Provides operations to manage the allowedGroups property of the microsoft.graph.printerShare entity.";
             var builder = new AllowedGroupsRequestBuilder(PathParameters);
@@ -52,8 +54,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Provides operations to manage the allowedUsers property of the microsoft.graph.printerShare entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAllowedUsersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAllowedUsersNavCommand()
+        {
             var command = new Command("allowed-users");
             command.Description = "Provides operations to manage the allowedUsers property of the microsoft.graph.printerShare entity.";
             var builder = new AllowedUsersRequestBuilder(PathParameters);
@@ -79,8 +82,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// Delete a printer share (unshare the associated printer). This action can&apos;t be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer needs to discover and reinstall it.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a printer share (unshare the associated printer). This action can't be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer needs to discover and reinstall it.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-delete?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
@@ -114,8 +118,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// Retrieve the properties and relationships of a printer share.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a printer share.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-get?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
@@ -165,8 +170,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildJobsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildJobsNavCommand()
+        {
             var command = new Command("jobs");
             command.Description = "Provides operations to manage the jobs property of the microsoft.graph.printerBase entity.";
             var builder = new JobsRequestBuilder(PathParameters);
@@ -192,8 +198,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-update?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
@@ -242,8 +249,9 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Provides operations to manage the printer property of the microsoft.graph.printerShare entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrinterNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrinterNavCommand()
+        {
             var command = new Command("printer");
             command.Description = "Provides operations to manage the printer property of the microsoft.graph.printerShare entity.";
             var builder = new PrinterRequestBuilder(PathParameters);
@@ -259,25 +267,29 @@ namespace ApiSdk.Print.Shares.Item {
         /// Instantiates a new <see cref="PrinterShareItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrinterShareItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrinterShareItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a printer share (unshare the associated printer). This action can&apos;t be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer needs to discover and reinstall it.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/print/shares/{printerShare%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -287,14 +299,16 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printer share.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterShareItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterShareItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterShareItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrinterShareItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -304,15 +318,17 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrinterShare body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrinterShare body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrinterShare body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrinterShare body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/print/shares/{printerShare%2Did}", PathParameters);
@@ -323,7 +339,8 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printer share.
         /// </summary>
-        public class PrinterShareItemRequestBuilderGetQueryParameters {
+        public class PrinterShareItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

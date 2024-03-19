@@ -20,12 +20,14 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
     /// <summary>
     /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
     /// </summary>
-    public class AllChannelsRequestBuilder : BaseCliRequestBuilder {
+    public class AllChannelsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var builder = new ChannelItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
@@ -34,8 +36,9 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -51,8 +54,9 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
         /// Get the list of channels either in this team or shared with this team (incoming channels).
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-list-allchannels?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Get the list of channels either in this team or shared with this team (incoming channels).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-allchannels?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -151,25 +155,29 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
         /// Instantiates a new <see cref="AllChannelsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AllChannelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/allChannels{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public AllChannelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/allChannels{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AllChannelsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AllChannelsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/allChannels{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public AllChannelsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/allChannels{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the list of channels either in this team or shared with this team (incoming channels).
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllChannelsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllChannelsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllChannelsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AllChannelsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -179,7 +187,8 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
         /// <summary>
         /// Get the list of channels either in this team or shared with this team (incoming channels).
         /// </summary>
-        public class AllChannelsRequestBuilderGetQueryParameters {
+        public class AllChannelsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

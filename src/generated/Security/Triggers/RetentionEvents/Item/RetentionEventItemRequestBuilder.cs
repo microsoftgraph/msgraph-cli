@@ -19,13 +19,15 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
     /// <summary>
     /// Provides operations to manage the retentionEvents property of the microsoft.graph.security.triggersRoot entity.
     /// </summary>
-    public class RetentionEventItemRequestBuilder : BaseCliRequestBuilder {
+    public class RetentionEventItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete a retentionEvent object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a retentionEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-delete?view=graph-rest-1.0";
             var retentionEventIdOption = new Option<string>("--retention-event-id", description: "The unique identifier of retentionEvent") {
@@ -59,8 +61,9 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// Read the properties and relationships of a retentionEvent object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a retentionEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-get?view=graph-rest-1.0";
             var retentionEventIdOption = new Option<string>("--retention-event-id", description: "The unique identifier of retentionEvent") {
@@ -110,8 +113,9 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// <summary>
         /// Update the navigation property retentionEvents in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property retentionEvents in security";
             var retentionEventIdOption = new Option<string>("--retention-event-id", description: "The unique identifier of retentionEvent") {
@@ -160,8 +164,9 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// <summary>
         /// Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionEvent entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRetentionEventTypeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRetentionEventTypeNavCommand()
+        {
             var command = new Command("retention-event-type");
             command.Description = "Provides operations to manage the retentionEventType property of the microsoft.graph.security.retentionEvent entity.";
             var builder = new RetentionEventTypeRequestBuilder(PathParameters);
@@ -177,25 +182,29 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// Instantiates a new <see cref="RetentionEventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RetentionEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", pathParameters) {
+        public RetentionEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RetentionEventItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RetentionEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", rawUrl) {
+        public RetentionEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a retentionEvent object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -205,14 +214,16 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// <summary>
         /// Read the properties and relationships of a retentionEvent object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RetentionEventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RetentionEventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RetentionEventItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RetentionEventItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -222,15 +233,17 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// <summary>
         /// Update the navigation property retentionEvents in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RetentionEvent body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RetentionEvent body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(RetentionEvent body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RetentionEvent body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}", PathParameters);
@@ -241,7 +254,8 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         /// <summary>
         /// Read the properties and relationships of a retentionEvent object.
         /// </summary>
-        public class RetentionEventItemRequestBuilderGetQueryParameters {
+        public class RetentionEventItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

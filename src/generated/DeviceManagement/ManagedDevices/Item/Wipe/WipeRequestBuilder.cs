@@ -17,13 +17,15 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
     /// <summary>
     /// Provides operations to call the wipe method.
     /// </summary>
-    public class WipeRequestBuilder : BaseCliRequestBuilder {
+    public class WipeRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Wipe a device
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddevice-wipe?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Wipe a device\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddevice-wipe?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
@@ -63,26 +65,30 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
         /// Instantiates a new <see cref="WipeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WipeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/wipe", pathParameters) {
+        public WipeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/wipe", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="WipeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public WipeRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/wipe", rawUrl) {
+        public WipeRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/wipe", rawUrl)
+        {
         }
         /// <summary>
         /// Wipe a device
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(WipePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(WipePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(WipePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(WipePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

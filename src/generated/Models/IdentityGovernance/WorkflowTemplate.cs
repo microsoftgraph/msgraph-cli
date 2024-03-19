@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public class WorkflowTemplate : ApiSdk.Models.Entity, IParsable {
+    public class WorkflowTemplate : ApiSdk.Models.Entity, IParsable 
+    {
         /// <summary>The category property</summary>
         public LifecycleWorkflowCategory? Category { get; set; }
         /// <summary>The description of the workflowTemplate.</summary>
@@ -43,18 +44,21 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="WorkflowTemplate"></returns>
+        /// <returns>A <see cref="WorkflowTemplate"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new WorkflowTemplate CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new WorkflowTemplate CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new WorkflowTemplate();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"category", n => { Category = n.GetEnumValue<LifecycleWorkflowCategory>(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
@@ -66,7 +70,8 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<LifecycleWorkflowCategory>("category", Category);

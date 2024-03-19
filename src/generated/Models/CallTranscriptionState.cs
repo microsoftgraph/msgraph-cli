@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum CallTranscriptionState {
+    public enum CallTranscriptionState
+    {
         [EnumMember(Value = "notStarted")]
         NotStarted,
         [EnumMember(Value = "active")]

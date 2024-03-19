@@ -22,12 +22,14 @@ namespace ApiSdk.Education {
     /// <summary>
     /// Provides operations to manage the educationRoot singleton.
     /// </summary>
-    public class EducationRequestBuilder : BaseCliRequestBuilder {
+    public class EducationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildClassesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildClassesNavCommand()
+        {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.";
             var builder = new ClassesRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Get education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get education";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -98,8 +101,9 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the me property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMeNavCommand()
+        {
             var command = new Command("me");
             command.Description = "Provides operations to manage the me property of the microsoft.graph.educationRoot entity.";
             var builder = new MeRequestBuilder(PathParameters);
@@ -127,8 +131,9 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Update education
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update education";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -171,8 +176,9 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSchoolsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSchoolsNavCommand()
+        {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.";
             var builder = new SchoolsRequestBuilder(PathParameters);
@@ -198,8 +204,9 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUsersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUsersNavCommand()
+        {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.educationRoot entity.";
             var builder = new UsersRequestBuilder(PathParameters);
@@ -226,25 +233,29 @@ namespace ApiSdk.Education {
         /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24expand,%24select}", pathParameters) {
+        public EducationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24expand,%24select}", rawUrl) {
+        public EducationRequestBuilder(string rawUrl) : base("{+baseurl}/education{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -254,15 +265,17 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Update education
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education", PathParameters);
@@ -273,7 +286,8 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Get education
         /// </summary>
-        public class EducationRequestBuilderGetQueryParameters {
+        public class EducationRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Delivery optimization mode for peer distribution</summary>
-    public enum WindowsDeliveryOptimizationMode {
+    public enum WindowsDeliveryOptimizationMode
+    {
         /// <summary>Allow the user to set.</summary>
         [EnumMember(Value = "userDefined")]
         UserDefined,

@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item.GraphAdministrativeUnit {
     /// <summary>
     /// Casts the previous resource to administrativeUnit.
     /// </summary>
-    public class GraphAdministrativeUnitRequestBuilder : BaseCliRequestBuilder {
+    public class GraphAdministrativeUnitRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -87,25 +89,29 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item.GraphAdministrativeUnit {
         /// Instantiates a new <see cref="GraphAdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphAdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", pathParameters) {
+        public GraphAdministrativeUnitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphAdministrativeUnitRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphAdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", rawUrl) {
+        public GraphAdministrativeUnitRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}/graph.administrativeUnit{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAdministrativeUnitRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAdministrativeUnitRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAdministrativeUnitRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAdministrativeUnitRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -115,7 +121,8 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item.GraphAdministrativeUnit {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.administrativeUnit
         /// </summary>
-        public class GraphAdministrativeUnitRequestBuilderGetQueryParameters {
+        public class GraphAdministrativeUnitRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Precise {
     /// <summary>
     /// Provides operations to call the floor_Precise method.
     /// </summary>
-    public class Floor_PreciseRequestBuilder : BaseCliRequestBuilder {
+    public class Floor_PreciseRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke action floor_Precise
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Invoke action floor_Precise";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -79,26 +81,30 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Precise {
         /// Instantiates a new <see cref="Floor_PreciseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public Floor_PreciseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/floor_Precise", pathParameters) {
+        public Floor_PreciseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/floor_Precise", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="Floor_PreciseRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public Floor_PreciseRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/floor_Precise", rawUrl) {
+        public Floor_PreciseRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/floor_Precise", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke action floor_Precise
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Floor_PrecisePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Floor_PrecisePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Floor_PrecisePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Floor_PrecisePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

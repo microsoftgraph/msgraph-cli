@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders {
     /// <summary>
     /// Provides operations to call the getAttackSimulationRepeatOffenders method.
     /// </summary>
-    public class GetAttackSimulationRepeatOffendersRequestBuilder : BaseCliRequestBuilder {
+    public class GetAttackSimulationRepeatOffendersRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getAttackSimulationRepeatOffenders
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getAttackSimulationRepeatOffenders";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
@@ -94,25 +96,29 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders {
         /// Instantiates a new <see cref="GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAttackSimulationRepeatOffendersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public GetAttackSimulationRepeatOffendersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetAttackSimulationRepeatOffendersRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetAttackSimulationRepeatOffendersRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public GetAttackSimulationRepeatOffendersRequestBuilder(string rawUrl) : base("{+baseurl}/reports/security/getAttackSimulationRepeatOffenders(){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getAttackSimulationRepeatOffenders
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -122,7 +128,8 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders {
         /// <summary>
         /// Invoke function getAttackSimulationRepeatOffenders
         /// </summary>
-        public class GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters {
+        public class GetAttackSimulationRepeatOffendersRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

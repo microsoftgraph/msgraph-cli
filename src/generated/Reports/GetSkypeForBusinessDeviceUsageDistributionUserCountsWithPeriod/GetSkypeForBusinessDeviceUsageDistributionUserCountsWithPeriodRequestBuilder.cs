@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWit
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessDeviceUsageDistributionUserCounts method.
     /// </summary>
-    public class GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder {
+    public class GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWit
         /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", pathParameters) {
+        public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", rawUrl) {
+        public GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageDistributionUserCounts(period='{period}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessDeviceUsageDistributionUserCounts
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

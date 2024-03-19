@@ -21,12 +21,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
     /// <summary>
     /// Provides operations to manage the assignmentScheduleInstances property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildActivatedUsingNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildActivatedUsingNavCommand()
+        {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);
@@ -41,8 +43,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Delete navigation property assignmentScheduleInstances for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentScheduleInstances for identityGovernance";
             var privilegedAccessGroupAssignmentScheduleInstanceIdOption = new Option<string>("--privileged-access-group-assignment-schedule-instance-id", description: "The unique identifier of privilegedAccessGroupAssignmentScheduleInstance") {
@@ -76,8 +79,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/privilegedaccessgroupassignmentscheduleinstance-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroupassignmentscheduleinstance-get?view=graph-rest-1.0";
             var privilegedAccessGroupAssignmentScheduleInstanceIdOption = new Option<string>("--privileged-access-group-assignment-schedule-instance-id", description: "The unique identifier of privilegedAccessGroupAssignmentScheduleInstance") {
@@ -127,8 +131,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupNavCommand()
+        {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.";
             var builder = new ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleInstances.Item.Group.GroupRequestBuilder(PathParameters);
@@ -149,8 +154,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Update the navigation property assignmentScheduleInstances in identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignmentScheduleInstances in identityGovernance";
             var privilegedAccessGroupAssignmentScheduleInstanceIdOption = new Option<string>("--privileged-access-group-assignment-schedule-instance-id", description: "The unique identifier of privilegedAccessGroupAssignmentScheduleInstance") {
@@ -199,8 +205,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPrincipalNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPrincipalNavCommand()
+        {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleInstance entity.";
             var builder = new PrincipalRequestBuilder(PathParameters);
@@ -216,25 +223,29 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// Instantiates a new <see cref="PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property assignmentScheduleInstances for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -244,14 +255,16 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -261,15 +274,17 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Update the navigation property assignmentScheduleInstances in identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrivilegedAccessGroupAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/{privilegedAccessGroupAssignmentScheduleInstance%2Did}", PathParameters);
@@ -280,7 +295,8 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         /// <summary>
         /// Read the properties and relationships of a privilegedAccessGroupAssignmentScheduleInstance object.
         /// </summary>
-        public class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters {
+        public class PrivilegedAccessGroupAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

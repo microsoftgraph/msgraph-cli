@@ -20,13 +20,15 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
     /// <summary>
     /// Provides operations to manage the notificationMessageTemplates property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class NotificationMessageTemplateItemRequestBuilder : BaseCliRequestBuilder {
+    public class NotificationMessageTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Deletes a notificationMessageTemplate.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Deletes a notificationMessageTemplate.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
@@ -60,8 +62,9 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Read properties and relationships of the notificationMessageTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read properties and relationships of the notificationMessageTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
@@ -111,8 +114,9 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLocalizedNotificationMessagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLocalizedNotificationMessagesNavCommand()
+        {
             var command = new Command("localized-notification-messages");
             command.Description = "Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.";
             var builder = new LocalizedNotificationMessagesRequestBuilder(PathParameters);
@@ -138,8 +142,9 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Update the properties of a notificationMessageTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a notificationMessageTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
@@ -188,8 +193,9 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to call the sendTestMessage method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSendTestMessageNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSendTestMessageNavCommand()
+        {
             var command = new Command("send-test-message");
             command.Description = "Provides operations to call the sendTestMessage method.";
             var builder = new SendTestMessageRequestBuilder(PathParameters);
@@ -205,25 +211,29 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// Instantiates a new <see cref="NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public NotificationMessageTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", pathParameters) {
+        public NotificationMessageTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="NotificationMessageTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public NotificationMessageTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", rawUrl) {
+        public NotificationMessageTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Deletes a notificationMessageTemplate.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -233,14 +243,16 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Read properties and relationships of the notificationMessageTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotificationMessageTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -250,15 +262,17 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Update the properties of a notificationMessageTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(NotificationMessageTemplate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}", PathParameters);
@@ -269,7 +283,8 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Read properties and relationships of the notificationMessageTemplate object.
         /// </summary>
-        public class NotificationMessageTemplateItemRequestBuilderGetQueryParameters {
+        public class NotificationMessageTemplateItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

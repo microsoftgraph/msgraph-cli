@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithPeriod {
     /// <summary>
     /// Provides operations to call the getEmailActivityUserDetail method.
     /// </summary>
-    public class GetEmailActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder {
+    public class GetEmailActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getEmailActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getEmailActivityUserDetail";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithPeriod {
         /// Instantiates a new <see cref="GetEmailActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetEmailActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailActivityUserDetail(period='{period}')", pathParameters) {
+        public GetEmailActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailActivityUserDetail(period='{period}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetEmailActivityUserDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetEmailActivityUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getEmailActivityUserDetail(period='{period}')", rawUrl) {
+        public GetEmailActivityUserDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getEmailActivityUserDetail(period='{period}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getEmailActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

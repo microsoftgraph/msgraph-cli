@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TrainingType {
+    public enum TrainingType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "phishing")]

@@ -18,12 +18,14 @@ namespace ApiSdk.Shares.Item.Site {
     /// <summary>
     /// Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
     /// </summary>
-    public class SiteRequestBuilder : BaseCliRequestBuilder {
+    public class SiteRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Used to access the underlying site
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Used to access the underlying site";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Shares.Item.Site {
         /// Instantiates a new <see cref="SiteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SiteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", pathParameters) {
+        public SiteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SiteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SiteRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", rawUrl) {
+        public SiteRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/site{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Used to access the underlying site
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SiteRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Shares.Item.Site {
         /// <summary>
         /// Used to access the underlying site
         /// </summary>
-        public class SiteRequestBuilderGetQueryParameters {
+        public class SiteRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

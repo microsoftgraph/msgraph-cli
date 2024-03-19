@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum ContainerPortProtocol {
+    public enum ContainerPortProtocol
+    {
         [EnumMember(Value = "udp")]
         Udp,
         [EnumMember(Value = "tcp")]

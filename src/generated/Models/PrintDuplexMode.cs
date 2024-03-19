@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrintDuplexMode {
+    public enum PrintDuplexMode
+    {
         [EnumMember(Value = "flipOnLongEdge")]
         FlipOnLongEdge,
         [EnumMember(Value = "flipOnShortEdge")]

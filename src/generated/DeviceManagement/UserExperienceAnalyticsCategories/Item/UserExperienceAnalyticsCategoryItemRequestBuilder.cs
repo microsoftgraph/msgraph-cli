@@ -19,12 +19,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsCategories property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsCategoryItemRequestBuilder : BaseCliRequestBuilder {
+    public class UserExperienceAnalyticsCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsCategories for deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property userExperienceAnalyticsCategories for deviceManagement";
             var userExperienceAnalyticsCategoryIdOption = new Option<string>("--user-experience-analytics-category-id", description: "The unique identifier of userExperienceAnalyticsCategory") {
@@ -57,8 +59,9 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// User experience analytics categories
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "User experience analytics categories";
             var userExperienceAnalyticsCategoryIdOption = new Option<string>("--user-experience-analytics-category-id", description: "The unique identifier of userExperienceAnalyticsCategory") {
@@ -108,8 +111,9 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMetricValuesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMetricValuesNavCommand()
+        {
             var command = new Command("metric-values");
             command.Description = "Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.";
             var builder = new MetricValuesRequestBuilder(PathParameters);
@@ -134,8 +138,9 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsCategories in deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property userExperienceAnalyticsCategories in deviceManagement";
             var userExperienceAnalyticsCategoryIdOption = new Option<string>("--user-experience-analytics-category-id", description: "The unique identifier of userExperienceAnalyticsCategory") {
@@ -185,25 +190,29 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// Instantiates a new <see cref="UserExperienceAnalyticsCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserExperienceAnalyticsCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}{?%24expand,%24select}", pathParameters) {
+        public UserExperienceAnalyticsCategoryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UserExperienceAnalyticsCategoryItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserExperienceAnalyticsCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}{?%24expand,%24select}", rawUrl) {
+        public UserExperienceAnalyticsCategoryItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsCategories for deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -213,14 +222,16 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// User experience analytics categories
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -230,15 +241,17 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// Update the navigation property userExperienceAnalyticsCategories in deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsCategory body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsCategory body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/userExperienceAnalyticsCategories/{userExperienceAnalyticsCategory%2Did}", PathParameters);
@@ -249,7 +262,8 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
         /// <summary>
         /// User experience analytics categories
         /// </summary>
-        public class UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters {
+        public class UserExperienceAnalyticsCategoryItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

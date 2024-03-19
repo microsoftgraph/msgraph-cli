@@ -31,12 +31,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
     /// <summary>
     /// Provides operations to manage the hosts property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostItemRequestBuilder : BaseCliRequestBuilder {
+    public class HostItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the childHostPairs property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildChildHostPairsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildChildHostPairsNavCommand()
+        {
             var command = new Command("child-host-pairs");
             command.Description = "Provides operations to manage the childHostPairs property of the microsoft.graph.security.host entity.";
             var builder = new ChildHostPairsRequestBuilder(PathParameters);
@@ -60,8 +62,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the components property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildComponentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildComponentsNavCommand()
+        {
             var command = new Command("components");
             command.Description = "Provides operations to manage the components property of the microsoft.graph.security.host entity.";
             var builder = new ComponentsRequestBuilder(PathParameters);
@@ -85,8 +88,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the cookies property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCookiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCookiesNavCommand()
+        {
             var command = new Command("cookies");
             command.Description = "Provides operations to manage the cookies property of the microsoft.graph.security.host entity.";
             var builder = new CookiesRequestBuilder(PathParameters);
@@ -110,8 +114,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Delete navigation property hosts for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property hosts for security";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -145,8 +150,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-get?view=graph-rest-1.0";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -196,8 +202,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the hostPairs property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHostPairsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHostPairsNavCommand()
+        {
             var command = new Command("host-pairs");
             command.Description = "Provides operations to manage the hostPairs property of the microsoft.graph.security.host entity.";
             var builder = new HostPairsRequestBuilder(PathParameters);
@@ -221,8 +228,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the parentHostPairs property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildParentHostPairsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildParentHostPairsNavCommand()
+        {
             var command = new Command("parent-host-pairs");
             command.Description = "Provides operations to manage the parentHostPairs property of the microsoft.graph.security.host entity.";
             var builder = new ParentHostPairsRequestBuilder(PathParameters);
@@ -246,8 +254,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPassiveDnsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPassiveDnsNavCommand()
+        {
             var command = new Command("passive-dns");
             command.Description = "Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.";
             var builder = new PassiveDnsRequestBuilder(PathParameters);
@@ -271,8 +280,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the passiveDnsReverse property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPassiveDnsReverseNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPassiveDnsReverseNavCommand()
+        {
             var command = new Command("passive-dns-reverse");
             command.Description = "Provides operations to manage the passiveDnsReverse property of the microsoft.graph.security.host entity.";
             var builder = new PassiveDnsReverseRequestBuilder(PathParameters);
@@ -296,8 +306,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Update the navigation property hosts in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property hosts in security";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
@@ -346,8 +357,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the ports property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPortsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPortsNavCommand()
+        {
             var command = new Command("ports");
             command.Description = "Provides operations to manage the ports property of the microsoft.graph.security.host entity.";
             var builder = new PortsRequestBuilder(PathParameters);
@@ -371,8 +383,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the reputation property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildReputationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildReputationNavCommand()
+        {
             var command = new Command("reputation");
             command.Description = "Provides operations to manage the reputation property of the microsoft.graph.security.host entity.";
             var builder = new ReputationRequestBuilder(PathParameters);
@@ -389,8 +402,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the sslCertificates property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSslCertificatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSslCertificatesNavCommand()
+        {
             var command = new Command("ssl-certificates");
             command.Description = "Provides operations to manage the sslCertificates property of the microsoft.graph.security.host entity.";
             var builder = new SslCertificatesRequestBuilder(PathParameters);
@@ -414,8 +428,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the subdomains property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSubdomainsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSubdomainsNavCommand()
+        {
             var command = new Command("subdomains");
             command.Description = "Provides operations to manage the subdomains property of the microsoft.graph.security.host entity.";
             var builder = new SubdomainsRequestBuilder(PathParameters);
@@ -439,8 +454,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the trackers property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTrackersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTrackersNavCommand()
+        {
             var command = new Command("trackers");
             command.Description = "Provides operations to manage the trackers property of the microsoft.graph.security.host entity.";
             var builder = new TrackersRequestBuilder(PathParameters);
@@ -464,8 +480,9 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Provides operations to manage the whois property of the microsoft.graph.security.host entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWhoisNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWhoisNavCommand()
+        {
             var command = new Command("whois");
             command.Description = "Provides operations to manage the whois property of the microsoft.graph.security.host entity.";
             var builder = new WhoisRequestBuilder(PathParameters);
@@ -481,25 +498,29 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// Instantiates a new <see cref="HostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", pathParameters) {
+        public HostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="HostItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public HostItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", rawUrl) {
+        public HostItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property hosts for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -509,14 +530,16 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HostItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -526,15 +549,17 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Update the navigation property hosts in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Host body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Host body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Host body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Security.Host body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/threatIntelligence/hosts/{host%2Did}", PathParameters);
@@ -545,7 +570,8 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
         /// <summary>
         /// Read the properties and relationships of a host object. The host resource is the abstract base type that returns an implementation. A host can be of one of the following types:
         /// </summary>
-        public class HostItemRequestBuilderGetQueryParameters {
+        public class HostItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

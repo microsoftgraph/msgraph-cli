@@ -17,12 +17,14 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
     /// <summary>
     /// Provides operations to call the sharedWithMe method.
     /// </summary>
-    public class SharedWithMeRequestBuilder : BaseCliRequestBuilder {
+    public class SharedWithMeRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function sharedWithMe
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function sharedWithMe";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -121,25 +123,29 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
         /// Instantiates a new <see cref="SharedWithMeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SharedWithMeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/sharedWithMe(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public SharedWithMeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/sharedWithMe(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SharedWithMeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SharedWithMeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/sharedWithMe(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public SharedWithMeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/sharedWithMe(){?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function sharedWithMe
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithMeRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithMeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithMeRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SharedWithMeRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -149,7 +155,8 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
         /// <summary>
         /// Invoke function sharedWithMe
         /// </summary>
-        public class SharedWithMeRequestBuilderGetQueryParameters {
+        public class SharedWithMeRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

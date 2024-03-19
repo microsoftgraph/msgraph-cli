@@ -29,12 +29,14 @@ namespace ApiSdk.Drives.Item {
     /// <summary>
     /// Provides operations to manage the collection of drive entities.
     /// </summary>
-    public class DriveItemRequestBuilder : BaseCliRequestBuilder {
+    public class DriveItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the bundles property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildBundlesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildBundlesNavCommand()
+        {
             var command = new Command("bundles");
             command.Description = "Provides operations to manage the bundles property of the microsoft.graph.drive entity.";
             var builder = new BundlesRequestBuilder(PathParameters);
@@ -59,8 +61,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreatedByUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreatedByUserNavCommand()
+        {
             var command = new Command("created-by-user");
             command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
             var builder = new CreatedByUserRequestBuilder(PathParameters);
@@ -82,8 +85,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Delete entity from drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete entity from drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -116,8 +120,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the following property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFollowingNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFollowingNavCommand()
+        {
             var command = new Command("following");
             command.Description = "Provides operations to manage the following property of the microsoft.graph.drive entity.";
             var builder = new FollowingRequestBuilder(PathParameters);
@@ -141,8 +146,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Get entity from drives by key
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get entity from drives by key";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -192,8 +198,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildItemsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildItemsNavCommand()
+        {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.drive entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
@@ -218,8 +225,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLastModifiedByUserNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLastModifiedByUserNavCommand()
+        {
             var command = new Command("last-modified-by-user");
             command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
             var builder = new LastModifiedByUserRequestBuilder(PathParameters);
@@ -241,8 +249,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the list property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListNavCommand()
+        {
             var command = new Command("list");
             command.Description = "Provides operations to manage the list property of the microsoft.graph.drive entity.";
             var builder = new ListRequestBuilder(PathParameters);
@@ -272,8 +281,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Update entity in drives
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update entity in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -322,8 +332,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRecentNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRecentNavCommand()
+        {
             var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
             var builder = new RecentRequestBuilder(PathParameters);
@@ -338,8 +349,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRootNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRootNavCommand()
+        {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
             var builder = new RootRequestBuilder(PathParameters);
@@ -360,8 +372,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the search method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSearchWithQRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSearchWithQRbCommand()
+        {
             var command = new Command("search-with-q");
             command.Description = "Provides operations to call the search method.";
             var builder = new SearchWithQRequestBuilder(PathParameters);
@@ -376,8 +389,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the sharedWithMe method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharedWithMeNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharedWithMeNavCommand()
+        {
             var command = new Command("shared-with-me");
             command.Description = "Provides operations to call the sharedWithMe method.";
             var builder = new SharedWithMeRequestBuilder(PathParameters);
@@ -392,8 +406,9 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the special property of the microsoft.graph.drive entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSpecialNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSpecialNavCommand()
+        {
             var command = new Command("special");
             command.Description = "Provides operations to manage the special property of the microsoft.graph.drive entity.";
             var builder = new SpecialRequestBuilder(PathParameters);
@@ -418,25 +433,29 @@ namespace ApiSdk.Drives.Item {
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}{?%24expand,%24select}", pathParameters) {
+        public DriveItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DriveItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}{?%24expand,%24select}", rawUrl) {
+        public DriveItemRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete entity from drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/drives/{drive%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -446,14 +465,16 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Get entity from drives by key
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DriveItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -463,15 +484,17 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Update entity in drives
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Drive body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}", PathParameters);
@@ -482,7 +505,8 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Get entity from drives by key
         /// </summary>
-        public class DriveItemRequestBuilderGetQueryParameters {
+        public class DriveItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

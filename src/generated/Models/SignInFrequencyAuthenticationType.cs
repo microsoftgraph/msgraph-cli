@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum SignInFrequencyAuthenticationType {
+    public enum SignInFrequencyAuthenticationType
+    {
         [EnumMember(Value = "primaryAndSecondaryAuthentication")]
         PrimaryAndSecondaryAuthentication,
         [EnumMember(Value = "secondaryAuthentication")]

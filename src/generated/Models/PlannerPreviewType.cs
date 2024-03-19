@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PlannerPreviewType {
+    public enum PlannerPreviewType
+    {
         [EnumMember(Value = "automatic")]
         Automatic,
         [EnumMember(Value = "noPreview")]

@@ -18,12 +18,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type {
     /// <summary>
     /// Provides operations to call the error_Type method.
     /// </summary>
-    public class Error_TypeRequestBuilder : BaseCliRequestBuilder {
+    public class Error_TypeRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke action error_Type
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Invoke action error_Type";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -79,26 +81,30 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type {
         /// Instantiates a new <see cref="Error_TypeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public Error_TypeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/error_Type", pathParameters) {
+        public Error_TypeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/error_Type", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="Error_TypeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public Error_TypeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/error_Type", rawUrl) {
+        public Error_TypeRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/functions/error_Type", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke action error_Type
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Error_TypePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Error_TypePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Error_TypePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Error_TypePostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

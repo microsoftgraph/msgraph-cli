@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class MediaContentRatingIreland : IAdditionalDataHolder, IParsable {
+    public class MediaContentRatingIreland : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Movies rating labels in Ireland</summary>
@@ -23,24 +24,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="MediaContentRatingIreland"/> and sets the default values.
         /// </summary>
-        public MediaContentRatingIreland() {
+        public MediaContentRatingIreland()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="MediaContentRatingIreland"></returns>
+        /// <returns>A <see cref="MediaContentRatingIreland"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static MediaContentRatingIreland CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static MediaContentRatingIreland CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new MediaContentRatingIreland();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"movieRating", n => { MovieRating = n.GetEnumValue<RatingIrelandMoviesType>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tvRating", n => { TvRating = n.GetEnumValue<RatingIrelandTelevisionType>(); } },
@@ -50,7 +55,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<RatingIrelandMoviesType>("movieRating", MovieRating);
             writer.WriteStringValue("@odata.type", OdataType);

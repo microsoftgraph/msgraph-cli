@@ -22,12 +22,14 @@ namespace ApiSdk.Applications.Item.Synchronization {
     /// <summary>
     /// Provides operations to manage the synchronization property of the microsoft.graph.application entity.
     /// </summary>
-    public class SynchronizationRequestBuilder : BaseCliRequestBuilder {
+    public class SynchronizationRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the acquireAccessToken method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAcquireAccessTokenNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAcquireAccessTokenNavCommand()
+        {
             var command = new Command("acquire-access-token");
             command.Description = "Provides operations to call the acquireAccessToken method.";
             var builder = new AcquireAccessTokenRequestBuilder(PathParameters);
@@ -42,8 +44,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Delete navigation property synchronization for applications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property synchronization for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -76,8 +79,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -127,8 +131,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildJobsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildJobsNavCommand()
+        {
             var command = new Command("jobs");
             command.Description = "Provides operations to manage the jobs property of the microsoft.graph.synchronization entity.";
             var builder = new JobsRequestBuilder(PathParameters);
@@ -154,8 +159,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Update the navigation property synchronization in applications
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPutCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPutCommand()
+        {
             var command = new Command("put");
             command.Description = "Update the navigation property synchronization in applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
@@ -204,8 +210,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// The secrets property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSecretsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSecretsNavCommand()
+        {
             var command = new Command("secrets");
             command.Description = "The secrets property";
             var builder = new SecretsRequestBuilder(PathParameters);
@@ -226,8 +233,9 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTemplatesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTemplatesNavCommand()
+        {
             var command = new Command("templates");
             command.Description = "Provides operations to manage the templates property of the microsoft.graph.synchronization entity.";
             var builder = new TemplatesRequestBuilder(PathParameters);
@@ -253,25 +261,29 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// Instantiates a new <see cref="SynchronizationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", pathParameters) {
+        public SynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SynchronizationRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", rawUrl) {
+        public SynchronizationRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property synchronization for applications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/applications/{application%2Did}/synchronization", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -281,14 +293,16 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SynchronizationRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -298,15 +312,17 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Update the navigation property synchronization in applications
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Synchronization body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Synchronization body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Synchronization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ApiSdk.Models.Synchronization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, "{+baseurl}/applications/{application%2Did}/synchronization", PathParameters);
@@ -317,7 +333,8 @@ namespace ApiSdk.Applications.Item.Synchronization {
         /// <summary>
         /// Represents the capability for Microsoft Entra identity synchronization through the Microsoft Graph API.
         /// </summary>
-        public class SynchronizationRequestBuilderGetQueryParameters {
+        public class SynchronizationRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

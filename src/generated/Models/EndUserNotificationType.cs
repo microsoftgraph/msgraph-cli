@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum EndUserNotificationType {
+    public enum EndUserNotificationType
+    {
         [EnumMember(Value = "unknown")]
         Unknown,
         [EnumMember(Value = "positiveReinforcement")]

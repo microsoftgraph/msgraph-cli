@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum ScheduleChangeState {
+    public enum ScheduleChangeState
+    {
         [EnumMember(Value = "pending")]
         Pending,
         [EnumMember(Value = "approved")]

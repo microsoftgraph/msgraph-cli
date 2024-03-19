@@ -18,14 +18,16 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
     /// <summary>
     /// Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentSchedule entity.
     /// </summary>
-    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder {
+    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
-        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
+        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it&apos;s null. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
-            command.Description = "When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.";
+            command.Description = "When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it's null. Supports $expand.";
             var privilegedAccessGroupAssignmentScheduleIdOption = new Option<string>("--privileged-access-group-assignment-schedule-id", description: "The unique identifier of privilegedAccessGroupAssignmentSchedule") {
             };
             privilegedAccessGroupAssignmentScheduleIdOption.IsRequired = true;
@@ -74,25 +76,29 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
         /// Instantiates a new <see cref="ActivatedUsingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ActivatedUsingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/activatedUsing{?%24expand,%24select}", pathParameters) {
+        public ActivatedUsingRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/activatedUsing{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ActivatedUsingRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ActivatedUsingRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/activatedUsing{?%24expand,%24select}", rawUrl) {
+        public ActivatedUsingRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/privilegedAccess/group/assignmentSchedules/{privilegedAccessGroupAssignmentSchedule%2Did}/activatedUsing{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
-        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
+        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it&apos;s null. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ActivatedUsingRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ActivatedUsingRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ActivatedUsingRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ActivatedUsingRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -100,9 +106,10 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.I
             return requestInfo;
         }
         /// <summary>
-        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it is null. Supports $expand.
+        /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it&apos;s null. Supports $expand.
         /// </summary>
-        public class ActivatedUsingRequestBuilderGetQueryParameters {
+        public class ActivatedUsingRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

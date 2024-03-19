@@ -18,13 +18,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
     /// <summary>
     /// Provides operations to manage the collection of directory entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder {
+    public class RefRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Use this API to remove a member (user, group, or device) from an administrative unit.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Use this API to remove a member (user, group, or device) from an administrative unit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
@@ -64,8 +66,9 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// Users and groups that are members of this administrative unit. Supports $expand.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
@@ -157,8 +160,9 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// Create new navigation property ref to members for directory
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to members for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
@@ -198,25 +202,29 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters) {
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl) {
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref{?%24count,%24filter,%24orderby,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Use this API to remove a member (user, group, or device) from an administrative unit.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<RefRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref?@id={%40id}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -226,14 +234,16 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RefRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RefRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RefRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RefRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -243,15 +253,17 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// <summary>
         /// Create new navigation property ref to members for directory
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ReferenceCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/$ref", PathParameters);
@@ -262,7 +274,8 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// <summary>
         /// Use this API to remove a member (user, group, or device) from an administrative unit.
         /// </summary>
-        public class RefRequestBuilderDeleteQueryParameters {
+        public class RefRequestBuilderDeleteQueryParameters 
+        {
             /// <summary>The delete Uri</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -277,7 +290,8 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
         /// </summary>
-        public class RefRequestBuilderGetQueryParameters {
+        public class RefRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

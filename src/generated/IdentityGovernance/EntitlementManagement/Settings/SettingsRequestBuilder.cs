@@ -18,12 +18,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
     /// <summary>
     /// Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class SettingsRequestBuilder : BaseCliRequestBuilder {
+    public class SettingsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property settings for identityGovernance
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property settings for identityGovernance";
             var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
@@ -51,8 +53,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// Retrieve the properties of an entitlementManagementSettings object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties of an entitlementManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -97,8 +100,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// Update an existing entitlementManagementSettings object to change one or more of its properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update an existing entitlementManagementSettings object to change one or more of its properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -142,25 +146,29 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// Instantiates a new <see cref="SettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", pathParameters) {
+        public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="SettingsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", rawUrl) {
+        public SettingsRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/settings{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property settings for identityGovernance
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/entitlementManagement/settings", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -170,14 +178,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// <summary>
         /// Retrieve the properties of an entitlementManagementSettings object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SettingsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SettingsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SettingsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<SettingsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -187,15 +197,17 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// <summary>
         /// Update an existing entitlementManagementSettings object to change one or more of its properties.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EntitlementManagementSettings body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EntitlementManagementSettings body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EntitlementManagementSettings body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EntitlementManagementSettings body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/entitlementManagement/settings", PathParameters);
@@ -206,7 +218,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
         /// <summary>
         /// Retrieve the properties of an entitlementManagementSettings object.
         /// </summary>
-        public class SettingsRequestBuilderGetQueryParameters {
+        public class SettingsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

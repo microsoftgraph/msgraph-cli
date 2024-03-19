@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamsAppPublishingState {
+    public enum TeamsAppPublishingState
+    {
         [EnumMember(Value = "submitted")]
         Submitted,
         [EnumMember(Value = "rejected")]

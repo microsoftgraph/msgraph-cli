@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RecurrencePatternType {
+    public enum RecurrencePatternType
+    {
         [EnumMember(Value = "daily")]
         Daily,
         [EnumMember(Value = "weekly")]

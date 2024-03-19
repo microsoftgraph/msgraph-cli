@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TaskStatus {
+    public enum TaskStatus
+    {
         [EnumMember(Value = "notStarted")]
         NotStarted,
         [EnumMember(Value = "inProgress")]

@@ -19,13 +19,15 @@ namespace ApiSdk.ApplicationTemplates.Item {
     /// <summary>
     /// Provides operations to manage the collection of applicationTemplate entities.
     /// </summary>
-    public class ApplicationTemplateItemRequestBuilder : BaseCliRequestBuilder {
+    public class ApplicationTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties of an applicationTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "The unique identifier of applicationTemplate") {
@@ -75,8 +77,9 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Provides operations to call the instantiate method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildInstantiateNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildInstantiateNavCommand()
+        {
             var command = new Command("instantiate");
             command.Description = "Provides operations to call the instantiate method.";
             var builder = new InstantiateRequestBuilder(PathParameters);
@@ -92,25 +95,29 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// Instantiates a new <see cref="ApplicationTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ApplicationTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", pathParameters) {
+        public ApplicationTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ApplicationTemplateItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ApplicationTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", rawUrl) {
+        public ApplicationTemplateItemRequestBuilder(string rawUrl) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationTemplateItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ApplicationTemplateItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -120,7 +127,8 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Retrieve the properties of an applicationTemplate object.
         /// </summary>
-        public class ApplicationTemplateItemRequestBuilderGetQueryParameters {
+        public class ApplicationTemplateItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertifi
     /// <summary>
     /// Provides operations to manage the mostRecentSslCertificate property of the microsoft.graph.security.hostPort entity.
     /// </summary>
-    public class MostRecentSslCertificateRequestBuilder : BaseCliRequestBuilder {
+    public class MostRecentSslCertificateRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The most recent sslCertificate used to communicate on the port.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The most recent sslCertificate used to communicate on the port.";
             var hostPortIdOption = new Option<string>("--host-port-id", description: "The unique identifier of hostPort") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertifi
         /// Instantiates a new <see cref="MostRecentSslCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MostRecentSslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", pathParameters) {
+        public MostRecentSslCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="MostRecentSslCertificateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MostRecentSslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", rawUrl) {
+        public MostRecentSslCertificateRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hostPorts/{hostPort%2Did}/mostRecentSslCertificate{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The most recent sslCertificate used to communicate on the port.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MostRecentSslCertificateRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MostRecentSslCertificateRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MostRecentSslCertificateRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MostRecentSslCertificateRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item.MostRecentSslCertifi
         /// <summary>
         /// The most recent sslCertificate used to communicate on the port.
         /// </summary>
-        public class MostRecentSslCertificateRequestBuilderGetQueryParameters {
+        public class MostRecentSslCertificateRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

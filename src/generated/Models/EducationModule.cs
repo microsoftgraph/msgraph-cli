@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class EducationModule : Entity, IParsable {
-        /// <summary>The createdBy property</summary>
+    public class EducationModule : Entity, IParsable 
+    {
+        /// <summary>The display name of the user that created the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public IdentitySet? CreatedBy { get; private set; }
@@ -14,9 +15,9 @@ namespace ApiSdk.Models {
 #else
         public IdentitySet CreatedBy { get; private set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>Date time the module was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; private set; }
-        /// <summary>The description property</summary>
+        /// <summary>Description of the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -24,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Name of the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -32,9 +33,9 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The isPinned property</summary>
+        /// <summary>Indicates whether the module is pinned or not.</summary>
         public bool? IsPinned { get; set; }
-        /// <summary>The lastModifiedBy property</summary>
+        /// <summary>The last user that modified the module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public IdentitySet? LastModifiedBy { get; private set; }
@@ -42,9 +43,9 @@ namespace ApiSdk.Models {
 #else
         public IdentitySet LastModifiedBy { get; private set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>Date time the module was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014, is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? LastModifiedDateTime { get; private set; }
-        /// <summary>The resources property</summary>
+        /// <summary>Learning objects that are associated with this module. Only teachers can modify this list. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EducationModuleResource>? Resources { get; set; }
@@ -52,7 +53,7 @@ namespace ApiSdk.Models {
 #else
         public List<EducationModuleResource> Resources { get; set; }
 #endif
-        /// <summary>The resourcesFolderUrl property</summary>
+        /// <summary>Folder URL where all the file resources for this module are stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResourcesFolderUrl { get; private set; }
@@ -60,23 +61,26 @@ namespace ApiSdk.Models {
 #else
         public string ResourcesFolderUrl { get; private set; }
 #endif
-        /// <summary>The status property</summary>
+        /// <summary>Status of the module. You can&apos;t use a PATCH operation to update this value. Possible values are: draft and published.</summary>
         public EducationModuleStatus? Status { get; private set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="EducationModule"></returns>
+        /// <returns>A <see cref="EducationModule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new EducationModule CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new EducationModule CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new EducationModule();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
@@ -93,7 +97,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("description", Description);

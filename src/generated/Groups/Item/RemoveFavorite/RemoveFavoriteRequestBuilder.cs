@@ -17,13 +17,15 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
     /// <summary>
     /// Provides operations to call the removeFavorite method.
     /// </summary>
-    public class RemoveFavoriteRequestBuilder : BaseCliRequestBuilder {
+    public class RemoveFavoriteRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -50,25 +52,29 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
         /// Instantiates a new <see cref="RemoveFavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RemoveFavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", pathParameters) {
+        public RemoveFavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RemoveFavoriteRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RemoveFavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", rawUrl) {
+        public RemoveFavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", rawUrl)
+        {
         }
         /// <summary>
         /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

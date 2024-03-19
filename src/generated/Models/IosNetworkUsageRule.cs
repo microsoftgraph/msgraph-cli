@@ -8,7 +8,8 @@ namespace ApiSdk.Models {
     /// <summary>
     /// Network Usage Rules allow enterprises to specify how managed apps use networks, such as cellular data networks.
     /// </summary>
-    public class IosNetworkUsageRule : IAdditionalDataHolder, IParsable {
+    public class IosNetworkUsageRule : IAdditionalDataHolder, IParsable 
+    {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>If set to true, corresponding managed apps will not be allowed to use cellular data at any time.</summary>
@@ -34,24 +35,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="IosNetworkUsageRule"/> and sets the default values.
         /// </summary>
-        public IosNetworkUsageRule() {
+        public IosNetworkUsageRule()
+        {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="IosNetworkUsageRule"></returns>
+        /// <returns>A <see cref="IosNetworkUsageRule"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static IosNetworkUsageRule CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static IosNetworkUsageRule CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new IosNetworkUsageRule();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>> {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>
+            {
                 {"cellularDataBlockWhenRoaming", n => { CellularDataBlockWhenRoaming = n.GetBoolValue(); } },
                 {"cellularDataBlocked", n => { CellularDataBlocked = n.GetBoolValue(); } },
                 {"managedApps", n => { ManagedApps = n.GetCollectionOfObjectValues<AppListItem>(AppListItem.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -62,7 +67,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public virtual void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("cellularDataBlocked", CellularDataBlocked);
             writer.WriteBoolValue("cellularDataBlockWhenRoaming", CellularDataBlockWhenRoaming);

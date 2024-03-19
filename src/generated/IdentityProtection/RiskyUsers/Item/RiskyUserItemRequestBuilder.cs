@@ -19,12 +19,14 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
     /// <summary>
     /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
     /// </summary>
-    public class RiskyUserItemRequestBuilder : BaseCliRequestBuilder {
+    public class RiskyUserItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property riskyUsers for identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskyUsers for identityProtection";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
@@ -58,8 +60,9 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// Read the properties and relationships of a riskyUser object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a riskyUser object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-get?view=graph-rest-1.0";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
@@ -109,8 +112,9 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildHistoryNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildHistoryNavCommand()
+        {
             var command = new Command("history");
             command.Description = "Provides operations to manage the history property of the microsoft.graph.riskyUser entity.";
             var builder = new HistoryRequestBuilder(PathParameters);
@@ -135,8 +139,9 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>
         /// Update the navigation property riskyUsers in identityProtection
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskyUsers in identityProtection";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
@@ -186,25 +191,29 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// Instantiates a new <see cref="RiskyUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RiskyUserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}{?%24expand,%24select}", pathParameters) {
+        public RiskyUserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="RiskyUserItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RiskyUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}{?%24expand,%24select}", rawUrl) {
+        public RiskyUserItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property riskyUsers for identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -214,14 +223,16 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>
         /// Read the properties and relationships of a riskyUser object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyUserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyUserItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyUserItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RiskyUserItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -231,15 +242,17 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>
         /// Update the navigation property riskyUsers in identityProtection
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(RiskyUser body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RiskyUser body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(RiskyUser body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(RiskyUser body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}", PathParameters);
@@ -250,7 +263,8 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
         /// <summary>
         /// Read the properties and relationships of a riskyUser object.
         /// </summary>
-        public class RiskyUserItemRequestBuilderGetQueryParameters {
+        public class RiskyUserItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

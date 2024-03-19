@@ -18,12 +18,14 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
     /// <summary>
     /// Builds and executes requests for operations under \servicePrincipals\{servicePrincipal-id}\owners\{directoryObject-id}
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphAppRoleAssignmentByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphAppRoleAssignmentByIdNavCommand()
+        {
             var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -38,8 +40,9 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphEndpointByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphEndpointByIdNavCommand()
+        {
             var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
@@ -54,8 +57,9 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphServicePrincipalByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphServicePrincipalByIdNavCommand()
+        {
             var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
@@ -70,8 +74,9 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphUserByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphUserByIdNavCommand()
+        {
             var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
@@ -86,8 +91,9 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefByIdNavCommand()
+        {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new RefRequestBuilder(PathParameters);
@@ -103,13 +109,15 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}", pathParameters) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}", rawUrl) {
+        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}", rawUrl)
+        {
         }
     }
 }

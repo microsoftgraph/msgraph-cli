@@ -27,12 +27,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
     /// <summary>
     /// Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.
     /// </summary>
-    public class BookingBusinessItemRequestBuilder : BaseCliRequestBuilder {
+    public class BookingBusinessItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAppointmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAppointmentsNavCommand()
+        {
             var command = new Command("appointments");
             command.Description = "Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.";
             var builder = new AppointmentsRequestBuilder(PathParameters);
@@ -57,8 +59,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCalendarViewNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCalendarViewNavCommand()
+        {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters);
@@ -83,8 +86,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCustomersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCustomersNavCommand()
+        {
             var command = new Command("customers");
             command.Description = "Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CustomersRequestBuilder(PathParameters);
@@ -109,8 +113,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the customQuestions property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCustomQuestionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCustomQuestionsNavCommand()
+        {
             var command = new Command("custom-questions");
             command.Description = "Provides operations to manage the customQuestions property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CustomQuestionsRequestBuilder(PathParameters);
@@ -136,8 +141,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// Delete a bookingBusiness object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -171,8 +177,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// Get the properties and relationships of a bookingBusiness object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -222,8 +229,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the getStaffAvailability method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetStaffAvailabilityNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetStaffAvailabilityNavCommand()
+        {
             var command = new Command("get-staff-availability");
             command.Description = "Provides operations to call the getStaffAvailability method.";
             var builder = new GetStaffAvailabilityRequestBuilder(PathParameters);
@@ -239,8 +247,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// Update the properties of a bookingBusiness object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
@@ -289,8 +298,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPublishNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPublishNavCommand()
+        {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -305,8 +315,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the services property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServicesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServicesNavCommand()
+        {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.bookingBusiness entity.";
             var builder = new ServicesRequestBuilder(PathParameters);
@@ -331,8 +342,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildStaffMembersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildStaffMembersNavCommand()
+        {
             var command = new Command("staff-members");
             command.Description = "Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.";
             var builder = new StaffMembersRequestBuilder(PathParameters);
@@ -357,8 +369,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the unpublish method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildUnpublishNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildUnpublishNavCommand()
+        {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
             var builder = new UnpublishRequestBuilder(PathParameters);
@@ -374,25 +387,29 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// Instantiates a new <see cref="BookingBusinessItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BookingBusinessItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}{?%24expand,%24select}", pathParameters) {
+        public BookingBusinessItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="BookingBusinessItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BookingBusinessItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}{?%24expand,%24select}", rawUrl) {
+        public BookingBusinessItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete a bookingBusiness object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -402,14 +419,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Get the properties and relationships of a bookingBusiness object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingBusinessItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingBusinessItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingBusinessItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BookingBusinessItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -419,15 +438,17 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Update the properties of a bookingBusiness object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(BookingBusiness body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}", PathParameters);
@@ -438,7 +459,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Get the properties and relationships of a bookingBusiness object.
         /// </summary>
-        public class BookingBusinessItemRequestBuilderGetQueryParameters {
+        public class BookingBusinessItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

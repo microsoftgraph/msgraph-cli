@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum OutlierMemberType {
+    public enum OutlierMemberType
+    {
         [EnumMember(Value = "user")]
         User,
         [EnumMember(Value = "unknownFutureValue")]

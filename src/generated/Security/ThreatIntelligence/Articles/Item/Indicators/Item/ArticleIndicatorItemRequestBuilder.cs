@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators.Item {
     /// <summary>
     /// Provides operations to manage the indicators property of the microsoft.graph.security.article entity.
     /// </summary>
-    public class ArticleIndicatorItemRequestBuilder : BaseCliRequestBuilder {
+    public class ArticleIndicatorItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Indicators related to this article.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Indicators related to this article.";
             var articleIdOption = new Option<string>("--article-id", description: "The unique identifier of article") {
@@ -80,25 +82,29 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators.Item {
         /// Instantiates a new <see cref="ArticleIndicatorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ArticleIndicatorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators/{articleIndicator%2Did}{?%24expand,%24select}", pathParameters) {
+        public ArticleIndicatorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators/{articleIndicator%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ArticleIndicatorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ArticleIndicatorItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators/{articleIndicator%2Did}{?%24expand,%24select}", rawUrl) {
+        public ArticleIndicatorItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articles/{article%2Did}/indicators/{articleIndicator%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Indicators related to this article.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArticleIndicatorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArticleIndicatorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArticleIndicatorItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArticleIndicatorItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -108,7 +114,8 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators.Item {
         /// <summary>
         /// Indicators related to this article.
         /// </summary>
-        public class ArticleIndicatorItemRequestBuilderGetQueryParameters {
+        public class ArticleIndicatorItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

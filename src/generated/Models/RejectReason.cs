@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum RejectReason {
+    public enum RejectReason
+    {
         [EnumMember(Value = "none")]
         None,
         [EnumMember(Value = "busy")]

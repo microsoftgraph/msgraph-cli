@@ -27,12 +27,14 @@ namespace ApiSdk.Education.Classes.Item {
     /// <summary>
     /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.
     /// </summary>
-    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder {
+    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentCategoriesNavCommand()
+        {
             var command = new Command("assignment-categories");
             command.Description = "Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentCategoriesRequestBuilder(PathParameters);
@@ -58,8 +60,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentDefaultsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentDefaultsNavCommand()
+        {
             var command = new Command("assignment-defaults");
             command.Description = "Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentDefaultsRequestBuilder(PathParameters);
@@ -76,8 +79,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentSettingsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentSettingsNavCommand()
+        {
             var command = new Command("assignment-settings");
             command.Description = "Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentSettingsRequestBuilder(PathParameters);
@@ -100,8 +104,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -128,8 +133,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-delete?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -163,8 +169,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you&apos;re using the delegated token, the user will only see classes in which they are members.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you're using the delegated token, the user will only see classes in which they are members.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-get?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -214,8 +221,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGroupNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGroupNavCommand()
+        {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.educationClass entity.";
             var builder = new GroupRequestBuilder(PathParameters);
@@ -236,8 +244,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMembersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMembersNavCommand()
+        {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.educationClass entity.";
             var builder = new MembersRequestBuilder(PathParameters);
@@ -262,8 +271,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the modules property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildModulesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildModulesNavCommand()
+        {
             var command = new Command("modules");
             command.Description = "Provides operations to manage the modules property of the microsoft.graph.educationClass entity.";
             var builder = new ModulesRequestBuilder(PathParameters);
@@ -289,8 +299,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// Update the properties of an educationClass object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationClass object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-update?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
@@ -339,8 +350,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSchoolsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSchoolsNavCommand()
+        {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationClass entity.";
             var builder = new SchoolsRequestBuilder(PathParameters);
@@ -364,8 +376,9 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeachersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeachersNavCommand()
+        {
             var command = new Command("teachers");
             command.Description = "Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.";
             var builder = new TeachersRequestBuilder(PathParameters);
@@ -391,25 +404,29 @@ namespace ApiSdk.Education.Classes.Item {
         /// Instantiates a new <see cref="EducationClassItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters) {
+        public EducationClassItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="EducationClassItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl) {
+        public EducationClassItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/classes/{educationClass%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete an educationClass. Because a class is also a universal group, deleting a class deletes the group.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/education/classes/{educationClass%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -419,14 +436,16 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you&apos;re using the delegated token, the user will only see classes in which they are members.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EducationClassItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -436,15 +455,17 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Update the properties of an educationClass object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(EducationClass body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationClass body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(EducationClass body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(EducationClass body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/education/classes/{educationClass%2Did}", PathParameters);
@@ -455,7 +476,8 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Retrieve a class from the system. A class is a universal group with a special property that indicates to the system that the group is a class. Group members represent the students; group admins represent the teachers in the class. If you&apos;re using the delegated token, the user will only see classes in which they are members.
         /// </summary>
-        public class EducationClassItemRequestBuilderGetQueryParameters {
+        public class EducationClassItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

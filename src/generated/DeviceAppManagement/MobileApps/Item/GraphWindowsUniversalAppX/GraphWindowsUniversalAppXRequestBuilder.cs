@@ -22,12 +22,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
     /// <summary>
     /// Casts the previous resource to windowsUniversalAppX.
     /// </summary>
-    public class GraphWindowsUniversalAppXRequestBuilder : BaseCliRequestBuilder {
+    public class GraphWindowsUniversalAppXRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAssignmentsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAssignmentsNavCommand()
+        {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
@@ -52,8 +54,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCategoriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCategoriesNavCommand()
+        {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
@@ -77,8 +80,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// <summary>
         /// Provides operations to manage the committedContainedApps property of the microsoft.graph.windowsUniversalAppX entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCommittedContainedAppsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCommittedContainedAppsNavCommand()
+        {
             var command = new Command("committed-contained-apps");
             command.Description = "Provides operations to manage the committedContainedApps property of the microsoft.graph.windowsUniversalAppX entity.";
             var builder = new CommittedContainedAppsRequestBuilder(PathParameters);
@@ -103,8 +107,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// <summary>
         /// Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildContentVersionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildContentVersionsNavCommand()
+        {
             var command = new Command("content-versions");
             command.Description = "Provides operations to manage the contentVersions property of the microsoft.graph.mobileLobApp entity.";
             var builder = new ContentVersionsRequestBuilder(PathParameters);
@@ -129,8 +134,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsUniversalAppX
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsUniversalAppX";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
@@ -181,25 +187,29 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// Instantiates a new <see cref="GraphWindowsUniversalAppXRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphWindowsUniversalAppXRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX{?%24expand,%24select}", pathParameters) {
+        public GraphWindowsUniversalAppXRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphWindowsUniversalAppXRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphWindowsUniversalAppXRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX{?%24expand,%24select}", rawUrl) {
+        public GraphWindowsUniversalAppXRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsUniversalAppX{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsUniversalAppX
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsUniversalAppXRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsUniversalAppXRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsUniversalAppXRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsUniversalAppXRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -209,7 +219,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
         /// <summary>
         /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsUniversalAppX
         /// </summary>
-        public class GraphWindowsUniversalAppXRequestBuilderGetQueryParameters {
+        public class GraphWindowsUniversalAppXRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

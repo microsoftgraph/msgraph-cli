@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AutomaticRepliesStatus {
+    public enum AutomaticRepliesStatus
+    {
         [EnumMember(Value = "disabled")]
         Disabled,
         [EnumMember(Value = "alwaysEnabled")]

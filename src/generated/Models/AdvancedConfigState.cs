@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum AdvancedConfigState {
+    public enum AdvancedConfigState
+    {
         [EnumMember(Value = "default")]
         Default,
         [EnumMember(Value = "enabled")]

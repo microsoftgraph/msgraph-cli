@@ -18,13 +18,15 @@ namespace ApiSdk.Print.Connectors.Item {
     /// <summary>
     /// Provides operations to manage the connectors property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrintConnectorItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrintConnectorItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete (unregister) a printConnector.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-delete?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete (unregister) a printConnector.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-delete?view=graph-rest-1.0";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
@@ -58,8 +60,9 @@ namespace ApiSdk.Print.Connectors.Item {
         /// Retrieve the properties and relationships of a printConnector object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a printConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-get?view=graph-rest-1.0";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
@@ -110,8 +113,9 @@ namespace ApiSdk.Print.Connectors.Item {
         /// Update the properties of a printConnector object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-update?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the properties of a printConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-update?view=graph-rest-1.0";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
@@ -161,25 +165,29 @@ namespace ApiSdk.Print.Connectors.Item {
         /// Instantiates a new <see cref="PrintConnectorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/connectors/{printConnector%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrintConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/connectors/{printConnector%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrintConnectorItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintConnectorItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/connectors/{printConnector%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrintConnectorItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/connectors/{printConnector%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete (unregister) a printConnector.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/print/connectors/{printConnector%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -189,14 +197,16 @@ namespace ApiSdk.Print.Connectors.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printConnector object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintConnectorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintConnectorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintConnectorItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintConnectorItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -206,15 +216,17 @@ namespace ApiSdk.Print.Connectors.Item {
         /// <summary>
         /// Update the properties of a printConnector object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrintConnector body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintConnector body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrintConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/print/connectors/{printConnector%2Did}", PathParameters);
@@ -225,7 +237,8 @@ namespace ApiSdk.Print.Connectors.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a printConnector object.
         /// </summary>
-        public class PrintConnectorItemRequestBuilderGetQueryParameters {
+        public class PrintConnectorItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -19,12 +19,14 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
     /// <summary>
     /// Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.
     /// </summary>
-    public class PrintTaskTriggerItemRequestBuilder : BaseCliRequestBuilder {
+    public class PrintTaskTriggerItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDefinitionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDefinitionNavCommand()
+        {
             var command = new Command("definition");
             command.Description = "Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.";
             var builder = new DefinitionRequestBuilder(PathParameters);
@@ -40,8 +42,9 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -81,8 +84,9 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printtasktrigger-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printtasktrigger-get?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -138,8 +142,9 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// <summary>
         /// Update the navigation property taskTriggers in print
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property taskTriggers in print";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
@@ -195,25 +200,29 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// Instantiates a new <see cref="PrintTaskTriggerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PrintTaskTriggerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", pathParameters) {
+        public PrintTaskTriggerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PrintTaskTriggerItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PrintTaskTriggerItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", rawUrl) {
+        public PrintTaskTriggerItemRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -223,14 +232,16 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// <summary>
         /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskTriggerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskTriggerItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskTriggerItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PrintTaskTriggerItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -240,15 +251,17 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// <summary>
         /// Update the navigation property taskTriggers in print
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PrintTaskTrigger body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintTaskTrigger body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PrintTaskTrigger body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PrintTaskTrigger body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}", PathParameters);
@@ -259,7 +272,8 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// <summary>
         /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
-        public class PrintTaskTriggerItemRequestBuilderGetQueryParameters {
+        public class PrintTaskTriggerItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

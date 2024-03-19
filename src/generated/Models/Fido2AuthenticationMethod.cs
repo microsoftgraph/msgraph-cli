@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class Fido2AuthenticationMethod : AuthenticationMethod, IParsable {
+    public class Fido2AuthenticationMethod : AuthenticationMethod, IParsable 
+    {
         /// <summary>Authenticator Attestation GUID, an identifier that indicates the type (e.g. make and model) of the authenticator.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,24 +46,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Fido2AuthenticationMethod"/> and sets the default values.
         /// </summary>
-        public Fido2AuthenticationMethod() : base() {
+        public Fido2AuthenticationMethod() : base()
+        {
             OdataType = "#microsoft.graph.fido2AuthenticationMethod";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Fido2AuthenticationMethod"></returns>
+        /// <returns>A <see cref="Fido2AuthenticationMethod"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Fido2AuthenticationMethod CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Fido2AuthenticationMethod();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"aaGuid", n => { AaGuid = n.GetStringValue(); } },
                 {"attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"attestationLevel", n => { AttestationLevel = n.GetEnumValue<AttestationLevel>(); } },
@@ -75,7 +80,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("aaGuid", AaGuid);

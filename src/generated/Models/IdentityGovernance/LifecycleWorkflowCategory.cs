@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
-    public enum LifecycleWorkflowCategory {
+    public enum LifecycleWorkflowCategory
+    {
         [EnumMember(Value = "joiner")]
         Joiner,
         [EnumMember(Value = "leaver")]

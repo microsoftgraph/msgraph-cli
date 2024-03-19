@@ -18,12 +18,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
     /// <summary>
     /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.
     /// </summary>
-    public class AccessPackageRequestBuilder : BaseCliRequestBuilder {
+    public class AccessPackageRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.";
             var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
@@ -74,25 +76,29 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// Instantiates a new <see cref="AccessPackageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AccessPackageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", pathParameters) {
+        public AccessPackageRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AccessPackageRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AccessPackageRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", rawUrl) {
+        public AccessPackageRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/{accessPackageAssignment%2Did}/accessPackage{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AccessPackageRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Acces
         /// <summary>
         /// Read-only. Nullable. Supports $filter (eq) on the id property and $expand query parameters.
         /// </summary>
-        public class AccessPackageRequestBuilderGetQueryParameters {
+        public class AccessPackageRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

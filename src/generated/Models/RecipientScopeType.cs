@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     [Flags]
-    public enum RecipientScopeType {
+    public enum RecipientScopeType
+    {
         [EnumMember(Value = "none")]
         None = 1,
         [EnumMember(Value = "internal")]

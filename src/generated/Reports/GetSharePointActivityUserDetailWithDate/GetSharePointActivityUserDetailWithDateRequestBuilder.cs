@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithDate {
     /// <summary>
     /// Provides operations to call the getSharePointActivityUserDetail method.
     /// </summary>
-    public class GetSharePointActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder {
+    public class GetSharePointActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getSharePointActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getSharePointActivityUserDetail";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithDate {
         /// Instantiates a new <see cref="GetSharePointActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSharePointActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", pathParameters) {
+        public GetSharePointActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetSharePointActivityUserDetailWithDateRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetSharePointActivityUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", rawUrl) {
+        public GetSharePointActivityUserDetailWithDateRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getSharePointActivityUserDetail
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

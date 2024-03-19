@@ -17,13 +17,15 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
     /// <summary>
     /// Provides operations to call the grant method.
     /// </summary>
-    public class GrantRequestBuilder : BaseCliRequestBuilder {
+    public class GrantRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Grant users access to a link represented by a [permission][].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
@@ -84,26 +86,30 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
         /// Instantiates a new <see cref="GrantRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GrantRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission/grant", pathParameters) {
+        public GrantRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission/grant", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GrantRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GrantRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission/grant", rawUrl) {
+        public GrantRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission/grant", rawUrl)
+        {
         }
         /// <summary>
         /// Grant users access to a link represented by a [permission][].
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GrantPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GrantPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GrantPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GrantPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

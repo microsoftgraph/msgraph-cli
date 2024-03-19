@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Android required password type.</summary>
-    public enum AndroidRequiredPasswordType {
+    public enum AndroidRequiredPasswordType
+    {
         /// <summary>Device default value, no intent.</summary>
         [EnumMember(Value = "deviceDefault")]
         DeviceDefault,

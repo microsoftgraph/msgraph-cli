@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class Site : BaseItem, IParsable {
+    public class Site : BaseItem, IParsable 
+    {
         /// <summary>Analytics about the view activities that took place in this site.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -105,6 +106,14 @@ namespace ApiSdk.Models {
 #else
         public List<RichLongRunningOperation> Operations { get; set; }
 #endif
+        /// <summary>The pages property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<BaseSitePage>? Pages { get; set; }
+#nullable restore
+#else
+        public List<BaseSitePage> Pages { get; set; }
+#endif
         /// <summary>The permissions associated with the site. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -164,24 +173,28 @@ namespace ApiSdk.Models {
         /// <summary>
         /// Instantiates a new <see cref="Site"/> and sets the default values.
         /// </summary>
-        public Site() : base() {
+        public Site() : base()
+        {
             OdataType = "#microsoft.graph.site";
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <cref="Site"></returns>
+        /// <returns>A <see cref="Site"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new Site CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Site CreateFromDiscriminatorValue(IParseNode parseNode)
+        {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             return new Site();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        /// <returns>A <cref="IDictionary<string, Action<IParseNode>>"></returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+        /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        {
+            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            {
                 {"analytics", n => { Analytics = n.GetObjectValue<ItemAnalytics>(ItemAnalytics.CreateFromDiscriminatorValue); } },
                 {"columns", n => { Columns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"contentTypes", n => { ContentTypes = n.GetCollectionOfObjectValues<ContentType>(ContentType.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -195,6 +208,7 @@ namespace ApiSdk.Models {
                 {"lists", n => { Lists = n.GetCollectionOfObjectValues<List>(List.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"onenote", n => { Onenote = n.GetObjectValue<ApiSdk.Models.Onenote>(ApiSdk.Models.Onenote.CreateFromDiscriminatorValue); } },
                 {"operations", n => { Operations = n.GetCollectionOfObjectValues<RichLongRunningOperation>(RichLongRunningOperation.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"pages", n => { Pages = n.GetCollectionOfObjectValues<BaseSitePage>(BaseSitePage.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"permissions", n => { Permissions = n.GetCollectionOfObjectValues<Permission>(Permission.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"root", n => { Root = n.GetObjectValue<ApiSdk.Models.Root>(ApiSdk.Models.Root.CreateFromDiscriminatorValue); } },
                 {"sharepointIds", n => { SharepointIds = n.GetObjectValue<ApiSdk.Models.SharepointIds>(ApiSdk.Models.SharepointIds.CreateFromDiscriminatorValue); } },
@@ -208,7 +222,8 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer)
+        {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ItemAnalytics>("analytics", Analytics);
@@ -224,6 +239,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<List>("lists", Lists);
             writer.WriteObjectValue<ApiSdk.Models.Onenote>("onenote", Onenote);
             writer.WriteCollectionOfObjectValues<RichLongRunningOperation>("operations", Operations);
+            writer.WriteCollectionOfObjectValues<BaseSitePage>("pages", Pages);
             writer.WriteCollectionOfObjectValues<Permission>("permissions", Permissions);
             writer.WriteObjectValue<ApiSdk.Models.Root>("root", Root);
             writer.WriteObjectValue<ApiSdk.Models.SharepointIds>("sharepointIds", SharepointIds);

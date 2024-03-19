@@ -18,12 +18,14 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item.GraphDevice {
     /// <summary>
     /// Casts the previous resource to device.
     /// </summary>
-    public class GraphDeviceRequestBuilder : BaseCliRequestBuilder {
+    public class GraphDeviceRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.device
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.device";
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
@@ -87,25 +89,29 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item.GraphDevice {
         /// Instantiates a new <see cref="GraphDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/members/{directoryObject%2Did}/graph.device{?%24expand,%24select}", pathParameters) {
+        public GraphDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/members/{directoryObject%2Did}/graph.device{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphDeviceRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/members/{directoryObject%2Did}/graph.device{?%24expand,%24select}", rawUrl) {
+        public GraphDeviceRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/members/{directoryObject%2Did}/graph.device{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.device
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphDeviceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphDeviceRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphDeviceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphDeviceRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -115,7 +121,8 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item.GraphDevice {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.device
         /// </summary>
-        public class GraphDeviceRequestBuilderGetQueryParameters {
+        public class GraphDeviceRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

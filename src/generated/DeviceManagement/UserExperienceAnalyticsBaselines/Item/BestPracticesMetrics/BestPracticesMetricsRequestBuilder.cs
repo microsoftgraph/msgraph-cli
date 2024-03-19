@@ -18,12 +18,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPrac
     /// <summary>
     /// Provides operations to manage the bestPracticesMetrics property of the microsoft.graph.userExperienceAnalyticsBaseline entity.
     /// </summary>
-    public class BestPracticesMetricsRequestBuilder : BaseCliRequestBuilder {
+    public class BestPracticesMetricsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The scores and insights for the best practices metrics.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The scores and insights for the best practices metrics.";
             var userExperienceAnalyticsBaselineIdOption = new Option<string>("--user-experience-analytics-baseline-id", description: "The unique identifier of userExperienceAnalyticsBaseline") {
@@ -74,25 +76,29 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPrac
         /// Instantiates a new <see cref="BestPracticesMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BestPracticesMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/bestPracticesMetrics{?%24expand,%24select}", pathParameters) {
+        public BestPracticesMetricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/bestPracticesMetrics{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="BestPracticesMetricsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public BestPracticesMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/bestPracticesMetrics{?%24expand,%24select}", rawUrl) {
+        public BestPracticesMetricsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsBaselines/{userExperienceAnalyticsBaseline%2Did}/bestPracticesMetrics{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The scores and insights for the best practices metrics.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BestPracticesMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BestPracticesMetricsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BestPracticesMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<BestPracticesMetricsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines.Item.BestPrac
         /// <summary>
         /// The scores and insights for the best practices metrics.
         /// </summary>
-        public class BestPracticesMetricsRequestBuilderGetQueryParameters {
+        public class BestPracticesMetricsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

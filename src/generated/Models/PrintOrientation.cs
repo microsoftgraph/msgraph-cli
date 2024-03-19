@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum PrintOrientation {
+    public enum PrintOrientation
+    {
         [EnumMember(Value = "portrait")]
         Portrait,
         [EnumMember(Value = "landscape")]

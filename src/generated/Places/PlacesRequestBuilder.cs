@@ -17,12 +17,14 @@ namespace ApiSdk.Places {
     /// <summary>
     /// Builds and executes requests for operations under \places
     /// </summary>
-    public class PlacesRequestBuilder : BaseCliRequestBuilder {
+    public class PlacesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of place entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new PlaceItemRequestBuilder(PathParameters);
@@ -35,8 +37,9 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -51,8 +54,9 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to roomList.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphRoomListNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphRoomListNavCommand()
+        {
             var command = new Command("graph-room-list");
             command.Description = "Casts the previous resource to roomList.";
             var builder = new GraphRoomListRequestBuilder(PathParameters);
@@ -73,8 +77,9 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphRoomNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphRoomNavCommand()
+        {
             var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
@@ -96,13 +101,15 @@ namespace ApiSdk.Places {
         /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PlacesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places", pathParameters) {
+        public PlacesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/places", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PlacesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PlacesRequestBuilder(string rawUrl) : base("{+baseurl}/places", rawUrl) {
+        public PlacesRequestBuilder(string rawUrl) : base("{+baseurl}/places", rawUrl)
+        {
         }
     }
 }

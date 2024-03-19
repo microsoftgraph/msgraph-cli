@@ -17,13 +17,15 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
     /// <summary>
     /// Provides operations to manage the media for the organization entity.
     /// </summary>
-    public class CustomCSSRequestBuilder : BaseCliRequestBuilder {
+    public class CustomCSSRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
@@ -67,8 +69,9 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPutCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPutCommand()
+        {
             var command = new Command("put");
             command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
@@ -128,25 +131,29 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
         /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CustomCSSRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", pathParameters) {
+        public CustomCSSRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="CustomCSSRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CustomCSSRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", rawUrl) {
+        public CustomCSSRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/customCSS", rawUrl)
+        {
         }
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -156,16 +163,18 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
         /// <param name="contentType">The request body content type.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(Stream body, string contentType, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             if(string.IsNullOrEmpty(contentType)) throw new ArgumentNullException(nameof(contentType));

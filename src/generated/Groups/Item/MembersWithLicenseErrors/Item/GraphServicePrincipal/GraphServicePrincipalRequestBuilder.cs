@@ -18,12 +18,14 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphServicePrincipal
     /// <summary>
     /// Casts the previous resource to servicePrincipal.
     /// </summary>
-    public class GraphServicePrincipalRequestBuilder : BaseCliRequestBuilder {
+    public class GraphServicePrincipalRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -87,25 +89,29 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphServicePrincipal
         /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", pathParameters) {
+        public GraphServicePrincipalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GraphServicePrincipalRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", rawUrl) {
+        public GraphServicePrincipalRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/membersWithLicenseErrors/{directoryObject%2Did}/graph.servicePrincipal{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphServicePrincipalRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -115,7 +121,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphServicePrincipal
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.servicePrincipal
         /// </summary>
-        public class GraphServicePrincipalRequestBuilderGetQueryParameters {
+        public class GraphServicePrincipalRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

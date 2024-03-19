@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum MediaDirection {
+    public enum MediaDirection
+    {
         [EnumMember(Value = "inactive")]
         Inactive,
         [EnumMember(Value = "sendOnly")]

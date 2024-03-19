@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum FeatureTargetType {
+    public enum FeatureTargetType
+    {
         [EnumMember(Value = "group")]
         Group,
         [EnumMember(Value = "administrativeUnit")]

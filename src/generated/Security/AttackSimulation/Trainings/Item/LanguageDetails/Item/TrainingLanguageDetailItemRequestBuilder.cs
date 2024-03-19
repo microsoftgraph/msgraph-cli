@@ -18,12 +18,14 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
     /// <summary>
     /// Provides operations to manage the languageDetails property of the microsoft.graph.training entity.
     /// </summary>
-    public class TrainingLanguageDetailItemRequestBuilder : BaseCliRequestBuilder {
+    public class TrainingLanguageDetailItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property languageDetails for security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property languageDetails for security";
             var trainingIdOption = new Option<string>("--training-id", description: "The unique identifier of training") {
@@ -62,8 +64,9 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// <summary>
         /// Language specific details on a training.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Language specific details on a training.";
             var trainingIdOption = new Option<string>("--training-id", description: "The unique identifier of training") {
@@ -119,8 +122,9 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// <summary>
         /// Update the navigation property languageDetails in security
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property languageDetails in security";
             var trainingIdOption = new Option<string>("--training-id", description: "The unique identifier of training") {
@@ -176,25 +180,29 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// Instantiates a new <see cref="TrainingLanguageDetailItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TrainingLanguageDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}{?%24expand,%24select}", pathParameters) {
+        public TrainingLanguageDetailItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="TrainingLanguageDetailItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public TrainingLanguageDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}{?%24expand,%24select}", rawUrl) {
+        public TrainingLanguageDetailItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property languageDetails for security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -204,14 +212,16 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// <summary>
         /// Language specific details on a training.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TrainingLanguageDetailItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TrainingLanguageDetailItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TrainingLanguageDetailItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TrainingLanguageDetailItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -221,15 +231,17 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// <summary>
         /// Update the navigation property languageDetails in security
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(TrainingLanguageDetail body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TrainingLanguageDetail body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(TrainingLanguageDetail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(TrainingLanguageDetail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails/{trainingLanguageDetail%2Did}", PathParameters);
@@ -240,7 +252,8 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
         /// <summary>
         /// Language specific details on a training.
         /// </summary>
-        public class TrainingLanguageDetailItemRequestBuilderGetQueryParameters {
+        public class TrainingLanguageDetailItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -24,12 +24,14 @@ namespace ApiSdk.Devices {
     /// <summary>
     /// Provides operations to manage the collection of device entities.
     /// </summary>
-    public class DevicesRequestBuilder : BaseCliRequestBuilder {
+    public class DevicesRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new DeviceItemRequestBuilder(PathParameters);
@@ -51,8 +53,9 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCountNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCountNavCommand()
+        {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -68,8 +71,9 @@ namespace ApiSdk.Devices {
         /// Create and register a new device in the organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCreateCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCreateCommand()
+        {
             var command = new Command("create");
             command.Description = "Create and register a new device in the organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-devices?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -112,8 +116,9 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeltaNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeltaNavCommand()
+        {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -128,8 +133,9 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetAvailableExtensionPropertiesNavCommand()
+        {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -144,8 +150,9 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetByIdsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetByIdsNavCommand()
+        {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -161,8 +168,9 @@ namespace ApiSdk.Devices {
         /// Retrieve a list of device objects registered in the organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "Retrieve a list of device objects registered in the organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
@@ -261,8 +269,9 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildValidatePropertiesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildValidatePropertiesNavCommand()
+        {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
@@ -278,25 +287,29 @@ namespace ApiSdk.Devices {
         /// Instantiates a new <see cref="DevicesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DevicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters) {
+        public DevicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DevicesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DevicesRequestBuilder(string rawUrl) : base("{+baseurl}/devices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl) {
+        public DevicesRequestBuilder(string rawUrl) : base("{+baseurl}/devices{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieve a list of device objects registered in the organization.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DevicesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DevicesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DevicesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DevicesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -306,15 +319,17 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Create and register a new device in the organization.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/devices", PathParameters);
@@ -325,7 +340,8 @@ namespace ApiSdk.Devices {
         /// <summary>
         /// Retrieve a list of device objects registered in the organization.
         /// </summary>
-        public class DevicesRequestBuilderGetQueryParameters {
+        public class DevicesRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

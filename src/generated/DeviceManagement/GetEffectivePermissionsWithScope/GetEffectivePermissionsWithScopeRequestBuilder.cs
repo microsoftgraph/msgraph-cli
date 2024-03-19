@@ -17,12 +17,14 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
     /// <summary>
     /// Provides operations to call the getEffectivePermissions method.
     /// </summary>
-    public class GetEffectivePermissionsWithScopeRequestBuilder : BaseCliRequestBuilder {
+    public class GetEffectivePermissionsWithScopeRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieves the effective permissions of the currently authenticated user";
             var scopeOption = new Option<string>("--scope", description: "Usage: scope='{scope}'") {
@@ -100,25 +102,29 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// Instantiates a new <see cref="GetEffectivePermissionsWithScopeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters) {
+        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24count,%24filter,%24search,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetEffectivePermissionsWithScopeRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetEffectivePermissionsWithScopeRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl) {
+        public GetEffectivePermissionsWithScopeRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24count,%24filter,%24search,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -128,7 +134,8 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
         /// </summary>
-        public class GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters {
+        public class GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters 
+        {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }

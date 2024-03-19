@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models.Security {
-    public enum DataSourceContainerStatus {
+    public enum DataSourceContainerStatus
+    {
         [EnumMember(Value = "active")]
         Active,
         [EnumMember(Value = "released")]

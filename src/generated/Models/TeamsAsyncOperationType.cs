@@ -2,7 +2,8 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    public enum TeamsAsyncOperationType {
+    public enum TeamsAsyncOperationType
+    {
         [EnumMember(Value = "invalid")]
         Invalid,
         [EnumMember(Value = "cloneTeam")]

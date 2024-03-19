@@ -20,12 +20,14 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.group entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The groups that a group is a member of, either directly or through nested membership. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -88,8 +90,9 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to administrativeUnit.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphAdministrativeUnitByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphAdministrativeUnitByIdNavCommand()
+        {
             var command = new Command("graph-administrative-unit-by-id");
             command.Description = "Casts the previous resource to administrativeUnit.";
             var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
@@ -104,8 +107,9 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGraphGroupByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGraphGroupByIdNavCommand()
+        {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
@@ -121,25 +125,29 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}{?%24expand,%24select}", pathParameters) {
+        public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryObjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}{?%24expand,%24select}", rawUrl) {
+        public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf/{directoryObject%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DirectoryObjectItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -149,7 +157,8 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf.Item {
         /// <summary>
         /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// </summary>
-        public class DirectoryObjectItemRequestBuilderGetQueryParameters {
+        public class DirectoryObjectItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

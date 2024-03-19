@@ -21,12 +21,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
     /// <summary>
     /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
     /// </summary>
-    public class NotebookItemRequestBuilder : BaseCliRequestBuilder {
+    public class NotebookItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the copyNotebook method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCopyNotebookNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCopyNotebookNavCommand()
+        {
             var command = new Command("copy-notebook");
             command.Description = "Provides operations to call the copyNotebook method.";
             var builder = new CopyNotebookRequestBuilder(PathParameters);
@@ -41,8 +43,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Delete navigation property notebooks for groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property notebooks for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -88,8 +91,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// Retrieve the properties and relationships of a notebook object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-get?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a notebook object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -151,8 +155,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Update the navigation property notebooks in groups
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property notebooks in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
@@ -213,8 +218,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSectionGroupsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSectionGroupsNavCommand()
+        {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.";
             var builder = new SectionGroupsRequestBuilder(PathParameters);
@@ -239,8 +245,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.notebook entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSectionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSectionsNavCommand()
+        {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.notebook entity.";
             var builder = new SectionsRequestBuilder(PathParameters);
@@ -266,25 +273,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// Instantiates a new <see cref="NotebookItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public NotebookItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}{?%24expand,%24select}", pathParameters) {
+        public NotebookItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="NotebookItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public NotebookItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}{?%24expand,%24select}", rawUrl) {
+        public NotebookItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property notebooks for groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -294,14 +305,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a notebook object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebookItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebookItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebookItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<NotebookItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -311,15 +324,17 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Update the navigation property notebooks in groups
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Notebook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}", PathParameters);
@@ -330,7 +345,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Retrieve the properties and relationships of a notebook object.
         /// </summary>
-        public class NotebookItemRequestBuilderGetQueryParameters {
+        public class NotebookItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

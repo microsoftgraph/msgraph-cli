@@ -18,13 +18,15 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword {
     /// <summary>
     /// Provides operations to call the addPassword method.
     /// </summary>
-    public class AddPasswordRequestBuilder : BaseCliRequestBuilder {
+    public class AddPasswordRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Add a strong password or secret to a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0" />
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPostCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPostCommand()
+        {
             var command = new Command("post");
             command.Description = "Add a strong password or secret to a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-addpassword?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
@@ -74,26 +76,30 @@ namespace ApiSdk.ServicePrincipals.Item.AddPassword {
         /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AddPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", pathParameters) {
+        public AddPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AddPasswordRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AddPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", rawUrl) {
+        public AddPasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/addPassword", rawUrl)
+        {
         }
         /// <summary>
         /// Add a strong password or secret to a servicePrincipal object.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AddPasswordPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);

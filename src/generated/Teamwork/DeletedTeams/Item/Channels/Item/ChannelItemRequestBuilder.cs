@@ -27,12 +27,14 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
     /// </summary>
-    public class ChannelItemRequestBuilder : BaseCliRequestBuilder {
+    public class ChannelItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to call the completeMigration method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildCompleteMigrationNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildCompleteMigrationNavCommand()
+        {
             var command = new Command("complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
             var builder = new CompleteMigrationRequestBuilder(PathParameters);
@@ -47,8 +49,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Delete navigation property channels for teamwork
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property channels for teamwork";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
@@ -87,8 +90,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to call the doesUserHaveAccess method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameNavCommand()
+        {
             var command = new Command("does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
             command.Description = "Provides operations to call the doesUserHaveAccess method.";
             var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
@@ -103,8 +107,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFilesFolderNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFilesFolderNavCommand()
+        {
             var command = new Command("files-folder");
             command.Description = "Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.";
             var builder = new FilesFolderRequestBuilder(PathParameters);
@@ -125,8 +130,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The channels that are either shared with this deleted team or created in this deleted team.";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
@@ -182,8 +188,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMembersNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMembersNavCommand()
+        {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters);
@@ -209,8 +216,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildMessagesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildMessagesNavCommand()
+        {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.channel entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
@@ -236,8 +244,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Update the navigation property channels in teamwork
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property channels in teamwork";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
@@ -292,8 +301,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to call the provisionEmail method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildProvisionEmailNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildProvisionEmailNavCommand()
+        {
             var command = new Command("provision-email");
             command.Description = "Provides operations to call the provisionEmail method.";
             var builder = new ProvisionEmailRequestBuilder(PathParameters);
@@ -308,8 +318,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to call the removeEmail method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRemoveEmailNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRemoveEmailNavCommand()
+        {
             var command = new Command("remove-email");
             command.Description = "Provides operations to call the removeEmail method.";
             var builder = new RemoveEmailRequestBuilder(PathParameters);
@@ -324,8 +335,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSharedWithTeamsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSharedWithTeamsNavCommand()
+        {
             var command = new Command("shared-with-teams");
             command.Description = "Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.";
             var builder = new SharedWithTeamsRequestBuilder(PathParameters);
@@ -350,8 +362,9 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTabsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTabsNavCommand()
+        {
             var command = new Command("tabs");
             command.Description = "Provides operations to manage the tabs property of the microsoft.graph.channel entity.";
             var builder = new TabsRequestBuilder(PathParameters);
@@ -377,25 +390,29 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// Instantiates a new <see cref="ChannelItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}{?%24expand,%24select}", pathParameters) {
+        public ChannelItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ChannelItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}{?%24expand,%24select}", rawUrl) {
+        public ChannelItemRequestBuilder(string rawUrl) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property channels for teamwork
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -405,14 +422,16 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChannelItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -422,15 +441,17 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// Update the navigation property channels in teamwork
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Channel body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Channel body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Channel body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Channel body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}", PathParameters);
@@ -441,7 +462,8 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item {
         /// <summary>
         /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
-        public class ChannelItemRequestBuilderGetQueryParameters {
+        public class ChannelItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

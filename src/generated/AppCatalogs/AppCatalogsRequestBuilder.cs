@@ -19,12 +19,14 @@ namespace ApiSdk.AppCatalogs {
     /// <summary>
     /// Provides operations to manage the appCatalogs singleton.
     /// </summary>
-    public class AppCatalogsRequestBuilder : BaseCliRequestBuilder {
+    public class AppCatalogsRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Get appCatalogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get appCatalogs";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
@@ -68,8 +70,9 @@ namespace ApiSdk.AppCatalogs {
         /// <summary>
         /// Update appCatalogs
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update appCatalogs";
             var bodyOption = new Option<string>("--body", description: "The request body") {
@@ -112,8 +115,9 @@ namespace ApiSdk.AppCatalogs {
         /// <summary>
         /// Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTeamsAppsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTeamsAppsNavCommand()
+        {
             var command = new Command("teams-apps");
             command.Description = "Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.";
             var builder = new TeamsAppsRequestBuilder(PathParameters);
@@ -139,25 +143,29 @@ namespace ApiSdk.AppCatalogs {
         /// Instantiates a new <see cref="AppCatalogsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AppCatalogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", pathParameters) {
+        public AppCatalogsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="AppCatalogsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AppCatalogsRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", rawUrl) {
+        public AppCatalogsRequestBuilder(string rawUrl) : base("{+baseurl}/appCatalogs{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Get appCatalogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppCatalogsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppCatalogsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppCatalogsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AppCatalogsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -167,15 +175,17 @@ namespace ApiSdk.AppCatalogs {
         /// <summary>
         /// Update appCatalogs
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.AppCatalogs body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/appCatalogs", PathParameters);
@@ -186,7 +196,8 @@ namespace ApiSdk.AppCatalogs {
         /// <summary>
         /// Get appCatalogs
         /// </summary>
-        public class AppCatalogsRequestBuilderGetQueryParameters {
+        public class AppCatalogsRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

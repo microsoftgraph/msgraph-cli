@@ -19,12 +19,14 @@ namespace ApiSdk.Users.Item.Photos {
     /// <summary>
     /// Provides operations to manage the photos property of the microsoft.graph.user entity.
     /// </summary>
-    public class PhotosRequestBuilder : BaseCliRequestBuilder {
+    public class PhotosRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the photos property of the microsoft.graph.user entity.
         /// </summary>
-        /// <returns>A <cref="Tuple<List<Command>, List<Command>>"></returns>
-        public Tuple<List<Command>, List<Command>> BuildCommand() {
+        /// <returns>A Tuple&lt;List&lt;Command&gt;, List&lt;Command&gt;&gt;</returns>
+        public Tuple<List<Command>, List<Command>> BuildCommand()
+        {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new ProfilePhotoItemRequestBuilder(PathParameters);
@@ -35,8 +37,9 @@ namespace ApiSdk.Users.Item.Photos {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildListCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildListCommand()
+        {
             var command = new Command("list");
             command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
@@ -116,25 +119,29 @@ namespace ApiSdk.Users.Item.Photos {
         /// Instantiates a new <see cref="PhotosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters) {
+        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="PhotosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl) {
+        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        {
         }
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PhotosRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PhotosRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PhotosRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PhotosRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -144,7 +151,8 @@ namespace ApiSdk.Users.Item.Photos {
         /// <summary>
         /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
-        public class PhotosRequestBuilderGetQueryParameters {
+        public class PhotosRequestBuilderGetQueryParameters 
+        {
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

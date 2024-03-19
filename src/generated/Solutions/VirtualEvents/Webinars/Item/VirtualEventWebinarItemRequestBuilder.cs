@@ -20,12 +20,14 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
     /// <summary>
     /// Provides operations to manage the webinars property of the microsoft.graph.virtualEventsRoot entity.
     /// </summary>
-    public class VirtualEventWebinarItemRequestBuilder : BaseCliRequestBuilder {
+    public class VirtualEventWebinarItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property webinars for solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property webinars for solutions";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
@@ -58,8 +60,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Get webinars from solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Get webinars from solutions";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
@@ -109,8 +112,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Update the navigation property webinars in solutions
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property webinars in solutions";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
@@ -159,8 +163,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Provides operations to manage the registrations property of the microsoft.graph.virtualEventWebinar entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRegistrationsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRegistrationsNavCommand()
+        {
             var command = new Command("registrations");
             command.Description = "Provides operations to manage the registrations property of the microsoft.graph.virtualEventWebinar entity.";
             var builder = new RegistrationsRequestBuilder(PathParameters);
@@ -185,8 +190,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Provides operations to manage the sessions property of the microsoft.graph.virtualEvent entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSessionsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSessionsNavCommand()
+        {
             var command = new Command("sessions");
             command.Description = "Provides operations to manage the sessions property of the microsoft.graph.virtualEvent entity.";
             var builder = new SessionsRequestBuilder(PathParameters);
@@ -212,25 +218,29 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// Instantiates a new <see cref="VirtualEventWebinarItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public VirtualEventWebinarItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}{?%24expand,%24select}", pathParameters) {
+        public VirtualEventWebinarItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="VirtualEventWebinarItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public VirtualEventWebinarItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}{?%24expand,%24select}", rawUrl) {
+        public VirtualEventWebinarItemRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property webinars for solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -240,14 +250,16 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Get webinars from solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VirtualEventWebinarItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VirtualEventWebinarItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VirtualEventWebinarItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<VirtualEventWebinarItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -257,15 +269,17 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Update the navigation property webinars in solutions
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(VirtualEventWebinar body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}", PathParameters);
@@ -276,7 +290,8 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
         /// <summary>
         /// Get webinars from solutions
         /// </summary>
-        public class VirtualEventWebinarItemRequestBuilderGetQueryParameters {
+        public class VirtualEventWebinarItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

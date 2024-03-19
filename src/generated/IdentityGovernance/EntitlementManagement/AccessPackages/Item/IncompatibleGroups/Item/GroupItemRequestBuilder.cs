@@ -15,12 +15,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
     /// <summary>
     /// Builds and executes requests for operations under \identityGovernance\entitlementManagement\accessPackages\{accessPackage-id}\incompatibleGroups\{group-id}
     /// </summary>
-    public class GroupItemRequestBuilder : BaseCliRequestBuilder {
+    public class GroupItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the collection of identityGovernance entities.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildRefByIdNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildRefByIdNavCommand()
+        {
             var command = new Command("ref-by-id");
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
             var builder = new RefRequestBuilder(PathParameters);
@@ -35,8 +37,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// <summary>
         /// The serviceProvisioningErrors property
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildServiceProvisioningErrorsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildServiceProvisioningErrorsNavCommand()
+        {
             var command = new Command("service-provisioning-errors");
             command.Description = "The serviceProvisioningErrors property";
             var builder = new ServiceProvisioningErrorsRequestBuilder(PathParameters);
@@ -58,13 +61,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}", pathParameters) {
+        public GroupItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GroupItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}", rawUrl) {
+        public GroupItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}", rawUrl)
+        {
         }
     }
 }

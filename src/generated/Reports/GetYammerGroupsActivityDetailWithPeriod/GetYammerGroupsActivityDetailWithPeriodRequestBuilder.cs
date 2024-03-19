@@ -17,12 +17,14 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod {
     /// <summary>
     /// Provides operations to call the getYammerGroupsActivityDetail method.
     /// </summary>
-    public class GetYammerGroupsActivityDetailWithPeriodRequestBuilder : BaseCliRequestBuilder {
+    public class GetYammerGroupsActivityDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Invoke function getYammerGroupsActivityDetail
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function getYammerGroupsActivityDetail";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
@@ -61,25 +63,29 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod {
         /// Instantiates a new <see cref="GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", pathParameters) {
+        public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="GetYammerGroupsActivityDetailWithPeriodRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", rawUrl) {
+        public GetYammerGroupsActivityDetailWithPeriodRequestBuilder(string rawUrl) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(period='{period}')", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function getYammerGroupsActivityDetail
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

@@ -18,12 +18,14 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators.Item.Artifact {
     /// <summary>
     /// Provides operations to manage the artifact property of the microsoft.graph.security.indicator entity.
     /// </summary>
-    public class ArtifactRequestBuilder : BaseCliRequestBuilder {
+    public class ArtifactRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// The artifact related to this indicator.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The artifact related to this indicator.";
             var articleIndicatorIdOption = new Option<string>("--article-indicator-id", description: "The unique identifier of articleIndicator") {
@@ -74,25 +76,29 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators.Item.Artifact {
         /// Instantiates a new <see cref="ArtifactRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ArtifactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articleIndicators/{articleIndicator%2Did}/artifact{?%24expand,%24select}", pathParameters) {
+        public ArtifactRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/threatIntelligence/articleIndicators/{articleIndicator%2Did}/artifact{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ArtifactRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ArtifactRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articleIndicators/{articleIndicator%2Did}/artifact{?%24expand,%24select}", rawUrl) {
+        public ArtifactRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/articleIndicators/{articleIndicator%2Did}/artifact{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// The artifact related to this indicator.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArtifactRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArtifactRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArtifactRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ArtifactRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -102,7 +108,8 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators.Item.Artifact {
         /// <summary>
         /// The artifact related to this indicator.
         /// </summary>
-        public class ArtifactRequestBuilderGetQueryParameters {
+        public class ArtifactRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

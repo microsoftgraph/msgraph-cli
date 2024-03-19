@@ -3,7 +3,8 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
     /// <summary>Device threat protection levels for the Device Threat Protection API.</summary>
-    public enum DeviceThreatProtectionLevel {
+    public enum DeviceThreatProtectionLevel
+    {
         /// <summary>Default Value. Do not use.</summary>
         [EnumMember(Value = "unavailable")]
         Unavailable,

@@ -31,12 +31,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
     /// <summary>
     /// Provides operations to call the itemAt method.
     /// </summary>
-    public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder {
+    public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildAxesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildAxesNavCommand()
+        {
             var command = new Command("axes");
             command.Description = "Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.";
             var builder = new AxesRequestBuilder(PathParameters);
@@ -53,8 +55,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDataLabelsNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDataLabelsNavCommand()
+        {
             var command = new Command("data-labels");
             command.Description = "Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.";
             var builder = new DataLabelsRequestBuilder(PathParameters);
@@ -71,8 +74,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildFormatNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFormatNavCommand()
+        {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChart entity.";
             var builder = new FormatRequestBuilder(PathParameters);
@@ -89,8 +93,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "Invoke function itemAt";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
@@ -144,8 +149,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildImageNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildImageNavCommand()
+        {
             var command = new Command("image");
             command.Description = "Provides operations to call the image method.";
             var builder = new ImageRequestBuilder(PathParameters);
@@ -160,8 +166,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildImageWithWidthRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildImageWithWidthRbCommand()
+        {
             var command = new Command("image-with-width");
             command.Description = "Provides operations to call the image method.";
             var builder = new ImageWithWidthRequestBuilder(PathParameters);
@@ -176,8 +183,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildImageWithWidthWithHeightRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildImageWithWidthWithHeightRbCommand()
+        {
             var command = new Command("image-with-width-with-height");
             command.Description = "Provides operations to call the image method.";
             var builder = new ImageWithWidthWithHeightRequestBuilder(PathParameters);
@@ -192,8 +200,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildImageWithWidthWithHeightWithFittingModeRbCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildImageWithWidthWithHeightWithFittingModeRbCommand()
+        {
             var command = new Command("image-with-width-with-height-with-fitting-mode");
             command.Description = "Provides operations to call the image method.";
             var builder = new ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters);
@@ -208,8 +217,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildLegendNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLegendNavCommand()
+        {
             var command = new Command("legend");
             command.Description = "Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.";
             var builder = new LegendRequestBuilder(PathParameters);
@@ -226,8 +236,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the series property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSeriesNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSeriesNavCommand()
+        {
             var command = new Command("series");
             command.Description = "Provides operations to manage the series property of the microsoft.graph.workbookChart entity.";
             var builder = new SeriesRequestBuilder(PathParameters);
@@ -243,8 +254,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the setData method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetDataNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetDataNavCommand()
+        {
             var command = new Command("set-data");
             command.Description = "Provides operations to call the setData method.";
             var builder = new SetDataRequestBuilder(PathParameters);
@@ -259,8 +271,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to call the setPosition method.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildSetPositionNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildSetPositionNavCommand()
+        {
             var command = new Command("set-position");
             command.Description = "Provides operations to call the setPosition method.";
             var builder = new SetPositionRequestBuilder(PathParameters);
@@ -275,8 +288,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the title property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildTitleNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTitleNavCommand()
+        {
             var command = new Command("title");
             command.Description = "Provides operations to manage the title property of the microsoft.graph.workbookChart entity.";
             var builder = new TitleRequestBuilder(PathParameters);
@@ -293,8 +307,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildWorksheetNavCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildWorksheetNavCommand()
+        {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.";
             var builder = new WorksheetRequestBuilder(PathParameters);
@@ -310,25 +325,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWi
         /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})", pathParameters) {
+        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="ItemAtWithIndexRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ItemAtWithIndexRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})", rawUrl) {
+        public ItemAtWithIndexRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/itemAt(index={index})", rawUrl)
+        {
         }
         /// <summary>
         /// Invoke function itemAt
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);

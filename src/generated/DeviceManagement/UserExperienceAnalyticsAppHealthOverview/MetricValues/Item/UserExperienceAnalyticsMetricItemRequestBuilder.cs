@@ -18,12 +18,14 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
     /// <summary>
     /// Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
     /// </summary>
-    public class UserExperienceAnalyticsMetricItemRequestBuilder : BaseCliRequestBuilder {
+    public class UserExperienceAnalyticsMetricItemRequestBuilder : BaseCliRequestBuilder 
+    {
         /// <summary>
         /// Delete navigation property metricValues for deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildDeleteCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
             var command = new Command("delete");
             command.Description = "Delete navigation property metricValues for deviceManagement";
             var userExperienceAnalyticsMetricIdOption = new Option<string>("--user-experience-analytics-metric-id", description: "The unique identifier of userExperienceAnalyticsMetric") {
@@ -56,8 +58,9 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// <summary>
         /// The metric values for the user experience analytics category. Read-only.
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildGetCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
             var command = new Command("get");
             command.Description = "The metric values for the user experience analytics category. Read-only.";
             var userExperienceAnalyticsMetricIdOption = new Option<string>("--user-experience-analytics-metric-id", description: "The unique identifier of userExperienceAnalyticsMetric") {
@@ -107,8 +110,9 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// <summary>
         /// Update the navigation property metricValues in deviceManagement
         /// </summary>
-        /// <returns>A <cref="Command"></returns>
-        public Command BuildPatchCommand() {
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildPatchCommand()
+        {
             var command = new Command("patch");
             command.Description = "Update the navigation property metricValues in deviceManagement";
             var userExperienceAnalyticsMetricIdOption = new Option<string>("--user-experience-analytics-metric-id", description: "The unique identifier of userExperienceAnalyticsMetric") {
@@ -158,25 +162,29 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// Instantiates a new <see cref="UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserExperienceAnalyticsMetricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", pathParameters) {
+        public UserExperienceAnalyticsMetricItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", pathParameters)
+        {
         }
         /// <summary>
         /// Instantiates a new <see cref="UserExperienceAnalyticsMetricItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public UserExperienceAnalyticsMetricItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", rawUrl) {
+        public UserExperienceAnalyticsMetricItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}{?%24expand,%24select}", rawUrl)
+        {
         }
         /// <summary>
         /// Delete navigation property metricValues for deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}", PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -186,14 +194,16 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// <summary>
         /// The metric values for the user experience analytics category. Read-only.
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -203,15 +213,17 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// <summary>
         /// Update the navigation property metricValues in deviceManagement
         /// </summary>
-        /// <returns>A <cref="RequestInformation"></returns>
+        /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UserExperienceAnalyticsMetric body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/{userExperienceAnalyticsMetric%2Did}", PathParameters);
@@ -222,7 +234,8 @@ namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview.Metri
         /// <summary>
         /// The metric values for the user experience analytics category. Read-only.
         /// </summary>
-        public class UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters {
+        public class UserExperienceAnalyticsMetricItemRequestBuilderGetQueryParameters 
+        {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
