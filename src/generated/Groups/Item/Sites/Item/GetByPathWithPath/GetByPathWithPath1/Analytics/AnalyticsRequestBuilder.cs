@@ -74,13 +74,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Ana
             return command;
         }
         /// <summary>
-        /// Analytics about the view activities that took place in this site.
+        /// Analytics about the view activities that took place on this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Analytics about the view activities that took place in this site.";
+            command.Description = "Analytics about the view activities that took place on this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -246,7 +246,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Ana
             return requestInfo;
         }
         /// <summary>
-        /// Analytics about the view activities that took place in this site.
+        /// Analytics about the view activities that took place on this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +286,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Ana
             return requestInfo;
         }
         /// <summary>
-        /// Analytics about the view activities that took place in this site.
+        /// Analytics about the view activities that took place on this site.
         /// </summary>
         public class AnalyticsRequestBuilderGetQueryParameters 
         {

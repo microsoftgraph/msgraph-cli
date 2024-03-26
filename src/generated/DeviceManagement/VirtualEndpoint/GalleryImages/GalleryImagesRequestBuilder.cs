@@ -98,13 +98,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages {
             return command;
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// List the properties and relationships of cloudPcGalleryImage objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-list-galleryimages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get galleryImages from deviceManagement";
+            command.Description = "List the properties and relationships of cloudPcGalleryImage objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-list-galleryimages?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +207,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages {
         {
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// List the properties and relationships of cloudPcGalleryImage objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -246,7 +247,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages {
             return requestInfo;
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// List the properties and relationships of cloudPcGalleryImage objects.
         /// </summary>
         public class GalleryImagesRequestBuilderGetQueryParameters 
         {

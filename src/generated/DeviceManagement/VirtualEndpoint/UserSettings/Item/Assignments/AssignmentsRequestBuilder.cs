@@ -104,13 +104,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments 
             return command;
         }
         /// <summary>
-        /// Get assignments from deviceManagement
+        /// Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSetting.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get assignments from deviceManagement";
+            command.Description = "Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSetting.";
             var cloudPcUserSettingIdOption = new Option<string>("--cloud-pc-user-setting-id", description: "The unique identifier of cloudPcUserSetting") {
             };
             cloudPcUserSettingIdOption.IsRequired = true;
@@ -218,7 +218,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments 
         {
         }
         /// <summary>
-        /// Get assignments from deviceManagement
+        /// Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSetting.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +258,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments 
             return requestInfo;
         }
         /// <summary>
-        /// Get assignments from deviceManagement
+        /// Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSetting.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters 
         {

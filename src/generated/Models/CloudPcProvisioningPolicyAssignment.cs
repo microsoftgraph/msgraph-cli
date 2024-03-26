@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcProvisioningPolicyAssignment : Entity, IParsable 
     {
-        /// <summary>The assignedUsers property</summary>
+        /// <summary>The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<User>? AssignedUsers { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<User> AssignedUsers { get; set; }
 #endif
-        /// <summary>The target property</summary>
+        /// <summary>The assignment target for the provisioning policy. Currently, the only target supported for this policy is a user group. For details, see cloudPcManagementGroupAssignmentTarget.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CloudPcManagementAssignmentTarget? Target { get; set; }

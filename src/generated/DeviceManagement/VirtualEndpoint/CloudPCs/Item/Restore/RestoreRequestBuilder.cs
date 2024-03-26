@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore {
     public class RestoreRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action restore
+        /// Restore a specific cloudPC object to a previous state from a snapshot. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-restore?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action restore";
+            command.Description = "Restore a specific cloudPC object to a previous state from a snapshot. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-restore?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore {
         {
         }
         /// <summary>
-        /// Invoke action restore
+        /// Restore a specific cloudPC object to a previous state from a snapshot. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

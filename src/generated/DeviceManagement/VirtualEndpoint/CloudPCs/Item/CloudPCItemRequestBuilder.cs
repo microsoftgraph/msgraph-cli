@@ -78,13 +78,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item {
             return command;
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// Read the properties and relationships of a specific cloudPC object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get cloudPCs from deviceManagement";
+            command.Description = "Read the properties and relationships of a specific cloudPC object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-get?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -282,7 +283,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// Read the properties and relationships of a specific cloudPC object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -322,7 +323,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// Read the properties and relationships of a specific cloudPC object.
         /// </summary>
         public class CloudPCItemRequestBuilderGetQueryParameters 
         {

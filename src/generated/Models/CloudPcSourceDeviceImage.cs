@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name for the source image. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The resourceId property</summary>
+        /// <summary>The fully qualified unique identifier (ID) of the source image resource in Azure. The ID format is: &apos;/subscriptions/{subscription-id}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images/{imageName}&apos;. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResourceId { get; set; }
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
 #else
         public string ResourceId { get; set; }
 #endif
-        /// <summary>The subscriptionDisplayName property</summary>
+        /// <summary>The display name of the subscription that hosts the source image. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SubscriptionDisplayName { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
 #else
         public string SubscriptionDisplayName { get; set; }
 #endif
-        /// <summary>The subscriptionId property</summary>
+        /// <summary>The unique identifier (ID) of the subscription that hosts the source image. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SubscriptionId { get; set; }

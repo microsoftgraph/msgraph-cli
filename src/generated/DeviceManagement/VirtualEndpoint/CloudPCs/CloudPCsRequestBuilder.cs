@@ -104,13 +104,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs {
             return command;
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// List the cloudPC devices in a tenant.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-list-cloudpcs?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get cloudPCs from deviceManagement";
+            command.Description = "List the cloudPC devices in a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-list-cloudpcs?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +213,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs {
         {
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// List the cloudPC devices in a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -252,7 +253,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs {
             return requestInfo;
         }
         /// <summary>
-        /// Get cloudPCs from deviceManagement
+        /// List the cloudPC devices in a tenant.
         /// </summary>
         public class CloudPCsRequestBuilderGetQueryParameters 
         {

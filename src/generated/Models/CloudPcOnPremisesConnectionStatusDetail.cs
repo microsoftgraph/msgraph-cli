@@ -9,9 +9,9 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The endDateTime property</summary>
+        /// <summary>The end time of the connection health check. The Timestamp  is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appears as 2014-01-01T00:00:00Z. Read-Only.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The healthChecks property</summary>
+        /// <summary>A list of all checks that have been run on the connection. Read-Only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcOnPremisesConnectionHealthCheck>? HealthChecks { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
+        /// <summary>The start time of the health check. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 appear as 2014-01-01T00:00:00Z. Read-Only.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="CloudPcOnPremisesConnectionStatusDetail"/> and sets the default values.

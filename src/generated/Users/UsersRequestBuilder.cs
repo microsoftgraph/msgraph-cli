@@ -107,6 +107,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildSendMailNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildSponsorsNavCommand());
             commands.Add(builder.BuildTeamworkNavCommand());
             commands.Add(builder.BuildTodoNavCommand());
             commands.Add(builder.BuildTransitiveMemberOfNavCommand());
@@ -133,13 +134,13 @@ namespace ApiSdk.Users {
         }
         /// <summary>
         /// Create a new user object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-create?view=graph-rest-1.0";
+            command.Description = "Create a new user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -230,13 +231,13 @@ namespace ApiSdk.Users {
         }
         /// <summary>
         /// List properties and relationships of the user objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };

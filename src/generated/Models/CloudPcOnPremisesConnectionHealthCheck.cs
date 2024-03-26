@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The additionalDetail property</summary>
+        /// <summary>Additional details about the health check or the recommended action. For exmaple, the string value can be download.microsoft.com:443;software-download.microsoft.com:443; Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AdditionalDetail { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string AdditionalDetail { get; set; }
 #endif
-        /// <summary>The correlationId property</summary>
+        /// <summary>The unique identifier of the health check item-related activities. This identifier can be useful in troubleshooting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CorrelationId { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string CorrelationId { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name for this health check item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -33,9 +33,9 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The endDateTime property</summary>
+        /// <summary>The value cannot be modified and is automatically populated when the health check ends. The Timestamp type represents date and time information using ISO 8601 format and is in Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2024 would look like this: &apos;2024-01-01T00:00:00Z&apos;. Returned by default. Read-only.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The errorType property</summary>
+        /// <summary>The type of error that occurred during this health check. Possible values are: endpointConnectivityCheckCloudPcUrlNotAllowListed, endpointConnectivityCheckWVDUrlNotAllowListed, etc. (The all possible values can refer to cloudPcOnPremisesConnectionHealthCheckErrorType) Read-Only.</summary>
         public CloudPcOnPremisesConnectionHealthCheckErrorType? ErrorType { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -45,7 +45,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The recommendedAction property</summary>
+        /// <summary>The recommended action to fix the corresponding error. For example, The Active Directory domain join check failed because the password of the domain join user has expired. Read-Only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RecommendedAction { get; set; }
@@ -53,7 +53,7 @@ namespace ApiSdk.Models {
 #else
         public string RecommendedAction { get; set; }
 #endif
-        /// <summary>The startDateTime property</summary>
+        /// <summary>The value cannot be modified and is automatically populated when the health check starts. The Timestamp type represents date and time information using ISO 8601 format and is in  Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2024 would look like this: &apos;2024-01-01T00:00:00Z&apos;. Returned by default. Read-only.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The status property</summary>
         public CloudPcOnPremisesConnectionStatus? Status { get; set; }

@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The applicationDisplayName property</summary>
+        /// <summary>Name of the application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ApplicationDisplayName { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string ApplicationDisplayName { get; set; }
 #endif
-        /// <summary>The applicationId property</summary>
+        /// <summary>Microsoft Entra application ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ApplicationId { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string ApplicationId { get; set; }
 #endif
-        /// <summary>The ipAddress property</summary>
+        /// <summary>IP address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? IpAddress { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The remoteTenantId property</summary>
+        /// <summary>The delegated partner tenant ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RemoteTenantId { get; set; }
@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
 #else
         public string RemoteTenantId { get; set; }
 #endif
-        /// <summary>The remoteUserId property</summary>
+        /// <summary>The delegated partner user ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RemoteUserId { get; set; }
@@ -57,7 +57,7 @@ namespace ApiSdk.Models {
 #else
         public string RemoteUserId { get; set; }
 #endif
-        /// <summary>The servicePrincipalName property</summary>
+        /// <summary>Service Principal Name (SPN).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePrincipalName { get; set; }
@@ -65,7 +65,7 @@ namespace ApiSdk.Models {
 #else
         public string ServicePrincipalName { get; set; }
 #endif
-        /// <summary>The userId property</summary>
+        /// <summary>Microsoft Entra user ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }
@@ -73,7 +73,7 @@ namespace ApiSdk.Models {
 #else
         public string UserId { get; set; }
 #endif
-        /// <summary>The userPermissions property</summary>
+        /// <summary>List of user permissions and application permissions when the audit event was performed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? UserPermissions { get; set; }
@@ -81,7 +81,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> UserPermissions { get; set; }
 #endif
-        /// <summary>The userPrincipalName property</summary>
+        /// <summary>User Principal Name (UPN).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }
@@ -89,7 +89,7 @@ namespace ApiSdk.Models {
 #else
         public string UserPrincipalName { get; set; }
 #endif
-        /// <summary>The userRoleScopeTags property</summary>
+        /// <summary>List of role scope tags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcUserRoleScopeTagInfo>? UserRoleScopeTags { get; set; }

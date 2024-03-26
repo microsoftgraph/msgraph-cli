@@ -21,14 +21,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
     public class AddRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.
+        /// Add a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you want to activate the newly added worksheet, call .activate() on it.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0";
+            command.Description = "Add a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you want to activate the newly added worksheet, call .activate() on it.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheetcollection-add?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -93,7 +93,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Add {
         {
         }
         /// <summary>
-        /// Adds a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you wish to activate the newly added worksheet, call .activate() on it.
+        /// Add a new worksheet to the workbook. The worksheet is added at the end of existing worksheets. If you want to activate the newly added worksheet, call .activate() on it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

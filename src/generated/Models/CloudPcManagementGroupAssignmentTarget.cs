@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcManagementGroupAssignmentTarget : CloudPcManagementAssignmentTarget, IParsable 
     {
-        /// <summary>The groupId property</summary>
+        /// <summary>The ID of the target group for the assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? GroupId { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string GroupId { get; set; }
 #endif
-        /// <summary>The servicePlanId property</summary>
+        /// <summary>The unique identifier for the service plan that indicates which size of the Cloud PC to provision for the user. Use a null value, when the provisioningType is dedicated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePlanId { get; set; }

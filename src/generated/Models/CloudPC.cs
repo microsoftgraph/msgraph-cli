@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPC : Entity, IParsable 
     {
-        /// <summary>The aadDeviceId property</summary>
+        /// <summary>The Microsoft Entra device ID for the Cloud PC, also known as the Azure Active Directory (Azure AD) device ID, that consists of 32 characters in a GUID format. Generated on a VM joined to Microsoft Entra ID. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AadDeviceId { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string AadDeviceId { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name for the Cloud PC. Maximum length is 64 characters. Read-only. You can use the cloudPC: rename API to modify the Cloud PC name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -23,9 +23,9 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The gracePeriodEndDateTime property</summary>
+        /// <summary>The date and time when the grace period ends and reprovisioning or deprovisioning happen. Required only if the status is inGracePeriod. The timestamp is shown in ISO 8601 format and Coordinated Universal Time (UTC). For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? GracePeriodEndDateTime { get; set; }
-        /// <summary>The imageDisplayName property</summary>
+        /// <summary>The name of the operating system image used for the Cloud PC. Maximum length is 50 characters. Only letters (A-Z, a-z), numbers (0-9), and special characters (-,,.) are allowed for this property. The property value can&apos;t begin or end with an underscore. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ImageDisplayName { get; set; }
@@ -33,9 +33,9 @@ namespace ApiSdk.Models {
 #else
         public string ImageDisplayName { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>The last modified date and time of the Cloud PC. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The managedDeviceId property</summary>
+        /// <summary>The Intune enrolled device ID for the Cloud PC that consists of 32 characters in a GUID format. The managedDeviceId property of Windows 365 Business Cloud PCs is always null as Windows 365 Business Cloud PCs aren&apos;t Intune-enrolled automatically by Windows 365. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ManagedDeviceId { get; set; }
@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
 #else
         public string ManagedDeviceId { get; set; }
 #endif
-        /// <summary>The managedDeviceName property</summary>
+        /// <summary>The Intune enrolled device name for the Cloud PC. The managedDeviceName property of Windows 365 Business Cloud PCs is always null as Windows 365 Business Cloud PCs aren&apos;t Intune-enrolled automatically by Windows 365. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ManagedDeviceName { get; set; }
@@ -51,7 +51,7 @@ namespace ApiSdk.Models {
 #else
         public string ManagedDeviceName { get; set; }
 #endif
-        /// <summary>The onPremisesConnectionName property</summary>
+        /// <summary>The on-premises connection that applied during the provisioning of Cloud PCs. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OnPremisesConnectionName { get; set; }
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
 #else
         public string OnPremisesConnectionName { get; set; }
 #endif
-        /// <summary>The provisioningPolicyId property</summary>
+        /// <summary>The provisioning policy ID for the Cloud PC that consists of 32 characters in a GUID format. A policy defines the type of Cloud PC the user wants to create. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProvisioningPolicyId { get; set; }
@@ -67,7 +67,7 @@ namespace ApiSdk.Models {
 #else
         public string ProvisioningPolicyId { get; set; }
 #endif
-        /// <summary>The provisioningPolicyName property</summary>
+        /// <summary>The provisioning policy that applied during the provisioning of Cloud PCs. Maximum length is 120 characters. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProvisioningPolicyName { get; set; }
@@ -75,9 +75,9 @@ namespace ApiSdk.Models {
 #else
         public string ProvisioningPolicyName { get; set; }
 #endif
-        /// <summary>The provisioningType property</summary>
+        /// <summary>The type of licenses to be used when provisioning Cloud PCs using this policy. Possible values are: dedicated, shared, unknownFutureValue. The default value is dedicated.</summary>
         public CloudPcProvisioningType? ProvisioningType { get; set; }
-        /// <summary>The servicePlanId property</summary>
+        /// <summary>The service plan ID for the Cloud PC that consists of 32 characters in a GUID format. For more information about service plans, see Product names and service plan identifiers for licensing. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePlanId { get; set; }
@@ -85,7 +85,7 @@ namespace ApiSdk.Models {
 #else
         public string ServicePlanId { get; set; }
 #endif
-        /// <summary>The servicePlanName property</summary>
+        /// <summary>The service plan name for the customer-facing Cloud PC entity. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePlanName { get; set; }
@@ -93,7 +93,7 @@ namespace ApiSdk.Models {
 #else
         public string ServicePlanName { get; set; }
 #endif
-        /// <summary>The userPrincipalName property</summary>
+        /// <summary>The user principal name (UPN) of the user assigned to the Cloud PC. Maximum length is 113 characters. For more information on username policies, see Password policies and account restrictions in Microsoft Entra ID. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }

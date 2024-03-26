@@ -167,13 +167,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint {
             return command;
         }
         /// <summary>
-        /// Get virtualEndpoint from deviceManagement
+        /// Virtual endpoint
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get virtualEndpoint from deviceManagement";
+            command.Description = "Virtual endpoint";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -372,7 +372,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint {
             return requestInfo;
         }
         /// <summary>
-        /// Get virtualEndpoint from deviceManagement
+        /// Virtual endpoint
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -412,7 +412,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint {
             return requestInfo;
         }
         /// <summary>
-        /// Get virtualEndpoint from deviceManagement
+        /// Virtual endpoint
         /// </summary>
         public class VirtualEndpointRequestBuilderGetQueryParameters 
         {
