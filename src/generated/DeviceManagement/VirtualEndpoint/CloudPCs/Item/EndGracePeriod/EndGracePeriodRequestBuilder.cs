@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.EndGracePeriod {
     public class EndGracePeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action endGracePeriod
+        /// End the grace period for a specific cloudPC object. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before deprovisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-endgraceperiod?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action endGracePeriod";
+            command.Description = "End the grace period for a specific cloudPC object. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before deprovisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-endgraceperiod?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.EndGracePeriod {
         {
         }
         /// <summary>
-        /// Invoke action endGracePeriod
+        /// End the grace period for a specific cloudPC object. The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It allows users to access Cloud PCs for up to seven days before deprovisioning occurs. Ending the grace period immediately deprovisions the Cloud PC without waiting the seven days.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

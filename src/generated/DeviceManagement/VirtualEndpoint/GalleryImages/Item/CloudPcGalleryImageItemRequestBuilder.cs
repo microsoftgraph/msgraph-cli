@@ -56,13 +56,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return command;
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcgalleryimage-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get galleryImages from deviceManagement";
+            command.Description = "Read the properties and relationships of a specific cloudPcGalleryImage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcgalleryimage-get?view=graph-rest-1.0";
             var cloudPcGalleryImageIdOption = new Option<string>("--cloud-pc-gallery-image-id", description: "The unique identifier of cloudPcGalleryImage") {
             };
             cloudPcGalleryImageIdOption.IsRequired = true;
@@ -192,7 +193,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +233,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get galleryImages from deviceManagement
+        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
         /// </summary>
         public class CloudPcGalleryImageItemRequestBuilderGetQueryParameters 
         {

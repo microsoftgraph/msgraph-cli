@@ -87,6 +87,14 @@ namespace ApiSdk.Models.Security {
 #else
         public string RedirectIncidentId { get; set; }
 #endif
+        /// <summary>The resolvingComment property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ResolvingComment { get; set; }
+#nullable restore
+#else
+        public string ResolvingComment { get; set; }
+#endif
         /// <summary>The severity property</summary>
         public AlertSeverity? Severity { get; set; }
         /// <summary>The status property</summary>
@@ -138,6 +146,7 @@ namespace ApiSdk.Models.Security {
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetStringValue(); } },
                 {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
                 {"redirectIncidentId", n => { RedirectIncidentId = n.GetStringValue(); } },
+                {"resolvingComment", n => { ResolvingComment = n.GetStringValue(); } },
                 {"severity", n => { Severity = n.GetEnumValue<AlertSeverity>(); } },
                 {"status", n => { Status = n.GetEnumValue<IncidentStatus>(); } },
                 {"systemTags", n => { SystemTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -165,6 +174,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteStringValue("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastUpdateDateTime", LastUpdateDateTime);
             writer.WriteStringValue("redirectIncidentId", RedirectIncidentId);
+            writer.WriteStringValue("resolvingComment", ResolvingComment);
             writer.WriteEnumValue<AlertSeverity>("severity", Severity);
             writer.WriteEnumValue<IncidentStatus>("status", Status);
             writer.WriteCollectionOfPrimitiveValues<string>("systemTags", SystemTags);

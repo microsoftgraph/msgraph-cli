@@ -129,14 +129,14 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
-        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list?view=graph-rest-1.0" />
+        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-search?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list?view=graph-rest-1.0";
+            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-search?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -255,7 +255,7 @@ namespace ApiSdk.Sites {
         {
         }
         /// <summary>
-        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
+        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +274,7 @@ namespace ApiSdk.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// List all available [sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a [$search][] query against the /sites collection to find sites matching given keywords.If you want to list all sites across all geographies, refer to getAllSites][]. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
+        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is createdDateTime. The search filter is a free text search that uses multiple properties when retrieving the search results.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters 
         {

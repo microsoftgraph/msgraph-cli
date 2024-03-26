@@ -71,7 +71,7 @@ namespace ApiSdk.Models {
 #else
         public string Nickname { get; set; }
 #endif
-        /// <summary>Specifies additional features of the room, for example, details like the type of view or furniture type.</summary>
+        /// <summary>Specifies other features of the room, for example, details like the type of view or furniture type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Tags { get; set; }

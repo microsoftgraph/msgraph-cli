@@ -54,13 +54,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies.Item.Assi
             return command;
         }
         /// <summary>
-        /// Get assignedUsers from deviceManagement
+        /// The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get assignedUsers from deviceManagement";
+            command.Description = "The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.";
             var cloudPcProvisioningPolicyIdOption = new Option<string>("--cloud-pc-provisioning-policy-id", description: "The unique identifier of cloudPcProvisioningPolicy") {
             };
             cloudPcProvisioningPolicyIdOption.IsRequired = true;
@@ -174,7 +174,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies.Item.Assi
         {
         }
         /// <summary>
-        /// Get assignedUsers from deviceManagement
+        /// The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -193,7 +193,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies.Item.Assi
             return requestInfo;
         }
         /// <summary>
-        /// Get assignedUsers from deviceManagement
+        /// The assignment targeted users for the provisioning policy. This list of users is computed based on assignments, licenses, group memberships, and policies. Read-only. Supports$expand.
         /// </summary>
         public class AssignedUsersRequestBuilderGetQueryParameters 
         {

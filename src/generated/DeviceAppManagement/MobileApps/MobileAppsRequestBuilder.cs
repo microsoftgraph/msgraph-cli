@@ -503,14 +503,14 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the win32LobApp objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-win32lobapp-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the androidLobApp objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-androidlobapp-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the win32LobApp objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-win32lobapp-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the androidLobApp objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-androidlobapp-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -612,7 +612,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         {
         }
         /// <summary>
-        /// List properties and relationships of the win32LobApp objects.
+        /// List properties and relationships of the androidLobApp objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -652,7 +652,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the win32LobApp objects.
+        /// List properties and relationships of the androidLobApp objects.
         /// </summary>
         public class MobileAppsRequestBuilderGetQueryParameters 
         {

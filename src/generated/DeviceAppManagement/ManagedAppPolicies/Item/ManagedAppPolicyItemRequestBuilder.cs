@@ -57,14 +57,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsInformationProtection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotection-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedAppConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsInformationProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-windowsinformationprotection-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-get?view=graph-rest-1.0";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsInformationProtection object.
+        /// Read properties and relationships of the managedAppConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +251,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsInformationProtection object.
+        /// Read properties and relationships of the managedAppConfiguration object.
         /// </summary>
         public class ManagedAppPolicyItemRequestBuilderGetQueryParameters 
         {

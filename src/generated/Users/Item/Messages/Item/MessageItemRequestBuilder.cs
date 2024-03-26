@@ -147,14 +147,14 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0" />
+        /// Delete eventMessage.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a message in the specified user's mailbox, or delete a relationship of the message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0";
+            command.Description = "Delete eventMessage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -234,13 +234,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -438,7 +438,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         {
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
+        /// Delete eventMessage.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

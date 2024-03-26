@@ -22,13 +22,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
     public class CloudPcOnPremisesConnectionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete navigation property onPremisesConnections for deviceManagement
+        /// Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it&apos;s in use, as indicated by the inUse property.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property onPremisesConnections for deviceManagement";
+            command.Description = "Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it's in use, as indicated by the inUse property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-delete?view=graph-rest-1.0";
             var cloudPcOnPremisesConnectionIdOption = new Option<string>("--cloud-pc-on-premises-connection-id", description: "The unique identifier of cloudPcOnPremisesConnection") {
             };
             cloudPcOnPremisesConnectionIdOption.IsRequired = true;
@@ -57,13 +58,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
             return command;
         }
         /// <summary>
-        /// Get onPremisesConnections from deviceManagement
+        /// Read the properties and relationships of the cloudPcOnPremisesConnection object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get onPremisesConnections from deviceManagement";
+            command.Description = "Read the properties and relationships of the cloudPcOnPremisesConnection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-get?view=graph-rest-1.0";
             var cloudPcOnPremisesConnectionIdOption = new Option<string>("--cloud-pc-on-premises-connection-id", description: "The unique identifier of cloudPcOnPremisesConnection") {
             };
             cloudPcOnPremisesConnectionIdOption.IsRequired = true;
@@ -109,13 +111,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property onPremisesConnections in deviceManagement
+        /// Update the properties of a cloudPcOnPremisesConnection object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property onPremisesConnections in deviceManagement";
+            command.Description = "Update the properties of a cloudPcOnPremisesConnection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-update?view=graph-rest-1.0";
             var cloudPcOnPremisesConnectionIdOption = new Option<string>("--cloud-pc-on-premises-connection-id", description: "The unique identifier of cloudPcOnPremisesConnection") {
             };
             cloudPcOnPremisesConnectionIdOption.IsRequired = true;
@@ -191,7 +194,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property onPremisesConnections for deviceManagement
+        /// Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it&apos;s in use, as indicated by the inUse property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +213,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get onPremisesConnections from deviceManagement
+        /// Read the properties and relationships of the cloudPcOnPremisesConnection object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +232,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property onPremisesConnections in deviceManagement
+        /// Update the properties of a cloudPcOnPremisesConnection object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +253,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get onPremisesConnections from deviceManagement
+        /// Read the properties and relationships of the cloudPcOnPremisesConnection object.
         /// </summary>
         public class CloudPcOnPremisesConnectionItemRequestBuilderGetQueryParameters 
         {

@@ -174,14 +174,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
+        /// Get a list of rich long-running operations associated with a list.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Returns the metadata for a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
+            command.Description = "Get a list of rich long-running operations associated with a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-operations?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -439,7 +439,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
+        /// Get a list of rich long-running operations associated with a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -479,7 +479,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for a [list][].
+        /// Get a list of rich long-running operations associated with a list.
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters 
         {

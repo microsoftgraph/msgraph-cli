@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcAuditEvent : Entity, IParsable 
     {
-        /// <summary>The activity property</summary>
+        /// <summary>The friendly name of the audit activity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Activity { get; set; }
@@ -15,13 +15,13 @@ namespace ApiSdk.Models {
 #else
         public string Activity { get; set; }
 #endif
-        /// <summary>The activityDateTime property</summary>
+        /// <summary>The date time in UTC when the activity was performed. Read-only.</summary>
         public DateTimeOffset? ActivityDateTime { get; set; }
         /// <summary>The activityOperationType property</summary>
         public CloudPcAuditActivityOperationType? ActivityOperationType { get; set; }
         /// <summary>The activityResult property</summary>
         public CloudPcAuditActivityResult? ActivityResult { get; set; }
-        /// <summary>The activityType property</summary>
+        /// <summary>The type of activity that was performed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActivityType { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The category property</summary>
         public CloudPcAuditCategory? Category { get; set; }
-        /// <summary>The componentName property</summary>
+        /// <summary>The component name for the audit event. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ComponentName { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models {
 #else
         public string ComponentName { get; set; }
 #endif
-        /// <summary>The correlationId property</summary>
+        /// <summary>The client request ID that is used to correlate activity within the system. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CorrelationId { get; set; }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models {
 #else
         public string CorrelationId { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name for the audit event. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The resources property</summary>
+        /// <summary>The list of cloudPcAuditResource objects. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcAuditResource>? Resources { get; set; }

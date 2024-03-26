@@ -8,7 +8,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcGalleryImage : Entity, IParsable 
     {
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -16,11 +16,11 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The endDate property</summary>
+        /// <summary>The date when the status of the image becomes supportedWithWarning. Users can still provision new Cloud PCs if the current time is later than endDate and earlier than expirationDate. For example, assume the endDate of a gallery image is 2023-9-14 and expirationDate is 2024-3-14, users are able to provision new Cloud PCs if today is 2023-10-01. Read-only.</summary>
         public Date? EndDate { get; set; }
-        /// <summary>The expirationDate property</summary>
+        /// <summary>The date when the image is no longer available. Users are unable to provision new Cloud PCs if the current time is later than expirationDate. The value is usually endDate plus six months. For example, if the startDate is 2025-10-14, the expirationDate is usually 2026-04-14. Read-only.</summary>
         public Date? ExpirationDate { get; set; }
-        /// <summary>The offerName property</summary>
+        /// <summary>The offer name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OfferName { get; set; }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
 #else
         public string OfferName { get; set; }
 #endif
-        /// <summary>The publisherName property</summary>
+        /// <summary>The publisher name of this gallery image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PublisherName { get; set; }
@@ -36,9 +36,9 @@ namespace ApiSdk.Models {
 #else
         public string PublisherName { get; set; }
 #endif
-        /// <summary>The sizeInGB property</summary>
+        /// <summary>Indicates the size of this image in gigabytes. For example, 64. Read-only.</summary>
         public int? SizeInGB { get; set; }
-        /// <summary>The skuName property</summary>
+        /// <summary>The SKU name of this image that is passed to Azure Resource Manager (ARM) to retrieve the image resource. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SkuName { get; set; }
@@ -46,9 +46,9 @@ namespace ApiSdk.Models {
 #else
         public string SkuName { get; set; }
 #endif
-        /// <summary>The startDate property</summary>
+        /// <summary>The date when the Cloud PC image is available for provisioning new Cloud PCs. For example, 2022-09-20. Read-only.</summary>
         public Date? StartDate { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>The status of the gallery image on the Cloud PC. Possible values are: supported, supportedWithWarning, notSupported, unknownFutureValue. The default value is supported. Read-only.</summary>
         public CloudPcGalleryImageStatus? Status { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

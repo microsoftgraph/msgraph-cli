@@ -122,14 +122,14 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
             return command;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0" />
+        /// Update the role of a conversationMember in a team or channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0";
+            command.Description = "Update the role of a conversationMember in a team or channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-update?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a membershipType value of private or shared.
+        /// Update the role of a conversationMember in a team or channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

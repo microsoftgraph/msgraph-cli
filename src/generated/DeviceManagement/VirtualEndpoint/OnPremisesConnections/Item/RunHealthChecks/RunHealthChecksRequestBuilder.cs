@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.Run
     public class RunHealthChecksRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action runHealthChecks
+        /// Run health checks on the cloudPcOnPremisesConnection object. It triggers a new health check for the cloudPcOnPremisesConnection (../resources/cloudpconpremisesconnection.md) object and changes the healthCheckStatus and [healthCheckStatusDetail properties when check finished.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-runhealthcheck?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action runHealthChecks";
+            command.Description = "Run health checks on the cloudPcOnPremisesConnection object. It triggers a new health check for the cloudPcOnPremisesConnection (../resources/cloudpconpremisesconnection.md) object and changes the healthCheckStatus and [healthCheckStatusDetail properties when check finished.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpconpremisesconnection-runhealthcheck?view=graph-rest-1.0";
             var cloudPcOnPremisesConnectionIdOption = new Option<string>("--cloud-pc-on-premises-connection-id", description: "The unique identifier of cloudPcOnPremisesConnection") {
             };
             cloudPcOnPremisesConnectionIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item.Run
         {
         }
         /// <summary>
-        /// Invoke action runHealthChecks
+        /// Run health checks on the cloudPcOnPremisesConnection object. It triggers a new health check for the cloudPcOnPremisesConnection (../resources/cloudpconpremisesconnection.md) object and changes the healthCheckStatus and [healthCheckStatusDetail properties when check finished.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
