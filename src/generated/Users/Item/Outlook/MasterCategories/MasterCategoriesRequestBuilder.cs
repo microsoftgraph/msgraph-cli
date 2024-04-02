@@ -105,14 +105,14 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
+        /// Get all the categories that have been defined for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the categories that have been defined for the user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
+            command.Description = "Get all the categories that have been defined for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
         {
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
+        /// Get all the categories that have been defined for a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +247,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
+        /// Get all the categories that have been defined for a user.
         /// </summary>
         public class MasterCategoriesRequestBuilderGetQueryParameters 
         {

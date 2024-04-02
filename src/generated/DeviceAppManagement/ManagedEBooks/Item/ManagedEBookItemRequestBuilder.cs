@@ -133,14 +133,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebook-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedEBook object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebook-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the iosVppEBook object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebook-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedEBook object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebook-get?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -317,7 +317,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
+        /// Read properties and relationships of the managedEBook object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -357,7 +357,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
+        /// Read properties and relationships of the managedEBook object.
         /// </summary>
         public class ManagedEBookItemRequestBuilderGetQueryParameters 
         {

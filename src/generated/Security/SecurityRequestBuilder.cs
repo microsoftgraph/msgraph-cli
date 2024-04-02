@@ -6,6 +6,7 @@ using ApiSdk.Security.Alerts_v2;
 using ApiSdk.Security.AttackSimulation;
 using ApiSdk.Security.Cases;
 using ApiSdk.Security.Incidents;
+using ApiSdk.Security.Labels;
 using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
 using ApiSdk.Security.SecureScoreControlProfiles;
 using ApiSdk.Security.SecureScores;
@@ -211,6 +212,36 @@ namespace ApiSdk.Security {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the labels property of the microsoft.graph.security entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildLabelsNavCommand()
+        {
+            var command = new Command("labels");
+            command.Description = "Provides operations to manage the labels property of the microsoft.graph.security entity.";
+            var builder = new LabelsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAuthoritiesNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildCitationsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildDepartmentsNavCommand());
+            nonExecCommands.Add(builder.BuildFilePlanReferencesNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildRetentionLabelsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

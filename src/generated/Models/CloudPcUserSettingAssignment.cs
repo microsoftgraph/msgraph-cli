@@ -7,9 +7,9 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcUserSettingAssignment : Entity, IParsable 
     {
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The date and time when this assignment was created. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The target property</summary>
+        /// <summary>The assignment target for the user setting. Currently, the only target supported for this user setting is a user group. For details, see cloudPcManagementGroupAssignmentTarget.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CloudPcManagementAssignmentTarget? Target { get; set; }

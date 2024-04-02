@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Rename {
     public class RenameRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action rename
+        /// Rename a specific cloudPC object. Use this API to update the displayName of a Cloud PC entity.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-rename?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action rename";
+            command.Description = "Rename a specific cloudPC object. Use this API to update the displayName of a Cloud PC entity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-rename?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Rename {
         {
         }
         /// <summary>
-        /// Invoke action rename
+        /// Rename a specific cloudPC object. Use this API to update the displayName of a Cloud PC entity.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

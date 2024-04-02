@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CloudPcUserSetting : Entity, IParsable 
     {
-        /// <summary>The assignments property</summary>
+        /// <summary>Represents the set of Microsoft 365 groups and security groups in Microsoft Entra ID that have cloudPCUserSetting assigned. Returned only on $expand. For an example, see Get cloudPcUserSetting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcUserSettingAssignment>? Assignments { get; set; }
@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcUserSettingAssignment> Assignments { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>The date and time when the setting was created. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The displayName property</summary>
+        /// <summary>The setting name displayed in the user interface.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -25,13 +25,13 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>The date and time when the setting was last modified. The timestamp type represents the date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The localAdminEnabled property</summary>
+        /// <summary>Indicates whether the local admin option is enabled. The default value is false. To enable the local admin option, change the setting to true. If the local admin option is enabled, the end user can be an admin of the Cloud PC device.</summary>
         public bool? LocalAdminEnabled { get; set; }
-        /// <summary>The resetEnabled property</summary>
+        /// <summary>Indicates whether an end user is allowed to reset their Cloud PC. When true, the user is allowed to reset their Cloud PC. When false, end-user initiated reset is not allowed. The default value is false.</summary>
         public bool? ResetEnabled { get; set; }
-        /// <summary>The restorePointSetting property</summary>
+        /// <summary>Defines how frequently a restore point is created that is, a snapshot is taken) for users&apos; provisioned Cloud PCs (default is 12 hours), and whether the user is allowed to restore their own Cloud PCs to a backup made at a specific point in time.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CloudPcRestorePointSetting? RestorePointSetting { get; set; }

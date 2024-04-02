@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class VirtualEndpoint : Entity, IParsable 
     {
-        /// <summary>The auditEvents property</summary>
+        /// <summary>A collection of Cloud PC audit events.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcAuditEvent>? AuditEvents { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcAuditEvent> AuditEvents { get; set; }
 #endif
-        /// <summary>The cloudPCs property</summary>
+        /// <summary>A collection of cloud-managed virtual desktops.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPC>? CloudPCs { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPC> CloudPCs { get; set; }
 #endif
-        /// <summary>The deviceImages property</summary>
+        /// <summary>A collection of device image resources on Cloud PC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcDeviceImage>? DeviceImages { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcDeviceImage> DeviceImages { get; set; }
 #endif
-        /// <summary>The galleryImages property</summary>
+        /// <summary>A collection of gallery image resources on Cloud PC.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcGalleryImage>? GalleryImages { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcGalleryImage> GalleryImages { get; set; }
 #endif
-        /// <summary>The onPremisesConnections property</summary>
+        /// <summary>A defined collection of Azure resource information that can be used to establish Azure network connections for Cloud PCs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcOnPremisesConnection>? OnPremisesConnections { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcOnPremisesConnection> OnPremisesConnections { get; set; }
 #endif
-        /// <summary>The provisioningPolicies property</summary>
+        /// <summary>A collection of Cloud PC provisioning policies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcProvisioningPolicy>? ProvisioningPolicies { get; set; }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models {
 #else
         public List<CloudPcProvisioningPolicy> ProvisioningPolicies { get; set; }
 #endif
-        /// <summary>The userSettings property</summary>
+        /// <summary>A collection of Cloud PC user settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CloudPcUserSetting>? UserSettings { get; set; }

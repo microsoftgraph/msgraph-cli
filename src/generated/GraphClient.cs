@@ -1980,6 +1980,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildCasesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildIncidentsNavCommand());
+            nonExecCommands.Add(builder.BuildLabelsNavCommand());
             nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSecureScoreControlProfilesNavCommand());

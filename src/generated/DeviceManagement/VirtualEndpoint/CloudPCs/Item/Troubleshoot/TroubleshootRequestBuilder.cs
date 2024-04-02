@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Troubleshoot {
     public class TroubleshootRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action troubleshoot
+        /// Troubleshoot a specific cloudPC object. Use this API to check the health status of the Cloud PC and the session host.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-troubleshoot?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action troubleshoot";
+            command.Description = "Troubleshoot a specific cloudPC object. Use this API to check the health status of the Cloud PC and the session host.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-troubleshoot?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Troubleshoot {
         {
         }
         /// <summary>
-        /// Invoke action troubleshoot
+        /// Troubleshoot a specific cloudPC object. Use this API to check the health status of the Cloud PC and the session host.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

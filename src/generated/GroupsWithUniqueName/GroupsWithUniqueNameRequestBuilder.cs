@@ -110,14 +110,14 @@ namespace ApiSdk.GroupsWithUniqueName {
             return command;
         }
         /// <summary>
-        /// Update the properties of a group object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-update?view=graph-rest-1.0" />
+        /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a group object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-update?view=graph-rest-1.0";
+            command.Description = "Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0";
             var uniqueNameOption = new Option<string>("--unique-name", description: "Alternate key of group") {
             };
             uniqueNameOption.IsRequired = true;
@@ -214,7 +214,7 @@ namespace ApiSdk.GroupsWithUniqueName {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a group object.
+        /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

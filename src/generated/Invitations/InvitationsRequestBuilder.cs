@@ -34,6 +34,7 @@ namespace ApiSdk.Invitations {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInvitedUserNavCommand());
+            commands.Add(builder.BuildInvitedUserSponsorsNavCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }
