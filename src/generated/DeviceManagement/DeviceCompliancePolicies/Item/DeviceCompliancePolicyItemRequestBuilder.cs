@@ -74,14 +74,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a windows81CompliancePolicy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0" />
+        /// Deletes a macOSCompliancePolicy.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a windows81CompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a macOSCompliancePolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macoscompliancepolicy-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -183,14 +183,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81compliancepolicy-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windows10MobileCompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsPhone81CompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81compliancepolicy-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windows10MobileCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -236,14 +236,14 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a windows10MobileCompliancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-update?view=graph-rest-1.0" />
+        /// Update the properties of a windows81CompliancePolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a windows10MobileCompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10mobilecompliancepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windows81CompliancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -392,7 +392,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         {
         }
         /// <summary>
-        /// Deletes a windows81CompliancePolicy.
+        /// Deletes a macOSCompliancePolicy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -411,7 +411,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
+        /// Read properties and relationships of the windows10MobileCompliancePolicy object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -430,7 +430,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a windows10MobileCompliancePolicy object.
+        /// Update the properties of a windows81CompliancePolicy object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -451,7 +451,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsPhone81CompliancePolicy object.
+        /// Read properties and relationships of the windows10MobileCompliancePolicy object.
         /// </summary>
         public class DeviceCompliancePolicyItemRequestBuilderGetQueryParameters 
         {

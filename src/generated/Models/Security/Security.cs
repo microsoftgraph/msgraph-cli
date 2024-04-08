@@ -47,6 +47,14 @@ namespace ApiSdk.Models.Security {
 #else
         public List<Incident> Incidents { get; set; }
 #endif
+        /// <summary>The labels property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public LabelsRoot? Labels { get; set; }
+#nullable restore
+#else
+        public LabelsRoot Labels { get; set; }
+#endif
         /// <summary>The secureScoreControlProfiles property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -118,6 +126,7 @@ namespace ApiSdk.Models.Security {
                 {"attackSimulation", n => { AttackSimulation = n.GetObjectValue<ApiSdk.Models.AttackSimulationRoot>(ApiSdk.Models.AttackSimulationRoot.CreateFromDiscriminatorValue); } },
                 {"cases", n => { Cases = n.GetObjectValue<CasesRoot>(CasesRoot.CreateFromDiscriminatorValue); } },
                 {"incidents", n => { Incidents = n.GetCollectionOfObjectValues<Incident>(Incident.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"labels", n => { Labels = n.GetObjectValue<LabelsRoot>(LabelsRoot.CreateFromDiscriminatorValue); } },
                 {"secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -139,6 +148,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteObjectValue<ApiSdk.Models.AttackSimulationRoot>("attackSimulation", AttackSimulation);
             writer.WriteObjectValue<CasesRoot>("cases", Cases);
             writer.WriteCollectionOfObjectValues<Incident>("incidents", Incidents);
+            writer.WriteObjectValue<LabelsRoot>("labels", Labels);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>("secureScoreControlProfiles", SecureScoreControlProfiles);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScore>("secureScores", SecureScores);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>("subjectRightsRequests", SubjectRightsRequests);

@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
 #else
         public List<DocumentSetVersionItem> Items { get; set; }
 #endif
-        /// <summary>If true, minor versions of items are also captured; otherwise, only major versions will be captured. Default value is false.</summary>
+        /// <summary>If true, minor versions of items are also captured; otherwise, only major versions are captured. The default value is false.</summary>
         public bool? ShouldCaptureMinorVersion { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="DocumentSetVersion"/> and sets the default values.

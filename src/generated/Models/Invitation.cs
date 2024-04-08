@@ -39,6 +39,14 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.InvitedUserMessageInfo InvitedUserMessageInfo { get; set; }
 #endif
+        /// <summary>The invitedUserSponsors property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DirectoryObject>? InvitedUserSponsors { get; set; }
+#nullable restore
+#else
+        public List<DirectoryObject> InvitedUserSponsors { get; set; }
+#endif
         /// <summary>The userType of the user being invited. By default, this is Guest. You can invite as Member if you&apos;re a company administrator.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -99,6 +107,7 @@ namespace ApiSdk.Models {
                 {"invitedUserDisplayName", n => { InvitedUserDisplayName = n.GetStringValue(); } },
                 {"invitedUserEmailAddress", n => { InvitedUserEmailAddress = n.GetStringValue(); } },
                 {"invitedUserMessageInfo", n => { InvitedUserMessageInfo = n.GetObjectValue<ApiSdk.Models.InvitedUserMessageInfo>(ApiSdk.Models.InvitedUserMessageInfo.CreateFromDiscriminatorValue); } },
+                {"invitedUserSponsors", n => { InvitedUserSponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"invitedUserType", n => { InvitedUserType = n.GetStringValue(); } },
                 {"resetRedemption", n => { ResetRedemption = n.GetBoolValue(); } },
                 {"sendInvitationMessage", n => { SendInvitationMessage = n.GetBoolValue(); } },
@@ -117,6 +126,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("invitedUserDisplayName", InvitedUserDisplayName);
             writer.WriteStringValue("invitedUserEmailAddress", InvitedUserEmailAddress);
             writer.WriteObjectValue<ApiSdk.Models.InvitedUserMessageInfo>("invitedUserMessageInfo", InvitedUserMessageInfo);
+            writer.WriteCollectionOfObjectValues<DirectoryObject>("invitedUserSponsors", InvitedUserSponsors);
             writer.WriteStringValue("invitedUserType", InvitedUserType);
             writer.WriteStringValue("inviteRedeemUrl", InviteRedeemUrl);
             writer.WriteStringValue("inviteRedirectUrl", InviteRedirectUrl);

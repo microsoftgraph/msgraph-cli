@@ -54,13 +54,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to deviceImages for deviceManagement
+        /// Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-post-deviceimages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to deviceImages for deviceManagement";
+            command.Description = "Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-post-deviceimages?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -116,13 +117,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages {
             return command;
         }
         /// <summary>
-        /// Get deviceImages from deviceManagement
+        /// List the properties and relationships of cloudPcDeviceImage objects (operating system images) uploaded to Cloud PC.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-list-deviceimages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get deviceImages from deviceManagement";
+            command.Description = "List the properties and relationships of cloudPcDeviceImage objects (operating system images) uploaded to Cloud PC.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-list-deviceimages?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -224,7 +226,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages {
         {
         }
         /// <summary>
-        /// Get deviceImages from deviceManagement
+        /// List the properties and relationships of cloudPcDeviceImage objects (operating system images) uploaded to Cloud PC.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +245,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to deviceImages for deviceManagement
+        /// Create a new cloudPcDeviceImage object. Upload a custom OS image that you can later provision on Cloud PCs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages {
             return requestInfo;
         }
         /// <summary>
-        /// Get deviceImages from deviceManagement
+        /// List the properties and relationships of cloudPcDeviceImage objects (operating system images) uploaded to Cloud PC.
         /// </summary>
         public class DeviceImagesRequestBuilderGetQueryParameters 
         {

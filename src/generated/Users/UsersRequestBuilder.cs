@@ -107,6 +107,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildSendMailNavCommand());
             commands.Add(builder.BuildServiceProvisioningErrorsNavCommand());
             commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildSponsorsNavCommand());
             commands.Add(builder.BuildTeamworkNavCommand());
             commands.Add(builder.BuildTodoNavCommand());
             commands.Add(builder.BuildTransitiveMemberOfNavCommand());
@@ -229,14 +230,14 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0" />
+        /// Retrieve a list of user objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -356,7 +357,7 @@ namespace ApiSdk.Users {
         {
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
+        /// Retrieve a list of user objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -396,7 +397,7 @@ namespace ApiSdk.Users {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the user objects.
+        /// Retrieve a list of user objects.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters 
         {

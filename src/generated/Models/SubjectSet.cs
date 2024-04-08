@@ -47,6 +47,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.singleUser" => new SingleUser(),
                 "#microsoft.graph.targetApplicationOwners" => new TargetApplicationOwners(),
                 "#microsoft.graph.targetManager" => new TargetManager(),
+                "#microsoft.graph.targetUserSponsors" => new TargetUserSponsors(),
                 _ => new SubjectSet(),
             };
         }

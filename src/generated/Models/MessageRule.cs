@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public MessageRuleActions Actions { get; set; }
 #endif
-        /// <summary>Conditions that when fulfilled, will trigger the corresponding actions for that rule.</summary>
+        /// <summary>Conditions that when fulfilled trigger the corresponding actions for that rule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public MessageRulePredicates? Conditions { get; set; }

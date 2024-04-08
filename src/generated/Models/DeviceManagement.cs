@@ -470,7 +470,7 @@ namespace ApiSdk.Models {
 #else
         public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance> UserExperienceAnalyticsWorkFromAnywhereModelPerformance { get; set; }
 #endif
-        /// <summary>The virtualEndpoint property</summary>
+        /// <summary>Virtual endpoint</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.VirtualEndpoint? VirtualEndpoint { get; set; }

@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Reboot {
     public class RebootRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action reboot
+        /// Reboot a specific cloudPC object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpc-reboot?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action reboot";
+            command.Description = "Reboot a specific cloudPC object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpc-reboot?view=graph-rest-1.0";
             var cloudPCIdOption = new Option<string>("--cloud-pcid", description: "The unique identifier of cloudPC") {
             };
             cloudPCIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Reboot {
         {
         }
         /// <summary>
-        /// Invoke action reboot
+        /// Reboot a specific cloudPC object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

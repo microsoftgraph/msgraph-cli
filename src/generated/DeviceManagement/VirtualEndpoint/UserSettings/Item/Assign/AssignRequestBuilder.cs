@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assign {
     public class AssignRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke action assign
+        /// Assign a cloudPcUserSetting to user groups.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcusersetting-assign?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Invoke action assign";
+            command.Description = "Assign a cloudPcUserSetting to user groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcusersetting-assign?view=graph-rest-1.0";
             var cloudPcUserSettingIdOption = new Option<string>("--cloud-pc-user-setting-id", description: "The unique identifier of cloudPcUserSetting") {
             };
             cloudPcUserSettingIdOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assign {
         {
         }
         /// <summary>
-        /// Invoke action assign
+        /// Assign a cloudPcUserSetting to user groups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

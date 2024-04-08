@@ -22,14 +22,14 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
     public class RoleDefinitionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a deviceAndAppManagementRoleDefinition.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-delete?view=graph-rest-1.0" />
+        /// Deletes a roleDefinition.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a deviceAndAppManagementRoleDefinition.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a roleDefinition.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-delete?view=graph-rest-1.0";
             var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
@@ -58,14 +58,14 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the roleDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the deviceAndAppManagementRoleDefinition object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the roleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceAndAppManagementRoleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-get?view=graph-rest-1.0";
             var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
@@ -111,14 +111,14 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0" />
+        /// Update the properties of a roleDefinition object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceAndAppManagementRoleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a roleDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-update?view=graph-rest-1.0";
             var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
@@ -204,7 +204,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
         {
         }
         /// <summary>
-        /// Deletes a deviceAndAppManagementRoleDefinition.
+        /// Deletes a roleDefinition.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -223,7 +223,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the roleDefinition object.
+        /// Read properties and relationships of the deviceAndAppManagementRoleDefinition object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +242,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceAndAppManagementRoleDefinition object.
+        /// Update the properties of a roleDefinition object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -263,7 +263,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the roleDefinition object.
+        /// Read properties and relationships of the deviceAndAppManagementRoleDefinition object.
         /// </summary>
         public class RoleDefinitionItemRequestBuilderGetQueryParameters 
         {
