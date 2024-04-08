@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0](https://github.com/microsoftgraph/msgraph-cli/compare/v1.5.0...v1.6.0) (2024-04-08)
+
+
+### Features
+
+* **generation:** update request builders and models ([#456](https://github.com/microsoftgraph/msgraph-cli/issues/456)) ([6c65d64](https://github.com/microsoftgraph/msgraph-cli/commit/6c65d64dc0585c9407b0b735e6c3a77b7a360038))
+
 ## [1.5.0](https://github.com/microsoftgraph/msgraph-cli/compare/v1.4.0...v1.5.0) (2024-03-19)
 
 
