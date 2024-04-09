@@ -21,13 +21,13 @@ namespace ApiSdk.Users.Item.Sponsors.Item {
     public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get sponsors from users
+        /// The users and groups responsible for this guest user&apos;s privileges in the tenant and keep the guest user&apos;s information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get sponsors from users";
+            command.Description = "The users and groups responsible for this guest user's privileges in the tenant and keep the guest user's information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -93,7 +93,7 @@ namespace ApiSdk.Users.Item.Sponsors.Item {
         {
         }
         /// <summary>
-        /// Get sponsors from users
+        /// The users and groups responsible for this guest user&apos;s privileges in the tenant and keep the guest user&apos;s information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -112,7 +112,7 @@ namespace ApiSdk.Users.Item.Sponsors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get sponsors from users
+        /// The users and groups responsible for this guest user&apos;s privileges in the tenant and keep the guest user&apos;s information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters 
         {

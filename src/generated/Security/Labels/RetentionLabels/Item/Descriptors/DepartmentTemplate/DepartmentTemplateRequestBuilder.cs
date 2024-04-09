@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.DepartmentTemp
     public class DepartmentTemplateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get departmentTemplate from security
+        /// Specifies the  department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get departmentTemplate from security";
+            command.Description = "Specifies the  department or business unit of an organization to which a label belongs.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.DepartmentTemp
         {
         }
         /// <summary>
-        /// Get departmentTemplate from security
+        /// Specifies the  department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.DepartmentTemp
             return requestInfo;
         }
         /// <summary>
-        /// Get departmentTemplate from security
+        /// Specifies the  department or business unit of an organization to which a label belongs.
         /// </summary>
         public class DepartmentTemplateRequestBuilderGetQueryParameters 
         {

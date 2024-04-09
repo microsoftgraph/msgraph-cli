@@ -53,14 +53,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Create a new iosVppEBookAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-create?view=graph-rest-1.0" />
+        /// Create a new managedEBookAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new iosVppEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-create?view=graph-rest-1.0";
+            command.Description = "Create a new managedEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-create?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -239,7 +239,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new iosVppEBookAssignment object.
+        /// Create a new managedEBookAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -254,7 +254,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

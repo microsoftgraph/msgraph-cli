@@ -59,14 +59,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0" />
+        /// Create a new mailSearchFolder in the specified user&apos;s mailbox.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailsearchfolder-post?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0";
+            command.Description = "Create a new mailSearchFolder in the specified user's mailbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailsearchfolder-post?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -274,7 +274,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.
+        /// Create a new mailSearchFolder in the specified user&apos;s mailbox.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -289,7 +289,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

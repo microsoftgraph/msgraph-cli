@@ -57,13 +57,14 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to retentionLabels for security
+        /// Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-retentionlabel?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to retentionLabels for security";
+            command.Description = "Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-retentionlabel?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,13 +103,14 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return command;
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Get a list of the retentionLabel objects and their properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-retentionlabel?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get retentionLabels from security";
+            command.Description = "Get a list of the retentionLabel objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-retentionlabel?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +212,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
         {
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Get a list of the retentionLabel objects and their properties.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +231,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to retentionLabels for security
+        /// Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -244,13 +246,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/labels/retentionLabels", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Get a list of the retentionLabel objects and their properties.
         /// </summary>
         public class RetentionLabelsRequestBuilderGetQueryParameters 
         {

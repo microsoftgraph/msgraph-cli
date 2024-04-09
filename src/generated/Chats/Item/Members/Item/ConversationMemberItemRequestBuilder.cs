@@ -63,14 +63,14 @@ namespace ApiSdk.Chats.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0" />
+        /// Retrieve a conversationMember from a chat.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a conversationMember from a chat or channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a conversationMember from a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-members?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -206,13 +206,13 @@ namespace ApiSdk.Chats.Item.Members.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/chats/{chat%2Did}/members/{conversationMember%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
+        /// Retrieve a conversationMember from a chat.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -246,13 +246,13 @@ namespace ApiSdk.Chats.Item.Members.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/chats/{chat%2Did}/members/{conversationMember%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a conversationMember from a chat or channel.
+        /// Retrieve a conversationMember from a chat.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters 
         {

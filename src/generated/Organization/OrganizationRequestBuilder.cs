@@ -163,14 +163,14 @@ namespace ApiSdk.Organization {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the organization objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of organization objects. There's only one organization object in the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the organization objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -289,7 +289,7 @@ namespace ApiSdk.Organization {
         {
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -323,13 +323,13 @@ namespace ApiSdk.Organization {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/organization", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         public class OrganizationRequestBuilderGetQueryParameters 
         {

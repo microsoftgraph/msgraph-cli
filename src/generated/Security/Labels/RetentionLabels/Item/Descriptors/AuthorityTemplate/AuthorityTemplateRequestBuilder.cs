@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.AuthorityTempl
     public class AuthorityTemplateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get authorityTemplate from security
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get authorityTemplate from security";
+            command.Description = "Specifies the underlying authority that describes the type of content to be retained and its retention schedule.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.AuthorityTempl
         {
         }
         /// <summary>
-        /// Get authorityTemplate from security
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.AuthorityTempl
             return requestInfo;
         }
         /// <summary>
-        /// Get authorityTemplate from security
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         public class AuthorityTemplateRequestBuilderGetQueryParameters 
         {

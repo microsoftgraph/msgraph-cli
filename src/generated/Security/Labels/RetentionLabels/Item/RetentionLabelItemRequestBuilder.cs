@@ -24,13 +24,14 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
     public class RetentionLabelItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete navigation property retentionLabels for security
+        /// Delete a retentionLabel object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionlabel-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property retentionLabels for security";
+            command.Description = "Delete a retentionLabel object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionlabel-delete?view=graph-rest-1.0";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -115,13 +116,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
             return command;
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get retentionLabels from security";
+            command.Description = "Represents how customers can manage their data, whether and for how long to retain or delete it.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -167,13 +168,14 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property retentionLabels in security
+        /// Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionlabel-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property retentionLabels in security";
+            command.Description = "Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionlabel-update?view=graph-rest-1.0";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -249,7 +251,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property retentionLabels for security
+        /// Delete a retentionLabel object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,13 +264,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -287,7 +289,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property retentionLabels in security
+        /// Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -302,13 +304,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionLabels from security
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         public class RetentionLabelItemRequestBuilderGetQueryParameters 
         {

@@ -7,11 +7,11 @@ using System;
 namespace ApiSdk.Models.Security {
     public class RetentionLabel : ApiSdk.Models.Entity, IParsable 
     {
-        /// <summary>The actionAfterRetentionPeriod property</summary>
+        /// <summary>Specifies the action to take on the labeled document after the period specified by the retentionDuration property expires. The possible values are: none, delete, startDispositionReview, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.ActionAfterRetentionPeriod? ActionAfterRetentionPeriod { get; set; }
-        /// <summary>The behaviorDuringRetentionPeriod property</summary>
+        /// <summary>Specifies how the behavior of a document with this label should be during the retention period. The possible values are: doNotRetain, retain, retainAsRecord, retainAsRegulatoryRecord, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.BehaviorDuringRetentionPeriod? BehaviorDuringRetentionPeriod { get; set; }
-        /// <summary>The createdBy property</summary>
+        /// <summary>Represents the user who created the retentionLabel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
@@ -19,11 +19,11 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>Represents the date and time in which the retentionLabel is created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The defaultRecordBehavior property</summary>
+        /// <summary>Specifies the locked or unlocked state of a record label when it is created.The possible values are: startLocked, startUnlocked, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.DefaultRecordBehavior? DefaultRecordBehavior { get; set; }
-        /// <summary>The descriptionForAdmins property</summary>
+        /// <summary>Provides label information for the admin. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DescriptionForAdmins { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string DescriptionForAdmins { get; set; }
 #endif
-        /// <summary>The descriptionForUsers property</summary>
+        /// <summary>Provides the label information for the user. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DescriptionForUsers { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string DescriptionForUsers { get; set; }
 #endif
-        /// <summary>The descriptors property</summary>
+        /// <summary>Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public FilePlanDescriptor? Descriptors { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security {
 #else
         public FilePlanDescriptor Descriptors { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Unique string that defines a label name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The dispositionReviewStages property</summary>
+        /// <summary>When action at the end of retention is chosen as &apos;dispositionReview&apos;, dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DispositionReviewStage>? DispositionReviewStages { get; set; }
@@ -63,9 +63,9 @@ namespace ApiSdk.Models.Security {
 #else
         public List<DispositionReviewStage> DispositionReviewStages { get; set; }
 #endif
-        /// <summary>The isInUse property</summary>
+        /// <summary>Specifies whether the label is currently being used.</summary>
         public bool? IsInUse { get; set; }
-        /// <summary>The labelToBeApplied property</summary>
+        /// <summary>Specifies the replacement label to be applied automatically after the retention period of the current label ends.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LabelToBeApplied { get; set; }
@@ -73,7 +73,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string LabelToBeApplied { get; set; }
 #endif
-        /// <summary>The lastModifiedBy property</summary>
+        /// <summary>The user who last modified the retentionLabel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.IdentitySet? LastModifiedBy { get; set; }
@@ -81,9 +81,9 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.IdentitySet LastModifiedBy { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>The latest date time when the retentionLabel was modified.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The retentionDuration property</summary>
+        /// <summary>Specifies the number of days to retain the content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.RetentionDuration? RetentionDuration { get; set; }
@@ -91,7 +91,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.RetentionDuration RetentionDuration { get; set; }
 #endif
-        /// <summary>The retentionEventType property</summary>
+        /// <summary>Represents the type associated with a retention event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.RetentionEventType? RetentionEventType { get; set; }
@@ -99,7 +99,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.RetentionEventType RetentionEventType { get; set; }
 #endif
-        /// <summary>The retentionTrigger property</summary>
+        /// <summary>Specifies whether the retention duration is calculated from the content creation date, labeled date, or last modification date. The possible values are: dateLabeled, dateCreated, dateModified, dateOfEvent, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.RetentionTrigger? RetentionTrigger { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

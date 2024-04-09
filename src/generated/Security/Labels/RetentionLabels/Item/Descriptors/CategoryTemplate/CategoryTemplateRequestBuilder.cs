@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CategoryTempla
     public class CategoryTemplateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get categoryTemplate from security
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get categoryTemplate from security";
+            command.Description = "Specifies a group of similar types of content in a particular department.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CategoryTempla
         {
         }
         /// <summary>
-        /// Get categoryTemplate from security
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CategoryTempla
             return requestInfo;
         }
         /// <summary>
-        /// Get categoryTemplate from security
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         public class CategoryTemplateRequestBuilderGetQueryParameters 
         {

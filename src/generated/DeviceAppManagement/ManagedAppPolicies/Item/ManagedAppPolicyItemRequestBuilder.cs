@@ -57,14 +57,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppProtection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the targetedManagedAppProtection object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the targetedManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-get?view=graph-rest-1.0";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
@@ -205,13 +205,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppProtection object.
+        /// Read properties and relationships of the targetedManagedAppProtection object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,13 +245,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppProtection object.
+        /// Read properties and relationships of the targetedManagedAppProtection object.
         /// </summary>
         public class ManagedAppPolicyItemRequestBuilderGetQueryParameters 
         {

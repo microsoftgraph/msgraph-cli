@@ -146,13 +146,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors {
             return command;
         }
         /// <summary>
-        /// Get descriptors from security
+        /// Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get descriptors from security";
+            command.Description = "Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -276,13 +276,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}/descriptors", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get descriptors from security
+        /// Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -316,13 +316,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}/descriptors", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get descriptors from security
+        /// Represents out-of-the-box values that provide more options to improve the manageability and organization of the content you need to label.
         /// </summary>
         public class DescriptorsRequestBuilderGetQueryParameters 
         {

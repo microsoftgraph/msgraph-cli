@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CitationTempla
     public class CitationTemplateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get citationTemplate from security
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get citationTemplate from security";
+            command.Description = "The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CitationTempla
         {
         }
         /// <summary>
-        /// Get citationTemplate from security
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.CitationTempla
             return requestInfo;
         }
         /// <summary>
-        /// Get citationTemplate from security
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         public class CitationTemplateRequestBuilderGetQueryParameters 
         {

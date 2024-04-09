@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.FilePlanRefere
     public class FilePlanReferenceTemplateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get filePlanReferenceTemplate from security
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get filePlanReferenceTemplate from security";
+            command.Description = "Specifies a unique alpha-numeric identifier for an organization’s retention schedule.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.FilePlanRefere
         {
         }
         /// <summary>
-        /// Get filePlanReferenceTemplate from security
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors.FilePlanRefere
             return requestInfo;
         }
         /// <summary>
-        /// Get filePlanReferenceTemplate from security
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         public class FilePlanReferenceTemplateRequestBuilderGetQueryParameters 
         {

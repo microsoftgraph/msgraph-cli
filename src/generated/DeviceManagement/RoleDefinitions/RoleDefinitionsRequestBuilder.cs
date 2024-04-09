@@ -101,14 +101,14 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the roleDefinition objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the roleDefinition objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-roledefinition-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the deviceAndAppManagementRoleDefinition objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-deviceandappmanagementroledefinition-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +210,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
         {
         }
         /// <summary>
-        /// List properties and relationships of the roleDefinition objects.
+        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,13 +244,13 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceManagement/roleDefinitions", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the roleDefinition objects.
+        /// List properties and relationships of the deviceAndAppManagementRoleDefinition objects.
         /// </summary>
         public class RoleDefinitionsRequestBuilderGetQueryParameters 
         {

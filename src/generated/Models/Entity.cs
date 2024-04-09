@@ -634,6 +634,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.security.dataSource" => new ApiSdk.Models.Security.DataSource(),
                 "#microsoft.graph.security.dataSourceContainer" => new DataSourceContainer(),
                 "#microsoft.graph.security.departmentTemplate" => new ApiSdk.Models.Security.DepartmentTemplate(),
+                "#microsoft.graph.security.dispositionReviewStage" => new DispositionReviewStage(),
                 "#microsoft.graph.security.ediscoveryAddToReviewSetOperation" => new EdiscoveryAddToReviewSetOperation(),
                 "#microsoft.graph.security.ediscoveryCase" => new EdiscoveryCase(),
                 "#microsoft.graph.security.ediscoveryCaseSettings" => new EdiscoveryCaseSettings(),
