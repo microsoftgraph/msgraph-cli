@@ -24,13 +24,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
     {
         /// <summary>
         /// Delete conversationThread.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0";
+            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -65,14 +65,14 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Get a thread object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0" />
+        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a thread object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0";
+            command.Description = "Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -245,13 +245,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get a thread object.
+        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,13 +285,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get a thread object.
+        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
         /// </summary>
         public class ConversationThreadItemRequestBuilderGetQueryParameters 
         {

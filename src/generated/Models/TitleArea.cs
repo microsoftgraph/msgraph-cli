@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The alternativeText property</summary>
+        /// <summary>Alternative text on the title area.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AlternativeText { get; set; }
@@ -17,9 +17,9 @@ namespace ApiSdk.Models {
 #else
         public string AlternativeText { get; set; }
 #endif
-        /// <summary>The enableGradientEffect property</summary>
+        /// <summary>Indicates whether the title area has a gradient effect enabled.</summary>
         public bool? EnableGradientEffect { get; set; }
-        /// <summary>The imageWebUrl property</summary>
+        /// <summary>URL of the image in the title area.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ImageWebUrl { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
 #else
         public string ImageWebUrl { get; set; }
 #endif
-        /// <summary>The layout property</summary>
+        /// <summary>Enumeration value that indicates the layout of the title area. The possible values are: imageAndTitle, plain, colorBlock, overlap, unknownFutureValue.</summary>
         public TitleAreaLayoutType? Layout { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The serverProcessedContent property</summary>
+        /// <summary>Contains collections of data that can be processed by server side services like search index and link fixup.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ServerProcessedContent? ServerProcessedContent { get; set; }
@@ -45,13 +45,13 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ServerProcessedContent ServerProcessedContent { get; set; }
 #endif
-        /// <summary>The showAuthor property</summary>
+        /// <summary>Indicates whether the author should be shown in title area.</summary>
         public bool? ShowAuthor { get; set; }
-        /// <summary>The showPublishedDate property</summary>
+        /// <summary>Indicates whether the published date should be shown in title area.</summary>
         public bool? ShowPublishedDate { get; set; }
-        /// <summary>The showTextBlockAboveTitle property</summary>
+        /// <summary>Indicates whether the text block above title should be shown in title area.</summary>
         public bool? ShowTextBlockAboveTitle { get; set; }
-        /// <summary>The textAboveTitle property</summary>
+        /// <summary>The text above title line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TextAboveTitle { get; set; }
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
 #else
         public string TextAboveTitle { get; set; }
 #endif
-        /// <summary>The textAlignment property</summary>
+        /// <summary>Enumeration value that indicates the text alignment of the title area. The possible values are: left, center, unknownFutureValue.</summary>
         public TitleAreaTextAlignmentType? TextAlignment { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="TitleArea"/> and sets the default values.

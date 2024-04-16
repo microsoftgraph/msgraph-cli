@@ -256,7 +256,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -44,6 +44,7 @@ namespace ApiSdk.Applications {
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildExtensionPropertiesNavCommand());
             commands.Add(builder.BuildFederatedIdentityCredentialsNavCommand());
+            commands.Add(builder.BuildFederatedIdentityCredentialsWithNameRbCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());
@@ -343,7 +344,7 @@ namespace ApiSdk.Applications {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/applications", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

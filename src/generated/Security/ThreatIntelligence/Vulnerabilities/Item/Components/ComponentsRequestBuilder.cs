@@ -253,7 +253,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/threatIntelligence/vulnerabilities/{vulnerability%2Did}/components", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

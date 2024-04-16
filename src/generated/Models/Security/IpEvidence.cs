@@ -23,6 +23,14 @@ namespace ApiSdk.Models.Security {
 #else
         public string IpAddress { get; set; }
 #endif
+        /// <summary>The location property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public GeoLocation? Location { get; set; }
+#nullable restore
+#else
+        public GeoLocation Location { get; set; }
+#endif
         /// <summary>The stream property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,6 +66,7 @@ namespace ApiSdk.Models.Security {
             {
                 {"countryLetterCode", n => { CountryLetterCode = n.GetStringValue(); } },
                 {"ipAddress", n => { IpAddress = n.GetStringValue(); } },
+                {"location", n => { Location = n.GetObjectValue<GeoLocation>(GeoLocation.CreateFromDiscriminatorValue); } },
                 {"stream", n => { Stream = n.GetObjectValue<StreamObject>(StreamObject.CreateFromDiscriminatorValue); } },
             };
         }
@@ -71,6 +80,7 @@ namespace ApiSdk.Models.Security {
             base.Serialize(writer);
             writer.WriteStringValue("countryLetterCode", CountryLetterCode);
             writer.WriteStringValue("ipAddress", IpAddress);
+            writer.WriteObjectValue<GeoLocation>("location", Location);
             writer.WriteObjectValue<StreamObject>("stream", Stream);
         }
     }

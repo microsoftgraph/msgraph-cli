@@ -21,14 +21,14 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
     public class NamedLocationItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an ipNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-delete?view=graph-rest-1.0" />
+        /// Delete a countryNamedLocation object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an ipNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-delete?view=graph-rest-1.0";
+            command.Description = "Delete a countryNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -110,14 +110,14 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a countryNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-update?view=graph-rest-1.0" />
+        /// Update the properties of an ipNamedLocation object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a countryNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an ipNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -176,7 +176,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         {
         }
         /// <summary>
-        /// Delete an ipNamedLocation object.
+        /// Delete a countryNamedLocation object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -189,7 +189,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -214,7 +214,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a countryNamedLocation object.
+        /// Update the properties of an ipNamedLocation object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -229,7 +229,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

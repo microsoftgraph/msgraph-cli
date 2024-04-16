@@ -64,14 +64,14 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return command;
         }
         /// <summary>
-        /// The group&apos;s conversations.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0" />
+        /// Retrieve the properties and relationships of conversation object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The group's conversations.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-conversation?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of conversation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -170,13 +170,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/conversations/{conversation%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the properties and relationships of conversation object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +195,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversations.
+        /// Retrieve the properties and relationships of conversation object.
         /// </summary>
         public class ConversationItemRequestBuilderGetQueryParameters 
         {

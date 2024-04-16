@@ -51,13 +51,13 @@ namespace ApiSdk.Invitations.Item.InvitedUserSponsors {
             return command;
         }
         /// <summary>
-        /// Get invitedUserSponsors from invitations
+        /// The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users&apos; privileges in the tenant and for keeping the guest users&apos; information and access up to date.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get invitedUserSponsors from invitations";
+            command.Description = "The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users' privileges in the tenant and for keeping the guest users' information and access up to date.";
             var invitationIdOption = new Option<string>("--invitation-id", description: "The unique identifier of invitation") {
             };
             invitationIdOption.IsRequired = true;
@@ -165,7 +165,7 @@ namespace ApiSdk.Invitations.Item.InvitedUserSponsors {
         {
         }
         /// <summary>
-        /// Get invitedUserSponsors from invitations
+        /// The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users&apos; privileges in the tenant and for keeping the guest users&apos; information and access up to date.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +184,7 @@ namespace ApiSdk.Invitations.Item.InvitedUserSponsors {
             return requestInfo;
         }
         /// <summary>
-        /// Get invitedUserSponsors from invitations
+        /// The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users&apos; privileges in the tenant and for keeping the guest users&apos; information and access up to date.
         /// </summary>
         public class InvitedUserSponsorsRequestBuilderGetQueryParameters 
         {

@@ -271,7 +271,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances.Item.Extensions {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/events/{event%2Did}/instances/{event%2Did1}/extensions", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

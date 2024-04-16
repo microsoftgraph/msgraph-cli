@@ -53,13 +53,14 @@ namespace ApiSdk.Security.Labels.Citations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to citations for security
+        /// Create a new citationTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-citations?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to citations for security";
+            command.Description = "Create a new citationTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-citations?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -98,13 +99,14 @@ namespace ApiSdk.Security.Labels.Citations {
             return command;
         }
         /// <summary>
-        /// Get citations from security
+        /// Get a list of the citationTemplate objects and their properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-citations?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get citations from security";
+            command.Description = "Get a list of the citationTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-citations?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +208,7 @@ namespace ApiSdk.Security.Labels.Citations {
         {
         }
         /// <summary>
-        /// Get citations from security
+        /// Get a list of the citationTemplate objects and their properties.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +227,7 @@ namespace ApiSdk.Security.Labels.Citations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to citations for security
+        /// Create a new citationTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -240,13 +242,13 @@ namespace ApiSdk.Security.Labels.Citations {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/labels/citations", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get citations from security
+        /// Get a list of the citationTemplate objects and their properties.
         /// </summary>
         public class CitationsRequestBuilderGetQueryParameters 
         {

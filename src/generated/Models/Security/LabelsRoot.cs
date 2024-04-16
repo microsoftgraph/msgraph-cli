@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security {
     public class LabelsRoot : ApiSdk.Models.Entity, IParsable 
     {
-        /// <summary>The authorities property</summary>
+        /// <summary>Specifies the underlying authority that describes the type of content to be retained and its retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AuthorityTemplate>? Authorities { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<AuthorityTemplate> Authorities { get; set; }
 #endif
-        /// <summary>The categories property</summary>
+        /// <summary>Specifies a group of similar types of content in a particular department.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CategoryTemplate>? Categories { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<CategoryTemplate> Categories { get; set; }
 #endif
-        /// <summary>The citations property</summary>
+        /// <summary>The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CitationTemplate>? Citations { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<CitationTemplate> Citations { get; set; }
 #endif
-        /// <summary>The departments property</summary>
+        /// <summary>Specifies the department or business unit of an organization to which a label belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DepartmentTemplate>? Departments { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<DepartmentTemplate> Departments { get; set; }
 #endif
-        /// <summary>The filePlanReferences property</summary>
+        /// <summary>Specifies a unique alpha-numeric identifier for an organization’s retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<FilePlanReferenceTemplate>? FilePlanReferences { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<FilePlanReferenceTemplate> FilePlanReferences { get; set; }
 #endif
-        /// <summary>The retentionLabels property</summary>
+        /// <summary>Represents how customers can manage their data, whether and for how long to retain or delete it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<RetentionLabel>? RetentionLabels { get; set; }

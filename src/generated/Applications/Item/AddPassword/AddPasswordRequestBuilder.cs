@@ -21,14 +21,14 @@ namespace ApiSdk.Applications.Item.AddPassword {
     public class AddPasswordRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Adds a strong password or secret to an application.
+        /// Adds a strong password or secret to an application. You can also add passwords while creating the application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Adds a strong password or secret to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0";
+            command.Description = "Adds a strong password or secret to an application. You can also add passwords while creating the application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-addpassword?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Applications.Item.AddPassword {
         {
         }
         /// <summary>
-        /// Adds a strong password or secret to an application.
+        /// Adds a strong password or secret to an application. You can also add passwords while creating the application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

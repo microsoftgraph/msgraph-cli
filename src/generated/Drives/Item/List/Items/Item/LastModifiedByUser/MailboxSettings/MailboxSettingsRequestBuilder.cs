@@ -184,7 +184,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.LastModifiedByUser.MailboxSettings 
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/lastModifiedByUser/mailboxSettings", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

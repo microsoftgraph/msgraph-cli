@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security {
     public class FilePlanDescriptorTemplate : ApiSdk.Models.Entity, IParsable 
     {
-        /// <summary>The createdBy property</summary>
+        /// <summary>Represents the user who created the filePlanDescriptorTemplate column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.IdentitySet? CreatedBy { get; set; }
@@ -15,9 +15,9 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.IdentitySet CreatedBy { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>Represents the date and time in which the filePlanDescriptorTemplate is created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The displayName property</summary>
+        /// <summary>Unique string that defines a filePlanDescriptorTemplate name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }

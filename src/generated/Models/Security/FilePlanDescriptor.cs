@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security {
     public class FilePlanDescriptor : ApiSdk.Models.Entity, IParsable 
     {
-        /// <summary>The authority property</summary>
+        /// <summary>Represents the file plan descriptor of type authority applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public FilePlanAuthority? Authority { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models.Security {
 #else
         public FilePlanAuthority Authority { get; set; }
 #endif
-        /// <summary>The authorityTemplate property</summary>
+        /// <summary>Specifies the underlying authority that describes the type of content to be retained and its retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.AuthorityTemplate? AuthorityTemplate { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models.Security {
 #else
         public FilePlanAppliedCategory Category { get; set; }
 #endif
-        /// <summary>The categoryTemplate property</summary>
+        /// <summary>Specifies a group of similar types of content in a particular department.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.CategoryTemplate? CategoryTemplate { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.CategoryTemplate CategoryTemplate { get; set; }
 #endif
-        /// <summary>The citation property</summary>
+        /// <summary>Represents the file plan descriptor of type citation applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public FilePlanCitation? Citation { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models.Security {
 #else
         public FilePlanCitation Citation { get; set; }
 #endif
-        /// <summary>The citationTemplate property</summary>
+        /// <summary>The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.CitationTemplate? CitationTemplate { get; set; }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.CitationTemplate CitationTemplate { get; set; }
 #endif
-        /// <summary>The department property</summary>
+        /// <summary>Represents the file plan descriptor of type department applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public FilePlanDepartment? Department { get; set; }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models.Security {
 #else
         public FilePlanDepartment Department { get; set; }
 #endif
-        /// <summary>The departmentTemplate property</summary>
+        /// <summary>Specifies the  department or business unit of an organization to which a label belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.DepartmentTemplate? DepartmentTemplate { get; set; }
@@ -71,7 +71,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.DepartmentTemplate DepartmentTemplate { get; set; }
 #endif
-        /// <summary>The filePlanReference property</summary>
+        /// <summary>Represents the file plan descriptor of type filePlanReference applied to a particular retention label.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.FilePlanReference? FilePlanReference { get; set; }
@@ -79,7 +79,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.FilePlanReference FilePlanReference { get; set; }
 #endif
-        /// <summary>The filePlanReferenceTemplate property</summary>
+        /// <summary>Specifies a unique alpha-numeric identifier for an organization’s retention schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.FilePlanReferenceTemplate? FilePlanReferenceTemplate { get; set; }

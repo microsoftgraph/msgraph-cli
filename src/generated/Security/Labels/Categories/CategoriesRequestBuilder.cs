@@ -55,13 +55,14 @@ namespace ApiSdk.Security.Labels.Categories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to categories for security
+        /// Create a new categoryTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-categories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to categories for security";
+            command.Description = "Create a new categoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-categories?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -100,13 +101,14 @@ namespace ApiSdk.Security.Labels.Categories {
             return command;
         }
         /// <summary>
-        /// Get categories from security
+        /// Get a list of the categoryTemplate objects and their properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-categories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get categories from security";
+            command.Description = "Get a list of the categoryTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-categories?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +210,7 @@ namespace ApiSdk.Security.Labels.Categories {
         {
         }
         /// <summary>
-        /// Get categories from security
+        /// Get a list of the categoryTemplate objects and their properties.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +229,7 @@ namespace ApiSdk.Security.Labels.Categories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to categories for security
+        /// Create a new categoryTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -242,13 +244,13 @@ namespace ApiSdk.Security.Labels.Categories {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/labels/categories", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get categories from security
+        /// Get a list of the categoryTemplate objects and their properties.
         /// </summary>
         public class CategoriesRequestBuilderGetQueryParameters 
         {

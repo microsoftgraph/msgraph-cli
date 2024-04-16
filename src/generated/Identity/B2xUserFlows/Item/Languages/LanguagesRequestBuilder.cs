@@ -256,7 +256,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/languages", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

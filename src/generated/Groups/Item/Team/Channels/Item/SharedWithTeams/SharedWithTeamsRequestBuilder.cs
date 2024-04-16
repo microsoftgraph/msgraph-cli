@@ -268,7 +268,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/sharedWithTeams", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

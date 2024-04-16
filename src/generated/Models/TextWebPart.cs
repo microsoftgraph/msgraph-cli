@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class TextWebPart : WebPart, IParsable 
     {
-        /// <summary>The innerHtml property</summary>
+        /// <summary>The HTML string in text web part.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InnerHtml { get; set; }

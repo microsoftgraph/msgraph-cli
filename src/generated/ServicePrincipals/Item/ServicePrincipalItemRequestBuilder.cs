@@ -14,6 +14,7 @@ using ApiSdk.ServicePrincipals.Item.CreatedObjects;
 using ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications;
 using ApiSdk.ServicePrincipals.Item.Endpoints;
 using ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials;
+using ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentialsWithName;
 using ApiSdk.ServicePrincipals.Item.GetMemberGroups;
 using ApiSdk.ServicePrincipals.Item.GetMemberObjects;
 using ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies;
@@ -385,6 +386,25 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFederatedIdentityCredentialsWithNameRbCommand()
+        {
+            var command = new Command("federated-identity-credentials-with-name");
+            command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.";
+            var builder = new FederatedIdentityCredentialsWithNameRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0" />
         /// </summary>
@@ -616,13 +636,14 @@ namespace ApiSdk.ServicePrincipals.Item {
             return command;
         }
         /// <summary>
-        /// Update entity in servicePrincipals
+        /// Create a new servicePrincipal object if it doesn&apos;t exist, or update the properties of an existing servicePrincipal object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update entity in servicePrincipals";
+            command.Description = "Create a new servicePrincipal object if it doesn't exist, or update the properties of an existing servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -879,7 +900,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -904,7 +925,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in servicePrincipals
+        /// Create a new servicePrincipal object if it doesn&apos;t exist, or update the properties of an existing servicePrincipal object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -919,7 +940,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

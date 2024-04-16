@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class StandardWebPart : WebPart, IParsable 
     {
-        /// <summary>The containerTextWebPartId property</summary>
+        /// <summary>The instance identifier of the container text webPart. It only works for inline standard webPart in rich text webParts.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContainerTextWebPartId { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string ContainerTextWebPartId { get; set; }
 #endif
-        /// <summary>The data property</summary>
+        /// <summary>Data of the webPart.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public WebPartData? Data { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public WebPartData Data { get; set; }
 #endif
-        /// <summary>The webPartType property</summary>
+        /// <summary>A Guid that indicates the webPart type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? WebPartType { get; set; }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class CanvasLayout : Entity, IParsable 
     {
-        /// <summary>The horizontalSections property</summary>
+        /// <summary>Collection of horizontal sections on the SharePoint page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<HorizontalSection>? HorizontalSections { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<HorizontalSection> HorizontalSections { get; set; }
 #endif
-        /// <summary>The verticalSection property</summary>
+        /// <summary>Vertical section on the SharePoint page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.VerticalSection? VerticalSection { get; set; }

@@ -75,6 +75,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time when the learning content was last modified. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Optional.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        /// <summary>The level property</summary>
+        public ApiSdk.Models.Level? Level { get; set; }
         /// <summary>The number of pages of the learning content, for example, 9. Optional.</summary>
         public int? NumberOfPages { get; set; }
         /// <summary>The skills tags associated with the learning content. Optional.</summary>
@@ -140,6 +142,7 @@ namespace ApiSdk.Models {
                 {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
                 {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"level", n => { Level = n.GetEnumValue<Level>(); } },
                 {"numberOfPages", n => { NumberOfPages = n.GetIntValue(); } },
                 {"skillTags", n => { SkillTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"sourceName", n => { SourceName = n.GetStringValue(); } },
@@ -168,6 +171,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("isSearchable", IsSearchable);
             writer.WriteStringValue("languageTag", LanguageTag);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
+            writer.WriteEnumValue<Level>("level", Level);
             writer.WriteIntValue("numberOfPages", NumberOfPages);
             writer.WriteCollectionOfPrimitiveValues<string>("skillTags", SkillTags);
             writer.WriteStringValue("sourceName", SourceName);

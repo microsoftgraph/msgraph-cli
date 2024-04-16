@@ -280,7 +280,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

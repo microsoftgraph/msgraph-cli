@@ -51,13 +51,14 @@ namespace ApiSdk.Users.Item.Sponsors {
             return command;
         }
         /// <summary>
-        /// Get sponsors from users
+        /// Get a user&apos;s sponsors. Sponsors are users and groups that are responsible for this guest&apos;s privileges in the tenant and for keeping the guest&apos;s information and access up to date.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-sponsors?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get sponsors from users";
+            command.Description = "Get a user's sponsors. Sponsors are users and groups that are responsible for this guest's privileges in the tenant and for keeping the guest's information and access up to date.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-sponsors?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -165,7 +166,7 @@ namespace ApiSdk.Users.Item.Sponsors {
         {
         }
         /// <summary>
-        /// Get sponsors from users
+        /// Get a user&apos;s sponsors. Sponsors are users and groups that are responsible for this guest&apos;s privileges in the tenant and for keeping the guest&apos;s information and access up to date.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +185,7 @@ namespace ApiSdk.Users.Item.Sponsors {
             return requestInfo;
         }
         /// <summary>
-        /// Get sponsors from users
+        /// Get a user&apos;s sponsors. Sponsors are users and groups that are responsible for this guest&apos;s privileges in the tenant and for keeping the guest&apos;s information and access up to date.
         /// </summary>
         public class SponsorsRequestBuilderGetQueryParameters 
         {

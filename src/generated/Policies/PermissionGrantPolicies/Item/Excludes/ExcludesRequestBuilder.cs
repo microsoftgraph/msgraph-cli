@@ -254,7 +254,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Excludes {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/policies/permissionGrantPolicies/{permissionGrantPolicy%2Did}/excludes", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

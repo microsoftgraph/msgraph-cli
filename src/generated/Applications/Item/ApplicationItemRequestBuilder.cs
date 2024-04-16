@@ -7,6 +7,7 @@ using ApiSdk.Applications.Item.CheckMemberObjects;
 using ApiSdk.Applications.Item.CreatedOnBehalfOf;
 using ApiSdk.Applications.Item.ExtensionProperties;
 using ApiSdk.Applications.Item.FederatedIdentityCredentials;
+using ApiSdk.Applications.Item.FederatedIdentityCredentialsWithName;
 using ApiSdk.Applications.Item.GetMemberGroups;
 using ApiSdk.Applications.Item.GetMemberObjects;
 using ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies;
@@ -244,6 +245,25 @@ namespace ApiSdk.Applications.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildFederatedIdentityCredentialsWithNameRbCommand()
+        {
+            var command = new Command("federated-identity-credentials-with-name");
+            command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
+            var builder = new FederatedIdentityCredentialsWithNameRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Get the properties and relationships of an application object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-get?view=graph-rest-1.0" />
         /// </summary>
@@ -406,14 +426,14 @@ namespace ApiSdk.Applications.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an application object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0" />
+        /// Create a new application object if it doesn&apos;t exist, or update the properties of an existing application object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0";
+            command.Description = "Create a new application object if it doesn't exist, or update the properties of an existing application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -652,7 +672,7 @@ namespace ApiSdk.Applications.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/applications/{application%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -677,7 +697,7 @@ namespace ApiSdk.Applications.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an application object.
+        /// Create a new application object if it doesn&apos;t exist, or update the properties of an existing application object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -692,7 +712,7 @@ namespace ApiSdk.Applications.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/applications/{application%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

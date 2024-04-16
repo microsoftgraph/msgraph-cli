@@ -859,7 +859,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Skills { get; set; }
 #endif
-        /// <summary>The sponsors property</summary>
+        /// <summary>The users and groups responsible for this guest user&apos;s privileges in the tenant and keep the guest user&apos;s information and access updated. (HTTP Methods: GET, POST, DELETE.). Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? Sponsors { get; set; }

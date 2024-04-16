@@ -10,6 +10,8 @@ namespace ApiSdk.Models {
     /// </summary>
     public class ResetPasscodeActionResult : DeviceActionResult, IParsable 
     {
+        /// <summary>RotateBitLockerKeys action error code. Valid values 0 to 2147483647</summary>
+        public int? ErrorCode { get; set; }
         /// <summary>Newly generated passcode for the device</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -36,6 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
+                {"errorCode", n => { ErrorCode = n.GetIntValue(); } },
                 {"passcode", n => { Passcode = n.GetStringValue(); } },
             };
         }
@@ -47,6 +50,7 @@ namespace ApiSdk.Models {
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteIntValue("errorCode", ErrorCode);
             writer.WriteStringValue("passcode", Passcode);
         }
     }

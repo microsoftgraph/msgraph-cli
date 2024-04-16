@@ -147,14 +147,14 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Delete eventMessage.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0" />
+        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete eventMessage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0";
+            command.Description = "Delete a message in the specified user's mailbox, or delete a relationship of the message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -234,13 +234,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -315,14 +315,14 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a message object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-update?view=graph-rest-1.0" />
+        /// Update the properties of an eventMessage object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a message object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an eventMessage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -438,7 +438,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         {
         }
         /// <summary>
-        /// Delete eventMessage.
+        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -451,7 +451,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/messages/{message%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -476,7 +476,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a message object.
+        /// Update the properties of an eventMessage object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -491,7 +491,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/messages/{message%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

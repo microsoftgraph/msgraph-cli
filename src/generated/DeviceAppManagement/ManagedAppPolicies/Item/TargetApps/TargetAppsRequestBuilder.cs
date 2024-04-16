@@ -21,13 +21,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps {
     {
         /// <summary>
         /// Not yet documented
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-targetapps?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-targetapps?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-targetapps?view=graph-rest-1.0";
+            command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappprotection-targetapps?view=graph-rest-1.0";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;

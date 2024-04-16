@@ -705,14 +705,14 @@ namespace ApiSdk.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0" />
+        /// Create a new group object if it doesn&apos;t exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see thethe Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0";
+            command.Description = "Create a new group object if it doesn't exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see thethe Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-upsert?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -1258,7 +1258,7 @@ namespace ApiSdk.Groups.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -1283,7 +1283,7 @@ namespace ApiSdk.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
+        /// Create a new group object if it doesn&apos;t exist, or update the properties of an existing group object.You can create or update the following types of group: By default, this operation returns only a subset of the properties for each group. For a list of properties that are returned by default, see thethe Properties section of the group resource. To get properties that are not returned by default, do a GET operation and specify the properties in a $select OData query option.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -1298,7 +1298,7 @@ namespace ApiSdk.Groups.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

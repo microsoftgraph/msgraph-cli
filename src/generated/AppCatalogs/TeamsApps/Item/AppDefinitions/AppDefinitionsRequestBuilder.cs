@@ -255,7 +255,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}/appDefinitions", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

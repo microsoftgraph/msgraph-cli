@@ -32,7 +32,9 @@ namespace ApiSdk.Education.Me.Assignments {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new EducationAssignmentItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildActivateNavCommand());
             commands.Add(builder.BuildCategoriesNavCommand());
+            commands.Add(builder.BuildDeactivateNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGradingCategoryNavCommand());
@@ -268,7 +270,7 @@ namespace ApiSdk.Education.Me.Assignments {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/education/me/assignments", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

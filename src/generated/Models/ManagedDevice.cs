@@ -130,6 +130,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Enrollment time of the device. Supports $filter operator &apos;lt&apos; and &apos;gt&apos;. This property is read-only.</summary>
         public DateTimeOffset? EnrolledDateTime { get; private set; }
+        /// <summary>Name of the enrollment profile assigned to the device. Default value is empty string, indicating no enrollment profile was assgined. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnrollmentProfileName { get; private set; }
+#nullable restore
+#else
+        public string EnrollmentProfileName { get; private set; }
+#endif
         /// <summary>Indicates Ethernet MAC Address of the device. Default, is Null (Non-Default property) for this property when returned as part of managedDevice entity. Individual get call with select query options is needed to retrieve actual values. Example: deviceManagement/managedDevices({managedDeviceId})?$select=ethernetMacAddress Supports: $select. $Search is not supported. Read-only. This property is read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -389,6 +397,7 @@ namespace ApiSdk.Models {
                 {"easDeviceId", n => { EasDeviceId = n.GetStringValue(); } },
                 {"emailAddress", n => { EmailAddress = n.GetStringValue(); } },
                 {"enrolledDateTime", n => { EnrolledDateTime = n.GetDateTimeOffsetValue(); } },
+                {"enrollmentProfileName", n => { EnrollmentProfileName = n.GetStringValue(); } },
                 {"ethernetMacAddress", n => { EthernetMacAddress = n.GetStringValue(); } },
                 {"exchangeAccessState", n => { ExchangeAccessState = n.GetEnumValue<DeviceManagementExchangeAccessState>(); } },
                 {"exchangeAccessStateReason", n => { ExchangeAccessStateReason = n.GetEnumValue<DeviceManagementExchangeAccessStateReason>(); } },

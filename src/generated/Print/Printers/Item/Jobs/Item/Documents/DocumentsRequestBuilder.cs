@@ -267,7 +267,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/documents", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
