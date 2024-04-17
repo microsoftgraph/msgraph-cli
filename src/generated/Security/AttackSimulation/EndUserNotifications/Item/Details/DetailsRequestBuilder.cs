@@ -252,7 +252,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications.Item.Details {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/attackSimulation/endUserNotifications/{endUserNotification%2Did}/details", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

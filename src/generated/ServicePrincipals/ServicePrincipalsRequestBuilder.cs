@@ -49,6 +49,7 @@ namespace ApiSdk.ServicePrincipals {
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildEndpointsNavCommand());
             commands.Add(builder.BuildFederatedIdentityCredentialsNavCommand());
+            commands.Add(builder.BuildFederatedIdentityCredentialsWithNameRbCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());
@@ -350,7 +351,7 @@ namespace ApiSdk.ServicePrincipals {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/servicePrincipals", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

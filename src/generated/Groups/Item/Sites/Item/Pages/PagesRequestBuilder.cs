@@ -58,13 +58,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to pages for groups
+        /// Create a new [sitePage][] in the site pages [list][] in a [site][].
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sitepage-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to pages for groups";
+            command.Description = "Create a new [sitePage][] in the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sitepage-create?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -138,13 +139,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get pages from groups";
+            command.Description = "Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-list?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -258,7 +260,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages {
         {
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +279,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to pages for groups
+        /// Create a new [sitePage][] in the site pages [list][] in a [site][].
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -292,13 +294,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
         /// </summary>
         public class PagesRequestBuilderGetQueryParameters 
         {

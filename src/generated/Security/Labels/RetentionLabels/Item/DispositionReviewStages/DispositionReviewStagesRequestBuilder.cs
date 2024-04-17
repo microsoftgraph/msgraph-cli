@@ -104,13 +104,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.DispositionReviewStages {
             return command;
         }
         /// <summary>
-        /// Get dispositionReviewStages from security
+        /// When action at the end of retention is chosen as &apos;dispositionReview&apos;, dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get dispositionReviewStages from security";
+            command.Description = "When action at the end of retention is chosen as 'dispositionReview', dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -218,7 +218,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.DispositionReviewStages {
         {
         }
         /// <summary>
-        /// Get dispositionReviewStages from security
+        /// When action at the end of retention is chosen as &apos;dispositionReview&apos;, dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -252,13 +252,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.DispositionReviewStages {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/security/labels/retentionLabels/{retentionLabel%2Did}/dispositionReviewStages", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get dispositionReviewStages from security
+        /// When action at the end of retention is chosen as &apos;dispositionReview&apos;, dispositionReviewStages specifies a sequential set of stages with at least one reviewer in each stage.
         /// </summary>
         public class DispositionReviewStagesRequestBuilderGetQueryParameters 
         {

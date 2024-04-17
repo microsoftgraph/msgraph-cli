@@ -21,14 +21,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
     public class ManagedEBookAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a managedEBookAssignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-delete?view=graph-rest-1.0" />
+        /// Deletes a iosVppEBookAssignment.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a managedEBookAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a iosVppEBookAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-delete?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -122,14 +122,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosVppEBookAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-update?view=graph-rest-1.0" />
+        /// Update the properties of a managedEBookAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosVppEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a managedEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-update?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -194,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
         {
         }
         /// <summary>
-        /// Deletes a managedEBookAssignment.
+        /// Deletes a iosVppEBookAssignment.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -207,7 +207,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -232,7 +232,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosVppEBookAssignment object.
+        /// Update the properties of a managedEBookAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -247,7 +247,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments/{managedEBookAssignment%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

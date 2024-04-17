@@ -23,6 +23,16 @@ namespace ApiSdk.Models {
 #else
         public List<DeletedTeam> DeletedTeams { get; set; }
 #endif
+        /// <summary>Indicates whether Microsoft Teams is enabled for the organization.</summary>
+        public bool? IsTeamsEnabled { get; set; }
+        /// <summary>Represents the region of the organization. &gt; The region property contains the organization&apos;s or the user&apos;s region. The property contains the user&apos;s region (if available) for users who have a valid multigeo license. For users without multigeo licenses, the region property contains the organization&apos;s region.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Region { get; set; }
+#nullable restore
+#else
+        public string Region { get; set; }
+#endif
         /// <summary>Represents tenant-wide settings for all Teams apps in the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,6 +69,8 @@ namespace ApiSdk.Models {
             {
                 {"deletedChats", n => { DeletedChats = n.GetCollectionOfObjectValues<DeletedChat>(DeletedChat.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deletedTeams", n => { DeletedTeams = n.GetCollectionOfObjectValues<DeletedTeam>(DeletedTeam.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"isTeamsEnabled", n => { IsTeamsEnabled = n.GetBoolValue(); } },
+                {"region", n => { Region = n.GetStringValue(); } },
                 {"teamsAppSettings", n => { TeamsAppSettings = n.GetObjectValue<ApiSdk.Models.TeamsAppSettings>(ApiSdk.Models.TeamsAppSettings.CreateFromDiscriminatorValue); } },
                 {"workforceIntegrations", n => { WorkforceIntegrations = n.GetCollectionOfObjectValues<WorkforceIntegration>(WorkforceIntegration.CreateFromDiscriminatorValue)?.ToList(); } },
             };
@@ -73,6 +85,8 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<DeletedChat>("deletedChats", DeletedChats);
             writer.WriteCollectionOfObjectValues<DeletedTeam>("deletedTeams", DeletedTeams);
+            writer.WriteBoolValue("isTeamsEnabled", IsTeamsEnabled);
+            writer.WriteStringValue("region", Region);
             writer.WriteObjectValue<ApiSdk.Models.TeamsAppSettings>("teamsAppSettings", TeamsAppSettings);
             writer.WriteCollectionOfObjectValues<WorkforceIntegration>("workforceIntegrations", WorkforceIntegrations);
         }

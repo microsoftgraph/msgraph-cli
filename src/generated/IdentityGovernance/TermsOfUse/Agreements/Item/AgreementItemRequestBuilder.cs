@@ -139,14 +139,14 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-list-files?view=graph-rest-1.0" />
+        /// Retrieve the properties and relationships of an agreement object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve all files related to an agreement. This includes the default file and all localized files.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-list-files?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an agreement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -271,13 +271,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
+        /// Retrieve the properties and relationships of an agreement object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -311,13 +311,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve all files related to an agreement. This includes the default file and all localized files.
+        /// Retrieve the properties and relationships of an agreement object.
         /// </summary>
         public class AgreementItemRequestBuilderGetQueryParameters 
         {

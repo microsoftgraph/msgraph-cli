@@ -110,13 +110,14 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
             return command;
         }
         /// <summary>
-        /// Update entity in servicePrincipals by appId
+        /// Create a new servicePrincipal object if it doesn&apos;t exist, or update the properties of an existing servicePrincipal object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update entity in servicePrincipals by appId";
+            command.Description = "Create a new servicePrincipal object if it doesn't exist, or update the properties of an existing servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-upsert?view=graph-rest-1.0";
             var appIdOption = new Option<string>("--app-id", description: "Alternate key of servicePrincipal") {
             };
             appIdOption.IsRequired = true;
@@ -188,7 +189,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/servicePrincipals(appId='{appId}')", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -213,7 +214,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
             return requestInfo;
         }
         /// <summary>
-        /// Update entity in servicePrincipals by appId
+        /// Create a new servicePrincipal object if it doesn&apos;t exist, or update the properties of an existing servicePrincipal object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -228,7 +229,7 @@ namespace ApiSdk.ServicePrincipalsWithAppId {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/servicePrincipals(appId='{appId}')", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

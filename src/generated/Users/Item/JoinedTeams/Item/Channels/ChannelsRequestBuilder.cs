@@ -64,14 +64,14 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return command;
         }
         /// <summary>
-        /// Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel&apos;s displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
+        /// Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel&apos;s displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you're creating a private channel, you can add a maximum of 200 members.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post?view=graph-rest-1.0";
+            command.Description = "Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel's displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you're creating a private channel, you can add a maximum of 200 members.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -279,7 +279,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel&apos;s displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
+        /// Create a new channel in a team, as specified in the request body. When you create a channel, the maximum length of the channel&apos;s displayName is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -294,7 +294,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

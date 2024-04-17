@@ -150,14 +150,14 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return command;
         }
         /// <summary>
-        /// Delete an existing history item for an existing user activity.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0" />
+        /// Create a new or replace an existing history item for an existing user activity.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Delete an existing history item for an existing user activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0";
+            command.Description = "Create a new or replace an existing history item for an existing user activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -241,7 +241,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -266,7 +266,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Delete an existing history item for an existing user activity.
+        /// Create a new or replace an existing history item for an existing user activity.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -281,7 +281,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}/historyItems/{activityHistoryItem%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -60,14 +60,14 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Create a new reply to a chatMessage in a specified channel.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0" />
+        /// Send a new reply to a chatMessage in a specified channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
+            command.Description = "Send a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -287,7 +287,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new reply to a chatMessage in a specified channel.
+        /// Send a new reply to a chatMessage in a specified channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -302,7 +302,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -12,5 +12,7 @@ namespace ApiSdk.Models {
         Assigned,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "inactive")]
+        Inactive,
     }
 }

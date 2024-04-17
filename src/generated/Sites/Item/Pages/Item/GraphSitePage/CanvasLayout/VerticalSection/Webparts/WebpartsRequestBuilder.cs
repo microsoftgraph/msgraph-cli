@@ -112,13 +112,13 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSectio
             return command;
         }
         /// <summary>
-        /// Get webparts from sites
+        /// The set of web parts in this section.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get webparts from sites";
+            command.Description = "The set of web parts in this section.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSectio
         {
         }
         /// <summary>
-        /// Get webparts from sites
+        /// The set of web parts in this section.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,13 +266,13 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSectio
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/verticalSection/webparts", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get webparts from sites
+        /// The set of web parts in this section.
         /// </summary>
         public class WebpartsRequestBuilderGetQueryParameters 
         {

@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string InvitedUserDisplayName { get; set; }
 #endif
-        /// <summary>The email address of the user being invited. Required. The following special characters aren&apos;t permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&amp;)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (&apos;)Angle brackets (&lt; &gt;)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.</summary>
+        /// <summary>The email address of the user being invited. Required. The following special characters aren&apos;t permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&amp;)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (&apos;)Angle brackets (&lt; &gt;)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name, including at the beginning or end of the name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? InvitedUserEmailAddress { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string InvitedUserEmailAddress { get; set; }
 #endif
-        /// <summary>Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.</summary>
+        /// <summary>Additional configuration for the message being sent to the invited user, including customizing message text, language, and cc recipient list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.InvitedUserMessageInfo? InvitedUserMessageInfo { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.InvitedUserMessageInfo InvitedUserMessageInfo { get; set; }
 #endif
-        /// <summary>The invitedUserSponsors property</summary>
+        /// <summary>The users or groups who are sponsors of the invited user. Sponsors are users and groups that are responsible for guest users&apos; privileges in the tenant and for keeping the guest users&apos; information and access up to date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? InvitedUserSponsors { get; set; }

@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models.Security {
     public class RetentionDurationInDays : RetentionDuration, IParsable 
     {
-        /// <summary>The days property</summary>
+        /// <summary>Specifies the time period in days for which an item with the applied retention label will be retained for.</summary>
         public int? Days { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="RetentionDurationInDays"/> and sets the default values.

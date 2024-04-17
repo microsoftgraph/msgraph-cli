@@ -189,14 +189,14 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
         /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/rejectedSenders/$ref{?%24count,%24filter,%24orderby,%24skip,%24top}", pathParameters)
+        public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/rejectedSenders/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="RefRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/rejectedSenders/$ref{?%24count,%24filter,%24orderby,%24skip,%24top}", rawUrl)
+        public RefRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/rejectedSenders/$ref?@id={%40id}{&%24count,%24filter,%24orderby,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -232,7 +232,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RefRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.GET, "{+baseurl}/groups/{group%2Did}/rejectedSenders/$ref{?%24count,%24filter,%24orderby,%24skip,%24top}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

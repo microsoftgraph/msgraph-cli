@@ -9,11 +9,11 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The columnId property</summary>
+        /// <summary>Indicates the identifier of the column where the web part is located.</summary>
         public double? ColumnId { get; set; }
-        /// <summary>The horizontalSectionId property</summary>
+        /// <summary>Indicates the horizontal section where the web part is located.</summary>
         public double? HorizontalSectionId { get; set; }
-        /// <summary>The isInVerticalSection property</summary>
+        /// <summary>Indicates whether the web part is located in the vertical section.</summary>
         public bool? IsInVerticalSection { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The webPartIndex property</summary>
+        /// <summary>Index of the current web part. Represents the order of the web part in this column or section.</summary>
         public double? WebPartIndex { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="WebPartPosition"/> and sets the default values.

@@ -22,13 +22,14 @@ namespace ApiSdk.Security.Labels.Categories.Item {
     public class CategoryTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete navigation property categories for security
+        /// Delete a categoryTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property categories for security";
+            command.Description = "Delete a categoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -57,13 +58,14 @@ namespace ApiSdk.Security.Labels.Categories.Item {
             return command;
         }
         /// <summary>
-        /// Get categories from security
+        /// Read the properties and relationships of a categoryTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get categories from security";
+            command.Description = "Read the properties and relationships of a categoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.Security.Labels.Categories.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property categories for security
+        /// Delete a categoryTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,13 +216,13 @@ namespace ApiSdk.Security.Labels.Categories.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/security/labels/categories/{categoryTemplate%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get categories from security
+        /// Read the properties and relationships of a categoryTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,13 +256,13 @@ namespace ApiSdk.Security.Labels.Categories.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/security/labels/categories/{categoryTemplate%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get categories from security
+        /// Read the properties and relationships of a categoryTemplate object.
         /// </summary>
         public class CategoryTemplateItemRequestBuilderGetQueryParameters 
         {

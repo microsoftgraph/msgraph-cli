@@ -124,13 +124,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.Ho
             return command;
         }
         /// <summary>
-        /// Get columns from groups
+        /// The set of vertical columns in this section.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get columns from groups";
+            command.Description = "The set of vertical columns in this section.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -256,7 +256,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.Ho
         {
         }
         /// <summary>
-        /// Get columns from groups
+        /// The set of vertical columns in this section.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -290,13 +290,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.Ho
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections/{horizontalSection%2Did}/columns", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get columns from groups
+        /// The set of vertical columns in this section.
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters 
         {

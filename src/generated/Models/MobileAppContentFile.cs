@@ -24,6 +24,8 @@ namespace ApiSdk.Models {
         public DateTimeOffset? CreatedDateTime { get; private set; }
         /// <summary>A value indicating whether the file is committed.</summary>
         public bool? IsCommitted { get; private set; }
+        /// <summary>Indicates whether this content file is a dependency for the main content file. TRUE means that the content file is a dependency, FALSE means that the content file is not a dependency and is the main content file. Defaults to FALSE.</summary>
+        public bool? IsDependency { get; set; }
         /// <summary>The manifest information.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +70,7 @@ namespace ApiSdk.Models {
                 {"azureStorageUriExpirationDateTime", n => { AzureStorageUriExpirationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"isCommitted", n => { IsCommitted = n.GetBoolValue(); } },
+                {"isDependency", n => { IsDependency = n.GetBoolValue(); } },
                 {"manifest", n => { Manifest = n.GetByteArrayValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"size", n => { Size = n.GetLongValue(); } },
@@ -83,6 +86,7 @@ namespace ApiSdk.Models {
         {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteBoolValue("isDependency", IsDependency);
             writer.WriteByteArrayValue("manifest", Manifest);
             writer.WriteStringValue("name", Name);
             writer.WriteLongValue("size", Size);

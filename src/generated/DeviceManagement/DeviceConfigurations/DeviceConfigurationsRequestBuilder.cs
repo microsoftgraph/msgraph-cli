@@ -62,14 +62,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// Create a new windowsPhone81CustomConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-create?view=graph-rest-1.0" />
+        /// Create a new androidCustomConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new windowsPhone81CustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-create?view=graph-rest-1.0";
+            command.Description = "Create a new androidCustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -108,14 +108,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosCertificateProfile objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscertificateprofile-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the androidCustomConfiguration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosCertificateProfile objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-ioscertificateprofile-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the androidCustomConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -217,7 +217,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         {
         }
         /// <summary>
-        /// List properties and relationships of the iosCertificateProfile objects.
+        /// List properties and relationships of the androidCustomConfiguration objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -236,7 +236,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new windowsPhone81CustomConfiguration object.
+        /// Create a new androidCustomConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -251,13 +251,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceManagement/deviceConfigurations", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosCertificateProfile objects.
+        /// List properties and relationships of the androidCustomConfiguration objects.
         /// </summary>
         public class DeviceConfigurationsRequestBuilderGetQueryParameters 
         {

@@ -21,13 +21,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.RetentionEventType {
     public class RetentionEventTypeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get retentionEventType from security
+        /// Represents the type associated with a retention event.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get retentionEventType from security";
+            command.Description = "Represents the type associated with a retention event.";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -87,7 +87,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.RetentionEventType {
         {
         }
         /// <summary>
-        /// Get retentionEventType from security
+        /// Represents the type associated with a retention event.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +106,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item.RetentionEventType {
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionEventType from security
+        /// Represents the type associated with a retention event.
         /// </summary>
         public class RetentionEventTypeRequestBuilderGetQueryParameters 
         {

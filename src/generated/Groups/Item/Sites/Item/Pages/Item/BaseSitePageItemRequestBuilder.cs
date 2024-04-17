@@ -48,13 +48,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property pages for groups
+        /// Delete a [baseSitePage][] from the site pages [list][] in a [site][].
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property pages for groups";
+            command.Description = "Delete a [baseSitePage][] from the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -95,13 +96,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get pages from groups";
+            command.Description = "Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -286,7 +288,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property pages for groups
+        /// Delete a [baseSitePage][] from the site pages [list][] in a [site][].
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -299,13 +301,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages/{baseSitePage%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -339,13 +341,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/pages/{baseSitePage%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get pages from groups
+        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
         /// </summary>
         public class BaseSitePageItemRequestBuilderGetQueryParameters 
         {

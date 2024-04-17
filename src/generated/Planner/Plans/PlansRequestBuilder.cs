@@ -57,14 +57,14 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new plannerPlan.
+        /// Create a new plannerPlan object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new plannerPlan.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
+            command.Description = "Create a new plannerPlan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -231,7 +231,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new plannerPlan.
+        /// Create a new plannerPlan object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -246,7 +246,7 @@ namespace ApiSdk.Planner.Plans {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/planner/plans", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

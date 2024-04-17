@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The htmlStrings property</summary>
+        /// <summary>A key-value map where keys are string identifiers and values are rich text with HTML format. SharePoint servers treat the values as HTML content and run services like safety checks, search index and link fixup on them.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<MetaDataKeyStringPair>? HtmlStrings { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public List<MetaDataKeyStringPair> HtmlStrings { get; set; }
 #endif
-        /// <summary>The imageSources property</summary>
+        /// <summary>A key-value map where keys are string identifiers and values are image sources. SharePoint servers treat the values as image sources and run services like search index and link fixup on them.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<MetaDataKeyStringPair>? ImageSources { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public List<MetaDataKeyStringPair> ImageSources { get; set; }
 #endif
-        /// <summary>The links property</summary>
+        /// <summary>A key-value map where keys are string identifiers and values are links. SharePoint servers treat the values as links and run services like link fixup on them.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<MetaDataKeyStringPair>? Links { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The searchablePlainTexts property</summary>
+        /// <summary>A key-value map where keys are string identifiers and values are strings that should be search indexed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<MetaDataKeyStringPair>? SearchablePlainTexts { get; set; }

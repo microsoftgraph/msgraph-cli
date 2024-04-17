@@ -253,7 +253,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -112,13 +112,13 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
             return command;
         }
         /// <summary>
-        /// Get horizontalSections from sites
+        /// Collection of horizontal sections on the SharePoint page.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get horizontalSections from sites";
+            command.Description = "Collection of horizontal sections on the SharePoint page.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         {
         }
         /// <summary>
-        /// Get horizontalSections from sites
+        /// Collection of horizontal sections on the SharePoint page.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,13 +266,13 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSect
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/sites/{site%2Did}/pages/{baseSitePage%2Did}/graph.sitePage/canvasLayout/horizontalSections", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get horizontalSections from sites
+        /// Collection of horizontal sections on the SharePoint page.
         /// </summary>
         public class HorizontalSectionsRequestBuilderGetQueryParameters 
         {

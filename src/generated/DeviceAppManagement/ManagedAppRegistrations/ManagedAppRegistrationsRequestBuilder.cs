@@ -121,14 +121,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the androidManagedAppRegistration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosManagedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the androidManagedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +230,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         {
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
+        /// List properties and relationships of the androidManagedAppRegistration objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,13 +264,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/deviceAppManagement/managedAppRegistrations", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosManagedAppRegistration objects.
+        /// List properties and relationships of the androidManagedAppRegistration objects.
         /// </summary>
         public class ManagedAppRegistrationsRequestBuilderGetQueryParameters 
         {

@@ -526,13 +526,13 @@ namespace ApiSdk.Users.Item {
         }
         /// <summary>
         /// Deletes a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-delete?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -1082,6 +1082,7 @@ namespace ApiSdk.Users.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsLicensingDetailsNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -1445,13 +1446,13 @@ namespace ApiSdk.Users.Item {
         }
         /// <summary>
         /// Update the properties of a user object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-user-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a user object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-user-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -2046,7 +2047,7 @@ namespace ApiSdk.Users.Item {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/users/{user%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -2086,7 +2087,7 @@ namespace ApiSdk.Users.Item {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/users/{user%2Did}", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

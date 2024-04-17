@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string Issuer { get; set; }
 #endif
-        /// <summary>The unique identifier for the federated identity credential, which has a limit of 120 characters and must be URL friendly. The string is immutable after it&apos;s created. Required. Not nullable. Supports $filter (eq).</summary>
+        /// <summary>The unique identifier for the federated identity credential, which has a limit of 120 characters and must be URL friendly. The string is immutable after it&apos;s created. Alternate key. Required. Not nullable. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

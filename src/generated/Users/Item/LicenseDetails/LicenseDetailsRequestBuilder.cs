@@ -2,6 +2,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.LicenseDetails.Count;
+using ApiSdk.Users.Item.LicenseDetails.GetTeamsLicensingDetails;
 using ApiSdk.Users.Item.LicenseDetails.Item;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -101,6 +102,23 @@ namespace ApiSdk.Users.Item.LicenseDetails {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getTeamsLicensingDetails method.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetTeamsLicensingDetailsNavCommand()
+        {
+            var command = new Command("get-teams-licensing-details");
+            command.Description = "Provides operations to call the getTeamsLicensingDetails method.";
+            var builder = new GetTeamsLicensingDetailsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -253,7 +271,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.POST, "{+baseurl}/users/{user%2Did}/licenseDetails", PathParameters);
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

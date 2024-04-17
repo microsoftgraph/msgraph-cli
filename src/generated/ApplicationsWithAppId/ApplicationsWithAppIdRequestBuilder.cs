@@ -110,14 +110,14 @@ namespace ApiSdk.ApplicationsWithAppId {
             return command;
         }
         /// <summary>
-        /// Update the properties of an application object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0" />
+        /// Create a new application object if it doesn&apos;t exist, or update the properties of an existing application object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-update?view=graph-rest-1.0";
+            command.Description = "Create a new application object if it doesn't exist, or update the properties of an existing application object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-upsert?view=graph-rest-1.0";
             var appIdOption = new Option<string>("--app-id", description: "Alternate key of application") {
             };
             appIdOption.IsRequired = true;
@@ -189,7 +189,7 @@ namespace ApiSdk.ApplicationsWithAppId {
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/applications(appId='{appId}')", PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
@@ -214,7 +214,7 @@ namespace ApiSdk.ApplicationsWithAppId {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an application object.
+        /// Create a new application object if it doesn&apos;t exist, or update the properties of an existing application object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -229,7 +229,7 @@ namespace ApiSdk.ApplicationsWithAppId {
         {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation(Method.PATCH, "{+baseurl}/applications(appId='{appId}')", PathParameters);
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

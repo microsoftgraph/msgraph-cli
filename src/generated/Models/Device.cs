@@ -71,7 +71,7 @@ namespace ApiSdk.Models {
 #else
         public string EnrollmentProfileName { get; set; }
 #endif
-        /// <summary>The enrollmentType property</summary>
+        /// <summary>Enrollment type of the device. This property is set by Intune. Possible values are: unknown, userEnrollment, deviceEnrollmentManager, appleBulkWithUser, appleBulkWithoutUser, windowsAzureADJoin, windowsBulkUserless, windowsAutoEnrollment, windowsBulkAzureDomainJoin, windowsCoManagement.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EnrollmentType { get; set; }
@@ -91,9 +91,9 @@ namespace ApiSdk.Models {
         public bool? IsCompliant { get; set; }
         /// <summary>true if the device is managed by a Mobile Device Management (MDM) app; otherwise, false. This can only be updated by Intune for any device OS type or by an approved MDM app for Windows OS devices. Supports $filter (eq, ne, not).</summary>
         public bool? IsManaged { get; set; }
-        /// <summary>The isRooted property</summary>
+        /// <summary>true if the device is rooted; false if the device is jail-broken. This property can only be updated by Intune.</summary>
         public bool? IsRooted { get; set; }
-        /// <summary>The managementType property</summary>
+        /// <summary>The management channel of the device. This property is set by Intune. Possible values are: eas, mdm, easMdm, intuneClient, easIntuneClient, configurationManagerClient, configurationManagerClientMdm, configurationManagerClientMdmEas, unknown, jamf, googleCloudDevicePolicyController.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ManagementType { get; set; }

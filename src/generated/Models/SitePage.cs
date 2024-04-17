@@ -7,7 +7,7 @@ using System;
 namespace ApiSdk.Models {
     public class SitePage : BaseSitePage, IParsable 
     {
-        /// <summary>The canvasLayout property</summary>
+        /// <summary>Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.CanvasLayout? CanvasLayout { get; set; }
@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.CanvasLayout CanvasLayout { get; set; }
 #endif
-        /// <summary>The promotionKind property</summary>
+        /// <summary>Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost, unknownFutureValue.</summary>
         public PagePromotionType? PromotionKind { get; set; }
-        /// <summary>The reactions property</summary>
+        /// <summary>Reactions information for the page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ReactionsFacet? Reactions { get; set; }
@@ -25,11 +25,11 @@ namespace ApiSdk.Models {
 #else
         public ReactionsFacet Reactions { get; set; }
 #endif
-        /// <summary>The showComments property</summary>
+        /// <summary>Determines whether or not to show comments at the bottom of the page.</summary>
         public bool? ShowComments { get; set; }
-        /// <summary>The showRecommendedPages property</summary>
+        /// <summary>Determines whether or not to show recommended pages at the bottom of the page.</summary>
         public bool? ShowRecommendedPages { get; set; }
-        /// <summary>The thumbnailWebUrl property</summary>
+        /// <summary>Url of the sitePage&apos;s thumbnail image</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ThumbnailWebUrl { get; set; }
@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
 #else
         public string ThumbnailWebUrl { get; set; }
 #endif
-        /// <summary>The titleArea property</summary>
+        /// <summary>Title area on the SharePoint page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.TitleArea? TitleArea { get; set; }
@@ -45,7 +45,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.TitleArea TitleArea { get; set; }
 #endif
-        /// <summary>The webParts property</summary>
+        /// <summary>Collection of webparts on the SharePoint page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<WebPart>? WebParts { get; set; }

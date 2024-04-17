@@ -7,9 +7,9 @@ using System;
 namespace ApiSdk.Models {
     public class BaseSitePage : BaseItem, IParsable 
     {
-        /// <summary>The pageLayout property</summary>
+        /// <summary>The name of the page layout of the page. The possible values are: microsoftReserved, article, home, unknownFutureValue.</summary>
         public PageLayoutType? PageLayout { get; set; }
-        /// <summary>The publishingState property</summary>
+        /// <summary>The publishing status and the MM.mm version of the page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PublicationFacet? PublishingState { get; set; }
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public PublicationFacet PublishingState { get; set; }
 #endif
-        /// <summary>The title property</summary>
+        /// <summary>Title of the sitePage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Title { get; set; }
