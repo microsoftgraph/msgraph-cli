@@ -21,14 +21,13 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a tokenLifetimePolicy from an application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0" />
+        /// Delete ref of navigation property tokenLifetimePolicies for applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a tokenLifetimePolicy from an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-delete-tokenlifetimepolicies?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property tokenLifetimePolicies for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
             return command;
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to an application. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to an application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0" />
+        /// Get ref of tokenLifetimePolicies from applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "List the tokenLifetimePolicy objects that are assigned to an application. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0";
+            command.Description = "Get ref of tokenLifetimePolicies from applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
             return command;
         }
         /// <summary>
-        /// Assign a tokenLifetimePolicy to an application. You can have multiple tokenLifetimePolicy policies in a tenant but can assign only one tokenLifetimePolicy per application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0" />
+        /// Create new navigation property ref to tokenLifetimePolicies for applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Assign a tokenLifetimePolicy to an application. You can have multiple tokenLifetimePolicy policies in a tenant but can assign only one tokenLifetimePolicy per application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to tokenLifetimePolicies for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
         {
         }
         /// <summary>
-        /// Remove a tokenLifetimePolicy from an application.
+        /// Delete ref of navigation property tokenLifetimePolicies for applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to an application. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to an application.
+        /// Get ref of tokenLifetimePolicies from applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Assign a tokenLifetimePolicy to an application. You can have multiple tokenLifetimePolicy policies in a tenant but can assign only one tokenLifetimePolicy per application.
+        /// Create new navigation property ref to tokenLifetimePolicies for applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove a tokenLifetimePolicy from an application.
+        /// Delete ref of navigation property tokenLifetimePolicies for applications
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Ref {
 #endif
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to an application. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to an application.
+        /// Get ref of tokenLifetimePolicies from applications
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

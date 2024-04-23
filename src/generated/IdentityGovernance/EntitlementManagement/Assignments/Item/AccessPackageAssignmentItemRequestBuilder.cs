@@ -94,14 +94,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0" />
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0";
+            command.Description = "The assignment of an access package to a subject for a period of time.";
             var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -265,7 +264,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -305,7 +304,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         public class AccessPackageAssignmentItemRequestBuilderGetQueryParameters 
         {

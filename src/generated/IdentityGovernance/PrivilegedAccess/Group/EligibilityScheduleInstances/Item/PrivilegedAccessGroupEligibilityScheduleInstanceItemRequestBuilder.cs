@@ -58,14 +58,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleIn
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityscheduleinstance-get?view=graph-rest-1.0" />
+        /// The instances of eligibility schedules to activate a just-in-time access.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityscheduleinstance-get?view=graph-rest-1.0";
+            command.Description = "The instances of eligibility schedules to activate a just-in-time access.";
             var privilegedAccessGroupEligibilityScheduleInstanceIdOption = new Option<string>("--privileged-access-group-eligibility-schedule-instance-id", description: "The unique identifier of privilegedAccessGroupEligibilityScheduleInstance") {
             };
             privilegedAccessGroupEligibilityScheduleInstanceIdOption.IsRequired = true;
@@ -235,7 +234,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleIn
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
+        /// The instances of eligibility schedules to activate a just-in-time access.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -275,7 +274,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilityScheduleIn
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilityScheduleInstance object.
+        /// The instances of eligibility schedules to activate a just-in-time access.
         /// </summary>
         public class PrivilegedAccessGroupEligibilityScheduleInstanceItemRequestBuilderGetQueryParameters 
         {

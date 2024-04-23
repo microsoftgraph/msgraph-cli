@@ -21,14 +21,13 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
     public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes an appRoleAssignment that a group has been granted.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-approleassignments?view=graph-rest-1.0" />
+        /// Delete navigation property appRoleAssignments for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes an appRoleAssignment that a group has been granted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-approleassignments?view=graph-rest-1.0";
+            command.Description = "Delete navigation property appRoleAssignments for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -199,7 +198,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         {
         }
         /// <summary>
-        /// Deletes an appRoleAssignment that a group has been granted.
+        /// Delete navigation property appRoleAssignments for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

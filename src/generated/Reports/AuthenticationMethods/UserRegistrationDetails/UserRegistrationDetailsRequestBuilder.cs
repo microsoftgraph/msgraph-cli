@@ -98,14 +98,13 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails {
             return command;
         }
         /// <summary>
-        /// Get a list of the authentication methods registered for a user as defined in the userRegistrationDetails object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethodsroot-list-userregistrationdetails?view=graph-rest-1.0" />
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the authentication methods registered for a user as defined in the userRegistrationDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethodsroot-list-userregistrationdetails?view=graph-rest-1.0";
+            command.Description = "Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails {
         {
         }
         /// <summary>
-        /// Get a list of the authentication methods registered for a user as defined in the userRegistrationDetails object.
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the authentication methods registered for a user as defined in the userRegistrationDetails object.
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         public class UserRegistrationDetailsRequestBuilderGetQueryParameters 
         {

@@ -22,13 +22,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Cont
     {
         /// <summary>
         /// The page&apos;s HTML content.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The page's HTML content.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0";
+            command.Description = "The page's HTML content.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;

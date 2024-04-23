@@ -138,14 +138,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return command;
         }
         /// <summary>
-        /// Delete a bookingBusiness object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-delete?view=graph-rest-1.0" />
+        /// Delete navigation property bookingBusinesses for solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property bookingBusinesses for solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -174,14 +173,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingBusiness object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-get?view=graph-rest-1.0" />
+        /// Get bookingBusinesses from solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-get?view=graph-rest-1.0";
+            command.Description = "Get bookingBusinesses from solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -244,14 +242,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookingBusiness object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-update?view=graph-rest-1.0" />
+        /// Update the navigation property bookingBusinesses in solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookingBusiness object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property bookingBusinesses in solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -398,7 +395,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         {
         }
         /// <summary>
-        /// Delete a bookingBusiness object.
+        /// Delete navigation property bookingBusinesses for solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -417,7 +414,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingBusiness object.
+        /// Get bookingBusinesses from solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -436,7 +433,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookingBusiness object.
+        /// Update the navigation property bookingBusinesses in solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -457,7 +454,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingBusiness object.
+        /// Get bookingBusinesses from solutions
         /// </summary>
         public class BookingBusinessItemRequestBuilderGetQueryParameters 
         {

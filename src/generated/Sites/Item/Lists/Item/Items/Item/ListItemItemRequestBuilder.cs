@@ -89,14 +89,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Removes an item from a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property items for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Removes an item from a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property items for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -240,14 +239,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0" />
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Returns the metadata for an [item][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
+            command.Description = "All items contained in the list.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -433,7 +431,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         {
         }
         /// <summary>
-        /// Removes an item from a [list][].
+        /// Delete navigation property items for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -452,7 +450,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -492,7 +490,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         public class ListItemItemRequestBuilderGetQueryParameters 
         {

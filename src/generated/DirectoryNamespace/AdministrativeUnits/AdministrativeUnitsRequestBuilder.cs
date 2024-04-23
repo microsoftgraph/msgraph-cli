@@ -58,14 +58,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new administrativeUnit.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-post-administrativeunits?view=graph-rest-1.0" />
+        /// Create new navigation property to administrativeUnits for directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new administrativeUnit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-post-administrativeunits?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to administrativeUnits for directory";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -121,14 +120,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-list-administrativeunits?view=graph-rest-1.0" />
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of administrativeUnit objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-list-administrativeunits?view=graph-rest-1.0";
+            command.Description = "Conceptual container for user and group directory objects.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +228,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
         {
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new administrativeUnit.
+        /// Create new navigation property to administrativeUnits for directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -270,7 +268,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         public class AdministrativeUnitsRequestBuilderGetQueryParameters 
         {

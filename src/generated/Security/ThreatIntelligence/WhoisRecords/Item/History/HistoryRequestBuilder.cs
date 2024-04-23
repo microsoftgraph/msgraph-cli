@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item.History {
             return command;
         }
         /// <summary>
-        /// Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-whoisrecord-list-history?view=graph-rest-1.0" />
+        /// The collection of historical records associated to this WHOIS object.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-whoisrecord-list-history?view=graph-rest-1.0";
+            command.Description = "The collection of historical records associated to this WHOIS object.";
             var whoisRecordIdOption = new Option<string>("--whois-record-id", description: "The unique identifier of whoisRecord") {
             };
             whoisRecordIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item.History {
         {
         }
         /// <summary>
-        /// Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
+        /// The collection of historical records associated to this WHOIS object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.WhoisRecords.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// Get the history for a whoisRecord, as represented by a collection of whoisHistoryRecord resources.
+        /// The collection of historical records associated to this WHOIS object.
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters 
         {

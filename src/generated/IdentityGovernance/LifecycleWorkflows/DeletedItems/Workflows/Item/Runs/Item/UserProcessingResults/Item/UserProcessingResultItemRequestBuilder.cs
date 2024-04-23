@@ -23,14 +23,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
     public class UserProcessingResultItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get the user processing result of a user processing result of a run.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-userprocessingresult-get?view=graph-rest-1.0" />
+        /// The associated individual user execution.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the user processing result of a user processing result of a run.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-userprocessingresult-get?view=graph-rest-1.0";
+            command.Description = "The associated individual user execution.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -152,7 +151,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         {
         }
         /// <summary>
-        /// Get the user processing result of a user processing result of a run.
+        /// The associated individual user execution.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -171,7 +170,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Get the user processing result of a user processing result of a run.
+        /// The associated individual user execution.
         /// </summary>
         public class UserProcessingResultItemRequestBuilderGetQueryParameters 
         {

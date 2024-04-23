@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetOneDriveActivityFileCountsWithPeriod {
     public class GetOneDriveActivityFileCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getOneDriveActivityFileCounts
+        /// Get the number of unique, licensed users that performed file interactions against any OneDrive account.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveActivityFileCounts";
+            command.Description = "Get the number of unique, licensed users that performed file interactions against any OneDrive account.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetOneDriveActivityFileCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveActivityFileCounts
+        /// Get the number of unique, licensed users that performed file interactions against any OneDrive account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

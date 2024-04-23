@@ -106,14 +106,13 @@ namespace ApiSdk.Users.Item.Insights.Trending {
             return command;
         }
         /// <summary>
-        /// Calculated insight that includes a list of documents trending around the user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/insights-list-trending?view=graph-rest-1.0" />
+        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Calculated insight that includes a list of documents trending around the user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/insights-list-trending?view=graph-rest-1.0";
+            command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.Users.Item.Insights.Trending {
         {
         }
         /// <summary>
-        /// Calculated insight that includes a list of documents trending around the user.
+        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.Users.Item.Insights.Trending {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated insight that includes a list of documents trending around the user.
+        /// Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user&apos;s closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.
         /// </summary>
         public class TrendingRequestBuilderGetQueryParameters 
         {

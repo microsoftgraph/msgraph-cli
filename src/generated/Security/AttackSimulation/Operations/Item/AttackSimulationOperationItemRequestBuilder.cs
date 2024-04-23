@@ -56,14 +56,13 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationoperation-get?view=graph-rest-1.0" />
+        /// Represents an attack simulation training operation.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get an attack simulation operation to track a long-running operation request for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationoperation-get?view=graph-rest-1.0";
+            command.Description = "Represents an attack simulation training operation.";
             var attackSimulationOperationIdOption = new Option<string>("--attack-simulation-operation-id", description: "The unique identifier of attackSimulationOperation") {
             };
             attackSimulationOperationIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
+        /// Represents an attack simulation training operation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Security.AttackSimulation.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
+        /// Represents an attack simulation training operation.
         /// </summary>
         public class AttackSimulationOperationItemRequestBuilderGetQueryParameters 
         {

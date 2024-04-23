@@ -122,14 +122,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return command;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0" />
+        /// The general channel for the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the default channel, General, of a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
+            command.Description = "The general channel for the team.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -403,7 +402,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
+        /// The general channel for the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -443,7 +442,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, General, of a team.
+        /// The general channel for the team.
         /// </summary>
         public class PrimaryChannelRequestBuilderGetQueryParameters 
         {

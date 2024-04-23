@@ -114,13 +114,13 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a term object.";
+            command.Description = "All the terms under the set.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -234,7 +234,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +274,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         public class TermsRequestBuilderGetQueryParameters 
         {

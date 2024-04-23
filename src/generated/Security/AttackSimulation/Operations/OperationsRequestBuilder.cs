@@ -98,13 +98,13 @@ namespace ApiSdk.Security.AttackSimulation.Operations {
             return command;
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
+        /// Represents an attack simulation training operation.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get an attack simulation operation to track a long-running operation request for a tenant.";
+            command.Description = "Represents an attack simulation training operation.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +206,7 @@ namespace ApiSdk.Security.AttackSimulation.Operations {
         {
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
+        /// Represents an attack simulation training operation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.AttackSimulation.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation operation to track a long-running operation request for a tenant.
+        /// Represents an attack simulation training operation.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

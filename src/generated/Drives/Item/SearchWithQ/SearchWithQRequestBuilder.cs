@@ -20,13 +20,14 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
     public class SearchWithQRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-search?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function search";
+            command.Description = "Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-search?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -140,7 +141,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
         {
         }
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +160,7 @@ namespace ApiSdk.Drives.Item.SearchWithQ {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function search
+        /// Search the hierarchy of items for items matching a query.You can search within a folder hierarchy, a whole drive, or files shared with the current user.
         /// </summary>
         public class SearchWithQRequestBuilderGetQueryParameters 
         {

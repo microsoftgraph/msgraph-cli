@@ -21,14 +21,13 @@ namespace ApiSdk.Sites.Item.Analytics.AllTime {
     public class AllTimeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/itemanalytics-get?view=graph-rest-1.0" />
+        /// Get allTime from sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/itemanalytics-get?view=graph-rest-1.0";
+            command.Description = "Get allTime from sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -88,7 +87,7 @@ namespace ApiSdk.Sites.Item.Analytics.AllTime {
         {
         }
         /// <summary>
-        /// Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        /// Get allTime from sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +106,7 @@ namespace ApiSdk.Sites.Item.Analytics.AllTime {
             return requestInfo;
         }
         /// <summary>
-        /// Get [itemAnalytics][] about the views that took place under this resource.The itemAnalytics resource is a convenient way to get activity stats for allTime and the lastSevenDays.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        /// Get allTime from sites
         /// </summary>
         public class AllTimeRequestBuilderGetQueryParameters 
         {

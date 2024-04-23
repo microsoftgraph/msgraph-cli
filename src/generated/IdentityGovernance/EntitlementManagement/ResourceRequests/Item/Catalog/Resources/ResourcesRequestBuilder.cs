@@ -108,14 +108,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return command;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-list-resources?view=graph-rest-1.0" />
+        /// Access package resources in this catalog.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of accessPackageResource objects in an accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-list-resources?view=graph-rest-1.0";
+            command.Description = "Access package resources in this catalog.";
             var accessPackageResourceRequestIdOption = new Option<string>("--access-package-resource-request-id", description: "The unique identifier of accessPackageResourceRequest") {
             };
             accessPackageResourceRequestIdOption.IsRequired = true;
@@ -223,7 +222,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         {
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
+        /// Access package resources in this catalog.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +262,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageResource objects in an accessPackageCatalog.
+        /// Access package resources in this catalog.
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters 
         {

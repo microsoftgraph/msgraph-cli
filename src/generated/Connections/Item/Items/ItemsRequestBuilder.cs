@@ -107,13 +107,13 @@ namespace ApiSdk.Connections.Item.Items {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of an externalItem object.";
+            command.Description = "Get items from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -221,7 +221,7 @@ namespace ApiSdk.Connections.Item.Items {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +261,7 @@ namespace ApiSdk.Connections.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from connections
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters 
         {

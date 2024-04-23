@@ -53,14 +53,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
             return command;
         }
         /// <summary>
-        /// Create a new deviceComplianceUserStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-create?view=graph-rest-1.0" />
+        /// Create new navigation property to userStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new deviceComplianceUserStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to userStatuses for deviceManagement";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the deviceComplianceUserStatus objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-list?view=graph-rest-1.0" />
+        /// List of DeviceComplianceUserStatus.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the deviceComplianceUserStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-list?view=graph-rest-1.0";
+            command.Description = "List of DeviceComplianceUserStatus.";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
         {
         }
         /// <summary>
-        /// List properties and relationships of the deviceComplianceUserStatus objects.
+        /// List of DeviceComplianceUserStatus.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new deviceComplianceUserStatus object.
+        /// Create new navigation property to userStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the deviceComplianceUserStatus objects.
+        /// List of DeviceComplianceUserStatus.
         /// </summary>
         public class UserStatusesRequestBuilderGetQueryParameters 
         {

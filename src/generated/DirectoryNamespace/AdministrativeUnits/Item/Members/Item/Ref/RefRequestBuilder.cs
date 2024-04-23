@@ -20,14 +20,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Use this API to remove a member (user, group, or device) from an administrative unit.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0" />
+        /// Delete ref of navigation property members for directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Use this API to remove a member (user, group, or device) from an administrative unit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property members for directory";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
         {
         }
         /// <summary>
-        /// Use this API to remove a member (user, group, or device) from an administrative unit.
+        /// Delete ref of navigation property members for directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

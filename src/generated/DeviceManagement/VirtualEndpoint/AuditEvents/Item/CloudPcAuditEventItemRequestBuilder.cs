@@ -56,14 +56,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a cloudPcAuditEvent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcauditevent-get?view=graph-rest-1.0" />
+        /// A collection of Cloud PC audit events.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a cloudPcAuditEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcauditevent-get?view=graph-rest-1.0";
+            command.Description = "A collection of Cloud PC audit events.";
             var cloudPcAuditEventIdOption = new Option<string>("--cloud-pc-audit-event-id", description: "The unique identifier of cloudPcAuditEvent") {
             };
             cloudPcAuditEventIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a cloudPcAuditEvent object.
+        /// A collection of Cloud PC audit events.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a cloudPcAuditEvent object.
+        /// A collection of Cloud PC audit events.
         /// </summary>
         public class CloudPcAuditEventItemRequestBuilderGetQueryParameters 
         {

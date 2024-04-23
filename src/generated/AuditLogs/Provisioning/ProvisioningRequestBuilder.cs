@@ -98,14 +98,13 @@ namespace ApiSdk.AuditLogs.Provisioning {
             return command;
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0" />
+        /// Get provisioning from auditLogs
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0";
+            command.Description = "Get provisioning from auditLogs";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
         {
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        /// Get provisioning from auditLogs
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
             return requestInfo;
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        /// Get provisioning from auditLogs
         /// </summary>
         public class ProvisioningRequestBuilderGetQueryParameters 
         {

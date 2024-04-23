@@ -71,14 +71,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-delete?view=graph-rest-1.0" />
+        /// Delete navigation property mailFolders for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property mailFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -114,13 +113,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         }
         /// <summary>
         /// The user&apos;s mail folders. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The user's mail folders. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-get?view=graph-rest-1.0";
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -250,14 +248,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of mailfolder object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-update?view=graph-rest-1.0" />
+        /// Update the navigation property mailFolders in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of mailfolder object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property mailFolders in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -322,7 +319,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         {
         }
         /// <summary>
-        /// Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.
+        /// Delete navigation property mailFolders for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -360,7 +357,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of mailfolder object.
+        /// Update the navigation property mailFolders in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

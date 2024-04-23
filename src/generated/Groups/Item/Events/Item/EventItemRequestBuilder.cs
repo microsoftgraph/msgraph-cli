@@ -128,14 +128,13 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Delete an event object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0" />
+        /// Delete navigation property events for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an event object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0";
+            command.Description = "Delete navigation property events for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -231,14 +230,13 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Get an event object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0" />
+        /// The group&apos;s calendar events.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get an event object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0";
+            command.Description = "The group's calendar events.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -415,7 +413,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
         {
         }
         /// <summary>
-        /// Delete an event object.
+        /// Delete navigation property events for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -434,7 +432,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an event object.
+        /// The group&apos;s calendar events.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -474,7 +472,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an event object.
+        /// The group&apos;s calendar events.
         /// </summary>
         public class EventItemRequestBuilderGetQueryParameters 
         {

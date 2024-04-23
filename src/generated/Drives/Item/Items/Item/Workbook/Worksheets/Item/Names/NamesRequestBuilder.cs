@@ -155,14 +155,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of named item associated with the worksheet. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-list-names?view=graph-rest-1.0" />
+        /// Returns collection of names that are associated with the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of named item associated with the worksheet. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-list-names?view=graph-rest-1.0";
+            command.Description = "Returns collection of names that are associated with the worksheet. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -282,7 +281,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
         {
         }
         /// <summary>
-        /// Retrieve a list of named item associated with the worksheet. 
+        /// Returns collection of names that are associated with the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -322,7 +321,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of named item associated with the worksheet. 
+        /// Returns collection of names that are associated with the worksheet. Read-only.
         /// </summary>
         public class NamesRequestBuilderGetQueryParameters 
         {

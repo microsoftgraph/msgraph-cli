@@ -62,14 +62,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a delegatedAdminRelationshipRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationshiprequest-get?view=graph-rest-1.0" />
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a delegatedAdminRelationshipRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationshiprequest-get?view=graph-rest-1.0";
+            command.Description = "The requests associated with the delegated admin relationship.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a delegatedAdminRelationshipRequest object.
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a delegatedAdminRelationshipRequest object.
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         public class DelegatedAdminRelationshipRequestItemRequestBuilderGetQueryParameters 
         {

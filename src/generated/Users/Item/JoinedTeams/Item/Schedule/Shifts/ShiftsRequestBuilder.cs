@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0" />
+        /// Create new navigation property to shifts for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to shifts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0" />
+        /// The shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of shift instances in a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0";
+            command.Description = "The shifts in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -225,7 +223,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
         {
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule.
+        /// The shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        /// Create new navigation property to shifts for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule.
+        /// The shifts in the schedule.
         /// </summary>
         public class ShiftsRequestBuilderGetQueryParameters 
         {

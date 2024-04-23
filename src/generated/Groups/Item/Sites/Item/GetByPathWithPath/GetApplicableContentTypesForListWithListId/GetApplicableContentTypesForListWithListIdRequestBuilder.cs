@@ -20,13 +20,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetApplicableContentTy
     public class GetApplicableContentTypesForListWithListIdRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getApplicableContentTypesForList
+        /// Get site contentTypes that can be added to a list.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getApplicableContentTypesForList";
+            command.Description = "Get site contentTypes that can be added to a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -152,7 +153,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetApplicableContentTy
         {
         }
         /// <summary>
-        /// Invoke function getApplicableContentTypesForList
+        /// Get site contentTypes that can be added to a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -171,7 +172,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetApplicableContentTy
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getApplicableContentTypesForList
+        /// Get site contentTypes that can be added to a list.
         /// </summary>
         public class GetApplicableContentTypesForListWithListIdRequestBuilderGetQueryParameters 
         {

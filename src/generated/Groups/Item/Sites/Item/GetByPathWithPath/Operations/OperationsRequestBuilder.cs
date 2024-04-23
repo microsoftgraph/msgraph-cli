@@ -21,14 +21,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Operations {
     public class OperationsRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get a list of rich long-running operations associated with a site.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-operations?view=graph-rest-1.0" />
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a list of rich long-running operations associated with a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-operations?view=graph-rest-1.0";
+            command.Description = "The collection of long-running operations on the site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Operations {
         {
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a site.
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of rich long-running operations associated with a site.
+        /// The collection of long-running operations on the site.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

@@ -22,14 +22,13 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
     public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a microsoftAuthenticatorAuthenticationMethod object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0" />
+        /// Delete navigation property microsoftAuthenticatorMethods for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a microsoftAuthenticatorAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property microsoftAuthenticatorMethods for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -81,14 +80,13 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0" />
+        /// The details of the Microsoft Authenticator app registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "The details of the Microsoft Authenticator app registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -154,7 +152,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
         {
         }
         /// <summary>
-        /// Deletes a microsoftAuthenticatorAuthenticationMethod object.
+        /// Delete navigation property microsoftAuthenticatorMethods for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -173,7 +171,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
+        /// The details of the Microsoft Authenticator app registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -192,7 +190,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
+        /// The details of the Microsoft Authenticator app registered to a user for authentication.
         /// </summary>
         public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

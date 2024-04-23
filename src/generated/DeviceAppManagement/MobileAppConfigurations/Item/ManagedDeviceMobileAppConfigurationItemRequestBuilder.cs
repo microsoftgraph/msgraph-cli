@@ -71,14 +71,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a iosMobileAppConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosmobileappconfiguration-delete?view=graph-rest-1.0" />
+        /// Delete navigation property mobileAppConfigurations for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a iosMobileAppConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosmobileappconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property mobileAppConfigurations for deviceAppManagement";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -153,14 +152,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfiguration-get?view=graph-rest-1.0" />
+        /// The Managed Device Mobile Application Configurations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedDeviceMobileAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfiguration-get?view=graph-rest-1.0";
+            command.Description = "The Managed Device Mobile Application Configurations.";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -206,14 +204,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosMobileAppConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosmobileappconfiguration-update?view=graph-rest-1.0" />
+        /// Update the navigation property mobileAppConfigurations in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosMobileAppConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosmobileappconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property mobileAppConfigurations in deviceAppManagement";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -318,7 +315,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         {
         }
         /// <summary>
-        /// Deletes a iosMobileAppConfiguration.
+        /// Delete navigation property mobileAppConfigurations for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -337,7 +334,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfiguration object.
+        /// The Managed Device Mobile Application Configurations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -356,7 +353,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosMobileAppConfiguration object.
+        /// Update the navigation property mobileAppConfigurations in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -377,7 +374,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfiguration object.
+        /// The Managed Device Mobile Application Configurations.
         /// </summary>
         public class ManagedDeviceMobileAppConfigurationItemRequestBuilderGetQueryParameters 
         {

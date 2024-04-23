@@ -20,14 +20,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a class from a school.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0" />
+        /// Delete ref of navigation property classes for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a class from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property classes for education";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Item.Ref {
         {
         }
         /// <summary>
-        /// Delete a class from a school.
+        /// Delete ref of navigation property classes for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

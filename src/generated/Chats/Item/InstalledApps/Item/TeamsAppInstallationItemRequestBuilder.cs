@@ -24,14 +24,13 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
     public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Uninstall an app installed within a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-installedapps?view=graph-rest-1.0" />
+        /// Delete navigation property installedApps for chats
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Uninstall an app installed within a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-installedapps?view=graph-rest-1.0";
+            command.Description = "Delete navigation property installedApps for chats";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -66,14 +65,13 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Get an app installed in a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-installedapps?view=graph-rest-1.0" />
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get an app installed in a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-installedapps?view=graph-rest-1.0";
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -247,7 +245,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
         {
         }
         /// <summary>
-        /// Uninstall an app installed within a chat.
+        /// Delete navigation property installedApps for chats
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +264,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an app installed in a chat.
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -306,7 +304,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an app installed in a chat.
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         public class TeamsAppInstallationItemRequestBuilderGetQueryParameters 
         {

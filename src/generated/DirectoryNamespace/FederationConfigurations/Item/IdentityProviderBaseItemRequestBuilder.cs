@@ -21,14 +21,13 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
     public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a samlOrWsFedExternalDomainFederation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0" />
+        /// Delete navigation property federationConfigurations for directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a samlOrWsFedExternalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/samlorwsfedexternaldomainfederation-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property federationConfigurations for directory";
             var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "The unique identifier of identityProviderBase") {
             };
             identityProviderBaseIdOption.IsRequired = true;
@@ -174,7 +173,7 @@ namespace ApiSdk.DirectoryNamespace.FederationConfigurations.Item {
         {
         }
         /// <summary>
-        /// Delete a samlOrWsFedExternalDomainFederation object.
+        /// Delete navigation property federationConfigurations for directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

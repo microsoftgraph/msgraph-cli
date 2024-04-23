@@ -55,14 +55,13 @@ namespace ApiSdk.Policies.AppManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Create an appManagementPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-post?view=graph-rest-1.0" />
+        /// Create new navigation property to appManagementPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appManagementPolicies for policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,14 +100,13 @@ namespace ApiSdk.Policies.AppManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of appManagementPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-list?view=graph-rest-1.0" />
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of appManagementPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-list?view=graph-rest-1.0";
+            command.Description = "The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Policies.AppManagementPolicies {
         {
         }
         /// <summary>
-        /// Retrieve a list of appManagementPolicy objects.
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +227,7 @@ namespace ApiSdk.Policies.AppManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create an appManagementPolicy object.
+        /// Create new navigation property to appManagementPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Policies.AppManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of appManagementPolicy objects.
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         public class AppManagementPoliciesRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Search.Bookmarks {
             return command;
         }
         /// <summary>
-        /// Create a new bookmark object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-searchentity-post-bookmarks?view=graph-rest-1.0" />
+        /// Create new navigation property to bookmarks for search
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new bookmark object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-searchentity-post-bookmarks?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to bookmarks for search";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Search.Bookmarks {
             return command;
         }
         /// <summary>
-        /// Get a list of bookmark objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-searchentity-list-bookmarks?view=graph-rest-1.0" />
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of bookmark objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-searchentity-list-bookmarks?view=graph-rest-1.0";
+            command.Description = "Administrative answer in Microsoft Search results for common search queries in an organization.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Search.Bookmarks {
         {
         }
         /// <summary>
-        /// Get a list of bookmark objects and their properties.
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Search.Bookmarks {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new bookmark object.
+        /// Create new navigation property to bookmarks for search
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Search.Bookmarks {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of bookmark objects and their properties.
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         public class BookmarksRequestBuilderGetQueryParameters 
         {

@@ -55,14 +55,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
             return command;
         }
         /// <summary>
-        /// Get the task processing result from a userProcessingResult either directly or through a run.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-userprocessingresult-list-taskprocessingresults?view=graph-rest-1.0" />
+        /// The associated individual task execution.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the task processing result from a userProcessingResult either directly or through a run.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-userprocessingresult-list-taskprocessingresults?view=graph-rest-1.0";
+            command.Description = "The associated individual task execution.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -182,7 +181,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
         {
         }
         /// <summary>
-        /// Get the task processing result from a userProcessingResult either directly or through a run.
+        /// The associated individual task execution.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -201,7 +200,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Get the task processing result from a userProcessingResult either directly or through a run.
+        /// The associated individual task execution.
         /// </summary>
         public class TaskProcessingResultsRequestBuilderGetQueryParameters 
         {

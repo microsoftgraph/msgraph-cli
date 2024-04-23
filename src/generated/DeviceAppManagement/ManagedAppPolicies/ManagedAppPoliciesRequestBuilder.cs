@@ -100,14 +100,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0" />
+        /// Managed app policies.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the targetedManagedAppProtection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0";
+            command.Description = "Managed app policies.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +208,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
         {
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
+        /// Managed app policies.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +248,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
+        /// Managed app policies.
         /// </summary>
         public class ManagedAppPoliciesRequestBuilderGetQueryParameters 
         {

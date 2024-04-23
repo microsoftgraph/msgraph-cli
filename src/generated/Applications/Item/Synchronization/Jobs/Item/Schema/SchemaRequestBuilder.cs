@@ -127,14 +127,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Retrieve the schema for a given synchronization job or template.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0" />
+        /// The synchronization schema configured for the job.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the schema for a given synchronization job or template.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0";
+            command.Description = "The synchronization schema configured for the job.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -203,14 +202,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0" />
+        /// Update the navigation property schema in applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property schema in applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -294,7 +292,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schema for a given synchronization job or template.
+        /// The synchronization schema configured for the job.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -313,7 +311,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
+        /// Update the navigation property schema in applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -334,7 +332,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schema for a given synchronization job or template.
+        /// The synchronization schema configured for the job.
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters 
         {

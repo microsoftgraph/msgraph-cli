@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts {
             return command;
         }
         /// <summary>
-        /// Create an instance of an openShift object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-post?view=graph-rest-1.0" />
+        /// Create new navigation property to openShifts for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an instance of an openShift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to openShifts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts {
             return command;
         }
         /// <summary>
-        /// List openShift objects in a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-list?view=graph-rest-1.0" />
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List openShift objects in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-list?view=graph-rest-1.0";
+            command.Description = "The set of open shifts in a scheduling group in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -232,7 +230,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts {
         {
         }
         /// <summary>
-        /// List openShift objects in a team.
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts {
             return requestInfo;
         }
         /// <summary>
-        /// Create an instance of an openShift object.
+        /// Create new navigation property to openShifts for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -272,7 +270,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts {
             return requestInfo;
         }
         /// <summary>
-        /// List openShift objects in a team.
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         public class OpenShiftsRequestBuilderGetQueryParameters 
         {

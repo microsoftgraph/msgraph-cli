@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.GetAuditActivityTy
     public class GetAuditActivityTypesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getAuditActivityTypes
+        /// Get audit activity types by tenant ID.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcauditevent-getauditactivitytypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getAuditActivityTypes";
+            command.Description = "Get audit activity types by tenant ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcauditevent-getauditactivitytypes?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -107,7 +108,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.GetAuditActivityTy
         {
         }
         /// <summary>
-        /// Invoke function getAuditActivityTypes
+        /// Get audit activity types by tenant ID.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +127,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents.GetAuditActivityTy
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getAuditActivityTypes
+        /// Get audit activity types by tenant ID.
         /// </summary>
         public class GetAuditActivityTypesRequestBuilderGetQueryParameters 
         {

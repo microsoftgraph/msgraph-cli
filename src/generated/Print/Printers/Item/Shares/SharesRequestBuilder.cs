@@ -51,14 +51,13 @@ namespace ApiSdk.Print.Printers.Item.Shares {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of printer shares associated with the printer.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-list-shares?view=graph-rest-1.0" />
+        /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of printer shares associated with the printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-list-shares?view=graph-rest-1.0";
+            command.Description = "The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
         {
         }
         /// <summary>
-        /// Retrieve a list of printer shares associated with the printer.
+        /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Print.Printers.Item.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of printer shares associated with the printer.
+        /// The list of printerShares that are associated with the printer. Currently, only one printerShare can be associated with the printer. Read-only. Nullable.
         /// </summary>
         public class SharesRequestBuilderGetQueryParameters 
         {

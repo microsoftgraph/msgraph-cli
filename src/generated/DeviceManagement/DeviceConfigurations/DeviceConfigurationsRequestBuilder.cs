@@ -62,14 +62,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// Create a new androidCustomConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-create?view=graph-rest-1.0" />
+        /// Create new navigation property to deviceConfigurations for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new androidCustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to deviceConfigurations for deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -108,14 +107,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0" />
+        /// The device configurations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the androidCustomConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0";
+            command.Description = "The device configurations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -217,7 +215,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         {
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
+        /// The device configurations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -236,7 +234,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new androidCustomConfiguration object.
+        /// Create new navigation property to deviceConfigurations for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -257,7 +255,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
+        /// The device configurations.
         /// </summary>
         public class DeviceConfigurationsRequestBuilderGetQueryParameters 
         {

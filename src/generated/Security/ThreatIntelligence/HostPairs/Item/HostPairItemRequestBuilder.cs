@@ -75,14 +75,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostPair object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-hostpair-get?view=graph-rest-1.0" />
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a hostPair object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-hostpair-get?view=graph-rest-1.0";
+            command.Description = "Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.";
             var hostPairIdOption = new Option<string>("--host-pair-id", description: "The unique identifier of hostPair") {
             };
             hostPairIdOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostPair object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostPairs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostPair object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         public class HostPairItemRequestBuilderGetQueryParameters 
         {

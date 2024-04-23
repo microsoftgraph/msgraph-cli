@@ -52,14 +52,13 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return command;
         }
         /// <summary>
-        /// Retrieves the educationUser members of an educationClass.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0" />
+        /// All users in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieves the educationUser members of an educationClass.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0";
+            command.Description = "All users in the class. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         {
         }
         /// <summary>
-        /// Retrieves the educationUser members of an educationClass.
+        /// All users in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieves the educationUser members of an educationClass.
+        /// All users in the class. Nullable.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters 
         {

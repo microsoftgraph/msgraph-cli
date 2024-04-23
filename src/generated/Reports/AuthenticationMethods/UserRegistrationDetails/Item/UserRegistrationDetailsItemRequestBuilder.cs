@@ -56,14 +56,13 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/userregistrationdetails-get?view=graph-rest-1.0" />
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a userRegistrationDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userregistrationdetails-get?view=graph-rest-1.0";
+            command.Description = "Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).";
             var userRegistrationDetailsIdOption = new Option<string>("--user-registration-details-id", description: "The unique identifier of userRegistrationDetails") {
             };
             userRegistrationDetailsIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object.
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userRegistrationDetails object.
+        /// Represents the state of a user&apos;s authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
         /// </summary>
         public class UserRegistrationDetailsItemRequestBuilderGetQueryParameters 
         {

@@ -103,13 +103,12 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
         }
         /// <summary>
         /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;

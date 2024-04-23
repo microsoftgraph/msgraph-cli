@@ -49,14 +49,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a mobileAppTroubleshootingEvent.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-delete?view=graph-rest-1.0" />
+        /// Delete navigation property mobileAppTroubleshootingEvents for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a mobileAppTroubleshootingEvent.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property mobileAppTroubleshootingEvents for deviceManagement";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -85,14 +84,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppTroubleshootingEvent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-get?view=graph-rest-1.0" />
+        /// The collection property of MobileAppTroubleshootingEvent.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the mobileAppTroubleshootingEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-get?view=graph-rest-1.0";
+            command.Description = "The collection property of MobileAppTroubleshootingEvent.";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -138,14 +136,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a mobileAppTroubleshootingEvent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-update?view=graph-rest-1.0" />
+        /// Update the navigation property mobileAppTroubleshootingEvents in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a mobileAppTroubleshootingEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-mobileapptroubleshootingevent-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property mobileAppTroubleshootingEvents in deviceManagement";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -204,7 +201,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
         {
         }
         /// <summary>
-        /// Deletes a mobileAppTroubleshootingEvent.
+        /// Delete navigation property mobileAppTroubleshootingEvents for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -223,7 +220,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppTroubleshootingEvent object.
+        /// The collection property of MobileAppTroubleshootingEvent.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +239,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a mobileAppTroubleshootingEvent object.
+        /// Update the navigation property mobileAppTroubleshootingEvents in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -263,7 +260,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppTroubleshootingEvent object.
+        /// The collection property of MobileAppTroubleshootingEvent.
         /// </summary>
         public class MobileAppTroubleshootingEventItemRequestBuilderGetQueryParameters 
         {

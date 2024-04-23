@@ -162,14 +162,13 @@ namespace ApiSdk.Communications.Calls.Item {
             return command;
         }
         /// <summary>
-        /// Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-delete?view=graph-rest-1.0" />
+        /// Delete navigation property calls for communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property calls for communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -198,14 +197,13 @@ namespace ApiSdk.Communications.Calls.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-get?view=graph-rest-1.0" />
+        /// Get calls from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a call object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-get?view=graph-rest-1.0";
+            command.Description = "Get calls from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -558,7 +556,7 @@ namespace ApiSdk.Communications.Calls.Item {
         {
         }
         /// <summary>
-        /// Delete or hang up an active call. For group calls, this will only delete your call leg and the underlying group call will still continue.
+        /// Delete navigation property calls for communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -577,7 +575,7 @@ namespace ApiSdk.Communications.Calls.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
+        /// Get calls from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -617,7 +615,7 @@ namespace ApiSdk.Communications.Calls.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
+        /// Get calls from communications
         /// </summary>
         public class CallItemRequestBuilderGetQueryParameters 
         {

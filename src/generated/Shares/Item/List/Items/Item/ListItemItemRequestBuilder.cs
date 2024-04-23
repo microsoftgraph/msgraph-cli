@@ -89,14 +89,13 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return command;
         }
         /// <summary>
-        /// Removes an item from a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property items for shares
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Removes an item from a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property items for shares";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -234,14 +233,13 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return command;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0" />
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Returns the metadata for an [item][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
+            command.Description = "All items contained in the list.";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -415,7 +413,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
         {
         }
         /// <summary>
-        /// Removes an item from a [list][].
+        /// Delete navigation property items for shares
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -434,7 +432,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -474,7 +472,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns the metadata for an [item][] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         public class ListItemItemRequestBuilderGetQueryParameters 
         {

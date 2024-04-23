@@ -54,14 +54,13 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0" />
+        /// The users who have access to print using the printer.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0";
+            command.Description = "The users who have access to print using the printer.";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -188,7 +187,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         {
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        /// The users who have access to print using the printer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -207,7 +206,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        /// The users who have access to print using the printer.
         /// </summary>
         public class AllowedUsersRequestBuilderGetQueryParameters 
         {

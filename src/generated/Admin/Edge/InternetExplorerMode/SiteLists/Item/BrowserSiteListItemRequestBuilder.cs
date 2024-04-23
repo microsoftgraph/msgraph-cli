@@ -24,14 +24,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
     public class BrowserSiteListItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a browserSiteList object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0" />
+        /// Delete navigation property siteLists for admin
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a browserSiteList object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internetexplorermode-delete-sitelists?view=graph-rest-1.0";
+            command.Description = "Delete navigation property siteLists for admin";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -60,14 +59,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
             return command;
         }
         /// <summary>
-        /// Get a browserSiteList that contains browserSite and browserSharedCookie resources.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-get?view=graph-rest-1.0" />
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a browserSiteList that contains browserSite and browserSharedCookie resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-get?view=graph-rest-1.0";
+            command.Description = "A collection of site lists to support Internet Explorer mode.";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -113,14 +111,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a browserSiteList object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-update?view=graph-rest-1.0" />
+        /// Update the navigation property siteLists in admin
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a browserSiteList object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property siteLists in admin";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -250,7 +247,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
         {
         }
         /// <summary>
-        /// Delete a browserSiteList object.
+        /// Delete navigation property siteLists for admin
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +266,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a browserSiteList that contains browserSite and browserSharedCookie resources.
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +285,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a browserSiteList object.
+        /// Update the navigation property siteLists in admin
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -309,7 +306,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a browserSiteList that contains browserSite and browserSharedCookie resources.
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         public class BrowserSiteListItemRequestBuilderGetQueryParameters 
         {

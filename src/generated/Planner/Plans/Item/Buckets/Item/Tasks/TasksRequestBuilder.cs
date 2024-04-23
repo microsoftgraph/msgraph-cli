@@ -115,14 +115,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0" />
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerTask objects associated to a plannerBucket object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -236,7 +235,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
         {
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +275,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of plannerTask objects associated to a plannerBucket object.
+        /// Read-only. Nullable. The collection of tasks in the bucket.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters 
         {

@@ -21,14 +21,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
     public class EducationCategoryItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an existing category. Only teachers can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationcategory-delete?view=graph-rest-1.0" />
+        /// Delete navigation property assignmentCategories for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an existing category. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationcategory-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property assignmentCategories for education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve an educationCategory object. Only teachers, students, and applications with application permissions can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationcategory-get?view=graph-rest-1.0" />
+        /// All categories associated with this class. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve an educationCategory object. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationcategory-get?view=graph-rest-1.0";
+            command.Description = "All categories associated with this class. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -193,7 +191,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
         {
         }
         /// <summary>
-        /// Delete an existing category. Only teachers can perform this operation.
+        /// Delete navigation property assignmentCategories for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -212,7 +210,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an educationCategory object. Only teachers, students, and applications with application permissions can perform this operation.
+        /// All categories associated with this class. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an educationCategory object. Only teachers, students, and applications with application permissions can perform this operation.
+        /// All categories associated with this class. Nullable.
         /// </summary>
         public class EducationCategoryItemRequestBuilderGetQueryParameters 
         {

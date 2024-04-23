@@ -56,14 +56,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
             return command;
         }
         /// <summary>
-        /// Create a new notificationMessageTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-create?view=graph-rest-1.0" />
+        /// Create new navigation property to notificationMessageTemplates for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new notificationMessageTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to notificationMessageTemplates for deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,14 +101,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the notificationMessageTemplate objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-list?view=graph-rest-1.0" />
+        /// The Notification Message Templates.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the notificationMessageTemplate objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-list?view=graph-rest-1.0";
+            command.Description = "The Notification Message Templates.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +209,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
         {
         }
         /// <summary>
-        /// List properties and relationships of the notificationMessageTemplate objects.
+        /// The Notification Message Templates.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +228,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new notificationMessageTemplate object.
+        /// Create new navigation property to notificationMessageTemplates for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the notificationMessageTemplate objects.
+        /// The Notification Message Templates.
         /// </summary>
         public class NotificationMessageTemplatesRequestBuilderGetQueryParameters 
         {

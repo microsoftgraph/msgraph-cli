@@ -48,14 +48,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0" />
+        /// The workflow versions that are available.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a workflowVersion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowversion-get?view=graph-rest-1.0";
+            command.Description = "The workflow versions that are available.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -172,7 +171,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object.
+        /// The workflow versions that are available.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +190,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Versions.I
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowVersion object.
+        /// The workflow versions that are available.
         /// </summary>
         public class WorkflowVersionVersionNumberItemRequestBuilderGetQueryParameters 
         {

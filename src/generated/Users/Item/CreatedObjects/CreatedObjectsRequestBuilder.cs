@@ -77,14 +77,13 @@ namespace ApiSdk.Users.Item.CreatedObjects {
             return command;
         }
         /// <summary>
-        /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-createdobjects?view=graph-rest-1.0" />
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn't in any administrator role; otherwise, it returns an empty object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-createdobjects?view=graph-rest-1.0";
+            command.Description = "Directory objects that the user created. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -192,7 +191,7 @@ namespace ApiSdk.Users.Item.CreatedObjects {
         {
         }
         /// <summary>
-        /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -211,7 +210,7 @@ namespace ApiSdk.Users.Item.CreatedObjects {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn&apos;t in any administrator role; otherwise, it returns an empty object.
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         public class CreatedObjectsRequestBuilderGetQueryParameters 
         {

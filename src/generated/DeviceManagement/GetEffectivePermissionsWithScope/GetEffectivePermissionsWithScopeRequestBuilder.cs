@@ -21,12 +21,13 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
     {
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-geteffectivepermissions?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieves the effective permissions of the currently authenticated user";
+            command.Description = "Retrieves the effective permissions of the currently authenticated user\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-rbac-devicemanagement-geteffectivepermissions?view=graph-rest-1.0";
             var scopeOption = new Option<string>("--scope", description: "Usage: scope='{scope}'") {
             };
             scopeOption.IsRequired = true;

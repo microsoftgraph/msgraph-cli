@@ -98,14 +98,13 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
             return command;
         }
         /// <summary>
-        /// Get a list of the deviceLocalCredentialInfo objects and their properties, excluding the credentials property. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-list-devicelocalcredentials?view=graph-rest-1.0" />
+        /// The credentials of the device&apos;s local administrator account backed up to Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the deviceLocalCredentialInfo objects and their properties, excluding the credentials property. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-list-devicelocalcredentials?view=graph-rest-1.0";
+            command.Description = "The credentials of the device's local administrator account backed up to Microsoft Entra ID.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -194,7 +193,7 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
         {
         }
         /// <summary>
-        /// Get a list of the deviceLocalCredentialInfo objects and their properties, excluding the credentials property. 
+        /// The credentials of the device&apos;s local administrator account backed up to Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +233,7 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the deviceLocalCredentialInfo objects and their properties, excluding the credentials property. 
+        /// The credentials of the device&apos;s local administrator account backed up to Microsoft Entra ID.
         /// </summary>
         public class DeviceLocalCredentialsRequestBuilderGetQueryParameters 
         {

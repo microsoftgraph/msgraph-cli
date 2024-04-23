@@ -39,14 +39,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Delete a bookingAppointment in the specified bookingBusiness.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property appointments for solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a bookingAppointment in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property appointments for solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -81,14 +80,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0" />
+        /// All the appointments of this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-get?view=graph-rest-1.0";
+            command.Description = "All the appointments of this business. Read-only. Nullable.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -140,14 +138,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0" />
+        /// Update the navigation property appointments in solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookingAppointment object in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingappointment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property appointments in solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
         {
         }
         /// <summary>
-        /// Delete a bookingAppointment in the specified bookingBusiness.
+        /// Delete navigation property appointments for solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
+        /// All the appointments of this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookingAppointment object in the specified bookingBusiness.
+        /// Update the navigation property appointments in solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a bookingAppointment object in the specified bookingBusiness. The startDateTime and endDateTime properties are always returned in UTC.
+        /// All the appointments of this business. Read-only. Nullable.
         /// </summary>
         public class BookingAppointmentItemRequestBuilderGetQueryParameters 
         {

@@ -51,14 +51,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
             return command;
         }
         /// <summary>
-        /// Get a list of the conditionalAccessTemplate objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the conditionalAccessTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-templates?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access templates.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -160,7 +159,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
         {
         }
         /// <summary>
-        /// Get a list of the conditionalAccessTemplate objects and their properties.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +178,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the conditionalAccessTemplate objects and their properties.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
         /// </summary>
         public class TemplatesRequestBuilderGetQueryParameters 
         {

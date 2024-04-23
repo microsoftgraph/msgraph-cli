@@ -52,14 +52,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Delete a set object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0" />
+        /// Delete navigation property sets for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property sets for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -106,14 +105,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a set object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0" />
+        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0";
+            command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -202,14 +200,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a set object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0" />
+        /// Update the navigation property sets in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a set object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property sets in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -340,7 +337,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
         {
         }
         /// <summary>
-        /// Delete a set object.
+        /// Delete navigation property sets for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -359,7 +356,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a set object.
+        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -378,7 +375,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a set object.
+        /// Update the navigation property sets in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -399,7 +396,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a set object.
+        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
         /// </summary>
         public class SetItemRequestBuilderGetQueryParameters 
         {

@@ -104,14 +104,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0" />
+        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminServiceManagementDetail objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0";
+            command.Description = "Contains the management details of a service in the customer tenant that's managed by delegated administration.";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
         /// </summary>
         public class ServiceManagementDetailsRequestBuilderGetQueryParameters 
         {

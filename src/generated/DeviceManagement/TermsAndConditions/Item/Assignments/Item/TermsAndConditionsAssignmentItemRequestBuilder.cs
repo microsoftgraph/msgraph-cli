@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
     public class TermsAndConditionsAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a termsAndConditionsAssignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property assignments for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a termsAndConditionsAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property assignments for deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-get?view=graph-rest-1.0" />
+        /// The list of assignments for this T&amp;C policy.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the termsAndConditionsAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-get?view=graph-rest-1.0";
+            command.Description = "The list of assignments for this T&C policy.";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditionsAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-update?view=graph-rest-1.0" />
+        /// Update the navigation property assignments in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a termsAndConditionsAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignments in deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
         {
         }
         /// <summary>
-        /// Deletes a termsAndConditionsAssignment.
+        /// Delete navigation property assignments for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAssignment object.
+        /// The list of assignments for this T&amp;C policy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditionsAssignment object.
+        /// Update the navigation property assignments in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAssignment object.
+        /// The list of assignments for this T&amp;C policy.
         /// </summary>
         public class TermsAndConditionsAssignmentItemRequestBuilderGetQueryParameters 
         {

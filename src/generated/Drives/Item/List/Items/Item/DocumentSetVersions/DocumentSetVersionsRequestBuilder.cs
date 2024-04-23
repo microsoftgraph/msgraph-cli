@@ -56,14 +56,13 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0" />
+        /// Create new navigation property to documentSetVersions for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to documentSetVersions for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -114,14 +113,13 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0" />
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Version information for a document set version created by a user.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -235,7 +233,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
         {
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,7 +252,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list.
+        /// Create new navigation property to documentSetVersions for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -275,7 +273,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
+        /// Version information for a document set version created by a user.
         /// </summary>
         public class DocumentSetVersionsRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageStorageWithPeriod {
     public class GetSharePointSiteUsageStorageWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSharePointSiteUsageStorage
+        /// Get the trend of storage allocated and consumed during the reporting period.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagestorage?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSharePointSiteUsageStorage";
+            command.Description = "Get the trend of storage allocated and consumed during the reporting period.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getsharepointsiteusagestorage?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageStorageWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getSharePointSiteUsageStorage
+        /// Get the trend of storage allocated and consumed during the reporting period.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

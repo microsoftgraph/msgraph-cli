@@ -22,14 +22,13 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
     public class VppTokenItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a vppToken.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0" />
+        /// Delete navigation property vppTokens for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a vppToken.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property vppTokens for deviceAppManagement";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -58,14 +57,13 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the vppToken object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0" />
+        /// List of Vpp tokens for this organization.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0";
+            command.Description = "List of Vpp tokens for this organization.";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -111,14 +109,13 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a vppToken object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0" />
+        /// Update the navigation property vppTokens in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a vppToken object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property vppTokens in deviceAppManagement";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         {
         }
         /// <summary>
-        /// Deletes a vppToken.
+        /// Delete navigation property vppTokens for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the vppToken object.
+        /// List of Vpp tokens for this organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a vppToken object.
+        /// Update the navigation property vppTokens in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the vppToken object.
+        /// List of Vpp tokens for this organization.
         /// </summary>
         public class VppTokenItemRequestBuilderGetQueryParameters 
         {

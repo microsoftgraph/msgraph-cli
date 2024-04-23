@@ -68,14 +68,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0" />
+        /// The offer requests for shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an offerShiftRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0";
+            command.Description = "The offer requests for shifts in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object.
+        /// The offer requests for shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an offerShiftRequest object.
+        /// The offer requests for shifts in the schedule.
         /// </summary>
         public class OfferShiftRequestItemRequestBuilderGetQueryParameters 
         {

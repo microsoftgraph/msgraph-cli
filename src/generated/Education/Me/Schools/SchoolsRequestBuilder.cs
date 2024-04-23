@@ -51,14 +51,13 @@ namespace ApiSdk.Education.Me.Schools {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of schools for a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0" />
+        /// Schools to which the user belongs. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of schools for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0";
+            command.Description = "Schools to which the user belongs. Nullable.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -160,7 +159,7 @@ namespace ApiSdk.Education.Me.Schools {
         {
         }
         /// <summary>
-        /// Retrieve a list of schools for a user.
+        /// Schools to which the user belongs. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +178,7 @@ namespace ApiSdk.Education.Me.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of schools for a user.
+        /// Schools to which the user belongs. Nullable.
         /// </summary>
         public class SchoolsRequestBuilderGetQueryParameters 
         {

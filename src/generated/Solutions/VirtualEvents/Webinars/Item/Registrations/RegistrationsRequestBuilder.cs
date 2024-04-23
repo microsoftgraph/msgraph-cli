@@ -104,14 +104,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations {
             return command;
         }
         /// <summary>
-        /// Get a list of all registration records of a webinar.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventwebinar-list-registrations?view=graph-rest-1.0" />
+        /// Registration records of the webinar.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of all registration records of a webinar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventwebinar-list-registrations?view=graph-rest-1.0";
+            command.Description = "Registration records of the webinar.";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations {
         {
         }
         /// <summary>
-        /// Get a list of all registration records of a webinar.
+        /// Registration records of the webinar.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of all registration records of a webinar.
+        /// Registration records of the webinar.
         /// </summary>
         public class RegistrationsRequestBuilderGetQueryParameters 
         {

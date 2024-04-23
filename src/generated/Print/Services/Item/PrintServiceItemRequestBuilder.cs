@@ -84,14 +84,13 @@ namespace ApiSdk.Print.Services.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printservice-get?view=graph-rest-1.0" />
+        /// The list of available Universal Print service endpoints.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a print service.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printservice-get?view=graph-rest-1.0";
+            command.Description = "The list of available Universal Print service endpoints.";
             var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.Print.Services.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service.
+        /// The list of available Universal Print service endpoints.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.Print.Services.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service.
+        /// The list of available Universal Print service endpoints.
         /// </summary>
         public class PrintServiceItemRequestBuilderGetQueryParameters 
         {

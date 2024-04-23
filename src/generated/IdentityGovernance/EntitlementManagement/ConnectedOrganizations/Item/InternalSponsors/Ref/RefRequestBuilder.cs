@@ -21,14 +21,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a user or a group from the connected organization&apos;s internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0" />
+        /// Delete ref of navigation property internalSponsors for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a user or a group from the connected organization's internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property internalSponsors for identityGovernance";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0" />
+        /// Get ref of internalSponsors from identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a list of a connectedOrganization's internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0";
+            command.Description = "Get ref of internalSponsors from identityGovernance";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Add a user or a group to the connected organization&apos;s internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0" />
+        /// Create new navigation property ref to internalSponsors for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a user or a group to the connected organization's internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-post-internalsponsors?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to internalSponsors for identityGovernance";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         {
         }
         /// <summary>
-        /// Remove a user or a group from the connected organization&apos;s internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Delete ref of navigation property internalSponsors for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Get ref of internalSponsors from identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Add a user or a group to the connected organization&apos;s internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Create new navigation property ref to internalSponsors for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Remove a user or a group from the connected organization&apos;s internal sponsors. The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Delete ref of navigation property internalSponsors for identityGovernance
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
 #endif
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Get ref of internalSponsors from identityGovernance
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

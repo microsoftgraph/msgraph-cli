@@ -51,14 +51,13 @@ namespace ApiSdk.Education.Classes.Item.Schools {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of schools in which the class is taught.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-schools?view=graph-rest-1.0" />
+        /// All schools that this class is associated with. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of schools in which the class is taught.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-schools?view=graph-rest-1.0";
+            command.Description = "All schools that this class is associated with. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
         {
         }
         /// <summary>
-        /// Retrieve a list of schools in which the class is taught.
+        /// All schools that this class is associated with. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of schools in which the class is taught.
+        /// All schools that this class is associated with. Nullable.
         /// </summary>
         public class SchoolsRequestBuilderGetQueryParameters 
         {

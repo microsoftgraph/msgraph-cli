@@ -98,14 +98,13 @@ namespace ApiSdk.Print.Connectors {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of print connectors.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/print-list-connectors?view=graph-rest-1.0" />
+        /// The list of available print connectors.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of print connectors.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/print-list-connectors?view=graph-rest-1.0";
+            command.Description = "The list of available print connectors.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.Print.Connectors {
         {
         }
         /// <summary>
-        /// Retrieve a list of print connectors.
+        /// The list of available print connectors.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.Print.Connectors {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of print connectors.
+        /// The list of available print connectors.
         /// </summary>
         public class ConnectorsRequestBuilderGetQueryParameters 
         {

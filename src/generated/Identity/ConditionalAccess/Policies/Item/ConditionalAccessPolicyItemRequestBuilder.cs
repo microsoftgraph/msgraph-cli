@@ -21,14 +21,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
     public class ConditionalAccessPolicyItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a conditionalAccessPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property policies for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a conditionalAccessPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property policies for identity";
             var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a conditionalAccessPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a conditionalAccessPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a conditionalAccessPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property policies in identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a conditionalAccessPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccesspolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property policies in identity";
             var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
         {
         }
         /// <summary>
-        /// Delete a conditionalAccessPolicy object.
+        /// Delete navigation property policies for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a conditionalAccessPolicy object.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a conditionalAccessPolicy object.
+        /// Update the navigation property policies in identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a conditionalAccessPolicy object.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public class ConditionalAccessPolicyItemRequestBuilderGetQueryParameters 
         {

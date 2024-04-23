@@ -20,14 +20,13 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0" />
+        /// Delete ref of navigation property categories for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property categories for education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
+        /// Delete ref of navigation property categories for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

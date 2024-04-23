@@ -74,14 +74,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attachment-get?view=graph-rest-1.0" />
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attachment-get?view=graph-rest-1.0";
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -178,7 +177,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -197,7 +196,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties, relationships, or raw contents of an attachment that is attached to a user event, message, or group post. An attachment can be one of the following types: All these types of attachments are derived from the attachment resource.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         public class AttachmentItemRequestBuilderGetQueryParameters 
         {

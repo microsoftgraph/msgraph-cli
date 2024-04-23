@@ -57,14 +57,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve an accessReviewHistoryDefinition object by its identifier. All the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0" />
+        /// Represents a collection of access review history data and the scopes used to collect that data.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve an accessReviewHistoryDefinition object by its identifier. All the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accessreviewhistorydefinition-get?view=graph-rest-1.0";
+            command.Description = "Represents a collection of access review history data and the scopes used to collect that data.";
             var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an accessReviewHistoryDefinition object by its identifier. All the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
+        /// Represents a collection of access review history data and the scopes used to collect that data.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an accessReviewHistoryDefinition object by its identifier. All the properties of the access review history definition object are returned. If the definition is 30 days or older, a 404 Not Found error is returned.
+        /// Represents a collection of access review history data and the scopes used to collect that data.
         /// </summary>
         public class AccessReviewHistoryDefinitionItemRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetMailboxUsageStorageWithPeriod {
     public class GetMailboxUsageStorageWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getMailboxUsageStorage
+        /// Get the amount of storage used in your organization.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getMailboxUsageStorage";
+            command.Description = "Get the amount of storage used in your organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetMailboxUsageStorageWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getMailboxUsageStorage
+        /// Get the amount of storage used in your organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

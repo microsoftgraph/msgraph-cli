@@ -20,13 +20,14 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
     public class AvailableProviderTypesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Get all identity providers supported in a directory.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function availableProviderTypes";
+            command.Description = "Get all identity providers supported in a directory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -107,7 +108,7 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
         {
         }
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Get all identity providers supported in a directory.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +127,7 @@ namespace ApiSdk.Identity.IdentityProviders.AvailableProviderTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Get all identity providers supported in a directory.
         /// </summary>
         public class AvailableProviderTypesRequestBuilderGetQueryParameters 
         {

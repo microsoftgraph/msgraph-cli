@@ -53,14 +53,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-post-resources?view=graph-rest-1.0" />
+        /// Create new navigation property to resources for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-post-resources?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to resources for education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationmodule-list-resources?view=graph-rest-1.0" />
+        /// Learning objects that are associated with this module. Only teachers can modify this list. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationmodule-list-resources?view=graph-rest-1.0";
+            command.Description = "Learning objects that are associated with this module. Only teachers can modify this list. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -232,7 +230,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
         {
         }
         /// <summary>
-        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Learning objects that are associated with this module. Only teachers can modify this list. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Create a resource in a module. Only teachers can perform this operation. You can create the following types of module resources: Every resource has an @odata.type property to indicate which type of resource is being created.
+        /// Create new navigation property to resources for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -272,7 +270,7 @@ namespace ApiSdk.Education.Classes.Item.Modules.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the educationModuleResource objects associated with a module. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Learning objects that are associated with this module. Only teachers can modify this list. Nullable.
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters 
         {

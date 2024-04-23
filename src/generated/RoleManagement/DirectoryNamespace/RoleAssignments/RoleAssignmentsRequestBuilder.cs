@@ -58,14 +58,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create a new unifiedRoleAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to roleAssignments for roleManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new unifiedRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to roleAssignments for roleManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -104,14 +103,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
             return command;
         }
         /// <summary>
-        /// Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Microsoft Entra ID)- entitlement management (Microsoft Entra entitlement management)
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0" />
+        /// Resource to grant access to users or groups.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Microsoft Entra ID)- entitlement management (Microsoft Entra entitlement management)\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0";
+            command.Description = "Resource to grant access to users or groups.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +211,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
         {
         }
         /// <summary>
-        /// Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Microsoft Entra ID)- entitlement management (Microsoft Entra entitlement management)
+        /// Resource to grant access to users or groups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +230,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new unifiedRoleAssignment object.
+        /// Create new navigation property to roleAssignments for roleManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +251,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of unifiedRoleAssignment objects for the RBAC provider. The following RBAC providers are currently supported:- directory (Microsoft Entra ID)- entitlement management (Microsoft Entra entitlement management)
+        /// Resource to grant access to users or groups.
         /// </summary>
         public class RoleAssignmentsRequestBuilderGetQueryParameters 
         {

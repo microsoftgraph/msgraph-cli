@@ -21,14 +21,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
     public class BookingCustomQuestionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a bookingCustomQuestion object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0" />
+        /// Delete navigation property customQuestions for solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property customQuestions for solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-get?view=graph-rest-1.0" />
+        /// All the custom questions of this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-get?view=graph-rest-1.0";
+            command.Description = "All the custom questions of this business. Read-only. Nullable.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookingCustomQuestion object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingcustomquestion-update?view=graph-rest-1.0" />
+        /// Update the navigation property customQuestions in solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookingCustomQuestion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingcustomquestion-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property customQuestions in solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
         {
         }
         /// <summary>
-        /// Delete a bookingCustomQuestion object.
+        /// Delete navigation property customQuestions for solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object.
+        /// All the custom questions of this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookingCustomQuestion object.
+        /// Update the navigation property customQuestions in solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookingCustomQuestion object.
+        /// All the custom questions of this business. Read-only. Nullable.
         /// </summary>
         public class BookingCustomQuestionItemRequestBuilderGetQueryParameters 
         {

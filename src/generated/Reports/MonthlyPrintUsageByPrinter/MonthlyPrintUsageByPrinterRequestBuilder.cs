@@ -99,13 +99,12 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter {
         }
         /// <summary>
         /// Retrieve a list of monthly print usage summaries, grouped by printer.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of monthly print usage summaries, grouped by printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of monthly print usage summaries, grouped by printer.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;

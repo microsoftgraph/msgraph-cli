@@ -21,14 +21,13 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a user as a registered owner of the device.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-delete-registeredowners?view=graph-rest-1.0" />
+        /// Delete ref of navigation property registeredOwners for devices
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a user as a registered owner of the device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-delete-registeredowners?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property registeredOwners for devices";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -64,13 +63,12 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
         }
         /// <summary>
         /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
+            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -157,14 +155,13 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             return command;
         }
         /// <summary>
-        /// Add a user as a registered owner of the device.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-post-registeredowners?view=graph-rest-1.0" />
+        /// Create new navigation property ref to registeredOwners for devices
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a user as a registered owner of the device.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-post-registeredowners?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to registeredOwners for devices";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -213,7 +210,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
         {
         }
         /// <summary>
-        /// Remove a user as a registered owner of the device.
+        /// Delete ref of navigation property registeredOwners for devices
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +248,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a user as a registered owner of the device.
+        /// Create new navigation property ref to registeredOwners for devices
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -272,7 +269,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove a user as a registered owner of the device.
+        /// Delete ref of navigation property registeredOwners for devices
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {

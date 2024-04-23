@@ -104,14 +104,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
             return command;
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-vulnerability-list-components?view=graph-rest-1.0" />
+        /// Components related to this vulnerability article.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of vulnerabilityComponent objects related to a known vulnerability.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-vulnerability-list-components?view=graph-rest-1.0";
+            command.Description = "Components related to this vulnerability article.";
             var vulnerabilityIdOption = new Option<string>("--vulnerability-id", description: "The unique identifier of vulnerability") {
             };
             vulnerabilityIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
         {
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
+        /// Components related to this vulnerability article.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
+        /// Components related to this vulnerability article.
         /// </summary>
         public class ComponentsRequestBuilderGetQueryParameters 
         {

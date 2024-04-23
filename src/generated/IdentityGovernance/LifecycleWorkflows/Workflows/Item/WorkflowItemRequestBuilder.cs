@@ -56,14 +56,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return command;
         }
         /// <summary>
-        /// Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-delete?view=graph-rest-1.0" />
+        /// Delete navigation property workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property workflows for identityGovernance";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -118,14 +117,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-get?view=graph-rest-1.0" />
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-get?view=graph-rest-1.0";
+            command.Description = "The workflows in the lifecycle workflows instance.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -246,14 +244,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-update?view=graph-rest-1.0" />
+        /// Update the navigation property workflows in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property workflows in identityGovernance";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -446,7 +443,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
         {
         }
         /// <summary>
-        /// Delete a workflow object and its associated tasks, taskProcessingResults and versions. You can restore a deleted workflow and its associated objects within 30 days of deletion.
+        /// Delete navigation property workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -465,7 +462,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflow object.
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -484,7 +481,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a workflow object. Only the properties listed in the request body table can be updated. To update any other workflow properties, see workflow: createNewVersion.
+        /// Update the navigation property workflows in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -505,7 +502,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflow object.
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         public class WorkflowItemRequestBuilderGetQueryParameters 
         {

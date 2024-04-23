@@ -57,14 +57,13 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0" />
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the details of a policy assignment in PIM that's assigned to Microsoft Entra roles or group membership or ownership.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0";
+            command.Description = "The assignment of a role management policy to a role definition object.";
             var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of a policy assignment in PIM that&apos;s assigned to Microsoft Entra roles or group membership or ownership.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters 
         {

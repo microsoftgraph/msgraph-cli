@@ -149,14 +149,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of nameditem objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-list?view=graph-rest-1.0" />
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of nameditem objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-list?view=graph-rest-1.0";
+            command.Description = "Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -270,7 +269,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
         {
         }
         /// <summary>
-        /// Retrieve a list of nameditem objects.
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -310,7 +309,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of nameditem objects.
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         public class NamesRequestBuilderGetQueryParameters 
         {

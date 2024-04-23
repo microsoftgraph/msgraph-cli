@@ -23,14 +23,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
     public class AccessPackageResourceRoleScopeItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0" />
+        /// Delete navigation property resourceRoleScopes for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-resourcerolescopes?view=graph-rest-1.0";
+            command.Description = "Delete navigation property resourceRoleScopes for identityGovernance";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -244,7 +243,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Re
         {
         }
         /// <summary>
-        /// Remove a accessPackageResourceRoleScope from an accessPackage list of resource role scopes.
+        /// Delete navigation property resourceRoleScopes for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

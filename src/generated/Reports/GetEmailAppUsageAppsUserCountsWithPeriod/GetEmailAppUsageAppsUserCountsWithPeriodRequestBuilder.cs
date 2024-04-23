@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetEmailAppUsageAppsUserCountsWithPeriod {
     public class GetEmailAppUsageAppsUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getEmailAppUsageAppsUserCounts
+        /// Get the count of unique users per email app.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailAppUsageAppsUserCounts";
+            command.Description = "Get the count of unique users per email app.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageAppsUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getEmailAppUsageAppsUserCounts
+        /// Get the count of unique users per email app.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

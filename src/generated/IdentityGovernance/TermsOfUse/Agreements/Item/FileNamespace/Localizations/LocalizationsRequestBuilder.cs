@@ -106,14 +106,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             return command;
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0" />
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the default and localized agreement files.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreementfile-list-localizations?view=graph-rest-1.0";
+            command.Description = "The localized version of the terms of use agreement files attached to the agreement.";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
         {
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files.
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the default and localized agreement files.
+        /// The localized version of the terms of use agreement files attached to the agreement.
         /// </summary>
         public class LocalizationsRequestBuilderGetQueryParameters 
         {

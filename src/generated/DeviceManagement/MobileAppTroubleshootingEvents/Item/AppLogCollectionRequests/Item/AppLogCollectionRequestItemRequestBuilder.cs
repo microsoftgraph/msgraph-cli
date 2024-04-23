@@ -39,14 +39,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Deletes a appLogCollectionRequest.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0" />
+        /// Delete navigation property appLogCollectionRequests for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a appLogCollectionRequest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property appLogCollectionRequests for deviceManagement";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -81,14 +80,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the appLogCollectionRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0" />
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-get?view=graph-rest-1.0";
+            command.Description = "Indicates collection of App Log Upload Request.";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -140,14 +138,13 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Update the properties of a appLogCollectionRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0" />
+        /// Update the navigation property appLogCollectionRequests in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a appLogCollectionRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applogcollectionrequest-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property appLogCollectionRequests in deviceManagement";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         {
         }
         /// <summary>
-        /// Deletes a appLogCollectionRequest.
+        /// Delete navigation property appLogCollectionRequests for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the appLogCollectionRequest object.
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a appLogCollectionRequest object.
+        /// Update the navigation property appLogCollectionRequests in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the appLogCollectionRequest object.
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         public class AppLogCollectionRequestItemRequestBuilderGetQueryParameters 
         {

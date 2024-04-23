@@ -24,14 +24,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
     public class RetentionLabelItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a retentionLabel object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionlabel-delete?view=graph-rest-1.0" />
+        /// Delete navigation property retentionLabels for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a retentionLabel object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionlabel-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property retentionLabels for security";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -168,14 +167,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionlabel-update?view=graph-rest-1.0" />
+        /// Update the navigation property retentionLabels in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionlabel-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property retentionLabels in security";
             var retentionLabelIdOption = new Option<string>("--retention-label-id", description: "The unique identifier of retentionLabel") {
             };
             retentionLabelIdOption.IsRequired = true;
@@ -251,7 +249,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
         {
         }
         /// <summary>
-        /// Delete a retentionLabel object.
+        /// Delete navigation property retentionLabels for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -289,7 +287,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a retentionLabel object. To update a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        /// Update the navigation property retentionLabels in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -112,14 +112,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return command;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0" />
+        /// Schedules for active role assignment operations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the schedule for an active role assignment operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentschedule-get?view=graph-rest-1.0";
+            command.Description = "Schedules for active role assignment operations.";
             var unifiedRoleAssignmentScheduleIdOption = new Option<string>("--unified-role-assignment-schedule-id", description: "The unique identifier of unifiedRoleAssignmentSchedule") {
             };
             unifiedRoleAssignmentScheduleIdOption.IsRequired = true;
@@ -283,7 +282,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation.
+        /// Schedules for active role assignment operations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -323,7 +322,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for an active role assignment operation.
+        /// Schedules for active role assignment operations.
         /// </summary>
         public class UnifiedRoleAssignmentScheduleItemRequestBuilderGetQueryParameters 
         {

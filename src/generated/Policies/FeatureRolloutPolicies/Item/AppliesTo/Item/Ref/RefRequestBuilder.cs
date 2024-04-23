@@ -20,14 +20,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0" />
+        /// Delete ref of navigation property appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property appliesTo for policies";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
+        /// Delete ref of navigation property appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -62,14 +62,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0" />
+        /// Create new navigation property to jobs for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to jobs for servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -114,14 +113,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal).
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0" />
+        /// Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List existing jobs for a given application instance (service principal).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0";
+            command.Description = "Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -246,7 +244,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         {
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal).
+        /// Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
+        /// Create new navigation property to jobs for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -286,7 +284,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// List existing jobs for a given application instance (service principal).
+        /// Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.
         /// </summary>
         public class JobsRequestBuilderGetQueryParameters 
         {

@@ -20,14 +20,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment {
     public class GetFinalAttachmentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getFinalAttachment
+        /// Get the final attachment for a subject rights request. The attachment is a zip file that contains all the files that were included by the privacy administrator.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getFinalAttachment";
+            command.Description = "Get the final attachment for a subject rights request. The attachment is a zip file that contains all the files that were included by the privacy administrator.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment {
         {
         }
         /// <summary>
-        /// Invoke function getFinalAttachment
+        /// Get the final attachment for a subject rights request. The attachment is a zip file that contains all the files that were included by the privacy administrator.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

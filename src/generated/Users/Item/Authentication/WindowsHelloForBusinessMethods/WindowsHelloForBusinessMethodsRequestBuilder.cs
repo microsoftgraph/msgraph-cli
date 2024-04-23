@@ -54,14 +54,13 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
             return command;
         }
         /// <summary>
-        /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0" />
+        /// Represents the Windows Hello for Business authentication method registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowshelloforbusinessauthenticationmethod-list?view=graph-rest-1.0";
+            command.Description = "Represents the Windows Hello for Business authentication method registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -169,7 +168,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
         {
         }
         /// <summary>
-        /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.
+        /// Represents the Windows Hello for Business authentication method registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -188,7 +187,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the windowsHelloForBusinessAuthenticationMethod objects and their properties.
+        /// Represents the Windows Hello for Business authentication method registered to a user for authentication.
         /// </summary>
         public class WindowsHelloForBusinessMethodsRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return command;
         }
         /// <summary>
-        /// Create a new bookingStaffMember in the specified bookingBusiness.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0" />
+        /// Create new navigation property to staffMembers for solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new bookingStaffMember in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to staffMembers for solutions";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return command;
         }
         /// <summary>
-        /// Get a list of bookingStaffMember objects in the specified bookingBusiness.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0" />
+        /// All the staff members that provide services in this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of bookingStaffMember objects in the specified bookingBusiness.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-list-staffmembers?view=graph-rest-1.0";
+            command.Description = "All the staff members that provide services in this business. Read-only. Nullable.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
         {
         }
         /// <summary>
-        /// Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        /// All the staff members that provide services in this business. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new bookingStaffMember in the specified bookingBusiness.
+        /// Create new navigation property to staffMembers for solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of bookingStaffMember objects in the specified bookingBusiness.
+        /// All the staff members that provide services in this business. Read-only. Nullable.
         /// </summary>
         public class StaffMembersRequestBuilderGetQueryParameters 
         {

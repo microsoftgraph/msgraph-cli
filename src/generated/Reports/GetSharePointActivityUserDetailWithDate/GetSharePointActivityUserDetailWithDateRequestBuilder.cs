@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithDate {
     public class GetSharePointActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSharePointActivityUserDetail
+        /// Get details about SharePoint activity by user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSharePointActivityUserDetail";
+            command.Description = "Get details about SharePoint activity by user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getsharepointactivityuserdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getSharePointActivityUserDetail
+        /// Get details about SharePoint activity by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

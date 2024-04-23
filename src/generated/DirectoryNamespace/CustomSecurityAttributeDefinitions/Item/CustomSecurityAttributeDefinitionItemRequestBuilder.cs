@@ -84,14 +84,13 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a customSecurityAttributeDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-get?view=graph-rest-1.0" />
+        /// Schema of a custom security attributes (key-value pairs).
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a customSecurityAttributeDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-get?view=graph-rest-1.0";
+            command.Description = "Schema of a custom security attributes (key-value pairs).";
             var customSecurityAttributeDefinitionIdOption = new Option<string>("--custom-security-attribute-definition-id", description: "The unique identifier of customSecurityAttributeDefinition") {
             };
             customSecurityAttributeDefinitionIdOption.IsRequired = true;
@@ -137,14 +136,13 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a customSecurityAttributeDefinition object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/customsecurityattributedefinition-update?view=graph-rest-1.0" />
+        /// Update the navigation property customSecurityAttributeDefinitions in directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a customSecurityAttributeDefinition object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/customsecurityattributedefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property customSecurityAttributeDefinitions in directory";
             var customSecurityAttributeDefinitionIdOption = new Option<string>("--custom-security-attribute-definition-id", description: "The unique identifier of customSecurityAttributeDefinition") {
             };
             customSecurityAttributeDefinitionIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a customSecurityAttributeDefinition object.
+        /// Schema of a custom security attributes (key-value pairs).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +239,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a customSecurityAttributeDefinition object.
+        /// Update the navigation property customSecurityAttributeDefinitions in directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -262,7 +260,7 @@ namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a customSecurityAttributeDefinition object.
+        /// Schema of a custom security attributes (key-value pairs).
         /// </summary>
         public class CustomSecurityAttributeDefinitionItemRequestBuilderGetQueryParameters 
         {

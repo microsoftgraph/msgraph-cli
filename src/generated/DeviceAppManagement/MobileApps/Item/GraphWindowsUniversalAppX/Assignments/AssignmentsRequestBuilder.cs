@@ -53,14 +53,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.A
             return command;
         }
         /// <summary>
-        /// Create a new mobileAppAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappassignment-create?view=graph-rest-1.0" />
+        /// Create new navigation property to assignments for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new mobileAppAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappassignment-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to assignments for deviceAppManagement";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.A
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppAssignment objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappassignment-list?view=graph-rest-1.0" />
+        /// The list of group assignments for this mobile app.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the mobileAppAssignment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappassignment-list?view=graph-rest-1.0";
+            command.Description = "The list of group assignments for this mobile app.";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.A
         {
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppAssignment objects.
+        /// The list of group assignments for this mobile app.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.A
             return requestInfo;
         }
         /// <summary>
-        /// Create a new mobileAppAssignment object.
+        /// Create new navigation property to assignments for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX.A
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppAssignment objects.
+        /// The list of group assignments for this mobile app.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters 
         {

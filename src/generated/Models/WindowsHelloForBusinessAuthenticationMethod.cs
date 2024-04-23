@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class WindowsHelloForBusinessAuthenticationMethod : AuthenticationMethod, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>The date and time that this Windows Hello for Business key was registered.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }

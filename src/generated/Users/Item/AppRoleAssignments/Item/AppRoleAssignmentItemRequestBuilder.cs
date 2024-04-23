@@ -21,14 +21,13 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
     public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an appRoleAssignment that has been granted to a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-delete-approleassignments?view=graph-rest-1.0" />
+        /// Delete navigation property appRoleAssignments for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an appRoleAssignment that has been granted to a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-delete-approleassignments?view=graph-rest-1.0";
+            command.Description = "Delete navigation property appRoleAssignments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -199,7 +198,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
         {
         }
         /// <summary>
-        /// Delete an appRoleAssignment that has been granted to a user.
+        /// Delete navigation property appRoleAssignments for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -20,14 +20,15 @@ namespace ApiSdk.IdentityProviders.AvailableProviderTypes {
     public class AvailableProviderTypesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Retrieves all identity provider types available in a directory.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprovider-list-availableprovidertypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function availableProviderTypes";
+            command.Description = "Retrieves all identity provider types available in a directory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprovider-list-availableprovidertypes?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -108,7 +109,7 @@ namespace ApiSdk.IdentityProviders.AvailableProviderTypes {
         {
         }
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Retrieves all identity provider types available in a directory.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -128,7 +129,7 @@ namespace ApiSdk.IdentityProviders.AvailableProviderTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function availableProviderTypes
+        /// Retrieves all identity provider types available in a directory.
         /// </summary>
         public class AvailableProviderTypesRequestBuilderGetQueryParameters 
         {

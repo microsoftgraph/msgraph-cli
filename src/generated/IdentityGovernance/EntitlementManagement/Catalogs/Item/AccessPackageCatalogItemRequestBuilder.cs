@@ -79,14 +79,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Delete an accessPackageCatalog.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0" />
+        /// Delete navigation property catalogs for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an accessPackageCatalog.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property catalogs for identityGovernance";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -115,14 +114,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0" />
+        /// A container for access packages.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an accessPackageCatalog object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-get?view=graph-rest-1.0";
+            command.Description = "A container for access packages.";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -168,14 +166,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return command;
         }
         /// <summary>
-        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0" />
+        /// Update the navigation property catalogs in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackagecatalog-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property catalogs in identityGovernance";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -315,7 +312,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
         {
         }
         /// <summary>
-        /// Delete an accessPackageCatalog.
+        /// Delete navigation property catalogs for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -334,7 +331,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object.
+        /// A container for access packages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -353,7 +350,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing accessPackageCatalog object to change one or more of its properties, such as the display name or description.
+        /// Update the navigation property catalogs in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -374,7 +371,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an accessPackageCatalog object.
+        /// A container for access packages.
         /// </summary>
         public class AccessPackageCatalogItemRequestBuilderGetQueryParameters 
         {

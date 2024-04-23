@@ -55,14 +55,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// Create a new featureRolloutPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0" />
+        /// Create new navigation property to featureRolloutPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new featureRolloutPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to featureRolloutPolicies for policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,14 +100,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of featureRolloutPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0" />
+        /// The feature rollout policy associated with a directory object.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of featureRolloutPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0";
+            command.Description = "The feature rollout policy associated with a directory object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
         {
         }
         /// <summary>
-        /// Retrieve a list of featureRolloutPolicy objects.
+        /// The feature rollout policy associated with a directory object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +227,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new featureRolloutPolicy object.
+        /// Create new navigation property to featureRolloutPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of featureRolloutPolicy objects.
+        /// The feature rollout policy associated with a directory object.
         /// </summary>
         public class FeatureRolloutPoliciesRequestBuilderGetQueryParameters 
         {

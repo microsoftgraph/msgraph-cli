@@ -21,14 +21,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
     public class DelegatedAdminAccessAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a delegatedAdminAccessAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property accessAssignments for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a delegatedAdminAccessAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property accessAssignments for tenantRelationships";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return command;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminAccessAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0" />
+        /// The access assignments associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties of a delegatedAdminAccessAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-get?view=graph-rest-1.0";
+            command.Description = "The access assignments associated with the delegated admin relationship.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return command;
         }
         /// <summary>
-        /// Update the properties of a delegatedAdminAccessAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-update?view=graph-rest-1.0" />
+        /// Update the navigation property accessAssignments in tenantRelationships
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a delegatedAdminAccessAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminaccessassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property accessAssignments in tenantRelationships";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
         {
         }
         /// <summary>
-        /// Delete a delegatedAdminAccessAssignment object.
+        /// Delete navigation property accessAssignments for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminAccessAssignment object.
+        /// The access assignments associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a delegatedAdminAccessAssignment object.
+        /// Update the navigation property accessAssignments in tenantRelationships
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminAccessAssignment object.
+        /// The access assignments associated with the delegated admin relationship.
         /// </summary>
         public class DelegatedAdminAccessAssignmentItemRequestBuilderGetQueryParameters 
         {

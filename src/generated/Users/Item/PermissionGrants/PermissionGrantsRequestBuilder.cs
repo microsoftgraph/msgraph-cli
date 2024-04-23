@@ -104,14 +104,13 @@ namespace ApiSdk.Users.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// List all resource-specific permission grants of a user. This list specifies the Microsoft Entra apps that have access to the user, along with the corresponding resource-specific access that each app has.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-permissiongrants?view=graph-rest-1.0" />
+        /// List all resource-specific permission grants of a user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants of a user. This list specifies the Microsoft Entra apps that have access to the user, along with the corresponding resource-specific access that each app has.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-permissiongrants?view=graph-rest-1.0";
+            command.Description = "List all resource-specific permission grants of a user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Users.Item.PermissionGrants {
         {
         }
         /// <summary>
-        /// List all resource-specific permission grants of a user. This list specifies the Microsoft Entra apps that have access to the user, along with the corresponding resource-specific access that each app has.
+        /// List all resource-specific permission grants of a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Users.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// List all resource-specific permission grants of a user. This list specifies the Microsoft Entra apps that have access to the user, along with the corresponding resource-specific access that each app has.
+        /// List all resource-specific permission grants of a user.
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters 
         {

@@ -50,14 +50,13 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0" />
+        /// The policy by which consent requests are created and managed for the entire tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an adminConsentRequestPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0";
+            command.Description = "The policy by which consent requests are created and managed for the entire tenant.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -97,14 +96,13 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return command;
         }
         /// <summary>
-        /// Update the properties of an adminConsentRequestPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property adminConsentRequestPolicy in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an adminConsentRequestPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property adminConsentRequestPolicy in policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -176,7 +174,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object.
+        /// The policy by which consent requests are created and managed for the entire tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +193,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an adminConsentRequestPolicy object.
+        /// Update the navigation property adminConsentRequestPolicy in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -216,7 +214,7 @@ namespace ApiSdk.Policies.AdminConsentRequestPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an adminConsentRequestPolicy object.
+        /// The policy by which consent requests are created and managed for the entire tenant.
         /// </summary>
         public class AdminConsentRequestPolicyRequestBuilderGetQueryParameters 
         {

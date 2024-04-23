@@ -126,14 +126,13 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0" />
+        /// Get participants from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of participant objects in the call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
+            command.Description = "Get participants from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -241,7 +240,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         {
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
+        /// Get participants from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -281,7 +280,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
+        /// Get participants from communications
         /// </summary>
         public class ParticipantsRequestBuilderGetQueryParameters 
         {

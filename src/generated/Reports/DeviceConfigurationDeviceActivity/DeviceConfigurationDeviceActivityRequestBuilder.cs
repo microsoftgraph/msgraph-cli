@@ -22,12 +22,13 @@ namespace ApiSdk.Reports.DeviceConfigurationDeviceActivity {
     {
         /// <summary>
         /// Metadata for the device configuration device activity report
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-deviceconfigurationdeviceactivity?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Metadata for the device configuration device activity report";
+            command.Description = "Metadata for the device configuration device activity report\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-reportroot-deviceconfigurationdeviceactivity?view=graph-rest-1.0";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");

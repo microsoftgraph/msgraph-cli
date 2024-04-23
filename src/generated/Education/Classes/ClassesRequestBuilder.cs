@@ -64,14 +64,13 @@ namespace ApiSdk.Education.Classes {
             return command;
         }
         /// <summary>
-        /// Create a new educationClass object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post?view=graph-rest-1.0" />
+        /// Create new navigation property to classes for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new educationClass object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to classes for education";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -127,14 +126,13 @@ namespace ApiSdk.Education.Classes {
             return command;
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list?view=graph-rest-1.0" />
+        /// Get classes from education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the educationClass objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list?view=graph-rest-1.0";
+            command.Description = "Get classes from education";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -236,7 +234,7 @@ namespace ApiSdk.Education.Classes {
         {
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties.
+        /// Get classes from education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +253,7 @@ namespace ApiSdk.Education.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new educationClass object.
+        /// Create new navigation property to classes for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.Education.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the educationClass objects and their properties.
+        /// Get classes from education
         /// </summary>
         public class ClassesRequestBuilderGetQueryParameters 
         {

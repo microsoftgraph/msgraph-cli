@@ -21,14 +21,13 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0" />
+        /// Delete ref of navigation property appManagementPolicies for applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property appManagementPolicies for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -149,14 +148,13 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Ref {
             return command;
         }
         /// <summary>
-        /// Assign an appManagementPolicy policy object to an application or service principal object. The application or service principal adopts this policy over the tenant-wide tenantAppManagementPolicy setting. Only one policy object can be assigned to an application or service principal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0" />
+        /// Create new navigation property ref to appManagementPolicies for applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Assign an appManagementPolicy policy object to an application or service principal object. The application or service principal adopts this policy over the tenant-wide tenantAppManagementPolicy setting. Only one policy object can be assigned to an application or service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-post-appliesto?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to appManagementPolicies for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -205,7 +203,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Ref {
         {
         }
         /// <summary>
-        /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
+        /// Delete ref of navigation property appManagementPolicies for applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +241,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Assign an appManagementPolicy policy object to an application or service principal object. The application or service principal adopts this policy over the tenant-wide tenantAppManagementPolicy setting. Only one policy object can be assigned to an application or service principal.
+        /// Create new navigation property ref to appManagementPolicies for applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
+        /// Delete ref of navigation property appManagementPolicies for applications
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {

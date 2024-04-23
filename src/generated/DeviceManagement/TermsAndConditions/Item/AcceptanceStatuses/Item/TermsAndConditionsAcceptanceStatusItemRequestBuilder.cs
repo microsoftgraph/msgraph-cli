@@ -22,14 +22,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
     public class TermsAndConditionsAcceptanceStatusItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a termsAndConditionsAcceptanceStatus.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-delete?view=graph-rest-1.0" />
+        /// Delete navigation property acceptanceStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a termsAndConditionsAcceptanceStatus.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property acceptanceStatuses for deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -64,14 +63,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAcceptanceStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-get?view=graph-rest-1.0" />
+        /// The list of acceptance statuses for this T&amp;C policy.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the termsAndConditionsAcceptanceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-get?view=graph-rest-1.0";
+            command.Description = "The list of acceptance statuses for this T&C policy.";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -123,14 +121,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return command;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditionsAcceptanceStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-update?view=graph-rest-1.0" />
+        /// Update the navigation property acceptanceStatuses in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a termsAndConditionsAcceptanceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditionsacceptancestatus-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property acceptanceStatuses in deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         {
         }
         /// <summary>
-        /// Deletes a termsAndConditionsAcceptanceStatus.
+        /// Delete navigation property acceptanceStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAcceptanceStatus object.
+        /// The list of acceptance statuses for this T&amp;C policy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditionsAcceptanceStatus object.
+        /// Update the navigation property acceptanceStatuses in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditionsAcceptanceStatus object.
+        /// The list of acceptance statuses for this T&amp;C policy.
         /// </summary>
         public class TermsAndConditionsAcceptanceStatusItemRequestBuilderGetQueryParameters 
         {

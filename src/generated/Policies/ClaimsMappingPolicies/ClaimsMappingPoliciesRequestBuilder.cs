@@ -55,14 +55,13 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// Create a new claimsMappingPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0" />
+        /// Create new navigation property to claimsMappingPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new claimsMappingPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to claimsMappingPolicies for policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,14 +100,13 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// Get a list of claimsMappingPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0" />
+        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of claimsMappingPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0";
+            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
         {
         }
         /// <summary>
-        /// Get a list of claimsMappingPolicy objects.
+        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +227,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new claimsMappingPolicy object.
+        /// Create new navigation property to claimsMappingPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of claimsMappingPolicy objects.
+        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
         /// </summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters 
         {

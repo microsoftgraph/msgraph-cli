@@ -52,14 +52,13 @@ namespace ApiSdk.Print.Printers.Item {
             return command;
         }
         /// <summary>
-        /// Delete (unregister) a printer.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-delete?view=graph-rest-1.0" />
+        /// Delete navigation property printers for print
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete (unregister) a printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property printers for print";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -88,14 +87,13 @@ namespace ApiSdk.Print.Printers.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printer object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-get?view=graph-rest-1.0" />
+        /// The list of printers registered in the tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a printer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-get?view=graph-rest-1.0";
+            command.Description = "The list of printers registered in the tenant.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -168,14 +166,13 @@ namespace ApiSdk.Print.Printers.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a printer object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-update?view=graph-rest-1.0" />
+        /// Update the navigation property printers in print
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a printer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property printers in print";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -304,7 +301,7 @@ namespace ApiSdk.Print.Printers.Item {
         {
         }
         /// <summary>
-        /// Delete (unregister) a printer.
+        /// Delete navigation property printers for print
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -323,7 +320,7 @@ namespace ApiSdk.Print.Printers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printer object.
+        /// The list of printers registered in the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -342,7 +339,7 @@ namespace ApiSdk.Print.Printers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a printer object.
+        /// Update the navigation property printers in print
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -363,7 +360,7 @@ namespace ApiSdk.Print.Printers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printer object.
+        /// The list of printers registered in the tenant.
         /// </summary>
         public class PrinterItemRequestBuilderGetQueryParameters 
         {

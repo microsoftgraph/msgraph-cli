@@ -21,14 +21,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
     public class CustomCalloutExtensionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension from any associated policies:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-delete?view=graph-rest-1.0" />
+        /// Delete navigation property customWorkflowExtensions for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension from any associated policies:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property customWorkflowExtensions for identityGovernance";
             var accessPackageResourceRequestIdOption = new Option<string>("--access-package-resource-request-id", description: "The unique identifier of accessPackageResourceRequest") {
             };
             accessPackageResourceRequestIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-get?view=graph-rest-1.0" />
+        /// Get customWorkflowExtensions from identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-get?view=graph-rest-1.0";
+            command.Description = "Get customWorkflowExtensions from identityGovernance";
             var accessPackageResourceRequestIdOption = new Option<string>("--access-package-resource-request-id", description: "The unique identifier of accessPackageResourceRequest") {
             };
             accessPackageResourceRequestIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return command;
         }
         /// <summary>
-        /// Update the properties of an accessPackageAssignmentWorkflowExtension object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-update?view=graph-rest-1.0" />
+        /// Update the navigation property customWorkflowExtensions in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an accessPackageAssignmentWorkflowExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property customWorkflowExtensions in identityGovernance";
             var accessPackageResourceRequestIdOption = new Option<string>("--access-package-resource-request-id", description: "The unique identifier of accessPackageResourceRequest") {
             };
             accessPackageResourceRequestIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
         {
         }
         /// <summary>
-        /// Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension from any associated policies:
+        /// Delete navigation property customWorkflowExtensions for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
+        /// Get customWorkflowExtensions from identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an accessPackageAssignmentWorkflowExtension object.
+        /// Update the navigation property customWorkflowExtensions in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an accessPackageAssignmentRequestWorkflowExtension object.
+        /// Get customWorkflowExtensions from identityGovernance
         /// </summary>
         public class CustomCalloutExtensionItemRequestBuilderGetQueryParameters 
         {

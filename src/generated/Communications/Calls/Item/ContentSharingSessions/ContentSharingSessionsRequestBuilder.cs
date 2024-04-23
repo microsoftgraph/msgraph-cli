@@ -104,14 +104,13 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of contentSharingSession objects in a call.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0" />
+        /// Get contentSharingSessions from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of contentSharingSession objects in a call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0";
+            command.Description = "Get contentSharingSessions from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
         {
         }
         /// <summary>
-        /// Retrieve a list of contentSharingSession objects in a call.
+        /// Get contentSharingSessions from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of contentSharingSession objects in a call.
+        /// Get contentSharingSessions from communications
         /// </summary>
         public class ContentSharingSessionsRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// Create a new delegatedAdminRelationshipRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0" />
+        /// Create new navigation property to requests for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new delegatedAdminRelationshipRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to requests for tenantRelationships";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0" />
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminRelationshipRequest objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0";
+            command.Description = "The requests associated with the delegated admin relationship.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
         {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new delegatedAdminRelationshipRequest object.
+        /// Create new navigation property to requests for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
+        /// The requests associated with the delegated admin relationship.
         /// </summary>
         public class RequestsRequestBuilderGetQueryParameters 
         {

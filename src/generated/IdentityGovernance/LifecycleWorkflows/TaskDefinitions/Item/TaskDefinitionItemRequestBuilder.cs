@@ -21,14 +21,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
     public class TaskDefinitionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Read the details of a built-in workflow task.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-taskdefinition-get?view=graph-rest-1.0" />
+        /// The definition of tasks within the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the details of a built-in workflow task.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-taskdefinition-get?view=graph-rest-1.0";
+            command.Description = "The definition of tasks within the lifecycle workflows instance.";
             var taskDefinitionIdOption = new Option<string>("--task-definition-id", description: "The unique identifier of taskDefinition") {
             };
             taskDefinitionIdOption.IsRequired = true;
@@ -88,7 +87,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
         {
         }
         /// <summary>
-        /// Read the details of a built-in workflow task.
+        /// The definition of tasks within the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +106,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.TaskDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the details of a built-in workflow task.
+        /// The definition of tasks within the lifecycle workflows instance.
         /// </summary>
         public class TaskDefinitionItemRequestBuilderGetQueryParameters 
         {

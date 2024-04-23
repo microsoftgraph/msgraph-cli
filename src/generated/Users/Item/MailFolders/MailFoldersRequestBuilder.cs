@@ -60,14 +60,13 @@ namespace ApiSdk.Users.Item.MailFolders {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new mail folder in the root folder of the user&apos;s mailbox. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-mailfolders?view=graph-rest-1.0" />
+        /// Create new navigation property to mailFolders for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new mail folder in the root folder of the user's mailbox. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-mailfolders?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to mailFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -130,13 +129,12 @@ namespace ApiSdk.Users.Item.MailFolders {
         }
         /// <summary>
         /// The user&apos;s mail folders. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-mailfolders?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The user's mail folders. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-mailfolders?view=graph-rest-1.0";
+            command.Description = "The user's mail folders. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -263,7 +261,7 @@ namespace ApiSdk.Users.Item.MailFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new mail folder in the root folder of the user&apos;s mailbox. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.
+        /// Create new navigation property to mailFolders for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

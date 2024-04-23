@@ -128,13 +128,12 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
         }
         /// <summary>
         /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;

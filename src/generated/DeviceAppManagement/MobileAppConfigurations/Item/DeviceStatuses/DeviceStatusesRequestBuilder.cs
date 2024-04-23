@@ -53,14 +53,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             return command;
         }
         /// <summary>
-        /// Create a new managedDeviceMobileAppConfigurationDeviceStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-create?view=graph-rest-1.0" />
+        /// Create new navigation property to deviceStatuses for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new managedDeviceMobileAppConfigurationDeviceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to deviceStatuses for deviceAppManagement";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-list?view=graph-rest-1.0" />
+        /// List of ManagedDeviceMobileAppConfigurationDeviceStatus.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicestatus-list?view=graph-rest-1.0";
+            command.Description = "List of ManagedDeviceMobileAppConfigurationDeviceStatus.";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
         {
         }
         /// <summary>
-        /// List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.
+        /// List of ManagedDeviceMobileAppConfigurationDeviceStatus.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             return requestInfo;
         }
         /// <summary>
-        /// Create a new managedDeviceMobileAppConfigurationDeviceStatus object.
+        /// Create new navigation property to deviceStatuses for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedDeviceMobileAppConfigurationDeviceStatus objects.
+        /// List of ManagedDeviceMobileAppConfigurationDeviceStatus.
         /// </summary>
         public class DeviceStatusesRequestBuilderGetQueryParameters 
         {

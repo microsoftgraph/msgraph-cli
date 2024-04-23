@@ -112,14 +112,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return command;
         }
         /// <summary>
-        /// Get the instance of an active role assignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0" />
+        /// Instances for active role assignments.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the instance of an active role assignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0";
+            command.Description = "Instances for active role assignments.";
             var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
@@ -283,7 +282,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of an active role assignment.
+        /// Instances for active role assignments.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -323,7 +322,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of an active role assignment.
+        /// Instances for active role assignments.
         /// </summary>
         public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters 
         {

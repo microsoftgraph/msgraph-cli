@@ -21,14 +21,13 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
     public class OpenShiftItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an openShift object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0" />
+        /// Delete navigation property openShifts for teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an openShift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property openShifts for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openshift object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0" />
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an openshift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0";
+            command.Description = "The set of open shifts in a scheduling group in the schedule.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an openShift object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0" />
+        /// Update the navigation property openShifts in teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an openShift object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property openShifts in teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
         {
         }
         /// <summary>
-        /// Delete an openShift object.
+        /// Delete navigation property openShifts for teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openshift object.
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an openShift object.
+        /// Update the navigation property openShifts in teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openshift object.
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         public class OpenShiftItemRequestBuilderGetQueryParameters 
         {

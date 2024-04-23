@@ -21,14 +21,13 @@ namespace ApiSdk.Security.Alerts.Item {
     public class AlertItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Retrieve the properties and relationships of an alert object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/alert-get?view=graph-rest-1.0" />
+        /// Get alerts from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an alert object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/alert-get?view=graph-rest-1.0";
+            command.Description = "Get alerts from security";
             var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
@@ -74,14 +73,13 @@ namespace ApiSdk.Security.Alerts.Item {
             return command;
         }
         /// <summary>
-        /// Update an editable alert property within any integrated solution to keep alert status and assignments in sync across solutions. This method updates any solution that has a record of the referenced alert ID.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/alert-update?view=graph-rest-1.0" />
+        /// Update the navigation property alerts in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an editable alert property within any integrated solution to keep alert status and assignments in sync across solutions. This method updates any solution that has a record of the referenced alert ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/alert-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property alerts in security";
             var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
@@ -140,7 +138,7 @@ namespace ApiSdk.Security.Alerts.Item {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an alert object.
+        /// Get alerts from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +157,7 @@ namespace ApiSdk.Security.Alerts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an editable alert property within any integrated solution to keep alert status and assignments in sync across solutions. This method updates any solution that has a record of the referenced alert ID.
+        /// Update the navigation property alerts in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -180,7 +178,7 @@ namespace ApiSdk.Security.Alerts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an alert object.
+        /// Get alerts from security
         /// </summary>
         public class AlertItemRequestBuilderGetQueryParameters 
         {

@@ -20,14 +20,13 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove acceptedSender
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0" />
+        /// Delete ref of navigation property acceptedSenders for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove acceptedSender\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-acceptedsenders?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property acceptedSenders for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove acceptedSender
+        /// Delete ref of navigation property acceptedSenders for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

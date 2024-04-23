@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserCountsWithPeriod {
     public class GetOffice365ActiveUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getOffice365ActiveUserCounts
+        /// Get the count of daily active users in the reporting period by product.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365activeusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365ActiveUserCounts";
+            command.Description = "Get the count of daily active users in the reporting period by product.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365activeusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365ActiveUserCounts
+        /// Get the count of daily active users in the reporting period by product.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

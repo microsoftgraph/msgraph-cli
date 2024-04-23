@@ -48,14 +48,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return new(executables, commands);
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0" />
+        /// Create new navigation property to items for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to items for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -140,14 +139,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return command;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0" />
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
+            command.Description = "All items contained in the list.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
         {
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +272,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
+        /// Create new navigation property to items for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -295,7 +293,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters 
         {

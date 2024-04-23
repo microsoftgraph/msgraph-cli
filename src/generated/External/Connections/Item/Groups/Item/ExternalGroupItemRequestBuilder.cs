@@ -22,14 +22,13 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
     public class ExternalGroupItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an externalGroup object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0" />
+        /// Delete navigation property groups for external
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an externalGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property groups for external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -64,14 +63,13 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Get an externalGroup object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-get?view=graph-rest-1.0" />
+        /// Get groups from external
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get an externalGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-get?view=graph-rest-1.0";
+            command.Description = "Get groups from external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an externalGroup object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-update?view=graph-rest-1.0" />
+        /// Update the navigation property groups in external
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an externalGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalgroup-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property groups in external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -222,7 +219,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
         {
         }
         /// <summary>
-        /// Delete an externalGroup object.
+        /// Delete navigation property groups for external
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +238,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an externalGroup object.
+        /// Get groups from external
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +257,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an externalGroup object.
+        /// Update the navigation property groups in external
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -281,7 +278,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an externalGroup object.
+        /// Get groups from external
         /// </summary>
         public class ExternalGroupItemRequestBuilderGetQueryParameters 
         {

@@ -21,14 +21,13 @@ namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel {
     public class RetentionLabelRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a retention label from a driveItem. For information about retention labels from an administrator&apos;s perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-removeretentionlabel?view=graph-rest-1.0" />
+        /// Delete navigation property retentionLabel for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a retention label from a driveItem. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-removeretentionlabel?view=graph-rest-1.0";
+            command.Description = "Delete navigation property retentionLabel for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -121,14 +120,13 @@ namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel {
             return command;
         }
         /// <summary>
-        /// Lock or unlock a retention label on a driveItem that classifies content as records. For information about retention labels from an administrator&apos;s perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint. For more information about how you can lock and unlock retention labels, see Use record versioning to update records stored in SharePoint or OneDrive.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-lockorunlockrecord?view=graph-rest-1.0" />
+        /// Update the navigation property retentionLabel in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Lock or unlock a retention label on a driveItem that classifies content as records. For information about retention labels from an administrator's perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint. For more information about how you can lock and unlock retention labels, see Use record versioning to update records stored in SharePoint or OneDrive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-lockorunlockrecord?view=graph-rest-1.0";
+            command.Description = "Update the navigation property retentionLabel in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -193,7 +191,7 @@ namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel {
         {
         }
         /// <summary>
-        /// Remove a retention label from a driveItem. For information about retention labels from an administrator&apos;s perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint.
+        /// Delete navigation property retentionLabel for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.RetentionLabel {
             return requestInfo;
         }
         /// <summary>
-        /// Lock or unlock a retention label on a driveItem that classifies content as records. For information about retention labels from an administrator&apos;s perspective, see Use retention labels to manage the lifecycle of documents stored in SharePoint. For more information about how you can lock and unlock retention labels, see Use record versioning to update records stored in SharePoint or OneDrive.
+        /// Update the navigation property retentionLabel in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

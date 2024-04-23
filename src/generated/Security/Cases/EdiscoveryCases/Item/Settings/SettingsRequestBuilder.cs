@@ -57,14 +57,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCaseSettings object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0" />
+        /// Returns a list of eDIscoverySettings objects in the case.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0";
+            command.Description = "Returns a list of eDIscoverySettings objects in the case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -127,14 +126,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryCaseSettings object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property settings in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property settings in security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -212,7 +210,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCaseSettings object.
+        /// Returns a list of eDIscoverySettings objects in the case.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryCaseSettings object.
+        /// Update the navigation property settings in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCaseSettings object.
+        /// Returns a list of eDIscoverySettings objects in the case.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters 
         {

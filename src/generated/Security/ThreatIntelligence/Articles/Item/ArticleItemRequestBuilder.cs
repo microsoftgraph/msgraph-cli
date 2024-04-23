@@ -57,14 +57,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an article object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-article-get?view=graph-rest-1.0" />
+        /// A list of article objects.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an article object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-article-get?view=graph-rest-1.0";
+            command.Description = "A list of article objects.";
             var articleIdOption = new Option<string>("--article-id", description: "The unique identifier of article") {
             };
             articleIdOption.IsRequired = true;
@@ -220,7 +219,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an article object.
+        /// A list of article objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +259,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an article object.
+        /// A list of article objects.
         /// </summary>
         public class ArticleItemRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
             return command;
         }
         /// <summary>
-        /// Create a new profileCardProperty for an organization. The new property is identified by its directoryPropertyName property. For more information about how to add properties to the profile card for an organization, see Add or remove custom attributes on a profile card using the profile card API.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/peopleadminsettings-post-profilecardproperties?view=graph-rest-1.0" />
+        /// Create new navigation property to profileCardProperties for admin
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new profileCardProperty for an organization. The new property is identified by its directoryPropertyName property. For more information about how to add properties to the profile card for an organization, see Add or remove custom attributes on a profile card using the profile card API.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/peopleadminsettings-post-profilecardproperties?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to profileCardProperties for admin";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
             return command;
         }
         /// <summary>
-        /// Get a collection of profileCardProperty resources for an organization. Each resource is identified by its directoryPropertyName property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/peopleadminsettings-list-profilecardproperties?view=graph-rest-1.0" />
+        /// Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of profileCardProperty resources for an organization. Each resource is identified by its directoryPropertyName property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/peopleadminsettings-list-profilecardproperties?view=graph-rest-1.0";
+            command.Description = "Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
         {
         }
         /// <summary>
-        /// Get a collection of profileCardProperty resources for an organization. Each resource is identified by its directoryPropertyName property.
+        /// Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new profileCardProperty for an organization. The new property is identified by its directoryPropertyName property. For more information about how to add properties to the profile card for an organization, see Add or remove custom attributes on a profile card using the profile card API.
+        /// Create new navigation property to profileCardProperties for admin
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Admin.People.ProfileCardProperties {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of profileCardProperty resources for an organization. Each resource is identified by its directoryPropertyName property.
+        /// Contains a collection of the properties an administrator has defined as visible on the Microsoft 365 profile card.
         /// </summary>
         public class ProfileCardPropertiesRequestBuilderGetQueryParameters 
         {

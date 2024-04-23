@@ -53,14 +53,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return command;
         }
         /// <summary>
-        /// Create a new localizedNotificationMessage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-create?view=graph-rest-1.0" />
+        /// Create new navigation property to localizedNotificationMessages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new localizedNotificationMessage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to localizedNotificationMessages for deviceManagement";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the localizedNotificationMessage objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-list?view=graph-rest-1.0" />
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the localizedNotificationMessage objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-list?view=graph-rest-1.0";
+            command.Description = "The list of localized messages for this Notification Message Template.";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         {
         }
         /// <summary>
-        /// List properties and relationships of the localizedNotificationMessage objects.
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return requestInfo;
         }
         /// <summary>
-        /// Create a new localizedNotificationMessage object.
+        /// Create new navigation property to localizedNotificationMessages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the localizedNotificationMessage objects.
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         public class LocalizedNotificationMessagesRequestBuilderGetQueryParameters 
         {

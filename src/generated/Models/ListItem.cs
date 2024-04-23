@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class ListItem : BaseItem, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Analytics about the view activities that took place on this item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +33,7 @@ namespace ApiSdk.Models {
 #else
         public List<DocumentSetVersion> DocumentSetVersions { get; set; }
 #endif
-        /// <summary>For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]</summary>
+        /// <summary>For document libraries, the driveItem relationship exposes the listItem as a driveItem</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.DriveItem? DriveItem { get; set; }

@@ -20,13 +20,14 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
     public class SharedWithMeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function sharedWithMe
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-sharedwithme?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function sharedWithMe";
+            command.Description = "Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-sharedwithme?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
         {
         }
         /// <summary>
-        /// Invoke function sharedWithMe
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Drives.Item.SharedWithMe {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function sharedWithMe
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
         /// </summary>
         public class SharedWithMeRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetMailboxUsageDetailWithPeriod {
     public class GetMailboxUsageDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getMailboxUsageDetail
+        /// Get details about mailbox usage.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getMailboxUsageDetail";
+            command.Description = "Get details about mailbox usage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getmailboxusagedetail?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetMailboxUsageDetailWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getMailboxUsageDetail
+        /// Get details about mailbox usage.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

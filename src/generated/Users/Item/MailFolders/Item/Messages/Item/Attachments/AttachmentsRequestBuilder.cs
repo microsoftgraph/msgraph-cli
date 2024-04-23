@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0" />
+        /// Create new navigation property to attachments for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to attachments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -134,14 +133,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0" />
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0";
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -243,7 +241,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
         {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +260,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
+        /// Create new navigation property to attachments for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -283,7 +281,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters 
         {

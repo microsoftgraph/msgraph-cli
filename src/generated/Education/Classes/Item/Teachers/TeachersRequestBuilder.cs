@@ -52,14 +52,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
+        /// All teachers in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
+            command.Description = "All teachers in the class. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         {
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
+        /// All teachers in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
+        /// All teachers in the class. Nullable.
         /// </summary>
         public class TeachersRequestBuilderGetQueryParameters 
         {

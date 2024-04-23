@@ -21,13 +21,12 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
     {
         /// <summary>
         /// Get media content for the navigation property photos from groups
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photos from groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0";
+            command.Description = "Get media content for the navigation property photos from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

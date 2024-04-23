@@ -62,14 +62,13 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service endpoint.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printserviceendpoint-get?view=graph-rest-1.0" />
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a print service endpoint.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printserviceendpoint-get?view=graph-rest-1.0";
+            command.Description = "Endpoints that can be used to access the service. Read-only. Nullable.";
             var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service endpoint.
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a print service endpoint.
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         public class PrintServiceEndpointItemRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
     public class GetUserIdsWithFlaggedAppRegistrationRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getUserIdsWithFlaggedAppRegistration
+        /// Not yet documented
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-getuseridswithflaggedappregistration?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getUserIdsWithFlaggedAppRegistration";
+            command.Description = "Not yet documented\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-getuseridswithflaggedappregistration?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -107,7 +108,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
         {
         }
         /// <summary>
-        /// Invoke function getUserIdsWithFlaggedAppRegistration
+        /// Not yet documented
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +127,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlagg
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getUserIdsWithFlaggedAppRegistration
+        /// Not yet documented
         /// </summary>
         public class GetUserIdsWithFlaggedAppRegistrationRequestBuilderGetQueryParameters 
         {

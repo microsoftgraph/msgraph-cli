@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage {
     public class GetAttackSimulationTrainingUserCoverageRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getAttackSimulationTrainingUserCoverage
+        /// List training coverage for tenant users in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getAttackSimulationTrainingUserCoverage";
+            command.Description = "List training coverage for tenant users in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securityreportsroot-getattacksimulationtrainingusercoverage?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -107,7 +108,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage {
         {
         }
         /// <summary>
-        /// Invoke function getAttackSimulationTrainingUserCoverage
+        /// List training coverage for tenant users in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +127,7 @@ namespace ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getAttackSimulationTrainingUserCoverage
+        /// List training coverage for tenant users in attack simulation and training campaigns. This function supports @odata.nextLink for pagination.
         /// </summary>
         public class GetAttackSimulationTrainingUserCoverageRequestBuilderGetQueryParameters 
         {

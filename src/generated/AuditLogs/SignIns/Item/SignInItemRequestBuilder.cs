@@ -56,14 +56,13 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0" />
+        /// Get signIns from auditLogs
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/signin-get?view=graph-rest-1.0";
+            command.Description = "Get signIns from auditLogs";
             var signInIdOption = new Option<string>("--sign-in-id", description: "The unique identifier of signIn") {
             };
             signInIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
+        /// Get signIns from auditLogs
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a specific Microsoft Entra user sign-in event for your tenant. Sign-ins that are interactive in nature (where a username/password is passed as part of auth token) and successful federated sign-ins are currently included in the sign-in logs.
+        /// Get signIns from auditLogs
         /// </summary>
         public class SignInItemRequestBuilderGetQueryParameters 
         {

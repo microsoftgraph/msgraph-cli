@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
     public class GetOffice365ActiveUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getOffice365ActiveUserDetail
+        /// Get details about Microsoft 365 active users.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365ActiveUserDetail";
+            command.Description = "Get details about Microsoft 365 active users.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365ActiveUserDetail
+        /// Get details about Microsoft 365 active users.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

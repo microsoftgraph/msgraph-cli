@@ -21,14 +21,13 @@ namespace ApiSdk.Security.Labels.Citations.Item {
     public class CitationTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a citationTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-delete-citations?view=graph-rest-1.0" />
+        /// Delete navigation property citations for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a citationTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-delete-citations?view=graph-rest-1.0";
+            command.Description = "Delete navigation property citations for security";
             var citationTemplateIdOption = new Option<string>("--citation-template-id", description: "The unique identifier of citationTemplate") {
             };
             citationTemplateIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Security.Labels.Citations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a citationTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-citationtemplate-get?view=graph-rest-1.0" />
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a citationTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-citationtemplate-get?view=graph-rest-1.0";
+            command.Description = "The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.";
             var citationTemplateIdOption = new Option<string>("--citation-template-id", description: "The unique identifier of citationTemplate") {
             };
             citationTemplateIdOption.IsRequired = true;
@@ -175,7 +173,7 @@ namespace ApiSdk.Security.Labels.Citations.Item {
         {
         }
         /// <summary>
-        /// Delete a citationTemplate object.
+        /// Delete navigation property citations for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -194,7 +192,7 @@ namespace ApiSdk.Security.Labels.Citations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a citationTemplate object.
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.Security.Labels.Citations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a citationTemplate object.
+        /// The specific rule or regulation created by a jurisdiction used to determine whether certain labels and content should be retained or deleted.
         /// </summary>
         public class CitationTemplateItemRequestBuilderGetQueryParameters 
         {

@@ -103,13 +103,12 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
         }
         /// <summary>
         /// The groups that a group is a member of, either directly or through nested membership. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The groups that a group is a member of, either directly or through nested membership. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "The groups that a group is a member of, either directly or through nested membership. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

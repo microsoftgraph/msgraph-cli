@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class VerifiedPublisher : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>The timestamp when the verified publisher was first added or most recently updated.</summary>
         public DateTimeOffset? AddedDateTime { get; set; }

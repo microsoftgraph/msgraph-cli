@@ -21,14 +21,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
     public class LastIndexOperationRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0" />
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0";
+            command.Description = "Operation entity that represents the latest indexing for the custodian.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         {
         }
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -113,7 +112,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         public class LastIndexOperationRequestBuilderGetQueryParameters 
         {

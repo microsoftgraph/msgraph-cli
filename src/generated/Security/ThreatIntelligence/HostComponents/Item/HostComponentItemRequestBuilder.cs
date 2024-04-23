@@ -57,14 +57,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-hostcomponent-get?view=graph-rest-1.0" />
+        /// Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a hostComponent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-hostcomponent-get?view=graph-rest-1.0";
+            command.Description = "Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.";
             var hostComponentIdOption = new Option<string>("--host-component-id", description: "The unique identifier of hostComponent") {
             };
             hostComponentIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object.
+        /// Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostComponent object.
+        /// Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.
         /// </summary>
         public class HostComponentItemRequestBuilderGetQueryParameters 
         {

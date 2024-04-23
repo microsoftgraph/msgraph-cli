@@ -21,14 +21,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
     public class TimeOffRequestItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a timeOffRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0" />
+        /// Delete navigation property timeOffRequests for teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a timeOffRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property timeOffRequests for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0" />
+        /// The time off requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeoffrequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0";
+            command.Description = "The time off requests in the schedule.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -186,7 +184,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
         {
         }
         /// <summary>
-        /// Delete a timeOffRequest object.
+        /// Delete navigation property timeOffRequests for teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +203,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object.
+        /// The time off requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,7 +243,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeoffrequest object.
+        /// The time off requests in the schedule.
         /// </summary>
         public class TimeOffRequestItemRequestBuilderGetQueryParameters 
         {

@@ -56,14 +56,13 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
             return command;
         }
         /// <summary>
-        /// Creates a permissionGrantPolicy. A permission grant policy is used to describe the conditions under which permissions can be granted (for example, during application consent). After creating the permission grant policy, you can add include condition sets to add matching rules, and add exclude condition sets to add exclusion rules.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0" />
+        /// Create new navigation property to permissionGrantPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Creates a permissionGrantPolicy. A permission grant policy is used to describe the conditions under which permissions can be granted (for example, during application consent). After creating the permission grant policy, you can add include condition sets to add matching rules, and add exclude condition sets to add exclusion rules.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permissiongrantpolicy-post-permissiongrantpolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to permissionGrantPolicies for policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,14 +101,13 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of permissionGrantPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0" />
+        /// The policy that specifies the conditions under which consent can be granted.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of permissionGrantPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0";
+            command.Description = "The policy that specifies the conditions under which consent can be granted.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +209,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
         {
         }
         /// <summary>
-        /// Retrieve the list of permissionGrantPolicy objects.
+        /// The policy that specifies the conditions under which consent can be granted.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +228,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Creates a permissionGrantPolicy. A permission grant policy is used to describe the conditions under which permissions can be granted (for example, during application consent). After creating the permission grant policy, you can add include condition sets to add matching rules, and add exclude condition sets to add exclusion rules.
+        /// Create new navigation property to permissionGrantPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of permissionGrantPolicy objects.
+        /// The policy that specifies the conditions under which consent can be granted.
         /// </summary>
         public class PermissionGrantPoliciesRequestBuilderGetQueryParameters 
         {

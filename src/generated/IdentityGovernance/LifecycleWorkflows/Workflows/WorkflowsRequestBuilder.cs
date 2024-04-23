@@ -65,14 +65,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return command;
         }
         /// <summary>
-        /// Create a new workflow object. You can create up to 50 workflows in a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0" />
+        /// Create new navigation property to workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new workflow object. You can create up to 50 workflows in a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to workflows for identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return command;
         }
         /// <summary>
-        /// Get a list of workflow resources that are associated with lifecycle workflows.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0" />
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of workflow resources that are associated with lifecycle workflows.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-workflows?view=graph-rest-1.0";
+            command.Description = "The workflows in the lifecycle workflows instance.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -220,7 +218,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
         {
         }
         /// <summary>
-        /// Get a list of workflow resources that are associated with lifecycle workflows.
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new workflow object. You can create up to 50 workflows in a tenant.
+        /// Create new navigation property to workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of workflow resources that are associated with lifecycle workflows.
+        /// The workflows in the lifecycle workflows instance.
         /// </summary>
         public class WorkflowsRequestBuilderGetQueryParameters 
         {

@@ -120,14 +120,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations {
             return command;
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0" />
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
+            command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -247,7 +246,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations {
         {
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -287,7 +286,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Relations {
             return requestInfo;
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         public class RelationsRequestBuilderGetQueryParameters 
         {

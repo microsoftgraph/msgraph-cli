@@ -56,14 +56,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies {
             return command;
         }
         /// <summary>
-        /// Create a new cloudPcProvisioningPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-post-provisioningpolicies?view=graph-rest-1.0" />
+        /// Create new navigation property to provisioningPolicies for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new cloudPcProvisioningPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-post-provisioningpolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to provisioningPolicies for deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,14 +101,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the cloudPcProvisioningPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-list-provisioningpolicies?view=graph-rest-1.0" />
+        /// A collection of Cloud PC provisioning policies.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the cloudPcProvisioningPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-list-provisioningpolicies?view=graph-rest-1.0";
+            command.Description = "A collection of Cloud PC provisioning policies.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +209,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies {
         {
         }
         /// <summary>
-        /// List properties and relationships of the cloudPcProvisioningPolicy objects.
+        /// A collection of Cloud PC provisioning policies.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +228,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new cloudPcProvisioningPolicy object.
+        /// Create new navigation property to provisioningPolicies for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.ProvisioningPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the cloudPcProvisioningPolicy objects.
+        /// A collection of Cloud PC provisioning policies.
         /// </summary>
         public class ProvisioningPoliciesRequestBuilderGetQueryParameters 
         {

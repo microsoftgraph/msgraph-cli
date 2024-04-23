@@ -67,13 +67,12 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         }
         /// <summary>
         /// Delete navigation property deletedItems for directory
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deletedItems for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property deletedItems for directory";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -102,14 +101,13 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-get?view=graph-rest-1.0" />
+        /// Recently deleted items. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-get?view=graph-rest-1.0";
+            command.Description = "Recently deleted items. Read-only. Nullable.";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -341,7 +339,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
+        /// Recently deleted items. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -360,7 +358,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
+        /// Recently deleted items. Read-only. Nullable.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters 
         {

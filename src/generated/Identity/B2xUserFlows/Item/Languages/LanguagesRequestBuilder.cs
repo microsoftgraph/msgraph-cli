@@ -107,14 +107,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of languages supported for customization in a B2X user flow.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0" />
+        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can&apos;t create custom languages in self-service sign-up user flows.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of languages supported for customization in a B2X user flow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0";
+            command.Description = "The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -222,7 +221,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
         {
         }
         /// <summary>
-        /// Retrieve a list of languages supported for customization in a B2X user flow.
+        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can&apos;t create custom languages in self-service sign-up user flows.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +261,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of languages supported for customization in a B2X user flow.
+        /// The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can&apos;t create custom languages in self-service sign-up user flows.
         /// </summary>
         public class LanguagesRequestBuilderGetQueryParameters 
         {

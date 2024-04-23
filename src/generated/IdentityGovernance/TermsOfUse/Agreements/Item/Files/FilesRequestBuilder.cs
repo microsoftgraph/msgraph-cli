@@ -55,14 +55,13 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return command;
         }
         /// <summary>
-        /// Create a new localized agreement file.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0" />
+        /// Create new navigation property to files for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new localized agreement file.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to files for identityGovernance";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -240,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new localized agreement file.
+        /// Create new navigation property to files for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

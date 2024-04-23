@@ -137,14 +137,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
             return command;
         }
         /// <summary>
-        /// Get the list of all virtualEventWebinar objects created in the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0" />
+        /// Get webinars from solutions
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of all virtualEventWebinar objects created in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventsroot-list-webinars?view=graph-rest-1.0";
+            command.Description = "Get webinars from solutions";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -246,7 +245,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
         {
         }
         /// <summary>
-        /// Get the list of all virtualEventWebinar objects created in the tenant.
+        /// Get webinars from solutions
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +285,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of all virtualEventWebinar objects created in the tenant.
+        /// Get webinars from solutions
         /// </summary>
         public class WebinarsRequestBuilderGetQueryParameters 
         {

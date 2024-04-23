@@ -21,14 +21,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a class from a school.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0" />
+        /// Delete ref of navigation property classes for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a class from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-classes?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property classes for education";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return command;
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0" />
+        /// Classes taught at the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
+            command.Description = "Classes taught at the school. Nullable.";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return command;
         }
         /// <summary>
-        /// Add a class to a school.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0" />
+        /// Create new navigation property ref to classes for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a class to a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to classes for education";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         {
         }
         /// <summary>
-        /// Delete a class from a school.
+        /// Delete ref of navigation property classes for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
+        /// Classes taught at the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a class to a school.
+        /// Create new navigation property ref to classes for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete a class from a school.
+        /// Delete ref of navigation property classes for education
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
 #endif
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
+        /// Classes taught at the school. Nullable.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

@@ -57,14 +57,13 @@ namespace ApiSdk.Teams.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Install an app to the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0" />
+        /// Create new navigation property to installedApps for teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Install an app to the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to installedApps for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.Teams.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0" />
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of apps installed in the specified team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0";
+            command.Description = "The apps installed in this team.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -224,7 +222,7 @@ namespace ApiSdk.Teams.Item.InstalledApps {
         {
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +241,7 @@ namespace ApiSdk.Teams.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Install an app to the specified team.
+        /// Create new navigation property to installedApps for teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Teams.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of apps installed in the specified team.
+        /// The apps installed in this team.
         /// </summary>
         public class InstalledAppsRequestBuilderGetQueryParameters 
         {

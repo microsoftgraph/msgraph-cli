@@ -55,14 +55,13 @@ namespace ApiSdk.Planner.Buckets {
             return command;
         }
         /// <summary>
-        /// Create a new plannerBucket object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-post-buckets?view=graph-rest-1.0" />
+        /// Create new navigation property to buckets for planner
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new plannerBucket object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-buckets?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to buckets for planner";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,14 +100,13 @@ namespace ApiSdk.Planner.Buckets {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of plannerbucket objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-list-buckets?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified buckets
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of plannerbucket objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-list-buckets?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified buckets";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Planner.Buckets {
         {
         }
         /// <summary>
-        /// Retrieve a list of plannerbucket objects.
+        /// Read-only. Nullable. Returns a collection of the specified buckets
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +227,7 @@ namespace ApiSdk.Planner.Buckets {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new plannerBucket object.
+        /// Create new navigation property to buckets for planner
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Planner.Buckets {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of plannerbucket objects.
+        /// Read-only. Nullable. Returns a collection of the specified buckets
         /// </summary>
         public class BucketsRequestBuilderGetQueryParameters 
         {

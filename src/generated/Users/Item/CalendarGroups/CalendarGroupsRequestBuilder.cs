@@ -55,14 +55,13 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new CalendarGroup.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0" />
+        /// Create new navigation property to calendarGroups for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new CalendarGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendarGroups for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -107,14 +106,13 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0" />
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the user's calendar groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0";
+            command.Description = "The user's calendar groups. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -209,7 +207,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
         {
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -228,7 +226,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new CalendarGroup.
+        /// Create new navigation property to calendarGroups for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         public class CalendarGroupsRequestBuilderGetQueryParameters 
         {

@@ -21,13 +21,12 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
     {
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
+            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;

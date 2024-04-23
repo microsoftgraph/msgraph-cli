@@ -59,14 +59,13 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return command;
         }
         /// <summary>
-        /// Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can&apos;t see the modules until publication.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post-module?view=graph-rest-1.0" />
+        /// Create new navigation property to modules for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can't see the modules until publication.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-module?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to modules for education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-modules?view=graph-rest-1.0" />
+        /// All modules in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-modules?view=graph-rest-1.0";
+            command.Description = "All modules in the class. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -226,7 +224,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
         {
         }
         /// <summary>
-        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        /// All modules in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -245,7 +243,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new module in a class. Only teachers in a class can create a module. Modules start in the draft state, which means that students can&apos;t see the modules until publication.
+        /// Create new navigation property to modules for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -266,7 +264,7 @@ namespace ApiSdk.Education.Classes.Item.Modules {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of module objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can see all module objects for the class. Students can only see published modules.
+        /// All modules in the class. Nullable.
         /// </summary>
         public class ModulesRequestBuilderGetQueryParameters 
         {

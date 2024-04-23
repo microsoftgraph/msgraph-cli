@@ -56,14 +56,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcgalleryimage-get?view=graph-rest-1.0" />
+        /// A collection of gallery image resources on Cloud PC.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a specific cloudPcGalleryImage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcgalleryimage-get?view=graph-rest-1.0";
+            command.Description = "A collection of gallery image resources on Cloud PC.";
             var cloudPcGalleryImageIdOption = new Option<string>("--cloud-pc-gallery-image-id", description: "The unique identifier of cloudPcGalleryImage") {
             };
             cloudPcGalleryImageIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
+        /// A collection of gallery image resources on Cloud PC.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcGalleryImage object.
+        /// A collection of gallery image resources on Cloud PC.
         /// </summary>
         public class CloudPcGalleryImageItemRequestBuilderGetQueryParameters 
         {

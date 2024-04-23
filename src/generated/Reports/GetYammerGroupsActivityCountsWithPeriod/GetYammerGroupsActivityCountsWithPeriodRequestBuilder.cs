@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityCountsWithPeriod {
     public class GetYammerGroupsActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getYammerGroupsActivityCounts
+        /// Get the number of Yammer messages posted, read, and liked in groups.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerGroupsActivityCounts";
+            command.Description = "Get the number of Yammer messages posted, read, and liked in groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammergroupsactivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getYammerGroupsActivityCounts
+        /// Get the number of Yammer messages posted, read, and liked in groups.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

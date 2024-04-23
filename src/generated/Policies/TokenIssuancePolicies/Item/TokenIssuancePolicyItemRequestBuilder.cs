@@ -48,14 +48,13 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a tokenIssuancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property tokenIssuancePolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property tokenIssuancePolicies for policies";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
@@ -136,14 +135,13 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a tokenIssuancePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property tokenIssuancePolicies in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property tokenIssuancePolicies in policies";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
@@ -202,7 +200,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         {
         }
         /// <summary>
-        /// Delete a tokenIssuancePolicy object.
+        /// Delete navigation property tokenIssuancePolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -240,7 +238,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a tokenIssuancePolicy object.
+        /// Update the navigation property tokenIssuancePolicies in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

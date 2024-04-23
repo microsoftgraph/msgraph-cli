@@ -53,15 +53,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Create a new authoredNote object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0" />
+        /// Create new navigation property to notes for privacy
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new authoredNote object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to notes for privacy";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -106,15 +105,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0" />
+        /// List of notes associated with the request.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of authored notes assoicated with a subject rights request. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0";
+            command.Description = "List of notes associated with the request.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         {
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
+        /// List of notes associated with the request.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +240,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new authoredNote object.
+        /// Create new navigation property to notes for privacy
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
+        /// List of notes associated with the request.
         /// </summary>
         public class NotesRequestBuilderGetQueryParameters 
         {

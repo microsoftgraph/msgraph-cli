@@ -51,14 +51,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return command;
         }
         /// <summary>
-        /// Delete a delegatedAdminRelationship object. A relationship can only be deleted if it&apos;s in the &apos;created&apos; status. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0" />
+        /// Delete navigation property delegatedAdminRelationships for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a delegatedAdminRelationship object. A relationship can only be deleted if it's in the 'created' status. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property delegatedAdminRelationships for tenantRelationships";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -87,14 +86,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationship object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0" />
+        /// The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties of a delegatedAdminRelationship object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-get?view=graph-rest-1.0";
+            command.Description = "The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -167,14 +165,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a delegatedAdminRelationship object. You can only update a relationship when it&apos;s in the created status. However, you can update the autoExtendDuration property when the relationship is in either the created or active status.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0" />
+        /// Update the navigation property delegatedAdminRelationships in tenantRelationships
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a delegatedAdminRelationship object. You can only update a relationship when it's in the created status. However, you can update the autoExtendDuration property when the relationship is in either the created or active status.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property delegatedAdminRelationships in tenantRelationships";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -260,7 +257,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
         {
         }
         /// <summary>
-        /// Delete a delegatedAdminRelationship object. A relationship can only be deleted if it&apos;s in the &apos;created&apos; status. 
+        /// Delete navigation property delegatedAdminRelationships for tenantRelationships
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -279,7 +276,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationship object.
+        /// The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -298,7 +295,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a delegatedAdminRelationship object. You can only update a relationship when it&apos;s in the created status. However, you can update the autoExtendDuration property when the relationship is in either the created or active status.
+        /// Update the navigation property delegatedAdminRelationships in tenantRelationships
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -319,7 +316,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminRelationship object.
+        /// The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
         /// </summary>
         public class DelegatedAdminRelationshipItemRequestBuilderGetQueryParameters 
         {

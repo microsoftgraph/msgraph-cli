@@ -74,14 +74,13 @@ namespace ApiSdk.Communications.Calls {
             return command;
         }
         /// <summary>
-        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0" />
+        /// Create new navigation property to calls for communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calls for communications";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -120,13 +119,13 @@ namespace ApiSdk.Communications.Calls {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
+        /// Get calls from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of a call object.";
+            command.Description = "Get calls from communications";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -245,7 +244,7 @@ namespace ApiSdk.Communications.Calls {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
+        /// Get calls from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +263,7 @@ namespace ApiSdk.Communications.Calls {
             return requestInfo;
         }
         /// <summary>
-        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
+        /// Create new navigation property to calls for communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -285,7 +284,7 @@ namespace ApiSdk.Communications.Calls {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object.
+        /// Get calls from communications
         /// </summary>
         public class CallsRequestBuilderGetQueryParameters 
         {

@@ -21,13 +21,14 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomain
     public class FindTenantInformationByDomainNameWithDomainNameRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function findTenantInformationByDomainName
+        /// Given a domain name, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant access settings between you and the tenant.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tenantrelationship-findtenantinformationbydomainname?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function findTenantInformationByDomainName";
+            command.Description = "Given a domain name, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant access settings between you and the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tenantrelationship-findtenantinformationbydomainname?view=graph-rest-1.0";
             var domainNameOption = new Option<string>("--domain-name", description: "Usage: domainName='{domainName}'") {
             };
             domainNameOption.IsRequired = true;
@@ -73,7 +74,7 @@ namespace ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomain
         {
         }
         /// <summary>
-        /// Invoke function findTenantInformationByDomainName
+        /// Given a domain name, search for a tenant and read its tenantInformation. You can use this API to validate tenant information and use the tenantId to configure cross-tenant access settings between you and the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

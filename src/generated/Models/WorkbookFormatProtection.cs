@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class WorkbookFormatProtection : Entity, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates if Excel hides the formula for the cells in the range. A null value indicates that the entire range doesn&apos;t have uniform formula hidden setting.</summary>
         public bool? FormulaHidden { get; set; }

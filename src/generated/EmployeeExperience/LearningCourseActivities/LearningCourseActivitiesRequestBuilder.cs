@@ -98,13 +98,13 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivities {
             return command;
         }
         /// <summary>
-        /// Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.
+        /// Get learningCourseActivities from employeeExperience
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.";
+            command.Description = "Get learningCourseActivities from employeeExperience";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +206,7 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivities {
         {
         }
         /// <summary>
-        /// Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.
+        /// Get learningCourseActivities from employeeExperience
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -246,7 +246,7 @@ namespace ApiSdk.EmployeeExperience.LearningCourseActivities {
             return requestInfo;
         }
         /// <summary>
-        /// Get the specified learningCourseActivity object using either an ID or an externalCourseActivityId of the learning provider, or a courseActivityId of a user.
+        /// Get learningCourseActivities from employeeExperience
         /// </summary>
         public class LearningCourseActivitiesRequestBuilderGetQueryParameters 
         {

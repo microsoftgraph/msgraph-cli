@@ -53,14 +53,13 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-post-attachments?view=graph-rest-1.0" />
+        /// Create new navigation property to attachments for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-post-attachments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to attachments for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -128,14 +127,13 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0" />
+        /// The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects attached to an event.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0";
+            command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -243,7 +241,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments {
         {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event.
+        /// The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +260,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.
+        /// Create new navigation property to attachments for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -283,7 +281,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event.
+        /// The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters 
         {

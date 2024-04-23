@@ -50,14 +50,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of an entitlementManagementSettings object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0" />
+        /// The settings that control the behavior of Microsoft Entra entitlement management.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an entitlementManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0";
+            command.Description = "The settings that control the behavior of Microsoft Entra entitlement management.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -97,14 +96,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Update an existing entitlementManagementSettings object to change one or more of its properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property settings in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an existing entitlementManagementSettings object to change one or more of its properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property settings in identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -176,7 +174,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an entitlementManagementSettings object.
+        /// The settings that control the behavior of Microsoft Entra entitlement management.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +193,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing entitlementManagementSettings object to change one or more of its properties.
+        /// Update the navigation property settings in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -216,7 +214,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an entitlementManagementSettings object.
+        /// The settings that control the behavior of Microsoft Entra entitlement management.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters 
         {

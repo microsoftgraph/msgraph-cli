@@ -57,14 +57,13 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Create a new plannerPlan object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0" />
+        /// Create new navigation property to plans for planner
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new plannerPlan object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to plans for planner";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,14 +102,13 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Get a list of plannerPlan objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of plannerPlan objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Planner.Plans {
         {
         }
         /// <summary>
-        /// Get a list of plannerPlan objects.
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new plannerPlan object.
+        /// Create new navigation property to plans for planner
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of plannerPlan objects.
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         public class PlansRequestBuilderGetQueryParameters 
         {

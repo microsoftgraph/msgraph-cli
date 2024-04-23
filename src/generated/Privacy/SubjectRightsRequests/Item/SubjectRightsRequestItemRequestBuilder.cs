@@ -115,15 +115,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0" />
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a subjectRightsRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0";
+            command.Description = "Get subjectRightsRequests from privacy";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -230,15 +229,14 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a subjectRightsRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0" />
+        /// Update the navigation property subjectRightsRequests in privacy
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate")]
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a subjectRightsRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property subjectRightsRequests in privacy";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -334,7 +332,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object.
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -354,7 +352,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a subjectRightsRequest object.
+        /// Update the navigation property subjectRightsRequests in privacy
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -376,7 +374,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object.
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         public class SubjectRightsRequestItemRequestBuilderGetQueryParameters 
         {

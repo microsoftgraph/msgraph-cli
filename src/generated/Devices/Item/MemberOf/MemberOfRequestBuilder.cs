@@ -103,13 +103,12 @@ namespace ApiSdk.Devices.Item.MemberOf {
         }
         /// <summary>
         /// Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0";
+            command.Description = "Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
