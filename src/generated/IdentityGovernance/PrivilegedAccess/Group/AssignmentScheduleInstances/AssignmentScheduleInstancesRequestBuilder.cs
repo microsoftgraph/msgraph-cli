@@ -120,14 +120,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
             return command;
         }
         /// <summary>
-        /// Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-assignmentscheduleinstances?view=graph-rest-1.0" />
+        /// The instances of assignment schedules to activate a just-in-time access.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroup-list-assignmentscheduleinstances?view=graph-rest-1.0";
+            command.Description = "The instances of assignment schedules to activate a just-in-time access.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -229,7 +228,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
         {
         }
         /// <summary>
-        /// Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
+        /// The instances of assignment schedules to activate a just-in-time access.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleIns
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the privilegedAccessGroupAssignmentScheduleInstance objects and their properties.
+        /// The instances of assignment schedules to activate a just-in-time access.
         /// </summary>
         public class AssignmentScheduleInstancesRequestBuilderGetQueryParameters 
         {

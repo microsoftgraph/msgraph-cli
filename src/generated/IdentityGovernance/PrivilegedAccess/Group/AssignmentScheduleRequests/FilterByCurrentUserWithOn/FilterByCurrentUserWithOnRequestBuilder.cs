@@ -20,13 +20,14 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
     public class FilterByCurrentUserWithOnRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In PIM for groups, retrieve the requests for membership or ownership assignments for the calling principal to groups that are governed by PIM.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/privilegedaccessgroupassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function filterByCurrentUser";
+            command.Description = "In PIM for groups, retrieve the requests for membership or ownership assignments for the calling principal to groups that are governed by PIM.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroupassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0";
             var onOption = new Option<string>("--on", description: "Usage: on='{on}'") {
             };
             onOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
         {
         }
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In PIM for groups, retrieve the requests for membership or ownership assignments for the calling principal to groups that are governed by PIM.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleReq
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function filterByCurrentUser
+        /// In PIM for groups, retrieve the requests for membership or ownership assignments for the calling principal to groups that are governed by PIM.
         /// </summary>
         public class FilterByCurrentUserWithOnRequestBuilderGetQueryParameters 
         {

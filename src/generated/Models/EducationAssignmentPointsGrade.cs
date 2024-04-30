@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class EducationAssignmentPointsGrade : EducationAssignmentGrade, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Number of points a teacher is giving this submission object.</summary>
         public float? Points { get; set; }

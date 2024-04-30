@@ -53,14 +53,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return command;
         }
         /// <summary>
-        /// Create a new conditionalAccessPolicy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0" />
+        /// Create new navigation property to policies for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new conditionalAccessPolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to policies for identity";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of conditionalAccessPolicy objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
         {
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new conditionalAccessPolicy.
+        /// Create new navigation property to policies for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public class PoliciesRequestBuilderGetQueryParameters 
         {

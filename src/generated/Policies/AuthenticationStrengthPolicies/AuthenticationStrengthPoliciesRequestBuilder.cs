@@ -57,14 +57,13 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies {
             return command;
         }
         /// <summary>
-        /// Create a new custom authenticationStrengthPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-1.0" />
+        /// Create new navigation property to authenticationStrengthPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new custom authenticationStrengthPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthroot-post-policies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to authenticationStrengthPolicies for policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,14 +102,13 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies {
             return command;
         }
         /// <summary>
-        /// Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0" />
+        /// The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationstrengthroot-list-policies?view=graph-rest-1.0";
+            command.Description = "The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies {
         {
         }
         /// <summary>
-        /// Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
+        /// The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new custom authenticationStrengthPolicy object.
+        /// Create new navigation property to authenticationStrengthPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the authenticationStrengthPolicy objects and their properties. This API returns both built-in and custom policies.
+        /// The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.
         /// </summary>
         public class AuthenticationStrengthPoliciesRequestBuilderGetQueryParameters 
         {

@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class PermissionGrantPolicy : PolicyBase, IParsable 
+    #pragma warning restore CS1591
     {
-        /// <summary>Condition sets which are excluded in this permission grant policy. Automatically expanded on GET.</summary>
+        /// <summary>Condition sets that are excluded in this permission grant policy. Automatically expanded on GET.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PermissionGrantConditionSet>? Excludes { get; set; }
@@ -15,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public List<PermissionGrantConditionSet> Excludes { get; set; }
 #endif
-        /// <summary>Condition sets which are included in this permission grant policy. Automatically expanded on GET.</summary>
+        /// <summary>Condition sets that are included in this permission grant policy. Automatically expanded on GET.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PermissionGrantConditionSet>? Includes { get; set; }

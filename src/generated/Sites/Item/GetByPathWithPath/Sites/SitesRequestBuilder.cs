@@ -21,14 +21,13 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.Sites {
     public class SitesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0" />
+        /// The collection of the sub-sites under this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a collection of subsites defined for a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0";
+            command.Description = "The collection of the sub-sites under this site.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -142,7 +141,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.Sites {
         {
         }
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
+        /// The collection of the sub-sites under this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -161,7 +160,7 @@ namespace ApiSdk.Sites.Item.GetByPathWithPath.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of subsites defined for a [site][].
+        /// The collection of the sub-sites under this site.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters 
         {

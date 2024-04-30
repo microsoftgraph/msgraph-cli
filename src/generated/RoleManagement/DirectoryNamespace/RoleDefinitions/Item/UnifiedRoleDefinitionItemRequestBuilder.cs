@@ -22,14 +22,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
     public class UnifiedRoleDefinitionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a unifiedRoleDefinition object. You can&apos;t delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0" />
+        /// Delete navigation property roleDefinitions for roleManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a unifiedRoleDefinition object. You can't delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property roleDefinitions for roleManagement";
             var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
@@ -58,14 +57,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-get?view=graph-rest-1.0" />
+        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-get?view=graph-rest-1.0";
+            command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
             var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
@@ -138,14 +136,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroledefinition-update?view=graph-rest-1.0" />
+        /// Update the navigation property roleDefinitions in roleManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroledefinition-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property roleDefinitions in roleManagement";
             var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
@@ -204,7 +201,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
         {
         }
         /// <summary>
-        /// Delete a unifiedRoleDefinition object. You can&apos;t delete built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+        /// Delete navigation property roleDefinitions for roleManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -223,7 +220,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
+        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +239,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a unifiedRoleDefinition object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
+        /// Update the navigation property roleDefinitions in roleManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -263,7 +260,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
+        /// Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.
         /// </summary>
         public class UnifiedRoleDefinitionItemRequestBuilderGetQueryParameters 
         {

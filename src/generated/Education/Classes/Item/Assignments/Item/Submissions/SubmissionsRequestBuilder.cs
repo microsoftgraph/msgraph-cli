@@ -119,14 +119,13 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
             return command;
         }
         /// <summary>
-        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they&apos;re associated with.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-list-submissions?view=graph-rest-1.0" />
+        /// Once published, there&apos;s a submission object for each student representing their work and grade. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they're associated with.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-list-submissions?view=graph-rest-1.0";
+            command.Description = "Once published, there's a submission object for each student representing their work and grade. Read-only. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -240,7 +239,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         {
         }
         /// <summary>
-        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they&apos;re associated with.
+        /// Once published, there&apos;s a submission object for each student representing their work and grade. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +279,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
             return requestInfo;
         }
         /// <summary>
-        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they&apos;re associated with.
+        /// Once published, there&apos;s a submission object for each student representing their work and grade. Read-only. Nullable.
         /// </summary>
         public class SubmissionsRequestBuilderGetQueryParameters 
         {

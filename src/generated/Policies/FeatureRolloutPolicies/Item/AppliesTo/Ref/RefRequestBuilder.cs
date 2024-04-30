@@ -21,14 +21,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0" />
+        /// Delete ref of navigation property appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property appliesTo for policies";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -149,14 +148,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return command;
         }
         /// <summary>
-        /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0" />
+        /// Create new navigation property ref to appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to appliesTo for policies";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -205,7 +203,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
         {
         }
         /// <summary>
-        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
+        /// Delete ref of navigation property appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +241,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        /// Create new navigation property ref to appliesTo for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
+        /// Delete ref of navigation property appliesTo for policies
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {

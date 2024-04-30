@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class ArchivedPrintJob : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>True if the job was acquired by a printer; false otherwise. Read-only.</summary>
         public bool? AcquiredByPrinter { get; set; }

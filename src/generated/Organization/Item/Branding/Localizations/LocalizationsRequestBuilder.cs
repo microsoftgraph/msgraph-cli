@@ -61,14 +61,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             return command;
         }
         /// <summary>
-        /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0" />
+        /// Create new navigation property to localizations for organization
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to localizations for organization";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -113,14 +112,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             return command;
         }
         /// <summary>
-        /// Retrieve all localization branding objects, including the default branding.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
+        /// Add different branding based on a locale.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve all localization branding objects, including the default branding.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
+            command.Description = "Add different branding based on a locale.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -228,7 +226,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
         {
         }
         /// <summary>
-        /// Retrieve all localization branding objects, including the default branding.
+        /// Add different branding based on a locale.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +245,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn&apos;t exist. The default branding is created only once. It&apos;s loaded when a localized branding isn&apos;t configured for the user&apos;s browser language. To retrieve the default branding, see Get branding.
+        /// Create new navigation property to localizations for organization
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve all localization branding objects, including the default branding.
+        /// Add different branding based on a locale.
         /// </summary>
         public class LocalizationsRequestBuilderGetQueryParameters 
         {

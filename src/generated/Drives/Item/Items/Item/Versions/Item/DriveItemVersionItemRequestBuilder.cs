@@ -88,14 +88,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a DriveItem.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitemversion-get?view=graph-rest-1.0" />
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a specific version of a DriveItem.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitemversion-get?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -266,7 +265,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a DriveItem.
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -306,7 +305,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a DriveItem.
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         public class DriveItemVersionItemRequestBuilderGetQueryParameters 
         {

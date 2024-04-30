@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs {
             return command;
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is the *parent* and has an outgoing pairing to a *child*. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-childhostpairs?view=graph-rest-1.0" />
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of hostPair resources associated with a host, where that host is the *parent* and has an outgoing pairing to a *child*. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-childhostpairs?view=graph-rest-1.0";
+            command.Description = "The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs {
         {
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is the *parent* and has an outgoing pairing to a *child*. 
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is the *parent* and has an outgoing pairing to a *child*. 
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         public class ChildHostPairsRequestBuilderGetQueryParameters 
         {

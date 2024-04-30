@@ -98,14 +98,13 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0" />
+        /// Represents information about detected at-risk service principals in a Microsoft Entra tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0";
+            command.Description = "Represents information about detected at-risk service principals in a Microsoft Entra tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
         {
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
+        /// Represents information about detected at-risk service principals in a Microsoft Entra tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
+        /// Represents information about detected at-risk service principals in a Microsoft Entra tenant.
         /// </summary>
         public class ServicePrincipalRiskDetectionsRequestBuilderGetQueryParameters 
         {

@@ -40,14 +40,13 @@ namespace ApiSdk.Shares.Item.DriveItem {
             return command;
         }
         /// <summary>
-        /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/shares-get?view=graph-rest-1.0" />
+        /// Used to access the underlying driveItem
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shares-get?view=graph-rest-1.0";
+            command.Description = "Used to access the underlying driveItem";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -107,7 +106,7 @@ namespace ApiSdk.Shares.Item.DriveItem {
         {
         }
         /// <summary>
-        /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        /// Used to access the underlying driveItem
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +125,7 @@ namespace ApiSdk.Shares.Item.DriveItem {
             return requestInfo;
         }
         /// <summary>
-        /// Access a shared DriveItem or a collection of shared items by using a shareId or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
+        /// Used to access the underlying driveItem
         /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters 
         {

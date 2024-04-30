@@ -57,14 +57,13 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return command;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0" />
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get an attack simulation automation for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0";
+            command.Description = "Represents simulation automation created to run on a tenant.";
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant.
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant.
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         public class SimulationAutomationItemRequestBuilderGetQueryParameters 
         {

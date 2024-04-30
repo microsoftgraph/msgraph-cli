@@ -104,14 +104,13 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return command;
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0" />
+        /// A collection of simulation automation runs.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the attack simulation automation runs for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
+            command.Description = "A collection of simulation automation runs.";
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
         {
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant.
+        /// A collection of simulation automation runs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the attack simulation automation runs for a tenant.
+        /// A collection of simulation automation runs.
         /// </summary>
         public class RunsRequestBuilderGetQueryParameters 
         {

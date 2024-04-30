@@ -20,13 +20,14 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages {
     public class GetSourceImagesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSourceImages
+        /// Get cloudPcSourceDeviceImage objects that can be uploaded and used on Cloud PCs. View a list of all the managed image resources from your Microsoft Entra subscriptions.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcdeviceimage-getsourceimages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSourceImages";
+            command.Description = "Get cloudPcSourceDeviceImage objects that can be uploaded and used on Cloud PCs. View a list of all the managed image resources from your Microsoft Entra subscriptions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcdeviceimage-getsourceimages?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -107,7 +108,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages {
         {
         }
         /// <summary>
-        /// Invoke function getSourceImages
+        /// Get cloudPcSourceDeviceImage objects that can be uploaded and used on Cloud PCs. View a list of all the managed image resources from your Microsoft Entra subscriptions.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +127,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.GetSourceImages {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getSourceImages
+        /// Get cloudPcSourceDeviceImage objects that can be uploaded and used on Cloud PCs. View a list of all the managed image resources from your Microsoft Entra subscriptions.
         /// </summary>
         public class GetSourceImagesRequestBuilderGetQueryParameters 
         {

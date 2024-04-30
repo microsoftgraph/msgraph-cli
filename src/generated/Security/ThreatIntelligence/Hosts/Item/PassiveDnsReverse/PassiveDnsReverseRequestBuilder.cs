@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
             return command;
         }
         /// <summary>
-        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0" />
+        /// Reverse passive DNS retrieval about this host.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0";
+            command.Description = "Reverse passive DNS retrieval about this host.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
         {
         }
         /// <summary>
-        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address.
+        /// Reverse passive DNS retrieval about this host.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address.
+        /// Reverse passive DNS retrieval about this host.
         /// </summary>
         public class PassiveDnsReverseRequestBuilderGetQueryParameters 
         {

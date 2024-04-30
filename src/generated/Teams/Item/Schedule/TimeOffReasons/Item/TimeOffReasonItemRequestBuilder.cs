@@ -21,14 +21,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
     public class TimeOffReasonItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0" />
+        /// Delete navigation property timeOffReasons for teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn't remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property timeOffReasons for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0" />
+        /// The set of reasons for a time off in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a timeOffReason object by ID.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-get?view=graph-rest-1.0";
+            command.Description = "The set of reasons for a time off in the schedule.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -115,14 +113,13 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             return command;
         }
         /// <summary>
-        /// Replace an existing timeOffReason. If the specified timeOffReason doesn&apos;t exist, this method returns 404 Not found.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/timeoffreason-put?view=graph-rest-1.0" />
+        /// Update the navigation property timeOffReasons in teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Replace an existing timeOffReason. If the specified timeOffReason doesn't exist, this method returns 404 Not found.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/timeoffreason-put?view=graph-rest-1.0";
+            command.Description = "Update the navigation property timeOffReasons in teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -187,7 +184,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
         {
         }
         /// <summary>
-        /// Mark a timeOffReason as inactive by setting the isActive property. Every team must include at least one timeoff reason. This method doesn&apos;t remove the specified timeOffReason instance. timeOffItem instances that have been assigned this reason remain assigned to this reason.
+        /// Delete navigation property timeOffReasons for teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -206,7 +203,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID.
+        /// The set of reasons for a time off in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing timeOffReason. If the specified timeOffReason doesn&apos;t exist, this method returns 404 Not found.
+        /// Update the navigation property timeOffReasons in teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -246,7 +243,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffReasons.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a timeOffReason object by ID.
+        /// The set of reasons for a time off in the schedule.
         /// </summary>
         public class TimeOffReasonItemRequestBuilderGetQueryParameters 
         {

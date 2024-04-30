@@ -98,14 +98,13 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             return command;
         }
         /// <summary>
-        /// Get a list of the riskDetection objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskdetection-list?view=graph-rest-1.0" />
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the riskDetection objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskdetection-list?view=graph-rest-1.0";
+            command.Description = "Risk detection in Microsoft Entra ID Protection and the associated information about the detection.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
         {
         }
         /// <summary>
-        /// Get a list of the riskDetection objects and their properties.
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the riskDetection objects and their properties.
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         public class RiskDetectionsRequestBuilderGetQueryParameters 
         {

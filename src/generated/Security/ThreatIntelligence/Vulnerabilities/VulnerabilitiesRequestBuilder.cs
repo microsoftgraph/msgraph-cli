@@ -101,13 +101,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a vulnerability object.
+        /// Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a vulnerability object.";
+            command.Description = "Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +209,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a vulnerability object.
+        /// Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +249,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a vulnerability object.
+        /// Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.
         /// </summary>
         public class VulnerabilitiesRequestBuilderGetQueryParameters 
         {

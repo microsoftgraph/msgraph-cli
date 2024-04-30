@@ -20,13 +20,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished
     public class IsPublishedRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function isPublished
+        /// Check the publishing status of a contentType in a content type hub site.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-ispublished?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function isPublished";
+            command.Description = "Check the publishing status of a contentType in a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-ispublished?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -90,7 +91,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished
         {
         }
         /// <summary>
-        /// Invoke function isPublished
+        /// Check the publishing status of a contentType in a content type hub site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -55,6 +55,7 @@ namespace ApiSdk.Security.Alerts {
         /// Create new navigation property to alerts for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
+        [Obsolete("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation")]
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
@@ -97,14 +98,14 @@ namespace ApiSdk.Security.Alerts {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/alert-list?view=graph-rest-1.0" />
+        /// Get alerts from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
+        [Obsolete("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation")]
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of alert objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/alert-list?view=graph-rest-1.0";
+            command.Description = "Get alerts from security";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,10 +207,11 @@ namespace ApiSdk.Security.Alerts {
         {
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
+        /// Get alerts from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AlertsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
@@ -230,6 +232,7 @@ namespace ApiSdk.Security.Alerts {
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The legacy Graph Security API is deprecated and will stop returning data on January 31, 2025. Please use the new Graph Security API. as of 2024-01/Deprecation")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(Alert body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
@@ -246,7 +249,7 @@ namespace ApiSdk.Security.Alerts {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
+        /// Get alerts from security
         /// </summary>
         public class AlertsRequestBuilderGetQueryParameters 
         {

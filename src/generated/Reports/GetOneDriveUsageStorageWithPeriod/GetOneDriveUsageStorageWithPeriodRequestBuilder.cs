@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod {
     public class GetOneDriveUsageStorageWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getOneDriveUsageStorage
+        /// Get the trend on the amount of storage you&apos;re using in OneDrive for Business.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveUsageStorage";
+            command.Description = "Get the trend on the amount of storage you're using in OneDrive for Business.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveusagestorage?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveUsageStorage
+        /// Get the trend on the amount of storage you&apos;re using in OneDrive for Business.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

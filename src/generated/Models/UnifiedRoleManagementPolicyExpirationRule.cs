@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class UnifiedRoleManagementPolicyExpirationRule : UnifiedRoleManagementPolicyRule, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether expiration is required or if it&apos;s a permanently active assignment or eligibility.</summary>
         public bool? IsExpirationRequired { get; set; }

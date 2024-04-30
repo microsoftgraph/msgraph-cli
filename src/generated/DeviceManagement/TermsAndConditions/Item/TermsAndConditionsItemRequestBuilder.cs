@@ -77,14 +77,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a termsAndConditions.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-delete?view=graph-rest-1.0" />
+        /// Delete navigation property termsAndConditions for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a termsAndConditions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property termsAndConditions for deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -113,14 +112,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditions object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-get?view=graph-rest-1.0" />
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the termsAndConditions object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-get?view=graph-rest-1.0";
+            command.Description = "The terms and conditions associated with device management of the company.";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -166,14 +164,13 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditions object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-update?view=graph-rest-1.0" />
+        /// Update the navigation property termsAndConditions in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a termsAndConditions object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-companyterms-termsandconditions-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property termsAndConditions in deviceManagement";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         {
         }
         /// <summary>
-        /// Deletes a termsAndConditions.
+        /// Delete navigation property termsAndConditions for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +248,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditions object.
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +267,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a termsAndConditions object.
+        /// Update the navigation property termsAndConditions in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -291,7 +288,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the termsAndConditions object.
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         public class TermsAndConditionsItemRequestBuilderGetQueryParameters 
         {

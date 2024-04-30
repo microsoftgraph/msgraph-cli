@@ -85,14 +85,13 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the details of a role management policy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0" />
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the details of a role management policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0";
+            command.Description = "Specifies the various policies associated with scopes and roles.";
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
@@ -249,7 +248,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the details of a role management policy.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -289,7 +288,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the details of a role management policy.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         public class UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters 
         {

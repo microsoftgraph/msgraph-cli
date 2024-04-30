@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators {
             return command;
         }
         /// <summary>
-        /// Get the intelligenceProfileIndicator resources from the indicators navigation property of an intelligenceProfile.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-intelligenceprofile-list-indicators?view=graph-rest-1.0" />
+        /// Includes an assemblage of high-fidelity network indicators of compromise.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the intelligenceProfileIndicator resources from the indicators navigation property of an intelligenceProfile.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-intelligenceprofile-list-indicators?view=graph-rest-1.0";
+            command.Description = "Includes an assemblage of high-fidelity network indicators of compromise.";
             var intelligenceProfileIdOption = new Option<string>("--intelligence-profile-id", description: "The unique identifier of intelligenceProfile") {
             };
             intelligenceProfileIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators {
         {
         }
         /// <summary>
-        /// Get the intelligenceProfileIndicator resources from the indicators navigation property of an intelligenceProfile.
+        /// Includes an assemblage of high-fidelity network indicators of compromise.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators {
             return requestInfo;
         }
         /// <summary>
-        /// Get the intelligenceProfileIndicator resources from the indicators navigation property of an intelligenceProfile.
+        /// Includes an assemblage of high-fidelity network indicators of compromise.
         /// </summary>
         public class IndicatorsRequestBuilderGetQueryParameters 
         {

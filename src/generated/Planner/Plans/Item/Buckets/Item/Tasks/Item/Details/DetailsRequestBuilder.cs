@@ -68,14 +68,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a plannerTaskDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. More details about the task.";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -134,13 +133,12 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
         }
         /// <summary>
         /// Update the navigation property details in planner
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property details in planner";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -237,7 +235,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +275,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerTaskDetails object.
+        /// Read-only. Nullable. More details about the task.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters 
         {

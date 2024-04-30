@@ -107,14 +107,13 @@ namespace ApiSdk.Users.Item.Insights.Shared {
             return command;
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/insights-list-shared?view=graph-rest-1.0" />
+        /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user's Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/insights-list-shared?view=graph-rest-1.0";
+            command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -222,7 +221,7 @@ namespace ApiSdk.Users.Item.Insights.Shared {
         {
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
+        /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +261,7 @@ namespace ApiSdk.Users.Item.Insights.Shared {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
+        /// Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.
         /// </summary>
         public class SharedRequestBuilderGetQueryParameters 
         {

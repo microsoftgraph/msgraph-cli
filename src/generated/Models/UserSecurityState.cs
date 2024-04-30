@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class UserSecurityState : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>AAD User object identifier (GUID) - represents the physical/multi-account user entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

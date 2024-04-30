@@ -87,14 +87,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new Chart.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0" />
+        /// Create new navigation property to charts for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Chart.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to charts for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -221,14 +220,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0" />
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/worksheet-list-charts?view=graph-rest-1.0";
+            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -348,7 +346,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         {
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -367,7 +365,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new Chart.
+        /// Create new navigation property to charts for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -388,7 +386,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of chart objects.
+        /// Returns collection of charts that are part of the worksheet. Read-only.
         /// </summary>
         public class ChartsRequestBuilderGetQueryParameters 
         {

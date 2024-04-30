@@ -21,13 +21,12 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendeeReport {
     {
         /// <summary>
         /// Get attendeeReport for the navigation property onlineMeetings from communications
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get attendeeReport for the navigation property onlineMeetings from communications\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
+            command.Description = "Get attendeeReport for the navigation property onlineMeetings from communications";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;

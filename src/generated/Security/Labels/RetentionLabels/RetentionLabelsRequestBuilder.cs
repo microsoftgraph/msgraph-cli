@@ -57,14 +57,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return command;
         }
         /// <summary>
-        /// Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-retentionlabel?view=graph-rest-1.0" />
+        /// Create new navigation property to retentionLabels for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-retentionlabel?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to retentionLabels for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,14 +102,13 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return command;
         }
         /// <summary>
-        /// Get a list of the retentionLabel objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-retentionlabel?view=graph-rest-1.0" />
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the retentionLabel objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-retentionlabel?view=graph-rest-1.0";
+            command.Description = "Represents how customers can manage their data, whether and for how long to retain or delete it.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
         {
         }
         /// <summary>
-        /// Get a list of the retentionLabel objects and their properties.
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new retentionLabel object. To create a disposition review stage, include the actionAfterRetentionPeriod property in the request body with one of the possible values specified.
+        /// Create new navigation property to retentionLabels for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Security.Labels.RetentionLabels {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the retentionLabel objects and their properties.
+        /// Represents how customers can manage their data, whether and for how long to retain or delete it.
         /// </summary>
         public class RetentionLabelsRequestBuilderGetQueryParameters 
         {

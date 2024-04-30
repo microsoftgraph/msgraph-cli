@@ -104,13 +104,13 @@ namespace ApiSdk.Communications.Calls.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call.
+        /// Get operations from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the status of an operation that adds the large gallery view to a call.";
+            command.Description = "Get operations from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -218,7 +218,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations {
         {
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call.
+        /// Get operations from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +258,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of an operation that adds the large gallery view to a call.
+        /// Get operations from communications
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

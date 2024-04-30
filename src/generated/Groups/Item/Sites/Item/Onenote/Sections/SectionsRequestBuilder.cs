@@ -116,14 +116,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-sections?view=graph-rest-1.0" />
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of onenoteSection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-sections?view=graph-rest-1.0";
+            command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -237,7 +236,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections {
         {
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +276,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         public class SectionsRequestBuilderGetQueryParameters 
         {

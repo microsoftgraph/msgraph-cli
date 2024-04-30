@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
     public class DeviceManagementExportJobItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a deviceManagementExportJob.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-delete?view=graph-rest-1.0" />
+        /// Delete navigation property exportJobs for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a deviceManagementExportJob.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property exportJobs for deviceManagement";
             var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementExportJob object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-get?view=graph-rest-1.0" />
+        /// Entity representing a job to export a report
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagementExportJob object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-get?view=graph-rest-1.0";
+            command.Description = "Entity representing a job to export a report";
             var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceManagementExportJob object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-update?view=graph-rest-1.0" />
+        /// Update the navigation property exportJobs in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceManagementExportJob object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementexportjob-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property exportJobs in deviceManagement";
             var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
         {
         }
         /// <summary>
-        /// Deletes a deviceManagementExportJob.
+        /// Delete navigation property exportJobs for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementExportJob object.
+        /// Entity representing a job to export a report
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceManagementExportJob object.
+        /// Update the navigation property exportJobs in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementExportJob object.
+        /// Entity representing a job to export a report
         /// </summary>
         public class DeviceManagementExportJobItemRequestBuilderGetQueryParameters 
         {

@@ -56,14 +56,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don&apos;t want the default behaviors. Only teachers can perform this operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0" />
+        /// Specifies class-level defaults respected by new assignments created in the class.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don't want the default behaviors. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0";
+            command.Description = "Specifies class-level defaults respected by new assignments created in the class.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0" />
+        /// Update the navigation property assignmentDefaults in education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignmentDefaults in education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -194,7 +192,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don&apos;t want the default behaviors. Only teachers can perform this operation.
+        /// Specifies class-level defaults respected by new assignments created in the class.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +211,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.
+        /// Update the navigation property assignmentDefaults in education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each assignment creation if they don&apos;t want the default behaviors. Only teachers can perform this operation.
+        /// Specifies class-level defaults respected by new assignments created in the class.
         /// </summary>
         public class AssignmentDefaultsRequestBuilderGetQueryParameters 
         {

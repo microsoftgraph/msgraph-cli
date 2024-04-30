@@ -100,13 +100,13 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an articleIndicator object.
+        /// Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of an articleIndicator object.";
+            command.Description = "Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of an articleIndicator object.
+        /// Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +248,7 @@ namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an articleIndicator object.
+        /// Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.
         /// </summary>
         public class ArticleIndicatorsRequestBuilderGetQueryParameters 
         {

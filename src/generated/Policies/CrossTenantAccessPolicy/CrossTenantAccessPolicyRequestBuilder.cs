@@ -3,6 +3,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Policies.CrossTenantAccessPolicy.Default;
 using ApiSdk.Policies.CrossTenantAccessPolicy.Partners;
+using ApiSdk.Policies.CrossTenantAccessPolicy.Templates;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -77,14 +78,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0" />
+        /// The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a crossTenantAccessPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0";
+            command.Description = "The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -151,14 +151,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return command;
         }
         /// <summary>
-        /// Update the properties of a cross-tenant access policy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property crossTenantAccessPolicy in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a cross-tenant access policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property crossTenantAccessPolicy in policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -197,6 +196,32 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the templates property of the microsoft.graph.crossTenantAccessPolicy entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTemplatesNavCommand()
+        {
+            var command = new Command("templates");
+            command.Description = "Provides operations to manage the templates property of the microsoft.graph.crossTenantAccessPolicy entity.";
+            var builder = new TemplatesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMultiTenantOrganizationIdentitySynchronizationNavCommand());
+            nonExecCommands.Add(builder.BuildMultiTenantOrganizationPartnerConfigurationNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new <see cref="CrossTenantAccessPolicyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -230,7 +255,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object.
+        /// The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +274,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a cross-tenant access policy.
+        /// Update the navigation property crossTenantAccessPolicy in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -270,7 +295,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a crossTenantAccessPolicy object.
+        /// The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.
         /// </summary>
         public class CrossTenantAccessPolicyRequestBuilderGetQueryParameters 
         {

@@ -76,14 +76,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbookpivottable-get?view=graph-rest-1.0" />
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of workbookPivotTable object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookpivottable-get?view=graph-rest-1.0";
+            command.Description = "Collection of PivotTables that are part of the worksheet.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -283,7 +282,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -323,7 +322,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of workbookPivotTable object.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         public class WorkbookPivotTableItemRequestBuilderGetQueryParameters 
         {

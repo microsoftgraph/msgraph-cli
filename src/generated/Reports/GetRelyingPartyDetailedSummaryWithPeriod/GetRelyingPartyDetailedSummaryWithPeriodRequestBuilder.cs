@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
     public class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getrelyingpartydetailedsummary?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getRelyingPartyDetailedSummary";
+            command.Description = "Get a summary of AD FS relying parties information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getrelyingpartydetailedsummary?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
         /// </summary>
         public class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetQueryParameters 
         {

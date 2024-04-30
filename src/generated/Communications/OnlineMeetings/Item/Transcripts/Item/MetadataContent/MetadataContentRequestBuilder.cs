@@ -21,13 +21,12 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataCon
     {
         /// <summary>
         /// The time-aligned metadata of the utterances in the transcript. Read-only.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The time-aligned metadata of the utterances in the transcript. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0";
+            command.Description = "The time-aligned metadata of the utterances in the transcript. Read-only.";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;

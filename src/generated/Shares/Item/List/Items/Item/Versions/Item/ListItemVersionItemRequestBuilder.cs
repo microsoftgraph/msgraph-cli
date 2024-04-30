@@ -89,14 +89,13 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0" />
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the metadata for a specific version of a ListItem.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitemversion-get?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the list item.";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -267,7 +266,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +306,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the metadata for a specific version of a ListItem.
+        /// The list of previous versions of the list item.
         /// </summary>
         public class ListItemVersionItemRequestBuilderGetQueryParameters 
         {

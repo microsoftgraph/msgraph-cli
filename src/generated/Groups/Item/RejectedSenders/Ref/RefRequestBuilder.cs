@@ -21,14 +21,13 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove rejectedSender
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-rejectedsenders?view=graph-rest-1.0" />
+        /// Delete ref of navigation property rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove rejectedSender\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-rejectedsenders?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property rejectedSenders for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return command;
         }
         /// <summary>
-        /// Users in the rejected senders list can&apos;t post to conversations of the group (identified in the GET request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-rejectedsenders?view=graph-rest-1.0" />
+        /// The list of users or groups not allowed to create posts or calendar events in this group. Nullable
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Users in the rejected senders list can't post to conversations of the group (identified in the GET request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-rejectedsenders?view=graph-rest-1.0";
+            command.Description = "The list of users or groups not allowed to create posts or calendar events in this group. Nullable";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -144,14 +142,13 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return command;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list can&apos;t post to conversations of the group (identified in the POST request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you&apos;ll get an error.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-rejectedsenders?view=graph-rest-1.0" />
+        /// Create new navigation property ref to rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Specify the user or group in @odata.id in the request body. Users in the rejected senders list can't post to conversations of the group (identified in the POST request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you'll get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-rejectedsenders?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to rejectedSenders for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -200,7 +197,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
         {
         }
         /// <summary>
-        /// Remove rejectedSender
+        /// Delete ref of navigation property rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -219,7 +216,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Users in the rejected senders list can&apos;t post to conversations of the group (identified in the GET request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error.
+        /// The list of users or groups not allowed to create posts or calendar events in this group. Nullable
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -238,7 +235,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list can&apos;t post to conversations of the group (identified in the POST request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you&apos;ll get an error.
+        /// Create new navigation property ref to rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -259,7 +256,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove rejectedSender
+        /// Delete ref of navigation property rejectedSenders for groups
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -275,7 +272,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
 #endif
         }
         /// <summary>
-        /// Users in the rejected senders list can&apos;t post to conversations of the group (identified in the GET request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you get an error.
+        /// The list of users or groups not allowed to create posts or calendar events in this group. Nullable
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

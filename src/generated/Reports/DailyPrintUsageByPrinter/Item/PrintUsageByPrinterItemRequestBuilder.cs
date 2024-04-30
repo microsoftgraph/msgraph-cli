@@ -56,14 +56,13 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0" />
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of daily print usage summaries, grouped by printer.";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         public class PrintUsageByPrinterItemRequestBuilderGetQueryParameters 
         {

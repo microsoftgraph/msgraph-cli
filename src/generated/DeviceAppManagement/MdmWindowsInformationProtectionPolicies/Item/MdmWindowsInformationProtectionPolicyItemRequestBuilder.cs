@@ -51,14 +51,13 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Deletes a mdmWindowsInformationProtectionPolicy.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property mdmWindowsInformationProtectionPolicies for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a mdmWindowsInformationProtectionPolicy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property mdmWindowsInformationProtectionPolicies for deviceAppManagement";
             var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
@@ -114,14 +113,13 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-get?view=graph-rest-1.0" />
+        /// Windows information protection for apps running on devices which are MDM enrolled.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-get?view=graph-rest-1.0";
+            command.Description = "Windows information protection for apps running on devices which are MDM enrolled.";
             var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
@@ -167,14 +165,13 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Update the properties of a mdmWindowsInformationProtectionPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property mdmWindowsInformationProtectionPolicies in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a mdmWindowsInformationProtectionPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-mdmwindowsinformationprotectionpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property mdmWindowsInformationProtectionPolicies in deviceAppManagement";
             var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
@@ -260,7 +257,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
         {
         }
         /// <summary>
-        /// Deletes a mdmWindowsInformationProtectionPolicy.
+        /// Delete navigation property mdmWindowsInformationProtectionPolicies for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -279,7 +276,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.
+        /// Windows information protection for apps running on devices which are MDM enrolled.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -298,7 +295,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a mdmWindowsInformationProtectionPolicy object.
+        /// Update the navigation property mdmWindowsInformationProtectionPolicies in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -319,7 +316,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mdmWindowsInformationProtectionPolicy object.
+        /// Windows information protection for apps running on devices which are MDM enrolled.
         /// </summary>
         public class MdmWindowsInformationProtectionPolicyItemRequestBuilderGetQueryParameters 
         {

@@ -56,14 +56,13 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskDetection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskdetection-get?view=graph-rest-1.0" />
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a riskDetection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskdetection-get?view=graph-rest-1.0";
+            command.Description = "Risk detection in Microsoft Entra ID Protection and the associated information about the detection.";
             var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "The unique identifier of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskDetection object.
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskDetection object.
+        /// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
         /// </summary>
         public class RiskDetectionItemRequestBuilderGetQueryParameters 
         {

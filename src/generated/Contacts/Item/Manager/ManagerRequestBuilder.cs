@@ -21,14 +21,13 @@ namespace ApiSdk.Contacts.Item.Manager {
     public class ManagerRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get this organizational contact&apos;s manager.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-get-manager?view=graph-rest-1.0" />
+        /// The user or contact that is this contact&apos;s manager. Read-only. Supports $expand and $filter (eq) by id.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get this organizational contact's manager.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-get-manager?view=graph-rest-1.0";
+            command.Description = "The user or contact that is this contact's manager. Read-only. Supports $expand and $filter (eq) by id.";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -88,7 +87,7 @@ namespace ApiSdk.Contacts.Item.Manager {
         {
         }
         /// <summary>
-        /// Get this organizational contact&apos;s manager.
+        /// The user or contact that is this contact&apos;s manager. Read-only. Supports $expand and $filter (eq) by id.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +106,7 @@ namespace ApiSdk.Contacts.Item.Manager {
             return requestInfo;
         }
         /// <summary>
-        /// Get this organizational contact&apos;s manager.
+        /// The user or contact that is this contact&apos;s manager. Read-only. Supports $expand and $filter (eq) by id.
         /// </summary>
         public class ManagerRequestBuilderGetQueryParameters 
         {

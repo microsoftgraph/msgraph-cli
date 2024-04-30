@@ -56,14 +56,13 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an attributeSet object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attributeset-get?view=graph-rest-1.0" />
+        /// Group of related custom security attribute definitions.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an attributeSet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attributeset-get?view=graph-rest-1.0";
+            command.Description = "Group of related custom security attribute definitions.";
             var attributeSetIdOption = new Option<string>("--attribute-set-id", description: "The unique identifier of attributeSet") {
             };
             attributeSetIdOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an attributeSet object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attributeset-update?view=graph-rest-1.0" />
+        /// Update the navigation property attributeSets in directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an attributeSet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attributeset-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property attributeSets in directory";
             var attributeSetIdOption = new Option<string>("--attribute-set-id", description: "The unique identifier of attributeSet") {
             };
             attributeSetIdOption.IsRequired = true;
@@ -194,7 +192,7 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an attributeSet object.
+        /// Group of related custom security attribute definitions.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +211,7 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an attributeSet object.
+        /// Update the navigation property attributeSets in directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.DirectoryNamespace.AttributeSets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an attributeSet object.
+        /// Group of related custom security attribute definitions.
         /// </summary>
         public class AttributeSetItemRequestBuilderGetQueryParameters 
         {

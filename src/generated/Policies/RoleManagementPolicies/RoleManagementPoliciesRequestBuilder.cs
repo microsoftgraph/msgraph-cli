@@ -101,14 +101,13 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Get the details of the policies in PIM that can be applied to Microsoft Entra roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0" />
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the details of the policies in PIM that can be applied to Microsoft Entra roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0";
+            command.Description = "Specifies the various policies associated with scopes and roles.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +209,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
         {
         }
         /// <summary>
-        /// Get the details of the policies in PIM that can be applied to Microsoft Entra roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +249,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of the policies in PIM that can be applied to Microsoft Entra roles or group membership or ownership. To retrieve policies that apply to Azure RBAC, use the Azure REST PIM API for role management policies.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         public class RoleManagementPoliciesRequestBuilderGetQueryParameters 
         {

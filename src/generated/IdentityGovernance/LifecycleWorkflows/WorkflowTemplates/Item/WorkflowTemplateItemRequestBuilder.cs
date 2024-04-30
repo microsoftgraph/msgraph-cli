@@ -22,14 +22,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
     public class WorkflowTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflowtemplate-get?view=graph-rest-1.0" />
+        /// The workflow templates in the lifecycle workflow instance.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a workflowTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflowtemplate-get?view=graph-rest-1.0";
+            command.Description = "The workflow templates in the lifecycle workflow instance.";
             var workflowTemplateIdOption = new Option<string>("--workflow-template-id", description: "The unique identifier of workflowTemplate") {
             };
             workflowTemplateIdOption.IsRequired = true;
@@ -115,7 +114,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object.
+        /// The workflow templates in the lifecycle workflow instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -134,7 +133,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a workflowTemplate object.
+        /// The workflow templates in the lifecycle workflow instance.
         /// </summary>
         public class WorkflowTemplateItemRequestBuilderGetQueryParameters 
         {

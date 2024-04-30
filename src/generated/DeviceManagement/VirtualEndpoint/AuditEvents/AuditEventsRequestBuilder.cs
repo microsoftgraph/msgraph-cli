@@ -116,14 +116,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents {
             return command;
         }
         /// <summary>
-        /// List all the cloudPcAuditEvent objects for the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualendpoint-list-auditevents?view=graph-rest-1.0" />
+        /// A collection of Cloud PC audit events.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all the cloudPcAuditEvent objects for the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualendpoint-list-auditevents?view=graph-rest-1.0";
+            command.Description = "A collection of Cloud PC audit events.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -225,7 +224,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents {
         {
         }
         /// <summary>
-        /// List all the cloudPcAuditEvent objects for the tenant.
+        /// A collection of Cloud PC audit events.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +264,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.AuditEvents {
             return requestInfo;
         }
         /// <summary>
-        /// List all the cloudPcAuditEvent objects for the tenant.
+        /// A collection of Cloud PC audit events.
         /// </summary>
         public class AuditEventsRequestBuilderGetQueryParameters 
         {

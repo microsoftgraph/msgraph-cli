@@ -28,14 +28,14 @@ namespace ApiSdk.Domains.Item {
     public class DomainItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a domain from a tenant.
+        /// Delete a domain from a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
+            command.Description = "Delete a domain from a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -187,14 +187,14 @@ namespace ApiSdk.Domains.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of domain object.
+        /// Update the properties of domain object. Only verified domains can be updated.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of domain object. Only verified domains can be updated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -341,7 +341,7 @@ namespace ApiSdk.Domains.Item {
         {
         }
         /// <summary>
-        /// Deletes a domain from a tenant.
+        /// Delete a domain from a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -379,7 +379,7 @@ namespace ApiSdk.Domains.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of domain object.
+        /// Update the properties of domain object. Only verified domains can be updated.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

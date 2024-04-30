@@ -48,14 +48,13 @@ namespace ApiSdk.Sites.Item.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Delete a [baseSitePage][] from the site pages [list][] in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-delete?view=graph-rest-1.0" />
+        /// Delete navigation property pages for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a [baseSitePage][] from the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property pages for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -90,14 +89,13 @@ namespace ApiSdk.Sites.Item.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-get?view=graph-rest-1.0" />
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-get?view=graph-rest-1.0";
+            command.Description = "The collection of pages in the baseSitePages list in this site.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -270,7 +268,7 @@ namespace ApiSdk.Sites.Item.Pages.Item {
         {
         }
         /// <summary>
-        /// Delete a [baseSitePage][] from the site pages [list][] in a [site][].
+        /// Delete navigation property pages for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -289,7 +287,7 @@ namespace ApiSdk.Sites.Item.Pages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -329,7 +327,7 @@ namespace ApiSdk.Sites.Item.Pages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the metadata for a [baseSitePage][] in the site pages [list][] in a [site][].
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         public class BaseSitePageItemRequestBuilderGetQueryParameters 
         {

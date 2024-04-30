@@ -20,14 +20,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
     public class CopyToDefaultContentLocationRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
+            command.Description = "Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLoc
         {
         }
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Copy a file to a default content location in a content type. The file can then be added as a default file or template via a POST operation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

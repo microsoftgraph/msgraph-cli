@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetMailboxUsageMailboxCountsWithPeriod {
     public class GetMailboxUsageMailboxCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getMailboxUsageMailboxCounts
+        /// Get the total number of user mailboxes in your organization and how many are active each day of the reporting period. A mailbox is considered active if the user sent or read any email.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getmailboxusagemailboxcounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getMailboxUsageMailboxCounts";
+            command.Description = "Get the total number of user mailboxes in your organization and how many are active each day of the reporting period. A mailbox is considered active if the user sent or read any email.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getmailboxusagemailboxcounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetMailboxUsageMailboxCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getMailboxUsageMailboxCounts
+        /// Get the total number of user mailboxes in your organization and how many are active each day of the reporting period. A mailbox is considered active if the user sent or read any email.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

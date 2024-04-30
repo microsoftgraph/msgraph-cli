@@ -104,14 +104,13 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0" />
+        /// The activity related to user risk level change
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a riskyUserHistoryItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0";
+            command.Description = "The activity related to user risk level change";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// The activity related to user risk level change
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// The activity related to user risk level change
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters 
         {

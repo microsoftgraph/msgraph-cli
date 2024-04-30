@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
     public class IosUpdateDeviceStatusItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a iosUpdateDeviceStatus.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-delete?view=graph-rest-1.0" />
+        /// Delete navigation property iosUpdateStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a iosUpdateDeviceStatus.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property iosUpdateStatuses for deviceManagement";
             var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the iosUpdateDeviceStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-get?view=graph-rest-1.0" />
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the iosUpdateDeviceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-get?view=graph-rest-1.0";
+            command.Description = "The IOS software update installation statuses for this account.";
             var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosUpdateDeviceStatus object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-update?view=graph-rest-1.0" />
+        /// Update the navigation property iosUpdateStatuses in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosUpdateDeviceStatus object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property iosUpdateStatuses in deviceManagement";
             var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
         {
         }
         /// <summary>
-        /// Deletes a iosUpdateDeviceStatus.
+        /// Delete navigation property iosUpdateStatuses for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosUpdateDeviceStatus object.
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosUpdateDeviceStatus object.
+        /// Update the navigation property iosUpdateStatuses in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosUpdateDeviceStatus object.
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         public class IosUpdateDeviceStatusItemRequestBuilderGetQueryParameters 
         {

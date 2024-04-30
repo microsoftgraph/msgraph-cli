@@ -98,14 +98,13 @@ namespace ApiSdk.Security.AttackSimulation.Payloads {
             return command;
         }
         /// <summary>
-        /// Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter source to filter and query the respective data source.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-list-payloads?view=graph-rest-1.0" />
+        /// Represents an attack simulation training campaign payload in a tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter source to filter and query the respective data source.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-payloads?view=graph-rest-1.0";
+            command.Description = "Represents an attack simulation training campaign payload in a tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -207,7 +206,7 @@ namespace ApiSdk.Security.AttackSimulation.Payloads {
         {
         }
         /// <summary>
-        /// Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter source to filter and query the respective data source.
+        /// Represents an attack simulation training campaign payload in a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +246,7 @@ namespace ApiSdk.Security.AttackSimulation.Payloads {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of payloads for attack simulation campaigns. This operation expects the mandatory parameter source to filter and query the respective data source.
+        /// Represents an attack simulation training campaign payload in a tenant.
         /// </summary>
         public class PayloadsRequestBuilderGetQueryParameters 
         {

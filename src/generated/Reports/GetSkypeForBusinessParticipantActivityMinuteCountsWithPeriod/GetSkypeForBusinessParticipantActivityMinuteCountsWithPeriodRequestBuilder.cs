@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithP
     public class GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessParticipantActivityMinuteCounts
+        /// Get usage trends on the length in minutes and type of conference sessions that users from your organization participated in. Types of conference sessions include audio/video.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessparticipantactivityminutecounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessParticipantActivityMinuteCounts";
+            command.Description = "Get usage trends on the length in minutes and type of conference sessions that users from your organization participated in. Types of conference sessions include audio/video.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessparticipantactivityminutecounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithP
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessParticipantActivityMinuteCounts
+        /// Get usage trends on the length in minutes and type of conference sessions that users from your organization participated in. Types of conference sessions include audio/video.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

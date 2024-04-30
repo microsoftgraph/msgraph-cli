@@ -58,14 +58,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0" />
+        /// Create new navigation property to assignmentPolicies for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to assignmentPolicies for identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -104,14 +103,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=assignmentPolicies as a query parameter.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0" />
+        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=assignmentPolicies as a query parameter.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0";
+            command.Description = "Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +211,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
         {
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=assignmentPolicies as a query parameter.
+        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +230,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
+        /// Create new navigation property to assignmentPolicies for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +251,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including $expand=assignmentPolicies as a query parameter.
+        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
         /// </summary>
         public class AssignmentPoliciesRequestBuilderGetQueryParameters 
         {

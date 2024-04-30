@@ -21,14 +21,13 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
     public class TeamworkTagMemberItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a member from a standard tag in a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktagmember-delete?view=graph-rest-1.0" />
+        /// Delete navigation property members for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a member from a standard tag in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktagmember-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property members for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -69,14 +68,13 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a member of a standard tag in a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworktagmember-get?view=graph-rest-1.0" />
+        /// Users assigned to the tag.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a member of a standard tag in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworktagmember-get?view=graph-rest-1.0";
+            command.Description = "Users assigned to the tag.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -211,7 +209,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
         {
         }
         /// <summary>
-        /// Delete a member from a standard tag in a team.
+        /// Delete navigation property members for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -230,7 +228,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a member of a standard tag in a team.
+        /// Users assigned to the tag.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +268,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a member of a standard tag in a team.
+        /// Users assigned to the tag.
         /// </summary>
         public class TeamworkTagMemberItemRequestBuilderGetQueryParameters 
         {

@@ -103,13 +103,12 @@ namespace ApiSdk.Contacts.Item.MemberOf {
         }
         /// <summary>
         /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups that this contact is a member of. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-memberof?view=graph-rest-1.0";
+            command.Description = "Groups that this contact is a member of. Read-only. Nullable. Supports $expand.";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;

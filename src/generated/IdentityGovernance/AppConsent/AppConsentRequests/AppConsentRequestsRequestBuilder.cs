@@ -118,14 +118,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return command;
         }
         /// <summary>
-        /// Retrieve appConsentRequest objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0" />
+        /// A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve appConsentRequest objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0";
+            command.Description = "A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -227,7 +226,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
         {
         }
         /// <summary>
-        /// Retrieve appConsentRequest objects and their properties.
+        /// A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +266,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve appConsentRequest objects and their properties.
+        /// A collection of appConsentRequest objects representing apps for which admin consent has been requested by one or more users.
         /// </summary>
         public class AppConsentRequestsRequestBuilderGetQueryParameters 
         {

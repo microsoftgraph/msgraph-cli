@@ -20,14 +20,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item.Grant {
     public class GrantRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
+        /// Grant users access to a link represented by a permission.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
+            command.Description = "Grant users access to a link represented by a permission.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -109,7 +109,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item.Grant {
         {
         }
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
+        /// Grant users access to a link represented by a permission.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

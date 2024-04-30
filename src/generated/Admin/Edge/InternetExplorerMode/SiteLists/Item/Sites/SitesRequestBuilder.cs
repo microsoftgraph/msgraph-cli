@@ -53,14 +53,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites {
             return command;
         }
         /// <summary>
-        /// Create a new browserSite object in a browserSiteList.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-post-sites?view=graph-rest-1.0" />
+        /// Create new navigation property to sites for admin
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new browserSite object in a browserSiteList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-post-sites?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to sites for admin";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites {
             return command;
         }
         /// <summary>
-        /// Get a list of the browserSite objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-list-sites?view=graph-rest-1.0" />
+        /// A collection of sites defined for the site list.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the browserSite objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-list-sites?view=graph-rest-1.0";
+            command.Description = "A collection of sites defined for the site list.";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites {
         {
         }
         /// <summary>
-        /// Get a list of the browserSite objects and their properties.
+        /// A collection of sites defined for the site list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new browserSite object in a browserSiteList.
+        /// Create new navigation property to sites for admin
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the browserSite objects and their properties.
+        /// A collection of sites defined for the site list.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters 
         {

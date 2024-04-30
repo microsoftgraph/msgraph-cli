@@ -49,14 +49,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Remove an ediscoveryReviewTag object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0" />
+        /// Delete navigation property tags for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0";
+            command.Description = "Delete navigation property tags for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -91,14 +90,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewTag object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0" />
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0";
+            command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -167,14 +165,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryReviewTag object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0" />
+        /// Update the navigation property tags in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property tags in security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -239,7 +236,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         {
         }
         /// <summary>
-        /// Remove an ediscoveryReviewTag object.
+        /// Delete navigation property tags for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +255,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewTag object.
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +274,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryReviewTag object.
+        /// Update the navigation property tags in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -298,7 +295,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewTag object.
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         public class EdiscoveryReviewTagItemRequestBuilderGetQueryParameters 
         {

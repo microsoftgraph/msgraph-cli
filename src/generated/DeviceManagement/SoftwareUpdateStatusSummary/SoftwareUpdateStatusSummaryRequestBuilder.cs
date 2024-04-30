@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
     public class SoftwareUpdateStatusSummaryRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Read properties and relationships of the softwareUpdateStatusSummary object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-softwareupdatestatussummary-get?view=graph-rest-1.0" />
+        /// The software update status summary.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the softwareUpdateStatusSummary object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-softwareupdatestatussummary-get?view=graph-rest-1.0";
+            command.Description = "The software update status summary.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -82,7 +81,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
         {
         }
         /// <summary>
-        /// Read properties and relationships of the softwareUpdateStatusSummary object.
+        /// The software update status summary.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -101,7 +100,7 @@ namespace ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the softwareUpdateStatusSummary object.
+        /// The software update status summary.
         /// </summary>
         public class SoftwareUpdateStatusSummaryRequestBuilderGetQueryParameters 
         {

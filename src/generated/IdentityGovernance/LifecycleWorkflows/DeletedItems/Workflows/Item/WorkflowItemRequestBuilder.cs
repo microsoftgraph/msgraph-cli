@@ -56,14 +56,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Delete a workflow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0" />
+        /// Delete navigation property workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property workflows for identityGovernance";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -118,14 +117,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0" />
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a deleted workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0";
+            command.Description = "Deleted workflows that end up in the deletedItemsContainer.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -394,7 +392,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         {
         }
         /// <summary>
-        /// Delete a workflow object.
+        /// Delete navigation property workflows for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -413,7 +411,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object.
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -432,7 +430,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object.
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         public class WorkflowItemRequestBuilderGetQueryParameters 
         {

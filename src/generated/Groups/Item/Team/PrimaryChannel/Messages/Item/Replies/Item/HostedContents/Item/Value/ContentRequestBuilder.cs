@@ -21,13 +21,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
     {
         /// <summary>
         /// Get media content for the navigation property hostedContents from groups
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property hostedContents from groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
+            command.Description = "Get media content for the navigation property hostedContents from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

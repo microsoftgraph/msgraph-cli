@@ -21,14 +21,13 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Use this API to remove a member (user, group, or device) from an administrative unit.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0" />
+        /// Delete ref of navigation property members for directory
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Use this API to remove a member (user, group, or device) from an administrative unit.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property members for directory";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -64,13 +63,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         }
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -158,13 +156,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         }
         /// <summary>
         /// Create new navigation property ref to members for directory
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to members for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to members for directory";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -213,7 +210,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
         {
         }
         /// <summary>
-        /// Use this API to remove a member (user, group, or device) from an administrative unit.
+        /// Delete ref of navigation property members for directory
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -272,7 +269,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to remove a member (user, group, or device) from an administrative unit.
+        /// Delete ref of navigation property members for directory
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {

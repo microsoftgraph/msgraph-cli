@@ -56,14 +56,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceDeviceOverview object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancedeviceoverview-get?view=graph-rest-1.0" />
+        /// Device compliance devices status overview
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceComplianceDeviceOverview object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancedeviceoverview-get?view=graph-rest-1.0";
+            command.Description = "Device compliance devices status overview";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceComplianceDeviceOverview object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancedeviceoverview-update?view=graph-rest-1.0" />
+        /// Update the navigation property deviceStatusOverview in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceComplianceDeviceOverview object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicecompliancedeviceoverview-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property deviceStatusOverview in deviceManagement";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -194,7 +192,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceDeviceOverview object.
+        /// Device compliance devices status overview
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +211,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceComplianceDeviceOverview object.
+        /// Update the navigation property deviceStatusOverview in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOver
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceDeviceOverview object.
+        /// Device compliance devices status overview
         /// </summary>
         public class DeviceStatusOverviewRequestBuilderGetQueryParameters 
         {

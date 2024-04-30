@@ -64,14 +64,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows {
             return command;
         }
         /// <summary>
-        /// Get a list of the deleted workflow objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-deleteditems?view=graph-rest-1.0" />
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the deleted workflow objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-list-deleteditems?view=graph-rest-1.0";
+            command.Description = "Deleted workflows that end up in the deletedItemsContainer.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -173,7 +172,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows {
         {
         }
         /// <summary>
-        /// Get a list of the deleted workflow objects and their properties.
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -192,7 +191,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the deleted workflow objects and their properties.
+        /// Deleted workflows that end up in the deletedItemsContainer.
         /// </summary>
         public class WorkflowsRequestBuilderGetQueryParameters 
         {

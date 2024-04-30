@@ -21,14 +21,13 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
     public class NamedLocationItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a countryNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0" />
+        /// Delete navigation property namedLocations for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a countryNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property namedLocations for identity";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an ipNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an ipNamedLocation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0" />
+        /// Update the navigation property namedLocations in identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ipNamedLocation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property namedLocations in identity";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         {
         }
         /// <summary>
-        /// Delete a countryNamedLocation object.
+        /// Delete navigation property namedLocations for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object.
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an ipNamedLocation object.
+        /// Update the navigation property namedLocations in identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object.
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         public class NamedLocationItemRequestBuilderGetQueryParameters 
         {

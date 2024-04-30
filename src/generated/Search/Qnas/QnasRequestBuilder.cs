@@ -53,14 +53,13 @@ namespace ApiSdk.Search.Qnas {
             return command;
         }
         /// <summary>
-        /// Create a new qna object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-searchentity-post-qnas?view=graph-rest-1.0" />
+        /// Create new navigation property to qnas for search
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new qna object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-searchentity-post-qnas?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to qnas for search";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Search.Qnas {
             return command;
         }
         /// <summary>
-        /// Get a list of the qna objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-searchentity-list-qnas?view=graph-rest-1.0" />
+        /// Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the qna objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-searchentity-list-qnas?view=graph-rest-1.0";
+            command.Description = "Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Search.Qnas {
         {
         }
         /// <summary>
-        /// Get a list of the qna objects and their properties.
+        /// Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Search.Qnas {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new qna object.
+        /// Create new navigation property to qnas for search
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Search.Qnas {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the qna objects and their properties.
+        /// Administrative answer in Microsoft Search results that provide answers for specific search keywords in an organization.
         /// </summary>
         public class QnasRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0" />
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an outlookCategory object in the user's master list of categories.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to masterCategories for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0" />
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the categories that have been defined for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
+            command.Description = "A list of categories defined for the user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -207,7 +205,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
         {
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -226,7 +224,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -247,7 +245,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
+        /// A list of categories defined for the user.
         /// </summary>
         public class MasterCategoriesRequestBuilderGetQueryParameters 
         {

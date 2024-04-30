@@ -57,14 +57,13 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/threatassessmentrequest-get?view=graph-rest-1.0" />
+        /// Get threatAssessmentRequests from informationProtection
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/threatassessmentrequest-get?view=graph-rest-1.0";
+            command.Description = "Get threatAssessmentRequests from informationProtection";
             var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
+        /// Get threatAssessmentRequests from informationProtection
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a specified threatAssessmentRequest object. A threat assessment request can be one of the following types:
+        /// Get threatAssessmentRequests from informationProtection
         /// </summary>
         public class ThreatAssessmentRequestItemRequestBuilderGetQueryParameters 
         {

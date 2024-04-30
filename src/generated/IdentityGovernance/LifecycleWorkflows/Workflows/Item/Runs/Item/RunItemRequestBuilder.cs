@@ -23,14 +23,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item 
     public class RunItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Read the properties and relationships of a run object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0" />
+        /// Workflow runs.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a run object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-run-get?view=graph-rest-1.0";
+            command.Description = "Workflow runs.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -149,7 +148,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item 
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a run object.
+        /// Workflow runs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -168,7 +167,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a run object.
+        /// Workflow runs.
         /// </summary>
         public class RunItemRequestBuilderGetQueryParameters 
         {

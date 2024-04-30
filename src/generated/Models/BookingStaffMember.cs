@@ -30,6 +30,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>True indicates that a staff member will be notified via email when a booking assigned to them is created or changed.</summary>
         public bool? IsEmailNotificationEnabled { get; set; }
+        /// <summary>The membershipStatus property</summary>
+        public BookingStaffMembershipStatus? MembershipStatus { get; set; }
         /// <summary>The role property</summary>
         public BookingStaffRole? Role { get; set; }
         /// <summary>The time zone of the staff member. For a list of possible values, see dateTimeTimeZone.</summary>
@@ -79,6 +81,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"emailAddress", n => { EmailAddress = n.GetStringValue(); } },
                 {"isEmailNotificationEnabled", n => { IsEmailNotificationEnabled = n.GetBoolValue(); } },
+                {"membershipStatus", n => { MembershipStatus = n.GetEnumValue<BookingStaffMembershipStatus>(); } },
                 {"role", n => { Role = n.GetEnumValue<BookingStaffRole>(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
                 {"useBusinessHours", n => { UseBusinessHours = n.GetBoolValue(); } },
@@ -97,6 +100,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("emailAddress", EmailAddress);
             writer.WriteBoolValue("isEmailNotificationEnabled", IsEmailNotificationEnabled);
+            writer.WriteEnumValue<BookingStaffMembershipStatus>("membershipStatus", MembershipStatus);
             writer.WriteEnumValue<BookingStaffRole>("role", Role);
             writer.WriteStringValue("timeZone", TimeZone);
             writer.WriteBoolValue("useBusinessHours", UseBusinessHours);

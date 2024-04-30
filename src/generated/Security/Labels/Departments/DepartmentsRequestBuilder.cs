@@ -53,14 +53,13 @@ namespace ApiSdk.Security.Labels.Departments {
             return command;
         }
         /// <summary>
-        /// Create a new departmentTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-departments?view=graph-rest-1.0" />
+        /// Create new navigation property to departments for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new departmentTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-departments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to departments for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Security.Labels.Departments {
             return command;
         }
         /// <summary>
-        /// Get a list of the departmentTemplate objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-departments?view=graph-rest-1.0" />
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the departmentTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-departments?view=graph-rest-1.0";
+            command.Description = "Specifies the department or business unit of an organization to which a label belongs.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Security.Labels.Departments {
         {
         }
         /// <summary>
-        /// Get a list of the departmentTemplate objects and their properties.
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Security.Labels.Departments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new departmentTemplate object.
+        /// Create new navigation property to departments for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Security.Labels.Departments {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the departmentTemplate objects and their properties.
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         public class DepartmentsRequestBuilderGetQueryParameters 
         {

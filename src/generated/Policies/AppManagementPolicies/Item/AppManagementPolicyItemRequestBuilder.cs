@@ -48,14 +48,13 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete an appManagementPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property appManagementPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property appManagementPolicies for policies";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -84,14 +83,13 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-get?view=graph-rest-1.0" />
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties of an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-get?view=graph-rest-1.0";
+            command.Description = "The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -137,14 +135,13 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update an appManagementPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property appManagementPolicies in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property appManagementPolicies in policies";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -203,7 +200,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         {
         }
         /// <summary>
-        /// Delete an appManagementPolicy object.
+        /// Delete navigation property appManagementPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -222,7 +219,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object.
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +238,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an appManagementPolicy object.
+        /// Update the navigation property appManagementPolicies in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -262,7 +259,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object.
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         public class AppManagementPolicyItemRequestBuilderGetQueryParameters 
         {

@@ -62,14 +62,13 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0" />
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the status of a rich long-running operation on a site or a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/richlongrunningoperation-get?view=graph-rest-1.0";
+            command.Description = "The collection of long-running operations on the site.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
+        /// The collection of long-running operations on the site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Sites.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the status of a rich long-running operation on a site or a list.
+        /// The collection of long-running operations on the site.
         /// </summary>
         public class RichLongRunningOperationItemRequestBuilderGetQueryParameters 
         {

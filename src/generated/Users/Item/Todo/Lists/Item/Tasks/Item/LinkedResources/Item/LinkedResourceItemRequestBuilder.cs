@@ -21,14 +21,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
     public class LinkedResourceItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a linkedResource object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-delete?view=graph-rest-1.0" />
+        /// Delete navigation property linkedResources for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property linkedResources for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -75,14 +74,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a linkedResource object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-get?view=graph-rest-1.0" />
+        /// A collection of resources linked to the task.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-get?view=graph-rest-1.0";
+            command.Description = "A collection of resources linked to the task.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -146,14 +144,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a linkedResource object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/linkedresource-update?view=graph-rest-1.0" />
+        /// Update the navigation property linkedResources in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a linkedResource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/linkedresource-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property linkedResources in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -230,7 +227,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
         {
         }
         /// <summary>
-        /// Delete a linkedResource object.
+        /// Delete navigation property linkedResources for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +246,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a linkedResource object.
+        /// A collection of resources linked to the task.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +265,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a linkedResource object.
+        /// Update the navigation property linkedResources in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -289,7 +286,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a linkedResource object.
+        /// A collection of resources linked to the task.
         /// </summary>
         public class LinkedResourceItemRequestBuilderGetQueryParameters 
         {

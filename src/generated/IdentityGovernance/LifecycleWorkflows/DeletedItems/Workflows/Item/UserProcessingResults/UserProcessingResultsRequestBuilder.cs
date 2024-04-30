@@ -55,14 +55,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Get the userProcessingResult resources for a workflow.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0" />
+        /// Per-user workflow execution results.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the userProcessingResult resources for a workflow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-userprocessingresults?view=graph-rest-1.0";
+            command.Description = "Per-user workflow execution results.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -187,7 +186,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         {
         }
         /// <summary>
-        /// Get the userProcessingResult resources for a workflow.
+        /// Per-user workflow execution results.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -206,7 +205,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Get the userProcessingResult resources for a workflow.
+        /// Per-user workflow execution results.
         /// </summary>
         public class UserProcessingResultsRequestBuilderGetQueryParameters 
         {

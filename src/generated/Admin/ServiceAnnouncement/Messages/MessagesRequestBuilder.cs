@@ -141,14 +141,13 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return command;
         }
         /// <summary>
-        /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0" />
+        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
+            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -318,7 +317,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         {
         }
         /// <summary>
-        /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
+        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -358,7 +357,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the serviceUpdateMessage resources from the messages navigation property. This operation retrieves all service update messages that exist for the tenant.
+        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         public class MessagesRequestBuilderGetQueryParameters 
         {

@@ -94,14 +94,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             return command;
         }
         /// <summary>
-        /// Retrieve the schedule for a role eligibility operation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedule-get?view=graph-rest-1.0" />
+        /// Schedules for role eligibility operations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the schedule for a role eligibility operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityschedule-get?view=graph-rest-1.0";
+            command.Description = "Schedules for role eligibility operations.";
             var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "The unique identifier of unifiedRoleEligibilitySchedule") {
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
@@ -265,7 +264,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for a role eligibility operation.
+        /// Schedules for role eligibility operations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -305,7 +304,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.I
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the schedule for a role eligibility operation.
+        /// Schedules for role eligibility operations.
         /// </summary>
         public class UnifiedRoleEligibilityScheduleItemRequestBuilderGetQueryParameters 
         {

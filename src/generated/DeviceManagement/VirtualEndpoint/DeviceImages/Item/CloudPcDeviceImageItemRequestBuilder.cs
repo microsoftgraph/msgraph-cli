@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
     public class CloudPcDeviceImageItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a cloudPcDeviceImage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcdeviceimage-delete?view=graph-rest-1.0" />
+        /// Delete navigation property deviceImages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a cloudPcDeviceImage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcdeviceimage-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property deviceImages for deviceManagement";
             var cloudPcDeviceImageIdOption = new Option<string>("--cloud-pc-device-image-id", description: "The unique identifier of cloudPcDeviceImage") {
             };
             cloudPcDeviceImageIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcDeviceImage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/cloudpcdeviceimage-get?view=graph-rest-1.0" />
+        /// A collection of device image resources on Cloud PC.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a specific cloudPcDeviceImage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/cloudpcdeviceimage-get?view=graph-rest-1.0";
+            command.Description = "A collection of device image resources on Cloud PC.";
             var cloudPcDeviceImageIdOption = new Option<string>("--cloud-pc-device-image-id", description: "The unique identifier of cloudPcDeviceImage") {
             };
             cloudPcDeviceImageIdOption.IsRequired = true;
@@ -175,7 +173,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
         {
         }
         /// <summary>
-        /// Delete a cloudPcDeviceImage object.
+        /// Delete navigation property deviceImages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -194,7 +192,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcDeviceImage object.
+        /// A collection of device image resources on Cloud PC.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.DeviceImages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a specific cloudPcDeviceImage object.
+        /// A collection of device image resources on Cloud PC.
         /// </summary>
         public class CloudPcDeviceImageItemRequestBuilderGetQueryParameters 
         {

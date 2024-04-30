@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class CrossTenantAccessPolicy : PolicyBase, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Used to specify which Microsoft clouds an organization would like to collaborate with. By default, this value is empty. Supported values for this field are: microsoftonline.com, microsoftonline.us, and partner.microsoftonline.cn.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,6 +32,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<CrossTenantAccessPolicyConfigurationPartner> Partners { get; set; }
+#endif
+        /// <summary>Represents the base policy in the directory for multitenant organization settings.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PolicyTemplate? Templates { get; set; }
+#nullable restore
+#else
+        public PolicyTemplate Templates { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="CrossTenantAccessPolicy"/> and sets the default values.
@@ -59,6 +69,7 @@ namespace ApiSdk.Models {
                 {"allowedCloudEndpoints", n => { AllowedCloudEndpoints = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"default", n => { Default = n.GetObjectValue<CrossTenantAccessPolicyConfigurationDefault>(CrossTenantAccessPolicyConfigurationDefault.CreateFromDiscriminatorValue); } },
                 {"partners", n => { Partners = n.GetCollectionOfObjectValues<CrossTenantAccessPolicyConfigurationPartner>(CrossTenantAccessPolicyConfigurationPartner.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"templates", n => { Templates = n.GetObjectValue<PolicyTemplate>(PolicyTemplate.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,6 +83,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("allowedCloudEndpoints", AllowedCloudEndpoints);
             writer.WriteObjectValue<CrossTenantAccessPolicyConfigurationDefault>("default", Default);
             writer.WriteCollectionOfObjectValues<CrossTenantAccessPolicyConfigurationPartner>("partners", Partners);
+            writer.WriteObjectValue<PolicyTemplate>("templates", Templates);
         }
     }
 }

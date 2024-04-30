@@ -53,14 +53,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return command;
         }
         /// <summary>
-        /// Create a new mobileAppCategory object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-create?view=graph-rest-1.0" />
+        /// Create new navigation property to mobileAppCategories for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new mobileAppCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to mobileAppCategories for deviceAppManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppCategory objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-list?view=graph-rest-1.0" />
+        /// The mobile app categories.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the mobileAppCategory objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-list?view=graph-rest-1.0";
+            command.Description = "The mobile app categories.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
         {
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppCategory objects.
+        /// The mobile app categories.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new mobileAppCategory object.
+        /// Create new navigation property to mobileAppCategories for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the mobileAppCategory objects.
+        /// The mobile app categories.
         /// </summary>
         public class MobileAppCategoriesRequestBuilderGetQueryParameters 
         {

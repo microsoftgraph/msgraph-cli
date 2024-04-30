@@ -88,14 +88,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a userConsentRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/userconsentrequest-get?view=graph-rest-1.0" />
+        /// A list of pending user consent requests. Supports $filter (eq).
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a userConsentRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userconsentrequest-get?view=graph-rest-1.0";
+            command.Description = "A list of pending user consent requests. Supports $filter (eq).";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -237,7 +236,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userConsentRequest object.
+        /// A list of pending user consent requests. Supports $filter (eq).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +276,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a userConsentRequest object.
+        /// A list of pending user consent requests. Supports $filter (eq).
         /// </summary>
         public class UserConsentRequestItemRequestBuilderGetQueryParameters 
         {

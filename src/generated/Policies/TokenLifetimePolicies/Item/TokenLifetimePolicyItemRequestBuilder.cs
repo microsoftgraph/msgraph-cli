@@ -48,14 +48,13 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a tokenLifetimePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property tokenLifetimePolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property tokenLifetimePolicies for policies";
             var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
@@ -84,14 +83,13 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a tokenLifetimePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-get?view=graph-rest-1.0" />
+        /// The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-get?view=graph-rest-1.0";
+            command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.";
             var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
@@ -137,14 +135,13 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a tokenLifetimePolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenlifetimepolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property tokenLifetimePolicies in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a tokenLifetimePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenlifetimepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property tokenLifetimePolicies in policies";
             var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
@@ -203,7 +200,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
         {
         }
         /// <summary>
-        /// Delete a tokenLifetimePolicy object.
+        /// Delete navigation property tokenLifetimePolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -222,7 +219,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a tokenLifetimePolicy object.
+        /// The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +238,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a tokenLifetimePolicy object.
+        /// Update the navigation property tokenLifetimePolicies in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -262,7 +259,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a tokenLifetimePolicy object.
+        /// The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.
         /// </summary>
         public class TokenLifetimePolicyItemRequestBuilderGetQueryParameters 
         {

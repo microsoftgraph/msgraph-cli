@@ -51,14 +51,13 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to a servicePrincipal. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to a service principal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-tokenlifetimepolicies?view=graph-rest-1.0" />
+        /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the tokenLifetimePolicy objects that are assigned to a servicePrincipal. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to a service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-tokenlifetimepolicies?view=graph-rest-1.0";
+            command.Description = "The tokenLifetimePolicies assigned to this service principal.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies {
         {
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to a servicePrincipal. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to a service principal.
+        /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List the tokenLifetimePolicy objects that are assigned to a servicePrincipal. Only one object is returned in the collection because only one tokenLifetimePolicy can be assigned to a service principal.
+        /// The tokenLifetimePolicies assigned to this service principal.
         /// </summary>
         public class TokenLifetimePoliciesRequestBuilderGetQueryParameters 
         {

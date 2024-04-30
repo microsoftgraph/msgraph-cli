@@ -48,14 +48,13 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a homeRealmDiscoveryPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0" />
+        /// Delete navigation property homeRealmDiscoveryPolicies for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property homeRealmDiscoveryPolicies for policies";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -84,14 +83,13 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0" />
+        /// The policy to control Microsoft Entra authentication behavior for federated users.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0";
+            command.Description = "The policy to control Microsoft Entra authentication behavior for federated users.";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -137,14 +135,13 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a homeRealmDiscoveryPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property homeRealmDiscoveryPolicies in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property homeRealmDiscoveryPolicies in policies";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -203,7 +200,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         {
         }
         /// <summary>
-        /// Delete a homeRealmDiscoveryPolicy object.
+        /// Delete navigation property homeRealmDiscoveryPolicies for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -222,7 +219,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
+        /// The policy to control Microsoft Entra authentication behavior for federated users.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +238,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a homeRealmDiscoveryPolicy object.
+        /// Update the navigation property homeRealmDiscoveryPolicies in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -262,7 +259,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
+        /// The policy to control Microsoft Entra authentication behavior for federated users.
         /// </summary>
         public class HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters 
         {

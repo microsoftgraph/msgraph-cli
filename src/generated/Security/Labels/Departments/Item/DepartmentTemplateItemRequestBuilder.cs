@@ -21,14 +21,13 @@ namespace ApiSdk.Security.Labels.Departments.Item {
     public class DepartmentTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a departmentTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-delete-departments?view=graph-rest-1.0" />
+        /// Delete navigation property departments for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a departmentTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-delete-departments?view=graph-rest-1.0";
+            command.Description = "Delete navigation property departments for security";
             var departmentTemplateIdOption = new Option<string>("--department-template-id", description: "The unique identifier of departmentTemplate") {
             };
             departmentTemplateIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Security.Labels.Departments.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a departmentTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-departmenttemplate-get?view=graph-rest-1.0" />
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a departmentTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-departmenttemplate-get?view=graph-rest-1.0";
+            command.Description = "Specifies the department or business unit of an organization to which a label belongs.";
             var departmentTemplateIdOption = new Option<string>("--department-template-id", description: "The unique identifier of departmentTemplate") {
             };
             departmentTemplateIdOption.IsRequired = true;
@@ -175,7 +173,7 @@ namespace ApiSdk.Security.Labels.Departments.Item {
         {
         }
         /// <summary>
-        /// Delete a departmentTemplate object.
+        /// Delete navigation property departments for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -194,7 +192,7 @@ namespace ApiSdk.Security.Labels.Departments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a departmentTemplate object.
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.Security.Labels.Departments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a departmentTemplate object.
+        /// Specifies the department or business unit of an organization to which a label belongs.
         /// </summary>
         public class DepartmentTemplateItemRequestBuilderGetQueryParameters 
         {

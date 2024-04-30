@@ -57,14 +57,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to userAttributeAssignments for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to userAttributeAssignments for identity";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -126,14 +125,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0" />
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "The user attribute assignments included in the user flow.";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -258,7 +256,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         {
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +275,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
+        /// Create new navigation property to userAttributeAssignments for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -298,7 +296,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         public class UserAttributeAssignmentsRequestBuilderGetQueryParameters 
         {

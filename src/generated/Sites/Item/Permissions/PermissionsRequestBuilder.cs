@@ -55,14 +55,13 @@ namespace ApiSdk.Sites.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// Create a new permission object on a site. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0" />
+        /// Create new navigation property to permissions for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new permission object on a site. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to permissions for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -107,14 +106,13 @@ namespace ApiSdk.Sites.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0" />
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the permission resources from the permissions navigation property on a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0";
+            command.Description = "The permissions associated with the site. Nullable.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.Sites.Item.Permissions {
         {
         }
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +239,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new permission object on a site. 
+        /// Create new navigation property to permissions for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -262,7 +260,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Get the permission resources from the permissions navigation property on a site.
+        /// The permissions associated with the site. Nullable.
         /// </summary>
         public class PermissionsRequestBuilderGetQueryParameters 
         {

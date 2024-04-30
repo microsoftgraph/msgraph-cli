@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
     public class LocalizedNotificationMessageItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a localizedNotificationMessage.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-delete?view=graph-rest-1.0" />
+        /// Delete navigation property localizedNotificationMessages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a localizedNotificationMessage.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property localizedNotificationMessages for deviceManagement";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the localizedNotificationMessage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-get?view=graph-rest-1.0" />
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the localizedNotificationMessage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-get?view=graph-rest-1.0";
+            command.Description = "The list of localized messages for this Notification Message Template.";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return command;
         }
         /// <summary>
-        /// Update the properties of a localizedNotificationMessage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-update?view=graph-rest-1.0" />
+        /// Update the navigation property localizedNotificationMessages in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a localizedNotificationMessage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-localizednotificationmessage-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property localizedNotificationMessages in deviceManagement";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
         {
         }
         /// <summary>
-        /// Deletes a localizedNotificationMessage.
+        /// Delete navigation property localizedNotificationMessages for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the localizedNotificationMessage object.
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a localizedNotificationMessage object.
+        /// Update the navigation property localizedNotificationMessages in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the localizedNotificationMessage object.
+        /// The list of localized messages for this Notification Message Template.
         /// </summary>
         public class LocalizedNotificationMessageItemRequestBuilderGetQueryParameters 
         {

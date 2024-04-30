@@ -121,14 +121,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules {
             return command;
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0" />
+        /// Schedules for role eligibility operations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0";
+            command.Description = "Schedules for role eligibility operations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +229,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules {
         {
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
+        /// Schedules for role eligibility operations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +269,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules {
             return requestInfo;
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
+        /// Schedules for role eligibility operations.
         /// </summary>
         public class RoleEligibilitySchedulesRequestBuilderGetQueryParameters 
         {

@@ -109,14 +109,13 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of sectionGroup objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0" />
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of sectionGroup objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0";
+            command.Description = "The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -224,7 +223,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups {
         {
         }
         /// <summary>
-        /// Retrieve a list of sectionGroup objects.
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +263,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of sectionGroup objects.
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters 
         {

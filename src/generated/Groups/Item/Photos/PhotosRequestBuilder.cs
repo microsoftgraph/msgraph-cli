@@ -35,14 +35,13 @@ namespace ApiSdk.Groups.Item.Photos {
             return new(executables, commands);
         }
         /// <summary>
-        /// Retrieve a list of profilePhoto objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0" />
+        /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of profilePhoto objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0";
+            command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -131,7 +130,7 @@ namespace ApiSdk.Groups.Item.Photos {
         {
         }
         /// <summary>
-        /// Retrieve a list of profilePhoto objects.
+        /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -150,7 +149,7 @@ namespace ApiSdk.Groups.Item.Photos {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of profilePhoto objects.
+        /// The profile photos owned by the group. Read-only. Nullable.
         /// </summary>
         public class PhotosRequestBuilderGetQueryParameters 
         {

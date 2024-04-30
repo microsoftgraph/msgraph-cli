@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostPairs {
             return command;
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is *either* the *parent* or the *child*.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-hostpairs?view=graph-rest-1.0" />
+        /// The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of hostPair resources associated with a host, where that host is *either* the *parent* or the *child*.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-hostpairs?view=graph-rest-1.0";
+            command.Description = "The hostPairs that are associated with this host, where this host is either the parentHost or childHost.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostPairs {
         {
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is *either* the *parent* or the *child*.
+        /// The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostPairs {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of hostPair resources associated with a host, where that host is *either* the *parent* or the *child*.
+        /// The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
         /// </summary>
         public class HostPairsRequestBuilderGetQueryParameters 
         {

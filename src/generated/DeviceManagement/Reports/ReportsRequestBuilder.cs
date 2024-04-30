@@ -113,14 +113,13 @@ namespace ApiSdk.DeviceManagement.Reports {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementReports object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-get?view=graph-rest-1.0" />
+        /// Reports singleton
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagementReports object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-get?view=graph-rest-1.0";
+            command.Description = "Reports singleton";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -449,14 +448,13 @@ namespace ApiSdk.DeviceManagement.Reports {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceManagementReports object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-update?view=graph-rest-1.0" />
+        /// Update the navigation property reports in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceManagementReports object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagementreports-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property reports in deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -528,7 +526,7 @@ namespace ApiSdk.DeviceManagement.Reports {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementReports object.
+        /// Reports singleton
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -547,7 +545,7 @@ namespace ApiSdk.DeviceManagement.Reports {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceManagementReports object.
+        /// Update the navigation property reports in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -568,7 +566,7 @@ namespace ApiSdk.DeviceManagement.Reports {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceManagementReports object.
+        /// Reports singleton
         /// </summary>
         public class ReportsRequestBuilderGetQueryParameters 
         {

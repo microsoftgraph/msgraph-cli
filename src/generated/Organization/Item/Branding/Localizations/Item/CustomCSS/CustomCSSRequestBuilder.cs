@@ -21,13 +21,12 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
     {
         /// <summary>
         /// CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
+            command.Description = "CSS styling that appears on the sign-in page. The allowed format is .css format only and not larger than 25 KB.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;

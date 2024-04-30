@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class Process : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>User account identifier (user account context the process ran under) for example, AccountName, SID, and so on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

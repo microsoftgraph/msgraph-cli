@@ -20,14 +20,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0" />
+        /// Delete ref of navigation property incompatibleGroups for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property incompatibleGroups for identityGovernance";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         {
         }
         /// <summary>
-        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
+        /// Delete ref of navigation property incompatibleGroups for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

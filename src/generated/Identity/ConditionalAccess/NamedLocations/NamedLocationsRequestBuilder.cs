@@ -53,14 +53,13 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return command;
         }
         /// <summary>
-        /// Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations?view=graph-rest-1.0" />
+        /// Create new navigation property to namedLocations for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-post-namedlocations?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to namedLocations for identity";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return command;
         }
         /// <summary>
-        /// Get a list of namedLocation objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of namedLocation objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
         {
         }
         /// <summary>
-        /// Get a list of namedLocation objects.
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new namedLocation object. Named locations can be either ipNamedLocation or countryNamedLocation objects.
+        /// Create new navigation property to namedLocations for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of namedLocation objects.
+        /// Read-only. Nullable. Returns a collection of the specified named locations.
         /// </summary>
         public class NamedLocationsRequestBuilderGetQueryParameters 
         {

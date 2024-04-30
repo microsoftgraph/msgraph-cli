@@ -100,13 +100,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a hostTracker object.";
+            command.Description = "Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +248,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         public class HostTrackersRequestBuilderGetQueryParameters 
         {

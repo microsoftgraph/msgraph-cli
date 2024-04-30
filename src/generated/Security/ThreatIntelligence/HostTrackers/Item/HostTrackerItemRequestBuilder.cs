@@ -57,14 +57,13 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-hosttracker-get?view=graph-rest-1.0" />
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a hostTracker object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-hosttracker-get?view=graph-rest-1.0";
+            command.Description = "Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.";
             var hostTrackerIdOption = new Option<string>("--host-tracker-id", description: "The unique identifier of hostTracker") {
             };
             hostTrackerIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a hostTracker object.
+        /// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
         /// </summary>
         public class HostTrackerItemRequestBuilderGetQueryParameters 
         {

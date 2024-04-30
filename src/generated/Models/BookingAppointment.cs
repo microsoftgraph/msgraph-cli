@@ -26,6 +26,38 @@ namespace ApiSdk.Models {
 #else
         public string AnonymousJoinWebUrl { get; set; }
 #endif
+        /// <summary>The customerEmailAddress property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerEmailAddress { get; set; }
+#nullable restore
+#else
+        public string CustomerEmailAddress { get; set; }
+#endif
+        /// <summary>The customerName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerName { get; set; }
+#nullable restore
+#else
+        public string CustomerName { get; set; }
+#endif
+        /// <summary>Notes from the customer associated with this appointment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerNotes { get; set; }
+#nullable restore
+#else
+        public string CustomerNotes { get; set; }
+#endif
+        /// <summary>The customerPhone property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerPhone { get; set; }
+#nullable restore
+#else
+        public string CustomerPhone { get; set; }
+#endif
         /// <summary>A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -162,6 +194,10 @@ namespace ApiSdk.Models {
             {
                 {"additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
                 {"anonymousJoinWebUrl", n => { AnonymousJoinWebUrl = n.GetStringValue(); } },
+                {"customerEmailAddress", n => { CustomerEmailAddress = n.GetStringValue(); } },
+                {"customerName", n => { CustomerName = n.GetStringValue(); } },
+                {"customerNotes", n => { CustomerNotes = n.GetStringValue(); } },
+                {"customerPhone", n => { CustomerPhone = n.GetStringValue(); } },
                 {"customerTimeZone", n => { CustomerTimeZone = n.GetStringValue(); } },
                 {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>(BookingCustomerInformationBase.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"duration", n => { Duration = n.GetTimeSpanValue(); } },
@@ -196,6 +232,10 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteStringValue("anonymousJoinWebUrl", AnonymousJoinWebUrl);
+            writer.WriteStringValue("customerEmailAddress", CustomerEmailAddress);
+            writer.WriteStringValue("customerName", CustomerName);
+            writer.WriteStringValue("customerNotes", CustomerNotes);
+            writer.WriteStringValue("customerPhone", CustomerPhone);
             writer.WriteCollectionOfObjectValues<BookingCustomerInformationBase>("customers", Customers);
             writer.WriteStringValue("customerTimeZone", CustomerTimeZone);
             writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);

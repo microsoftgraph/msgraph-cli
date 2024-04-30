@@ -57,14 +57,13 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-contactfolders?view=graph-rest-1.0" />
+        /// Create new navigation property to contactFolders for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-contactfolders?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contactFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -126,14 +125,13 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-contactfolders?view=graph-rest-1.0" />
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the contact folder collection in the default Contacts folder of the signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-contactfolders?view=graph-rest-1.0";
+            command.Description = "The user's contacts folders. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -235,7 +233,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
         {
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,7 +252,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
+        /// Create new navigation property to contactFolders for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -275,7 +273,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         public class ContactFoldersRequestBuilderGetQueryParameters 
         {

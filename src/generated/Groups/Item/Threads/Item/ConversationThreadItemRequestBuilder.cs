@@ -23,14 +23,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
     public class ConversationThreadItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete conversationThread.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0" />
+        /// Delete navigation property threads for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-thread?view=graph-rest-1.0";
+            command.Description = "Delete navigation property threads for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -65,14 +64,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0" />
+        /// The group&apos;s conversation threads. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationthread-get?view=graph-rest-1.0";
+            command.Description = "The group's conversation threads. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -117,14 +115,13 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Update conversation thread
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0" />
+        /// Update the navigation property threads in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update conversation thread\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0";
+            command.Description = "Update the navigation property threads in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -232,7 +229,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         {
         }
         /// <summary>
-        /// Delete conversationThread.
+        /// Delete navigation property threads for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +248,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        /// The group&apos;s conversation threads. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +267,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update conversation thread
+        /// Update the navigation property threads in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -291,7 +288,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a specific thread that belongs to a group. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. 
+        /// The group&apos;s conversation threads. Nullable.
         /// </summary>
         public class ConversationThreadItemRequestBuilderGetQueryParameters 
         {

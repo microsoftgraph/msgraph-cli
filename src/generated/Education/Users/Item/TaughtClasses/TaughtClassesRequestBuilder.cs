@@ -51,14 +51,13 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses {
             return command;
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationUser.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0" />
+        /// Classes for which the user is a teacher.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the educationClass resources owned by an educationUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0";
+            command.Description = "Classes for which the user is a teacher.";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses {
         {
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationUser.
+        /// Classes for which the user is a teacher.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Education.Users.Item.TaughtClasses {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationUser.
+        /// Classes for which the user is a teacher.
         /// </summary>
         public class TaughtClassesRequestBuilderGetQueryParameters 
         {

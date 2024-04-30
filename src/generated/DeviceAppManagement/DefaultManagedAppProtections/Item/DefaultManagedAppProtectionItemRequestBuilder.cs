@@ -50,14 +50,13 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a defaultManagedAppProtection.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-delete?view=graph-rest-1.0" />
+        /// Delete navigation property defaultManagedAppProtections for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a defaultManagedAppProtection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property defaultManagedAppProtections for deviceAppManagement";
             var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the defaultManagedAppProtection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-get?view=graph-rest-1.0" />
+        /// Default managed app policies.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the defaultManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-get?view=graph-rest-1.0";
+            command.Description = "Default managed app policies.";
             var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
@@ -158,14 +156,13 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a defaultManagedAppProtection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-update?view=graph-rest-1.0" />
+        /// Update the navigation property defaultManagedAppProtections in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a defaultManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-defaultmanagedappprotection-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property defaultManagedAppProtections in deviceAppManagement";
             var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
@@ -224,7 +221,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
         {
         }
         /// <summary>
-        /// Deletes a defaultManagedAppProtection.
+        /// Delete navigation property defaultManagedAppProtections for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +240,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the defaultManagedAppProtection object.
+        /// Default managed app policies.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +259,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a defaultManagedAppProtection object.
+        /// Update the navigation property defaultManagedAppProtections in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -283,7 +280,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the defaultManagedAppProtection object.
+        /// Default managed app policies.
         /// </summary>
         public class DefaultManagedAppProtectionItemRequestBuilderGetQueryParameters 
         {

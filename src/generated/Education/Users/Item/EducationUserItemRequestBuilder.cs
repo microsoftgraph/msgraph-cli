@@ -81,14 +81,13 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Delete a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-delete?view=graph-rest-1.0" />
+        /// Delete navigation property users for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property users for education";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -117,14 +116,13 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-get?view=graph-rest-1.0" />
+        /// Get users from education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an educationUser object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get?view=graph-rest-1.0";
+            command.Description = "Get users from education";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -170,14 +168,13 @@ namespace ApiSdk.Education.Users.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationUser object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-1.0" />
+        /// Update the navigation property users in education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationUser object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property users in education";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -339,7 +336,7 @@ namespace ApiSdk.Education.Users.Item {
         {
         }
         /// <summary>
-        /// Delete a user.
+        /// Delete navigation property users for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -358,7 +355,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object.
+        /// Get users from education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -377,7 +374,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationUser object.
+        /// Update the navigation property users in education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -398,7 +395,7 @@ namespace ApiSdk.Education.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an educationUser object.
+        /// Get users from education
         /// </summary>
         public class EducationUserItemRequestBuilderGetQueryParameters 
         {

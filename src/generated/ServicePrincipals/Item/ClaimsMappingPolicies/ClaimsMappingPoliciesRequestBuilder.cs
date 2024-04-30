@@ -52,14 +52,13 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0" />
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0";
+            command.Description = "The claimsMappingPolicies assigned to this service principal. Supports $expand.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
         {
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters 
         {

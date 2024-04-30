@@ -66,14 +66,13 @@ namespace ApiSdk.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0" />
+        /// Create new navigation property to items for drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to items for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -152,14 +151,13 @@ namespace ApiSdk.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0" />
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
+            command.Description = "All items contained in the list.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -261,7 +259,7 @@ namespace ApiSdk.Drives.Item.List.Items {
         {
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +278,7 @@ namespace ApiSdk.Drives.Item.List.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
+        /// Create new navigation property to items for drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -301,7 +299,7 @@ namespace ApiSdk.Drives.Item.List.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// All items contained in the list.
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters 
         {

@@ -82,14 +82,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return command;
         }
         /// <summary>
-        /// Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0" />
+        /// Delete navigation property localizations for organization
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property localizations for organization";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -142,14 +141,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0" />
+        /// Add different branding based on a locale.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0";
+            command.Description = "Add different branding based on a locale.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -219,14 +217,13 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an organizationalBrandingLocalization object for a specific localization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0" />
+        /// Update the navigation property localizations in organization
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an organizationalBrandingLocalization object for a specific localization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbrandinglocalization-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property localizations in organization";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -327,7 +324,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
         {
         }
         /// <summary>
-        /// Delete a localized branding object. To delete the organizationalBrandingLocalization object, all images (Stream types) must first be removed from the object.
+        /// Delete navigation property localizations for organization
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -346,7 +343,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.
+        /// Add different branding based on a locale.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -365,7 +362,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an organizationalBrandingLocalization object for a specific localization.
+        /// Update the navigation property localizations in organization
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -386,7 +383,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an organizationalBrandingLocalization object. To retrieve a localization branding object, specify the value of id in the URL.
+        /// Add different branding based on a locale.
         /// </summary>
         public class OrganizationalBrandingLocalizationItemRequestBuilderGetQueryParameters 
         {

@@ -52,14 +52,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return command;
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-incompatibleaccesspackages?view=graph-rest-1.0" />
+        /// The access packages whose assigned users are ineligible to be assigned this access package.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-incompatibleaccesspackages?view=graph-rest-1.0";
+            command.Description = "The access packages whose assigned users are ineligible to be assigned this access package.";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         {
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        /// The access packages whose assigned users are ineligible to be assigned this access package.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have been marked as incompatible on an accessPackage.  
+        /// The access packages whose assigned users are ineligible to be assigned this access package.
         /// </summary>
         public class IncompatibleAccessPackagesRequestBuilderGetQueryParameters 
         {

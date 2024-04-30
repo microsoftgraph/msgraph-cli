@@ -21,14 +21,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
     public class SettingsRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0" />
+        /// The settings of the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-get?view=graph-rest-1.0";
+            command.Description = "The settings of the lifecycle workflows instance.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -68,14 +67,13 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return command;
         }
         /// <summary>
-        /// Update the properties of a lifecycleManagementSettings object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property settings in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a lifecycleManagementSettings object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecyclemanagementsettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property settings in identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -128,7 +126,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object.
+        /// The settings of the lifecycle workflows instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -147,7 +145,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a lifecycleManagementSettings object.
+        /// Update the navigation property settings in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -168,7 +166,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a lifecycleManagementSettings object.
+        /// The settings of the lifecycle workflows instance.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters 
         {

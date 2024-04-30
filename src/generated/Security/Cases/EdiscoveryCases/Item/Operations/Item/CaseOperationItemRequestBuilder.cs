@@ -62,14 +62,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-caseoperation-get?view=graph-rest-1.0" />
+        /// Returns a list of case caseOperation objects for this case.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a caseOperation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-caseoperation-get?view=graph-rest-1.0";
+            command.Description = "Returns a list of case caseOperation objects for this case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object.
+        /// Returns a list of case caseOperation objects for this case.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a caseOperation object.
+        /// Returns a list of case caseOperation objects for this case.
         /// </summary>
         public class CaseOperationItemRequestBuilderGetQueryParameters 
         {

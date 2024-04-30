@@ -128,13 +128,12 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf {
         }
         /// <summary>
         /// Get transitiveMemberOf from servicePrincipals
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get transitiveMemberOf from servicePrincipals\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Get transitiveMemberOf from servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;

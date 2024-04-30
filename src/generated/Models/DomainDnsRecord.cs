@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class DomainDnsRecord : Entity, IParsable 
+    #pragma warning restore CS1591
     {
-        /// <summary>If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.</summary>
+        /// <summary>If false, the customer must configure this record at the DNS host for Microsoft Online Services to operate correctly with the domain.</summary>
         public bool? IsOptional { get; set; }
         /// <summary>Value used when configuring the name of the DNS record at the DNS host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

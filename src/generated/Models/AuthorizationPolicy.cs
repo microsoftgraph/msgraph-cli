@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class AuthorizationPolicy : PolicyBase, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether users can sign up for email based subscriptions.</summary>
         public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }

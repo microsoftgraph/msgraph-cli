@@ -74,14 +74,13 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-intelligenceprofileindicator-get?view=graph-rest-1.0" />
+        /// Get intelligenceProfileIndicators from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a intelligenceProfileIndicator object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-intelligenceprofileindicator-get?view=graph-rest-1.0";
+            command.Description = "Get intelligenceProfileIndicators from security";
             var intelligenceProfileIndicatorIdOption = new Option<string>("--intelligence-profile-indicator-id", description: "The unique identifier of intelligenceProfileIndicator") {
             };
             intelligenceProfileIndicatorIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object.
+        /// Get intelligenceProfileIndicators from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a intelligenceProfileIndicator object.
+        /// Get intelligenceProfileIndicators from security
         /// </summary>
         public class IntelligenceProfileIndicatorItemRequestBuilderGetQueryParameters 
         {

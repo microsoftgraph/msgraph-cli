@@ -50,14 +50,13 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
             return command;
         }
         /// <summary>
-        /// Get the tenant-wide teamsAppSettings for all Teams apps in the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamsappsettings-get?view=graph-rest-1.0" />
+        /// Represents tenant-wide settings for all Teams apps in the tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the tenant-wide teamsAppSettings for all Teams apps in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamsappsettings-get?view=graph-rest-1.0";
+            command.Description = "Represents tenant-wide settings for all Teams apps in the tenant.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -97,14 +96,13 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
             return command;
         }
         /// <summary>
-        /// Update the tenant-wide teamsAppSettings for all Teams apps in the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamsappsettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property teamsAppSettings in teamwork
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the tenant-wide teamsAppSettings for all Teams apps in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamsappsettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property teamsAppSettings in teamwork";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -176,7 +174,7 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
             return requestInfo;
         }
         /// <summary>
-        /// Get the tenant-wide teamsAppSettings for all Teams apps in the tenant.
+        /// Represents tenant-wide settings for all Teams apps in the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +193,7 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the tenant-wide teamsAppSettings for all Teams apps in the tenant.
+        /// Update the navigation property teamsAppSettings in teamwork
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -216,7 +214,7 @@ namespace ApiSdk.Teamwork.TeamsAppSettings {
             return requestInfo;
         }
         /// <summary>
-        /// Get the tenant-wide teamsAppSettings for all Teams apps in the tenant.
+        /// Represents tenant-wide settings for all Teams apps in the tenant.
         /// </summary>
         public class TeamsAppSettingsRequestBuilderGetQueryParameters 
         {

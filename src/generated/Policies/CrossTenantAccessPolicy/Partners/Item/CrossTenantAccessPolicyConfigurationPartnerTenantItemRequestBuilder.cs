@@ -22,14 +22,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
     public class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0" />
+        /// Delete navigation property partners for policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property partners for policies";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -58,14 +57,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a partner-specific configuration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0" />
+        /// Defines partner-specific configurations for external Microsoft Entra organizations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0";
+            command.Description = "Defines partner-specific configurations for external Microsoft Entra organizations.";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -130,14 +128,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a partner-specific configuration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0" />
+        /// Update the navigation property partners in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property partners in policies";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -196,7 +193,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
         {
         }
         /// <summary>
-        /// Delete a partner-specific configuration in a cross-tenant access policy. If a configuration includes a user synchronization policy, you must first delete the user synchronization policy before you can delete the partner-specific configuration.
+        /// Delete navigation property partners for policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -215,7 +212,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a partner-specific configuration.
+        /// Defines partner-specific configurations for external Microsoft Entra organizations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +231,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a partner-specific configuration.
+        /// Update the navigation property partners in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -255,7 +252,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a partner-specific configuration.
+        /// Defines partner-specific configurations for external Microsoft Entra organizations.
         /// </summary>
         public class CrossTenantAccessPolicyConfigurationPartnerTenantItemRequestBuilderGetQueryParameters 
         {

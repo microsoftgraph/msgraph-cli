@@ -53,14 +53,13 @@ namespace ApiSdk.Security.Labels.FilePlanReferences {
             return command;
         }
         /// <summary>
-        /// Create a new filePlanReferenceTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-fileplanreferences?view=graph-rest-1.0" />
+        /// Create new navigation property to filePlanReferences for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new filePlanReferenceTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-fileplanreferences?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to filePlanReferences for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Security.Labels.FilePlanReferences {
             return command;
         }
         /// <summary>
-        /// Get a list of the filePlanReferenceTemplate objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-fileplanreferences?view=graph-rest-1.0" />
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the filePlanReferenceTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-fileplanreferences?view=graph-rest-1.0";
+            command.Description = "Specifies a unique alpha-numeric identifier for an organization’s retention schedule.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Security.Labels.FilePlanReferences {
         {
         }
         /// <summary>
-        /// Get a list of the filePlanReferenceTemplate objects and their properties.
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Security.Labels.FilePlanReferences {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new filePlanReferenceTemplate object.
+        /// Create new navigation property to filePlanReferences for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Security.Labels.FilePlanReferences {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the filePlanReferenceTemplate objects and their properties.
+        /// Specifies a unique alpha-numeric identifier for an organization’s retention schedule.
         /// </summary>
         public class FilePlanReferencesRequestBuilderGetQueryParameters 
         {

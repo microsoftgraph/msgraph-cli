@@ -273,6 +273,7 @@ namespace ApiSdk.Policies {
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildPartnersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildTemplatesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

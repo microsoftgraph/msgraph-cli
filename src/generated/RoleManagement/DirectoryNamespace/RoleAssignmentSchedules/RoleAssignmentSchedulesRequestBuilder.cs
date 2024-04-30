@@ -122,14 +122,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
             return command;
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0" />
+        /// Schedules for active role assignment operations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the schedules for active role assignment operations.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0";
+            command.Description = "Schedules for active role assignment operations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -231,7 +230,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
         {
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
+        /// Schedules for active role assignment operations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +270,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
             return requestInfo;
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
+        /// Schedules for active role assignment operations.
         /// </summary>
         public class RoleAssignmentSchedulesRequestBuilderGetQueryParameters 
         {

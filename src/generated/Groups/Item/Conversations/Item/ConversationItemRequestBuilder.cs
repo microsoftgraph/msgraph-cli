@@ -22,14 +22,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
     public class ConversationItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete conversation.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0" />
+        /// Delete navigation property conversations for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete conversation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property conversations for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -64,14 +63,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of conversation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0" />
+        /// The group&apos;s conversations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of conversation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-get?view=graph-rest-1.0";
+            command.Description = "The group's conversations.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -157,7 +155,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         {
         }
         /// <summary>
-        /// Delete conversation.
+        /// Delete navigation property conversations for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -176,7 +174,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of conversation object.
+        /// The group&apos;s conversations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +193,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of conversation object.
+        /// The group&apos;s conversations.
         /// </summary>
         public class ConversationItemRequestBuilderGetQueryParameters 
         {

@@ -20,14 +20,13 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove rejectedSender
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-rejectedsenders?view=graph-rest-1.0" />
+        /// Delete ref of navigation property rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove rejectedSender\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-rejectedsenders?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property rejectedSenders for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove rejectedSender
+        /// Delete ref of navigation property rejectedSenders for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

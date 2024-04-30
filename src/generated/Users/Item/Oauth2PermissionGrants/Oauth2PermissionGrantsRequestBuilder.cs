@@ -51,14 +51,13 @@ namespace ApiSdk.Users.Item.Oauth2PermissionGrants {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0" />
+        /// Get oauth2PermissionGrants from users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0";
+            command.Description = "Get oauth2PermissionGrants from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Users.Item.Oauth2PermissionGrants {
         {
         }
         /// <summary>
-        /// Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
+        /// Get oauth2PermissionGrants from users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Users.Item.Oauth2PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
+        /// Get oauth2PermissionGrants from users
         /// </summary>
         public class Oauth2PermissionGrantsRequestBuilderGetQueryParameters 
         {

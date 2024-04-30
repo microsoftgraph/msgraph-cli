@@ -100,14 +100,13 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles {
             return command;
         }
         /// <summary>
-        /// Get a list of the intelligenceProfile objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-threatintelligence-list-intelprofiles?view=graph-rest-1.0" />
+        /// A list of intelligenceProfile objects.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the intelligenceProfile objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-threatintelligence-list-intelprofiles?view=graph-rest-1.0";
+            command.Description = "A list of intelligenceProfile objects.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +208,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles {
         {
         }
         /// <summary>
-        /// Get a list of the intelligenceProfile objects and their properties.
+        /// A list of intelligenceProfile objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +248,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the intelligenceProfile objects and their properties.
+        /// A list of intelligenceProfile objects.
         /// </summary>
         public class IntelProfilesRequestBuilderGetQueryParameters 
         {

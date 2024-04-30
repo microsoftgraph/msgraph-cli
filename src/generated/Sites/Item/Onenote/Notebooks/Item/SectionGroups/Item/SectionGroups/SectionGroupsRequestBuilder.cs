@@ -51,14 +51,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGro
             return command;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0" />
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
+            command.Description = "The section groups in the section. Read-only. Nullable.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -178,7 +177,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGro
         {
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -197,7 +196,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGro
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters 
         {

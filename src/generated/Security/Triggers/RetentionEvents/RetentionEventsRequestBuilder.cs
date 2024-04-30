@@ -55,14 +55,13 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
             return command;
         }
         /// <summary>
-        /// Create a new retentionEvent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-post?view=graph-rest-1.0" />
+        /// Create new navigation property to retentionEvents for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new retentionEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to retentionEvents for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,14 +100,13 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
             return command;
         }
         /// <summary>
-        /// Get a list of the retentionEvent objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-list?view=graph-rest-1.0" />
+        /// Get retentionEvents from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the retentionEvent objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-list?view=graph-rest-1.0";
+            command.Description = "Get retentionEvents from security";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
         {
         }
         /// <summary>
-        /// Get a list of the retentionEvent objects and their properties.
+        /// Get retentionEvents from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +227,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new retentionEvent object.
+        /// Create new navigation property to retentionEvents for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the retentionEvent objects and their properties.
+        /// Get retentionEvents from security
         /// </summary>
         public class RetentionEventsRequestBuilderGetQueryParameters 
         {

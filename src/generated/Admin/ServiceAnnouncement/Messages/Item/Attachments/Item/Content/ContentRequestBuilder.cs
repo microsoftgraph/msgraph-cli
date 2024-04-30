@@ -22,13 +22,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
     {
         /// <summary>
         /// The attachment content.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The attachment content.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
+            command.Description = "The attachment content.";
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;

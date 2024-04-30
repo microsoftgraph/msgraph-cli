@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod {
     public class GetTeamsDeviceUsageDistributionUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageDistributionUserCounts
+        /// Get the number of Microsoft Teams unique users by device type over the selected time period.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsDeviceUsageDistributionUserCounts";
+            command.Description = "Get the number of Microsoft Teams unique users by device type over the selected time period.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsDeviceUsageDistributionUserCounts
+        /// Get the number of Microsoft Teams unique users by device type over the selected time period.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

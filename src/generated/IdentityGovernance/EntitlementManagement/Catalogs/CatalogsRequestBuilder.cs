@@ -59,14 +59,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return command;
         }
         /// <summary>
-        /// Create a new accessPackageCatalog object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0" />
+        /// Create new navigation property to catalogs for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new accessPackageCatalog object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to catalogs for identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageCatalog objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0" />
+        /// A container for access packages.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of accessPackageCatalog objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0";
+            command.Description = "A container for access packages.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -214,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
         {
         }
         /// <summary>
-        /// Retrieve a list of accessPackageCatalog objects.
+        /// A container for access packages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +231,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new accessPackageCatalog object.
+        /// Create new navigation property to catalogs for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -254,7 +252,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of accessPackageCatalog objects.
+        /// A container for access packages.
         /// </summary>
         public class CatalogsRequestBuilderGetQueryParameters 
         {

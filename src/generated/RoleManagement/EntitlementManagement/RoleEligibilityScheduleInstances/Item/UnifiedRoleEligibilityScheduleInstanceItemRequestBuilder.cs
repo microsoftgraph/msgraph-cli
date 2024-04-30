@@ -94,14 +94,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return command;
         }
         /// <summary>
-        /// Get the instance of a role eligibility.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0" />
+        /// Instances for role eligibility requests.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the instance of a role eligibility.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedroleeligibilityscheduleinstance-get?view=graph-rest-1.0";
+            command.Description = "Instances for role eligibility requests.";
             var unifiedRoleEligibilityScheduleInstanceIdOption = new Option<string>("--unified-role-eligibility-schedule-instance-id", description: "The unique identifier of unifiedRoleEligibilityScheduleInstance") {
             };
             unifiedRoleEligibilityScheduleInstanceIdOption.IsRequired = true;
@@ -265,7 +264,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of a role eligibility.
+        /// Instances for role eligibility requests.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -305,7 +304,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleIns
             return requestInfo;
         }
         /// <summary>
-        /// Get the instance of a role eligibility.
+        /// Instances for role eligibility requests.
         /// </summary>
         public class UnifiedRoleEligibilityScheduleInstanceItemRequestBuilderGetQueryParameters 
         {

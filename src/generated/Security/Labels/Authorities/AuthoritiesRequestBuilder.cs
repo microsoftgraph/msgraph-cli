@@ -53,14 +53,13 @@ namespace ApiSdk.Security.Labels.Authorities {
             return command;
         }
         /// <summary>
-        /// Create a new authorityTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-post-authorities?view=graph-rest-1.0" />
+        /// Create new navigation property to authorities for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new authorityTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-post-authorities?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to authorities for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,14 +98,13 @@ namespace ApiSdk.Security.Labels.Authorities {
             return command;
         }
         /// <summary>
-        /// Get a list of the authorityTemplate objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-list-authorities?view=graph-rest-1.0" />
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the authorityTemplate objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-list-authorities?view=graph-rest-1.0";
+            command.Description = "Specifies the underlying authority that describes the type of content to be retained and its retention schedule.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +206,7 @@ namespace ApiSdk.Security.Labels.Authorities {
         {
         }
         /// <summary>
-        /// Get a list of the authorityTemplate objects and their properties.
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -227,7 +225,7 @@ namespace ApiSdk.Security.Labels.Authorities {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new authorityTemplate object.
+        /// Create new navigation property to authorities for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Security.Labels.Authorities {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the authorityTemplate objects and their properties.
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         public class AuthoritiesRequestBuilderGetQueryParameters 
         {

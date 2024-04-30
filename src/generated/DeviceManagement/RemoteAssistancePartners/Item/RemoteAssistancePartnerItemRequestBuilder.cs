@@ -40,14 +40,13 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a remoteAssistancePartner.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-delete?view=graph-rest-1.0" />
+        /// Delete navigation property remoteAssistancePartners for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a remoteAssistancePartner.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property remoteAssistancePartners for deviceManagement";
             var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
@@ -93,14 +92,13 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the remoteAssistancePartner object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-get?view=graph-rest-1.0" />
+        /// The remote assist partners.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the remoteAssistancePartner object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-get?view=graph-rest-1.0";
+            command.Description = "The remote assist partners.";
             var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
@@ -146,14 +144,13 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a remoteAssistancePartner object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-update?view=graph-rest-1.0" />
+        /// Update the navigation property remoteAssistancePartners in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a remoteAssistancePartner object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property remoteAssistancePartners in deviceManagement";
             var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         {
         }
         /// <summary>
-        /// Deletes a remoteAssistancePartner.
+        /// Delete navigation property remoteAssistancePartners for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the remoteAssistancePartner object.
+        /// The remote assist partners.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a remoteAssistancePartner object.
+        /// Update the navigation property remoteAssistancePartners in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the remoteAssistancePartner object.
+        /// The remote assist partners.
         /// </summary>
         public class RemoteAssistancePartnerItemRequestBuilderGetQueryParameters 
         {

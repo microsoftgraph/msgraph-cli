@@ -98,14 +98,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0" />
+        /// Delete navigation property accessPackages for identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property accessPackages for identityGovernance";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -151,14 +150,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0" />
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-resourcerolescopes?view=graph-rest-1.0";
+            command.Description = "Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -258,14 +256,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return command;
         }
         /// <summary>
-        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0" />
+        /// Update the navigation property accessPackages in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an existing accessPackage object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property accessPackages in identityGovernance";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -351,7 +348,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
         {
         }
         /// <summary>
-        /// Delete an accessPackage object. You cannot delete an access package if it has any accessPackageAssignment.
+        /// Delete navigation property accessPackages for identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -370,7 +367,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -389,7 +386,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an existing accessPackage object to change one or more of its properties, such as the display name or description.
+        /// Update the navigation property accessPackages in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -410,7 +407,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an access package with a list of accessPackageResourceRoleScope objects. These objects represent the resource roles that an access package assigns to each subject. Each object links to an accessPackageResourceRole and an accessPackageResourceScope.
+        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
         /// </summary>
         public class AccessPackageItemRequestBuilderGetQueryParameters 
         {

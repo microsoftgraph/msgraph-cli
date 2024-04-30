@@ -22,14 +22,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
     public class TeamsTabItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Removes (unpins) a tab from the specified channel within a team. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-delete-tabs?view=graph-rest-1.0" />
+        /// Delete navigation property tabs for teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Removes (unpins) a tab from the specified channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-delete-tabs?view=graph-rest-1.0";
+            command.Description = "Delete navigation property tabs for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -64,14 +63,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a channel within a team. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-tabs?view=graph-rest-1.0" />
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of the specified tab in a channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-tabs?view=graph-rest-1.0";
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -123,14 +121,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of the specified tab.This API can be used to configure the content of the tab.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-patch-tabs?view=graph-rest-1.0" />
+        /// Update the navigation property tabs in teams
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of the specified tab.This API can be used to configure the content of the tab.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-patch-tabs?view=graph-rest-1.0";
+            command.Description = "Update the navigation property tabs in teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
         {
         }
         /// <summary>
-        /// Removes (unpins) a tab from the specified channel within a team. 
+        /// Delete navigation property tabs for teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of the specified tab.This API can be used to configure the content of the tab.
+        /// Update the navigation property tabs in teams
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified tab in a channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         public class TeamsTabItemRequestBuilderGetQueryParameters 
         {

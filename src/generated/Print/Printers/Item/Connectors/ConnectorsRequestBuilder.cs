@@ -51,14 +51,13 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of printConnectors associated with the printer.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-list-connectors?view=graph-rest-1.0" />
+        /// The connectors that are associated with the printer.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of printConnectors associated with the printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-list-connectors?view=graph-rest-1.0";
+            command.Description = "The connectors that are associated with the printer.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
         {
         }
         /// <summary>
-        /// Retrieve a list of printConnectors associated with the printer.
+        /// The connectors that are associated with the printer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Print.Printers.Item.Connectors {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of printConnectors associated with the printer.
+        /// The connectors that are associated with the printer.
         /// </summary>
         public class ConnectorsRequestBuilderGetQueryParameters 
         {

@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
     public class ComplianceManagementPartnerItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a complianceManagementPartner.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-delete?view=graph-rest-1.0" />
+        /// Delete navigation property complianceManagementPartners for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a complianceManagementPartner.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property complianceManagementPartners for deviceManagement";
             var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the complianceManagementPartner object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-get?view=graph-rest-1.0" />
+        /// The list of Compliance Management Partners configured by the tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the complianceManagementPartner object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-get?view=graph-rest-1.0";
+            command.Description = "The list of Compliance Management Partners configured by the tenant.";
             var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a complianceManagementPartner object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-update?view=graph-rest-1.0" />
+        /// Update the navigation property complianceManagementPartners in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a complianceManagementPartner object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-compliancemanagementpartner-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property complianceManagementPartners in deviceManagement";
             var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
         {
         }
         /// <summary>
-        /// Deletes a complianceManagementPartner.
+        /// Delete navigation property complianceManagementPartners for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the complianceManagementPartner object.
+        /// The list of Compliance Management Partners configured by the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a complianceManagementPartner object.
+        /// Update the navigation property complianceManagementPartners in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the complianceManagementPartner object.
+        /// The list of Compliance Management Partners configured by the tenant.
         /// </summary>
         public class ComplianceManagementPartnerItemRequestBuilderGetQueryParameters 
         {

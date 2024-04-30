@@ -78,14 +78,13 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationMethodsPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0" />
+        /// The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an authenticationMethodsPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethodspolicy-get?view=graph-rest-1.0";
+            command.Description = "The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -125,14 +124,13 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return command;
         }
         /// <summary>
-        /// Update the properties of an authenticationMethodsPolicy object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0" />
+        /// Update the navigation property authenticationMethodsPolicy in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an authenticationMethodsPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property authenticationMethodsPolicy in policies";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -204,7 +202,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationMethodsPolicy object.
+        /// The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -223,7 +221,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an authenticationMethodsPolicy object.
+        /// Update the navigation property authenticationMethodsPolicy in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -244,7 +242,7 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an authenticationMethodsPolicy object.
+        /// The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.
         /// </summary>
         public class AuthenticationMethodsPolicyRequestBuilderGetQueryParameters 
         {

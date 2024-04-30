@@ -98,13 +98,13 @@ namespace ApiSdk.Print.Operations {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object.
+        /// The list of print long running operations.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of a printOperation object.";
+            command.Description = "The list of print long running operations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +206,7 @@ namespace ApiSdk.Print.Operations {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object.
+        /// The list of print long running operations.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -246,7 +246,7 @@ namespace ApiSdk.Print.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printOperation object.
+        /// The list of print long running operations.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

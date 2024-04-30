@@ -52,14 +52,13 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             return command;
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0" />
+        /// Get tokenIssuancePolicies from applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
+            command.Description = "Get tokenIssuancePolicies from applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
         {
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
+        /// Get tokenIssuancePolicies from applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
+        /// Get tokenIssuancePolicies from applications
         /// </summary>
         public class TokenIssuancePoliciesRequestBuilderGetQueryParameters 
         {

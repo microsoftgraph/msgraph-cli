@@ -52,14 +52,13 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return command;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
+        /// Users in the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
+            command.Description = "Users in the school. Nullable.";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -186,7 +185,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
         {
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
+        /// Users in the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -205,7 +204,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
+        /// Users in the school. Nullable.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters 
         {

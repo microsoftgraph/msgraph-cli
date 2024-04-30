@@ -21,14 +21,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Lis
     public class ListsRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list?view=graph-rest-1.0" />
+        /// The collection of lists under this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list?view=graph-rest-1.0";
+            command.Description = "The collection of lists under this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -140,14 +139,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Lis
             return command;
         }
         /// <summary>
-        /// Create a new [list][] in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-create?view=graph-rest-1.0" />
+        /// Create new navigation property to lists for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Create a new [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to lists for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -224,7 +222,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Lis
         {
         }
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
+        /// The collection of lists under this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +241,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Lis
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [list][] in a [site][].
+        /// Create new navigation property to lists for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Lis
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include system in your $select statement.
+        /// The collection of lists under this site.
         /// </summary>
         public class ListsRequestBuilderGetQueryParameters 
         {

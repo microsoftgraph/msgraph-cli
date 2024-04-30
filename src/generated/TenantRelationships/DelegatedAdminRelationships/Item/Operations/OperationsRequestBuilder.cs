@@ -104,14 +104,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0" />
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminRelationshipOperation objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0";
+            command.Description = "The long running operations associated with the delegated admin relationship.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

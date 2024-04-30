@@ -51,15 +51,14 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0" />
+        /// The identity providers included in the user flow.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider")]
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the identity providers in a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
+            command.Description = "The identity providers included in the user flow.";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -167,7 +166,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         {
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object.
+        /// The identity providers included in the user flow.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -187,7 +186,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Get the identity providers in a b2xIdentityUserFlow object.
+        /// The identity providers included in the user flow.
         /// </summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters 
         {

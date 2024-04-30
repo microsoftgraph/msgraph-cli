@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
             return command;
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-article-list-indicators?view=graph-rest-1.0" />
+        /// Indicators related to this article.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-article-list-indicators?view=graph-rest-1.0";
+            command.Description = "Indicators related to this article.";
             var articleIdOption = new Option<string>("--article-id", description: "The unique identifier of article") {
             };
             articleIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
         {
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
+        /// Indicators related to this article.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Articles.Item.Indicators {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of articleIndicator objects that represent indicators of threat or compromise related to the contents of an article.
+        /// Indicators related to this article.
         /// </summary>
         public class IndicatorsRequestBuilderGetQueryParameters 
         {

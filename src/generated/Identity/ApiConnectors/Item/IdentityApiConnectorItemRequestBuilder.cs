@@ -22,14 +22,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
     public class IdentityApiConnectorItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an identityApiConnector object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityapiconnector-delete?view=graph-rest-1.0" />
+        /// Delete navigation property apiConnectors for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an identityApiConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityapiconnector-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property apiConnectors for identity";
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
@@ -58,14 +57,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityapiconnector-get?view=graph-rest-1.0" />
+        /// Represents entry point for API connectors.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties of an identityApiConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityapiconnector-get?view=graph-rest-1.0";
+            command.Description = "Represents entry point for API connectors.";
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
@@ -111,14 +109,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an identityApiConnector object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityapiconnector-update?view=graph-rest-1.0" />
+        /// Update the navigation property apiConnectors in identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an identityApiConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityapiconnector-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property apiConnectors in identity";
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         {
         }
         /// <summary>
-        /// Delete an identityApiConnector object.
+        /// Delete navigation property apiConnectors for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
+        /// Represents entry point for API connectors.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an identityApiConnector object.
+        /// Update the navigation property apiConnectors in identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
+        /// Represents entry point for API connectors.
         /// </summary>
         public class IdentityApiConnectorItemRequestBuilderGetQueryParameters 
         {

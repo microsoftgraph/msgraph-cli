@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.CallRecords {
+    #pragma warning disable CS1591
     public class ParticipantEndpoint : Endpoint, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>CPU number of cores used by the media endpoint.</summary>
         public int? CpuCoresCount { get; set; }

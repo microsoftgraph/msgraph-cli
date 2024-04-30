@@ -21,14 +21,13 @@ namespace ApiSdk.Print.Connectors.Item {
     public class PrintConnectorItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete (unregister) a printConnector.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-delete?view=graph-rest-1.0" />
+        /// Delete navigation property connectors for print
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete (unregister) a printConnector.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property connectors for print";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Print.Connectors.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printConnector object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-get?view=graph-rest-1.0" />
+        /// The list of available print connectors.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a printConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-get?view=graph-rest-1.0";
+            command.Description = "The list of available print connectors.";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.Print.Connectors.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a printConnector object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printconnector-update?view=graph-rest-1.0" />
+        /// Update the navigation property connectors in print
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a printConnector object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printconnector-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property connectors in print";
             var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.Print.Connectors.Item {
         {
         }
         /// <summary>
-        /// Delete (unregister) a printConnector.
+        /// Delete navigation property connectors for print
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.Print.Connectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printConnector object.
+        /// The list of available print connectors.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.Print.Connectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a printConnector object.
+        /// Update the navigation property connectors in print
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.Print.Connectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a printConnector object.
+        /// The list of available print connectors.
         /// </summary>
         public class PrintConnectorItemRequestBuilderGetQueryParameters 
         {

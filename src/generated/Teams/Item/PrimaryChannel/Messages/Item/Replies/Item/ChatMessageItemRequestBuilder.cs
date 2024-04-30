@@ -73,14 +73,13 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
+            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -329,7 +328,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -369,7 +368,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Create a new internalDomainFederation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0" />
+        /// Create new navigation property to federationConfiguration for domains
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new internalDomainFederation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to federationConfiguration for domains";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-list-federationconfiguration?view=graph-rest-1.0" />
+        /// Domain settings configured by a customer when federated with Microsoft Entra ID. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-list-federationconfiguration?view=graph-rest-1.0";
+            command.Description = "Domain settings configured by a customer when federated with Microsoft Entra ID. Supports $expand.";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
         {
         }
         /// <summary>
-        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection.
+        /// Domain settings configured by a customer when federated with Microsoft Entra ID. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new internalDomainFederation object.
+        /// Create new navigation property to federationConfiguration for domains
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection.
+        /// Domain settings configured by a customer when federated with Microsoft Entra ID. Supports $expand.
         /// </summary>
         public class FederationConfigurationRequestBuilderGetQueryParameters 
         {

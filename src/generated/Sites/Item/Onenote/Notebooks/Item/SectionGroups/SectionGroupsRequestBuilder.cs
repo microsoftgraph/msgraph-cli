@@ -58,14 +58,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Create a new section group in the specified notebook.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0" />
+        /// Create new navigation property to sectionGroups for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new section group in the specified notebook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to sectionGroups for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -116,14 +115,13 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0" />
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified notebook.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0";
+            command.Description = "The section groups in the notebook. Read-only. Nullable.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -237,7 +235,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
         {
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -256,7 +254,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new section group in the specified notebook.
+        /// Create new navigation property to sectionGroups for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -277,7 +275,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.SectionGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified notebook.
+        /// The section groups in the notebook. Read-only. Nullable.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters 
         {

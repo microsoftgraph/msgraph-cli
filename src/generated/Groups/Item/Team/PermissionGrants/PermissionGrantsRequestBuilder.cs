@@ -104,14 +104,13 @@ namespace ApiSdk.Groups.Item.Team.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the team. This list specifies the Microsoft Entra apps that have access to the team, along with each app&apos;s corresponding type of resource-specific access.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-list-permissiongrants?view=graph-rest-1.0" />
+        /// A collection of permissions granted to apps to access the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants on the team. This list specifies the Microsoft Entra apps that have access to the team, along with each app's corresponding type of resource-specific access.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-list-permissiongrants?view=graph-rest-1.0";
+            command.Description = "A collection of permissions granted to apps to access the team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Groups.Item.Team.PermissionGrants {
         {
         }
         /// <summary>
-        /// List all resource-specific permission grants on the team. This list specifies the Microsoft Entra apps that have access to the team, along with each app&apos;s corresponding type of resource-specific access.
+        /// A collection of permissions granted to apps to access the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Groups.Item.Team.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the team. This list specifies the Microsoft Entra apps that have access to the team, along with each app&apos;s corresponding type of resource-specific access.
+        /// A collection of permissions granted to apps to access the team.
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters 
         {

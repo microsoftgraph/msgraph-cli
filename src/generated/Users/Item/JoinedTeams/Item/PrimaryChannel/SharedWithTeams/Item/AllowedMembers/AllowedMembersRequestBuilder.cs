@@ -51,14 +51,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item
             return command;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0" />
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0";
+            command.Description = "A collection of team members who have access to the shared channel.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -178,7 +177,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item
         {
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -197,7 +196,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with Guest role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         public class AllowedMembersRequestBuilderGetQueryParameters 
         {

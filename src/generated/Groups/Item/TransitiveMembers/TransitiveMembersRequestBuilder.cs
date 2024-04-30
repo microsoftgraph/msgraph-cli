@@ -203,13 +203,12 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         }
         /// <summary>
         /// The direct and transitive members of a group. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The direct and transitive members of a group. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
+            command.Description = "The direct and transitive members of a group. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

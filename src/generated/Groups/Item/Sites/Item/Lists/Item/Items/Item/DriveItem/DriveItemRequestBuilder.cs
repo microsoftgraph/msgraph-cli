@@ -40,13 +40,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem {
             return command;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]";
+            command.Description = "For document libraries, the driveItem relationship exposes the listItem as a driveItem";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -124,7 +124,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem {
         {
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -143,7 +143,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DriveItem {
             return requestInfo;
         }
         /// <summary>
-        /// For document libraries, the driveItem relationship exposes the listItem as a [driveItem][]
+        /// For document libraries, the driveItem relationship exposes the listItem as a driveItem
         /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters 
         {

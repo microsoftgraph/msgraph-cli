@@ -20,14 +20,13 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0" />
+        /// Delete ref of navigation property owners for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property owners for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove an owner from a Microsoft 365 group or a security group through the owners navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
+        /// Delete ref of navigation property owners for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

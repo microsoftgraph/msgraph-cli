@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
+    #pragma warning disable CS1591
     public class EdiscoveryReviewTag : Tag, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.  This value controls whether the UX presents the tags as checkboxes or a radio button group.</summary>
         public ApiSdk.Models.Security.ChildSelectability? ChildSelectability { get; set; }

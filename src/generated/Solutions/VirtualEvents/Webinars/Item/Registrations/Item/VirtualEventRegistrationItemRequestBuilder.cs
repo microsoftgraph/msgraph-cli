@@ -62,14 +62,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a virtualEventRegistration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventregistration-get?view=graph-rest-1.0" />
+        /// Registration records of the webinar.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a virtualEventRegistration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventregistration-get?view=graph-rest-1.0";
+            command.Description = "Registration records of the webinar.";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a virtualEventRegistration object.
+        /// Registration records of the webinar.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Registrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a virtualEventRegistration object.
+        /// Registration records of the webinar.
         /// </summary>
         public class VirtualEventRegistrationItemRequestBuilderGetQueryParameters 
         {

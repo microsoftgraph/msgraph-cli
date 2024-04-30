@@ -57,14 +57,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists {
             return command;
         }
         /// <summary>
-        /// Create a new browserSiteList object to support Internet Explorer mode.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0" />
+        /// Create new navigation property to siteLists for admin
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new browserSiteList object to support Internet Explorer mode.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internetexplorermode-post-sitelists?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to siteLists for admin";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,14 +102,13 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists {
             return command;
         }
         /// <summary>
-        /// Get a list of the browserSiteList objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/internetexplorermode-list-sitelists?view=graph-rest-1.0" />
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the browserSiteList objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/internetexplorermode-list-sitelists?view=graph-rest-1.0";
+            command.Description = "A collection of site lists to support Internet Explorer mode.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists {
         {
         }
         /// <summary>
-        /// Get a list of the browserSiteList objects and their properties.
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new browserSiteList object to support Internet Explorer mode.
+        /// Create new navigation property to siteLists for admin
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the browserSiteList objects and their properties.
+        /// A collection of site lists to support Internet Explorer mode.
         /// </summary>
         public class SiteListsRequestBuilderGetQueryParameters 
         {

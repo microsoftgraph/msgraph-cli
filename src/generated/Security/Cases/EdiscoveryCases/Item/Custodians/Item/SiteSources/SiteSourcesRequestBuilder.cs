@@ -55,14 +55,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return command;
         }
         /// <summary>
-        /// Create a new siteSource object associated with an eDiscovery custodian.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0" />
+        /// Create new navigation property to siteSources for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new siteSource object associated with an eDiscovery custodian.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to siteSources for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -113,14 +112,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return command;
         }
         /// <summary>
-        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-sitesources?view=graph-rest-1.0" />
+        /// Data source entity for SharePoint sites associated with the custodian.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the siteSource objects associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycustodian-list-sitesources?view=graph-rest-1.0";
+            command.Description = "Data source entity for SharePoint sites associated with the custodian.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -234,7 +232,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
         {
         }
         /// <summary>
-        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
+        /// Data source entity for SharePoint sites associated with the custodian.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -253,7 +251,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return requestInfo;
         }
         /// <summary>
-        /// Create a new siteSource object associated with an eDiscovery custodian.
+        /// Create new navigation property to siteSources for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -274,7 +272,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
+        /// Data source entity for SharePoint sites associated with the custodian.
         /// </summary>
         public class SiteSourcesRequestBuilderGetQueryParameters 
         {

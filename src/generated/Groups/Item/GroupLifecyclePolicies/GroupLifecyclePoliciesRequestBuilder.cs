@@ -107,14 +107,13 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             return command;
         }
         /// <summary>
-        /// Retrieves a list of groupLifecyclePolicy objects to which a group belongs.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0" />
+        /// The collection of lifecycle policies for this group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieves a list of groupLifecyclePolicy objects to which a group belongs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0";
+            command.Description = "The collection of lifecycle policies for this group. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -222,7 +221,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
         {
         }
         /// <summary>
-        /// Retrieves a list of groupLifecyclePolicy objects to which a group belongs.
+        /// The collection of lifecycle policies for this group. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +261,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieves a list of groupLifecyclePolicy objects to which a group belongs.
+        /// The collection of lifecycle policies for this group. Read-only. Nullable.
         /// </summary>
         public class GroupLifecyclePoliciesRequestBuilderGetQueryParameters 
         {

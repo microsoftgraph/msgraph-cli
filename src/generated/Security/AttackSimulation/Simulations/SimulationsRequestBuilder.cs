@@ -57,14 +57,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return command;
         }
         /// <summary>
-        /// Create an attack simulation campaign for a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-post-simulation?view=graph-rest-1.0" />
+        /// Create new navigation property to simulations for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an attack simulation campaign for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-post-simulation?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to simulations for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,14 +102,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return command;
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0" />
+        /// Represents an attack simulation training campaign in a tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of attack simulation campaigns for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0";
+            command.Description = "Represents an attack simulation training campaign in a tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
         {
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant.
+        /// Represents an attack simulation training campaign in a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return requestInfo;
         }
         /// <summary>
-        /// Create an attack simulation campaign for a tenant.
+        /// Create new navigation property to simulations for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of attack simulation campaigns for a tenant.
+        /// Represents an attack simulation training campaign in a tenant.
         /// </summary>
         public class SimulationsRequestBuilderGetQueryParameters 
         {

@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to appRoleAssignments for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appRoleAssignments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -106,13 +105,12 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         }
         /// <summary>
         /// Represents the app roles a user has been granted for an application. Supports $expand.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -246,7 +244,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
+        /// Create new navigation property to appRoleAssignments for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -57,14 +57,13 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminCustomer object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0" />
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties of a delegatedAdminCustomer object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/delegatedadmincustomer-get?view=graph-rest-1.0";
+            command.Description = "The customer who has a delegated admin relationship with a Microsoft partner.";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminCustomer object.
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of a delegatedAdminCustomer object.
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         public class DelegatedAdminCustomerItemRequestBuilderGetQueryParameters 
         {

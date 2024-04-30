@@ -136,14 +136,13 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return command;
         }
         /// <summary>
-        /// Get a list of the riskyUser objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0" />
+        /// Users that are flagged as at-risk by Microsoft Entra ID Protection.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the riskyUser objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0";
+            command.Description = "Users that are flagged as at-risk by Microsoft Entra ID Protection.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -245,7 +244,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         {
         }
         /// <summary>
-        /// Get a list of the riskyUser objects and their properties.
+        /// Users that are flagged as at-risk by Microsoft Entra ID Protection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,7 +284,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the riskyUser objects and their properties.
+        /// Users that are flagged as at-risk by Microsoft Entra ID Protection.
         /// </summary>
         public class RiskyUsersRequestBuilderGetQueryParameters 
         {

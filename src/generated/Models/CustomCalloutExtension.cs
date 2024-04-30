@@ -6,7 +6,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class CustomCalloutExtension : Entity, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -61,7 +63,9 @@ namespace ApiSdk.Models {
             {
                 "#microsoft.graph.accessPackageAssignmentRequestWorkflowExtension" => new AccessPackageAssignmentRequestWorkflowExtension(),
                 "#microsoft.graph.accessPackageAssignmentWorkflowExtension" => new AccessPackageAssignmentWorkflowExtension(),
+                "#microsoft.graph.customAuthenticationExtension" => new CustomAuthenticationExtension(),
                 "#microsoft.graph.identityGovernance.customTaskExtension" => new CustomTaskExtension(),
+                "#microsoft.graph.onTokenIssuanceStartCustomExtension" => new OnTokenIssuanceStartCustomExtension(),
                 _ => new CustomCalloutExtension(),
             };
         }

@@ -41,14 +41,13 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Uninstall an app from the personal scope of the specified user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0" />
+        /// Delete navigation property installedApps for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Uninstall an app from the personal scope of the specified user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-delete-installedapps?view=graph-rest-1.0";
+            command.Description = "Delete navigation property installedApps for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -83,14 +82,13 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the app installed in the personal scope of the specified user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/userteamwork-get-installedapps?view=graph-rest-1.0" />
+        /// The apps installed in the personal scope of this user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the app installed in the personal scope of the specified user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-get-installedapps?view=graph-rest-1.0";
+            command.Description = "The apps installed in the personal scope of this user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -247,7 +245,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
         {
         }
         /// <summary>
-        /// Uninstall an app from the personal scope of the specified user.
+        /// Delete navigation property installedApps for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +264,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the app installed in the personal scope of the specified user.
+        /// The apps installed in the personal scope of this user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -306,7 +304,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the app installed in the personal scope of the specified user.
+        /// The apps installed in the personal scope of this user.
         /// </summary>
         public class UserScopeTeamsAppInstallationItemRequestBuilderGetQueryParameters 
         {

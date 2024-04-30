@@ -59,14 +59,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Delete an ediscoveryCase object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0" />
+        /// Delete navigation property ediscoveryCases for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0";
+            command.Description = "Delete navigation property ediscoveryCases for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -95,14 +94,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCase object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0" />
+        /// Get ediscoveryCases from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0";
+            command.Description = "Get ediscoveryCases from security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -238,14 +236,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryCase object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0" />
+        /// Update the navigation property ediscoveryCases in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property ediscoveryCases in security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -411,7 +408,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         {
         }
         /// <summary>
-        /// Delete an ediscoveryCase object.
+        /// Delete navigation property ediscoveryCases for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -430,7 +427,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCase object.
+        /// Get ediscoveryCases from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -449,7 +446,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryCase object.
+        /// Update the navigation property ediscoveryCases in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -470,7 +467,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryCase object.
+        /// Get ediscoveryCases from security
         /// </summary>
         public class EdiscoveryCaseItemRequestBuilderGetQueryParameters 
         {

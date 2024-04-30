@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
     public class EnrollmentConfigurationAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a enrollmentConfigurationAssignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property assignments for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a enrollmentConfigurationAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property assignments for deviceManagement";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the enrollmentConfigurationAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-get?view=graph-rest-1.0" />
+        /// The list of group assignments for the device configuration profile
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the enrollmentConfigurationAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-get?view=graph-rest-1.0";
+            command.Description = "The list of group assignments for the device configuration profile";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             return command;
         }
         /// <summary>
-        /// Update the properties of a enrollmentConfigurationAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-update?view=graph-rest-1.0" />
+        /// Update the navigation property assignments in deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a enrollmentConfigurationAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-enrollmentconfigurationassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignments in deviceManagement";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
         {
         }
         /// <summary>
-        /// Deletes a enrollmentConfigurationAssignment.
+        /// Delete navigation property assignments for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the enrollmentConfigurationAssignment object.
+        /// The list of group assignments for the device configuration profile
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a enrollmentConfigurationAssignment object.
+        /// Update the navigation property assignments in deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the enrollmentConfigurationAssignment object.
+        /// The list of group assignments for the device configuration profile
         /// </summary>
         public class EnrollmentConfigurationAssignmentItemRequestBuilderGetQueryParameters 
         {

@@ -21,14 +21,13 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a homeRealmDiscoveryPolicy from a servicePrincipal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0" />
+        /// Delete ref of navigation property homeRealmDiscoveryPolicies for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a homeRealmDiscoveryPolicy from a servicePrincipal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property homeRealmDiscoveryPolicies for servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return command;
         }
         /// <summary>
-        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0" />
+        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0";
+            command.Description = "The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return command;
         }
         /// <summary>
-        /// Assign a homeRealmDiscoveryPolicy to a servicePrincipal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0" />
+        /// Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Assign a homeRealmDiscoveryPolicy to a servicePrincipal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
         {
         }
         /// <summary>
-        /// Remove a homeRealmDiscoveryPolicy from a servicePrincipal.
+        /// Delete ref of navigation property homeRealmDiscoveryPolicies for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
+        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Assign a homeRealmDiscoveryPolicy to a servicePrincipal.
+        /// Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove a homeRealmDiscoveryPolicy from a servicePrincipal.
+        /// Delete ref of navigation property homeRealmDiscoveryPolicies for servicePrincipals
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
 #endif
         }
         /// <summary>
-        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
+        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

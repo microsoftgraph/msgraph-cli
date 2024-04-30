@@ -124,14 +124,13 @@ namespace ApiSdk.Communications.OnlineMeetings {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
+        /// Get onlineMeetings from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
+            command.Description = "Get onlineMeetings from communications";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -233,7 +232,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
         {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
+        /// Get onlineMeetings from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +272,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report (deprecated) is an online meeting artifact. For details, see Online meeting artifacts and permissions.
+        /// Get onlineMeetings from communications
         /// </summary>
         public class OnlineMeetingsRequestBuilderGetQueryParameters 
         {

@@ -21,14 +21,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
     public class MessageRuleItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete the specified messageRule object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/messagerule-delete?view=graph-rest-1.0" />
+        /// Delete navigation property messageRules for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete the specified messageRule object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property messageRules for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -75,14 +74,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a messageRule object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/messagerule-get?view=graph-rest-1.0" />
+        /// The collection of rules that apply to the user&apos;s Inbox folder.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a messageRule object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-get?view=graph-rest-1.0";
+            command.Description = "The collection of rules that apply to the user's Inbox folder.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -139,14 +137,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             return command;
         }
         /// <summary>
-        /// Change writable properties on a messageRule object and save the changes.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/messagerule-update?view=graph-rest-1.0" />
+        /// Update the navigation property messageRules in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Change writable properties on a messageRule object and save the changes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property messageRules in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -223,7 +220,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
         {
         }
         /// <summary>
-        /// Delete the specified messageRule object.
+        /// Delete navigation property messageRules for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +239,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a messageRule object.
+        /// The collection of rules that apply to the user&apos;s Inbox folder.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +258,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             return requestInfo;
         }
         /// <summary>
-        /// Change writable properties on a messageRule object and save the changes.
+        /// Update the navigation property messageRules in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -282,7 +279,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.MessageRules.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a messageRule object.
+        /// The collection of rules that apply to the user&apos;s Inbox folder.
         /// </summary>
         public class MessageRuleItemRequestBuilderGetQueryParameters 
         {

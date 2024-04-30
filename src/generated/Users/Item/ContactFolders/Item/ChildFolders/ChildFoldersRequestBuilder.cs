@@ -56,14 +56,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0" />
+        /// Create new navigation property to childFolders for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to childFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -131,14 +130,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0" />
+        /// The collection of child folders in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of child folders under the specified contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
+            command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -246,7 +244,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         {
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder.
+        /// The collection of child folders in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user&apos;s default contact folder.
+        /// Create new navigation property to childFolders for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -286,7 +284,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of child folders under the specified contact folder.
+        /// The collection of child folders in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         public class ChildFoldersRequestBuilderGetQueryParameters 
         {

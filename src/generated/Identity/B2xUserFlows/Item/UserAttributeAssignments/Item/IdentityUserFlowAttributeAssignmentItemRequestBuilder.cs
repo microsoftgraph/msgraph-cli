@@ -22,14 +22,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
     public class IdentityUserFlowAttributeAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an identityUserFlowAttributeAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property userAttributeAssignments for identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property userAttributeAssignments for identity";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -64,14 +63,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an identityUserFlowAttributeAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0" />
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0";
+            command.Description = "The user attribute assignments included in the user flow.";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -123,14 +121,13 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a identityUserFlowAttributeAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0" />
+        /// Update the navigation property userAttributeAssignments in identity
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a identityUserFlowAttributeAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property userAttributeAssignments in identity";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         {
         }
         /// <summary>
-        /// Delete an identityUserFlowAttributeAssignment object.
+        /// Delete navigation property userAttributeAssignments for identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an identityUserFlowAttributeAssignment object.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a identityUserFlowAttributeAssignment object.
+        /// Update the navigation property userAttributeAssignments in identity
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an identityUserFlowAttributeAssignment object.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         public class IdentityUserFlowAttributeAssignmentItemRequestBuilderGetQueryParameters 
         {

@@ -50,14 +50,13 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Delete an externalItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property items for external
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property items for external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -92,14 +91,13 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0" />
+        /// Get items from external
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0";
+            command.Description = "Get items from external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -239,7 +237,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
         {
         }
         /// <summary>
-        /// Delete an externalItem object.
+        /// Delete navigation property items for external
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +256,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from external
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -298,7 +296,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from external
         /// </summary>
         public class ExternalItemItemRequestBuilderGetQueryParameters 
         {

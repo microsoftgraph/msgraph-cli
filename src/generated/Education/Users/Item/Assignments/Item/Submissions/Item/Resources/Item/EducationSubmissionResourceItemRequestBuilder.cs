@@ -21,14 +21,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
     public class EducationSubmissionResourceItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to &apos;reset&apos; the resource to its original state. If the resource wasn&apos;t copied from the assignment but was added from the student, the resource is deleted.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0" />
+        /// Delete navigation property resources for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to 'reset' the resource to its original state. If the resource wasn't copied from the assignment but was added from the student, the resource is deleted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property resources for education";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -75,14 +74,13 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the &apos;working&apos; resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmissionresource-get?view=graph-rest-1.0" />
+        /// Get resources from education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the 'working' resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmissionresource-get?view=graph-rest-1.0";
+            command.Description = "Get resources from education";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -229,7 +227,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
         {
         }
         /// <summary>
-        /// Delete an educationSubmissionResource from the submission. Only teachers and students can perform this operation. If the resource was copied from the assignment, a new copy of the resource will be created after the current copy is deleted. This allows you to &apos;reset&apos; the resource to its original state. If the resource wasn&apos;t copied from the assignment but was added from the student, the resource is deleted.
+        /// Delete navigation property resources for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the &apos;working&apos; resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.
+        /// Get resources from education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +286,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Resource
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a specific resource associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. This resource is in the &apos;working&apos; resource list and should be considered work in process by a student. This resource is wrapped with a possible pointer back to the assignment resource if it was copied from the assignment.
+        /// Get resources from education
         /// </summary>
         public class EducationSubmissionResourceItemRequestBuilderGetQueryParameters 
         {

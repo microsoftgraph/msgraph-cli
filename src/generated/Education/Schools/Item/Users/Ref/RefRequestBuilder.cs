@@ -21,14 +21,13 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a user from a school.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0" />
+        /// Delete ref of navigation property users for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a user from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property users for education";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return command;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
+        /// Users in the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
+            command.Description = "Users in the school. Nullable.";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return command;
         }
         /// <summary>
-        /// Add a user to a school.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0" />
+        /// Create new navigation property ref to users for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a user to a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to users for education";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
         {
         }
         /// <summary>
-        /// Delete a user from a school.
+        /// Delete ref of navigation property users for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
+        /// Users in the school. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a user to a school.
+        /// Create new navigation property ref to users for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete a user from a school.
+        /// Delete ref of navigation property users for education
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
 #endif
         }
         /// <summary>
-        /// Get the educationUser resources associated with an educationSchool.
+        /// Users in the school. Nullable.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

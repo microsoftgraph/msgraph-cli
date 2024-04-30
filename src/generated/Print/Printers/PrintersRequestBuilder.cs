@@ -122,14 +122,13 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of printers that are registered in the tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0" />
+        /// The list of printers registered in the tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of printers that are registered in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0";
+            command.Description = "The list of printers registered in the tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -231,7 +230,7 @@ namespace ApiSdk.Print.Printers {
         {
         }
         /// <summary>
-        /// Retrieve the list of printers that are registered in the tenant.
+        /// The list of printers registered in the tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +270,7 @@ namespace ApiSdk.Print.Printers {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of printers that are registered in the tenant.
+        /// The list of printers registered in the tenant.
         /// </summary>
         public class PrintersRequestBuilderGetQueryParameters 
         {

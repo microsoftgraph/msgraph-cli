@@ -104,14 +104,13 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of endpoints exposed by a print service.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printservice-list-endpoints?view=graph-rest-1.0" />
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of endpoints exposed by a print service.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printservice-list-endpoints?view=graph-rest-1.0";
+            command.Description = "Endpoints that can be used to access the service. Read-only. Nullable.";
             var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
         {
         }
         /// <summary>
-        /// Retrieve a list of endpoints exposed by a print service.
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of endpoints exposed by a print service.
+        /// Endpoints that can be used to access the service. Read-only. Nullable.
         /// </summary>
         public class EndpointsRequestBuilderGetQueryParameters 
         {

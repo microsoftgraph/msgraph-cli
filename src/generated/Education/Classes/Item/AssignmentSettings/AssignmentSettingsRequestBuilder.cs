@@ -136,14 +136,13 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignmentsettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property assignmentSettings in education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignmentsettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignmentSettings in education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -240,7 +239,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationAssignmentSettings object. Only teachers can update these settings.
+        /// Update the navigation property assignmentSettings in education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

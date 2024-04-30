@@ -63,14 +63,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryCase object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0" />
+        /// Create new navigation property to ediscoveryCases for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to ediscoveryCases for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0" />
+        /// Get ediscoveryCases from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the ediscoveryCase objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0";
+            command.Description = "Get ediscoveryCases from security";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -218,7 +216,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
         {
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
+        /// Get ediscoveryCases from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +235,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryCase object.
+        /// Create new navigation property to ediscoveryCases for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -258,7 +256,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
+        /// Get ediscoveryCases from security
         /// </summary>
         public class EdiscoveryCasesRequestBuilderGetQueryParameters 
         {

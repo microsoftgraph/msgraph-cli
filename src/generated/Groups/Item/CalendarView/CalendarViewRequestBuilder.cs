@@ -82,13 +82,12 @@ namespace ApiSdk.Groups.Item.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The calendar view for the calendar. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

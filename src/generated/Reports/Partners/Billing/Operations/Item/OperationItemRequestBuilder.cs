@@ -56,14 +56,13 @@ namespace ApiSdk.Reports.Partners.Billing.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an operation object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/partners-billing-operation-get?view=graph-rest-1.0" />
+        /// Represents an operation to export the billing data of a partner.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an operation object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/partners-billing-operation-get?view=graph-rest-1.0";
+            command.Description = "Represents an operation to export the billing data of a partner.";
             var operationIdOption = new Option<string>("--operation-id", description: "The unique identifier of operation") {
             };
             operationIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Reports.Partners.Billing.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an operation object.
+        /// Represents an operation to export the billing data of a partner.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Reports.Partners.Billing.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an operation object.
+        /// Represents an operation to export the billing data of a partner.
         /// </summary>
         public class OperationItemRequestBuilderGetQueryParameters 
         {

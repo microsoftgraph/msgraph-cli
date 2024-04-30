@@ -104,14 +104,13 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Microsoft Entra apps that have access to the group, along with the corresponding resource-specific access that each app has.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0" />
+        /// Get permissionGrants from groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants on the group. This list specifies the Microsoft Entra apps that have access to the group, along with the corresponding resource-specific access that each app has.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0";
+            command.Description = "Get permissionGrants from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         {
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Microsoft Entra apps that have access to the group, along with the corresponding resource-specific access that each app has.
+        /// Get permissionGrants from groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Microsoft Entra apps that have access to the group, along with the corresponding resource-specific access that each app has.
+        /// Get permissionGrants from groups
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters 
         {

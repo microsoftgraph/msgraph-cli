@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
     public class ManagedEBookAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a iosVppEBookAssignment.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property assignments for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a iosVppEBookAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-iosvppebookassignment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property assignments for deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedEBookAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-get?view=graph-rest-1.0" />
+        /// The list of assignments for this eBook.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-get?view=graph-rest-1.0";
+            command.Description = "The list of assignments for this eBook.";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -122,14 +120,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a managedEBookAssignment object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-update?view=graph-rest-1.0" />
+        /// Update the navigation property assignments in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a managedEBookAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-books-managedebookassignment-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignments in deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -194,7 +191,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
         {
         }
         /// <summary>
-        /// Deletes a iosVppEBookAssignment.
+        /// Delete navigation property assignments for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +210,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedEBookAssignment object.
+        /// The list of assignments for this eBook.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +229,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a managedEBookAssignment object.
+        /// Update the navigation property assignments in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -253,7 +250,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedEBookAssignment object.
+        /// The list of assignments for this eBook.
         /// </summary>
         public class ManagedEBookAssignmentItemRequestBuilderGetQueryParameters 
         {

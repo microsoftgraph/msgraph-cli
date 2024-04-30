@@ -20,14 +20,13 @@ namespace ApiSdk.Applications.Item.Owners.Item.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove an owner from an application. As a recommended best practice, apps should have at least two owners.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-delete-owners?view=graph-rest-1.0" />
+        /// Delete ref of navigation property owners for applications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove an owner from an application. As a recommended best practice, apps should have at least two owners.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-delete-owners?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property owners for applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Applications.Item.Owners.Item.Ref {
         {
         }
         /// <summary>
-        /// Remove an owner from an application. As a recommended best practice, apps should have at least two owners.
+        /// Delete ref of navigation property owners for applications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

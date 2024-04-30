@@ -21,14 +21,13 @@ namespace ApiSdk.Search.Bookmarks.Item {
     public class BookmarkItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a bookmark object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-bookmark-delete?view=graph-rest-1.0" />
+        /// Delete navigation property bookmarks for search
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a bookmark object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-bookmark-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property bookmarks for search";
             var bookmarkIdOption = new Option<string>("--bookmark-id", description: "The unique identifier of bookmark") {
             };
             bookmarkIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Search.Bookmarks.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookmark object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-bookmark-get?view=graph-rest-1.0" />
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a bookmark object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-bookmark-get?view=graph-rest-1.0";
+            command.Description = "Administrative answer in Microsoft Search results for common search queries in an organization.";
             var bookmarkIdOption = new Option<string>("--bookmark-id", description: "The unique identifier of bookmark") {
             };
             bookmarkIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.Search.Bookmarks.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a bookmark object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/search-bookmark-update?view=graph-rest-1.0" />
+        /// Update the navigation property bookmarks in search
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a bookmark object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/search-bookmark-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property bookmarks in search";
             var bookmarkIdOption = new Option<string>("--bookmark-id", description: "The unique identifier of bookmark") {
             };
             bookmarkIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.Search.Bookmarks.Item {
         {
         }
         /// <summary>
-        /// Delete a bookmark object.
+        /// Delete navigation property bookmarks for search
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.Search.Bookmarks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookmark object.
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.Search.Bookmarks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a bookmark object.
+        /// Update the navigation property bookmarks in search
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.Search.Bookmarks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a bookmark object.
+        /// Administrative answer in Microsoft Search results for common search queries in an organization.
         /// </summary>
         public class BookmarkItemRequestBuilderGetQueryParameters 
         {

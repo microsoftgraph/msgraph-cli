@@ -41,14 +41,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a windowsAutopilotDeviceIdentity.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-delete?view=graph-rest-1.0" />
+        /// Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a windowsAutopilotDeviceIdentity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
@@ -77,14 +76,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-get?view=graph-rest-1.0" />
+        /// The Windows autopilot device identities contained collection.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsAutopilotDeviceIdentity object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-get?view=graph-rest-1.0";
+            command.Description = "The Windows autopilot device identities contained collection.";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
@@ -229,7 +227,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         {
         }
         /// <summary>
-        /// Deletes a windowsAutopilotDeviceIdentity.
+        /// Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
+        /// The Windows autopilot device identities contained collection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +286,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsAutopilotDeviceIdentity object.
+        /// The Windows autopilot device identities contained collection.
         /// </summary>
         public class WindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters 
         {

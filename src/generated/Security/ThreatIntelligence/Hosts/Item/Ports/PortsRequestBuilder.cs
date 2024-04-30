@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports {
             return command;
         }
         /// <summary>
-        /// Get the list of hostPort resources associated with a host.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-ports?view=graph-rest-1.0" />
+        /// The hostPorts associated with a host.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of hostPort resources associated with a host.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-ports?view=graph-rest-1.0";
+            command.Description = "The hostPorts associated with a host.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports {
         {
         }
         /// <summary>
-        /// Get the list of hostPort resources associated with a host.
+        /// The hostPorts associated with a host.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of hostPort resources associated with a host.
+        /// The hostPorts associated with a host.
         /// </summary>
         public class PortsRequestBuilderGetQueryParameters 
         {

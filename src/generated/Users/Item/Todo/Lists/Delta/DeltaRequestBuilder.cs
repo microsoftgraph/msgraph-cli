@@ -20,13 +20,14 @@ namespace ApiSdk.Users.Item.Todo.Lists.Delta {
     public class DeltaRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function delta
+        /// Get a set of todoTaskList resources that have been added, deleted, or removed in Microsoft To Do. A delta function call for todoTaskList is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the todoTaskList. This allows you to maintain and synchronize a local store of a user&apos;s todoTaskList without having to fetch all the todoTaskList from the server every time.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-delta?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function delta";
+            command.Description = "Get a set of todoTaskList resources that have been added, deleted, or removed in Microsoft To Do. A delta function call for todoTaskList is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the todoTaskList. This allows you to maintain and synchronize a local store of a user's todoTaskList without having to fetch all the todoTaskList from the server every time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-delta?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Delta {
         {
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a set of todoTaskList resources that have been added, deleted, or removed in Microsoft To Do. A delta function call for todoTaskList is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the todoTaskList. This allows you to maintain and synchronize a local store of a user&apos;s todoTaskList without having to fetch all the todoTaskList from the server every time.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Delta {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a set of todoTaskList resources that have been added, deleted, or removed in Microsoft To Do. A delta function call for todoTaskList is similar to a GET request, except that by appropriately applying state tokens in one or more of these calls, you can query for incremental changes in the todoTaskList. This allows you to maintain and synchronize a local store of a user&apos;s todoTaskList without having to fetch all the todoTaskList from the server every time.
         /// </summary>
         public class DeltaRequestBuilderGetQueryParameters 
         {

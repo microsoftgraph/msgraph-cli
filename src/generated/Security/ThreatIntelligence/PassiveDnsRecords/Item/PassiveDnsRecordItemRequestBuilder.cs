@@ -75,14 +75,13 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a passiveDnsRecord object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-passivednsrecord-get?view=graph-rest-1.0" />
+        /// Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a passiveDnsRecord object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-passivednsrecord-get?view=graph-rest-1.0";
+            command.Description = "Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.";
             var passiveDnsRecordIdOption = new Option<string>("--passive-dns-record-id", description: "The unique identifier of passiveDnsRecord") {
             };
             passiveDnsRecordIdOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a passiveDnsRecord object.
+        /// Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a passiveDnsRecord object.
+        /// Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.
         /// </summary>
         public class PassiveDnsRecordItemRequestBuilderGetQueryParameters 
         {

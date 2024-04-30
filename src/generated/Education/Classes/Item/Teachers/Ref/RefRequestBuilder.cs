@@ -21,14 +21,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a teacher from an educationClass.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-delete-teachers?view=graph-rest-1.0" />
+        /// Delete ref of navigation property teachers for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a teacher from an educationClass.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-delete-teachers?view=graph-rest-1.0";
+            command.Description = "Delete ref of navigation property teachers for education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -63,14 +62,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
+        /// All teachers in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
+            command.Description = "All teachers in the class. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -150,14 +148,13 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return command;
         }
         /// <summary>
-        /// Add a teacher to a class.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationclass-post-teachers?view=graph-rest-1.0" />
+        /// Create new navigation property ref to teachers for education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Add a teacher to a class.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationclass-post-teachers?view=graph-rest-1.0";
+            command.Description = "Create new navigation property ref to teachers for education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -206,7 +203,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
         {
         }
         /// <summary>
-        /// Remove a teacher from an educationClass.
+        /// Delete ref of navigation property teachers for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +222,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
+        /// All teachers in the class. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +241,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Add a teacher to a class.
+        /// Create new navigation property ref to teachers for education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +262,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Remove a teacher from an educationClass.
+        /// Delete ref of navigation property teachers for education
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters 
         {
@@ -281,7 +278,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers.Ref {
 #endif
         }
         /// <summary>
-        /// Retrieve a list of teachers for a class. Delegated tokens must be members of the class to get the teacher list.
+        /// All teachers in the class. Nullable.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

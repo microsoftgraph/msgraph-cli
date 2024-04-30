@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class VerifiedDomain : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -21,7 +23,7 @@ namespace ApiSdk.Models {
         public bool? IsDefault { get; set; }
         /// <summary>true if this is the initial domain associated with the tenant; otherwise, false.</summary>
         public bool? IsInitial { get; set; }
-        /// <summary>The domain name; for example, contoso.com`.</summary>
+        /// <summary>The domain name; for example, contoso.com.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

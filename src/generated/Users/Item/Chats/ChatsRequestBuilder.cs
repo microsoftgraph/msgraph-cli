@@ -135,14 +135,13 @@ namespace ApiSdk.Users.Item.Chats {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0" />
+        /// Get chats from users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-list?view=graph-rest-1.0";
+            command.Description = "Get chats from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -250,7 +249,7 @@ namespace ApiSdk.Users.Item.Chats {
         {
         }
         /// <summary>
-        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
+        /// Get chats from users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -290,7 +289,7 @@ namespace ApiSdk.Users.Item.Chats {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
+        /// Get chats from users
         /// </summary>
         public class ChatsRequestBuilderGetQueryParameters 
         {

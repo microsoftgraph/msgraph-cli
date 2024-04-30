@@ -51,14 +51,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
             return command;
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0" />
+        /// The access packages that are incompatible with this package. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0";
+            command.Description = "The access packages that are incompatible with this package. Read-only.";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
         {
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
+        /// The access packages that are incompatible with this package. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.
+        /// The access packages that are incompatible with this package. Read-only.
         /// </summary>
         public class AccessPackagesIncompatibleWithRequestBuilderGetQueryParameters 
         {

@@ -61,14 +61,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoverySearch object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0" />
+        /// Create new navigation property to searches for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new ediscoverySearch object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to searches for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -113,14 +112,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return command;
         }
         /// <summary>
-        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0" />
+        /// Returns a list of eDiscoverySearch objects associated with this case.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of ediscoverySearch resources from an eDiscoveryCase object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0";
+            command.Description = "Returns a list of eDiscoverySearch objects associated with this case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -228,7 +226,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
         {
         }
         /// <summary>
-        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        /// Returns a list of eDiscoverySearch objects associated with this case.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +245,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoverySearch object.
+        /// Create new navigation property to searches for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        /// Returns a list of eDiscoverySearch objects associated with this case.
         /// </summary>
         public class SearchesRequestBuilderGetQueryParameters 
         {

@@ -67,14 +67,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0" />
+        /// Create new navigation property to messages for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to messages for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -142,14 +141,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0" />
+        /// The collection of messages in the mailFolder.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
+            command.Description = "The collection of messages in the mailFolder.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -263,7 +261,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         {
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
+        /// The collection of messages in the mailFolder.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -282,7 +280,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder.
+        /// Create new navigation property to messages for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -303,7 +301,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
+        /// The collection of messages in the mailFolder.
         /// </summary>
         public class MessagesRequestBuilderGetQueryParameters 
         {

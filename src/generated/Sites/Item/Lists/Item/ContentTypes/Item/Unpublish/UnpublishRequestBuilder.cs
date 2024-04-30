@@ -20,14 +20,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish {
     public class UnpublishRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType from a content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
+            command.Description = "Unpublish a contentType from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -75,7 +75,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish {
         {
         }
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType from a content type hub site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

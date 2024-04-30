@@ -62,14 +62,13 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a rule or settings defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-get?view=graph-rest-1.0" />
+        /// The collection of rules like approval rules and expiration rules. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a rule or settings defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-get?view=graph-rest-1.0";
+            command.Description = "The collection of rules like approval rules and expiration rules. Supports $expand.";
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
@@ -121,14 +120,13 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
             return command;
         }
         /// <summary>
-        /// Update a rule defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object: For more information about rules for Microsoft Entra roles and examples of updating rules, see the following articles:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0" />
+        /// Update the navigation property rules in policies
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update a rule defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object: For more information about rules for Microsoft Entra roles and examples of updating rules, see the following articles:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property rules in policies";
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
@@ -212,7 +210,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a rule or settings defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:
+        /// The collection of rules like approval rules and expiration rules. Supports $expand.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +229,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update a rule defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object: For more information about rules for Microsoft Entra roles and examples of updating rules, see the following articles:
+        /// Update the navigation property rules in policies
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +250,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a rule or settings defined for a role management policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:
+        /// The collection of rules like approval rules and expiration rules. Supports $expand.
         /// </summary>
         public class UnifiedRoleManagementPolicyRuleItemRequestBuilderGetQueryParameters 
         {

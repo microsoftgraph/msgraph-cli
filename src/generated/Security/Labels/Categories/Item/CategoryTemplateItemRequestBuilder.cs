@@ -22,14 +22,13 @@ namespace ApiSdk.Security.Labels.Categories.Item {
     public class CategoryTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a categoryTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0" />
+        /// Delete navigation property categories for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a categoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-delete-categories?view=graph-rest-1.0";
+            command.Description = "Delete navigation property categories for security";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -58,14 +57,13 @@ namespace ApiSdk.Security.Labels.Categories.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a categoryTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0" />
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a categoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-categorytemplate-get?view=graph-rest-1.0";
+            command.Description = "Specifies a group of similar types of content in a particular department.";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -203,7 +201,7 @@ namespace ApiSdk.Security.Labels.Categories.Item {
         {
         }
         /// <summary>
-        /// Delete a categoryTemplate object.
+        /// Delete navigation property categories for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -222,7 +220,7 @@ namespace ApiSdk.Security.Labels.Categories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a categoryTemplate object.
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +260,7 @@ namespace ApiSdk.Security.Labels.Categories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a categoryTemplate object.
+        /// Specifies a group of similar types of content in a particular department.
         /// </summary>
         public class CategoryTemplateItemRequestBuilderGetQueryParameters 
         {

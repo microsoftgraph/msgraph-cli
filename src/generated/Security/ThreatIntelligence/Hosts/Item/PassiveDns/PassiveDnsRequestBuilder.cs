@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns {
             return command;
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources associated with a host. This is a forward DNS lookup which queries the IP address of the specified host using its hostname. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-passivedns?view=graph-rest-1.0" />
+        /// Passive DNS retrieval about this host.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of passiveDnsRecord resources associated with a host. This is a forward DNS lookup which queries the IP address of the specified host using its hostname. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-passivedns?view=graph-rest-1.0";
+            command.Description = "Passive DNS retrieval about this host.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns {
         {
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources associated with a host. This is a forward DNS lookup which queries the IP address of the specified host using its hostname. 
+        /// Passive DNS retrieval about this host.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources associated with a host. This is a forward DNS lookup which queries the IP address of the specified host using its hostname. 
+        /// Passive DNS retrieval about this host.
         /// </summary>
         public class PassiveDnsRequestBuilderGetQueryParameters 
         {

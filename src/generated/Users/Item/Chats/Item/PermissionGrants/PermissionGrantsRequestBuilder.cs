@@ -110,14 +110,13 @@ namespace ApiSdk.Users.Item.Chats.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the chat. This list specifies the Microsoft Entra apps that have access to the chat, along with the corresponding resource-specific access that each app has.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-list-permissiongrants?view=graph-rest-1.0" />
+        /// A collection of permissions granted to apps for the chat.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants on the chat. This list specifies the Microsoft Entra apps that have access to the chat, along with the corresponding resource-specific access that each app has.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-list-permissiongrants?view=graph-rest-1.0";
+            command.Description = "A collection of permissions granted to apps for the chat.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -231,7 +230,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PermissionGrants {
         {
         }
         /// <summary>
-        /// List all resource-specific permission grants on the chat. This list specifies the Microsoft Entra apps that have access to the chat, along with the corresponding resource-specific access that each app has.
+        /// A collection of permissions granted to apps for the chat.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +270,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the chat. This list specifies the Microsoft Entra apps that have access to the chat, along with the corresponding resource-specific access that each app has.
+        /// A collection of permissions granted to apps for the chat.
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters 
         {

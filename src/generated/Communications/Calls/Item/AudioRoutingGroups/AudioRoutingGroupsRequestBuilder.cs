@@ -53,14 +53,13 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             return command;
         }
         /// <summary>
-        /// Create a new audioRoutingGroup.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-post-audioroutinggroups?view=graph-rest-1.0" />
+        /// Create new navigation property to audioRoutingGroups for communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new audioRoutingGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-post-audioroutinggroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to audioRoutingGroups for communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of audioRoutingGroup objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-list-audioroutinggroups?view=graph-rest-1.0" />
+        /// Get audioRoutingGroups from communications
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of audioRoutingGroup objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-list-audioroutinggroups?view=graph-rest-1.0";
+            command.Description = "Get audioRoutingGroups from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -220,7 +218,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
         {
         }
         /// <summary>
-        /// Retrieve a list of audioRoutingGroup objects.
+        /// Get audioRoutingGroups from communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -239,7 +237,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new audioRoutingGroup.
+        /// Create new navigation property to audioRoutingGroups for communications
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -260,7 +258,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of audioRoutingGroup objects.
+        /// Get audioRoutingGroups from communications
         /// </summary>
         public class AudioRoutingGroupsRequestBuilderGetQueryParameters 
         {

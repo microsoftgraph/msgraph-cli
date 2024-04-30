@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0" />
+        /// Create new navigation property to overrides for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to overrides for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return command;
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0" />
+        /// A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0";
+            command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -207,7 +205,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         {
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
+        /// A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -226,7 +224,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return requestInfo;
         }
         /// <summary>
-        /// Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. Note
+        /// Create new navigation property to overrides for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -247,7 +245,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             return requestInfo;
         }
         /// <summary>
-        /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
+        /// A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.
         /// </summary>
         public class OverridesRequestBuilderGetQueryParameters 
         {

@@ -56,14 +56,13 @@ namespace ApiSdk.Reports.Partners.Billing.Manifests.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a manifest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/partners-billing-manifest-get?view=graph-rest-1.0" />
+        /// Represents metadata for the exported data.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a manifest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/partners-billing-manifest-get?view=graph-rest-1.0";
+            command.Description = "Represents metadata for the exported data.";
             var manifestIdOption = new Option<string>("--manifest-id", description: "The unique identifier of manifest") {
             };
             manifestIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Reports.Partners.Billing.Manifests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a manifest object.
+        /// Represents metadata for the exported data.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Reports.Partners.Billing.Manifests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a manifest object.
+        /// Represents metadata for the exported data.
         /// </summary>
         public class ManifestItemRequestBuilderGetQueryParameters 
         {

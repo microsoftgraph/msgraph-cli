@@ -56,14 +56,13 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0" />
+        /// Get secureScoreControlProfiles from security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an securescorecontrolprofile object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0";
+            command.Description = "Get secureScoreControlProfiles from security";
             var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
@@ -109,14 +108,13 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return command;
         }
         /// <summary>
-        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0" />
+        /// Update the navigation property secureScoreControlProfiles in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property secureScoreControlProfiles in security";
             var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
@@ -194,7 +192,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
+        /// Get secureScoreControlProfiles from security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -213,7 +211,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an editable secureScoreControlProfile object within any integrated solution to change various properties, such as assignedTo or tenantNote.
+        /// Update the navigation property secureScoreControlProfiles in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an securescorecontrolprofile object.
+        /// Get secureScoreControlProfiles from security
         /// </summary>
         public class SecureScoreControlProfileItemRequestBuilderGetQueryParameters 
         {

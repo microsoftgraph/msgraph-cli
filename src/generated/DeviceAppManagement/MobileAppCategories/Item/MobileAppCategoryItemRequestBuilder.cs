@@ -21,14 +21,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
     public class MobileAppCategoryItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Deletes a mobileAppCategory.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-delete?view=graph-rest-1.0" />
+        /// Delete navigation property mobileAppCategories for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a mobileAppCategory.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property mobileAppCategories for deviceAppManagement";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppCategory object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-get?view=graph-rest-1.0" />
+        /// The mobile app categories.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the mobileAppCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-get?view=graph-rest-1.0";
+            command.Description = "The mobile app categories.";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
@@ -110,14 +108,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a mobileAppCategory object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-update?view=graph-rest-1.0" />
+        /// Update the navigation property mobileAppCategories in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a mobileAppCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-mobileappcategory-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property mobileAppCategories in deviceAppManagement";
             var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
@@ -176,7 +173,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
         {
         }
         /// <summary>
-        /// Deletes a mobileAppCategory.
+        /// Delete navigation property mobileAppCategories for deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -195,7 +192,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppCategory object.
+        /// The mobile app categories.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +211,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a mobileAppCategory object.
+        /// Update the navigation property mobileAppCategories in deviceAppManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -235,7 +232,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the mobileAppCategory object.
+        /// The mobile app categories.
         /// </summary>
         public class MobileAppCategoryItemRequestBuilderGetQueryParameters 
         {

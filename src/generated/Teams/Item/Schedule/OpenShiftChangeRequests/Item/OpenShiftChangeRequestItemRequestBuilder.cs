@@ -62,14 +62,13 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openShiftChangeRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/openshiftchangerequest-get?view=graph-rest-1.0" />
+        /// The open shift requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an openShiftChangeRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/openshiftchangerequest-get?view=graph-rest-1.0";
+            command.Description = "The open shift requests in the schedule.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openShiftChangeRequest object.
+        /// The open shift requests in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an openShiftChangeRequest object.
+        /// The open shift requests in the schedule.
         /// </summary>
         public class OpenShiftChangeRequestItemRequestBuilderGetQueryParameters 
         {

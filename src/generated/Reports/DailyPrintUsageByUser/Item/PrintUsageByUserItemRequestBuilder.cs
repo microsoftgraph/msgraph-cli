@@ -56,14 +56,13 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0" />
+        /// Retrieve a list of daily print usage summaries, grouped by user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a user's usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of daily print usage summaries, grouped by user.";
             var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "The unique identifier of printUsageByUser") {
             };
             printUsageByUserIdOption.IsRequired = true;
@@ -193,7 +192,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
+        /// Retrieve a list of daily print usage summaries, grouped by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -233,7 +232,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
+        /// Retrieve a list of daily print usage summaries, grouped by user.
         /// </summary>
         public class PrintUsageByUserItemRequestBuilderGetQueryParameters 
         {

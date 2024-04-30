@@ -20,13 +20,14 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Delta {
     public class DeltaRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationcategory-delta?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function delta";
+            command.Description = "Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationcategory-delta?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -140,7 +141,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Delta {
         {
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +160,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Delta {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly created or updated educationCategory objects without having to perform a full read of the collection.
         /// </summary>
         public class DeltaRequestBuilderGetQueryParameters 
         {

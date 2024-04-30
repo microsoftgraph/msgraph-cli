@@ -104,14 +104,13 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return command;
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0" />
+        /// Learning catalog items for the provider.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider's content in Viva Learning.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0";
+            command.Description = "Learning catalog items for the provider.";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
         {
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
+        /// Learning catalog items for the provider.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
+        /// Learning catalog items for the provider.
         /// </summary>
         public class LearningContentsRequestBuilderGetQueryParameters 
         {

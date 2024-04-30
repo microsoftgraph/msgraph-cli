@@ -113,14 +113,13 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0" />
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0";
+            command.Description = "The transcripts of an online meeting. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -234,7 +233,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts {
         {
         }
         /// <summary>
-        /// Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings.
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +273,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Transcripts {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of callTranscript objects associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings.
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         public class TranscriptsRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityCountsWithPeriod {
     public class GetTeamsTeamActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getTeamsTeamActivityCounts
+        /// Get the number of team activities across Microsoft Teams. The activity types are related to meetings and messages.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getteamsteamactivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsTeamActivityCounts";
+            command.Description = "Get the number of team activities across Microsoft Teams. The activity types are related to meetings and messages.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getteamsteamactivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsTeamActivityCounts
+        /// Get the number of team activities across Microsoft Teams. The activity types are related to meetings and messages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

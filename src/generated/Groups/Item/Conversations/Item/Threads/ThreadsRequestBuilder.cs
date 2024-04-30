@@ -56,14 +56,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return command;
         }
         /// <summary>
-        /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-post-threads?view=graph-rest-1.0" />
+        /// Create new navigation property to threads for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-post-threads?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to threads for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -114,14 +113,13 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return command;
         }
         /// <summary>
-        /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversation-list-threads?view=graph-rest-1.0" />
+        /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the threads in a group conversation. Note: You can also get all the threads of a group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversation-list-threads?view=graph-rest-1.0";
+            command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -229,7 +227,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
         {
         }
         /// <summary>
-        /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
+        /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +246,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new thread in the specified conversation.  A thread and post are created as specified. Use reply thread to further post to that thread. Or, if you get the post ID, you can also reply to that post in that thread. Note: You can also start a new conversation by first creating a thread.
+        /// Create new navigation property to threads for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -269,7 +267,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the threads in a group conversation. Note: You can also get all the threads of a group.
+        /// A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.
         /// </summary>
         public class ThreadsRequestBuilderGetQueryParameters 
         {

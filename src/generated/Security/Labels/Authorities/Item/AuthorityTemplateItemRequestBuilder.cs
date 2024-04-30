@@ -21,14 +21,13 @@ namespace ApiSdk.Security.Labels.Authorities.Item {
     public class AuthorityTemplateItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a authorityTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-labelsroot-delete-authorities?view=graph-rest-1.0" />
+        /// Delete navigation property authorities for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a authorityTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-labelsroot-delete-authorities?view=graph-rest-1.0";
+            command.Description = "Delete navigation property authorities for security";
             var authorityTemplateIdOption = new Option<string>("--authority-template-id", description: "The unique identifier of authorityTemplate") {
             };
             authorityTemplateIdOption.IsRequired = true;
@@ -57,14 +56,13 @@ namespace ApiSdk.Security.Labels.Authorities.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a authorityTemplate object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-authoritytemplate-get?view=graph-rest-1.0" />
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a authorityTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-authoritytemplate-get?view=graph-rest-1.0";
+            command.Description = "Specifies the underlying authority that describes the type of content to be retained and its retention schedule.";
             var authorityTemplateIdOption = new Option<string>("--authority-template-id", description: "The unique identifier of authorityTemplate") {
             };
             authorityTemplateIdOption.IsRequired = true;
@@ -175,7 +173,7 @@ namespace ApiSdk.Security.Labels.Authorities.Item {
         {
         }
         /// <summary>
-        /// Delete a authorityTemplate object.
+        /// Delete navigation property authorities for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -194,7 +192,7 @@ namespace ApiSdk.Security.Labels.Authorities.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a authorityTemplate object.
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -234,7 +232,7 @@ namespace ApiSdk.Security.Labels.Authorities.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a authorityTemplate object.
+        /// Specifies the underlying authority that describes the type of content to be retained and its retention schedule.
         /// </summary>
         public class AuthorityTemplateItemRequestBuilderGetQueryParameters 
         {

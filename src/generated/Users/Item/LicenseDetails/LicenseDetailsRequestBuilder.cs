@@ -122,14 +122,13 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-licensedetails?view=graph-rest-1.0" />
+        /// A collection of this user&apos;s license details. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-licensedetails?view=graph-rest-1.0";
+            command.Description = "A collection of this user's license details. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -237,7 +236,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
         {
         }
         /// <summary>
-        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
+        /// A collection of this user&apos;s license details. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +276,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
+        /// A collection of this user&apos;s license details. Read-only.
         /// </summary>
         public class LicenseDetailsRequestBuilderGetQueryParameters 
         {

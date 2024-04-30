@@ -51,14 +51,13 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
             return command;
         }
         /// <summary>
-        /// Get a list of hostCookie resources.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-cookies?view=graph-rest-1.0" />
+        /// The hostCookies that are associated with this host.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of hostCookie resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-cookies?view=graph-rest-1.0";
+            command.Description = "The hostCookies that are associated with this host.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -166,7 +165,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
         {
         }
         /// <summary>
-        /// Get a list of hostCookie resources.
+        /// The hostCookies that are associated with this host.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -185,7 +184,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of hostCookie resources.
+        /// The hostCookies that are associated with this host.
         /// </summary>
         public class CookiesRequestBuilderGetQueryParameters 
         {

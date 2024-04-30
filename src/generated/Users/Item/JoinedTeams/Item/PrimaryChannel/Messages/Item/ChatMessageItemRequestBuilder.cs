@@ -74,14 +74,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
+        /// A collection of all the messages in the channel. A navigation property. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
+            command.Description = "A collection of all the messages in the channel. A navigation property. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -166,14 +165,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Update a chatMessage object. Except for the policyViolation property, all properties of a chatMessage can be updated in delegated permissions scenarios.Only the policyViolation property of a chatMessage can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation fails. This method doesn&apos;t support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-update?view=graph-rest-1.0" />
+        /// Update the navigation property messages in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update a chatMessage object. Except for the policyViolation property, all properties of a chatMessage can be updated in delegated permissions scenarios.Only the policyViolation property of a chatMessage can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation fails. This method doesn't support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property messages in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -359,7 +357,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// A collection of all the messages in the channel. A navigation property. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -378,7 +376,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update a chatMessage object. Except for the policyViolation property, all properties of a chatMessage can be updated in delegated permissions scenarios.Only the policyViolation property of a chatMessage can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation fails. This method doesn&apos;t support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
+        /// Update the navigation property messages in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -399,7 +397,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// A collection of all the messages in the channel. A navigation property. Nullable.
         /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters 
         {
