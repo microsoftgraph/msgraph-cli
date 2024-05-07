@@ -39,13 +39,14 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
             return command;
         }
         /// <summary>
-        /// Sets a new value for the collection of alertComment.
+        /// Create a comment for an existing alert based on the specified alert id property.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-alert-post-comments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Sets a new value for the collection of alertComment.";
+            command.Description = "Create a comment for an existing alert based on the specified alert id property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-alert-post-comments?view=graph-rest-1.0";
             var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
@@ -112,7 +113,7 @@ namespace ApiSdk.Security.Alerts_v2.Item.Comments {
         {
         }
         /// <summary>
-        /// Sets a new value for the collection of alertComment.
+        /// Create a comment for an existing alert based on the specified alert id property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -20,13 +20,14 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.GetCompatibleHubContentTypes {
     public class GetCompatibleHubContentTypesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getCompatibleHubContentTypes
+        /// Get a list of compatible content types from the content type hub that can be added to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: addCopyFromContentTypeHub and the blog post Syntex Product Updates – August 2021.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getCompatibleHubContentTypes";
+            command.Description = "Get a list of compatible content types from the content type hub that can be added to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a 'push everywhere' to 'pull as needed' approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: addCopyFromContentTypeHub and the blog post Syntex Product Updates – August 2021.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.GetCompatibleHubContentTypes {
         {
         }
         /// <summary>
-        /// Invoke function getCompatibleHubContentTypes
+        /// Get a list of compatible content types from the content type hub that can be added to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: addCopyFromContentTypeHub and the blog post Syntex Product Updates – August 2021.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.GetCompatibleHubContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getCompatibleHubContentTypes
+        /// Get a list of compatible content types from the content type hub that can be added to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: addCopyFromContentTypeHub and the blog post Syntex Product Updates – August 2021.
         /// </summary>
         public class GetCompatibleHubContentTypesRequestBuilderGetQueryParameters 
         {

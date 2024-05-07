@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0" />
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create an outlookCategory object in the user's master list of categories.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to masterCategories for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0" />
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get all the categories that have been defined for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
+            command.Description = "A list of categories defined for the user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -125,6 +123,10 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -153,6 +155,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -168,6 +171,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -196,18 +200,18 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
         /// Instantiates a new <see cref="MasterCategoriesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MasterCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public MasterCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="MasterCategoriesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public MasterCategoriesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public MasterCategoriesRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -226,7 +230,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -247,7 +251,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the categories that have been defined for a user.
+        /// A list of categories defined for the user.
         /// </summary>
         public class MasterCategoriesRequestBuilderGetQueryParameters 
         {
@@ -273,6 +277,16 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

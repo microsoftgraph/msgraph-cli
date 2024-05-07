@@ -31,6 +31,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item {
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -81,14 +82,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item {
             return command;
         }
         /// <summary>
-        /// Get a callRecording object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call recordings from channel meetings. For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/callrecording-get?view=graph-rest-1.0" />
+        /// The recordings of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings. For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/callrecording-get?view=graph-rest-1.0";
+            command.Description = "The recordings of an online meeting. Read-only.";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a callRecording object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call recordings from channel meetings. For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
+        /// The recordings of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +270,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Recordings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a callRecording object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call recordings from channel meetings. For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.
+        /// The recordings of an online meeting. Read-only.
         /// </summary>
         public class CallRecordingItemRequestBuilderGetQueryParameters 
         {

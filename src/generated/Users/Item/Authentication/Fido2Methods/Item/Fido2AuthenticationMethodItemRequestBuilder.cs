@@ -63,14 +63,13 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/fido2authenticationmethod-get?view=graph-rest-1.0" />
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a user's single FIDO2 Security Key Authentication Method object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/fido2authenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "Represents the FIDO2 security keys registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -155,7 +154,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -174,7 +173,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         public class Fido2AuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

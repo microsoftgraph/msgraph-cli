@@ -121,14 +121,13 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets {
             return command;
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0" />
+        /// All sets under the group in a term [store].
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the set objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0";
+            command.Description = "All sets under the group in a term [store].";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -248,7 +247,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets {
         {
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
+        /// All sets under the group in a term [store].
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +287,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
+        /// All sets under the group in a term [store].
         /// </summary>
         public class SetsRequestBuilderGetQueryParameters 
         {

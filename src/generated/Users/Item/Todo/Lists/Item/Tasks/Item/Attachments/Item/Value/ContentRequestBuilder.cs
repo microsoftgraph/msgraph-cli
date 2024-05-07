@@ -20,14 +20,66 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property attachments from users
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0" />
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The unique identifier for an entity. Read-only.";
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
+            };
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
+            };
+            todoTaskIdOption.IsRequired = true;
+            command.AddOption(todoTaskIdOption);
+            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "The unique identifier of attachmentBase") {
+            };
+            attachmentBaseIdOption.IsRequired = true;
+            command.AddOption(attachmentBaseIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
+                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
+                var attachmentBaseId = invocationContext.ParseResult.GetValueForOption(attachmentBaseIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentBaseId is not null) requestInfo.PathParameters.Add("attachmentBase%2Did", attachmentBaseId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property attachments from users\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotask-list-attachments?view=graph-rest-1.0";
+            command.Description = "The unique identifier for an entity. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -79,13 +131,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property attachments in users
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property attachments in users";
+            command.Description = "The unique identifier for an entity. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -161,7 +213,26 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
         {
         }
         /// <summary>
-        /// Get media content for the navigation property attachments from users
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -180,7 +251,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.Attachments.Item.Value {
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property attachments in users
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>

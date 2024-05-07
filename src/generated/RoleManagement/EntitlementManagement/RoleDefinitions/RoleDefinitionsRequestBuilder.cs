@@ -55,14 +55,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             return command;
         }
         /// <summary>
-        /// Create a new custom unifiedRoleDefinition object. This feature requires a Microsoft Entra ID P1 or P2 license.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0" />
+        /// Create new navigation property to roleDefinitions for roleManagement
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new custom unifiedRoleDefinition object. This feature requires a Microsoft Entra ID P1 or P2 license.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/rbacapplication-post-roledefinitions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to roleDefinitions for roleManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new custom unifiedRoleDefinition object. This feature requires a Microsoft Entra ID P1 or P2 license.
+        /// Create new navigation property to roleDefinitions for roleManagement
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

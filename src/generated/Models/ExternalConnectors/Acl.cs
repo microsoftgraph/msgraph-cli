@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.ExternalConnectors {
+    #pragma warning disable CS1591
     public class Acl : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>The accessType property</summary>
         public ApiSdk.Models.ExternalConnectors.AccessType? AccessType { get; set; }

@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class DirectoryObject : Entity, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Date and time when this object was deleted. Always null when the object hasn&apos;t been deleted.</summary>
         public DateTimeOffset? DeletedDateTime { get; set; }
@@ -39,6 +41,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.groupSettingTemplate" => new GroupSettingTemplate(),
                 "#microsoft.graph.homeRealmDiscoveryPolicy" => new HomeRealmDiscoveryPolicy(),
                 "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy" => new IdentitySecurityDefaultsEnforcementPolicy(),
+                "#microsoft.graph.multiTenantOrganizationMember" => new MultiTenantOrganizationMember(),
                 "#microsoft.graph.organization" => new Organization(),
                 "#microsoft.graph.orgContact" => new OrgContact(),
                 "#microsoft.graph.permissionGrantPolicy" => new PermissionGrantPolicy(),

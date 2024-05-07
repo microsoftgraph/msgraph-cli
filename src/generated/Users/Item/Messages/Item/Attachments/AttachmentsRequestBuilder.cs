@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0" />
+        /// Create new navigation property to attachments for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to attachments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -128,14 +127,13 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0" />
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0";
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -144,6 +142,18 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -176,6 +186,9 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -190,6 +203,9 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -220,18 +236,18 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
         /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24select}", pathParameters)
+        public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="AttachmentsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public AttachmentsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24select}", rawUrl)
+        public AttachmentsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +266,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. You can add an attachment to an existing message by posting to its attachments collection, or you canadd an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
+        /// Create new navigation property to attachments for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +287,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters 
         {
@@ -308,6 +324,16 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
 #endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -318,6 +344,12 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
+            /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
+            public int? Skip { get; set; }
+            /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
+            public int? Top { get; set; }
         }
     }
 }

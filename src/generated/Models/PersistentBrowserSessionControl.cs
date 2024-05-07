@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class PersistentBrowserSessionControl : ConditionalAccessSessionControl, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Possible values are: always, never.</summary>
         public PersistentBrowserSessionMode? Mode { get; set; }

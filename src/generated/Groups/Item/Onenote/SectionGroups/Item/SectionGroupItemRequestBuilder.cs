@@ -66,14 +66,13 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0" />
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a sectionGroup object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0";
+            command.Description = "The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -302,7 +301,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object.
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -342,7 +341,7 @@ namespace ApiSdk.Groups.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a sectionGroup object.
+        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         public class SectionGroupItemRequestBuilderGetQueryParameters 
         {

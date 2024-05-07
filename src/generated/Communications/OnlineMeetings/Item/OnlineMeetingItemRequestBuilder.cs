@@ -64,6 +64,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
             var builder = new AttendeeReportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

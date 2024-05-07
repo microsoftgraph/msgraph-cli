@@ -51,13 +51,14 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a claimsMappingPolicy object has been applied to. The claimsMappingPolicy can only be applied to application and servicePrincipal resources.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/claimsmappingpolicy-list-appliesto?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get appliesTo from policies";
+            command.Description = "Get a list of directoryObject objects that a claimsMappingPolicy object has been applied to. The claimsMappingPolicy can only be applied to application and servicePrincipal resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/claimsmappingpolicy-list-appliesto?view=graph-rest-1.0";
             var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "The unique identifier of claimsMappingPolicy") {
             };
             claimsMappingPolicyIdOption.IsRequired = true;
@@ -165,7 +166,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo {
         {
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a claimsMappingPolicy object has been applied to. The claimsMappingPolicy can only be applied to application and servicePrincipal resources.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +185,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo {
             return requestInfo;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a claimsMappingPolicy object has been applied to. The claimsMappingPolicy can only be applied to application and servicePrincipal resources.
         /// </summary>
         public class AppliesToRequestBuilderGetQueryParameters 
         {

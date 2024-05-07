@@ -68,14 +68,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStore {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0" />
+        /// The default termStore under this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
+            command.Description = "The default termStore under this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -133,14 +132,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStore {
             return command;
         }
         /// <summary>
-        /// Update the properties of a store object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0" />
+        /// Update the navigation property termStore in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property termStore in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -230,7 +228,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
+        /// The default termStore under this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a store object.
+        /// Update the navigation property termStore in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -270,7 +268,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
+        /// The default termStore under this site.
         /// </summary>
         public class TermStoreRequestBuilderGetQueryParameters 
         {

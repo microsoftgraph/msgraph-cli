@@ -68,14 +68,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Sort {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablesort object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0" />
+        /// Represents the sorting for the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of tablesort object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0";
+            command.Description = "Represents the sorting for the table. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Sort {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablesort object.
+        /// Represents the sorting for the table. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex.Sort {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of tablesort object.
+        /// Represents the sorting for the table. Read-only.
         /// </summary>
         public class SortRequestBuilderGetQueryParameters 
         {

@@ -75,13 +75,14 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage {
             return command;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.baseSitePage as microsoft.graph.sitePage
+        /// Returns the metadata for a sitePage in the site pages list in a site.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the item of type microsoft.graph.baseSitePage as microsoft.graph.sitePage";
+            command.Description = "Returns the metadata for a sitePage in the site pages list in a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -198,7 +199,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage {
         {
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.baseSitePage as microsoft.graph.sitePage
+        /// Returns the metadata for a sitePage in the site pages list in a site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -217,7 +218,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage {
             return requestInfo;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.baseSitePage as microsoft.graph.sitePage
+        /// Returns the metadata for a sitePage in the site pages list in a site.
         /// </summary>
         public class GraphSitePageRequestBuilderGetQueryParameters 
         {

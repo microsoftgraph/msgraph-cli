@@ -23,14 +23,13 @@ namespace ApiSdk.Education.Users.Item.User {
     public class UserRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0" />
+        /// The directory user that corresponds to this user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the simple directory user that corresponds to this educationUser.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
+            command.Description = "The directory user that corresponds to this user.";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -131,7 +130,7 @@ namespace ApiSdk.Education.Users.Item.User {
         {
         }
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser.
+        /// The directory user that corresponds to this user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -150,7 +149,7 @@ namespace ApiSdk.Education.Users.Item.User {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the simple directory user that corresponds to this educationUser.
+        /// The directory user that corresponds to this user.
         /// </summary>
         public class UserRequestBuilderGetQueryParameters 
         {

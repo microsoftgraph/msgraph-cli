@@ -21,13 +21,14 @@ namespace ApiSdk.Devices.Item.MemberOf.Item.GraphGroup {
     public class GraphGroupRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Get groups and administrative units that this device is a direct member of. This operation is not transitive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.group";
+            command.Description = "Get groups and administrative units that this device is a direct member of. This operation is not transitive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -100,7 +101,7 @@ namespace ApiSdk.Devices.Item.MemberOf.Item.GraphGroup {
         {
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Get groups and administrative units that this device is a direct member of. This operation is not transitive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,7 +120,7 @@ namespace ApiSdk.Devices.Item.MemberOf.Item.GraphGroup {
             return requestInfo;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Get groups and administrative units that this device is a direct member of. This operation is not transitive.
         /// </summary>
         public class GraphGroupRequestBuilderGetQueryParameters 
         {

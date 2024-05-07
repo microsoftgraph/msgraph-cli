@@ -70,14 +70,13 @@ namespace ApiSdk.Users.Item.FollowedSites {
             return command;
         }
         /// <summary>
-        /// List the sites that have been followed by the signed in user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sites-list-followed?view=graph-rest-1.0" />
+        /// Get followedSites from users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the sites that have been followed by the signed in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sites-list-followed?view=graph-rest-1.0";
+            command.Description = "Get followedSites from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -202,7 +201,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
         {
         }
         /// <summary>
-        /// List the sites that have been followed by the signed in user.
+        /// Get followedSites from users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -221,7 +220,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
             return requestInfo;
         }
         /// <summary>
-        /// List the sites that have been followed by the signed in user.
+        /// Get followedSites from users
         /// </summary>
         public class FollowedSitesRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
     public class GetAllMessagesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Retrieve messages across all channels in a team, including text, audio, and video conversations. To learn more about how to use the Microsoft Teams export APIs to export content, see Export content with the Microsoft Teams export APIs.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-getallmessages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getAllMessages";
+            command.Description = "Retrieve messages across all channels in a team, including text, audio, and video conversations. To learn more about how to use the Microsoft Teams export APIs to export content, see Export content with the Microsoft Teams export APIs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-getallmessages?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -140,7 +141,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
         {
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Retrieve messages across all channels in a team, including text, audio, and video conversations. To learn more about how to use the Microsoft Teams export APIs to export content, see Export content with the Microsoft Teams export APIs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +160,7 @@ namespace ApiSdk.Teams.Item.Channels.GetAllMessages {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Retrieve messages across all channels in a team, including text, audio, and video conversations. To learn more about how to use the Microsoft Teams export APIs to export content, see Export content with the Microsoft Teams export APIs.
         /// </summary>
         public class GetAllMessagesRequestBuilderGetQueryParameters 
         {

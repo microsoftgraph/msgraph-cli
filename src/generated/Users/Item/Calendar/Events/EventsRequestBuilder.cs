@@ -66,14 +66,13 @@ namespace ApiSdk.Users.Item.Calendar.Events {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0" />
+        /// Create new navigation property to events for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to events for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -135,14 +134,13 @@ namespace ApiSdk.Users.Item.Calendar.Events {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0" />
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0";
+            command.Description = "The events in the calendar. Navigation property. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -155,6 +153,10 @@ namespace ApiSdk.Users.Item.Calendar.Events {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -188,6 +190,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -204,6 +207,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -233,18 +237,18 @@ namespace ApiSdk.Users.Item.Calendar.Events {
         /// Instantiates a new <see cref="EventsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/events{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public EventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/events{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="EventsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public EventsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/events{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public EventsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendar/events{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +267,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
+        /// Create new navigation property to events for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -284,7 +288,7 @@ namespace ApiSdk.Users.Item.Calendar.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of events in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, orget the instances of an event.
+        /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         public class EventsRequestBuilderGetQueryParameters 
         {
@@ -320,6 +324,16 @@ namespace ApiSdk.Users.Item.Calendar.Events {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

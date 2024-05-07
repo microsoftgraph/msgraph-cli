@@ -105,14 +105,14 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of appRoleAssignment that have been granted to a group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -227,7 +227,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         {
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +267,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the app roles a group has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignment that have been granted to a group.
         /// </summary>
         public class AppRoleAssignmentsRequestBuilderGetQueryParameters 
         {

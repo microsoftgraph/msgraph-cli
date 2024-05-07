@@ -127,14 +127,14 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Get transitiveMemberOf from servicePrincipals
+        /// Get the groups and directory roles that this servicePrincipal is a member of. This operation is transitive and will include all groups that this service principal is a nested member of.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get transitiveMemberOf from servicePrincipals\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Get the groups and directory roles that this servicePrincipal is a member of. This operation is transitive and will include all groups that this service principal is a nested member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -249,7 +249,7 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf {
         {
         }
         /// <summary>
-        /// Get transitiveMemberOf from servicePrincipals
+        /// Get the groups and directory roles that this servicePrincipal is a member of. This operation is transitive and will include all groups that this service principal is a nested member of.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +268,7 @@ namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Get transitiveMemberOf from servicePrincipals
+        /// Get the groups and directory roles that this servicePrincipal is a member of. This operation is transitive and will include all groups that this service principal is a nested member of.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters 
         {

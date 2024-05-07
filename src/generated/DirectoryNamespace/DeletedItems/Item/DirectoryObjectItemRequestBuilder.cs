@@ -66,14 +66,14 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property deletedItems for directory
+        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deletedItems for directory\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0";
+            command.Description = "Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -322,7 +322,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property deletedItems for directory
+        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it cannot be restored. Administrative units cannot be permanently deleted by using the deletedItems API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

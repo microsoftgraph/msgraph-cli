@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
             return command;
         }
         /// <summary>
-        /// Create a new schedulingGroup.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0" />
+        /// Create new navigation property to schedulingGroups for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new schedulingGroup.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to schedulingGroups for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
             return command;
         }
         /// <summary>
-        /// Get the list of schedulingGroups in this schedule.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0" />
+        /// The logical grouping of users in the schedule (usually by role).
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of schedulingGroups in this schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0";
+            command.Description = "The logical grouping of users in the schedule (usually by role).";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -225,7 +223,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
         {
         }
         /// <summary>
-        /// Get the list of schedulingGroups in this schedule.
+        /// The logical grouping of users in the schedule (usually by role).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -244,7 +242,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new schedulingGroup.
+        /// Create new navigation property to schedulingGroups for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of schedulingGroups in this schedule.
+        /// The logical grouping of users in the schedule (usually by role).
         /// </summary>
         public class SchedulingGroupsRequestBuilderGetQueryParameters 
         {

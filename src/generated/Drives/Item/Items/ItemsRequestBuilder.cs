@@ -136,13 +136,14 @@ namespace ApiSdk.Drives.Item.Items {
             return command;
         }
         /// <summary>
-        /// All items contained in the drive. Read-only. Nullable.
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-sharedwithme?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "All items contained in the drive. Read-only. Nullable.";
+            command.Description = "Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-sharedwithme?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -250,7 +251,7 @@ namespace ApiSdk.Drives.Item.Items {
         {
         }
         /// <summary>
-        /// All items contained in the drive. Read-only. Nullable.
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -290,7 +291,7 @@ namespace ApiSdk.Drives.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// All items contained in the drive. Read-only. Nullable.
+        /// Get a list of driveItem objects shared with the owner of a drive. The driveItems returned from the sharedWithMe method always include the remoteItem facet that indicates they are items from a different drive.
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters 
         {

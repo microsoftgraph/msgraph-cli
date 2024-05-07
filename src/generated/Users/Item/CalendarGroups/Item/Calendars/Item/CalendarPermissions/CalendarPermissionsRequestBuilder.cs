@@ -53,14 +53,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return command;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0" />
+        /// Create new navigation property to calendarPermissions for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendarPermissions for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -117,14 +116,13 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return command;
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0" />
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0";
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -231,7 +229,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
         {
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +248,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return requestInfo;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        /// Create new navigation property to calendarPermissions for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +269,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissio
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         public class CalendarPermissionsRequestBuilderGetQueryParameters 
         {

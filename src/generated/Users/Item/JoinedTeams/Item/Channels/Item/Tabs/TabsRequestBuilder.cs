@@ -55,14 +55,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0" />
+        /// Create new navigation property to tabs for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to tabs for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -119,14 +118,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0" />
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve the list of tabs in the specified channel within a team. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
+            command.Description = "A collection of all the tabs in the channel. A navigation property.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -246,7 +244,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
         {
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Add (pin) a tab to the specified channel within a team. The app must be preinstalled in the team and have the configurableTabs property defined in the app manifest.
+        /// Create new navigation property to tabs for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -286,7 +284,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of tabs in the specified channel within a team. 
+        /// A collection of all the tabs in the channel. A navigation property.
         /// </summary>
         public class TabsRequestBuilderGetQueryParameters 
         {

@@ -106,13 +106,13 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
             return command;
         }
         /// <summary>
-        /// Sessions for the virtual event.
+        /// Read the properties and relationships of a virtualEventSession object.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Sessions for the virtual event.";
+            command.Description = "Read the properties and relationships of a virtualEventSession object.";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -220,7 +220,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
         {
         }
         /// <summary>
-        /// Sessions for the virtual event.
+        /// Read the properties and relationships of a virtualEventSession object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +260,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions {
             return requestInfo;
         }
         /// <summary>
-        /// Sessions for the virtual event.
+        /// Read the properties and relationships of a virtualEventSession object.
         /// </summary>
         public class SessionsRequestBuilderGetQueryParameters 
         {

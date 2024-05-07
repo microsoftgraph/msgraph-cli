@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class Domain : Entity, IParsable 
+    #pragma warning restore CS1591
     {
-        /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Microsoft Entra ID performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. Not nullable.</summary>
+        /// <summary>Indicates the configured authentication type for the domain. The value is either Managed or Federated. Managed indicates a cloud managed domain where Microsoft Entra ID performs user authentication. Federated indicates authentication is federated with an identity provider such as the tenant&apos;s on-premises Active Directory via Active Directory Federation Services. Not nullable.  To update this property in delegated scenarios, the calling app must be assigned the Directory.AccessAsUser.All delegated permission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AuthenticationType { get; set; }
@@ -23,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string AvailabilityStatus { get; set; }
 #endif
-        /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
+        /// <summary>The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example, /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? DomainNameReferences { get; set; }
@@ -39,11 +41,11 @@ namespace ApiSdk.Models {
 #else
         public List<InternalDomainFederation> FederationConfiguration { get; set; }
 #endif
-        /// <summary>The value of the property is false if the DNS record management of the domain has been delegated to Microsoft 365. Otherwise, the value is true. Not nullable</summary>
+        /// <summary>The value of the property is false if the DNS record management of the domain is delegated to Microsoft 365. Otherwise, the value is true. Not nullable</summary>
         public bool? IsAdminManaged { get; set; }
-        /// <summary>true if this is the default domain that is used for user creation. There is only one default domain per company. Not nullable</summary>
+        /// <summary>true if this is the default domain that is used for user creation. There&apos;s only one default domain per company. Not nullable</summary>
         public bool? IsDefault { get; set; }
-        /// <summary>true if this is the initial domain created by Microsoft Online Services (contoso.com). There is only one initial domain per company. Not nullable</summary>
+        /// <summary>true if this is the initial domain created by Microsoft Online Services (contoso.com). There&apos;s only one initial domain per company. Not nullable</summary>
         public bool? IsInitial { get; set; }
         /// <summary>true if the domain is a verified root domain. Otherwise, false if the domain is a subdomain or unverified. Not nullable</summary>
         public bool? IsRoot { get; set; }
@@ -65,9 +67,9 @@ namespace ApiSdk.Models {
 #else
         public string Model { get; set; }
 #endif
-        /// <summary>Specifies the number of days before a user receives notification that their password will expire. If the property is not set, a default value of 14 days will be used.</summary>
+        /// <summary>Specifies the number of days before a user receives notification that their password will expire. If the property isn&apos;t set, a default value of 14 days is used.</summary>
         public int? PasswordNotificationWindowInDays { get; set; }
-        /// <summary>Specifies the length of time that a password is valid before it must be changed. If the property is not set, a default value of 90 days will be used.</summary>
+        /// <summary>Specifies the length of time that a password is valid before it must be changed. If the property isn&apos;t set, a default value of 90 days is used.</summary>
         public int? PasswordValidityPeriodInDays { get; set; }
         /// <summary>DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -85,7 +87,7 @@ namespace ApiSdk.Models {
 #else
         public DomainState State { get; set; }
 #endif
-        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values which you can add/remove using Graph API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
+        /// <summary>The capabilities assigned to the domain. Can include 0, 1 or more of following values: Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune. The values that you can add or remove using the API include: Email, OfficeCommunicationsOnline, Yammer. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SupportedServices { get; set; }

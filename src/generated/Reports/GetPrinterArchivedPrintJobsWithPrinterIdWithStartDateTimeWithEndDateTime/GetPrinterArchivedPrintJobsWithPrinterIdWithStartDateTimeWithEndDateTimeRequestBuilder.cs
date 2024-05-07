@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
     public class GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getPrinterArchivedPrintJobs
+        /// Get a list of archived print jobs that were queued for particular printer.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reports-getprinterarchivedprintjobs?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getPrinterArchivedPrintJobs";
+            command.Description = "Get a list of archived print jobs that were queued for particular printer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reports-getprinterarchivedprintjobs?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "Usage: printerId='{printerId}'") {
             };
             printerIdOption.IsRequired = true;
@@ -125,7 +126,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
         {
         }
         /// <summary>
-        /// Invoke function getPrinterArchivedPrintJobs
+        /// Get a list of archived print jobs that were queued for particular printer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -144,7 +145,7 @@ namespace ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTi
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getPrinterArchivedPrintJobs
+        /// Get a list of archived print jobs that were queued for particular printer.
         /// </summary>
         public class GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters 
         {

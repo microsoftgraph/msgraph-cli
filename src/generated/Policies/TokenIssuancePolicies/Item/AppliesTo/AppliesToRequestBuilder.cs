@@ -51,13 +51,14 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenIssuancePolicy object has been applied to. The tokenIssuancePolicy can only be applied to application.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get appliesTo from policies";
+            command.Description = "Get a list of directoryObject objects that a tokenIssuancePolicy object has been applied to. The tokenIssuancePolicy can only be applied to application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
@@ -165,7 +166,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item.AppliesTo {
         {
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenIssuancePolicy object has been applied to. The tokenIssuancePolicy can only be applied to application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +185,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item.AppliesTo {
             return requestInfo;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a tokenIssuancePolicy object has been applied to. The tokenIssuancePolicy can only be applied to application.
         /// </summary>
         public class AppliesToRequestBuilderGetQueryParameters 
         {

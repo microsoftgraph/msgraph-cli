@@ -97,42 +97,6 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Delete a calendar other than the default calendar.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-delete?view=graph-rest-1.0" />
-        /// </summary>
-        /// <returns>A <see cref="Command"/></returns>
-        public Command BuildDeleteCommand()
-        {
-            var command = new Command("delete");
-            command.Description = "Delete a calendar other than the default calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-delete?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
-            };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
-            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            ifMatchOption.IsRequired = false;
-            command.AddOption(ifMatchOption);
-            command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
-                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                var requestInfo = ToDeleteRequestInformation(q => {
-                });
-                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
-                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
-            });
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
@@ -161,14 +125,13 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0" />
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0";
+            command.Description = "The user's primary calendar. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -224,14 +187,13 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Update the properties of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0" />
+        /// Update the navigation property calendar in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property calendar in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -290,26 +252,7 @@ namespace ApiSdk.Users.Item.Calendar {
         {
         }
         /// <summary>
-        /// Delete a calendar other than the default calendar.
-        /// </summary>
-        /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
-        {
-#nullable restore
-#else
-        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
-        {
-#endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
-            requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
-            return requestInfo;
-        }
-        /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -328,7 +271,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group.
+        /// Update the navigation property calendar in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -349,7 +292,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user,or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         public class CalendarRequestBuilderGetQueryParameters 
         {

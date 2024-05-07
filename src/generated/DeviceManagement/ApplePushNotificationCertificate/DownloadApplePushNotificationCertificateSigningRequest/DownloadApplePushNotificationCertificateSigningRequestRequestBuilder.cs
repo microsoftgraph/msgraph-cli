@@ -21,12 +21,13 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApple
     {
         /// <summary>
         /// Download Apple push notification certificate signing request
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-downloadapplepushnotificationcertificatesigningrequest?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Download Apple push notification certificate signing request";
+            command.Description = "Download Apple push notification certificate signing request\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-downloadapplepushnotificationcertificatesigningrequest?view=graph-rest-1.0";
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");

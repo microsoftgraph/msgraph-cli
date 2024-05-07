@@ -53,14 +53,13 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return command;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0" />
+        /// Create new navigation property to calendarPermissions for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendarPermissions for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -105,14 +104,13 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return command;
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0" />
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0";
+            command.Description = "The permissions of the users with whom the calendar is shared.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -125,6 +123,10 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -153,6 +155,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -168,6 +171,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -196,18 +200,18 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
         /// Instantiates a new <see cref="CalendarPermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarPermissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public CalendarPermissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="CalendarPermissionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CalendarPermissionsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions{?%24count,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public CalendarPermissionsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarPermissions{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -226,7 +230,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        /// Create new navigation property to calendarPermissions for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -247,7 +251,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return requestInfo;
         }
         /// <summary>
-        /// Get a collection of calendarPermission resources that describe the identity and roles of users with whom the specified calendar has been shared or delegated. Here, the calendar can be a user calendar or group calendar.
+        /// The permissions of the users with whom the calendar is shared.
         /// </summary>
         public class CalendarPermissionsRequestBuilderGetQueryParameters 
         {
@@ -273,6 +277,16 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

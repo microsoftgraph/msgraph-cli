@@ -175,14 +175,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [list][].
+        /// Get the collection of contentType resources in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
+            command.Description = "Get the collection of contentType resources in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -296,7 +296,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
         {
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [list][].
+        /// Get the collection of contentType resources in a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -336,7 +336,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [list][].
+        /// Get the collection of contentType resources in a list.
         /// </summary>
         public class ContentTypesRequestBuilderGetQueryParameters 
         {

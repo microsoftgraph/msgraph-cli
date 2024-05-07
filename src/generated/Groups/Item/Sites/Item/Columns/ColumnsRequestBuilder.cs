@@ -55,14 +55,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-columns?view=graph-rest-1.0" />
+        /// Create new navigation property to columns for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-columns?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to columns for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -113,14 +112,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-columns?view=graph-rest-1.0" />
+        /// The collection of column definitions reusable across lists under this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-columns?view=graph-rest-1.0";
+            command.Description = "The collection of column definitions reusable across lists under this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -234,7 +232,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
         {
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].
+        /// The collection of column definitions reusable across lists under this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -253,7 +251,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].
+        /// Create new navigation property to columns for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -274,7 +272,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].
+        /// The collection of column definitions reusable across lists under this site.
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters 
         {

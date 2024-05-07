@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
+    #pragma warning disable CS1591
     public class CategoryTemplate : FilePlanDescriptorTemplate, IParsable 
+    #pragma warning restore CS1591
     {
-        /// <summary>The subcategories property</summary>
+        /// <summary>Represents all subcategories under a particular category.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SubcategoryTemplate>? Subcategories { get; set; }

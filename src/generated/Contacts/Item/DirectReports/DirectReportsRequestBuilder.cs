@@ -102,14 +102,14 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             return command;
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
+        /// Get the direct reports for this organizational contact.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0";
+            command.Description = "Get the direct reports for this organizational contact.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         {
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
+        /// Get the direct reports for this organizational contact.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +243,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
             return requestInfo;
         }
         /// <summary>
-        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
+        /// Get the direct reports for this organizational contact.
         /// </summary>
         public class DirectReportsRequestBuilderGetQueryParameters 
         {

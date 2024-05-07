@@ -37,6 +37,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new BackgroundImageRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -55,6 +56,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new BannerLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -73,6 +75,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new CustomCSSRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -133,6 +136,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new FaviconRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -210,6 +214,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new HeaderLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -286,6 +291,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new SquareLogoDarkRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -304,6 +310,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item {
             command.Description = "Provides operations to manage the media for the organization entity.";
             var builder = new SquareLogoRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

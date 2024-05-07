@@ -60,14 +60,13 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Create a new page in the specified section.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-post-pages?view=graph-rest-1.0" />
+        /// Create new navigation property to pages for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new page in the specified section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-post-pages?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to pages for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -118,14 +117,13 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0" />
+        /// The collection of pages in the section.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of page objects from the specified section.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0";
+            command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -239,7 +237,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages {
         {
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section.
+        /// The collection of pages in the section.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +256,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new page in the specified section.
+        /// Create new navigation property to pages for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -279,7 +277,7 @@ namespace ApiSdk.Users.Item.Onenote.Sections.Item.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of page objects from the specified section.
+        /// The collection of pages in the section.  Read-only. Nullable.
         /// </summary>
         public class PagesRequestBuilderGetQueryParameters 
         {

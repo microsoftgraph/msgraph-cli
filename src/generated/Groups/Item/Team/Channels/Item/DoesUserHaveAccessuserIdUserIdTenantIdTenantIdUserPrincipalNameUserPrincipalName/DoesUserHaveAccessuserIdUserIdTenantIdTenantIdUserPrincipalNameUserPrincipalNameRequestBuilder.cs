@@ -20,13 +20,14 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.DoesUserHaveAccessuserIdUserIdTe
     public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function doesUserHaveAccess";
+            command.Description = "Determine whether a user has access to a shared channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-doesuserhaveaccess?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -96,7 +97,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.DoesUserHaveAccessuserIdUserIdTe
         {
         }
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -115,7 +116,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.DoesUserHaveAccessuserIdUserIdTe
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function doesUserHaveAccess
+        /// Determine whether a user has access to a shared channel.
         /// </summary>
         public class DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilderGetQueryParameters 
         {

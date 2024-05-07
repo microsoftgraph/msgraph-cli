@@ -63,14 +63,13 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0" />
+        /// The email address registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a user's single email authentication method object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/emailauthenticationmethod-get?view=graph-rest-1.0";
+            command.Description = "The email address registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -213,7 +212,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object.
+        /// The email address registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -253,7 +252,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user&apos;s single email authentication method object.
+        /// The email address registered to a user for authentication.
         /// </summary>
         public class EmailAuthenticationMethodItemRequestBuilderGetQueryParameters 
         {

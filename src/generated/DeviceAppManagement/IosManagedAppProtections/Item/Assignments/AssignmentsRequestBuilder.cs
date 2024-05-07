@@ -104,13 +104,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
+            command.Description = "List properties and relationships of the targetedManagedAppPolicyAssignment objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-list?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -218,7 +219,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
         {
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +259,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// List properties and relationships of the targetedManagedAppPolicyAssignment objects.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters 
         {

@@ -31,6 +31,7 @@ namespace ApiSdk.Drives.Item.Bundles.Item {
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -40,13 +41,13 @@ namespace ApiSdk.Drives.Item.Bundles.Item {
             return command;
         }
         /// <summary>
-        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        /// Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.";
+            command.Description = "Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -112,7 +113,7 @@ namespace ApiSdk.Drives.Item.Bundles.Item {
         {
         }
         /// <summary>
-        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        /// Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -131,7 +132,7 @@ namespace ApiSdk.Drives.Item.Bundles.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
+        /// Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         public class DriveItemItemRequestBuilderGetQueryParameters 
         {

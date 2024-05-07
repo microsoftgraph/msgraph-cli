@@ -141,14 +141,13 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             return command;
         }
         /// <summary>
-        /// Get the teams in Microsoft Teams that the user is a direct member of.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0" />
+        /// Get joinedTeams from users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the teams in Microsoft Teams that the user is a direct member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0";
+            command.Description = "Get joinedTeams from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -256,7 +255,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
         {
         }
         /// <summary>
-        /// Get the teams in Microsoft Teams that the user is a direct member of.
+        /// Get joinedTeams from users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -296,7 +295,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             return requestInfo;
         }
         /// <summary>
-        /// Get the teams in Microsoft Teams that the user is a direct member of.
+        /// Get joinedTeams from users
         /// </summary>
         public class JoinedTeamsRequestBuilderGetQueryParameters 
         {

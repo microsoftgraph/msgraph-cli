@@ -21,14 +21,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Copy {
     public class CopyRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
+        /// Asynchronously creates a copy of an driveItem (including any children), under a new parent item or with a new name.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0";
+            command.Description = "Asynchronously creates a copy of an driveItem (including any children), under a new parent item or with a new name.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -93,7 +93,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Copy {
         {
         }
         /// <summary>
-        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
+        /// Asynchronously creates a copy of an driveItem (including any children), under a new parent item or with a new name.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

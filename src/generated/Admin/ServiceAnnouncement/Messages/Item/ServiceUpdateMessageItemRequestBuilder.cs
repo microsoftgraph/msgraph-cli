@@ -32,6 +32,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             command.Description = "Provides operations to manage the media for the admin entity.";
             var builder = new AttachmentsArchiveRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)

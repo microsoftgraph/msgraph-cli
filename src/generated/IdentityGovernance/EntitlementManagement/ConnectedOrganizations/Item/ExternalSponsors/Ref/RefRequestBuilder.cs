@@ -63,14 +63,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0" />
+        /// Get ref of externalSponsors from identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a list of a connectedOrganization's external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0";
+            command.Description = "Get ref of externalSponsors from identityGovernance";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -225,7 +224,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Get ref of externalSponsors from identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -281,7 +280,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
 #endif
         }
         /// <summary>
-        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Get ref of externalSponsors from identityGovernance
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

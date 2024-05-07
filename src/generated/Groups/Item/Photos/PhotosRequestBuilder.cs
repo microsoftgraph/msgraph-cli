@@ -55,10 +55,18 @@ namespace ApiSdk.Groups.Item.Photos {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
             var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -79,7 +87,9 @@ namespace ApiSdk.Groups.Item.Photos {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -93,7 +103,9 @@ namespace ApiSdk.Groups.Item.Photos {
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                 });
@@ -120,14 +132,14 @@ namespace ApiSdk.Groups.Item.Photos {
         /// Instantiates a new <see cref="PhotosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public PhotosRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/photos{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="PhotosRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos{?%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public PhotosRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/photos{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -154,6 +166,9 @@ namespace ApiSdk.Groups.Item.Photos {
         /// </summary>
         public class PhotosRequestBuilderGetQueryParameters 
         {
+            /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
+            public bool? Count { get; set; }
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,6 +188,16 @@ namespace ApiSdk.Groups.Item.Photos {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

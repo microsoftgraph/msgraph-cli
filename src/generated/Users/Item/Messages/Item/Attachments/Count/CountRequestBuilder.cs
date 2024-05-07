@@ -35,6 +35,10 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Count {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -42,11 +46,13 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Count {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -65,14 +71,14 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Count {
         /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments/$count{?%24filter}", pathParameters)
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments/$count{?%24filter,%24search}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="CountRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments/$count{?%24filter}", rawUrl)
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments/$count{?%24filter,%24search}", rawUrl)
         {
         }
         /// <summary>
@@ -108,6 +114,16 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Count {
 #else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
         }
     }

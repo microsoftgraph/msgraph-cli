@@ -53,14 +53,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return command;
         }
         /// <summary>
-        /// Create a new additional source associated with an eDiscovery search.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-post-additionalsources?view=graph-rest-1.0" />
+        /// Create new navigation property to additionalSources for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new additional source associated with an eDiscovery search.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-post-additionalsources?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to additionalSources for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -111,14 +110,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return command;
         }
         /// <summary>
-        /// Get the list of additional sources associated with an eDiscovery search.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0" />
+        /// Adds an additional source to the eDiscovery search.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the list of additional sources associated with an eDiscovery search.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverysearch-list-additionalsources?view=graph-rest-1.0";
+            command.Description = "Adds an additional source to the eDiscovery search.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -232,7 +230,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
         {
         }
         /// <summary>
-        /// Get the list of additional sources associated with an eDiscovery search.
+        /// Adds an additional source to the eDiscovery search.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +249,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return requestInfo;
         }
         /// <summary>
-        /// Create a new additional source associated with an eDiscovery search.
+        /// Create new navigation property to additionalSources for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -272,7 +270,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of additional sources associated with an eDiscovery search.
+        /// Adds an additional source to the eDiscovery search.
         /// </summary>
         public class AdditionalSourcesRequestBuilderGetQueryParameters 
         {

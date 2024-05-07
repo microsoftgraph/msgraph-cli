@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityCountsWithPeriod {
     public class GetSkypeForBusinessOrganizerActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessOrganizerActivityCounts
+        /// Get usage trends on the number and type of conference sessions held and organized by users in your organization. Types of conference sessions include IM, audio/video, application sharing, web, dial-in/out - third party, and Dial-in/out Microsoft.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessorganizeractivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessOrganizerActivityCounts";
+            command.Description = "Get usage trends on the number and type of conference sessions held and organized by users in your organization. Types of conference sessions include IM, audio/video, application sharing, web, dial-in/out - third party, and Dial-in/out Microsoft.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessorganizeractivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessOrganizerActivityCounts
+        /// Get usage trends on the number and type of conference sessions held and organized by users in your organization. Types of conference sessions include IM, audio/video, application sharing, web, dial-in/out - third party, and Dial-in/out Microsoft.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

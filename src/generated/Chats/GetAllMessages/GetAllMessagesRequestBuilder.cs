@@ -20,13 +20,14 @@ namespace ApiSdk.Chats.GetAllMessages {
     public class GetAllMessagesRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chats-getallmessages?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getAllMessages";
+            command.Description = "Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chats-getallmessages?view=graph-rest-1.0";
             var modelOption = new Option<string>("--model", description: "The payment model for the API") {
             };
             modelOption.IsRequired = false;
@@ -134,7 +135,7 @@ namespace ApiSdk.Chats.GetAllMessages {
         {
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Chats.GetAllMessages {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getAllMessages
+        /// Get all messages from all chats that a user is a participant in, including one-on-one chats, group chats, and meeting chats.
         /// </summary>
         public class GetAllMessagesRequestBuilderGetQueryParameters 
         {

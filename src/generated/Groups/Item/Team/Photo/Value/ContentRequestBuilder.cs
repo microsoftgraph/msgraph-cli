@@ -20,32 +20,60 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property photo from groups
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
+        /// The profile photo for the team.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The profile photo for the team.";
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The profile photo for the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photo from groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
+            command.Description = "The profile photo for the team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var formatOption = new Option<string>("--format", description: "Format of the content") {
-            };
-            formatOption.IsRequired = false;
-            command.AddOption(formatOption);
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
-                var format = invocationContext.ParseResult.GetValueForOption(formatOption);
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
-                    if (!string.IsNullOrEmpty(format)) q.QueryParameters.Format = format;
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -67,13 +95,13 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property photo in groups
+        /// The profile photo for the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property photo in groups";
+            command.Description = "The profile photo for the team.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -120,28 +148,47 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", pathParameters)
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value{?%24format*}", rawUrl)
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/photo/$value", rawUrl)
         {
         }
         /// <summary>
-        /// Get media content for the navigation property photo from groups
+        /// The profile photo for the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// The profile photo for the team.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -150,7 +197,7 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property photo in groups
+        /// The profile photo for the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
@@ -170,22 +217,6 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
-        }
-        /// <summary>
-        /// Get media content for the navigation property photo from groups
-        /// </summary>
-        public class ContentRequestBuilderGetQueryParameters 
-        {
-            /// <summary>Format of the content</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%24format")]
-            public string? Format { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%24format")]
-            public string Format { get; set; }
-#endif
         }
     }
 }

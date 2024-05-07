@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserCountsWithPeriod {
     public class GetSkypeForBusinessDeviceUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageUserCounts
+        /// Get the usage trends on how many users in your organization have connected using the Skype for Business app. You&apos;ll also get a breakdown by the type of device (Windows, Windows phone, Android phone, iPhone, or iPad) on which the Skype for Business client app is installed and used across your organization.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusageusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessDeviceUsageUserCounts";
+            command.Description = "Get the usage trends on how many users in your organization have connected using the Skype for Business app. You'll also get a breakdown by the type of device (Windows, Windows phone, Android phone, iPhone, or iPad) on which the Skype for Business client app is installed and used across your organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinessdeviceusageusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessDeviceUsageUserCounts
+        /// Get the usage trends on how many users in your organization have connected using the Skype for Business app. You&apos;ll also get a breakdown by the type of device (Windows, Windows phone, Android phone, iPhone, or iPad) on which the Skype for Business client app is installed and used across your organization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

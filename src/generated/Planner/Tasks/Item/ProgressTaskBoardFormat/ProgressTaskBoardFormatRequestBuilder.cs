@@ -109,14 +109,14 @@ namespace ApiSdk.Planner.Tasks.Item.ProgressTaskBoardFormat {
             return command;
         }
         /// <summary>
-        /// Update the navigation property progressTaskBoardFormat in planner
+        /// Update the properties of plannerProgressTaskBoardTaskFormat object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of plannerProgressTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -220,7 +220,7 @@ namespace ApiSdk.Planner.Tasks.Item.ProgressTaskBoardFormat {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property progressTaskBoardFormat in planner
+        /// Update the properties of plannerProgressTaskBoardTaskFormat object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

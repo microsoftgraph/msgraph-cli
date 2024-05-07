@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class RelatedContact : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the user has been consented to access student data.</summary>
         public bool? AccessConsent { get; set; }

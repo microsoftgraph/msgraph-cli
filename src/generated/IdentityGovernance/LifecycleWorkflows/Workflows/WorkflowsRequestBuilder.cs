@@ -65,14 +65,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return command;
         }
         /// <summary>
-        /// Create a new workflow object. You can create up to 50 workflows in a tenant.
+        /// Create a new workflow object. You can create up to 100 workflows in a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new workflow object. You can create up to 50 workflows in a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0";
+            command.Description = "Create a new workflow object. You can create up to 100 workflows in a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-lifecycleworkflowscontainer-post-workflows?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -239,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new workflow object. You can create up to 50 workflows in a tenant.
+        /// Create a new workflow object. You can create up to 100 workflows in a tenant.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

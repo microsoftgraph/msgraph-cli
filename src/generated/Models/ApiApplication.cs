@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class ApiApplication : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>When true, allows an application to use claims mapping without specifying a custom signing key.</summary>
         public bool? AcceptMappedClaims { get; set; }

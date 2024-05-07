@@ -20,13 +20,13 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDetailWithDate {
     public class GetTeamsTeamActivityDetailWithDateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getTeamsTeamActivityDetail
+        /// Get details about Microsoft Teams activity by team. The numbers include activities for both licensed and nonlicensed users.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getTeamsTeamActivityDetail";
+            command.Description = "Get details about Microsoft Teams activity by team. The numbers include activities for both licensed and nonlicensed users.";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +74,7 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getTeamsTeamActivityDetail
+        /// Get details about Microsoft Teams activity by team. The numbers include activities for both licensed and nonlicensed users.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

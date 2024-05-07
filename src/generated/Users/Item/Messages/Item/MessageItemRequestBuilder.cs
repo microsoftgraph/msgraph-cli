@@ -70,6 +70,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -147,14 +148,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0" />
+        /// Delete navigation property messages for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a message in the specified user's mailbox, or delete a relationship of the message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property messages for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -234,13 +234,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -315,14 +314,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an eventMessage object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0" />
+        /// Update the navigation property messages in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an eventMessage object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property messages in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -438,7 +436,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         {
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
+        /// Delete navigation property messages for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -476,7 +474,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an eventMessage object.
+        /// Update the navigation property messages in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class AccessPackageTextInputQuestion : AccessPackageQuestion, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the answer is in single or multiple line format.</summary>
         public bool? IsSingleLineQuestion { get; set; }

@@ -63,13 +63,13 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return command;
         }
         /// <summary>
-        /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
+        /// Nullable. Specifies a list of directoryObject resources that feature is enabled for.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
+            command.Description = "Nullable. Specifies a list of directoryObject resources that feature is enabled for.";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
+        /// Nullable. Specifies a list of directoryObject resources that feature is enabled for.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +280,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
 #endif
         }
         /// <summary>
-        /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
+        /// Nullable. Specifies a list of directoryObject resources that feature is enabled for.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

@@ -2,7 +2,9 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public enum ManagementAgentType
+    #pragma warning restore CS1591
     {
         /// <summary>The device is managed by Exchange server.</summary>
         [EnumMember(Value = "eas")]
@@ -41,6 +43,8 @@ namespace ApiSdk.Models {
         [EnumMember(Value = "microsoft365ManagedMdm")]
         Microsoft365ManagedMdm,
         [EnumMember(Value = "msSense")]
+        #pragma warning disable CS1591
         MsSense,
+        #pragma warning restore CS1591
     }
 }

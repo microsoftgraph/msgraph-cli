@@ -68,14 +68,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0" />
+        /// A collection of stages in the approval decision.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0";
+            command.Description = "A collection of stages in the approval decision.";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -133,14 +132,13 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Approve or deny an approvalStage object in an approval.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0" />
+        /// Update the navigation property stages in identityGovernance
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Approve or deny an approvalStage object in an approval.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property stages in identityGovernance";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -230,7 +228,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
+        /// A collection of stages in the approval decision.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Approve or deny an approvalStage object in an approval.
+        /// Update the navigation property stages in identityGovernance
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -270,7 +268,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
+        /// A collection of stages in the approval decision.
         /// </summary>
         public class ApprovalStageItemRequestBuilderGetQueryParameters 
         {

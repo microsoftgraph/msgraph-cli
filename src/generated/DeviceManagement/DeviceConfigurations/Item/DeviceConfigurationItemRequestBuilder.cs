@@ -73,14 +73,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a editionUpgradeConfiguration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-editionupgradeconfiguration-delete?view=graph-rest-1.0" />
+        /// Deletes a windowsDefenderAdvancedThreatProtectionConfiguration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsdefenderadvancedthreatprotectionconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Deletes a editionUpgradeConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-editionupgradeconfiguration-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a windowsDefenderAdvancedThreatProtectionConfiguration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsdefenderadvancedthreatprotectionconfiguration-delete?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -182,14 +182,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsDefenderAdvancedThreatProtectionConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsdefenderadvancedthreatprotectionconfiguration-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the macOSDeviceFeaturesConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macosdevicefeaturesconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsDefenderAdvancedThreatProtectionConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsdefenderadvancedthreatprotectionconfiguration-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the macOSDeviceFeaturesConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macosdevicefeaturesconfiguration-get?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -252,14 +252,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a windowsPhone81CustomConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-update?view=graph-rest-1.0" />
+        /// Update the properties of a windows10SecureAssessmentConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10secureassessmentconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a windowsPhone81CustomConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windows10SecureAssessmentConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10secureassessmentconfiguration-update?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -364,7 +364,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         {
         }
         /// <summary>
-        /// Deletes a editionUpgradeConfiguration.
+        /// Deletes a windowsDefenderAdvancedThreatProtectionConfiguration.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -383,7 +383,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsDefenderAdvancedThreatProtectionConfiguration object.
+        /// Read properties and relationships of the macOSDeviceFeaturesConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -402,7 +402,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a windowsPhone81CustomConfiguration object.
+        /// Update the properties of a windows10SecureAssessmentConfiguration object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -423,7 +423,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsDefenderAdvancedThreatProtectionConfiguration object.
+        /// Read properties and relationships of the macOSDeviceFeaturesConfiguration object.
         /// </summary>
         public class DeviceConfigurationItemRequestBuilderGetQueryParameters 
         {

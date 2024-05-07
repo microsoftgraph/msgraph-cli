@@ -102,14 +102,14 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
+        /// Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -224,7 +224,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
         {
         }
         /// <summary>
-        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
+        /// Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -243,7 +243,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
+        /// Get groups that this organizational contact is a member of. The API request is transitive, and returns all groups the organizational contact is a nested member of.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters 
         {

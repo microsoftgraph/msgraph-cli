@@ -170,6 +170,10 @@ namespace ApiSdk.DirectoryRoles {
         {
             var command = new Command("list");
             command.Description = "List the directory roles that are activated in the tenant. This operation only returns roles that have been activated. A role becomes activated when an admin activates the role using the Activate directoryRole API. Not all built-in roles are initially activated.  When assigning a role using the Microsoft Entra admin center, the role activation step is implicitly done on the admin's behalf. To get the full list of roles that are available in Microsoft Entra ID, use List directoryRoleTemplates.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryrole-list?view=graph-rest-1.0";
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };
             skipOption.IsRequired = false;
@@ -208,6 +212,7 @@ namespace ApiSdk.DirectoryRoles {
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
@@ -224,6 +229,7 @@ namespace ApiSdk.DirectoryRoles {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
@@ -271,14 +277,14 @@ namespace ApiSdk.DirectoryRoles {
         /// Instantiates a new <see cref="DirectoryRolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryRolesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip}", pathParameters)
+        public DirectoryRolesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryRolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryRolesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip}", rawUrl)
+        public DirectoryRolesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoles{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -382,6 +388,9 @@ namespace ApiSdk.DirectoryRoles {
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
+            /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
+            public int? Top { get; set; }
         }
     }
 }

@@ -106,14 +106,13 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates {
             return command;
         }
         /// <summary>
-        /// List the synchronization templates associated with a given application or service principal.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-list-templates?view=graph-rest-1.0" />
+        /// Preconfigured synchronization settings for a particular application.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the synchronization templates associated with a given application or service principal.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-list-templates?view=graph-rest-1.0";
+            command.Description = "Preconfigured synchronization settings for a particular application.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates {
         {
         }
         /// <summary>
-        /// List the synchronization templates associated with a given application or service principal.
+        /// Preconfigured synchronization settings for a particular application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates {
             return requestInfo;
         }
         /// <summary>
-        /// List the synchronization templates associated with a given application or service principal.
+        /// Preconfigured synchronization settings for a particular application.
         /// </summary>
         public class TemplatesRequestBuilderGetQueryParameters 
         {

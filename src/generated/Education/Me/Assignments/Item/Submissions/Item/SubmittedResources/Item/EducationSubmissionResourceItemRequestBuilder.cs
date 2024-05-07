@@ -68,14 +68,13 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResourc
             return command;
         }
         /// <summary>
-        /// Retrieve a submitted resource. Only teachers, students, and applications with application permissions can perform this operation. Resources are available to a teacher or an application with application permissions after a student submits it, and are available to the student after the teacher returns the submission. Teachers can leave notes in some resources.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0" />
+        /// Get submittedResources from education
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a submitted resource. Only teachers, students, and applications with application permissions can perform this operation. Resources are available to a teacher or an application with application permissions after a student submits it, and are available to the student after the teacher returns the submission. Teachers can leave notes in some resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0";
+            command.Description = "Get submittedResources from education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -229,7 +228,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResourc
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a submitted resource. Only teachers, students, and applications with application permissions can perform this operation. Resources are available to a teacher or an application with application permissions after a student submits it, and are available to the student after the teacher returns the submission. Teachers can leave notes in some resources.
+        /// Get submittedResources from education
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +268,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResourc
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a submitted resource. Only teachers, students, and applications with application permissions can perform this operation. Resources are available to a teacher or an application with application permissions after a student submits it, and are available to the student after the teacher returns the submission. Teachers can leave notes in some resources.
+        /// Get submittedResources from education
         /// </summary>
         public class EducationSubmissionResourceItemRequestBuilderGetQueryParameters 
         {

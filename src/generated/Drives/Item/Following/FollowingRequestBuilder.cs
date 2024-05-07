@@ -53,14 +53,13 @@ namespace ApiSdk.Drives.Item.Following {
             return command;
         }
         /// <summary>
-        /// List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-list-following?view=graph-rest-1.0" />
+        /// The list of items the user is following. Only in OneDrive for Business.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the items that have been followed by the signed in user.This collection includes items that are in the user's drive as well as items they have access to from other drives.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-list-following?view=graph-rest-1.0";
+            command.Description = "The list of items the user is following. Only in OneDrive for Business.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -168,7 +167,7 @@ namespace ApiSdk.Drives.Item.Following {
         {
         }
         /// <summary>
-        /// List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.
+        /// The list of items the user is following. Only in OneDrive for Business.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -187,7 +186,7 @@ namespace ApiSdk.Drives.Item.Following {
             return requestInfo;
         }
         /// <summary>
-        /// List the items that have been followed by the signed in user.This collection includes items that are in the user&apos;s drive as well as items they have access to from other drives.
+        /// The list of items the user is following. Only in OneDrive for Business.
         /// </summary>
         public class FollowingRequestBuilderGetQueryParameters 
         {

@@ -24,6 +24,59 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item.Activit
         /// The content stream, if the item represents a file.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The content stream, if the item represents a file.";
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
+            };
+            groupIdOption.IsRequired = true;
+            command.AddOption(groupIdOption);
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "The unique identifier of itemActivityStat") {
+            };
+            itemActivityStatIdOption.IsRequired = true;
+            command.AddOption(itemActivityStatIdOption);
+            var itemActivityIdOption = new Option<string>("--item-activity-id", description: "The unique identifier of itemActivity") {
+            };
+            itemActivityIdOption.IsRequired = true;
+            command.AddOption(itemActivityIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var itemActivityStatId = invocationContext.ParseResult.GetValueForOption(itemActivityStatIdOption);
+                var itemActivityId = invocationContext.ParseResult.GetValueForOption(itemActivityIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (itemActivityStatId is not null) requestInfo.PathParameters.Add("itemActivityStat%2Did", itemActivityStatId);
+                if (itemActivityId is not null) requestInfo.PathParameters.Add("itemActivity%2Did", itemActivityId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
@@ -163,6 +216,25 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.ItemActivityStats.Item.Activit
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/itemActivityStats/{itemActivityStat%2Did}/activities/{itemActivity%2Did}/driveItem/content{?%24format*}", rawUrl)
         {
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The content stream, if the item represents a file.

@@ -175,13 +175,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignmentPolicies in identityGovernance
+        /// Update an existing accessPackageAssignmentPolicy object to change one or more of its properties, such as the display name or description.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update the navigation property assignmentPolicies in identityGovernance";
+            command.Description = "Update an existing accessPackageAssignmentPolicy object to change one or more of its properties, such as the display name or description.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentpolicy-update?view=graph-rest-1.0";
             var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
@@ -305,7 +306,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignmentPolicies in identityGovernance
+        /// Update an existing accessPackageAssignmentPolicy object to change one or more of its properties, such as the display name or description.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

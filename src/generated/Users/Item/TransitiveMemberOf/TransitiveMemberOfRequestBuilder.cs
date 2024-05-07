@@ -127,14 +127,14 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-transitivememberof?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
         {
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +268,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.
+        /// Get groups, directory roles, and administrative units that the user is a member of through either direct or transitive membership.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters 
         {

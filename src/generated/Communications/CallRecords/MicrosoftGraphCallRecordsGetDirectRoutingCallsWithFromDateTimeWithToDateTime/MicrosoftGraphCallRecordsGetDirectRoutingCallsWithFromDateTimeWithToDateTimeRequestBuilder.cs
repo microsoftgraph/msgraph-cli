@@ -20,13 +20,13 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
     public class MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getDirectRoutingCalls
+        /// Get a log of direct routing calls as a collection of directRoutingLogRow entries.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getDirectRoutingCalls";
+            command.Description = "Get a log of direct routing calls as a collection of directRoutingLogRow entries.";
             var fromDateTimeOption = new Option<string>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
             };
             fromDateTimeOption.IsRequired = true;
@@ -119,7 +119,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
         {
         }
         /// <summary>
-        /// Invoke function getDirectRoutingCalls
+        /// Get a log of direct routing calls as a collection of directRoutingLogRow entries.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +138,7 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getDirectRoutingCalls
+        /// Get a log of direct routing calls as a collection of directRoutingLogRow entries.
         /// </summary>
         public class MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters 
         {

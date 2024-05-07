@@ -21,13 +21,53 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
     {
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.";
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
+            };
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
+            };
+            organizationalBrandingLocalizationIdOption.IsRequired = true;
+            command.AddOption(organizationalBrandingLocalizationIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
+                var organizationalBrandingLocalizationId = invocationContext.ParseResult.GetValueForOption(organizationalBrandingLocalizationIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (organizationalBrandingLocalizationId is not null) requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
+            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -140,6 +180,25 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.Favicon {
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public FaviconRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/localizations/{organizationalBrandingLocalization%2Did}/favicon", rawUrl)
         {
+        }
+        /// <summary>
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.

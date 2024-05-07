@@ -57,14 +57,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0" />
+        /// Create new navigation property to contacts for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contacts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -132,14 +131,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (.../me/contacts), or from the specified contact folder.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0" />
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (.../me/contacts), or from the specified contact folder.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0";
+            command.Description = "The contacts in the folder. Navigation property. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -156,6 +154,10 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -190,6 +192,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -206,6 +209,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -236,18 +240,18 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
         /// Instantiates a new <see cref="ContactsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContactsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public ContactsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContactsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContactsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts{?%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public ContactsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (.../me/contacts), or from the specified contact folder.
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +270,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder.
+        /// Create new navigation property to contacts for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -287,7 +291,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (.../me/contacts), or from the specified contact folder.
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         public class ContactsRequestBuilderGetQueryParameters 
         {
@@ -323,6 +327,16 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

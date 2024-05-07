@@ -105,14 +105,14 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Represents the app roles a user has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignments that are currently granted to a user. This operation also returns app role assignments granted to groups that the user is a direct member of.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of appRoleAssignments that are currently granted to a user. This operation also returns app role assignments granted to groups that the user is a direct member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -227,7 +227,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         {
         }
         /// <summary>
-        /// Represents the app roles a user has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignments that are currently granted to a user. This operation also returns app role assignments granted to groups that the user is a direct member of.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +267,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the app roles a user has been granted for an application. Supports $expand.
+        /// Retrieve the list of appRoleAssignments that are currently granted to a user. This operation also returns app role assignments granted to groups that the user is a direct member of.
         /// </summary>
         public class AppRoleAssignmentsRequestBuilderGetQueryParameters 
         {

@@ -54,13 +54,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Children {
         }
         /// <summary>
         /// Create new navigation property to children for drives
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-post-children?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to children for drives\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-post-children?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to children for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

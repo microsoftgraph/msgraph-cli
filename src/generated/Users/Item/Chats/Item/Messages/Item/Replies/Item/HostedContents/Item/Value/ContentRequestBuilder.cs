@@ -20,14 +20,13 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property hostedContents from users
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
-        public Command BuildGetCommand()
+        public Command BuildDeleteCommand()
         {
-            var command = new Command("get");
-            command.Description = "Get media content for the navigation property hostedContents from users\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
+            var command = new Command("delete");
+            command.Description = "The unique identifier for an entity. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -48,10 +47,65 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
-            var formatOption = new Option<string>("--format", description: "Format of the content") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
-            formatOption.IsRequired = false;
-            command.AddOption(formatOption);
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var chatId = invocationContext.ParseResult.GetValueForOption(chatIdOption);
+                var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
+                var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
+                var chatMessageHostedContentId = invocationContext.ParseResult.GetValueForOption(chatMessageHostedContentIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                if (chatMessageHostedContentId is not null) requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
+            var command = new Command("get");
+            command.Description = "The unique identifier for an entity. Read-only.";
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
+            };
+            chatIdOption.IsRequired = true;
+            command.AddOption(chatIdOption);
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
+            };
+            chatMessageIdOption.IsRequired = true;
+            command.AddOption(chatMessageIdOption);
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
+            };
+            chatMessageId1Option.IsRequired = true;
+            command.AddOption(chatMessageId1Option);
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
+            };
+            chatMessageHostedContentIdOption.IsRequired = true;
+            command.AddOption(chatMessageHostedContentIdOption);
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
@@ -60,12 +114,10 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
                 var chatMessageId = invocationContext.ParseResult.GetValueForOption(chatMessageIdOption);
                 var chatMessageId1 = invocationContext.ParseResult.GetValueForOption(chatMessageId1Option);
                 var chatMessageHostedContentId = invocationContext.ParseResult.GetValueForOption(chatMessageHostedContentIdOption);
-                var format = invocationContext.ParseResult.GetValueForOption(formatOption);
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
-                    if (!string.IsNullOrEmpty(format)) q.QueryParameters.Format = format;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
@@ -91,13 +143,13 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property hostedContents in users
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property hostedContents in users";
+            command.Description = "The unique identifier for an entity. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -168,28 +220,47 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}/$value{?%24format*}", pathParameters)
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}/$value", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}/$value{?%24format*}", rawUrl)
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents/{chatMessageHostedContent%2Did}/$value", rawUrl)
         {
         }
         /// <summary>
-        /// Get media content for the navigation property hostedContents from users
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -198,7 +269,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property hostedContents in users
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
@@ -218,22 +289,6 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
-        }
-        /// <summary>
-        /// Get media content for the navigation property hostedContents from users
-        /// </summary>
-        public class ContentRequestBuilderGetQueryParameters 
-        {
-            /// <summary>Format of the content</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%24format")]
-            public string? Format { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%24format")]
-            public string Format { get; set; }
-#endif
         }
     }
 }

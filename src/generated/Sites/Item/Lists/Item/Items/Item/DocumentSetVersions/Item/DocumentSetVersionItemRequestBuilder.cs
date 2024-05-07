@@ -23,14 +23,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item {
     public class DocumentSetVersionItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete a version of a document set in a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0" />
+        /// Delete navigation property documentSetVersions for sites
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a version of a document set in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property documentSetVersions for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -96,14 +95,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0" />
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a documentSetVersion object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0";
+            command.Description = "Version information for a document set version created by a user.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -267,7 +265,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item {
         {
         }
         /// <summary>
-        /// Delete a version of a document set in a list.
+        /// Delete navigation property documentSetVersions for sites
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +284,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object.
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -326,7 +324,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a documentSetVersion object.
+        /// Version information for a document set version created by a user.
         /// </summary>
         public class DocumentSetVersionItemRequestBuilderGetQueryParameters 
         {

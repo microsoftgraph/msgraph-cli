@@ -39,13 +39,14 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.GraphGroup {
             return command;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get the groups and administrative units that the device is a member of. This API request is transitive, and will also return all groups and administrative units the device is a nested member of.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection";
+            command.Description = "Get the groups and administrative units that the device is a member of. This API request is transitive, and will also return all groups and administrative units the device is a nested member of.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-transitivememberof?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -160,7 +161,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.GraphGroup {
         {
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get the groups and administrative units that the device is a member of. This API request is transitive, and will also return all groups and administrative units the device is a nested member of.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +180,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.GraphGroup {
             return requestInfo;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.group in the microsoft.graph.directoryObject collection
+        /// Get the groups and administrative units that the device is a member of. This API request is transitive, and will also return all groups and administrative units the device is a nested member of.
         /// </summary>
         public class GraphGroupRequestBuilderGetQueryParameters 
         {

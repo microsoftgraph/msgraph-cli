@@ -23,14 +23,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
     public class EdiscoveryReviewSetQueryItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete an ediscoveryReviewSetQuery object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0" />
+        /// Delete navigation property queries for security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an ediscoveryReviewSetQuery object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-delete-queries?view=graph-rest-1.0";
+            command.Description = "Delete navigation property queries for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -71,14 +70,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSetQuery object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-get?view=graph-rest-1.0" />
+        /// Represents queries within the review set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryReviewSetQuery object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-get?view=graph-rest-1.0";
+            command.Description = "Represents queries within the review set.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -170,14 +168,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return command;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryReviewSetQuery object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-update?view=graph-rest-1.0" />
+        /// Update the navigation property queries in security
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an ediscoveryReviewSetQuery object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewsetquery-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property queries in security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -248,7 +245,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         {
         }
         /// <summary>
-        /// Delete an ediscoveryReviewSetQuery object.
+        /// Delete navigation property queries for security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +264,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSetQuery object.
+        /// Represents queries within the review set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -286,7 +283,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an ediscoveryReviewSetQuery object.
+        /// Update the navigation property queries in security
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -307,7 +304,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSetQuery object.
+        /// Represents queries within the review set.
         /// </summary>
         public class EdiscoveryReviewSetQueryItemRequestBuilderGetQueryParameters 
         {

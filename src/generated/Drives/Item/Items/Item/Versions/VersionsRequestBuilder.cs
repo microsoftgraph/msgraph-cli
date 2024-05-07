@@ -113,14 +113,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions {
             return command;
         }
         /// <summary>
-        /// OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings that may be unique per user or location.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0" />
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings that may be unique per user or location.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -234,7 +233,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions {
         {
         }
         /// <summary>
-        /// OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings that may be unique per user or location.
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +273,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions {
             return requestInfo;
         }
         /// <summary>
-        /// OneDrive and SharePoint can be configured to retain the history for files.Depending on the service and configuration, a new version can be created for each edit, each time the file is saved, manually, or never. Previous versions of a document may be retained for a finite period of time depending on admin settings that may be unique per user or location.
+        /// The list of previous versions of the item. For more info, see getting previous versions. Read-only. Nullable.
         /// </summary>
         public class VersionsRequestBuilderGetQueryParameters 
         {

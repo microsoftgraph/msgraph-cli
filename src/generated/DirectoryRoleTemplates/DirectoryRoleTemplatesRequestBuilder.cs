@@ -167,6 +167,10 @@ namespace ApiSdk.DirectoryRoleTemplates {
         {
             var command = new Command("list");
             command.Description = "Retrieve a list of directoryRoleTemplate objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryroletemplate-list?view=graph-rest-1.0";
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
             var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
             };
             skipOption.IsRequired = false;
@@ -205,6 +209,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
@@ -221,6 +226,7 @@ namespace ApiSdk.DirectoryRoleTemplates {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
@@ -268,14 +274,14 @@ namespace ApiSdk.DirectoryRoleTemplates {
         /// Instantiates a new <see cref="DirectoryRoleTemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DirectoryRoleTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip}", pathParameters)
+        public DirectoryRoleTemplatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoleTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="DirectoryRoleTemplatesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DirectoryRoleTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip}", rawUrl)
+        public DirectoryRoleTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/directoryRoleTemplates{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -379,6 +385,9 @@ namespace ApiSdk.DirectoryRoleTemplates {
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
+            /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
+            public int? Top { get; set; }
         }
     }
 }

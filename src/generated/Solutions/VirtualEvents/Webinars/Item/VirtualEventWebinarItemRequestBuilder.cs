@@ -58,13 +58,14 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
             return command;
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Read the properties and relationships of a virtualEventWebinar object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventwebinar-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get webinars from solutions";
+            command.Description = "Read the properties and relationships of a virtualEventWebinar object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventwebinar-get?view=graph-rest-1.0";
             var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
             virtualEventWebinarIdOption.IsRequired = true;
@@ -248,7 +249,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Read the properties and relationships of a virtualEventWebinar object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +289,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get webinars from solutions
+        /// Read the properties and relationships of a virtualEventWebinar object.
         /// </summary>
         public class VirtualEventWebinarItemRequestBuilderGetQueryParameters 
         {

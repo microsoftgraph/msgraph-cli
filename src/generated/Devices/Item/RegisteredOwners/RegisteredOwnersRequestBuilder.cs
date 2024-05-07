@@ -152,14 +152,14 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             return command;
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
+        /// Retrieve a list of users that are registered owners of the device. A registered owner is the user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of users that are registered owners of the device. A registered owner is the user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -293,7 +293,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         {
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
+        /// Retrieve a list of users that are registered owners of the device. A registered owner is the user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -312,7 +312,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             return requestInfo;
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
+        /// Retrieve a list of users that are registered owners of the device. A registered owner is the user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner.
         /// </summary>
         public class RegisteredOwnersRequestBuilderGetQueryParameters 
         {

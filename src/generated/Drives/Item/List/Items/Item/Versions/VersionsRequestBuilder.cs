@@ -113,14 +113,13 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions {
             return command;
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0" />
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the list item.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -234,7 +233,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions {
         {
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +273,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions {
             return requestInfo;
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        /// The list of previous versions of the list item.
         /// </summary>
         public class VersionsRequestBuilderGetQueryParameters 
         {

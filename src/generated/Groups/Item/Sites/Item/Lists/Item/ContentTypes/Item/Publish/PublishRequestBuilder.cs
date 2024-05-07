@@ -20,14 +20,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
     public class PublishRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
+        /// Publishes a contentType present in the content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Publishes a [contentType][] present in the content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
+            command.Description = "Publishes a contentType present in the content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -81,7 +81,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
         {
         }
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
+        /// Publishes a contentType present in the content type hub site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

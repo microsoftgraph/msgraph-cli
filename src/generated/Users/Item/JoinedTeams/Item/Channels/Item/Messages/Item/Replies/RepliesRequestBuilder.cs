@@ -60,14 +60,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return command;
         }
         /// <summary>
-        /// Send a new reply to a chatMessage in a specified channel.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0" />
+        /// Create new navigation property to replies for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Send a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to replies for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -147,14 +146,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return command;
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0" />
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
+            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -280,7 +278,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         {
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -299,7 +297,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return requestInfo;
         }
         /// <summary>
-        /// Send a new reply to a chatMessage in a specified channel.
+        /// Create new navigation property to replies for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -320,7 +318,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return requestInfo;
         }
         /// <summary>
-        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, call get channel message.
+        /// Replies for a specified message. Supports $expand for channel messages.
         /// </summary>
         public class RepliesRequestBuilderGetQueryParameters 
         {

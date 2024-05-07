@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class CalendarSharingMessage : Message, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>The canAccept property</summary>
         public bool? CanAccept { get; set; }

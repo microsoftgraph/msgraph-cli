@@ -31,6 +31,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item.HostedConte
             command.Description = "Provides operations to manage the media for the team entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -99,14 +100,13 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item.HostedConte
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chatMessageHostedContent object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0" />
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chatMessageHostedContent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0";
+            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -284,7 +284,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item.HostedConte
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chatMessageHostedContent object.
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -324,7 +324,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item.HostedConte
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chatMessageHostedContent object.
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         public class ChatMessageHostedContentItemRequestBuilderGetQueryParameters 
         {

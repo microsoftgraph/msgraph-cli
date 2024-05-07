@@ -39,13 +39,14 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphUser {
             return command;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection";
+            command.Description = "Get a list of the group's members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -160,7 +161,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphUser {
         {
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +180,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.GraphUser {
             return requestInfo;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.user in the microsoft.graph.directoryObject collection
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
         /// </summary>
         public class GraphUserRequestBuilderGetQueryParameters 
         {

@@ -82,13 +82,12 @@ namespace ApiSdk.Users.Item.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -109,6 +108,10 @@ namespace ApiSdk.Users.Item.CalendarView {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -144,6 +147,7 @@ namespace ApiSdk.Users.Item.CalendarView {
                 var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -162,6 +166,7 @@ namespace ApiSdk.Users.Item.CalendarView {
                     if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -191,14 +196,14 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// Instantiates a new <see cref="CalendarViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="CalendarViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24expand,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -267,6 +272,16 @@ namespace ApiSdk.Users.Item.CalendarView {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

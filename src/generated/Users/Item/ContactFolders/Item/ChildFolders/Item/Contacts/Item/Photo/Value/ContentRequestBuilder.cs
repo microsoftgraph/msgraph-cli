@@ -20,13 +20,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property photo from users
+        /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
-        public Command BuildGetCommand()
+        public Command BuildDeleteCommand()
         {
-            var command = new Command("get");
-            command.Description = "Get media content for the navigation property photo from users";
+            var command = new Command("delete");
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -43,10 +43,59 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
-            var formatOption = new Option<string>("--format", description: "Format of the content") {
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
             };
-            formatOption.IsRequired = false;
-            command.AddOption(formatOption);
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
+                var contactFolderId1 = invocationContext.ParseResult.GetValueForOption(contactFolderId1Option);
+                var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// Optional contact picture. You can get or set a photo for a contact.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildGetCommand()
+        {
+            var command = new Command("get");
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
+            };
+            contactFolderIdOption.IsRequired = true;
+            command.AddOption(contactFolderIdOption);
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
+            };
+            contactFolderId1Option.IsRequired = true;
+            command.AddOption(contactFolderId1Option);
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
+            };
+            contactIdOption.IsRequired = true;
+            command.AddOption(contactIdOption);
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
@@ -54,12 +103,10 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
                 var contactFolderId = invocationContext.ParseResult.GetValueForOption(contactFolderIdOption);
                 var contactFolderId1 = invocationContext.ParseResult.GetValueForOption(contactFolderId1Option);
                 var contactId = invocationContext.ParseResult.GetValueForOption(contactIdOption);
-                var format = invocationContext.ParseResult.GetValueForOption(formatOption);
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
-                    if (!string.IsNullOrEmpty(format)) q.QueryParameters.Format = format;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
@@ -84,13 +131,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property photo in users
+        /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property photo in users";
+            command.Description = "Optional contact picture. You can get or set a photo for a contact.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -155,28 +202,47 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo/$value{?%24format*}", pathParameters)
+        public ContentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo/$value", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="ContentRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo/$value{?%24format*}", rawUrl)
+        public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/childFolders/{contactFolder%2Did1}/contacts/{contact%2Did}/photo/$value", rawUrl)
         {
         }
         /// <summary>
-        /// Get media content for the navigation property photo from users
+        /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ContentRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Optional contact picture. You can get or set a photo for a contact.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -185,7 +251,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property photo in users
+        /// Optional contact picture. You can get or set a photo for a contact.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>
@@ -205,22 +271,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
             requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
-        }
-        /// <summary>
-        /// Get media content for the navigation property photo from users
-        /// </summary>
-        public class ContentRequestBuilderGetQueryParameters 
-        {
-            /// <summary>Format of the content</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%24format")]
-            public string? Format { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%24format")]
-            public string Format { get; set; }
-#endif
         }
     }
 }

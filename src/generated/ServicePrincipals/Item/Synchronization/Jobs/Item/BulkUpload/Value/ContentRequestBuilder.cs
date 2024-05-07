@@ -20,13 +20,54 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.BulkUpload.Val
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property bulkUpload from servicePrincipals
+        /// The bulk upload operation for the job.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The bulk upload operation for the job.";
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
+            };
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
+            var synchronizationJobIdOption = new Option<string>("--synchronization-job-id", description: "The unique identifier of synchronizationJob") {
+            };
+            synchronizationJobIdOption.IsRequired = true;
+            command.AddOption(synchronizationJobIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var synchronizationJobId = invocationContext.ParseResult.GetValueForOption(synchronizationJobIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (synchronizationJobId is not null) requestInfo.PathParameters.Add("synchronizationJob%2Did", synchronizationJobId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The bulk upload operation for the job.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property bulkUpload from servicePrincipals";
+            command.Description = "The bulk upload operation for the job.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -66,13 +107,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.BulkUpload.Val
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property bulkUpload in servicePrincipals
+        /// The bulk upload operation for the job.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property bulkUpload in servicePrincipals";
+            command.Description = "The bulk upload operation for the job.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -136,7 +177,26 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.BulkUpload.Val
         {
         }
         /// <summary>
-        /// Get media content for the navigation property bulkUpload from servicePrincipals
+        /// The bulk upload operation for the job.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// The bulk upload operation for the job.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -155,7 +215,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.BulkUpload.Val
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property bulkUpload in servicePrincipals
+        /// The bulk upload operation for the job.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>

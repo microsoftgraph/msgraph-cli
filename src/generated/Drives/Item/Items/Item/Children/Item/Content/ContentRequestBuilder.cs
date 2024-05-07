@@ -22,13 +22,59 @@ namespace ApiSdk.Drives.Item.Items.Item.Children.Item.Content {
     {
         /// <summary>
         /// The content stream, if the item represents a file.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-list-children?view=graph-rest-1.0" />
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The content stream, if the item represents a file.";
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
+            };
+            driveItemIdOption.IsRequired = true;
+            command.AddOption(driveItemIdOption);
+            var driveItemId1Option = new Option<string>("--drive-item-id1", description: "The unique identifier of driveItem") {
+            };
+            driveItemId1Option.IsRequired = true;
+            command.AddOption(driveItemId1Option);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
+                var driveItemId1 = invocationContext.ParseResult.GetValueForOption(driveItemId1Option);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                if (driveItemId1 is not null) requestInfo.PathParameters.Add("driveItem%2Did1", driveItemId1);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The content stream, if the item represents a file.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-list-children?view=graph-rest-1.0";
+            command.Description = "The content stream, if the item represents a file.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -152,6 +198,25 @@ namespace ApiSdk.Drives.Item.Items.Item.Children.Item.Content {
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/children/{driveItem%2Did1}/content{?%24format*}", rawUrl)
         {
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The content stream, if the item represents a file.

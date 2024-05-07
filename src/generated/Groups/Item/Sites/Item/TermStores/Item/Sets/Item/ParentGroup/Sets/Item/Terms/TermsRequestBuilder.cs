@@ -132,13 +132,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a term object.";
+            command.Description = "All the terms under the set.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -270,7 +270,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -310,7 +310,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         public class TermsRequestBuilderGetQueryParameters 
         {

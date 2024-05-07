@@ -122,14 +122,14 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentialsWithName {
             return command;
         }
         /// <summary>
-        /// Update the properties of a federatedIdentityCredential object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/federatedidentitycredential-update?view=graph-rest-1.0" />
+        /// Create a new federatedIdentityCredential object for an application if it does exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/federatedidentitycredential-upsert?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a federatedIdentityCredential object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/federatedidentitycredential-update?view=graph-rest-1.0";
+            command.Description = "Create a new federatedIdentityCredential object for an application if it does exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/federatedidentitycredential-upsert?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentialsWithName {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a federatedIdentityCredential object.
+        /// Create a new federatedIdentityCredential object for an application if it does exist, or update the properties of an existing federatedIdentityCredential object. By configuring a trust relationship between your Microsoft Entra application registration and the identity provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -104,13 +104,13 @@ namespace ApiSdk.Connections.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
+        /// Get operations from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a connectionOperation object.";
+            command.Description = "Get operations from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -218,7 +218,7 @@ namespace ApiSdk.Connections.Item.Operations {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
+        /// Get operations from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +258,7 @@ namespace ApiSdk.Connections.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a connectionOperation object.
+        /// Get operations from connections
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters 
         {

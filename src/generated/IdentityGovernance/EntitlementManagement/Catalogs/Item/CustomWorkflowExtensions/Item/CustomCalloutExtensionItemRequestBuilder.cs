@@ -122,14 +122,14 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.CustomWo
             return command;
         }
         /// <summary>
-        /// Update the properties of an accessPackageAssignmentWorkflowExtension object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-update?view=graph-rest-1.0" />
+        /// Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of an accessPackageAssignmentWorkflowExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentworkflowextension-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignmentrequestworkflowextension-update?view=graph-rest-1.0";
             var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.CustomWo
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an accessPackageAssignmentWorkflowExtension object.
+        /// Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

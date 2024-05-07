@@ -22,13 +22,53 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder.Content 
     {
         /// <summary>
         /// The content stream, if the item represents a file.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The content stream, if the item represents a file.";
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
+            };
+            teamIdOption.IsRequired = true;
+            command.AddOption(teamIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var teamId = invocationContext.ParseResult.GetValueForOption(teamIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The content stream, if the item represents a file.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
+            command.Description = "The content stream, if the item represents a file.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -140,6 +180,25 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder.Content 
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/primaryChannel/filesFolder/content{?%24format*}", rawUrl)
         {
+        }
+        /// <summary>
+        /// The content stream, if the item represents a file.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The content stream, if the item represents a file.

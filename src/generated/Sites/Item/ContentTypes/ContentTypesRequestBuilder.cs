@@ -101,14 +101,14 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
+        /// Create a new contentType in a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new [contentType][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
+            command.Description = "Create a new contentType in a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -170,14 +170,14 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// Get the collection of contentType resources in a site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
+            command.Description = "Get the collection of contentType resources in a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -285,7 +285,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
         {
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// Get the collection of contentType resources in a site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -304,7 +304,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
+        /// Create a new contentType in a site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -325,7 +325,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// Get the collection of contentType resources in a site.
         /// </summary>
         public class ContentTypesRequestBuilderGetQueryParameters 
         {

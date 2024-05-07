@@ -51,13 +51,14 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a homeRealmDiscoveryPolicy object has been applied to.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get appliesTo from policies";
+            command.Description = "Get a list of directoryObject objects that a homeRealmDiscoveryPolicy object has been applied to.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -165,7 +166,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item.AppliesTo {
         {
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a homeRealmDiscoveryPolicy object has been applied to.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +185,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item.AppliesTo {
             return requestInfo;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Get a list of directoryObject objects that a homeRealmDiscoveryPolicy object has been applied to.
         /// </summary>
         public class AppliesToRequestBuilderGetQueryParameters 
         {

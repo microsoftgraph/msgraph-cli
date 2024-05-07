@@ -20,13 +20,14 @@ namespace ApiSdk.Education.Me.Assignments.Delta {
     public class DeltaRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly-created or updated assignments without reading the whole collection. A teacher or an application running with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-delta?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function delta";
+            command.Description = "Get a list of newly-created or updated assignments without reading the whole collection. A teacher or an application running with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-delta?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -128,7 +129,7 @@ namespace ApiSdk.Education.Me.Assignments.Delta {
         {
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly-created or updated assignments without reading the whole collection. A teacher or an application running with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -147,7 +148,7 @@ namespace ApiSdk.Education.Me.Assignments.Delta {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get a list of newly-created or updated assignments without reading the whole collection. A teacher or an application running with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// </summary>
         public class DeltaRequestBuilderGetQueryParameters 
         {

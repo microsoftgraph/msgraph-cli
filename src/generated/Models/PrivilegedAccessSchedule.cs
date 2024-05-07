@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    #pragma warning disable CS1591
     public class PrivilegedAccessSchedule : Entity, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>When the schedule was created. Optional.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }

@@ -20,13 +20,13 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithDate {
     public class GetEmailActivityUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getEmailActivityUserDetail
+        /// Get details about email activity users have performed.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailActivityUserDetail";
+            command.Description = "Get details about email activity users have performed.";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +74,7 @@ namespace ApiSdk.Reports.GetEmailActivityUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getEmailActivityUserDetail
+        /// Get details about email activity users have performed.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

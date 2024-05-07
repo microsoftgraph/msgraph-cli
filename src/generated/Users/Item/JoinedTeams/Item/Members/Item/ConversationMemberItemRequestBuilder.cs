@@ -21,14 +21,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
     public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Remove a conversationMember from a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-delete-members?view=graph-rest-1.0" />
+        /// Delete navigation property members for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Remove a conversationMember from a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-delete-members?view=graph-rest-1.0";
+            command.Description = "Delete navigation property members for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -69,14 +68,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Get a conversationMember from a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-get-members?view=graph-rest-1.0" />
+        /// Members and owners of the team.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a conversationMember from a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-get-members?view=graph-rest-1.0";
+            command.Description = "Members and owners of the team.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -134,14 +132,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a team.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-update-members?view=graph-rest-1.0" />
+        /// Update the navigation property members in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the role of a conversationMember in a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-update-members?view=graph-rest-1.0";
+            command.Description = "Update the navigation property members in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -212,7 +209,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
         {
         }
         /// <summary>
-        /// Remove a conversationMember from a team.
+        /// Delete navigation property members for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +228,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a conversationMember from a team.
+        /// Members and owners of the team.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -250,7 +247,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a team.
+        /// Update the navigation property members in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -271,7 +268,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a conversationMember from a team.
+        /// Members and owners of the team.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters 
         {

@@ -3,6 +3,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Policies.CrossTenantAccessPolicy.Default;
 using ApiSdk.Policies.CrossTenantAccessPolicy.Partners;
+using ApiSdk.Policies.CrossTenantAccessPolicy.Templates;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -194,6 +195,32 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the templates property of the microsoft.graph.crossTenantAccessPolicy entity.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildTemplatesNavCommand()
+        {
+            var command = new Command("templates");
+            command.Description = "Provides operations to manage the templates property of the microsoft.graph.crossTenantAccessPolicy entity.";
+            var builder = new TemplatesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMultiTenantOrganizationIdentitySynchronizationNavCommand());
+            nonExecCommands.Add(builder.BuildMultiTenantOrganizationPartnerConfigurationNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

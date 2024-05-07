@@ -20,13 +20,14 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
     public class GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getGroupArchivedPrintJobs
+        /// Get a list of archived print jobs for a particular group.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getGroupArchivedPrintJobs";
+            command.Description = "Get a list of archived print jobs for a particular group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reports-getgrouparchivedprintjobs?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "Usage: groupId='{groupId}'") {
             };
             groupIdOption.IsRequired = true;
@@ -125,7 +126,7 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
         {
         }
         /// <summary>
-        /// Invoke function getGroupArchivedPrintJobs
+        /// Get a list of archived print jobs for a particular group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -144,7 +145,7 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getGroupArchivedPrintJobs
+        /// Get a list of archived print jobs for a particular group.
         /// </summary>
         public class GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilderGetQueryParameters 
         {

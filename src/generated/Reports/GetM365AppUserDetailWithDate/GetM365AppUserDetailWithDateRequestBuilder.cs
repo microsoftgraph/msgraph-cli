@@ -20,13 +20,13 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithDate {
     public class GetM365AppUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getM365AppUserDetail
+        /// Get a report that provides the details about which apps and platforms users have used.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getM365AppUserDetail";
+            command.Description = "Get a report that provides the details about which apps and platforms users have used.";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +74,7 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getM365AppUserDetail
+        /// Get a report that provides the details about which apps and platforms users have used.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

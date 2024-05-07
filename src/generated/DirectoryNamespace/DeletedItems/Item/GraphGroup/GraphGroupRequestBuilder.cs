@@ -21,13 +21,14 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphGroup {
     public class GraphGroupRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Retrieve a list of recently deleted directory objects. Currently, deleted items functionality is only supported for the application, servicePrincipal, group, administrative unit, and user resources.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/directory-deleteditems-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.group";
+            command.Description = "Retrieve a list of recently deleted directory objects. Currently, deleted items functionality is only supported for the application, servicePrincipal, group, administrative unit, and user resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directory-deleteditems-list?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -87,7 +88,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphGroup {
         {
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Retrieve a list of recently deleted directory objects. Currently, deleted items functionality is only supported for the application, servicePrincipal, group, administrative unit, and user resources.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -106,7 +107,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphGroup {
             return requestInfo;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group
+        /// Retrieve a list of recently deleted directory objects. Currently, deleted items functionality is only supported for the application, servicePrincipal, group, administrative unit, and user resources.
         /// </summary>
         public class GraphGroupRequestBuilderGetQueryParameters 
         {

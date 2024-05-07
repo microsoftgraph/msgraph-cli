@@ -63,14 +63,14 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
             return command;
         }
         /// <summary>
-        /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
+        /// Retrieve the list of principals that are assigned to the directory role.  You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of principals that are assigned to the directory role.  You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0";
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
+        /// Retrieve the list of principals that are assigned to the directory role.  You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +288,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Ref {
 #endif
         }
         /// <summary>
-        /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
+        /// Retrieve the list of principals that are assigned to the directory role.  You can use both the object ID and template ID of the directoryRole with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Microsoft Entra admin center. For details, see Role template IDs.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters 
         {

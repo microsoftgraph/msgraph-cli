@@ -21,13 +21,53 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataCon
     {
         /// <summary>
         /// The time-aligned metadata of the utterances in the transcript. Read-only.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0" />
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The time-aligned metadata of the utterances in the transcript. Read-only.";
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
+            };
+            onlineMeetingIdOption.IsRequired = true;
+            command.AddOption(onlineMeetingIdOption);
+            var callTranscriptIdOption = new Option<string>("--call-transcript-id", description: "The unique identifier of callTranscript") {
+            };
+            callTranscriptIdOption.IsRequired = true;
+            command.AddOption(callTranscriptIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var onlineMeetingId = invocationContext.ParseResult.GetValueForOption(onlineMeetingIdOption);
+                var callTranscriptId = invocationContext.ParseResult.GetValueForOption(callTranscriptIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (onlineMeetingId is not null) requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
+                if (callTranscriptId is not null) requestInfo.PathParameters.Add("callTranscript%2Did", callTranscriptId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The time-aligned metadata of the utterances in the transcript. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The time-aligned metadata of the utterances in the transcript. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-list-transcripts?view=graph-rest-1.0";
+            command.Description = "The time-aligned metadata of the utterances in the transcript. Read-only.";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
@@ -135,6 +175,25 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item.MetadataCon
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public MetadataContentRequestBuilder(string rawUrl) : base("{+baseurl}/communications/onlineMeetings/{onlineMeeting%2Did}/transcripts/{callTranscript%2Did}/metadataContent", rawUrl)
         {
+        }
+        /// <summary>
+        /// The time-aligned metadata of the utterances in the transcript. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The time-aligned metadata of the utterances in the transcript. Read-only.

@@ -20,13 +20,60 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Get media content for the navigation property documents from print
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The unique identifier for an entity. Read-only.";
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
+            };
+            printerIdOption.IsRequired = true;
+            command.AddOption(printerIdOption);
+            var printJobIdOption = new Option<string>("--print-job-id", description: "The unique identifier of printJob") {
+            };
+            printJobIdOption.IsRequired = true;
+            command.AddOption(printJobIdOption);
+            var printDocumentIdOption = new Option<string>("--print-document-id", description: "The unique identifier of printDocument") {
+            };
+            printDocumentIdOption.IsRequired = true;
+            command.AddOption(printDocumentIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var printerId = invocationContext.ParseResult.GetValueForOption(printerIdOption);
+                var printJobId = invocationContext.ParseResult.GetValueForOption(printJobIdOption);
+                var printDocumentId = invocationContext.ParseResult.GetValueForOption(printDocumentIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (printerId is not null) requestInfo.PathParameters.Add("printer%2Did", printerId);
+                if (printJobId is not null) requestInfo.PathParameters.Add("printJob%2Did", printJobId);
+                if (printDocumentId is not null) requestInfo.PathParameters.Add("printDocument%2Did", printDocumentId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property documents from print";
+            command.Description = "The unique identifier for an entity. Read-only.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -72,13 +119,13 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.Value {
             return command;
         }
         /// <summary>
-        /// Update media content for the navigation property documents in print
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update media content for the navigation property documents in print";
+            command.Description = "The unique identifier for an entity. Read-only.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -148,7 +195,26 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.Value {
         {
         }
         /// <summary>
-        /// Get media content for the navigation property documents from print
+        /// The unique identifier for an entity. Read-only.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -167,7 +233,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Documents.Item.Value {
             return requestInfo;
         }
         /// <summary>
-        /// Update media content for the navigation property documents in print
+        /// The unique identifier for an entity. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Binary request body</param>

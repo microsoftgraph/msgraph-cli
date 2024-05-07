@@ -31,6 +31,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -40,14 +41,13 @@ namespace ApiSdk.Drives.Item.Special.Item {
             return command;
         }
         /// <summary>
-        /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-get-specialfolder?view=graph-rest-1.0" />
+        /// Collection of common folders available in OneDrive. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn't already exist. If a user deletes one, it is recreated when written to again.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-get-specialfolder?view=graph-rest-1.0";
+            command.Description = "Collection of common folders available in OneDrive. Read-only. Nullable.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -113,7 +113,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
         {
         }
         /// <summary>
-        /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.
+        /// Collection of common folders available in OneDrive. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -132,7 +132,7 @@ namespace ApiSdk.Drives.Item.Special.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Use the special collection to access a special folder by name. Special folders provide simple aliases to access well-known folders in OneDrive without the need to look up the folder by path (which would require localization), or reference the folder with an ID. If a special folder is renamed or moved to another location within the drive, this syntax will continue to find that folder. Special folders are automatically created the first time an application attempts to write to one, if it doesn&apos;t already exist. If a user deletes one, it is recreated when written to again.
+        /// Collection of common folders available in OneDrive. Read-only. Nullable.
         /// </summary>
         public class DriveItemItemRequestBuilderGetQueryParameters 
         {

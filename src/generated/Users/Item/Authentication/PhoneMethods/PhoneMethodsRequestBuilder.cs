@@ -108,14 +108,13 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Microsoft Entra ID and B2B users, but not B2C users.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/authentication-list-phonemethods?view=graph-rest-1.0" />
+        /// The phone numbers registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Microsoft Entra ID and B2B users, but not B2C users.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authentication-list-phonemethods?view=graph-rest-1.0";
+            command.Description = "The phone numbers registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -223,7 +222,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
         {
         }
         /// <summary>
-        /// Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Microsoft Entra ID and B2B users, but not B2C users.
+        /// The phone numbers registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +262,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Microsoft Entra ID and B2B users, but not B2C users.
+        /// The phone numbers registered to a user for authentication.
         /// </summary>
         public class PhoneMethodsRequestBuilderGetQueryParameters 
         {

@@ -20,13 +20,14 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
     public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getRecentNotebooks";
+            command.Description = "Get a list of recentNotebook instances that have been accessed by the signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -119,7 +120,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
         {
         }
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +139,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
         /// </summary>
         public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetQueryParameters 
         {

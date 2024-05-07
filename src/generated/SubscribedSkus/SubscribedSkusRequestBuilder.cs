@@ -88,10 +88,26 @@ namespace ApiSdk.SubscribedSkus {
         {
             var command = new Command("list");
             command.Description = "Get the list of commercial subscriptions that an organization has acquired. For the mapping of license names as displayed on the Microsoft Entra admin center or the Microsoft 365 admin center against their Microsoft Graph skuId and skuPartNumber properties, see Product names and service plan identifiers for licensing.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subscribedsku-list?view=graph-rest-1.0";
+            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
+            };
+            topOption.IsRequired = false;
+            command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };
             searchOption.IsRequired = false;
             command.AddOption(searchOption);
+            var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
+            };
+            filterOption.IsRequired = false;
+            command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
             var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -109,7 +125,11 @@ namespace ApiSdk.SubscribedSkus {
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
+                var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
+                var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -121,7 +141,11 @@ namespace ApiSdk.SubscribedSkus {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
+                    if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                 });
@@ -147,14 +171,14 @@ namespace ApiSdk.SubscribedSkus {
         /// Instantiates a new <see cref="SubscribedSkusRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SubscribedSkusRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", pathParameters)
+        public SubscribedSkusRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/subscribedSkus{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="SubscribedSkusRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public SubscribedSkusRequestBuilder(string rawUrl) : base("{+baseurl}/subscribedSkus{?%24orderby,%24search,%24select}", rawUrl)
+        public SubscribedSkusRequestBuilder(string rawUrl) : base("{+baseurl}/subscribedSkus{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -202,6 +226,19 @@ namespace ApiSdk.SubscribedSkus {
         /// </summary>
         public class SubscribedSkusRequestBuilderGetQueryParameters 
         {
+            /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
+            public bool? Count { get; set; }
+            /// <summary>Filter items by property values</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24filter")]
+            public string? Filter { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24filter")]
+            public string Filter { get; set; }
+#endif
             /// <summary>Order items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -232,6 +269,12 @@ namespace ApiSdk.SubscribedSkus {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
+            /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
+            public int? Skip { get; set; }
+            /// <summary>Show only the first n items</summary>
+            [QueryParameter("%24top")]
+            public int? Top { get; set; }
         }
     }
 }

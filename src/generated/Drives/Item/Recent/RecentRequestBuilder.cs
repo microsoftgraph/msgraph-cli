@@ -20,13 +20,14 @@ namespace ApiSdk.Drives.Item.Recent {
     public class RecentRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function recent
+        /// List a set of items that have been recently used by the signed in user.This collection includes items that are in the user&apos;s drive and items they have access to from other drives.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/drive-recent?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function recent";
+            command.Description = "List a set of items that have been recently used by the signed in user.This collection includes items that are in the user's drive and items they have access to from other drives.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/drive-recent?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -134,7 +135,7 @@ namespace ApiSdk.Drives.Item.Recent {
         {
         }
         /// <summary>
-        /// Invoke function recent
+        /// List a set of items that have been recently used by the signed in user.This collection includes items that are in the user&apos;s drive and items they have access to from other drives.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +154,7 @@ namespace ApiSdk.Drives.Item.Recent {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function recent
+        /// List a set of items that have been recently used by the signed in user.This collection includes items that are in the user&apos;s drive and items they have access to from other drives.
         /// </summary>
         public class RecentRequestBuilderGetQueryParameters 
         {

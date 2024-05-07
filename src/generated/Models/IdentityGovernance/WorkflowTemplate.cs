@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.IdentityGovernance {
+    #pragma warning disable CS1591
     public class WorkflowTemplate : ApiSdk.Models.Entity, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>The category property</summary>
         public LifecycleWorkflowCategory? Category { get; set; }

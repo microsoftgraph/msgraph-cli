@@ -52,14 +52,13 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s FIDO2 Security Key Authentication Method objects and their properties.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0" />
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of a user's FIDO2 Security Key Authentication Method objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/fido2authenticationmethod-list?view=graph-rest-1.0";
+            command.Description = "Represents the FIDO2 security keys registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -167,7 +166,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
         {
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s FIDO2 Security Key Authentication Method objects and their properties.
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -186,7 +185,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s FIDO2 Security Key Authentication Method objects and their properties.
+        /// Represents the FIDO2 security keys registered to a user for authentication.
         /// </summary>
         public class Fido2MethodsRequestBuilderGetQueryParameters 
         {

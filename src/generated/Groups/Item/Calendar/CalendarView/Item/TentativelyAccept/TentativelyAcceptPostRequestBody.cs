@@ -6,7 +6,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.TentativelyAccept {
+    #pragma warning disable CS1591
     public class TentativelyAcceptPostRequestBody : IAdditionalDataHolder, IParsable 
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

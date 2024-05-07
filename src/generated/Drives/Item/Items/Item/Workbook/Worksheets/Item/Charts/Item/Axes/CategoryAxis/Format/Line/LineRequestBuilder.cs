@@ -92,14 +92,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartlineformat object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartlineformat-get?view=graph-rest-1.0" />
+        /// Represents chart line formatting. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartlineformat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartlineformat-get?view=graph-rest-1.0";
+            command.Description = "Represents chart line formatting. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -163,14 +162,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Update the properties of chartlineformat object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartlineformat-update?view=graph-rest-1.0" />
+        /// Update the navigation property line in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of chartlineformat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartlineformat-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property line in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -266,7 +264,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartlineformat object.
+        /// Represents chart line formatting. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,7 +283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of chartlineformat object.
+        /// Update the navigation property line in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -306,7 +304,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartlineformat object.
+        /// Represents chart line formatting. Read-only.
         /// </summary>
         public class LineRequestBuilderGetQueryParameters 
         {

@@ -32,6 +32,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item {
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -82,14 +83,13 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calltranscript-get?view=graph-rest-1.0" />
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calltranscript-get?view=graph-rest-1.0";
+            command.Description = "The transcripts of an online meeting. Read-only.";
             var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
@@ -150,6 +150,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item {
             command.Description = "Provides operations to manage the media for the cloudCommunications entity.";
             var builder = new MetadataContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -249,7 +250,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -289,7 +290,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.Transcripts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a callTranscript object associated with a scheduled onlineMeeting. This API doesn&apos;t support getting call transcripts from channel meetings. Retrieving the transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the transcript returns the stream of text associated with the transcript.
+        /// The transcripts of an online meeting. Read-only.
         /// </summary>
         public class CallTranscriptItemRequestBuilderGetQueryParameters 
         {

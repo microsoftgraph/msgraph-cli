@@ -124,14 +124,13 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedDevice objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0" />
+        /// The list of managed devices.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedDevice objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0";
+            command.Description = "The list of managed devices.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -233,7 +232,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         {
         }
         /// <summary>
-        /// List properties and relationships of the managedDevice objects.
+        /// The list of managed devices.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +272,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedDevice objects.
+        /// The list of managed devices.
         /// </summary>
         public class ManagedDevicesRequestBuilderGetQueryParameters 
         {

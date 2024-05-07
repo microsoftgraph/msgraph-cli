@@ -21,13 +21,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
     public class TargetedManagedAppPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Delete navigation property assignments for deviceAppManagement
+        /// Deletes a targetedManagedAppPolicyAssignment.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property assignments for deviceAppManagement";
+            command.Description = "Deletes a targetedManagedAppPolicyAssignment.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-delete?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -62,13 +63,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return command;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// Read properties and relationships of the targetedManagedAppPolicyAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
+            command.Description = "Read properties and relationships of the targetedManagedAppPolicyAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-get?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -120,13 +122,14 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceAppManagement
+        /// Update the properties of a targetedManagedAppPolicyAssignment object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignments in deviceAppManagement";
+            command.Description = "Update the properties of a targetedManagedAppPolicyAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedapppolicyassignment-update?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -191,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
         {
         }
         /// <summary>
-        /// Delete navigation property assignments for deviceAppManagement
+        /// Deletes a targetedManagedAppPolicyAssignment.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +213,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// Read properties and relationships of the targetedManagedAppPolicyAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -229,7 +232,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceAppManagement
+        /// Update the properties of a targetedManagedAppPolicyAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -250,7 +253,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Assignments.I
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to list of inclusion and exclusion groups to which the policy is deployed.
+        /// Read properties and relationships of the targetedManagedAppPolicyAssignment object.
         /// </summary>
         public class TargetedManagedAppPolicyAssignmentItemRequestBuilderGetQueryParameters 
         {

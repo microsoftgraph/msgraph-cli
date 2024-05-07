@@ -70,14 +70,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of nameditem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0" />
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-get?view=graph-rest-1.0";
+            command.Description = "Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -135,14 +134,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of nameditem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0" />
+        /// Update the navigation property names in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of nameditem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/nameditem-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property names in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -266,7 +264,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of nameditem object.
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,7 +283,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of nameditem object.
+        /// Update the navigation property names in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -306,7 +304,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of nameditem object.
+        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
         /// </summary>
         public class WorkbookNamedItemItemRequestBuilderGetQueryParameters 
         {

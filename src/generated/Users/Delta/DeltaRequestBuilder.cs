@@ -20,13 +20,14 @@ namespace ApiSdk.Users.Delta {
     public class DeltaRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function delta
+        /// Get newly created, updated, or deleted users without having to perform a full read of the entire user collection. See change tracking for details.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-delta?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function delta";
+            command.Description = "Get newly created, updated, or deleted users without having to perform a full read of the entire user collection. See change tracking for details.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-delta?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -128,7 +129,7 @@ namespace ApiSdk.Users.Delta {
         {
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get newly created, updated, or deleted users without having to perform a full read of the entire user collection. See change tracking for details.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -147,7 +148,7 @@ namespace ApiSdk.Users.Delta {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function delta
+        /// Get newly created, updated, or deleted users without having to perform a full read of the entire user collection. See change tracking for details.
         /// </summary>
         public class DeltaRequestBuilderGetQueryParameters 
         {

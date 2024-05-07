@@ -20,13 +20,14 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Fi
     public class FilterOperatorsRequestBuilder : BaseCliRequestBuilder 
     {
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-filteroperators?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function filterOperators";
+            command.Description = "List all operators supported in the scoping filters.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationschema-filteroperators?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -140,7 +141,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Fi
         {
         }
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +160,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Fi
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function filterOperators
+        /// List all operators supported in the scoping filters.
         /// </summary>
         public class FilterOperatorsRequestBuilderGetQueryParameters 
         {

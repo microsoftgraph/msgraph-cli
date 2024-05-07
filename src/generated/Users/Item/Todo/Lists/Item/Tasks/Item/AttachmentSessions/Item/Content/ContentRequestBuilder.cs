@@ -24,6 +24,59 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// The content streams that are uploaded.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
+        public Command BuildDeleteCommand()
+        {
+            var command = new Command("delete");
+            command.Description = "The content streams that are uploaded.";
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
+            };
+            userIdOption.IsRequired = true;
+            command.AddOption(userIdOption);
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
+            };
+            todoTaskListIdOption.IsRequired = true;
+            command.AddOption(todoTaskListIdOption);
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
+            };
+            todoTaskIdOption.IsRequired = true;
+            command.AddOption(todoTaskIdOption);
+            var attachmentSessionIdOption = new Option<string>("--attachment-session-id", description: "The unique identifier of attachmentSession") {
+            };
+            attachmentSessionIdOption.IsRequired = true;
+            command.AddOption(attachmentSessionIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var todoTaskListId = invocationContext.ParseResult.GetValueForOption(todoTaskListIdOption);
+                var todoTaskId = invocationContext.ParseResult.GetValueForOption(todoTaskIdOption);
+                var attachmentSessionId = invocationContext.ParseResult.GetValueForOption(attachmentSessionIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                if (attachmentSessionId is not null) requestInfo.PathParameters.Add("attachmentSession%2Did", attachmentSessionId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
+        /// The content streams that are uploaded.
+        /// </summary>
+        /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
@@ -157,6 +210,25 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         public ContentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}/tasks/{todoTask%2Did}/attachmentSessions/{attachmentSession%2Did}/content", rawUrl)
         {
+        }
+        /// <summary>
+        /// The content streams that are uploaded.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// The content streams that are uploaded.

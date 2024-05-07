@@ -62,14 +62,13 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SwapShiftsChangeRequests.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a swapShiftsChangeRequest object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0" />
+        /// The swap requests for shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a swapShiftsChangeRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/swapshiftschangerequest-get?view=graph-rest-1.0";
+            command.Description = "The swap requests for shifts in the schedule.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -211,7 +210,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SwapShiftsChangeRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a swapShiftsChangeRequest object.
+        /// The swap requests for shifts in the schedule.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +250,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.SwapShiftsChangeRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a swapShiftsChangeRequest object.
+        /// The swap requests for shifts in the schedule.
         /// </summary>
         public class SwapShiftsChangeRequestItemRequestBuilderGetQueryParameters 
         {
