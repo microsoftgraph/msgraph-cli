@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
+namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.
     /// </summary>
-    public class DeviceConfigurationAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceConfigurationAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceConfigurationAssignment.

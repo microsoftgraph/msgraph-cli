@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRoleTemplates.Item {
+namespace ApiSdk.DirectoryRoleTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of directoryRoleTemplate entities.
     /// </summary>
-    public class DirectoryRoleTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryRoleTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MicrosoftCustomTrainingSetting : TrainingSetting, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MicrosoftCustomTrainingSetting : TrainingSetting, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The completion date and time of the training. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CompletionDateTime { get; set; }
@@ -44,9 +47,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"trainingAssignmentMappings", n => { TrainingAssignmentMappings = n.GetCollectionOfObjectValues<MicrosoftTrainingAssignmentMapping>(MicrosoftTrainingAssignmentMapping.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<TrainingCompletionDuration>(); } },
+                { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "trainingAssignmentMappings", n => { TrainingAssignmentMappings = n.GetCollectionOfObjectValues<MicrosoftTrainingAssignmentMapping>(MicrosoftTrainingAssignmentMapping.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<TrainingCompletionDuration>(); } },
             };
         }
         /// <summary>

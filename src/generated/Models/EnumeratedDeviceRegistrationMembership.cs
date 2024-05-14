@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EnumeratedDeviceRegistrationMembership : DeviceRegistrationMembership, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EnumeratedDeviceRegistrationMembership : DeviceRegistrationMembership, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The groups property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"groups", n => { Groups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"users", n => { Users = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "groups", n => { Groups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "users", n => { Users = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

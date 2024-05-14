@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate {
+namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getOneDriveUsageAccountDetail method.
     /// </summary>
-    public class GetOneDriveUsageAccountDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetOneDriveUsageAccountDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOneDriveUsageAccountDetail
+        /// Get details about OneDrive usage by account.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveUsageAccountDetail";
+            command.Description = "Get details about OneDrive usage by account.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveusageaccountdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveUsageAccountDetail
+        /// Get details about OneDrive usage by account.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

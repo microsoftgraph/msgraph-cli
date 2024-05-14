@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Pkcs12CertificateInformation : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Pkcs12CertificateInformation : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -56,11 +59,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"isActive", n => { IsActive = n.GetBoolValue(); } },
-                {"notAfter", n => { NotAfter = n.GetLongValue(); } },
-                {"notBefore", n => { NotBefore = n.GetLongValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"thumbprint", n => { Thumbprint = n.GetStringValue(); } },
+                { "isActive", n => { IsActive = n.GetBoolValue(); } },
+                { "notAfter", n => { NotAfter = n.GetLongValue(); } },
+                { "notBefore", n => { NotBefore = n.GetLongValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "thumbprint", n => { Thumbprint = n.GetStringValue(); } },
             };
         }
         /// <summary>

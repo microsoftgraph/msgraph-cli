@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CloudPcGalleryImage : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CloudPcGalleryImage : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The display name of this gallery image. For example, Windows 11 Enterprise + Microsoft 365 Apps 22H2. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,15 +71,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"endDate", n => { EndDate = n.GetDateValue(); } },
-                {"expirationDate", n => { ExpirationDate = n.GetDateValue(); } },
-                {"offerName", n => { OfferName = n.GetStringValue(); } },
-                {"publisherName", n => { PublisherName = n.GetStringValue(); } },
-                {"sizeInGB", n => { SizeInGB = n.GetIntValue(); } },
-                {"skuName", n => { SkuName = n.GetStringValue(); } },
-                {"startDate", n => { StartDate = n.GetDateValue(); } },
-                {"status", n => { Status = n.GetEnumValue<CloudPcGalleryImageStatus>(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "endDate", n => { EndDate = n.GetDateValue(); } },
+                { "expirationDate", n => { ExpirationDate = n.GetDateValue(); } },
+                { "offerName", n => { OfferName = n.GetStringValue(); } },
+                { "publisherName", n => { PublisherName = n.GetStringValue(); } },
+                { "sizeInGB", n => { SizeInGB = n.GetIntValue(); } },
+                { "skuName", n => { SkuName = n.GetStringValue(); } },
+                { "startDate", n => { StartDate = n.GetDateValue(); } },
+                { "status", n => { Status = n.GetEnumValue<CloudPcGalleryImageStatus>(); } },
             };
         }
         /// <summary>

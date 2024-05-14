@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Threads.Item {
+namespace ApiSdk.Groups.Item.Threads.Item
+{
     /// <summary>
     /// Provides operations to manage the threads property of the microsoft.graph.group entity.
     /// </summary>
-    public class ConversationThreadItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConversationThreadItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete conversationThread.

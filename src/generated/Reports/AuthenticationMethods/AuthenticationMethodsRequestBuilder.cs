@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.AuthenticationMethods {
+namespace ApiSdk.Reports.AuthenticationMethods
+{
     /// <summary>
     /// Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
     /// </summary>
-    public class AuthenticationMethodsRequestBuilder : BaseCliRequestBuilder 
+    public class AuthenticationMethodsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property authenticationMethods for reports

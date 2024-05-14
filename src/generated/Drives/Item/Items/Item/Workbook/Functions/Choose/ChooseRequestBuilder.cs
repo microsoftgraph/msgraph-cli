@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Choose {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Choose
+{
     /// <summary>
     /// Provides operations to call the choose method.
     /// </summary>
-    public class ChooseRequestBuilder : BaseCliRequestBuilder 
+    public class ChooseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action choose

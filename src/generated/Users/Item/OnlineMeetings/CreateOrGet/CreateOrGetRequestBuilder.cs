@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet {
+namespace ApiSdk.Users.Item.OnlineMeetings.CreateOrGet
+{
     /// <summary>
     /// Provides operations to call the createOrGet method.
     /// </summary>
-    public class CreateOrGetRequestBuilder : BaseCliRequestBuilder 
+    public class CreateOrGetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contacts.Item.MemberOf.Item {
+namespace ApiSdk.Contacts.Item.MemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Groups that this contact is a member of. Read-only. Nullable. Supports $expand.

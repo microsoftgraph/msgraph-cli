@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.GetByPathWithPath.Analytics {
+namespace ApiSdk.Sites.Item.GetByPathWithPath.Analytics
+{
     /// <summary>
     /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
     /// </summary>
-    public class AnalyticsRequestBuilder : BaseCliRequestBuilder 
+    public class AnalyticsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property analytics for sites

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequests.Item.RoleDefinition {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequests.Item.RoleDefinition
+{
     /// <summary>
     /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
     /// </summary>
-    public class RoleDefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class RoleDefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Detailed information for the unifiedRoleDefinition object that is referenced through the roleDefinitionId property. Supports $expand and $select nested in $expand.

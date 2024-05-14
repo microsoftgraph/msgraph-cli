@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarDe {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarDe
+{
     /// <summary>
     /// Provides operations to call the dollarDe method.
     /// </summary>
-    public class DollarDeRequestBuilder : BaseCliRequestBuilder 
+    public class DollarDeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dollarDe

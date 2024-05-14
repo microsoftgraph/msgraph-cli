@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex
+{
     /// <summary>
     /// Provides operations to call the complex method.
     /// </summary>
-    public class ComplexRequestBuilder : BaseCliRequestBuilder 
+    public class ComplexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action complex

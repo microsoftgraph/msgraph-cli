@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetEmailAppUsageUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetEmailAppUsageUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getEmailAppUsageUserCounts method.
     /// </summary>
-    public class GetEmailAppUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetEmailAppUsageUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getEmailAppUsageUserCounts
+        /// Get the count of unique users that connected to Exchange Online using any email app.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getEmailAppUsageUserCounts";
+            command.Description = "Get the count of unique users that connected to Exchange Online using any email app.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getemailappusageusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getEmailAppUsageUserCounts
+        /// Get the count of unique users that connected to Exchange Online using any email app.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

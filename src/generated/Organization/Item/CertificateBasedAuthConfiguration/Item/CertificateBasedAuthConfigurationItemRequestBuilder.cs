@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
+namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item
+{
     /// <summary>
     /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
     /// </summary>
-    public class CertificateBasedAuthConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class CertificateBasedAuthConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a certificateBasedAuthConfiguration object.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassign {
+namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Reassign
+{
     /// <summary>
     /// Provides operations to call the reassign method.
     /// </summary>
-    public class ReassignRequestBuilder : BaseCliRequestBuilder 
+    public class ReassignRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reassign the submission to the student with feedback for review. Only teachers can perform this action.  Include the Prefer: include-unknown-enum-members header when you call this method; otherwise, a reassigned submission is treated as a returned submission. This means that the reassigned status is mapped to the returned status, and reassignedDateTime and reassignedBy properties are mapped to returnedDateTime and returnedBy respectively. If the header Prefer: include-unknown-enum-members is provided, a reassigned submission retains the reassigned status. For details, see the examples section.

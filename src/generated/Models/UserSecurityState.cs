@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UserSecurityState : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UserSecurityState : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>AAD User object identifier (GUID) - represents the physical/multi-account user entity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -124,21 +127,21 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"aadUserId", n => { AadUserId = n.GetStringValue(); } },
-                {"accountName", n => { AccountName = n.GetStringValue(); } },
-                {"domainName", n => { DomainName = n.GetStringValue(); } },
-                {"emailRole", n => { EmailRole = n.GetEnumValue<EmailRole>(); } },
-                {"isVpn", n => { IsVpn = n.GetBoolValue(); } },
-                {"logonDateTime", n => { LogonDateTime = n.GetDateTimeOffsetValue(); } },
-                {"logonId", n => { LogonId = n.GetStringValue(); } },
-                {"logonIp", n => { LogonIp = n.GetStringValue(); } },
-                {"logonLocation", n => { LogonLocation = n.GetStringValue(); } },
-                {"logonType", n => { LogonType = n.GetEnumValue<LogonType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
-                {"riskScore", n => { RiskScore = n.GetStringValue(); } },
-                {"userAccountType", n => { UserAccountType = n.GetEnumValue<UserAccountSecurityType>(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "aadUserId", n => { AadUserId = n.GetStringValue(); } },
+                { "accountName", n => { AccountName = n.GetStringValue(); } },
+                { "domainName", n => { DomainName = n.GetStringValue(); } },
+                { "emailRole", n => { EmailRole = n.GetEnumValue<EmailRole>(); } },
+                { "isVpn", n => { IsVpn = n.GetBoolValue(); } },
+                { "logonDateTime", n => { LogonDateTime = n.GetDateTimeOffsetValue(); } },
+                { "logonId", n => { LogonId = n.GetStringValue(); } },
+                { "logonIp", n => { LogonIp = n.GetStringValue(); } },
+                { "logonLocation", n => { LogonLocation = n.GetStringValue(); } },
+                { "logonType", n => { LogonType = n.GetEnumValue<LogonType>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
+                { "riskScore", n => { RiskScore = n.GetStringValue(); } },
+                { "userAccountType", n => { UserAccountType = n.GetEnumValue<UserAccountSecurityType>(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.FindMeetingTimes {
-    public class FindMeetingTimesPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.FindMeetingTimes
+{
+    #pragma warning disable CS1591
+    public class FindMeetingTimesPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,14 +72,14 @@ namespace ApiSdk.Users.Item.FindMeetingTimes {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"attendees", n => { Attendees = n.GetCollectionOfObjectValues<AttendeeBase>(AttendeeBase.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"isOrganizerOptional", n => { IsOrganizerOptional = n.GetBoolValue(); } },
-                {"locationConstraint", n => { LocationConstraint = n.GetObjectValue<ApiSdk.Models.LocationConstraint>(ApiSdk.Models.LocationConstraint.CreateFromDiscriminatorValue); } },
-                {"maxCandidates", n => { MaxCandidates = n.GetIntValue(); } },
-                {"meetingDuration", n => { MeetingDuration = n.GetTimeSpanValue(); } },
-                {"minimumAttendeePercentage", n => { MinimumAttendeePercentage = n.GetDoubleValue(); } },
-                {"returnSuggestionReasons", n => { ReturnSuggestionReasons = n.GetBoolValue(); } },
-                {"timeConstraint", n => { TimeConstraint = n.GetObjectValue<ApiSdk.Models.TimeConstraint>(ApiSdk.Models.TimeConstraint.CreateFromDiscriminatorValue); } },
+                { "attendees", n => { Attendees = n.GetCollectionOfObjectValues<AttendeeBase>(AttendeeBase.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "isOrganizerOptional", n => { IsOrganizerOptional = n.GetBoolValue(); } },
+                { "locationConstraint", n => { LocationConstraint = n.GetObjectValue<ApiSdk.Models.LocationConstraint>(ApiSdk.Models.LocationConstraint.CreateFromDiscriminatorValue); } },
+                { "maxCandidates", n => { MaxCandidates = n.GetIntValue(); } },
+                { "meetingDuration", n => { MeetingDuration = n.GetTimeSpanValue(); } },
+                { "minimumAttendeePercentage", n => { MinimumAttendeePercentage = n.GetDoubleValue(); } },
+                { "returnSuggestionReasons", n => { ReturnSuggestionReasons = n.GetBoolValue(); } },
+                { "timeConstraint", n => { TimeConstraint = n.GetObjectValue<ApiSdk.Models.TimeConstraint>(ApiSdk.Models.TimeConstraint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Protect {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Protect
+{
     /// <summary>
     /// Provides operations to call the protect method.
     /// </summary>
-    public class ProtectRequestBuilder : BaseCliRequestBuilder 
+    public class ProtectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Protect a worksheet. It throws if the worksheet has been protected.

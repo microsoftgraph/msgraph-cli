@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item.Terminate {
+namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item.Terminate
+{
     /// <summary>
     /// Provides operations to call the terminate method.
     /// </summary>
-    public class TerminateRequestBuilder : BaseCliRequestBuilder 
+    public class TerminateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

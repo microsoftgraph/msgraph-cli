@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
+namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item
+{
     /// <summary>
     /// Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
     /// </summary>
-    public class DeviceManagementExportJobItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceManagementExportJobItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceManagementExportJob.

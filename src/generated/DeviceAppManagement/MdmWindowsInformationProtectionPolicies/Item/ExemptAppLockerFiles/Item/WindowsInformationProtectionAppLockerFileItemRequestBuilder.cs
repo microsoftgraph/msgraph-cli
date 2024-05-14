@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.ExemptAppLockerFiles.Item {
+namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.ExemptAppLockerFiles.Item
+{
     /// <summary>
     /// Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
     /// </summary>
-    public class WindowsInformationProtectionAppLockerFileItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsInformationProtectionAppLockerFileItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property exemptAppLockerFiles for deviceAppManagement

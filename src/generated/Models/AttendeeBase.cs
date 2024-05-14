@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AttendeeBase : Recipient, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AttendeeBase : Recipient, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The type of attendee. The possible values are: required, optional, resource. Currently if the attendee is a person, findMeetingTimes always considers the person is of the Required type.</summary>
         public AttendeeType? Type { get; set; }
@@ -39,7 +42,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"type", n => { Type = n.GetEnumValue<AttendeeType>(); } },
+                { "type", n => { Type = n.GetEnumValue<AttendeeType>(); } },
             };
         }
         /// <summary>

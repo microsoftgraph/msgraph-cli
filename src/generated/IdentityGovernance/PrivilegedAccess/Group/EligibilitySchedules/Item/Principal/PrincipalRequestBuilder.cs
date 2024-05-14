@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.Item.Principal {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.Item.Principal
+{
     /// <summary>
     /// Provides operations to manage the principal property of the microsoft.graph.privilegedAccessGroupEligibilitySchedule entity.
     /// </summary>
-    public class PrincipalRequestBuilder : BaseCliRequestBuilder 
+    public class PrincipalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// References the principal that&apos;s in the scope of this membership or ownership eligibility request to the group that&apos;s governed by PIM. Supports $expand.

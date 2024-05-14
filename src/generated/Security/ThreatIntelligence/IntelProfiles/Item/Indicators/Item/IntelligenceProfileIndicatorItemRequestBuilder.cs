@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators.Item {
+namespace ApiSdk.Security.ThreatIntelligence.IntelProfiles.Item.Indicators.Item
+{
     /// <summary>
     /// Provides operations to manage the indicators property of the microsoft.graph.security.intelligenceProfile entity.
     /// </summary>
-    public class IntelligenceProfileIndicatorItemRequestBuilder : BaseCliRequestBuilder 
+    public class IntelligenceProfileIndicatorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Includes an assemblage of high-fidelity network indicators of compromise.

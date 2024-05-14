@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Applications.Item.AddPassword {
-    public class AddPasswordPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Applications.Item.AddPassword
+{
+    #pragma warning disable CS1591
+    public class AddPasswordPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.Applications.Item.AddPassword {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"passwordCredential", n => { PasswordCredential = n.GetObjectValue<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue); } },
+                { "passwordCredential", n => { PasswordCredential = n.GetObjectValue<ApiSdk.Models.PasswordCredential>(ApiSdk.Models.PasswordCredential.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

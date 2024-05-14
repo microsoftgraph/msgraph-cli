@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppScope {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppScope
+{
     /// <summary>
     /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.
     /// </summary>
-    public class AppScopeRequestBuilder : BaseCliRequestBuilder 
+    public class AppScopeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property appScope for roleManagement
@@ -56,13 +57,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             return command;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
+            command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.";
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -192,7 +193,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             return requestInfo;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -232,7 +233,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item.AppSc
             return requestInfo;
         }
         /// <summary>
-        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.
+        /// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand for the entitlement provider only.
         /// </summary>
         public class AppScopeRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.TaskReports.Item.TaskDefinition {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.TaskReports.Item.TaskDefinition
+{
     /// <summary>
     /// Provides operations to manage the taskDefinition property of the microsoft.graph.identityGovernance.taskReport entity.
     /// </summary>
-    public class TaskDefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class TaskDefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The taskDefinition associated with the related lifecycle workflow task.Supports $filter(eq, ne) and $expand.

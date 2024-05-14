@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss {
-    public class DismissPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss
+{
+    #pragma warning disable CS1591
+    public class DismissPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"servicePrincipalIds", n => { ServicePrincipalIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "servicePrincipalIds", n => { ServicePrincipalIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties for iOS Volume-Purchased Program (Vpp) Licensing Type.
     /// </summary>
-    public class VppLicensingType : IAdditionalDataHolder, IParsable 
+    public class VppLicensingType : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -49,9 +50,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"supportsDeviceLicensing", n => { SupportsDeviceLicensing = n.GetBoolValue(); } },
-                {"supportsUserLicensing", n => { SupportsUserLicensing = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "supportsDeviceLicensing", n => { SupportsDeviceLicensing = n.GetBoolValue(); } },
+                { "supportsUserLicensing", n => { SupportsUserLicensing = n.GetBoolValue(); } },
             };
         }
         /// <summary>

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class EdiscoveryReviewSetQuery : Search, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class EdiscoveryReviewSetQuery : Search, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>
         /// Instantiates a new <see cref="EdiscoveryReviewSetQuery"/> and sets the default values.

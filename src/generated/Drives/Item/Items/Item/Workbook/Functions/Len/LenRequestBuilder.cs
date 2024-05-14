@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Len {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Len
+{
     /// <summary>
     /// Provides operations to call the len method.
     /// </summary>
-    public class LenRequestBuilder : BaseCliRequestBuilder 
+    public class LenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action len

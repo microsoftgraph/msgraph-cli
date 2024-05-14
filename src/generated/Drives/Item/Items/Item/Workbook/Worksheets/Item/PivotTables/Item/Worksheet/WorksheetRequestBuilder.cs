@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item.Worksheet {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item.Worksheet
+{
     /// <summary>
     /// Provides operations to manage the worksheet property of the microsoft.graph.workbookPivotTable entity.
     /// </summary>
-    public class WorksheetRequestBuilder : BaseCliRequestBuilder 
+    public class WorksheetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The worksheet containing the current PivotTable. Read-only.

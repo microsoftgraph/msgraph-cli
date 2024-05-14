@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.OwnedDevices.Item.GraphEndpoint {
+namespace ApiSdk.Users.Item.OwnedDevices.Item.GraphEndpoint
+{
     /// <summary>
     /// Casts the previous resource to endpoint.
     /// </summary>
-    public class GraphEndpointRequestBuilder : BaseCliRequestBuilder 
+    public class GraphEndpointRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.endpoint

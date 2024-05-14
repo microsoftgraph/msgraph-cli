@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Summary data for managed devices
     /// </summary>
-    public class ManagedDeviceOverview : Entity, IParsable 
+    public class ManagedDeviceOverview : Entity, IParsable
     {
         /// <summary>Distribution of Exchange Access State in Intune</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -50,11 +51,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceExchangeAccessStateSummary", n => { DeviceExchangeAccessStateSummary = n.GetObjectValue<ApiSdk.Models.DeviceExchangeAccessStateSummary>(ApiSdk.Models.DeviceExchangeAccessStateSummary.CreateFromDiscriminatorValue); } },
-                {"deviceOperatingSystemSummary", n => { DeviceOperatingSystemSummary = n.GetObjectValue<ApiSdk.Models.DeviceOperatingSystemSummary>(ApiSdk.Models.DeviceOperatingSystemSummary.CreateFromDiscriminatorValue); } },
-                {"dualEnrolledDeviceCount", n => { DualEnrolledDeviceCount = n.GetIntValue(); } },
-                {"enrolledDeviceCount", n => { EnrolledDeviceCount = n.GetIntValue(); } },
-                {"mdmEnrolledCount", n => { MdmEnrolledCount = n.GetIntValue(); } },
+                { "deviceExchangeAccessStateSummary", n => { DeviceExchangeAccessStateSummary = n.GetObjectValue<ApiSdk.Models.DeviceExchangeAccessStateSummary>(ApiSdk.Models.DeviceExchangeAccessStateSummary.CreateFromDiscriminatorValue); } },
+                { "deviceOperatingSystemSummary", n => { DeviceOperatingSystemSummary = n.GetObjectValue<ApiSdk.Models.DeviceOperatingSystemSummary>(ApiSdk.Models.DeviceOperatingSystemSummary.CreateFromDiscriminatorValue); } },
+                { "dualEnrolledDeviceCount", n => { DualEnrolledDeviceCount = n.GetIntValue(); } },
+                { "enrolledDeviceCount", n => { EnrolledDeviceCount = n.GetIntValue(); } },
+                { "mdmEnrolledCount", n => { MdmEnrolledCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

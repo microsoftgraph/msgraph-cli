@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class HostPort : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class HostPort : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The hostPortBanners retrieved from scanning the port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,17 +74,17 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"banners", n => { Banners = n.GetCollectionOfObjectValues<HostPortBanner>(HostPortBanner.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                {"host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
-                {"lastScanDateTime", n => { LastScanDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
-                {"mostRecentSslCertificate", n => { MostRecentSslCertificate = n.GetObjectValue<SslCertificate>(SslCertificate.CreateFromDiscriminatorValue); } },
-                {"port", n => { Port = n.GetIntValue(); } },
-                {"protocol", n => { Protocol = n.GetEnumValue<HostPortProtocol>(); } },
-                {"services", n => { Services = n.GetCollectionOfObjectValues<HostPortComponent>(HostPortComponent.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"status", n => { Status = n.GetEnumValue<HostPortStatus>(); } },
-                {"timesObserved", n => { TimesObserved = n.GetIntValue(); } },
+                { "banners", n => { Banners = n.GetCollectionOfObjectValues<HostPortBanner>(HostPortBanner.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "host", n => { Host = n.GetObjectValue<ApiSdk.Models.Security.Host>(ApiSdk.Models.Security.Host.CreateFromDiscriminatorValue); } },
+                { "lastScanDateTime", n => { LastScanDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastSeenDateTime", n => { LastSeenDateTime = n.GetDateTimeOffsetValue(); } },
+                { "mostRecentSslCertificate", n => { MostRecentSslCertificate = n.GetObjectValue<SslCertificate>(SslCertificate.CreateFromDiscriminatorValue); } },
+                { "port", n => { Port = n.GetIntValue(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<HostPortProtocol>(); } },
+                { "services", n => { Services = n.GetCollectionOfObjectValues<HostPortComponent>(HostPortComponent.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "status", n => { Status = n.GetEnumValue<HostPortStatus>(); } },
+                { "timesObserved", n => { TimesObserved = n.GetIntValue(); } },
             };
         }
         /// <summary>

@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate {
+namespace ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate
+{
     /// <summary>
     /// Provides operations to call the getYammerDeviceUsageUserDetail method.
     /// </summary>
-    public class GetYammerDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerDeviceUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getYammerDeviceUsageUserDetail
+        /// Get details about Yammer device usage by user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammerdeviceusageuserdetail?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerDeviceUsageUserDetail";
+            command.Description = "Get details about Yammer device usage by user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammerdeviceusageuserdetail?view=graph-rest-1.0";
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate {
         {
         }
         /// <summary>
-        /// Invoke function getYammerDeviceUsageUserDetail
+        /// Get details about Yammer device usage by user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

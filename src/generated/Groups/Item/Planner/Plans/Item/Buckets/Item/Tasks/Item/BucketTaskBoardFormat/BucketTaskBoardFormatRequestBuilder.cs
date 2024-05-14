@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTaskBoardFormat {
+namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTaskBoardFormat
+{
     /// <summary>
     /// Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.
     /// </summary>
-    public class BucketTaskBoardFormatRequestBuilder : BaseCliRequestBuilder 
+    public class BucketTaskBoardFormatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property bucketTaskBoardFormat for groups
@@ -74,14 +75,13 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerBucketTaskBoardTaskFormat object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of plannerBucketTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -146,13 +146,12 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
         }
         /// <summary>
         /// Update the navigation property bucketTaskBoardFormat in groups
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property bucketTaskBoardFormat in groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property bucketTaskBoardFormat in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -255,7 +254,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerBucketTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -295,7 +294,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.BucketTa
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of plannerBucketTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
         /// </summary>
         public class BucketTaskBoardFormatRequestBuilderGetQueryParameters 
         {

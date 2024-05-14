@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.N {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.N
+{
     /// <summary>
     /// Provides operations to call the n method.
     /// </summary>
-    public class NRequestBuilder : BaseCliRequestBuilder 
+    public class NRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action n

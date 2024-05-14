@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
+namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate
+{
     /// <summary>
     /// Provides operations to call the uploadClientCertificate method.
     /// </summary>
-    public class UploadClientCertificateRequestBuilder : BaseCliRequestBuilder 
+    public class UploadClientCertificateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.

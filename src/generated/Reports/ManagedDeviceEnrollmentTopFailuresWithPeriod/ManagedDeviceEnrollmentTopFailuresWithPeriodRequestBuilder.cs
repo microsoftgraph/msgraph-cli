@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod {
+namespace ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod
+{
     /// <summary>
     /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
     /// </summary>
-    public class ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function managedDeviceEnrollmentTopFailures

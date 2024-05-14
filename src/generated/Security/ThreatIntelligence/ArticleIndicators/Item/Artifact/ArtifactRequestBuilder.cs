@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators.Item.Artifact {
+namespace ApiSdk.Security.ThreatIntelligence.ArticleIndicators.Item.Artifact
+{
     /// <summary>
     /// Provides operations to manage the artifact property of the microsoft.graph.security.indicator entity.
     /// </summary>
-    public class ArtifactRequestBuilder : BaseCliRequestBuilder 
+    public class ArtifactRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The artifact related to this indicator.

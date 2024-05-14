@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillPrice {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillPrice
+{
     /// <summary>
     /// Provides operations to call the tbillPrice method.
     /// </summary>
-    public class TbillPriceRequestBuilder : BaseCliRequestBuilder 
+    public class TbillPriceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action tbillPrice

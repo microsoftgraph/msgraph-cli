@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Extensions.Item {
+namespace ApiSdk.Groups.Item.Extensions.Item
+{
     /// <summary>
     /// Provides operations to manage the extensions property of the microsoft.graph.group entity.
     /// </summary>
-    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property extensions for groups

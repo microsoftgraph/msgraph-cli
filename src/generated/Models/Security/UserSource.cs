@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class UserSource : DataSource, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class UserSource : DataSource, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Email address of the user&apos;s mailbox.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -50,9 +53,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"email", n => { Email = n.GetStringValue(); } },
-                {"includedSources", n => { IncludedSources = n.GetEnumValue<SourceType>(); } },
-                {"siteWebUrl", n => { SiteWebUrl = n.GetStringValue(); } },
+                { "email", n => { Email = n.GetStringValue(); } },
+                { "includedSources", n => { IncludedSources = n.GetEnumValue<SourceType>(); } },
+                { "siteWebUrl", n => { SiteWebUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

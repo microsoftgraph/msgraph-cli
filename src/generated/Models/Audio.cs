@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Audio : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Audio : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -116,23 +119,23 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"album", n => { Album = n.GetStringValue(); } },
-                {"albumArtist", n => { AlbumArtist = n.GetStringValue(); } },
-                {"artist", n => { Artist = n.GetStringValue(); } },
-                {"bitrate", n => { Bitrate = n.GetLongValue(); } },
-                {"composers", n => { Composers = n.GetStringValue(); } },
-                {"copyright", n => { Copyright = n.GetStringValue(); } },
-                {"disc", n => { Disc = n.GetIntValue(); } },
-                {"discCount", n => { DiscCount = n.GetIntValue(); } },
-                {"duration", n => { Duration = n.GetLongValue(); } },
-                {"genre", n => { Genre = n.GetStringValue(); } },
-                {"hasDrm", n => { HasDrm = n.GetBoolValue(); } },
-                {"isVariableBitrate", n => { IsVariableBitrate = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
-                {"track", n => { Track = n.GetIntValue(); } },
-                {"trackCount", n => { TrackCount = n.GetIntValue(); } },
-                {"year", n => { Year = n.GetIntValue(); } },
+                { "album", n => { Album = n.GetStringValue(); } },
+                { "albumArtist", n => { AlbumArtist = n.GetStringValue(); } },
+                { "artist", n => { Artist = n.GetStringValue(); } },
+                { "bitrate", n => { Bitrate = n.GetLongValue(); } },
+                { "composers", n => { Composers = n.GetStringValue(); } },
+                { "copyright", n => { Copyright = n.GetStringValue(); } },
+                { "disc", n => { Disc = n.GetIntValue(); } },
+                { "discCount", n => { DiscCount = n.GetIntValue(); } },
+                { "duration", n => { Duration = n.GetLongValue(); } },
+                { "genre", n => { Genre = n.GetStringValue(); } },
+                { "hasDrm", n => { HasDrm = n.GetBoolValue(); } },
+                { "isVariableBitrate", n => { IsVariableBitrate = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "track", n => { Track = n.GetIntValue(); } },
+                { "trackCount", n => { TrackCount = n.GetIntValue(); } },
+                { "year", n => { Year = n.GetIntValue(); } },
             };
         }
         /// <summary>

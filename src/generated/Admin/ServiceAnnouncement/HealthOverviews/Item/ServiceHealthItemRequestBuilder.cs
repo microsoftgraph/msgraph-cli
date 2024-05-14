@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
+namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item
+{
     /// <summary>
     /// Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
     /// </summary>
-    public class ServiceHealthItemRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceHealthItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property healthOverviews for admin

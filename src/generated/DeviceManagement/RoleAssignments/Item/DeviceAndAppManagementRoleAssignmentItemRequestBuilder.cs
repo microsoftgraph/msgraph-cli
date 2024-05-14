@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
+namespace ApiSdk.DeviceManagement.RoleAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceAndAppManagementRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceAndAppManagementRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceAndAppManagementRoleAssignment.

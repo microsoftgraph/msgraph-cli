@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Small {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Small
+{
     /// <summary>
     /// Provides operations to call the small method.
     /// </summary>
-    public class SmallRequestBuilder : BaseCliRequestBuilder 
+    public class SmallRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action small

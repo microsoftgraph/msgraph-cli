@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.LastModifiedByUser {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.LastModifiedByUser
+{
     /// <summary>
     /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
     /// </summary>
-    public class LastModifiedByUserRequestBuilder : BaseCliRequestBuilder 
+    public class LastModifiedByUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Identity of the user who last modified the item. Read-only.

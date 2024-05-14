@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables
+{
     /// <summary>
     /// Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class PivotTablesRequestBuilder : BaseCliRequestBuilder 
+    public class PivotTablesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.
@@ -120,14 +121,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/workbookworksheet-list-pivottables?view=graph-rest-1.0" />
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of workbookpivottable objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/workbookworksheet-list-pivottables?view=graph-rest-1.0";
+            command.Description = "Collection of PivotTables that are part of the worksheet.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -221,7 +221,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -264,7 +266,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
         {
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -304,7 +306,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         public class PivotTablesRequestBuilderGetQueryParameters 
         {

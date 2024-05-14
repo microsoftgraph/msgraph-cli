@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience {
+namespace ApiSdk.EmployeeExperience
+{
     /// <summary>
     /// Provides operations to manage the employeeExperience singleton.
     /// </summary>
-    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder 
+    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get employeeExperience

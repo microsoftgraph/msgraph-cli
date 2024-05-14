@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DeviceConfigurationDeviceOverview : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DeviceConfigurationDeviceOverview : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Version of the policy for that overview</summary>
         public int? ConfigurationVersion { get; set; }
@@ -39,13 +42,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"configurationVersion", n => { ConfigurationVersion = n.GetIntValue(); } },
-                {"errorCount", n => { ErrorCount = n.GetIntValue(); } },
-                {"failedCount", n => { FailedCount = n.GetIntValue(); } },
-                {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
-                {"notApplicableCount", n => { NotApplicableCount = n.GetIntValue(); } },
-                {"pendingCount", n => { PendingCount = n.GetIntValue(); } },
-                {"successCount", n => { SuccessCount = n.GetIntValue(); } },
+                { "configurationVersion", n => { ConfigurationVersion = n.GetIntValue(); } },
+                { "errorCount", n => { ErrorCount = n.GetIntValue(); } },
+                { "failedCount", n => { FailedCount = n.GetIntValue(); } },
+                { "lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
+                { "notApplicableCount", n => { NotApplicableCount = n.GetIntValue(); } },
+                { "pendingCount", n => { PendingCount = n.GetIntValue(); } },
+                { "successCount", n => { SuccessCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

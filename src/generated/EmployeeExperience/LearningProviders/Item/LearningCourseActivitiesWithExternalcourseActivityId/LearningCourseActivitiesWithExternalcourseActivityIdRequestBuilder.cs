@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivitiesWithExternalcourseActivityId {
+namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningCourseActivitiesWithExternalcourseActivityId
+{
     /// <summary>
     /// Provides operations to manage the learningCourseActivities property of the microsoft.graph.learningProvider entity.
     /// </summary>
-    public class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder : BaseCliRequestBuilder 
+    public class LearningCourseActivitiesWithExternalcourseActivityIdRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a learningCourseActivity object using the course activity ID of either an assignment or a self-initiated activity.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsApp {
+namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsApp
+{
     /// <summary>
     /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
     /// </summary>
-    public class TeamsAppRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The app that is installed.

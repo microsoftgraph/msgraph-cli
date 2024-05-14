@@ -25,11 +25,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.CalendarView.Item {
+namespace ApiSdk.Groups.Item.CalendarView.Item
+{
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.group entity.
     /// </summary>
-    public class EventItemRequestBuilder : BaseCliRequestBuilder 
+    public class EventItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the accept method.

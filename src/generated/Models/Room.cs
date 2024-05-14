@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Room : Place, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Room : Place, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Specifies the name of the audio device in the room.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -112,19 +115,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"audioDeviceName", n => { AudioDeviceName = n.GetStringValue(); } },
-                {"bookingType", n => { BookingType = n.GetEnumValue<BookingType>(); } },
-                {"building", n => { Building = n.GetStringValue(); } },
-                {"capacity", n => { Capacity = n.GetIntValue(); } },
-                {"displayDeviceName", n => { DisplayDeviceName = n.GetStringValue(); } },
-                {"emailAddress", n => { EmailAddress = n.GetStringValue(); } },
-                {"floorLabel", n => { FloorLabel = n.GetStringValue(); } },
-                {"floorNumber", n => { FloorNumber = n.GetIntValue(); } },
-                {"isWheelChairAccessible", n => { IsWheelChairAccessible = n.GetBoolValue(); } },
-                {"label", n => { Label = n.GetStringValue(); } },
-                {"nickname", n => { Nickname = n.GetStringValue(); } },
-                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"videoDeviceName", n => { VideoDeviceName = n.GetStringValue(); } },
+                { "audioDeviceName", n => { AudioDeviceName = n.GetStringValue(); } },
+                { "bookingType", n => { BookingType = n.GetEnumValue<BookingType>(); } },
+                { "building", n => { Building = n.GetStringValue(); } },
+                { "capacity", n => { Capacity = n.GetIntValue(); } },
+                { "displayDeviceName", n => { DisplayDeviceName = n.GetStringValue(); } },
+                { "emailAddress", n => { EmailAddress = n.GetStringValue(); } },
+                { "floorLabel", n => { FloorLabel = n.GetStringValue(); } },
+                { "floorNumber", n => { FloorNumber = n.GetIntValue(); } },
+                { "isWheelChairAccessible", n => { IsWheelChairAccessible = n.GetBoolValue(); } },
+                { "label", n => { Label = n.GetStringValue(); } },
+                { "nickname", n => { Nickname = n.GetStringValue(); } },
+                { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "videoDeviceName", n => { VideoDeviceName = n.GetStringValue(); } },
             };
         }
         /// <summary>

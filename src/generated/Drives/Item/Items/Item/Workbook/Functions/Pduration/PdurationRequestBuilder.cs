@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pduration {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pduration
+{
     /// <summary>
     /// Provides operations to call the pduration method.
     /// </summary>
-    public class PdurationRequestBuilder : BaseCliRequestBuilder 
+    public class PdurationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action pduration

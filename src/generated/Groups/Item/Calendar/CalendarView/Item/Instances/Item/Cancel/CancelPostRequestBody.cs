@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Cancel {
-    public class CancelPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Cancel
+{
+    #pragma warning disable CS1591
+    public class CancelPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Cancel {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"Comment", n => { Comment = n.GetStringValue(); } },
+                { "Comment", n => { Comment = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
+namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe
+{
     /// <summary>
     /// Provides operations to call the wipe method.
     /// </summary>
-    public class WipeRequestBuilder : BaseCliRequestBuilder 
+    public class WipeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Wipe a device

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
+namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History
+{
     /// <summary>
     /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
     /// </summary>
-    public class HistoryRequestBuilder : BaseCliRequestBuilder 
+    public class HistoryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
@@ -104,14 +105,14 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0" />
+        /// Get the riskyUserHistoryItems from the history navigation property.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of a riskyUserHistoryItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0";
+            command.Description = "Get the riskyUserHistoryItems from the history navigation property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -193,7 +194,9 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -219,7 +222,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         {
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// Get the riskyUserHistoryItems from the history navigation property.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +262,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// Get the riskyUserHistoryItems from the history navigation property.
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters 
         {

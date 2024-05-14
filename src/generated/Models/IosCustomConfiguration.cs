@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the iosCustomConfiguration resource.
     /// </summary>
-    public class IosCustomConfiguration : DeviceConfiguration, IParsable 
+    public class IosCustomConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Payload. (UTF8 encoded byte array)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -59,9 +60,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"payload", n => { Payload = n.GetByteArrayValue(); } },
-                {"payloadFileName", n => { PayloadFileName = n.GetStringValue(); } },
-                {"payloadName", n => { PayloadName = n.GetStringValue(); } },
+                { "payload", n => { Payload = n.GetByteArrayValue(); } },
+                { "payloadFileName", n => { PayloadFileName = n.GetStringValue(); } },
+                { "payloadName", n => { PayloadName = n.GetStringValue(); } },
             };
         }
         /// <summary>

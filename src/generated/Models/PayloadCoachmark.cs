@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PayloadCoachmark : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PayloadCoachmark : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -84,13 +87,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"coachmarkLocation", n => { CoachmarkLocation = n.GetObjectValue<ApiSdk.Models.CoachmarkLocation>(ApiSdk.Models.CoachmarkLocation.CreateFromDiscriminatorValue); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"indicator", n => { Indicator = n.GetStringValue(); } },
-                {"isValid", n => { IsValid = n.GetBoolValue(); } },
-                {"language", n => { Language = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"order", n => { Order = n.GetStringValue(); } },
+                { "coachmarkLocation", n => { CoachmarkLocation = n.GetObjectValue<ApiSdk.Models.CoachmarkLocation>(ApiSdk.Models.CoachmarkLocation.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "indicator", n => { Indicator = n.GetStringValue(); } },
+                { "isValid", n => { IsValid = n.GetBoolValue(); } },
+                { "language", n => { Language = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "order", n => { Order = n.GetStringValue(); } },
             };
         }
         /// <summary>

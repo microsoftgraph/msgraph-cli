@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite
+{
     /// <summary>
     /// Provides operations to call the favorite method.
     /// </summary>
-    public class FavoriteRequestBuilder : BaseCliRequestBuilder 
+    public class FavoriteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.

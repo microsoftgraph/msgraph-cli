@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.Item {
+namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class TokenIssuancePolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The tokenIssuancePolicies assigned to this service principal.

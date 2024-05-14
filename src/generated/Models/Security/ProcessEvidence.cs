@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class ProcessEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class ProcessEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The status of the detection.The possible values are: detected, blocked, prevented, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.DetectionStatus? DetectionStatus { get; set; }
@@ -82,16 +85,16 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"detectionStatus", n => { DetectionStatus = n.GetEnumValue<DetectionStatus>(); } },
-                {"imageFile", n => { ImageFile = n.GetObjectValue<FileDetails>(FileDetails.CreateFromDiscriminatorValue); } },
-                {"mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
-                {"parentProcessCreationDateTime", n => { ParentProcessCreationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"parentProcessId", n => { ParentProcessId = n.GetLongValue(); } },
-                {"parentProcessImageFile", n => { ParentProcessImageFile = n.GetObjectValue<FileDetails>(FileDetails.CreateFromDiscriminatorValue); } },
-                {"processCommandLine", n => { ProcessCommandLine = n.GetStringValue(); } },
-                {"processCreationDateTime", n => { ProcessCreationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"processId", n => { ProcessId = n.GetLongValue(); } },
-                {"userAccount", n => { UserAccount = n.GetObjectValue<ApiSdk.Models.Security.UserAccount>(ApiSdk.Models.Security.UserAccount.CreateFromDiscriminatorValue); } },
+                { "detectionStatus", n => { DetectionStatus = n.GetEnumValue<DetectionStatus>(); } },
+                { "imageFile", n => { ImageFile = n.GetObjectValue<FileDetails>(FileDetails.CreateFromDiscriminatorValue); } },
+                { "mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
+                { "parentProcessCreationDateTime", n => { ParentProcessCreationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "parentProcessId", n => { ParentProcessId = n.GetLongValue(); } },
+                { "parentProcessImageFile", n => { ParentProcessImageFile = n.GetObjectValue<FileDetails>(FileDetails.CreateFromDiscriminatorValue); } },
+                { "processCommandLine", n => { ProcessCommandLine = n.GetStringValue(); } },
+                { "processCreationDateTime", n => { ProcessCreationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "processId", n => { ProcessId = n.GetLongValue(); } },
+                { "userAccount", n => { UserAccount = n.GetObjectValue<ApiSdk.Models.Security.UserAccount>(ApiSdk.Models.Security.UserAccount.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unichar {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unichar
+{
     /// <summary>
     /// Provides operations to call the unichar method.
     /// </summary>
-    public class UnicharRequestBuilder : BaseCliRequestBuilder 
+    public class UnicharRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action unichar

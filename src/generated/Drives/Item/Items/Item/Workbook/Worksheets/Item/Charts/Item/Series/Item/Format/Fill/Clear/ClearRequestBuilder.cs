@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.Clear {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.Clear
+{
     /// <summary>
     /// Provides operations to call the clear method.
     /// </summary>
-    public class ClearRequestBuilder : BaseCliRequestBuilder 
+    public class ClearRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clear the fill color of a chart element.

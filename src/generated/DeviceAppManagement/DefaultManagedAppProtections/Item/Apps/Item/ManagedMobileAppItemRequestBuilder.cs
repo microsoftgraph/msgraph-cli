@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item {
+namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps.Item
+{
     /// <summary>
     /// Provides operations to manage the apps property of the microsoft.graph.defaultManagedAppProtection entity.
     /// </summary>
-    public class ManagedMobileAppItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedMobileAppItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property apps for deviceAppManagement

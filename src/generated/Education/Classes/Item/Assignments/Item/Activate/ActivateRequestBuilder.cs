@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Assignments.Item.Activate {
+namespace ApiSdk.Education.Classes.Item.Assignments.Item.Activate
+{
     /// <summary>
     /// Provides operations to call the activate method.
     /// </summary>
-    public class ActivateRequestBuilder : BaseCliRequestBuilder 
+    public class ActivateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Activate an inactive educationAssignment to signal that the assignment has further action items for teachers or students. This action can only be performed by a teacher on currently inactive assignments.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item {
+namespace ApiSdk.Security.ThreatIntelligence.PassiveDnsRecords.Item
+{
     /// <summary>
     /// Provides operations to manage the passiveDnsRecords property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class PassiveDnsRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class PassiveDnsRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the artifact property of the microsoft.graph.security.passiveDnsRecord entity.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Communications.Presences.Item.SetPresence {
-    public class SetPresencePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Communications.Presences.Item.SetPresence
+{
+    #pragma warning disable CS1591
+    public class SetPresencePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The activity property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,10 +63,10 @@ namespace ApiSdk.Communications.Presences.Item.SetPresence {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"activity", n => { Activity = n.GetStringValue(); } },
-                {"availability", n => { Availability = n.GetStringValue(); } },
-                {"expirationDuration", n => { ExpirationDuration = n.GetTimeSpanValue(); } },
-                {"sessionId", n => { SessionId = n.GetStringValue(); } },
+                { "activity", n => { Activity = n.GetStringValue(); } },
+                { "availability", n => { Availability = n.GetStringValue(); } },
+                { "expirationDuration", n => { ExpirationDuration = n.GetTimeSpanValue(); } },
+                { "sessionId", n => { SessionId = n.GetStringValue(); } },
             };
         }
         /// <summary>

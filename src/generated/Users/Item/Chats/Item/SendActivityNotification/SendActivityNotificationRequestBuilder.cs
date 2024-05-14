@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification {
+namespace ApiSdk.Users.Item.Chats.Item.SendActivityNotification
+{
     /// <summary>
     /// Provides operations to call the sendActivityNotification method.
     /// </summary>
-    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder 
+    public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Send an activity feed notification in scope of a chat. For more information about sending notifications and the requirements for doing so, see sending Teams activity notifications.

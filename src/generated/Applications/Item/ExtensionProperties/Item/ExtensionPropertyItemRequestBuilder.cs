@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
+namespace ApiSdk.Applications.Item.ExtensionProperties.Item
+{
     /// <summary>
     /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
     /// </summary>
-    public class ExtensionPropertyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExtensionPropertyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a directory extension definition represented by an extensionProperty object. You can delete only directory extensions that aren&apos;t synced from on-premises active directory (AD).

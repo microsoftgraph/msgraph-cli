@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
+namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item
+{
     /// <summary>
     /// Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class EndpointItemRequestBuilder : BaseCliRequestBuilder 
+    public class EndpointItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property endpoints for servicePrincipals

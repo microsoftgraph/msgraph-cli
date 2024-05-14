@@ -13,11 +13,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Places {
+namespace ApiSdk.Places
+{
     /// <summary>
     /// Builds and executes requests for operations under \places
     /// </summary>
-    public class PlacesRequestBuilder : BaseCliRequestBuilder 
+    public class PlacesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of place entities.

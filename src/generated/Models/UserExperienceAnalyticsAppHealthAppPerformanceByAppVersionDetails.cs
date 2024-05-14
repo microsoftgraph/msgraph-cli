@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics application performance entity contains application performance by application version details.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails : Entity, IParsable 
+    public class UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails : Entity, IParsable
     {
         /// <summary>The number of crashes for the app. Valid values -2147483648 to 2147483647</summary>
         public int? AppCrashCount { get; set; }
@@ -68,14 +69,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appCrashCount", n => { AppCrashCount = n.GetIntValue(); } },
-                {"appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
-                {"appName", n => { AppName = n.GetStringValue(); } },
-                {"appPublisher", n => { AppPublisher = n.GetStringValue(); } },
-                {"appVersion", n => { AppVersion = n.GetStringValue(); } },
-                {"deviceCountWithCrashes", n => { DeviceCountWithCrashes = n.GetIntValue(); } },
-                {"isLatestUsedVersion", n => { IsLatestUsedVersion = n.GetBoolValue(); } },
-                {"isMostUsedVersion", n => { IsMostUsedVersion = n.GetBoolValue(); } },
+                { "appCrashCount", n => { AppCrashCount = n.GetIntValue(); } },
+                { "appDisplayName", n => { AppDisplayName = n.GetStringValue(); } },
+                { "appName", n => { AppName = n.GetStringValue(); } },
+                { "appPublisher", n => { AppPublisher = n.GetStringValue(); } },
+                { "appVersion", n => { AppVersion = n.GetStringValue(); } },
+                { "deviceCountWithCrashes", n => { DeviceCountWithCrashes = n.GetIntValue(); } },
+                { "isLatestUsedVersion", n => { IsLatestUsedVersion = n.GetBoolValue(); } },
+                { "isMostUsedVersion", n => { IsMostUsedVersion = n.GetBoolValue(); } },
             };
         }
         /// <summary>

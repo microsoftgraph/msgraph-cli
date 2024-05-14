@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
+namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies
+{
     /// <summary>
     /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppPoliciesRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppPoliciesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
@@ -100,14 +101,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedAppConfiguration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the targetedManagedAppProtection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedAppConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappconfiguration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -183,7 +184,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -209,7 +212,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
         {
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
+        /// List properties and relationships of the managedAppConfiguration objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -249,7 +252,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppProtection objects.
+        /// List properties and relationships of the managedAppConfiguration objects.
         /// </summary>
         public class ManagedAppPoliciesRequestBuilderGetQueryParameters 
         {

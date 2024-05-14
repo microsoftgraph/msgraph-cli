@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
+namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole
+{
     /// <summary>
     /// Provides operations to call the changeScreenSharingRole method.
     /// </summary>
-    public class ChangeScreenSharingRoleRequestBuilder : BaseCliRequestBuilder 
+    public class ChangeScreenSharingRoleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Allow applications to share screen content with the participants of a group call.

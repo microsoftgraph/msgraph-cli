@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState
+{
     /// <summary>
     /// Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
     /// </summary>
-    public class WindowsProtectionStateRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsProtectionStateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property windowsProtectionState for users
@@ -90,14 +91,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsProtectionState object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-get?view=graph-rest-1.0" />
+        /// The device protection status. This property is read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the windowsProtectionState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-get?view=graph-rest-1.0";
+            command.Description = "The device protection status. This property is read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -149,14 +149,13 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
             return command;
         }
         /// <summary>
-        /// Update the properties of a windowsProtectionState object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-update?view=graph-rest-1.0" />
+        /// Update the navigation property windowsProtectionState in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a windowsProtectionState object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-windowsprotectionstate-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property windowsProtectionState in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -240,7 +239,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsProtectionState object.
+        /// The device protection status. This property is read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a windowsProtectionState object.
+        /// Update the navigation property windowsProtectionState in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -280,7 +279,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the windowsProtectionState object.
+        /// The device protection status. This property is read-only.
         /// </summary>
         public class WindowsProtectionStateRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains.Item
+{
     /// <summary>
     /// Provides operations to manage the subdomains property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class SubdomainItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubdomainItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The subdomains that are associated with this host.

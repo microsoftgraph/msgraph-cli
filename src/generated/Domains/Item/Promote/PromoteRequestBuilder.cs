@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Domains.Item.Promote {
+namespace ApiSdk.Domains.Item.Promote
+{
     /// <summary>
     /// Provides operations to call the promote method.
     /// </summary>
-    public class PromoteRequestBuilder : BaseCliRequestBuilder 
+    public class PromoteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Promote a verified subdomain to the root domain. A verified domain has its isVerified property set to true.

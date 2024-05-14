@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.Format.Font {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.Format.Font
+{
     /// <summary>
     /// Provides operations to manage the font property of the microsoft.graph.workbookChartAxisFormat entity.
     /// </summary>
-    public class FontRequestBuilder : BaseCliRequestBuilder 
+    public class FontRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property font for drives
@@ -74,14 +75,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartfont object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartfont-get?view=graph-rest-1.0" />
+        /// Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartfont object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartfont-get?view=graph-rest-1.0";
+            command.Description = "Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -145,14 +145,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Update the properties of chartfont object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/chartfont-update?view=graph-rest-1.0" />
+        /// Update the navigation property font in drives
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of chartfont object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chartfont-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property font in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -248,7 +247,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartfont object.
+        /// Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +266,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of chartfont object.
+        /// Update the navigation property font in drives
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -288,7 +287,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartfont object.
+        /// Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.
         /// </summary>
         public class FontRequestBuilderGetQueryParameters 
         {

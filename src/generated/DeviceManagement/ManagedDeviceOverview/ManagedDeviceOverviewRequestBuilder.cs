@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
+namespace ApiSdk.DeviceManagement.ManagedDeviceOverview
+{
     /// <summary>
     /// Provides operations to manage the managedDeviceOverview property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ManagedDeviceOverviewRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceOverviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0" />
+        /// Device overview
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedDeviceOverview object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0";
+            command.Description = "Device overview";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -82,7 +82,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
         {
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
+        /// Device overview
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -101,7 +101,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
+        /// Device overview
         /// </summary>
         public class ManagedDeviceOverviewRequestBuilderGetQueryParameters 
         {

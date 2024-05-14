@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingCurrencies.Item {
+namespace ApiSdk.Solutions.BookingCurrencies.Item
+{
     /// <summary>
     /// Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.
     /// </summary>
-    public class BookingCurrencyItemRequestBuilder : BaseCliRequestBuilder 
+    public class BookingCurrencyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property bookingCurrencies for solutions

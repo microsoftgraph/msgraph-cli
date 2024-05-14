@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Entity for AppLogCollectionRequest contains all logs values.
     /// </summary>
-    public class AppLogCollectionRequest : Entity, IParsable 
+    public class AppLogCollectionRequest : Entity, IParsable
     {
         /// <summary>Time at which the upload log request reached a completed state if not completed yet NULL will be returned.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -48,10 +49,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"customLogFolders", n => { CustomLogFolders = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"errorMessage", n => { ErrorMessage = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "customLogFolders", n => { CustomLogFolders = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "errorMessage", n => { ErrorMessage = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
             };
         }
         /// <summary>

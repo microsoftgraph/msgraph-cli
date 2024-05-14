@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDevA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDevA
+{
     /// <summary>
     /// Provides operations to call the stDevA method.
     /// </summary>
-    public class StDevARequestBuilder : BaseCliRequestBuilder 
+    public class StDevARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action stDevA

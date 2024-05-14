@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks.Item
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
     /// </summary>
-    public class TaskItemRequestBuilder : BaseCliRequestBuilder 
+    public class TaskItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property tasks for identityGovernance
@@ -63,13 +64,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks.Item
             return command;
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Get a specific task from a workflow or workflowVersion.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-task-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "The tasks in the workflow.";
+            command.Description = "Get a specific task from a workflow or workflowVersion.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-task-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -237,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks.Item
             return requestInfo;
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Get a specific task from a workflow or workflowVersion.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +279,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks.Item
             return requestInfo;
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Get a specific task from a workflow or workflowVersion.
         /// </summary>
         public class TaskItemRequestBuilderGetQueryParameters 
         {

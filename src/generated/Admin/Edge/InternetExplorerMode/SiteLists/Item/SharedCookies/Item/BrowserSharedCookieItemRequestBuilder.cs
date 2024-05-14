@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.Item {
+namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.Item
+{
     /// <summary>
     /// Provides operations to manage the sharedCookies property of the microsoft.graph.browserSiteList entity.
     /// </summary>
-    public class BrowserSharedCookieItemRequestBuilder : BaseCliRequestBuilder 
+    public class BrowserSharedCookieItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a browserSharedCookie from a browserSiteList.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
+namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item
+{
     /// <summary>
     /// Provides operations to manage the remoteAssistancePartners property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class RemoteAssistancePartnerItemRequestBuilder : BaseCliRequestBuilder 
+    public class RemoteAssistancePartnerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the beginOnboarding method.

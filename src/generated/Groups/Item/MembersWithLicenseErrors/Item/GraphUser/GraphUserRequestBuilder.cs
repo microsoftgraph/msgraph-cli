@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphUser {
+namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphUser
+{
     /// <summary>
     /// Casts the previous resource to user.
     /// </summary>
-    public class GraphUserRequestBuilder : BaseCliRequestBuilder 
+    public class GraphUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user

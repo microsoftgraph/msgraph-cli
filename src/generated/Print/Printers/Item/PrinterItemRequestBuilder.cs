@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item {
+namespace ApiSdk.Print.Printers.Item
+{
     /// <summary>
     /// Provides operations to manage the printers property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrinterItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrinterItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.printer entity.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getSharePointActivityUserDetail method.
     /// </summary>
-    public class GetSharePointActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetSharePointActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getSharePointActivityUserDetail

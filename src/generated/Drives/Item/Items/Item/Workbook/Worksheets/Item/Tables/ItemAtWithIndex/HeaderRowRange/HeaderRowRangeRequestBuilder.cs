@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.HeaderRowRange {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.HeaderRowRange
+{
     /// <summary>
     /// Provides operations to call the headerRowRange method.
     /// </summary>
-    public class HeaderRowRangeRequestBuilder : BaseCliRequestBuilder 
+    public class HeaderRowRangeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Gets the range object associated with header row of the table.

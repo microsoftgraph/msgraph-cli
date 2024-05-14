@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DstDev {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DstDev
+{
     /// <summary>
     /// Provides operations to call the dstDev method.
     /// </summary>
-    public class DstDevRequestBuilder : BaseCliRequestBuilder 
+    public class DstDevRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dstDev

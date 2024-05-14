@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Submit {
+namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Submit
+{
     /// <summary>
     /// Provides operations to call the submit method.
     /// </summary>
-    public class SubmitRequestBuilder : BaseCliRequestBuilder 
+    public class SubmitRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from working to submitted. During the submit process, all the resources are copied to the submittedResources bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student&apos;s assignment on their behalf.

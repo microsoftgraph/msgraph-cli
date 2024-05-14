@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsEven {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsEven
+{
     /// <summary>
     /// Provides operations to call the isEven method.
     /// </summary>
-    public class IsEvenRequestBuilder : BaseCliRequestBuilder 
+    public class IsEvenRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isEven

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ResourceSpecificPermissionGrant : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ResourceSpecificPermissionGrant : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>ID of the service principal of the Microsoft Entra app that has been granted access. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,11 +75,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"clientAppId", n => { ClientAppId = n.GetStringValue(); } },
-                {"clientId", n => { ClientId = n.GetStringValue(); } },
-                {"permission", n => { Permission = n.GetStringValue(); } },
-                {"permissionType", n => { PermissionType = n.GetStringValue(); } },
-                {"resourceAppId", n => { ResourceAppId = n.GetStringValue(); } },
+                { "clientAppId", n => { ClientAppId = n.GetStringValue(); } },
+                { "clientId", n => { ClientId = n.GetStringValue(); } },
+                { "permission", n => { Permission = n.GetStringValue(); } },
+                { "permissionType", n => { PermissionType = n.GetStringValue(); } },
+                { "resourceAppId", n => { ResourceAppId = n.GetStringValue(); } },
             };
         }
         /// <summary>

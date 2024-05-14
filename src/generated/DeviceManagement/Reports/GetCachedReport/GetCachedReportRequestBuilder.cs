@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetCachedReport {
+namespace ApiSdk.DeviceManagement.Reports.GetCachedReport
+{
     /// <summary>
     /// Provides operations to call the getCachedReport method.
     /// </summary>
-    public class GetCachedReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetCachedReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Irr {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Irr
+{
     /// <summary>
     /// Provides operations to call the irr method.
     /// </summary>
-    public class IrrRequestBuilder : BaseCliRequestBuilder 
+    public class IrrRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action irr

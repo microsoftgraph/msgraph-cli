@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Oauth2PermissionGrants.Item {
+namespace ApiSdk.Users.Item.Oauth2PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.
     /// </summary>
-    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get oauth2PermissionGrants from users

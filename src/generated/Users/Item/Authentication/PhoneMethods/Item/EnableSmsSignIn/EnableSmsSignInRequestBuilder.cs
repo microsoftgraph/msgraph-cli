@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn {
+namespace ApiSdk.Users.Item.Authentication.PhoneMethods.Item.EnableSmsSignIn
+{
     /// <summary>
     /// Provides operations to call the enableSmsSignIn method.
     /// </summary>
-    public class EnableSmsSignInRequestBuilder : BaseCliRequestBuilder 
+    public class EnableSmsSignInRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Enable SMS sign-in for an existing mobile phone number registered to a user. To be successfully enabled:

@@ -15,20 +15,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Rows.ItemAtWithIndex {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Rows.ItemAtWithIndex
+{
     /// <summary>
     /// Provides operations to call the itemAt method.
     /// </summary>
-    public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder 
+    public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function itemAt
+        /// Gets a row based on its position in the collection.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/tablerowcollection-itemat?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function itemAt";
+            command.Description = "Gets a row based on its position in the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tablerowcollection-itemat?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -115,7 +117,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
         {
         }
         /// <summary>
-        /// Invoke function itemAt
+        /// Gets a row based on its position in the collection.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

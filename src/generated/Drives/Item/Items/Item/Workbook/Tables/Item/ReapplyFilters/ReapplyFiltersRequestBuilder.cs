@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ReapplyFilters {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ReapplyFilters
+{
     /// <summary>
     /// Provides operations to call the reapplyFilters method.
     /// </summary>
-    public class ReapplyFiltersRequestBuilder : BaseCliRequestBuilder 
+    public class ReapplyFiltersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reapplies all the filters currently on the table.

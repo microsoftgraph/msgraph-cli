@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.RemovePassword {
+namespace ApiSdk.Applications.Item.RemovePassword
+{
     /// <summary>
     /// Provides operations to call the removePassword method.
     /// </summary>
-    public class RemovePasswordRequestBuilder : BaseCliRequestBuilder 
+    public class RemovePasswordRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a password from an application.

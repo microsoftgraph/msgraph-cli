@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item.Host {
+namespace ApiSdk.Security.ThreatIntelligence.HostTrackers.Item.Host
+{
     /// <summary>
     /// Provides operations to manage the host property of the microsoft.graph.security.hostTracker entity.
     /// </summary>
-    public class HostRequestBuilder : BaseCliRequestBuilder 
+    public class HostRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The host related to this hostTracker. When navigating to a hostTracker from a host, this should be assumed to be a return reference.

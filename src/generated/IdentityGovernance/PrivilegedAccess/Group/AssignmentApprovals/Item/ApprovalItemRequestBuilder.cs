@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item
+{
     /// <summary>
     /// Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.
     /// </summary>
-    public class ApprovalItemRequestBuilder : BaseCliRequestBuilder 
+    public class ApprovalItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignmentApprovals for identityGovernance

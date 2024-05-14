@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Title.Format.Font {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Title.Format.Font
+{
     /// <summary>
     /// Provides operations to manage the font property of the microsoft.graph.workbookChartTitleFormat entity.
     /// </summary>
-    public class FontRequestBuilder : BaseCliRequestBuilder 
+    public class FontRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property font for drives

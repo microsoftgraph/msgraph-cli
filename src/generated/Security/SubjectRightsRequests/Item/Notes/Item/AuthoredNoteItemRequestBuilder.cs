@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SubjectRightsRequests.Item.Notes.Item {
+namespace ApiSdk.Security.SubjectRightsRequests.Item.Notes.Item
+{
     /// <summary>
     /// Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
     /// </summary>
-    public class AuthoredNoteItemRequestBuilder : BaseCliRequestBuilder 
+    public class AuthoredNoteItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property notes for security

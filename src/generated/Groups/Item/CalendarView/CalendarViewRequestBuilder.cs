@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.CalendarView {
+namespace ApiSdk.Groups.Item.CalendarView
+{
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.group entity.
     /// </summary>
-    public class CalendarViewRequestBuilder : BaseCliRequestBuilder 
+    public class CalendarViewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.group entity.
@@ -81,14 +82,14 @@ namespace ApiSdk.Groups.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// The calendar view for the calendar. Read-only.
+        /// Get the occurrences, exceptions, and single instances of events in a calendar view defined by a time range,from the default calendar of a group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-calendarview?view=graph-rest-1.0";
+            command.Description = "Get the occurrences, exceptions, and single instances of events in a calendar view defined by a time range,from the default calendar of a group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-calendarview?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -109,6 +110,10 @@ namespace ApiSdk.Groups.Item.CalendarView {
             };
             skipOption.IsRequired = false;
             command.AddOption(skipOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -139,6 +144,7 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -156,6 +162,7 @@ namespace ApiSdk.Groups.Item.CalendarView {
                     if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -169,7 +176,9 @@ namespace ApiSdk.Groups.Item.CalendarView {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -184,18 +193,18 @@ namespace ApiSdk.Groups.Item.CalendarView {
         /// Instantiates a new <see cref="CalendarViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24filter,%24orderby,%24select,%24skip,%24top}", pathParameters)
+        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="CalendarViewRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24filter,%24orderby,%24select,%24skip,%24top}", rawUrl)
+        public CalendarViewRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendarView?endDateTime={endDateTime}&startDateTime={startDateTime}{&%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// The calendar view for the calendar. Read-only.
+        /// Get the occurrences, exceptions, and single instances of events in a calendar view defined by a time range,from the default calendar of a group.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -214,7 +223,7 @@ namespace ApiSdk.Groups.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// The calendar view for the calendar. Read-only.
+        /// Get the occurrences, exceptions, and single instances of events in a calendar view defined by a time range,from the default calendar of a group.
         /// </summary>
         public class CalendarViewRequestBuilderGetQueryParameters 
         {
@@ -250,6 +259,16 @@ namespace ApiSdk.Groups.Item.CalendarView {
 #else
             [QueryParameter("%24orderby")]
             public string[] Orderby { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Photo {
+namespace ApiSdk.Teams.Item.Photo
+{
     /// <summary>
     /// Provides operations to manage the photo property of the microsoft.graph.team entity.
     /// </summary>
-    public class PhotoRequestBuilder : BaseCliRequestBuilder 
+    public class PhotoRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the team entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Teams.Item.Photo {
             command.Description = "Provides operations to manage the media for the team entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -93,13 +95,14 @@ namespace ApiSdk.Teams.Item.Photo {
             return command;
         }
         /// <summary>
-        /// Update the navigation property photo in teams
+        /// Update the photo for the specified contact, group, team, or user in a tenant. The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/profilephoto-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property photo in teams";
+            command.Description = "Update the photo for the specified contact, group, team, or user in a tenant. The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/profilephoto-update?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -177,7 +180,7 @@ namespace ApiSdk.Teams.Item.Photo {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property photo in teams
+        /// Update the photo for the specified contact, group, team, or user in a tenant. The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

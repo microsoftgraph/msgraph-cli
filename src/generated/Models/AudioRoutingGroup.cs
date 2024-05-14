@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AudioRoutingGroup : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AudioRoutingGroup : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>List of receiving participant ids.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,9 +46,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"receivers", n => { Receivers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"routingMode", n => { RoutingMode = n.GetEnumValue<RoutingMode>(); } },
-                {"sources", n => { Sources = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "receivers", n => { Receivers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "routingMode", n => { RoutingMode = n.GetEnumValue<RoutingMode>(); } },
+                { "sources", n => { Sources = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

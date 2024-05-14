@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ArchivedPrintJob : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ArchivedPrintJob : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>True if the job was acquired by a printer; false otherwise. Read-only.</summary>
         public bool? AcquiredByPrinter { get; set; }
@@ -86,17 +89,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"acquiredByPrinter", n => { AcquiredByPrinter = n.GetBoolValue(); } },
-                {"acquiredDateTime", n => { AcquiredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
-                {"copiesPrinted", n => { CopiesPrinted = n.GetIntValue(); } },
-                {"createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"id", n => { Id = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"printerId", n => { PrinterId = n.GetStringValue(); } },
-                {"printerName", n => { PrinterName = n.GetStringValue(); } },
-                {"processingState", n => { ProcessingState = n.GetEnumValue<PrintJobProcessingState>(); } },
+                { "acquiredByPrinter", n => { AcquiredByPrinter = n.GetBoolValue(); } },
+                { "acquiredDateTime", n => { AcquiredDateTime = n.GetDateTimeOffsetValue(); } },
+                { "completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
+                { "copiesPrinted", n => { CopiesPrinted = n.GetIntValue(); } },
+                { "createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "printerId", n => { PrinterId = n.GetStringValue(); } },
+                { "printerName", n => { PrinterName = n.GetStringValue(); } },
+                { "processingState", n => { ProcessingState = n.GetEnumValue<PrintJobProcessingState>(); } },
             };
         }
         /// <summary>

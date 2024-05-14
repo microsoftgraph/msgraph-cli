@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Apply {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Apply
+{
     /// <summary>
     /// Provides operations to call the apply method.
     /// </summary>
-    public class ApplyRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Perform a sort operation.

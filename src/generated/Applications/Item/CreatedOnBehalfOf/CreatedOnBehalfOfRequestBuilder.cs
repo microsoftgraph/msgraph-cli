@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
+namespace ApiSdk.Applications.Item.CreatedOnBehalfOf
+{
     /// <summary>
     /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.
     /// </summary>
-    public class CreatedOnBehalfOfRequestBuilder : BaseCliRequestBuilder 
+    public class CreatedOnBehalfOfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Supports $filter (/$count eq 0, /$count ne 0). Read-only.

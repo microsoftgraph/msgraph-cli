@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
+namespace ApiSdk.Education.Classes.Item.AssignmentSettings
+{
     /// <summary>
     /// Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class AssignmentSettingsRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentSettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignmentSettings for education

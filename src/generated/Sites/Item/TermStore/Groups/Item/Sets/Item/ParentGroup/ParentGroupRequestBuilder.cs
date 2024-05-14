@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.ParentGroup {
+namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.ParentGroup
+{
     /// <summary>
     /// Provides operations to manage the parentGroup property of the microsoft.graph.termStore.set entity.
     /// </summary>
-    public class ParentGroupRequestBuilder : BaseCliRequestBuilder 
+    public class ParentGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property parentGroup for sites

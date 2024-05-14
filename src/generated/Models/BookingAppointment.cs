@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Represents a booked appointment of a service by a customer in a business.
     /// </summary>
-    public class BookingAppointment : Entity, IParsable 
+    public class BookingAppointment : Entity, IParsable
     {
         /// <summary>Additional information that is sent to the customer when an appointment is confirmed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -25,6 +26,38 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public string AnonymousJoinWebUrl { get; set; }
+#endif
+        /// <summary>The customerEmailAddress property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerEmailAddress { get; set; }
+#nullable restore
+#else
+        public string CustomerEmailAddress { get; set; }
+#endif
+        /// <summary>The customerName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerName { get; set; }
+#nullable restore
+#else
+        public string CustomerName { get; set; }
+#endif
+        /// <summary>Notes from the customer associated with this appointment.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerNotes { get; set; }
+#nullable restore
+#else
+        public string CustomerNotes { get; set; }
+#endif
+        /// <summary>The customerPhone property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CustomerPhone { get; set; }
+#nullable restore
+#else
+        public string CustomerPhone { get; set; }
 #endif
         /// <summary>A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -160,30 +193,34 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
-                {"anonymousJoinWebUrl", n => { AnonymousJoinWebUrl = n.GetStringValue(); } },
-                {"customerTimeZone", n => { CustomerTimeZone = n.GetStringValue(); } },
-                {"customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>(BookingCustomerInformationBase.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"duration", n => { Duration = n.GetTimeSpanValue(); } },
-                {"endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"filledAttendeesCount", n => { FilledAttendeesCount = n.GetIntValue(); } },
-                {"isLocationOnline", n => { IsLocationOnline = n.GetBoolValue(); } },
-                {"joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
-                {"maximumAttendeesCount", n => { MaximumAttendeesCount = n.GetIntValue(); } },
-                {"optOutOfCustomerEmail", n => { OptOutOfCustomerEmail = n.GetBoolValue(); } },
-                {"postBuffer", n => { PostBuffer = n.GetTimeSpanValue(); } },
-                {"preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
-                {"price", n => { Price = n.GetDoubleValue(); } },
-                {"priceType", n => { PriceType = n.GetEnumValue<BookingPriceType>(); } },
-                {"reminders", n => { Reminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"selfServiceAppointmentId", n => { SelfServiceAppointmentId = n.GetStringValue(); } },
-                {"serviceId", n => { ServiceId = n.GetStringValue(); } },
-                {"serviceLocation", n => { ServiceLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
-                {"serviceName", n => { ServiceName = n.GetStringValue(); } },
-                {"serviceNotes", n => { ServiceNotes = n.GetStringValue(); } },
-                {"smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
-                {"staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "additionalInformation", n => { AdditionalInformation = n.GetStringValue(); } },
+                { "anonymousJoinWebUrl", n => { AnonymousJoinWebUrl = n.GetStringValue(); } },
+                { "customerEmailAddress", n => { CustomerEmailAddress = n.GetStringValue(); } },
+                { "customerName", n => { CustomerName = n.GetStringValue(); } },
+                { "customerNotes", n => { CustomerNotes = n.GetStringValue(); } },
+                { "customerPhone", n => { CustomerPhone = n.GetStringValue(); } },
+                { "customerTimeZone", n => { CustomerTimeZone = n.GetStringValue(); } },
+                { "customers", n => { Customers = n.GetCollectionOfObjectValues<BookingCustomerInformationBase>(BookingCustomerInformationBase.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "duration", n => { Duration = n.GetTimeSpanValue(); } },
+                { "endDateTime", n => { EndDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                { "filledAttendeesCount", n => { FilledAttendeesCount = n.GetIntValue(); } },
+                { "isLocationOnline", n => { IsLocationOnline = n.GetBoolValue(); } },
+                { "joinWebUrl", n => { JoinWebUrl = n.GetStringValue(); } },
+                { "maximumAttendeesCount", n => { MaximumAttendeesCount = n.GetIntValue(); } },
+                { "optOutOfCustomerEmail", n => { OptOutOfCustomerEmail = n.GetBoolValue(); } },
+                { "postBuffer", n => { PostBuffer = n.GetTimeSpanValue(); } },
+                { "preBuffer", n => { PreBuffer = n.GetTimeSpanValue(); } },
+                { "price", n => { Price = n.GetDoubleValue(); } },
+                { "priceType", n => { PriceType = n.GetEnumValue<BookingPriceType>(); } },
+                { "reminders", n => { Reminders = n.GetCollectionOfObjectValues<BookingReminder>(BookingReminder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "selfServiceAppointmentId", n => { SelfServiceAppointmentId = n.GetStringValue(); } },
+                { "serviceId", n => { ServiceId = n.GetStringValue(); } },
+                { "serviceLocation", n => { ServiceLocation = n.GetObjectValue<Location>(Location.CreateFromDiscriminatorValue); } },
+                { "serviceName", n => { ServiceName = n.GetStringValue(); } },
+                { "serviceNotes", n => { ServiceNotes = n.GetStringValue(); } },
+                { "smsNotificationsEnabled", n => { SmsNotificationsEnabled = n.GetBoolValue(); } },
+                { "staffMemberIds", n => { StaffMemberIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "startDateTime", n => { StartDateTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -196,6 +233,10 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteStringValue("additionalInformation", AdditionalInformation);
             writer.WriteStringValue("anonymousJoinWebUrl", AnonymousJoinWebUrl);
+            writer.WriteStringValue("customerEmailAddress", CustomerEmailAddress);
+            writer.WriteStringValue("customerName", CustomerName);
+            writer.WriteStringValue("customerNotes", CustomerNotes);
+            writer.WriteStringValue("customerPhone", CustomerPhone);
             writer.WriteCollectionOfObjectValues<BookingCustomerInformationBase>("customers", Customers);
             writer.WriteStringValue("customerTimeZone", CustomerTimeZone);
             writer.WriteObjectValue<DateTimeTimeZone>("endDateTime", EndDateTime);

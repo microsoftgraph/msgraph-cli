@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.LastModifiedBy {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.LastModifiedBy
+{
     /// <summary>
     /// Provides operations to manage the lastModifiedBy property of the microsoft.graph.identityGovernance.workflowBase entity.
     /// </summary>
-    public class LastModifiedByRequestBuilder : BaseCliRequestBuilder 
+    public class LastModifiedByRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The unique identifier of the Microsoft Entra identity that last modified the workflow.

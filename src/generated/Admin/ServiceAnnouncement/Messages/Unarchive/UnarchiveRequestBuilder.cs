@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive
+{
     /// <summary>
     /// Provides operations to call the unarchive method.
     /// </summary>
-    public class UnarchiveRequestBuilder : BaseCliRequestBuilder 
+    public class UnarchiveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unarchive a list of serviceUpdateMessages for the signed in user.

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Items {
+namespace ApiSdk.Sites.Item.Lists.Item.Items
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.list entity.
     /// </summary>
-    public class ItemsRequestBuilder : BaseCliRequestBuilder 
+    public class ItemsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.list entity.
@@ -48,14 +49,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return new(executables, commands);
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
+        /// Create a new listItem in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
+            command.Description = "Create a new listItem in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -140,14 +141,14 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return command;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// Get the collection of items in a list.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
+            command.Description = "Get the collection of items in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -172,6 +173,10 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
+            var countOption = new Option<bool?>("--count", description: "Include count of items") {
+            };
+            countOption.IsRequired = false;
+            command.AddOption(countOption);
             var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -200,6 +205,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
+                var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
@@ -216,6 +222,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
+                    q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -229,7 +236,9 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -244,18 +253,18 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
         /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
+        public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="ItemsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public ItemsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
+        public ItemsRequestBuilder(string rawUrl) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items{?%24count,%24expand,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// Get the collection of items in a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +283,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [listItem][] in a [list][].
+        /// Create a new listItem in a list.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -295,10 +304,13 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [items][item] in a [list][].
+        /// Get the collection of items in a list.
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters 
         {
+            /// <summary>Include count of items</summary>
+            [QueryParameter("%24count")]
+            public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

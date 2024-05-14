@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.SecureScores.Item {
+namespace ApiSdk.Security.SecureScores.Item
+{
     /// <summary>
     /// Provides operations to manage the secureScores property of the microsoft.graph.security entity.
     /// </summary>
-    public class SecureScoreItemRequestBuilder : BaseCliRequestBuilder 
+    public class SecureScoreItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property secureScores for security

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AppsInstallationOptionsForMac : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AppsInstallationOptionsForMac : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -46,9 +49,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"isMicrosoft365AppsEnabled", n => { IsMicrosoft365AppsEnabled = n.GetBoolValue(); } },
-                {"isSkypeForBusinessEnabled", n => { IsSkypeForBusinessEnabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "isMicrosoft365AppsEnabled", n => { IsMicrosoft365AppsEnabled = n.GetBoolValue(); } },
+                { "isSkypeForBusinessEnabled", n => { IsSkypeForBusinessEnabled = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

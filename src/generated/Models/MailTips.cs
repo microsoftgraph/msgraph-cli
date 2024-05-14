@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MailTips : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MailTips : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -96,19 +99,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"automaticReplies", n => { AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
-                {"customMailTip", n => { CustomMailTip = n.GetStringValue(); } },
-                {"deliveryRestricted", n => { DeliveryRestricted = n.GetBoolValue(); } },
-                {"emailAddress", n => { EmailAddress = n.GetObjectValue<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue); } },
-                {"error", n => { Error = n.GetObjectValue<MailTipsError>(MailTipsError.CreateFromDiscriminatorValue); } },
-                {"externalMemberCount", n => { ExternalMemberCount = n.GetIntValue(); } },
-                {"isModerated", n => { IsModerated = n.GetBoolValue(); } },
-                {"mailboxFull", n => { MailboxFull = n.GetBoolValue(); } },
-                {"maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
-                {"recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },
+                { "automaticReplies", n => { AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
+                { "customMailTip", n => { CustomMailTip = n.GetStringValue(); } },
+                { "deliveryRestricted", n => { DeliveryRestricted = n.GetBoolValue(); } },
+                { "emailAddress", n => { EmailAddress = n.GetObjectValue<ApiSdk.Models.EmailAddress>(ApiSdk.Models.EmailAddress.CreateFromDiscriminatorValue); } },
+                { "error", n => { Error = n.GetObjectValue<MailTipsError>(MailTipsError.CreateFromDiscriminatorValue); } },
+                { "externalMemberCount", n => { ExternalMemberCount = n.GetIntValue(); } },
+                { "isModerated", n => { IsModerated = n.GetBoolValue(); } },
+                { "mailboxFull", n => { MailboxFull = n.GetBoolValue(); } },
+                { "maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
+                { "recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

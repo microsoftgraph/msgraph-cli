@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Organization {
+namespace ApiSdk.Organization
+{
     /// <summary>
     /// Provides operations to manage the collection of organization entities.
     /// </summary>
-    public class OrganizationRequestBuilder : BaseCliRequestBuilder 
+    public class OrganizationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of organization entities.
@@ -163,14 +164,14 @@ namespace ApiSdk.Organization {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the organization objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of organization objects. There's only one organization object in the collection.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the organization objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -246,7 +247,9 @@ namespace ApiSdk.Organization {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -289,7 +292,7 @@ namespace ApiSdk.Organization {
         {
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -329,7 +332,7 @@ namespace ApiSdk.Organization {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         public class OrganizationRequestBuilderGetQueryParameters 
         {

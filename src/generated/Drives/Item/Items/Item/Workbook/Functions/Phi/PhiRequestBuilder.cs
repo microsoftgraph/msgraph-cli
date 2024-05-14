@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Phi {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Phi
+{
     /// <summary>
     /// Provides operations to call the phi method.
     /// </summary>
-    public class PhiRequestBuilder : BaseCliRequestBuilder 
+    public class PhiRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action phi

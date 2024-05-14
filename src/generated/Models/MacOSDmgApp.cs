@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for the MacOS DMG (Apple Disk Image) App.
     /// </summary>
-    public class MacOSDmgApp : MobileLobApp, IParsable 
+    public class MacOSDmgApp : MobileLobApp, IParsable
     {
         /// <summary>When TRUE, indicates that the app&apos;s version will NOT be used to detect if the app is installed on a device. When FALSE, indicates that the app&apos;s version will be used to detect if the app is installed on a device. Set this to true for apps that use a self update feature. The default value is FALSE.</summary>
         public bool? IgnoreVersionDetection { get; set; }
@@ -69,11 +70,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"ignoreVersionDetection", n => { IgnoreVersionDetection = n.GetBoolValue(); } },
-                {"includedApps", n => { IncludedApps = n.GetCollectionOfObjectValues<MacOSIncludedApp>(MacOSIncludedApp.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<MacOSMinimumOperatingSystem>(MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
-                {"primaryBundleId", n => { PrimaryBundleId = n.GetStringValue(); } },
-                {"primaryBundleVersion", n => { PrimaryBundleVersion = n.GetStringValue(); } },
+                { "ignoreVersionDetection", n => { IgnoreVersionDetection = n.GetBoolValue(); } },
+                { "includedApps", n => { IncludedApps = n.GetCollectionOfObjectValues<MacOSIncludedApp>(MacOSIncludedApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "minimumSupportedOperatingSystem", n => { MinimumSupportedOperatingSystem = n.GetObjectValue<MacOSMinimumOperatingSystem>(MacOSMinimumOperatingSystem.CreateFromDiscriminatorValue); } },
+                { "primaryBundleId", n => { PrimaryBundleId = n.GetStringValue(); } },
+                { "primaryBundleVersion", n => { PrimaryBundleVersion = n.GetStringValue(); } },
             };
         }
         /// <summary>

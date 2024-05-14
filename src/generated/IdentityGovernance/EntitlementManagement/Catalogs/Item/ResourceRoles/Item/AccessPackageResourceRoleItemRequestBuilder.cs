@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceRoles.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceRoles.Item
+{
     /// <summary>
     /// Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.
     /// </summary>
-    public class AccessPackageResourceRoleItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageResourceRoleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property resourceRoles for identityGovernance

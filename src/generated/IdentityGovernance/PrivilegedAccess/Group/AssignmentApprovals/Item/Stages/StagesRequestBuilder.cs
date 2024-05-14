@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.Stages {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.Item.Stages
+{
     /// <summary>
     /// Provides operations to manage the stages property of the microsoft.graph.approval entity.
     /// </summary>
-    public class StagesRequestBuilder : BaseCliRequestBuilder 
+    public class StagesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the stages property of the microsoft.graph.approval entity.
@@ -104,14 +105,13 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
             return command;
         }
         /// <summary>
-        /// List the approvalStage objects associated with an approval. This API request is made by an approver in the following scenarios: In Microsoft Entra entitlement management, providing the identifier of the access package assignment request.In PIM for groups, providing the identifier of the assignment schedule request.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/approval-list-stages?view=graph-rest-1.0" />
+        /// A collection of stages in the approval decision.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List the approvalStage objects associated with an approval. This API request is made by an approver in the following scenarios: In Microsoft Entra entitlement management, providing the identifier of the access package assignment request.In PIM for groups, providing the identifier of the assignment schedule request.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approval-list-stages?view=graph-rest-1.0";
+            command.Description = "A collection of stages in the approval decision.";
             var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
@@ -193,7 +193,9 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -219,7 +221,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
         {
         }
         /// <summary>
-        /// List the approvalStage objects associated with an approval. This API request is made by an approver in the following scenarios: In Microsoft Entra entitlement management, providing the identifier of the access package assignment request.In PIM for groups, providing the identifier of the assignment schedule request.
+        /// A collection of stages in the approval decision.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +261,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentApprovals.I
             return requestInfo;
         }
         /// <summary>
-        /// List the approvalStage objects associated with an approval. This API request is made by an approver in the following scenarios: In Microsoft Entra entitlement management, providing the identifier of the access package assignment request.In PIM for groups, providing the identifier of the assignment schedule request.
+        /// A collection of stages in the approval decision.
         /// </summary>
         public class StagesRequestBuilderGetQueryParameters 
         {

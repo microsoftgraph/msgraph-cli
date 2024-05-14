@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Duration {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Duration
+{
     /// <summary>
     /// Provides operations to call the duration method.
     /// </summary>
-    public class DurationRequestBuilder : BaseCliRequestBuilder 
+    public class DurationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action duration

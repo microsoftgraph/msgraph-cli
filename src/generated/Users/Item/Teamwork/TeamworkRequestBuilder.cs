@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Teamwork {
+namespace ApiSdk.Users.Item.Teamwork
+{
     /// <summary>
     /// Provides operations to manage the teamwork property of the microsoft.graph.user entity.
     /// </summary>
-    public class TeamworkRequestBuilder : BaseCliRequestBuilder 
+    public class TeamworkRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.

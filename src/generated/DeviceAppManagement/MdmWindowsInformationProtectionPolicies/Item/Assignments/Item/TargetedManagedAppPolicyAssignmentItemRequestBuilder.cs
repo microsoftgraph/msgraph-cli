@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.Assignments.Item {
+namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.
     /// </summary>
-    public class TargetedManagedAppPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class TargetedManagedAppPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignments for deviceAppManagement

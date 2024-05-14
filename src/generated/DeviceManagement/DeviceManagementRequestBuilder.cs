@@ -75,11 +75,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement {
+namespace ApiSdk.DeviceManagement
+{
     /// <summary>
     /// Provides operations to manage the deviceManagement singleton.
     /// </summary>
-    public class DeviceManagementRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceManagementRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
@@ -437,13 +438,13 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-wip-devicemanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-devicemanagement-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-wip-devicemanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-devicemanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -681,13 +682,13 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Update the properties of a deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mstunnel-devicemanagement-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-auditing-devicemanagement-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mstunnel-devicemanagement-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-auditing-devicemanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;

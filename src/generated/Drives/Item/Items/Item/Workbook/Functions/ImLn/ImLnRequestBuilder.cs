@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLn {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLn
+{
     /// <summary>
     /// Provides operations to call the imLn method.
     /// </summary>
-    public class ImLnRequestBuilder : BaseCliRequestBuilder 
+    public class ImLnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imLn

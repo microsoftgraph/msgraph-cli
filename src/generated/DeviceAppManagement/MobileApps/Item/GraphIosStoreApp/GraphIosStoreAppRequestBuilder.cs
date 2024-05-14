@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosStoreApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphIosStoreApp
+{
     /// <summary>
     /// Casts the previous resource to iosStoreApp.
     /// </summary>
-    public class GraphIosStoreAppRequestBuilder : BaseCliRequestBuilder 
+    public class GraphIosStoreAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

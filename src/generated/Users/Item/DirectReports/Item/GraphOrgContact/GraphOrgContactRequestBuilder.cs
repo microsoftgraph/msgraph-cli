@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.DirectReports.Item.GraphOrgContact {
+namespace ApiSdk.Users.Item.DirectReports.Item.GraphOrgContact
+{
     /// <summary>
     /// Casts the previous resource to orgContact.
     /// </summary>
-    public class GraphOrgContactRequestBuilder : BaseCliRequestBuilder 
+    public class GraphOrgContactRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact

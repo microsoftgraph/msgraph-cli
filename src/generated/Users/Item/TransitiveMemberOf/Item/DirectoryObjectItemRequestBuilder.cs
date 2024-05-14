@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.TransitiveMemberOf.Item {
+namespace ApiSdk.Users.Item.TransitiveMemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The groups, including nested groups, and directory roles that a user is a member of. Nullable.

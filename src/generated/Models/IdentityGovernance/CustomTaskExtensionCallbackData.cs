@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class CustomTaskExtensionCallbackData : ApiSdk.Models.CustomExtensionData, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class CustomTaskExtensionCallbackData : ApiSdk.Models.CustomExtensionData, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Operation status that&apos;s provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully or not. Supported values: completed, failed, unknownFutureValue.</summary>
         public CustomTaskExtensionOperationStatus? OperationStatus { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"operationStatus", n => { OperationStatus = n.GetEnumValue<CustomTaskExtensionOperationStatus>(); } },
+                { "operationStatus", n => { OperationStatus = n.GetEnumValue<CustomTaskExtensionOperationStatus>(); } },
             };
         }
         /// <summary>

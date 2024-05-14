@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Services.Item {
+namespace ApiSdk.Print.Services.Item
+{
     /// <summary>
     /// Provides operations to manage the services property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrintServiceItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrintServiceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property services for print

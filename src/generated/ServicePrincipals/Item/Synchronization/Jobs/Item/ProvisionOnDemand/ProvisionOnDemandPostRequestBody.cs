@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDemand {
-    public class ProvisionOnDemandPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDemand
+{
+    #pragma warning disable CS1591
+    public class ProvisionOnDemandPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -43,7 +46,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDem
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"parameters", n => { Parameters = n.GetCollectionOfObjectValues<SynchronizationJobApplicationParameters>(SynchronizationJobApplicationParameters.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "parameters", n => { Parameters = n.GetCollectionOfObjectValues<SynchronizationJobApplicationParameters>(SynchronizationJobApplicationParameters.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

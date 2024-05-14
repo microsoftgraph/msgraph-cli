@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc
+{
     /// <summary>
     /// Provides operations to call the cumPrinc method.
     /// </summary>
-    public class CumPrincRequestBuilder : BaseCliRequestBuilder 
+    public class CumPrincRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action cumPrinc

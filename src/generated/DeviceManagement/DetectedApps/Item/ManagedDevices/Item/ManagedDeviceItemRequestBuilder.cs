@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices.Item {
+namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices.Item
+{
     /// <summary>
     /// Provides operations to manage the managedDevices property of the microsoft.graph.detectedApp entity.
     /// </summary>
-    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The devices that have the discovered application installed

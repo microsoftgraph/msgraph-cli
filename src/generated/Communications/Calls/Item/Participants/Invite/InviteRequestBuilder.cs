@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
+namespace ApiSdk.Communications.Calls.Item.Participants.Invite
+{
     /// <summary>
     /// Provides operations to call the invite method.
     /// </summary>
-    public class InviteRequestBuilder : BaseCliRequestBuilder 
+    public class InviteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. 

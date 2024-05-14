@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser {
-    public class AllowedCalendarSharingRolesWithUserGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser
+{
+    #pragma warning disable CS1591
+    public class AllowedCalendarSharingRolesWithUserGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfEnumValues<CalendarRoleType>()?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfEnumValues<CalendarRoleType>()?.ToList(); } },
             };
         }
         /// <summary>

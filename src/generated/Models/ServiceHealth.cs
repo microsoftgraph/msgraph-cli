@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ServiceHealth : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ServiceHealth : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A collection of issues that happened on the service, with detailed information for each issue.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,9 +46,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"issues", n => { Issues = n.GetCollectionOfObjectValues<ServiceHealthIssue>(ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"service", n => { Service = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<ServiceHealthStatus>(); } },
+                { "issues", n => { Issues = n.GetCollectionOfObjectValues<ServiceHealthIssue>(ServiceHealthIssue.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "service", n => { Service = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<ServiceHealthStatus>(); } },
             };
         }
         /// <summary>

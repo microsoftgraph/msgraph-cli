@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Modules.Item.Unpin {
+namespace ApiSdk.Education.Classes.Item.Modules.Item.Unpin
+{
     /// <summary>
     /// Provides operations to call the unpin method.
     /// </summary>
-    public class UnpinRequestBuilder : BaseCliRequestBuilder 
+    public class UnpinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unpin an educationModule in the classwork list. This action sets the isPinned property to false for an educationModule. Only teachers in the class can perform this operation.

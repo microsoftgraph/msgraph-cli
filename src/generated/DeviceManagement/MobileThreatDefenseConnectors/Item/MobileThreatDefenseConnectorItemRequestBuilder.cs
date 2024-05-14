@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
+namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item
+{
     /// <summary>
     /// Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class MobileThreatDefenseConnectorItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileThreatDefenseConnectorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a mobileThreatDefenseConnector.

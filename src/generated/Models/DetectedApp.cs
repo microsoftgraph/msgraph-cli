@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// A managed or unmanaged app that is installed on a managed device. Unmanaged apps will only appear for devices marked as corporate owned.
     /// </summary>
-    public class DetectedApp : Entity, IParsable 
+    public class DetectedApp : Entity, IParsable
     {
         /// <summary>The number of devices that have installed this application</summary>
         public int? DeviceCount { get; set; }
@@ -66,13 +67,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deviceCount", n => { DeviceCount = n.GetIntValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"managedDevices", n => { ManagedDevices = n.GetCollectionOfObjectValues<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"platform", n => { Platform = n.GetEnumValue<DetectedAppPlatformType>(); } },
-                {"publisher", n => { Publisher = n.GetStringValue(); } },
-                {"sizeInByte", n => { SizeInByte = n.GetLongValue(); } },
-                {"version", n => { Version = n.GetStringValue(); } },
+                { "deviceCount", n => { DeviceCount = n.GetIntValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "managedDevices", n => { ManagedDevices = n.GetCollectionOfObjectValues<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "platform", n => { Platform = n.GetEnumValue<DetectedAppPlatformType>(); } },
+                { "publisher", n => { Publisher = n.GetStringValue(); } },
+                { "sizeInByte", n => { SizeInByte = n.GetLongValue(); } },
+                { "version", n => { Version = n.GetStringValue(); } },
             };
         }
         /// <summary>

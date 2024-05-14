@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryRoles.Item {
+namespace ApiSdk.DirectoryRoles.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of directoryRole entities.
     /// </summary>
-    public class DirectoryRoleItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryRoleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

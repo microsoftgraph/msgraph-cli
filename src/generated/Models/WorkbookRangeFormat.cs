@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookRangeFormat : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookRangeFormat : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Collection of border objects that apply to the overall range selected Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -79,15 +82,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"borders", n => { Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"columnWidth", n => { ColumnWidth = n.GetDoubleValue(); } },
-                {"fill", n => { Fill = n.GetObjectValue<WorkbookRangeFill>(WorkbookRangeFill.CreateFromDiscriminatorValue); } },
-                {"font", n => { Font = n.GetObjectValue<WorkbookRangeFont>(WorkbookRangeFont.CreateFromDiscriminatorValue); } },
-                {"horizontalAlignment", n => { HorizontalAlignment = n.GetStringValue(); } },
-                {"protection", n => { Protection = n.GetObjectValue<WorkbookFormatProtection>(WorkbookFormatProtection.CreateFromDiscriminatorValue); } },
-                {"rowHeight", n => { RowHeight = n.GetDoubleValue(); } },
-                {"verticalAlignment", n => { VerticalAlignment = n.GetStringValue(); } },
-                {"wrapText", n => { WrapText = n.GetBoolValue(); } },
+                { "borders", n => { Borders = n.GetCollectionOfObjectValues<WorkbookRangeBorder>(WorkbookRangeBorder.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "columnWidth", n => { ColumnWidth = n.GetDoubleValue(); } },
+                { "fill", n => { Fill = n.GetObjectValue<WorkbookRangeFill>(WorkbookRangeFill.CreateFromDiscriminatorValue); } },
+                { "font", n => { Font = n.GetObjectValue<WorkbookRangeFont>(WorkbookRangeFont.CreateFromDiscriminatorValue); } },
+                { "horizontalAlignment", n => { HorizontalAlignment = n.GetStringValue(); } },
+                { "protection", n => { Protection = n.GetObjectValue<WorkbookFormatProtection>(WorkbookFormatProtection.CreateFromDiscriminatorValue); } },
+                { "rowHeight", n => { RowHeight = n.GetDoubleValue(); } },
+                { "verticalAlignment", n => { VerticalAlignment = n.GetStringValue(); } },
+                { "wrapText", n => { WrapText = n.GetBoolValue(); } },
             };
         }
         /// <summary>

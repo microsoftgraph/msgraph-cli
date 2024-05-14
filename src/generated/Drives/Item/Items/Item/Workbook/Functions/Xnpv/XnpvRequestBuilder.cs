@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xnpv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xnpv
+{
     /// <summary>
     /// Provides operations to call the xnpv method.
     /// </summary>
-    public class XnpvRequestBuilder : BaseCliRequestBuilder 
+    public class XnpvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action xnpv

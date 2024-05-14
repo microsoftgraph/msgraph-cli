@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CloudPcProvisioningPolicy : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CloudPcProvisioningPolicy : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The URL of the alternate resource that links to this provisioning policy. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -123,22 +126,22 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"alternateResourceUrl", n => { AlternateResourceUrl = n.GetStringValue(); } },
-                {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<CloudPcProvisioningPolicyAssignment>(CloudPcProvisioningPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"cloudPcGroupDisplayName", n => { CloudPcGroupDisplayName = n.GetStringValue(); } },
-                {"cloudPcNamingTemplate", n => { CloudPcNamingTemplate = n.GetStringValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"domainJoinConfigurations", n => { DomainJoinConfigurations = n.GetCollectionOfObjectValues<CloudPcDomainJoinConfiguration>(CloudPcDomainJoinConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"enableSingleSignOn", n => { EnableSingleSignOn = n.GetBoolValue(); } },
-                {"gracePeriodInHours", n => { GracePeriodInHours = n.GetIntValue(); } },
-                {"imageDisplayName", n => { ImageDisplayName = n.GetStringValue(); } },
-                {"imageId", n => { ImageId = n.GetStringValue(); } },
-                {"imageType", n => { ImageType = n.GetEnumValue<CloudPcProvisioningPolicyImageType>(); } },
-                {"localAdminEnabled", n => { LocalAdminEnabled = n.GetBoolValue(); } },
-                {"microsoftManagedDesktop", n => { MicrosoftManagedDesktop = n.GetObjectValue<ApiSdk.Models.MicrosoftManagedDesktop>(ApiSdk.Models.MicrosoftManagedDesktop.CreateFromDiscriminatorValue); } },
-                {"provisioningType", n => { ProvisioningType = n.GetEnumValue<CloudPcProvisioningType>(); } },
-                {"windowsSetting", n => { WindowsSetting = n.GetObjectValue<CloudPcWindowsSetting>(CloudPcWindowsSetting.CreateFromDiscriminatorValue); } },
+                { "alternateResourceUrl", n => { AlternateResourceUrl = n.GetStringValue(); } },
+                { "assignments", n => { Assignments = n.GetCollectionOfObjectValues<CloudPcProvisioningPolicyAssignment>(CloudPcProvisioningPolicyAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "cloudPcGroupDisplayName", n => { CloudPcGroupDisplayName = n.GetStringValue(); } },
+                { "cloudPcNamingTemplate", n => { CloudPcNamingTemplate = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "domainJoinConfigurations", n => { DomainJoinConfigurations = n.GetCollectionOfObjectValues<CloudPcDomainJoinConfiguration>(CloudPcDomainJoinConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "enableSingleSignOn", n => { EnableSingleSignOn = n.GetBoolValue(); } },
+                { "gracePeriodInHours", n => { GracePeriodInHours = n.GetIntValue(); } },
+                { "imageDisplayName", n => { ImageDisplayName = n.GetStringValue(); } },
+                { "imageId", n => { ImageId = n.GetStringValue(); } },
+                { "imageType", n => { ImageType = n.GetEnumValue<CloudPcProvisioningPolicyImageType>(); } },
+                { "localAdminEnabled", n => { LocalAdminEnabled = n.GetBoolValue(); } },
+                { "microsoftManagedDesktop", n => { MicrosoftManagedDesktop = n.GetObjectValue<ApiSdk.Models.MicrosoftManagedDesktop>(ApiSdk.Models.MicrosoftManagedDesktop.CreateFromDiscriminatorValue); } },
+                { "provisioningType", n => { ProvisioningType = n.GetEnumValue<CloudPcProvisioningType>(); } },
+                { "windowsSetting", n => { WindowsSetting = n.GetObjectValue<CloudPcWindowsSetting>(CloudPcWindowsSetting.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

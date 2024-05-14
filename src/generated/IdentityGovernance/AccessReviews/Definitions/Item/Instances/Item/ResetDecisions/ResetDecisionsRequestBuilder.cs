@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ResetDecisions {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ResetDecisions
+{
     /// <summary>
     /// Provides operations to call the resetDecisions method.
     /// </summary>
-    public class ResetDecisionsRequestBuilder : BaseCliRequestBuilder 
+    public class ResetDecisionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Resets all accessReviewInstanceDecisionItem objects on an accessReviewInstance to notReviewed.

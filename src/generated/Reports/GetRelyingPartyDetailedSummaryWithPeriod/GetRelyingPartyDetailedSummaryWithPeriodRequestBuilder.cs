@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
+namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getRelyingPartyDetailedSummary method.
     /// </summary>
-    public class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getrelyingpartydetailedsummary?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getRelyingPartyDetailedSummary";
+            command.Description = "Get a summary of AD FS relying parties information.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getrelyingpartydetailedsummary?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -108,7 +110,9 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -134,7 +138,7 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +157,7 @@ namespace ApiSdk.Reports.GetRelyingPartyDetailedSummaryWithPeriod {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getRelyingPartyDetailedSummary
+        /// Get a summary of AD FS relying parties information.
         /// </summary>
         public class GetRelyingPartyDetailedSummaryWithPeriodRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.AllowedValues.Item {
+namespace ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions.Item.AllowedValues.Item
+{
     /// <summary>
     /// Provides operations to manage the allowedValues property of the microsoft.graph.customSecurityAttributeDefinition entity.
     /// </summary>
-    public class AllowedValueItemRequestBuilder : BaseCliRequestBuilder 
+    public class AllowedValueItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property allowedValues for directory

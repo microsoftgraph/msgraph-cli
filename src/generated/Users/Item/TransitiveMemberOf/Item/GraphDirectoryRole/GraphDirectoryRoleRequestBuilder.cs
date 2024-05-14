@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.TransitiveMemberOf.Item.GraphDirectoryRole {
+namespace ApiSdk.Users.Item.TransitiveMemberOf.Item.GraphDirectoryRole
+{
     /// <summary>
     /// Casts the previous resource to directoryRole.
     /// </summary>
-    public class GraphDirectoryRoleRequestBuilder : BaseCliRequestBuilder 
+    public class GraphDirectoryRoleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.directoryRole

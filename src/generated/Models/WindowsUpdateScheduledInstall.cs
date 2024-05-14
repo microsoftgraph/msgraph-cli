@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WindowsUpdateScheduledInstall : WindowsUpdateInstallScheduleType, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WindowsUpdateScheduledInstall : WindowsUpdateInstallScheduleType, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Possible values for a weekly schedule.</summary>
         public WeeklySchedule? ScheduledInstallDay { get; set; }
@@ -37,8 +40,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"scheduledInstallDay", n => { ScheduledInstallDay = n.GetEnumValue<WeeklySchedule>(); } },
-                {"scheduledInstallTime", n => { ScheduledInstallTime = n.GetTimeValue(); } },
+                { "scheduledInstallDay", n => { ScheduledInstallDay = n.GetEnumValue<WeeklySchedule>(); } },
+                { "scheduledInstallTime", n => { ScheduledInstallTime = n.GetTimeValue(); } },
             };
         }
         /// <summary>

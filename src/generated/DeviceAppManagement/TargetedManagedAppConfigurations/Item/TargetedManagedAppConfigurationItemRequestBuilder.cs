@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
+namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class TargetedManagedAppConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class TargetedManagedAppConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.

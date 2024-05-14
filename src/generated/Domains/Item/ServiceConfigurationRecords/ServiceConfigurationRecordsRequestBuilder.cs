@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Domains.Item.ServiceConfigurationRecords {
+namespace ApiSdk.Domains.Item.ServiceConfigurationRecords
+{
     /// <summary>
     /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
     /// </summary>
-    public class ServiceConfigurationRecordsRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceConfigurationRecordsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
@@ -193,7 +194,9 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

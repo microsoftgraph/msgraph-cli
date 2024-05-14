@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SumIf {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SumIf
+{
     /// <summary>
     /// Provides operations to call the sumIf method.
     /// </summary>
-    public class SumIfRequestBuilder : BaseCliRequestBuilder 
+    public class SumIfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sumIf

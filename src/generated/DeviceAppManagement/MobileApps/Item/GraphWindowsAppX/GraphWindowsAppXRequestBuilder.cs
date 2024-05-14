@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsAppX {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsAppX
+{
     /// <summary>
     /// Casts the previous resource to windowsAppX.
     /// </summary>
-    public class GraphWindowsAppXRequestBuilder : BaseCliRequestBuilder 
+    public class GraphWindowsAppXRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

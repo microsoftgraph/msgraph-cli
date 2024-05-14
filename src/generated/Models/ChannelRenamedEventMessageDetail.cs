@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ChannelRenamedEventMessageDetail : EventMessageDetail, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ChannelRenamedEventMessageDetail : EventMessageDetail, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The updated name of the channel.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"channelDisplayName", n => { ChannelDisplayName = n.GetStringValue(); } },
-                {"channelId", n => { ChannelId = n.GetStringValue(); } },
-                {"initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "channelDisplayName", n => { ChannelDisplayName = n.GetStringValue(); } },
+                { "channelId", n => { ChannelId = n.GetStringValue(); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

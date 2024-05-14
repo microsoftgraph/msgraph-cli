@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PrintJobConfiguration : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PrintJobConfiguration : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -122,26 +125,26 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"collate", n => { Collate = n.GetBoolValue(); } },
-                {"colorMode", n => { ColorMode = n.GetEnumValue<PrintColorMode>(); } },
-                {"copies", n => { Copies = n.GetIntValue(); } },
-                {"dpi", n => { Dpi = n.GetIntValue(); } },
-                {"duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
-                {"feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
-                {"finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
-                {"fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
-                {"inputBin", n => { InputBin = n.GetStringValue(); } },
-                {"margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
-                {"mediaSize", n => { MediaSize = n.GetStringValue(); } },
-                {"mediaType", n => { MediaType = n.GetStringValue(); } },
-                {"multipageLayout", n => { MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
-                {"outputBin", n => { OutputBin = n.GetStringValue(); } },
-                {"pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"pagesPerSheet", n => { PagesPerSheet = n.GetIntValue(); } },
-                {"quality", n => { Quality = n.GetEnumValue<PrintQuality>(); } },
-                {"scaling", n => { Scaling = n.GetEnumValue<PrintScaling>(); } },
+                { "collate", n => { Collate = n.GetBoolValue(); } },
+                { "colorMode", n => { ColorMode = n.GetEnumValue<PrintColorMode>(); } },
+                { "copies", n => { Copies = n.GetIntValue(); } },
+                { "dpi", n => { Dpi = n.GetIntValue(); } },
+                { "duplexMode", n => { DuplexMode = n.GetEnumValue<PrintDuplexMode>(); } },
+                { "feedOrientation", n => { FeedOrientation = n.GetEnumValue<PrinterFeedOrientation>(); } },
+                { "finishings", n => { Finishings = n.GetCollectionOfEnumValues<PrintFinishing>()?.ToList(); } },
+                { "fitPdfToPage", n => { FitPdfToPage = n.GetBoolValue(); } },
+                { "inputBin", n => { InputBin = n.GetStringValue(); } },
+                { "margin", n => { Margin = n.GetObjectValue<PrintMargin>(PrintMargin.CreateFromDiscriminatorValue); } },
+                { "mediaSize", n => { MediaSize = n.GetStringValue(); } },
+                { "mediaType", n => { MediaType = n.GetStringValue(); } },
+                { "multipageLayout", n => { MultipageLayout = n.GetEnumValue<PrintMultipageLayout>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "orientation", n => { Orientation = n.GetEnumValue<PrintOrientation>(); } },
+                { "outputBin", n => { OutputBin = n.GetStringValue(); } },
+                { "pageRanges", n => { PageRanges = n.GetCollectionOfObjectValues<IntegerRange>(IntegerRange.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "pagesPerSheet", n => { PagesPerSheet = n.GetIntValue(); } },
+                { "quality", n => { Quality = n.GetEnumValue<PrintQuality>(); } },
+                { "scaling", n => { Scaling = n.GetEnumValue<PrintScaling>(); } },
             };
         }
         /// <summary>

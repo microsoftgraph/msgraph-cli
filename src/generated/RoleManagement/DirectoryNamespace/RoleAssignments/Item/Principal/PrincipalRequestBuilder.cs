@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principal {
+namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principal
+{
     /// <summary>
     /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.
     /// </summary>
-    public class PrincipalRequestBuilder : BaseCliRequestBuilder 
+    public class PrincipalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Referencing the assigned principal. Read-only. Supports $expand.

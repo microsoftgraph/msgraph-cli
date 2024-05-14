@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
-    public class GetByUserRoleWithRoleGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole
+{
+    #pragma warning disable CS1591
+    public class GetByUserRoleWithRoleGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<VirtualEventWebinar>(VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<VirtualEventWebinar>(VirtualEventWebinar.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

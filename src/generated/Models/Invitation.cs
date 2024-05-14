@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Invitation : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Invitation : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The user created as part of the invitation creation. Read-Only</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -101,17 +104,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"inviteRedeemUrl", n => { InviteRedeemUrl = n.GetStringValue(); } },
-                {"inviteRedirectUrl", n => { InviteRedirectUrl = n.GetStringValue(); } },
-                {"invitedUser", n => { InvitedUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
-                {"invitedUserDisplayName", n => { InvitedUserDisplayName = n.GetStringValue(); } },
-                {"invitedUserEmailAddress", n => { InvitedUserEmailAddress = n.GetStringValue(); } },
-                {"invitedUserMessageInfo", n => { InvitedUserMessageInfo = n.GetObjectValue<ApiSdk.Models.InvitedUserMessageInfo>(ApiSdk.Models.InvitedUserMessageInfo.CreateFromDiscriminatorValue); } },
-                {"invitedUserSponsors", n => { InvitedUserSponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"invitedUserType", n => { InvitedUserType = n.GetStringValue(); } },
-                {"resetRedemption", n => { ResetRedemption = n.GetBoolValue(); } },
-                {"sendInvitationMessage", n => { SendInvitationMessage = n.GetBoolValue(); } },
-                {"status", n => { Status = n.GetStringValue(); } },
+                { "inviteRedeemUrl", n => { InviteRedeemUrl = n.GetStringValue(); } },
+                { "inviteRedirectUrl", n => { InviteRedirectUrl = n.GetStringValue(); } },
+                { "invitedUser", n => { InvitedUser = n.GetObjectValue<User>(User.CreateFromDiscriminatorValue); } },
+                { "invitedUserDisplayName", n => { InvitedUserDisplayName = n.GetStringValue(); } },
+                { "invitedUserEmailAddress", n => { InvitedUserEmailAddress = n.GetStringValue(); } },
+                { "invitedUserMessageInfo", n => { InvitedUserMessageInfo = n.GetObjectValue<ApiSdk.Models.InvitedUserMessageInfo>(ApiSdk.Models.InvitedUserMessageInfo.CreateFromDiscriminatorValue); } },
+                { "invitedUserSponsors", n => { InvitedUserSponsors = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "invitedUserType", n => { InvitedUserType = n.GetStringValue(); } },
+                { "resetRedemption", n => { ResetRedemption = n.GetBoolValue(); } },
+                { "sendInvitationMessage", n => { SendInvitationMessage = n.GetBoolValue(); } },
+                { "status", n => { Status = n.GetStringValue(); } },
             };
         }
         /// <summary>

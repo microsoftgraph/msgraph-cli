@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Contracts.Item {
+namespace ApiSdk.Contracts.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of contract entities.
     /// </summary>
-    public class ContractItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContractItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

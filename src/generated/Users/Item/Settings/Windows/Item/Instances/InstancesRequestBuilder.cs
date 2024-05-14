@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances {
+namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances
+{
     /// <summary>
     /// Provides operations to manage the instances property of the microsoft.graph.windowsSetting entity.
     /// </summary>
-    public class InstancesRequestBuilder : BaseCliRequestBuilder 
+    public class InstancesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.windowsSetting entity.
@@ -110,14 +111,13 @@ namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances {
             return command;
         }
         /// <summary>
-        /// Get a list of windowsSettingInstance objects and their properties for the signed-in user.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/windowssetting-list-instances?view=graph-rest-1.0" />
+        /// A collection of setting values for a given windowsSetting.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of windowsSettingInstance objects and their properties for the signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/windowssetting-list-instances?view=graph-rest-1.0";
+            command.Description = "A collection of setting values for a given windowsSetting.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -205,7 +205,9 @@ namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -231,7 +233,7 @@ namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances {
         {
         }
         /// <summary>
-        /// Get a list of windowsSettingInstance objects and their properties for the signed-in user.
+        /// A collection of setting values for a given windowsSetting.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +273,7 @@ namespace ApiSdk.Users.Item.Settings.Windows.Item.Instances {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of windowsSettingInstance objects and their properties for the signed-in user.
+        /// A collection of setting values for a given windowsSetting.
         /// </summary>
         public class InstancesRequestBuilderGetQueryParameters 
         {

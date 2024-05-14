@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerActivityUserDetailWithPeriod {
+namespace ApiSdk.Reports.GetYammerActivityUserDetailWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getYammerActivityUserDetail method.
     /// </summary>
-    public class GetYammerActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerActivityUserDetailWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function getYammerActivityUserDetail

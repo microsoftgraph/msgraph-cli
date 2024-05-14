@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceConfigurations {
+namespace ApiSdk.DeviceManagement.DeviceConfigurations
+{
     /// <summary>
     /// Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceConfigurationsRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceConfigurationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
@@ -108,14 +109,14 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the windowsPhone81CustomConfiguration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the androidCustomConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidcustomconfiguration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the windowsPhone81CustomConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsphone81customconfiguration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -191,7 +192,9 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -217,7 +220,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         {
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
+        /// List properties and relationships of the windowsPhone81CustomConfiguration objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -257,7 +260,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the androidCustomConfiguration objects.
+        /// List properties and relationships of the windowsPhone81CustomConfiguration objects.
         /// </summary>
         public class DeviceConfigurationsRequestBuilderGetQueryParameters 
         {

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class VerifiedPublisher : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class VerifiedPublisher : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The timestamp when the verified publisher was first added or most recently updated.</summary>
         public DateTimeOffset? AddedDateTime { get; set; }
@@ -60,10 +63,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"addedDateTime", n => { AddedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"verifiedPublisherId", n => { VerifiedPublisherId = n.GetStringValue(); } },
+                { "addedDateTime", n => { AddedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "verifiedPublisherId", n => { VerifiedPublisherId = n.GetStringValue(); } },
             };
         }
         /// <summary>

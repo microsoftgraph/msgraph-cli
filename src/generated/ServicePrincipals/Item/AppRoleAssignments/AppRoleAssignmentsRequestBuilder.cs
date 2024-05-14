@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
+namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments
+{
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class AppRoleAssignmentsRequestBuilder : BaseCliRequestBuilder 
+    public class AppRoleAssignmentsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
@@ -105,14 +106,14 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an appRoleAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -201,7 +202,9 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -227,7 +230,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         {
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +270,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// App role assignment for another app or service, granted to this service principal. Supports $expand.
+        /// Read the properties and relationships of an appRoleAssignment object.
         /// </summary>
         public class AppRoleAssignmentsRequestBuilderGetQueryParameters 
         {

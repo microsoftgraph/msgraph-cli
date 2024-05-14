@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Subdomains.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Subdomains.Item
+{
     /// <summary>
     /// Provides operations to manage the subdomains property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class SubdomainItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubdomainItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property subdomains for security

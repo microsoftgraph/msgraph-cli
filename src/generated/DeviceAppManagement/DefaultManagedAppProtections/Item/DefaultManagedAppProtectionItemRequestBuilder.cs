@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item {
+namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item
+{
     /// <summary>
     /// Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class DefaultManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class DefaultManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.defaultManagedAppProtection entity.

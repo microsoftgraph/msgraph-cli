@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingStateSummaries.Item {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingStateSummaries.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.
     /// </summary>
-    public class SettingStateDeviceSummaryItemRequestBuilder : BaseCliRequestBuilder 
+    public class SettingStateDeviceSummaryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceSettingStateSummaries for deviceManagement

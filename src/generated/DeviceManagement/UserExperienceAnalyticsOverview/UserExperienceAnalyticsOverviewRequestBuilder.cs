@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsOverview {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsOverview
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsOverview property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsOverviewRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsOverviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsOverview for deviceManagement

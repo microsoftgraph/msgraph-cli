@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection {
+namespace ApiSdk.IdentityProtection
+{
     /// <summary>
     /// Provides operations to manage the identityProtectionRoot singleton.
     /// </summary>
-    public class IdentityProtectionRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityProtectionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get identityProtection

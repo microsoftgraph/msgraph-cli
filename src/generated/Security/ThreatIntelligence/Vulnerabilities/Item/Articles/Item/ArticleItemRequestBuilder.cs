@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Articles.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Articles.Item
+{
     /// <summary>
     /// Provides operations to manage the articles property of the microsoft.graph.security.vulnerability entity.
     /// </summary>
-    public class ArticleItemRequestBuilder : BaseCliRequestBuilder 
+    public class ArticleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Articles related to this vulnerability.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.Channels.Item.Tabs.Item.TeamsApp {
+namespace ApiSdk.Groups.Item.Team.Channels.Item.Tabs.Item.TeamsApp
+{
     /// <summary>
     /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.
     /// </summary>
-    public class TeamsAppRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The application that is linked to the tab. This can&apos;t be changed after tab creation.

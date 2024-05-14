@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.FindMeetingTimes {
+namespace ApiSdk.Users.Item.FindMeetingTimes
+{
     /// <summary>
     /// Provides operations to call the findMeetingTimes method.
     /// </summary>
-    public class FindMeetingTimesRequestBuilder : BaseCliRequestBuilder 
+    public class FindMeetingTimesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Suggest meeting times and locations based on organizer and attendee availability, and time or location constraints specified as parameters. If findMeetingTimes cannot return any meeting suggestions, the response would indicate a reason in the emptySuggestionsReason property.Based on this value, you can better adjust the parameters and call findMeetingTimes again. The algorithm used to suggest meeting times and locations undergoes fine-tuning from time to time. In scenarios like test environments where the input parameters and calendar data remain static, expect that the suggested results may differ over time.

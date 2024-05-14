@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.WorkflowTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the workflowTemplates property of the microsoft.graph.identityGovernance.lifecycleWorkflowsContainer entity.
     /// </summary>
-    public class WorkflowTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkflowTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read the properties and relationships of a workflowTemplate object.

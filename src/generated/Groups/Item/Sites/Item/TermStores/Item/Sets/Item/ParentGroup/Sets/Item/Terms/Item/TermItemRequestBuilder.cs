@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Terms.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Terms.Item
+{
     /// <summary>
     /// Provides operations to manage the terms property of the microsoft.graph.termStore.set entity.
     /// </summary>
-    public class TermItemRequestBuilder : BaseCliRequestBuilder 
+    public class TermItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.term entity.
@@ -51,14 +52,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Delete a term object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-delete?view=graph-rest-1.0" />
+        /// Delete navigation property terms for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property terms for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -117,14 +117,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-get?view=graph-rest-1.0" />
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-get?view=graph-rest-1.0";
+            command.Description = "All the terms under the set.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -200,14 +199,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Update the properties of a term object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-update?view=graph-rest-1.0" />
+        /// Update the navigation property terms in groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of a term object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property terms in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -340,7 +338,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         {
         }
         /// <summary>
-        /// Delete a term object.
+        /// Delete navigation property terms for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -359,7 +357,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -378,7 +376,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a term object.
+        /// Update the navigation property terms in groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -399,7 +397,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a term object.
+        /// All the terms under the set.
         /// </summary>
         public class TermItemRequestBuilderGetQueryParameters 
         {

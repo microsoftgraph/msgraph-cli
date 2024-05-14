@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Eq {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Eq
+{
     /// <summary>
     /// Provides operations to call the rank_Eq method.
     /// </summary>
-    public class Rank_EqRequestBuilder : BaseCliRequestBuilder 
+    public class Rank_EqRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rank_Eq

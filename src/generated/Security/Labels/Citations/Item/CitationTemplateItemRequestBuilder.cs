@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Citations.Item {
+namespace ApiSdk.Security.Labels.Citations.Item
+{
     /// <summary>
     /// Provides operations to manage the citations property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class CitationTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class CitationTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a citationTemplate object.

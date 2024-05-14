@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Daverage {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Daverage
+{
     /// <summary>
     /// Provides operations to call the daverage method.
     /// </summary>
-    public class DaverageRequestBuilder : BaseCliRequestBuilder 
+    public class DaverageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action daverage

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore {
-    public class RestorePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore
+{
+    #pragma warning disable CS1591
+    public class RestorePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Restore {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"cloudPcSnapshotId", n => { CloudPcSnapshotId = n.GetStringValue(); } },
+                { "cloudPcSnapshotId", n => { CloudPcSnapshotId = n.GetStringValue(); } },
             };
         }
         /// <summary>

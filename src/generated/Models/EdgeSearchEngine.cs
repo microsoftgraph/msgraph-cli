@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Allows IT admins to set a predefined default search engine for MDM-Controlled devices.
     /// </summary>
-    public class EdgeSearchEngine : EdgeSearchEngineBase, IParsable 
+    public class EdgeSearchEngine : EdgeSearchEngineBase, IParsable
     {
         /// <summary>Allows IT admind to set a predefined default search engine for MDM-Controlled devices</summary>
         public ApiSdk.Models.EdgeSearchEngineType? EdgeSearchEngineType { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"edgeSearchEngineType", n => { EdgeSearchEngineType = n.GetEnumValue<EdgeSearchEngineType>(); } },
+                { "edgeSearchEngineType", n => { EdgeSearchEngineType = n.GetEnumValue<EdgeSearchEngineType>(); } },
             };
         }
         /// <summary>

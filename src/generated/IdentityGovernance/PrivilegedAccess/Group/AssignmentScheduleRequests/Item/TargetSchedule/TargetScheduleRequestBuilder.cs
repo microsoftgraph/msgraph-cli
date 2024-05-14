@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.TargetSchedule {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentScheduleRequests.Item.TargetSchedule
+{
     /// <summary>
     /// Provides operations to manage the targetSchedule property of the microsoft.graph.privilegedAccessGroupAssignmentScheduleRequest entity.
     /// </summary>
-    public class TargetScheduleRequestBuilder : BaseCliRequestBuilder 
+    public class TargetScheduleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Schedule created by this request. Supports $expand.

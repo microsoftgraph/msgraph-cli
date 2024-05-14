@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup
+{
     /// <summary>
     /// Provides operations to call the lookup method.
     /// </summary>
-    public class LookupRequestBuilder : BaseCliRequestBuilder 
+    public class LookupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action lookup

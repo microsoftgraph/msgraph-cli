@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSection.Webparts.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.VerticalSection.Webparts.Item
+{
     /// <summary>
     /// Provides operations to manage the webparts property of the microsoft.graph.verticalSection entity.
     /// </summary>
-    public class WebPartItemRequestBuilder : BaseCliRequestBuilder 
+    public class WebPartItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property webparts for groups

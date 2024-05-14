@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Replace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Replace
+{
     /// <summary>
     /// Provides operations to call the replace method.
     /// </summary>
-    public class ReplaceRequestBuilder : BaseCliRequestBuilder 
+    public class ReplaceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action replace

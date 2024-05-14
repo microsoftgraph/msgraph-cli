@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Dec {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Dec
+{
     /// <summary>
     /// Provides operations to call the hex2Dec method.
     /// </summary>
-    public class Hex2DecRequestBuilder : BaseCliRequestBuilder 
+    public class Hex2DecRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action hex2Dec

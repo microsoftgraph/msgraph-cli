@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TrainingReminderNotification : BaseEndUserNotification, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TrainingReminderNotification : BaseEndUserNotification, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Configurable frequency for the reminder email introduced during simulation creation. Possible values are: unknown, weekly, biWeekly, unknownFutureValue.</summary>
         public NotificationDeliveryFrequency? DeliveryFrequency { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deliveryFrequency", n => { DeliveryFrequency = n.GetEnumValue<NotificationDeliveryFrequency>(); } },
+                { "deliveryFrequency", n => { DeliveryFrequency = n.GetEnumValue<NotificationDeliveryFrequency>(); } },
             };
         }
         /// <summary>

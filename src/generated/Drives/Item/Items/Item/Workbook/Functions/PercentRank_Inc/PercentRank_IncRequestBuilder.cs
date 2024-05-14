@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PercentRank_Inc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PercentRank_Inc
+{
     /// <summary>
     /// Provides operations to call the percentRank_Inc method.
     /// </summary>
-    public class PercentRank_IncRequestBuilder : BaseCliRequestBuilder 
+    public class PercentRank_IncRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action percentRank_Inc

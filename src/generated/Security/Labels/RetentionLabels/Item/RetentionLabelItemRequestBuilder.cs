@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item
+{
     /// <summary>
     /// Provides operations to manage the retentionLabels property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class RetentionLabelItemRequestBuilder : BaseCliRequestBuilder 
+    public class RetentionLabelItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a retentionLabel object.

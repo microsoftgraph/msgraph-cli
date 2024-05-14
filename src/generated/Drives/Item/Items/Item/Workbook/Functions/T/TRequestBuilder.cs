@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T
+{
     /// <summary>
     /// Provides operations to call the t method.
     /// </summary>
-    public class TRequestBuilder : BaseCliRequestBuilder 
+    public class TRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action t

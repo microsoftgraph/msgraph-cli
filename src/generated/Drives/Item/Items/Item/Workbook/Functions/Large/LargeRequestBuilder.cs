@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Large {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Large
+{
     /// <summary>
     /// Provides operations to call the large method.
     /// </summary>
-    public class LargeRequestBuilder : BaseCliRequestBuilder 
+    public class LargeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action large

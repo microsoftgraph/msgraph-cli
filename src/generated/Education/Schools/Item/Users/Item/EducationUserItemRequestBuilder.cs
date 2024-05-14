@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Education.Schools.Item.Users.Item {
+namespace ApiSdk.Education.Schools.Item.Users.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \education\schools\{educationSchool-id}\users\{educationUser-id}
     /// </summary>
-    public class EducationUserItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationUserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.

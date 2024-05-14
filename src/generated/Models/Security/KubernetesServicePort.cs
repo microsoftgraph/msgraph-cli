@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class KubernetesServicePort : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class KubernetesServicePort : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -72,13 +75,13 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"appProtocol", n => { AppProtocol = n.GetStringValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"nodePort", n => { NodePort = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"port", n => { Port = n.GetIntValue(); } },
-                {"protocol", n => { Protocol = n.GetEnumValue<ContainerPortProtocol>(); } },
-                {"targetPort", n => { TargetPort = n.GetStringValue(); } },
+                { "appProtocol", n => { AppProtocol = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "nodePort", n => { NodePort = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "port", n => { Port = n.GetIntValue(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<ContainerPortProtocol>(); } },
+                { "targetPort", n => { TargetPort = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
+namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages
+{
     /// <summary>
     /// Provides operations to manage the pages property of the microsoft.graph.site entity.
     /// </summary>
-    public class PagesRequestBuilder : BaseCliRequestBuilder 
+    public class PagesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/basesitepage-list?view=graph-rest-1.0" />
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/basesitepage-list?view=graph-rest-1.0";
+            command.Description = "The collection of pages in the baseSitePages list in this site.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -122,7 +122,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -134,14 +136,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
             return command;
         }
         /// <summary>
-        /// Create a new [sitePage][] in the site pages [list][] in a [site][].
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sitepage-create?view=graph-rest-1.0" />
+        /// Create new navigation property to pages for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Create a new [sitePage][] in the site pages [list][] in a [site][].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sitepage-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to pages for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -212,7 +213,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
         {
         }
         /// <summary>
-        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -231,7 +232,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [sitePage][] in the site pages [list][] in a [site][].
+        /// Create new navigation property to pages for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -252,7 +253,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.Pages {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [baseSitePage][] objects from the site pages [list][] in a [site][]. All pages in the site are returned (with pagination). Sort alphabetically by name in ascending order. The following table lists the available subtypes.
+        /// The collection of pages in the baseSitePages list in this site.
         /// </summary>
         public class PagesRequestBuilderGetQueryParameters 
         {

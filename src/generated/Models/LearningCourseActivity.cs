@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LearningCourseActivity : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LearningCourseActivity : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Date and time when the assignment was completed. Optional.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -69,13 +72,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"completionPercentage", n => { CompletionPercentage = n.GetIntValue(); } },
-                {"externalcourseActivityId", n => { ExternalcourseActivityId = n.GetStringValue(); } },
-                {"learnerUserId", n => { LearnerUserId = n.GetStringValue(); } },
-                {"learningContentId", n => { LearningContentId = n.GetStringValue(); } },
-                {"learningProviderId", n => { LearningProviderId = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<CourseStatus>(); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "completionPercentage", n => { CompletionPercentage = n.GetIntValue(); } },
+                { "externalcourseActivityId", n => { ExternalcourseActivityId = n.GetStringValue(); } },
+                { "learnerUserId", n => { LearnerUserId = n.GetStringValue(); } },
+                { "learningContentId", n => { LearningContentId = n.GetStringValue(); } },
+                { "learningProviderId", n => { LearningProviderId = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<CourseStatus>(); } },
             };
         }
         /// <summary>

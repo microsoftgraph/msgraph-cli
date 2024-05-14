@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials.Item {
+namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials.Item
+{
     /// <summary>
     /// Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.
     /// </summary>
-    public class DeviceLocalCredentialInfoItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceLocalCredentialInfoItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceLocalCredentials for directory

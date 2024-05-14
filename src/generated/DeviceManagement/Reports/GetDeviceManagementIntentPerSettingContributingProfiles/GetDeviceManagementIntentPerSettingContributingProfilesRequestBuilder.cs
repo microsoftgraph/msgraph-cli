@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContributingProfiles {
+namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingContributingProfiles
+{
     /// <summary>
     /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
     /// </summary>
-    public class GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder : BaseCliRequestBuilder 
+    public class GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

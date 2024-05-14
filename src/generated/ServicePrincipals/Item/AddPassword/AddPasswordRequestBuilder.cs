@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.AddPassword {
+namespace ApiSdk.ServicePrincipals.Item.AddPassword
+{
     /// <summary>
     /// Provides operations to call the addPassword method.
     /// </summary>
-    public class AddPasswordRequestBuilder : BaseCliRequestBuilder 
+    public class AddPasswordRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Add a strong password or secret to a servicePrincipal object.

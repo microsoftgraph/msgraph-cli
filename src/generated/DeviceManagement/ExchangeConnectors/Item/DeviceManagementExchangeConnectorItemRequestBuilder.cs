@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
+namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item
+{
     /// <summary>
     /// Provides operations to manage the exchangeConnectors property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceManagementExchangeConnectorItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceManagementExchangeConnectorItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a deviceManagementExchangeConnector.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOverview {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOverview
+{
     /// <summary>
     /// Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
     /// </summary>
-    public class UserStatusOverviewRequestBuilder : BaseCliRequestBuilder 
+    public class UserStatusOverviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userStatusOverview for deviceManagement

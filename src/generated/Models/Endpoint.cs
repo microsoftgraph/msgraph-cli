@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Endpoint : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Endpoint : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The capability property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,11 +75,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"capability", n => { Capability = n.GetStringValue(); } },
-                {"providerId", n => { ProviderId = n.GetStringValue(); } },
-                {"providerName", n => { ProviderName = n.GetStringValue(); } },
-                {"providerResourceId", n => { ProviderResourceId = n.GetStringValue(); } },
-                {"uri", n => { Uri = n.GetStringValue(); } },
+                { "capability", n => { Capability = n.GetStringValue(); } },
+                { "providerId", n => { ProviderId = n.GetStringValue(); } },
+                { "providerName", n => { ProviderName = n.GetStringValue(); } },
+                { "providerResourceId", n => { ProviderResourceId = n.GetStringValue(); } },
+                { "uri", n => { Uri = n.GetStringValue(); } },
             };
         }
         /// <summary>

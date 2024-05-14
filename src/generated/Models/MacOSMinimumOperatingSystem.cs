@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The minimum operating system required for a macOS app.
     /// </summary>
-    public class MacOSMinimumOperatingSystem : IAdditionalDataHolder, IParsable 
+    public class MacOSMinimumOperatingSystem : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,19 +70,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_10", n => { V1010 = n.GetBoolValue(); } },
-                {"v10_11", n => { V1011 = n.GetBoolValue(); } },
-                {"v10_12", n => { V1012 = n.GetBoolValue(); } },
-                {"v10_13", n => { V1013 = n.GetBoolValue(); } },
-                {"v10_14", n => { V1014 = n.GetBoolValue(); } },
-                {"v10_15", n => { V1015 = n.GetBoolValue(); } },
-                {"v10_7", n => { V107 = n.GetBoolValue(); } },
-                {"v10_8", n => { V108 = n.GetBoolValue(); } },
-                {"v10_9", n => { V109 = n.GetBoolValue(); } },
-                {"v11_0", n => { V110 = n.GetBoolValue(); } },
-                {"v12_0", n => { V120 = n.GetBoolValue(); } },
-                {"v13_0", n => { V130 = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "v10_10", n => { V1010 = n.GetBoolValue(); } },
+                { "v10_11", n => { V1011 = n.GetBoolValue(); } },
+                { "v10_12", n => { V1012 = n.GetBoolValue(); } },
+                { "v10_13", n => { V1013 = n.GetBoolValue(); } },
+                { "v10_14", n => { V1014 = n.GetBoolValue(); } },
+                { "v10_15", n => { V1015 = n.GetBoolValue(); } },
+                { "v10_7", n => { V107 = n.GetBoolValue(); } },
+                { "v10_8", n => { V108 = n.GetBoolValue(); } },
+                { "v10_9", n => { V109 = n.GetBoolValue(); } },
+                { "v11_0", n => { V110 = n.GetBoolValue(); } },
+                { "v12_0", n => { V120 = n.GetBoolValue(); } },
+                { "v13_0", n => { V130 = n.GetBoolValue(); } },
             };
         }
         /// <summary>

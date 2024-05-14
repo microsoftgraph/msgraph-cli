@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item.Restore {
+namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item.Restore
+{
     /// <summary>
     /// Provides operations to call the restore method.
     /// </summary>
-    public class RestoreRequestBuilder : BaseCliRequestBuilder 
+    public class RestoreRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a document set version.

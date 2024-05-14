@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item {
+namespace ApiSdk.DeviceManagement.TroubleshootingEvents.Item
+{
     /// <summary>
     /// Provides operations to manage the troubleshootingEvents property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceManagementTroubleshootingEventItemRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceManagementTroubleshootingEventItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property troubleshootingEvents for deviceManagement

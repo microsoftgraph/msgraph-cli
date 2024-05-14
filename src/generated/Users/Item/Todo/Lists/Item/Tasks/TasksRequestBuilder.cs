@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
+namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
     /// </summary>
-    public class TasksRequestBuilder : BaseCliRequestBuilder 
+    public class TasksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.todoTaskList entity.
@@ -60,14 +61,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Create a new task object in a specified todoTaskList.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0" />
+        /// Create new navigation property to tasks for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new task object in a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to tasks for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -135,14 +135,13 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0" />
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the todoTask resources from the tasks navigation property of a specified todoTaskList.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0";
+            command.Description = "The tasks in this task list. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -230,7 +229,9 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -256,7 +257,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         {
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -275,7 +276,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new task object in a specified todoTaskList.
+        /// Create new navigation property to tasks for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -296,7 +297,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Get the todoTask resources from the tasks navigation property of a specified todoTaskList.
+        /// The tasks in this task list. Read-only. Nullable.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters 
         {

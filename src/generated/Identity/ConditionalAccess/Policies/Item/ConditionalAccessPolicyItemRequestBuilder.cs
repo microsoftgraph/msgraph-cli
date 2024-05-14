@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
+namespace ApiSdk.Identity.ConditionalAccess.Policies.Item
+{
     /// <summary>
     /// Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
     /// </summary>
-    public class ConditionalAccessPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConditionalAccessPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a conditionalAccessPolicy object.

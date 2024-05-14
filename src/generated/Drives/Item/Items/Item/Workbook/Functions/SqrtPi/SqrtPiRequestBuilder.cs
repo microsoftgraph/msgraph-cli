@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SqrtPi {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SqrtPi
+{
     /// <summary>
     /// Provides operations to call the sqrtPi method.
     /// </summary>
-    public class SqrtPiRequestBuilder : BaseCliRequestBuilder 
+    public class SqrtPiRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sqrtPi

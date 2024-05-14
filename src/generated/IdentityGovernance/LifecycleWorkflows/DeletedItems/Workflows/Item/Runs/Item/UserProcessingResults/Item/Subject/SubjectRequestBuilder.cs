@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.Runs.Item.UserProcessingResults.Item.Subject {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.Runs.Item.UserProcessingResults.Item.Subject
+{
     /// <summary>
     /// Provides operations to manage the subject property of the microsoft.graph.identityGovernance.userProcessingResult entity.
     /// </summary>
-    public class SubjectRequestBuilder : BaseCliRequestBuilder 
+    public class SubjectRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The unique identifier of the AAD user targeted for the taskProcessingResult.Supports $filter(eq, ne) and $expand.

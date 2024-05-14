@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum
+{
     /// <summary>
     /// Provides operations to call the seriesSum method.
     /// </summary>
-    public class SeriesSumRequestBuilder : BaseCliRequestBuilder 
+    public class SeriesSumRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action seriesSum

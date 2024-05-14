@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Schools.Item {
+namespace ApiSdk.Education.Classes.Item.Schools.Item
+{
     /// <summary>
     /// Provides operations to manage the schools property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class EducationSchoolItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationSchoolItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// All schools that this class is associated with. Nullable.

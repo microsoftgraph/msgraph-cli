@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csc {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csc
+{
     /// <summary>
     /// Provides operations to call the csc method.
     /// </summary>
-    public class CscRequestBuilder : BaseCliRequestBuilder 
+    public class CscRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action csc

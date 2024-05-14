@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
+namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item
+{
     /// <summary>
     /// Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
     /// </summary>
-    public class ServicePrincipalRiskDetectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ServicePrincipalRiskDetectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property servicePrincipalRiskDetections for identityProtection

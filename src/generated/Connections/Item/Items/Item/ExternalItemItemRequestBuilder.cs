@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Connections.Item.Items.Item {
+namespace ApiSdk.Connections.Item.Items.Item
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class ExternalItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExternalItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
@@ -50,14 +51,13 @@ namespace ApiSdk.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Delete an externalItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property items for connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property items for connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -92,14 +92,13 @@ namespace ApiSdk.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0" />
+        /// Get items from connections
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0";
+            command.Description = "Get items from connections";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -239,7 +238,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
         {
         }
         /// <summary>
-        /// Delete an externalItem object.
+        /// Delete navigation property items for connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -258,7 +257,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from connections
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -298,7 +297,7 @@ namespace ApiSdk.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an externalItem object.
+        /// Get items from connections
         /// </summary>
         public class ExternalItemItemRequestBuilderGetQueryParameters 
         {

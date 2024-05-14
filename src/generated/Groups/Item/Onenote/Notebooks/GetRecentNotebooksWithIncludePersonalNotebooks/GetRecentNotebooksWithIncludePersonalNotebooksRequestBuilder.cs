@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks {
+namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks
+{
     /// <summary>
     /// Provides operations to call the getRecentNotebooks method.
     /// </summary>
-    public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder : BaseCliRequestBuilder 
+    public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getRecentNotebooks";
+            command.Description = "Get a list of recentNotebook instances that have been accessed by the signed-in user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -93,7 +95,9 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -119,7 +123,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
         {
         }
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -138,7 +142,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePers
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getRecentNotebooks
+        /// Get a list of recentNotebook instances that have been accessed by the signed-in user.
         /// </summary>
         public class GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilderGetQueryParameters 
         {

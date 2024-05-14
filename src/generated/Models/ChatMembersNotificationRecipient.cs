@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ChatMembersNotificationRecipient : TeamworkNotificationRecipient, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ChatMembersNotificationRecipient : TeamworkNotificationRecipient, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The unique identifier for the chat whose members should receive the notifications.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"chatId", n => { ChatId = n.GetStringValue(); } },
+                { "chatId", n => { ChatId = n.GetStringValue(); } },
             };
         }
         /// <summary>

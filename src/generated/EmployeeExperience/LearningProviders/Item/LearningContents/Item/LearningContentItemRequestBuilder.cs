@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item {
+namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
+{
     /// <summary>
     /// Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.
     /// </summary>
-    public class LearningContentItemRequestBuilder : BaseCliRequestBuilder 
+    public class LearningContentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the specified learningContent resource that represents the metadata of the specified provider&apos;s ingested content.

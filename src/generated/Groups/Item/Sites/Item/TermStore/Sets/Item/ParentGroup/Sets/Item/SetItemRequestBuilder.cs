@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item
+{
     /// <summary>
     /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
     /// </summary>
-    public class SetItemRequestBuilder : BaseCliRequestBuilder 
+    public class SetItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.set entity.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item
+{
     /// <summary>
     /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppStatusItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppStatusItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property managedAppStatuses for deviceAppManagement

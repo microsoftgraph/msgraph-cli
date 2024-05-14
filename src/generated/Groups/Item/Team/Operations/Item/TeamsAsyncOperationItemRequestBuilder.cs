@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Team.Operations.Item {
+namespace ApiSdk.Groups.Item.Team.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.team entity.
     /// </summary>
-    public class TeamsAsyncOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAsyncOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property operations for groups

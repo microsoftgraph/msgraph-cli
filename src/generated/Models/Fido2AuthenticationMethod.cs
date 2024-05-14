@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Fido2AuthenticationMethod : AuthenticationMethod, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Fido2AuthenticationMethod : AuthenticationMethod, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Authenticator Attestation GUID, an identifier that indicates the type (e.g. make and model) of the authenticator.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,12 +71,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"aaGuid", n => { AaGuid = n.GetStringValue(); } },
-                {"attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"attestationLevel", n => { AttestationLevel = n.GetEnumValue<AttestationLevel>(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
+                { "aaGuid", n => { AaGuid = n.GetStringValue(); } },
+                { "attestationCertificates", n => { AttestationCertificates = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "attestationLevel", n => { AttestationLevel = n.GetEnumValue<AttestationLevel>(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
             };
         }
         /// <summary>

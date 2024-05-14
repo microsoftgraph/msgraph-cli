@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Cookies.Item
+{
     /// <summary>
     /// Provides operations to manage the cookies property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class HostCookieItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostCookieItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The hostCookies that are associated with this host.

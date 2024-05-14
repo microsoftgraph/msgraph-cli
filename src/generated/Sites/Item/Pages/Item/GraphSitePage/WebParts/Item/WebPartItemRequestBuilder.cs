@@ -15,20 +15,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.WebParts.Item {
+namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.WebParts.Item
+{
     /// <summary>
     /// Provides operations to manage the webParts property of the microsoft.graph.sitePage entity.
     /// </summary>
-    public class WebPartItemRequestBuilder : BaseCliRequestBuilder 
+    public class WebPartItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete navigation property webParts for sites
+        /// Delete a webPart object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/webpart-delete?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete navigation property webParts for sites";
+            command.Description = "Delete a webPart object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/webpart-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -227,7 +229,7 @@ namespace ApiSdk.Sites.Item.Pages.Item.GraphSitePage.WebParts.Item {
         {
         }
         /// <summary>
-        /// Delete navigation property webParts for sites
+        /// Delete a webPart object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

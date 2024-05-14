@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Places.Item {
+namespace ApiSdk.Places.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of place entities.
     /// </summary>
-    public class PlaceItemRequestBuilder : BaseCliRequestBuilder 
+    public class PlaceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from places

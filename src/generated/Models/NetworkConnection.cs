@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class NetworkConnection : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class NetworkConnection : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -178,27 +181,27 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"applicationName", n => { ApplicationName = n.GetStringValue(); } },
-                {"destinationAddress", n => { DestinationAddress = n.GetStringValue(); } },
-                {"destinationDomain", n => { DestinationDomain = n.GetStringValue(); } },
-                {"destinationLocation", n => { DestinationLocation = n.GetStringValue(); } },
-                {"destinationPort", n => { DestinationPort = n.GetStringValue(); } },
-                {"destinationUrl", n => { DestinationUrl = n.GetStringValue(); } },
-                {"direction", n => { Direction = n.GetEnumValue<ConnectionDirection>(); } },
-                {"domainRegisteredDateTime", n => { DomainRegisteredDateTime = n.GetDateTimeOffsetValue(); } },
-                {"localDnsName", n => { LocalDnsName = n.GetStringValue(); } },
-                {"natDestinationAddress", n => { NatDestinationAddress = n.GetStringValue(); } },
-                {"natDestinationPort", n => { NatDestinationPort = n.GetStringValue(); } },
-                {"natSourceAddress", n => { NatSourceAddress = n.GetStringValue(); } },
-                {"natSourcePort", n => { NatSourcePort = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"protocol", n => { Protocol = n.GetEnumValue<SecurityNetworkProtocol>(); } },
-                {"riskScore", n => { RiskScore = n.GetStringValue(); } },
-                {"sourceAddress", n => { SourceAddress = n.GetStringValue(); } },
-                {"sourceLocation", n => { SourceLocation = n.GetStringValue(); } },
-                {"sourcePort", n => { SourcePort = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<ConnectionStatus>(); } },
-                {"urlParameters", n => { UrlParameters = n.GetStringValue(); } },
+                { "applicationName", n => { ApplicationName = n.GetStringValue(); } },
+                { "destinationAddress", n => { DestinationAddress = n.GetStringValue(); } },
+                { "destinationDomain", n => { DestinationDomain = n.GetStringValue(); } },
+                { "destinationLocation", n => { DestinationLocation = n.GetStringValue(); } },
+                { "destinationPort", n => { DestinationPort = n.GetStringValue(); } },
+                { "destinationUrl", n => { DestinationUrl = n.GetStringValue(); } },
+                { "direction", n => { Direction = n.GetEnumValue<ConnectionDirection>(); } },
+                { "domainRegisteredDateTime", n => { DomainRegisteredDateTime = n.GetDateTimeOffsetValue(); } },
+                { "localDnsName", n => { LocalDnsName = n.GetStringValue(); } },
+                { "natDestinationAddress", n => { NatDestinationAddress = n.GetStringValue(); } },
+                { "natDestinationPort", n => { NatDestinationPort = n.GetStringValue(); } },
+                { "natSourceAddress", n => { NatSourceAddress = n.GetStringValue(); } },
+                { "natSourcePort", n => { NatSourcePort = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "protocol", n => { Protocol = n.GetEnumValue<SecurityNetworkProtocol>(); } },
+                { "riskScore", n => { RiskScore = n.GetStringValue(); } },
+                { "sourceAddress", n => { SourceAddress = n.GetStringValue(); } },
+                { "sourceLocation", n => { SourceLocation = n.GetStringValue(); } },
+                { "sourcePort", n => { SourcePort = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<ConnectionStatus>(); } },
+                { "urlParameters", n => { UrlParameters = n.GetStringValue(); } },
             };
         }
         /// <summary>

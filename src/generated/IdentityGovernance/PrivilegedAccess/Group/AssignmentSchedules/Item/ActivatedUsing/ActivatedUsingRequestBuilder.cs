@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.Item.ActivatedUsing {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.AssignmentSchedules.Item.ActivatedUsing
+{
     /// <summary>
     /// Provides operations to manage the activatedUsing property of the microsoft.graph.privilegedAccessGroupAssignmentSchedule entity.
     /// </summary>
-    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder 
+    public class ActivatedUsingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// When the request activates an ownership or membership assignment in PIM for groups, this object represents the eligibility relationship. Otherwise, it&apos;s null. Supports $expand.

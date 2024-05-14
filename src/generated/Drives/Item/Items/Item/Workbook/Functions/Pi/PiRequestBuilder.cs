@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pi {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pi
+{
     /// <summary>
     /// Provides operations to call the pi method.
     /// </summary>
-    public class PiRequestBuilder : BaseCliRequestBuilder 
+    public class PiRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action pi

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport {
+namespace ApiSdk.DeviceManagement.Reports.GetConfigurationPolicyNonComplianceReport
+{
     /// <summary>
     /// Provides operations to call the getConfigurationPolicyNonComplianceReport method.
     /// </summary>
-    public class GetConfigurationPolicyNonComplianceReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetConfigurationPolicyNonComplianceReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

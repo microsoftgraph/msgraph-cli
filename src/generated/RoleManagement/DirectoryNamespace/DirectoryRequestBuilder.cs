@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.DirectoryNamespace {
+namespace ApiSdk.RoleManagement.DirectoryNamespace
+{
     /// <summary>
     /// Provides operations to manage the directory property of the microsoft.graph.roleManagement entity.
     /// </summary>
-    public class DirectoryRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property directory for roleManagement

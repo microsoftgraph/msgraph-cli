@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward {
+namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward
+{
     /// <summary>
     /// Provides operations to call the forward method.
     /// </summary>
-    public class ForwardRequestBuilder : BaseCliRequestBuilder 
+    public class ForwardRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Forward a post to a recipient. You can specify both the parent conversation and thread in the request, or, you can specify just the parent thread without the parent conversation. 

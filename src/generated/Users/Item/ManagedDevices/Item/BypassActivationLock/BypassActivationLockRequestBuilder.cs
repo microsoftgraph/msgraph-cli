@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.BypassActivationLock {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.BypassActivationLock
+{
     /// <summary>
     /// Provides operations to call the bypassActivationLock method.
     /// </summary>
-    public class BypassActivationLockRequestBuilder : BaseCliRequestBuilder 
+    public class BypassActivationLockRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Bypass activation lock

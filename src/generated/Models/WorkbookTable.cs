@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class WorkbookTable : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class WorkbookTable : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents a collection of all the columns in the table. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -95,20 +98,20 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"columns", n => { Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>(WorkbookTableColumn.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"highlightFirstColumn", n => { HighlightFirstColumn = n.GetBoolValue(); } },
-                {"highlightLastColumn", n => { HighlightLastColumn = n.GetBoolValue(); } },
-                {"legacyId", n => { LegacyId = n.GetStringValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"rows", n => { Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"showBandedColumns", n => { ShowBandedColumns = n.GetBoolValue(); } },
-                {"showBandedRows", n => { ShowBandedRows = n.GetBoolValue(); } },
-                {"showFilterButton", n => { ShowFilterButton = n.GetBoolValue(); } },
-                {"showHeaders", n => { ShowHeaders = n.GetBoolValue(); } },
-                {"showTotals", n => { ShowTotals = n.GetBoolValue(); } },
-                {"sort", n => { Sort = n.GetObjectValue<WorkbookTableSort>(WorkbookTableSort.CreateFromDiscriminatorValue); } },
-                {"style", n => { Style = n.GetStringValue(); } },
-                {"worksheet", n => { Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<WorkbookTableColumn>(WorkbookTableColumn.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "highlightFirstColumn", n => { HighlightFirstColumn = n.GetBoolValue(); } },
+                { "highlightLastColumn", n => { HighlightLastColumn = n.GetBoolValue(); } },
+                { "legacyId", n => { LegacyId = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "rows", n => { Rows = n.GetCollectionOfObjectValues<WorkbookTableRow>(WorkbookTableRow.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "showBandedColumns", n => { ShowBandedColumns = n.GetBoolValue(); } },
+                { "showBandedRows", n => { ShowBandedRows = n.GetBoolValue(); } },
+                { "showFilterButton", n => { ShowFilterButton = n.GetBoolValue(); } },
+                { "showHeaders", n => { ShowHeaders = n.GetBoolValue(); } },
+                { "showTotals", n => { ShowTotals = n.GetBoolValue(); } },
+                { "sort", n => { Sort = n.GetObjectValue<WorkbookTableSort>(WorkbookTableSort.CreateFromDiscriminatorValue); } },
+                { "style", n => { Style = n.GetStringValue(); } },
+                { "worksheet", n => { Worksheet = n.GetObjectValue<WorkbookWorksheet>(WorkbookWorksheet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

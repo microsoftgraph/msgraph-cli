@@ -22,11 +22,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation {
+namespace ApiSdk.Security.AttackSimulation
+{
     /// <summary>
     /// Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
     /// </summary>
-    public class AttackSimulationRequestBuilder : BaseCliRequestBuilder 
+    public class AttackSimulationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property attackSimulation for security

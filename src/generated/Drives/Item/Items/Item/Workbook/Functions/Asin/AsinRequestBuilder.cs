@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin
+{
     /// <summary>
     /// Provides operations to call the asin method.
     /// </summary>
-    public class AsinRequestBuilder : BaseCliRequestBuilder 
+    public class AsinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action asin

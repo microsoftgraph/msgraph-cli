@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_T {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_T
+{
     /// <summary>
     /// Provides operations to call the confidence_T method.
     /// </summary>
-    public class Confidence_TRequestBuilder : BaseCliRequestBuilder 
+    public class Confidence_TRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action confidence_T

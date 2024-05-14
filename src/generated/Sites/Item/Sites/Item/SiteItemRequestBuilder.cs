@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Sites.Item {
+namespace ApiSdk.Sites.Item.Sites.Item
+{
     /// <summary>
     /// Provides operations to manage the sites property of the microsoft.graph.site entity.
     /// </summary>
-    public class SiteItemRequestBuilder : BaseCliRequestBuilder 
+    public class SiteItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The collection of the sub-sites under this site.

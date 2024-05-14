@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup {
+namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item.RemoveGroup
+{
     /// <summary>
     /// Provides operations to call the removeGroup method.
     /// </summary>
-    public class RemoveGroupRequestBuilder : BaseCliRequestBuilder 
+    public class RemoveGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Removes a group from a lifecycle policy.

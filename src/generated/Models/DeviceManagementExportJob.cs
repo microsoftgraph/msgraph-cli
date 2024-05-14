@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Entity representing a job to export a report.
     /// </summary>
-    public class DeviceManagementExportJob : Entity, IParsable 
+    public class DeviceManagementExportJob : Entity, IParsable
     {
         /// <summary>Time that the exported report expires</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
@@ -78,16 +79,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"filter", n => { Filter = n.GetStringValue(); } },
-                {"format", n => { Format = n.GetEnumValue<DeviceManagementReportFileFormat>(); } },
-                {"localizationType", n => { LocalizationType = n.GetEnumValue<DeviceManagementExportJobLocalizationType>(); } },
-                {"reportName", n => { ReportName = n.GetStringValue(); } },
-                {"requestDateTime", n => { RequestDateTime = n.GetDateTimeOffsetValue(); } },
-                {"select", n => { Select = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"snapshotId", n => { SnapshotId = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<DeviceManagementReportStatus>(); } },
-                {"url", n => { Url = n.GetStringValue(); } },
+                { "expirationDateTime", n => { ExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                { "filter", n => { Filter = n.GetStringValue(); } },
+                { "format", n => { Format = n.GetEnumValue<DeviceManagementReportFileFormat>(); } },
+                { "localizationType", n => { LocalizationType = n.GetEnumValue<DeviceManagementExportJobLocalizationType>(); } },
+                { "reportName", n => { ReportName = n.GetStringValue(); } },
+                { "requestDateTime", n => { RequestDateTime = n.GetDateTimeOffsetValue(); } },
+                { "select", n => { Select = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "snapshotId", n => { SnapshotId = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<DeviceManagementReportStatus>(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
         /// <summary>

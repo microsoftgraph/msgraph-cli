@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Midb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Midb
+{
     /// <summary>
     /// Provides operations to call the midb method.
     /// </summary>
-    public class MidbRequestBuilder : BaseCliRequestBuilder 
+    public class MidbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action midb

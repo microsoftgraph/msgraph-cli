@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SelfSignedCertificate : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SelfSignedCertificate : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -96,16 +99,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"customKeyIdentifier", n => { CustomKeyIdentifier = n.GetByteArrayValue(); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
-                {"key", n => { Key = n.GetByteArrayValue(); } },
-                {"keyId", n => { KeyId = n.GetGuidValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
-                {"thumbprint", n => { Thumbprint = n.GetStringValue(); } },
-                {"type", n => { Type = n.GetStringValue(); } },
-                {"usage", n => { Usage = n.GetStringValue(); } },
+                { "customKeyIdentifier", n => { CustomKeyIdentifier = n.GetByteArrayValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
+                { "key", n => { Key = n.GetByteArrayValue(); } },
+                { "keyId", n => { KeyId = n.GetGuidValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
+                { "thumbprint", n => { Thumbprint = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
+                { "usage", n => { Usage = n.GetStringValue(); } },
             };
         }
         /// <summary>

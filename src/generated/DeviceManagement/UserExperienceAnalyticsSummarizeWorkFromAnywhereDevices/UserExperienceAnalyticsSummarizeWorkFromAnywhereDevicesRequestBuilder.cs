@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices
+{
     /// <summary>
     /// Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
     /// </summary>
-    public class UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function userExperienceAnalyticsSummarizeWorkFromAnywhereDevices

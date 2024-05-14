@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing {
+namespace ApiSdk.Reports.Partners.Billing
+{
     /// <summary>
     /// Provides operations to manage the billing property of the microsoft.graph.partners entity.
     /// </summary>
-    public class BillingRequestBuilder : BaseCliRequestBuilder 
+    public class BillingRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property billing for reports

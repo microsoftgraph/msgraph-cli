@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostComponents.Item
+{
     /// <summary>
     /// Provides operations to manage the hostComponents property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostComponentItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostComponentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property hostComponents for security

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DetectedApps.Item {
+namespace ApiSdk.DeviceManagement.DetectedApps.Item
+{
     /// <summary>
     /// Provides operations to manage the detectedApps property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DetectedAppItemRequestBuilder : BaseCliRequestBuilder 
+    public class DetectedAppItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a detectedApp.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod {
+namespace ApiSdk.Users.Item.Insights.Shared.Item.LastSharedMethod
+{
     /// <summary>
     /// Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.
     /// </summary>
-    public class LastSharedMethodRequestBuilder : BaseCliRequestBuilder 
+    public class LastSharedMethodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get lastSharedMethod from users

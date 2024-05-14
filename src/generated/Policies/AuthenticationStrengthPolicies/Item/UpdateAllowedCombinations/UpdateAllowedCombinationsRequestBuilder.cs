@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.UpdateAllowedCombinations {
+namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.UpdateAllowedCombinations
+{
     /// <summary>
     /// Provides operations to call the updateAllowedCombinations method.
     /// </summary>
-    public class UpdateAllowedCombinationsRequestBuilder : BaseCliRequestBuilder 
+    public class UpdateAllowedCombinationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Update the allowedCombinations property of an authenticationStrengthPolicy object. To update other properties of an authenticationStrengthPolicy object, use the Update authenticationStrengthPolicy method.

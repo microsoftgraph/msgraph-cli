@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MessageRulePredicates : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MessageRulePredicates : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -162,37 +165,37 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"bodyContains", n => { BodyContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"bodyOrSubjectContains", n => { BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"fromAddresses", n => { FromAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
-                {"headerContains", n => { HeaderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"importance", n => { Importance = n.GetEnumValue<Importance>(); } },
-                {"isApprovalRequest", n => { IsApprovalRequest = n.GetBoolValue(); } },
-                {"isAutomaticForward", n => { IsAutomaticForward = n.GetBoolValue(); } },
-                {"isAutomaticReply", n => { IsAutomaticReply = n.GetBoolValue(); } },
-                {"isEncrypted", n => { IsEncrypted = n.GetBoolValue(); } },
-                {"isMeetingRequest", n => { IsMeetingRequest = n.GetBoolValue(); } },
-                {"isMeetingResponse", n => { IsMeetingResponse = n.GetBoolValue(); } },
-                {"isNonDeliveryReport", n => { IsNonDeliveryReport = n.GetBoolValue(); } },
-                {"isPermissionControlled", n => { IsPermissionControlled = n.GetBoolValue(); } },
-                {"isReadReceipt", n => { IsReadReceipt = n.GetBoolValue(); } },
-                {"isSigned", n => { IsSigned = n.GetBoolValue(); } },
-                {"isVoicemail", n => { IsVoicemail = n.GetBoolValue(); } },
-                {"messageActionFlag", n => { MessageActionFlag = n.GetEnumValue<MessageActionFlag>(); } },
-                {"notSentToMe", n => { NotSentToMe = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"recipientContains", n => { RecipientContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"senderContains", n => { SenderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"sensitivity", n => { Sensitivity = n.GetEnumValue<Sensitivity>(); } },
-                {"sentCcMe", n => { SentCcMe = n.GetBoolValue(); } },
-                {"sentOnlyToMe", n => { SentOnlyToMe = n.GetBoolValue(); } },
-                {"sentToAddresses", n => { SentToAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"sentToMe", n => { SentToMe = n.GetBoolValue(); } },
-                {"sentToOrCcMe", n => { SentToOrCcMe = n.GetBoolValue(); } },
-                {"subjectContains", n => { SubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"withinSizeRange", n => { WithinSizeRange = n.GetObjectValue<SizeRange>(SizeRange.CreateFromDiscriminatorValue); } },
+                { "bodyContains", n => { BodyContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "bodyOrSubjectContains", n => { BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "fromAddresses", n => { FromAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
+                { "headerContains", n => { HeaderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "importance", n => { Importance = n.GetEnumValue<Importance>(); } },
+                { "isApprovalRequest", n => { IsApprovalRequest = n.GetBoolValue(); } },
+                { "isAutomaticForward", n => { IsAutomaticForward = n.GetBoolValue(); } },
+                { "isAutomaticReply", n => { IsAutomaticReply = n.GetBoolValue(); } },
+                { "isEncrypted", n => { IsEncrypted = n.GetBoolValue(); } },
+                { "isMeetingRequest", n => { IsMeetingRequest = n.GetBoolValue(); } },
+                { "isMeetingResponse", n => { IsMeetingResponse = n.GetBoolValue(); } },
+                { "isNonDeliveryReport", n => { IsNonDeliveryReport = n.GetBoolValue(); } },
+                { "isPermissionControlled", n => { IsPermissionControlled = n.GetBoolValue(); } },
+                { "isReadReceipt", n => { IsReadReceipt = n.GetBoolValue(); } },
+                { "isSigned", n => { IsSigned = n.GetBoolValue(); } },
+                { "isVoicemail", n => { IsVoicemail = n.GetBoolValue(); } },
+                { "messageActionFlag", n => { MessageActionFlag = n.GetEnumValue<MessageActionFlag>(); } },
+                { "notSentToMe", n => { NotSentToMe = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "recipientContains", n => { RecipientContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "senderContains", n => { SenderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "sensitivity", n => { Sensitivity = n.GetEnumValue<Sensitivity>(); } },
+                { "sentCcMe", n => { SentCcMe = n.GetBoolValue(); } },
+                { "sentOnlyToMe", n => { SentOnlyToMe = n.GetBoolValue(); } },
+                { "sentToAddresses", n => { SentToAddresses = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "sentToMe", n => { SentToMe = n.GetBoolValue(); } },
+                { "sentToOrCcMe", n => { SentToOrCcMe = n.GetBoolValue(); } },
+                { "subjectContains", n => { SubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "withinSizeRange", n => { WithinSizeRange = n.GetObjectValue<SizeRange>(SizeRange.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

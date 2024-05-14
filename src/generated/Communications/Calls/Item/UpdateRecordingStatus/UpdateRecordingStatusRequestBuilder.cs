@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
+namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
+{
     /// <summary>
     /// Provides operations to call the updateRecordingStatus method.
     /// </summary>
-    public class UpdateRecordingStatusRequestBuilder : BaseCliRequestBuilder 
+    public class UpdateRecordingStatusRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Update the application&apos;s recording status associated with a call. This requires the use of the Teams policy-based recording solution.

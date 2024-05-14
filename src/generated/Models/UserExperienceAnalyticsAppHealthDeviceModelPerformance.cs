@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device model performance entity contains device model performance details.
     /// </summary>
-    public class UserExperienceAnalyticsAppHealthDeviceModelPerformance : Entity, IParsable 
+    public class UserExperienceAnalyticsAppHealthDeviceModelPerformance : Entity, IParsable
     {
         /// <summary>The number of active devices for the model. Valid values 0 to 2147483647. Supports: $filter, $select, $OrderBy. Read-only. Valid values -2147483648 to 2147483647</summary>
         public int? ActiveDeviceCount { get; set; }
@@ -52,12 +53,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"activeDeviceCount", n => { ActiveDeviceCount = n.GetIntValue(); } },
-                {"deviceManufacturer", n => { DeviceManufacturer = n.GetStringValue(); } },
-                {"deviceModel", n => { DeviceModel = n.GetStringValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
-                {"meanTimeToFailureInMinutes", n => { MeanTimeToFailureInMinutes = n.GetIntValue(); } },
-                {"modelAppHealthScore", n => { ModelAppHealthScore = n.GetDoubleValue(); } },
+                { "activeDeviceCount", n => { ActiveDeviceCount = n.GetIntValue(); } },
+                { "deviceManufacturer", n => { DeviceManufacturer = n.GetStringValue(); } },
+                { "deviceModel", n => { DeviceModel = n.GetStringValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "meanTimeToFailureInMinutes", n => { MeanTimeToFailureInMinutes = n.GetIntValue(); } },
+                { "modelAppHealthScore", n => { ModelAppHealthScore = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

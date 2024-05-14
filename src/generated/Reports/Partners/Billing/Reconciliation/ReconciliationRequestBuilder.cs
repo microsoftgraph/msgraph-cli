@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Reconciliation {
+namespace ApiSdk.Reports.Partners.Billing.Reconciliation
+{
     /// <summary>
     /// Provides operations to manage the reconciliation property of the microsoft.graph.partners.billing.billing entity.
     /// </summary>
-    public class ReconciliationRequestBuilder : BaseCliRequestBuilder 
+    public class ReconciliationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the billed property of the microsoft.graph.partners.billing.billingReconciliation entity.

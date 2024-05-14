@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundDown {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundDown
+{
     /// <summary>
     /// Provides operations to call the roundDown method.
     /// </summary>
-    public class RoundDownRequestBuilder : BaseCliRequestBuilder 
+    public class RoundDownRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action roundDown

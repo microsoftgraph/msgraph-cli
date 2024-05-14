@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AccessReviewNotificationRecipientQueryScope : AccessReviewNotificationRecipientScope, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AccessReviewNotificationRecipientQueryScope : AccessReviewNotificationRecipientScope, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents the query for who the recipients are. For example, /groups/{group id}/members for group members and /users/{user id} for a specific user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"query", n => { Query = n.GetStringValue(); } },
-                {"queryRoot", n => { QueryRoot = n.GetStringValue(); } },
-                {"queryType", n => { QueryType = n.GetStringValue(); } },
+                { "query", n => { Query = n.GetStringValue(); } },
+                { "queryRoot", n => { QueryRoot = n.GetStringValue(); } },
+                { "queryType", n => { QueryType = n.GetStringValue(); } },
             };
         }
         /// <summary>

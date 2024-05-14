@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ConvertNamespace {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ConvertNamespace
+{
     /// <summary>
     /// Provides operations to call the convert method.
     /// </summary>
-    public class ConvertRequestBuilder : BaseCliRequestBuilder 
+    public class ConvertRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action convert

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.UpdateWindowsDeviceAccount {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.UpdateWindowsDeviceAccount
+{
     /// <summary>
     /// Provides operations to call the updateWindowsDeviceAccount method.
     /// </summary>
-    public class UpdateWindowsDeviceAccountRequestBuilder : BaseCliRequestBuilder 
+    public class UpdateWindowsDeviceAccountRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

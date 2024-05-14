@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Edge : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Edge : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>A container for Internet Explorer mode resources.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"internetExplorerMode", n => { InternetExplorerMode = n.GetObjectValue<ApiSdk.Models.InternetExplorerMode>(ApiSdk.Models.InternetExplorerMode.CreateFromDiscriminatorValue); } },
+                { "internetExplorerMode", n => { InternetExplorerMode = n.GetObjectValue<ApiSdk.Models.InternetExplorerMode>(ApiSdk.Models.InternetExplorerMode.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

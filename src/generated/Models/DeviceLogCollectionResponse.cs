@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Log Collection request entity.
     /// </summary>
-    public class DeviceLogCollectionResponse : Entity, IParsable 
+    public class DeviceLogCollectionResponse : Entity, IParsable
     {
         /// <summary>The User Principal Name (UPN) of the user that enrolled the device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,14 +57,14 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"enrolledByUser", n => { EnrolledByUser = n.GetStringValue(); } },
-                {"expirationDateTimeUTC", n => { ExpirationDateTimeUTC = n.GetDateTimeOffsetValue(); } },
-                {"initiatedByUserPrincipalName", n => { InitiatedByUserPrincipalName = n.GetStringValue(); } },
-                {"managedDeviceId", n => { ManagedDeviceId = n.GetGuidValue(); } },
-                {"receivedDateTimeUTC", n => { ReceivedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
-                {"requestedDateTimeUTC", n => { RequestedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
-                {"sizeInKB", n => { SizeInKB = n.GetDoubleValue(); } },
-                {"status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
+                { "enrolledByUser", n => { EnrolledByUser = n.GetStringValue(); } },
+                { "expirationDateTimeUTC", n => { ExpirationDateTimeUTC = n.GetDateTimeOffsetValue(); } },
+                { "initiatedByUserPrincipalName", n => { InitiatedByUserPrincipalName = n.GetStringValue(); } },
+                { "managedDeviceId", n => { ManagedDeviceId = n.GetGuidValue(); } },
+                { "receivedDateTimeUTC", n => { ReceivedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
+                { "requestedDateTimeUTC", n => { RequestedDateTimeUTC = n.GetDateTimeOffsetValue(); } },
+                { "sizeInKB", n => { SizeInKB = n.GetDoubleValue(); } },
+                { "status", n => { Status = n.GetEnumValue<AppLogUploadState>(); } },
             };
         }
         /// <summary>

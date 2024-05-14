@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
-    public class CancelMediaProcessingPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing
+{
+    #pragma warning disable CS1591
+    public class CancelMediaProcessingPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.Communications.Calls.Item.CancelMediaProcessing {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"clientContext", n => { ClientContext = n.GetStringValue(); } },
+                { "clientContext", n => { ClientContext = n.GetStringValue(); } },
             };
         }
         /// <summary>

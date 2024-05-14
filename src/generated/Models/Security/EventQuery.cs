@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class EventQuery : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class EventQuery : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -52,9 +55,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"query", n => { Query = n.GetStringValue(); } },
-                {"queryType", n => { QueryType = n.GetEnumValue<QueryType>(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "query", n => { Query = n.GetStringValue(); } },
+                { "queryType", n => { QueryType = n.GetEnumValue<QueryType>(); } },
             };
         }
         /// <summary>

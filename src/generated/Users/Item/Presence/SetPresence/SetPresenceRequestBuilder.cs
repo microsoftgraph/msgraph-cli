@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Presence.SetPresence {
+namespace ApiSdk.Users.Item.Presence.SetPresence
+{
     /// <summary>
     /// Provides operations to call the setPresence method.
     /// </summary>
-    public class SetPresenceRequestBuilder : BaseCliRequestBuilder 
+    public class SetPresenceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Set the state of a user&apos;s presence session as an application.

@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item {
+namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \education\me\assignments\{educationAssignment-id}\categories\{educationCategory-id}
     /// </summary>
-    public class EducationCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.

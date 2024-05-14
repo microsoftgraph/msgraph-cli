@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.EmployeeExperience {
+namespace ApiSdk.Users.Item.EmployeeExperience
+{
     /// <summary>
     /// Provides operations to manage the employeeExperience property of the microsoft.graph.user entity.
     /// </summary>
-    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder 
+    public class EmployeeExperienceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property employeeExperience for users

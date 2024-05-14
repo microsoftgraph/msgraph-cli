@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acot {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acot
+{
     /// <summary>
     /// Provides operations to call the acot method.
     /// </summary>
-    public class AcotRequestBuilder : BaseCliRequestBuilder 
+    public class AcotRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action acot

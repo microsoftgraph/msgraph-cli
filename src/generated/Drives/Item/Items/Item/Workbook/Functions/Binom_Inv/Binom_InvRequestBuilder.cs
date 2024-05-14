@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv
+{
     /// <summary>
     /// Provides operations to call the binom_Inv method.
     /// </summary>
-    public class Binom_InvRequestBuilder : BaseCliRequestBuilder 
+    public class Binom_InvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action binom_Inv

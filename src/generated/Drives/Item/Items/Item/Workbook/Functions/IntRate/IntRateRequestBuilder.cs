@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IntRate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IntRate
+{
     /// <summary>
     /// Provides operations to call the intRate method.
     /// </summary>
-    public class IntRateRequestBuilder : BaseCliRequestBuilder 
+    public class IntRateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action intRate

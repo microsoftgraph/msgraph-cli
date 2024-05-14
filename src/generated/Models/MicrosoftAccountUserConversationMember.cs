@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MicrosoftAccountUserConversationMember : ConversationMember, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MicrosoftAccountUserConversationMember : ConversationMember, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Microsoft Account ID of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"userId", n => { UserId = n.GetStringValue(); } },
+                { "userId", n => { UserId = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
-    public class AssignSensitivityLabelPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel
+{
+    #pragma warning disable CS1591
+    public class AssignSensitivityLabelPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -53,9 +56,9 @@ namespace ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"assignmentMethod", n => { AssignmentMethod = n.GetEnumValue<SensitivityLabelAssignmentMethod>(); } },
-                {"justificationText", n => { JustificationText = n.GetStringValue(); } },
-                {"sensitivityLabelId", n => { SensitivityLabelId = n.GetStringValue(); } },
+                { "assignmentMethod", n => { AssignmentMethod = n.GetEnumValue<SensitivityLabelAssignmentMethod>(); } },
+                { "justificationText", n => { JustificationText = n.GetStringValue(); } },
+                { "sensitivityLabelId", n => { SensitivityLabelId = n.GetStringValue(); } },
             };
         }
         /// <summary>

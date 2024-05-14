@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
+namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of print entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.

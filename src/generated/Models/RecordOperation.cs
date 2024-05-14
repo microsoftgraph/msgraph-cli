@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class RecordOperation : CommsOperation, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class RecordOperation : CommsOperation, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The access token required to retrieve the recording.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,8 +44,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"recordingAccessToken", n => { RecordingAccessToken = n.GetStringValue(); } },
-                {"recordingLocation", n => { RecordingLocation = n.GetStringValue(); } },
+                { "recordingAccessToken", n => { RecordingAccessToken = n.GetStringValue(); } },
+                { "recordingLocation", n => { RecordingLocation = n.GetStringValue(); } },
             };
         }
         /// <summary>

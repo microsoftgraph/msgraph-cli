@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ddb {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ddb
+{
     /// <summary>
     /// Provides operations to call the ddb method.
     /// </summary>
-    public class DdbRequestBuilder : BaseCliRequestBuilder 
+    public class DdbRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action ddb

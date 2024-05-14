@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OnenotePage : OnenoteEntitySchemaObjectModel, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OnenotePage : OnenoteEntitySchemaObjectModel, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The page&apos;s HTML content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -102,17 +105,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"content", n => { Content = n.GetByteArrayValue(); } },
-                {"contentUrl", n => { ContentUrl = n.GetStringValue(); } },
-                {"createdByAppId", n => { CreatedByAppId = n.GetStringValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"level", n => { Level = n.GetIntValue(); } },
-                {"links", n => { Links = n.GetObjectValue<PageLinks>(PageLinks.CreateFromDiscriminatorValue); } },
-                {"order", n => { Order = n.GetIntValue(); } },
-                {"parentNotebook", n => { ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
-                {"parentSection", n => { ParentSection = n.GetObjectValue<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue); } },
-                {"title", n => { Title = n.GetStringValue(); } },
-                {"userTags", n => { UserTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "content", n => { Content = n.GetByteArrayValue(); } },
+                { "contentUrl", n => { ContentUrl = n.GetStringValue(); } },
+                { "createdByAppId", n => { CreatedByAppId = n.GetStringValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "level", n => { Level = n.GetIntValue(); } },
+                { "links", n => { Links = n.GetObjectValue<PageLinks>(PageLinks.CreateFromDiscriminatorValue); } },
+                { "order", n => { Order = n.GetIntValue(); } },
+                { "parentNotebook", n => { ParentNotebook = n.GetObjectValue<Notebook>(Notebook.CreateFromDiscriminatorValue); } },
+                { "parentSection", n => { ParentSection = n.GetObjectValue<OnenoteSection>(OnenoteSection.CreateFromDiscriminatorValue); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "userTags", n => { UserTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

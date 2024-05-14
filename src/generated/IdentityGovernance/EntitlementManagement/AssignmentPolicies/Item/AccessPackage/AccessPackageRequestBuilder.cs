@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.AccessPackage {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Item.AccessPackage
+{
     /// <summary>
     /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.
     /// </summary>
-    public class AccessPackageRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Access package containing this policy. Read-only.  Supports $expand.

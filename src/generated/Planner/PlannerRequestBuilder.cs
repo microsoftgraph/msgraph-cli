@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Planner {
+namespace ApiSdk.Planner
+{
     /// <summary>
     /// Provides operations to manage the planner singleton.
     /// </summary>
-    public class PlannerRequestBuilder : BaseCliRequestBuilder 
+    public class PlannerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.planner entity.

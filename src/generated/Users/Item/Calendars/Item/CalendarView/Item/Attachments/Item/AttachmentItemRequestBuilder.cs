@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Attachments.Item {
+namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Attachments.Item
+{
     /// <summary>
     /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
     /// </summary>
-    public class AttachmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class AttachmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete an attachment from a user calendar event, mail message, or group post.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0" />
+        /// Delete navigation property attachments for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete an attachment from a user calendar event, mail message, or group post.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attachment-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property attachments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -159,7 +159,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Attachments.Item {
         {
         }
         /// <summary>
-        /// Delete an attachment from a user calendar event, mail message, or group post.
+        /// Delete navigation property attachments for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

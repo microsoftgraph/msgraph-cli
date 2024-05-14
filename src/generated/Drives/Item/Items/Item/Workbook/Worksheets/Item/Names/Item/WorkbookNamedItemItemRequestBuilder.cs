@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Item
+{
     /// <summary>
     /// Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class WorkbookNamedItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookNamedItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property names for drives

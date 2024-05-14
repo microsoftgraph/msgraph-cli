@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
+namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials
+{
     /// <summary>
     /// Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.
     /// </summary>
-    public class DeviceLocalCredentialsRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceLocalCredentialsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the deviceLocalCredentials property of the microsoft.graph.directory entity.
@@ -110,6 +111,10 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
             };
             topOption.IsRequired = false;
             command.AddOption(topOption);
+            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
+            };
+            skipOption.IsRequired = false;
+            command.AddOption(skipOption);
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };
             searchOption.IsRequired = false;
@@ -140,6 +145,7 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
+                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
@@ -155,6 +161,7 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
+                    q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
@@ -168,7 +175,9 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -183,14 +192,14 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
         /// Instantiates a new <see cref="DeviceLocalCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceLocalCredentialsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deviceLocalCredentials{?%24count,%24filter,%24orderby,%24search,%24select,%24top}", pathParameters)
+        public DeviceLocalCredentialsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deviceLocalCredentials{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", pathParameters)
         {
         }
         /// <summary>
         /// Instantiates a new <see cref="DeviceLocalCredentialsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public DeviceLocalCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deviceLocalCredentials{?%24count,%24filter,%24orderby,%24search,%24select,%24top}", rawUrl)
+        public DeviceLocalCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/directory/deviceLocalCredentials{?%24count,%24filter,%24orderby,%24search,%24select,%24skip,%24top}", rawUrl)
         {
         }
         /// <summary>
@@ -281,6 +290,9 @@ namespace ApiSdk.DirectoryNamespace.DeviceLocalCredentials {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
+            /// <summary>Skip the first n items</summary>
+            [QueryParameter("%24skip")]
+            public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }

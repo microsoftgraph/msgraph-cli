@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.SyncDevice {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.SyncDevice
+{
     /// <summary>
     /// Provides operations to call the syncDevice method.
     /// </summary>
-    public class SyncDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class SyncDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

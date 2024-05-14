@@ -20,11 +20,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
+namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item
+{
     /// <summary>
     /// Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedDeviceMobileAppConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedDeviceMobileAppConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.

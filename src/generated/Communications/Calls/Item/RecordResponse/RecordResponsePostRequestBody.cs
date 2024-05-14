@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Communications.Calls.Item.RecordResponse {
-    public class RecordResponsePostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Communications.Calls.Item.RecordResponse
+{
+    #pragma warning disable CS1591
+    public class RecordResponsePostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,14 +72,14 @@ namespace ApiSdk.Communications.Calls.Item.RecordResponse {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"bargeInAllowed", n => { BargeInAllowed = n.GetBoolValue(); } },
-                {"clientContext", n => { ClientContext = n.GetStringValue(); } },
-                {"initialSilenceTimeoutInSeconds", n => { InitialSilenceTimeoutInSeconds = n.GetIntValue(); } },
-                {"maxRecordDurationInSeconds", n => { MaxRecordDurationInSeconds = n.GetIntValue(); } },
-                {"maxSilenceTimeoutInSeconds", n => { MaxSilenceTimeoutInSeconds = n.GetIntValue(); } },
-                {"playBeep", n => { PlayBeep = n.GetBoolValue(); } },
-                {"prompts", n => { Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"stopTones", n => { StopTones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "bargeInAllowed", n => { BargeInAllowed = n.GetBoolValue(); } },
+                { "clientContext", n => { ClientContext = n.GetStringValue(); } },
+                { "initialSilenceTimeoutInSeconds", n => { InitialSilenceTimeoutInSeconds = n.GetIntValue(); } },
+                { "maxRecordDurationInSeconds", n => { MaxRecordDurationInSeconds = n.GetIntValue(); } },
+                { "maxSilenceTimeoutInSeconds", n => { MaxSilenceTimeoutInSeconds = n.GetIntValue(); } },
+                { "playBeep", n => { PlayBeep = n.GetBoolValue(); } },
+                { "prompts", n => { Prompts = n.GetCollectionOfObjectValues<Prompt>(Prompt.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "stopTones", n => { StopTones = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

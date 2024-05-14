@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicyDeviceStateSummary
+{
     /// <summary>
     /// Provides operations to manage the deviceCompliancePolicyDeviceStateSummary property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class DeviceCompliancePolicyDeviceStateSummaryRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceCompliancePolicyDeviceStateSummaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceCompliancePolicyDeviceStateSummary for deviceManagement

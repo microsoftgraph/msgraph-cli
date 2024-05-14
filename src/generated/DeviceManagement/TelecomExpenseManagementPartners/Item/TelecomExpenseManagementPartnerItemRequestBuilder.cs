@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
+namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item
+{
     /// <summary>
     /// Provides operations to manage the telecomExpenseManagementPartners property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class TelecomExpenseManagementPartnerItemRequestBuilder : BaseCliRequestBuilder 
+    public class TelecomExpenseManagementPartnerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a telecomExpenseManagementPartner.

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Windows Defender AdvancedThreatProtection Configuration.
     /// </summary>
-    public class WindowsDefenderAdvancedThreatProtectionConfiguration : DeviceConfiguration, IParsable 
+    public class WindowsDefenderAdvancedThreatProtectionConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Windows Defender AdvancedThreatProtection &apos;Allow Sample Sharing&apos; Rule</summary>
         public bool? AllowSampleSharing { get; set; }
@@ -39,8 +40,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowSampleSharing", n => { AllowSampleSharing = n.GetBoolValue(); } },
-                {"enableExpeditedTelemetryReporting", n => { EnableExpeditedTelemetryReporting = n.GetBoolValue(); } },
+                { "allowSampleSharing", n => { AllowSampleSharing = n.GetBoolValue(); } },
+                { "enableExpeditedTelemetryReporting", n => { EnableExpeditedTelemetryReporting = n.GetBoolValue(); } },
             };
         }
         /// <summary>

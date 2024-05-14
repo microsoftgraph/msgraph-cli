@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csch {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csch
+{
     /// <summary>
     /// Provides operations to call the csch method.
     /// </summary>
-    public class CschRequestBuilder : BaseCliRequestBuilder 
+    public class CschRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action csch

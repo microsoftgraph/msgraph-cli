@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
+namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView
+{
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
     /// </summary>
-    public class CalendarViewRequestBuilder : BaseCliRequestBuilder 
+    public class CalendarViewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
@@ -82,13 +83,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -181,7 +181,9 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

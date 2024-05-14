@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions
+{
     /// <summary>
     /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
     /// </summary>
-    public class DocumentSetVersionsRequestBuilder : BaseCliRequestBuilder 
+    public class DocumentSetVersionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
@@ -56,14 +57,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return command;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0" />
+        /// Create new navigation property to documentSetVersions for groups
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to documentSetVersions for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -126,14 +126,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return command;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0" />
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
+            command.Description = "Version information for a document set version created by a user.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -233,7 +232,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -259,7 +260,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
         {
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
+        /// Version information for a document set version created by a user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -278,7 +279,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Create a new version of a document set item in a list.
+        /// Create new navigation property to documentSetVersions for groups
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -299,7 +300,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the versions of a document set item in a list.
+        /// Version information for a document set version created by a user.
         /// </summary>
         public class DocumentSetVersionsRequestBuilderGetQueryParameters 
         {

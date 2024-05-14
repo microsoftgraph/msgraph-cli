@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions {
+namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions
+{
     /// <summary>
     /// Provides operations to call the applyDecisions method.
     /// </summary>
-    public class ApplyDecisionsRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyDecisionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Apply review decisions on an accessReviewInstance if the decisions were not applied automatically because the autoApplyDecisionsEnabled property is false in the review&apos;s accessReviewScheduleSettings. The status of the accessReviewInstance must be Completed to call this method.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder
+{
     /// <summary>
     /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
     /// </summary>
-    public class FilesFolderRequestBuilder : BaseCliRequestBuilder 
+    public class FilesFolderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
@@ -31,6 +32,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder {
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
@@ -40,14 +42,13 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
+            command.Description = "Metadata for the location where the channel's files are stored.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -113,7 +114,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder {
         {
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -132,7 +133,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.FilesFolder {
             return requestInfo;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public class FilesFolderRequestBuilderGetQueryParameters 
         {

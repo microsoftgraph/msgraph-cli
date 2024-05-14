@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item
+{
     /// <summary>
     /// Provides operations to manage the comments property of the microsoft.graph.workbook entity.
     /// </summary>
-    public class WorkbookCommentItemRequestBuilder : BaseCliRequestBuilder 
+    public class WorkbookCommentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property comments for drives

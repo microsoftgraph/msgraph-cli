@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub {
-    public class AddCopyFromContentTypeHubPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromContentTypeHub
+{
+    #pragma warning disable CS1591
+    public class AddCopyFromContentTypeHubPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.AddCopyFromConte
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"contentTypeId", n => { ContentTypeId = n.GetStringValue(); } },
+                { "contentTypeId", n => { ContentTypeId = n.GetStringValue(); } },
             };
         }
         /// <summary>

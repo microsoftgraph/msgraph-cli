@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Users.Item.Messages.Item.CreateReplyAll {
-    public class CreateReplyAllPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Users.Item.Messages.Item.CreateReplyAll
+{
+    #pragma warning disable CS1591
+    public class CreateReplyAllPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -51,8 +54,8 @@ namespace ApiSdk.Users.Item.Messages.Item.CreateReplyAll {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"Comment", n => { Comment = n.GetStringValue(); } },
-                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                { "Comment", n => { Comment = n.GetStringValue(); } },
+                { "Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

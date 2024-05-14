@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod {
+namespace ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessPeerToPeerActivityCounts method.
     /// </summary>
-    public class GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getSkypeForBusinessPeerToPeerActivityCounts
+        /// Get usage trends on the number and type of sessions held in your organization. Types of sessions include IM, audio, video, application sharing, and file transfer.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinesspeertopeeractivitycounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getSkypeForBusinessPeerToPeerActivityCounts";
+            command.Description = "Get usage trends on the number and type of sessions held in your organization. Types of sessions include IM, audio, video, application sharing, and file transfer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getskypeforbusinesspeertopeeractivitycounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getSkypeForBusinessPeerToPeerActivityCounts
+        /// Get usage trends on the number and type of sessions held in your organization. Types of sessions include IM, audio, video, application sharing, and file transfer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

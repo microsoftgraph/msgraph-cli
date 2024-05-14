@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice {
+namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice
+{
     /// <summary>
     /// Provides operations to call the unassignUserFromDevice method.
     /// </summary>
-    public class UnassignUserFromDeviceRequestBuilder : BaseCliRequestBuilder 
+    public class UnassignUserFromDeviceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Unassigns the user from an Autopilot device.

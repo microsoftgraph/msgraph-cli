@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications {
+namespace ApiSdk.Communications
+{
     /// <summary>
     /// Provides operations to manage the cloudCommunications singleton.
     /// </summary>
-    public class CommunicationsRequestBuilder : BaseCliRequestBuilder 
+    public class CommunicationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.

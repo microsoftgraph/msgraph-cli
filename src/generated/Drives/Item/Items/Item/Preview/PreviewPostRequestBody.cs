@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Preview {
-    public class PreviewPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Drives.Item.Items.Item.Preview
+{
+    #pragma warning disable CS1591
+    public class PreviewPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -44,8 +47,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Preview {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"page", n => { Page = n.GetStringValue(); } },
-                {"zoom", n => { Zoom = n.GetDoubleValue(); } },
+                { "page", n => { Page = n.GetStringValue(); } },
+                { "zoom", n => { Zoom = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

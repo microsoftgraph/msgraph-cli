@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Pause {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Pause
+{
     /// <summary>
     /// Provides operations to call the pause method.
     /// </summary>
-    public class PauseRequestBuilder : BaseCliRequestBuilder 
+    public class PauseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Temporarily stop a running synchronization job. All the progress, including job state, is persisted, and the job will continue from where it left off when a start call is made.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage {
+namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage
+{
     /// <summary>
     /// Provides operations to manage the landingPage property of the microsoft.graph.simulation entity.
     /// </summary>
-    public class LandingPageRequestBuilder : BaseCliRequestBuilder 
+    public class LandingPageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The landing page associated with a simulation during its creation.

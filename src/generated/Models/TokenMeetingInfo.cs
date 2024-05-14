@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TokenMeetingInfo : MeetingInfo, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TokenMeetingInfo : MeetingInfo, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The token used to join the call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"token", n => { Token = n.GetStringValue(); } },
+                { "token", n => { Token = n.GetStringValue(); } },
             };
         }
         /// <summary>

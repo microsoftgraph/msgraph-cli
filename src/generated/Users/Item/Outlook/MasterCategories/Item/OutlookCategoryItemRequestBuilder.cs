@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
+namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
     /// </summary>
-    public class OutlookCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class OutlookCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Delete the specified outlookCategory object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0" />
+        /// Delete navigation property masterCategories for users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildDeleteCommand()
         {
             var command = new Command("delete");
-            command.Description = "Delete the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property masterCategories for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -63,14 +63,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0" />
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of the specified outlookCategory object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-get?view=graph-rest-1.0";
+            command.Description = "A list of categories defined for the user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -115,14 +114,13 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return command;
         }
         /// <summary>
-        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName property once you have created the category.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0" />
+        /// Update the navigation property masterCategories in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the writable property, color, of the specified outlookCategory object. You can't modify the displayName property once you have created the category.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/outlookcategory-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property masterCategories in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -187,7 +185,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
         {
         }
         /// <summary>
-        /// Delete the specified outlookCategory object.
+        /// Delete navigation property masterCategories for users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -206,7 +204,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object.
+        /// A list of categories defined for the user.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -225,7 +223,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the writable property, color, of the specified outlookCategory object. You can&apos;t modify the displayName property once you have created the category.
+        /// Update the navigation property masterCategories in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -246,7 +244,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of the specified outlookCategory object.
+        /// A list of categories defined for the user.
         /// </summary>
         public class OutlookCategoryItemRequestBuilderGetQueryParameters 
         {

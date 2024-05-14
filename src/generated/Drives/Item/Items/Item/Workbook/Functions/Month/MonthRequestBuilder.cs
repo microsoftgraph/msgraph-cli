@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Month {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Month
+{
     /// <summary>
     /// Provides operations to call the month method.
     /// </summary>
-    public class MonthRequestBuilder : BaseCliRequestBuilder 
+    public class MonthRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action month

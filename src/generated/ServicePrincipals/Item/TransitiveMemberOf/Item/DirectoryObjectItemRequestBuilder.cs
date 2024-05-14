@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.Item {
+namespace ApiSdk.ServicePrincipals.Item.TransitiveMemberOf.Item
+{
     /// <summary>
     /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get transitiveMemberOf from servicePrincipals

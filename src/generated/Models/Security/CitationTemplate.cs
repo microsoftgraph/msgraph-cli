@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class CitationTemplate : FilePlanDescriptorTemplate, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class CitationTemplate : FilePlanDescriptorTemplate, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents the jurisdiction or agency that published the citation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,8 +44,8 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"citationJurisdiction", n => { CitationJurisdiction = n.GetStringValue(); } },
-                {"citationUrl", n => { CitationUrl = n.GetStringValue(); } },
+                { "citationJurisdiction", n => { CitationJurisdiction = n.GetStringValue(); } },
+                { "citationUrl", n => { CitationUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

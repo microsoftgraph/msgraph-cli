@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class PositiveReinforcementNotification : BaseEndUserNotification, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class PositiveReinforcementNotification : BaseEndUserNotification, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Delivery preference. Possible values are: unknown, deliverImmedietly, deliverAfterCampaignEnd, unknownFutureValue.</summary>
         public NotificationDeliveryPreference? DeliveryPreference { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"deliveryPreference", n => { DeliveryPreference = n.GetEnumValue<NotificationDeliveryPreference>(); } },
+                { "deliveryPreference", n => { DeliveryPreference = n.GetEnumValue<NotificationDeliveryPreference>(); } },
             };
         }
         /// <summary>

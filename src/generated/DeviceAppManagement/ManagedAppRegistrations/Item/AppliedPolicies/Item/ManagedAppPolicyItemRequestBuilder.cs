@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.
     /// </summary>
-    public class ManagedAppPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property appliedPolicies for deviceAppManagement

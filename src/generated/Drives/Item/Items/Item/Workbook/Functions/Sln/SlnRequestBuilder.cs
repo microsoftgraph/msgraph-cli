@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sln {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sln
+{
     /// <summary>
     /// Provides operations to call the sln method.
     /// </summary>
-    public class SlnRequestBuilder : BaseCliRequestBuilder 
+    public class SlnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sln

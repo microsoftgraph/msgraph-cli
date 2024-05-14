@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Avg {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Avg
+{
     /// <summary>
     /// Provides operations to call the rank_Avg method.
     /// </summary>
-    public class Rank_AvgRequestBuilder : BaseCliRequestBuilder 
+    public class Rank_AvgRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rank_Avg

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCosh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCosh
+{
     /// <summary>
     /// Provides operations to call the imCosh method.
     /// </summary>
-    public class ImCoshRequestBuilder : BaseCliRequestBuilder 
+    public class ImCoshRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imCosh

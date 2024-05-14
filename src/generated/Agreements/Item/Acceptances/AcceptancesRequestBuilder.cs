@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Agreements.Item.Acceptances {
+namespace ApiSdk.Agreements.Item.Acceptances
+{
     /// <summary>
     /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
     /// </summary>
-    public class AcceptancesRequestBuilder : BaseCliRequestBuilder 
+    public class AcceptancesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
@@ -104,14 +105,13 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             return command;
         }
         /// <summary>
-        /// Get the details about the acceptance records for a specific agreement.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0" />
+        /// Read-only. Information about acceptances of this agreement.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get the details about the acceptance records for a specific agreement.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0";
+            command.Description = "Read-only. Information about acceptances of this agreement.";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -193,7 +193,9 @@ namespace ApiSdk.Agreements.Item.Acceptances {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -219,7 +221,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         {
         }
         /// <summary>
-        /// Get the details about the acceptance records for a specific agreement.
+        /// Read-only. Information about acceptances of this agreement.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +261,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details about the acceptance records for a specific agreement.
+        /// Read-only. Information about acceptances of this agreement.
         /// </summary>
         public class AcceptancesRequestBuilderGetQueryParameters 
         {

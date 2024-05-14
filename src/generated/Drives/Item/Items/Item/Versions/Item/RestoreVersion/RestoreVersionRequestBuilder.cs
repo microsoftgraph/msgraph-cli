@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion {
+namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion
+{
     /// <summary>
     /// Provides operations to call the restoreVersion method.
     /// </summary>
-    public class RestoreVersionRequestBuilder : BaseCliRequestBuilder 
+    public class RestoreVersionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.

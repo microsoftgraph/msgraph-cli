@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Chats.Item {
+namespace ApiSdk.Chats.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of chat entities.
     /// </summary>
-    public class ChatItemRequestBuilder : BaseCliRequestBuilder 
+    public class ChatItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Soft-delete a chat. When invoked with delegated permissions, this operation only works for tenant admins and Teams service admins.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BahtText {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BahtText
+{
     /// <summary>
     /// Provides operations to call the bahtText method.
     /// </summary>
-    public class BahtTextRequestBuilder : BaseCliRequestBuilder 
+    public class BahtTextRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action bahtText

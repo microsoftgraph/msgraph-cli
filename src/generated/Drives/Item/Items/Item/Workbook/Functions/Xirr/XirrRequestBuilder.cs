@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr
+{
     /// <summary>
     /// Provides operations to call the xirr method.
     /// </summary>
-    public class XirrRequestBuilder : BaseCliRequestBuilder 
+    public class XirrRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action xirr

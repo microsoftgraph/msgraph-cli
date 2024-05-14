@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.SubscribeToTone {
+namespace ApiSdk.Communications.Calls.Item.SubscribeToTone
+{
     /// <summary>
     /// Provides operations to call the subscribeToTone method.
     /// </summary>
-    public class SubscribeToToneRequestBuilder : BaseCliRequestBuilder 
+    public class SubscribeToToneRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Subscribe to DTMF (dual-tone multi-frequency signaling) which allows you to be notified when the user presses keys on a &apos;dialpad&apos;.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.MetricDevices.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics.Item.MetricDevices.Item
+{
     /// <summary>
     /// Provides operations to manage the metricDevices property of the microsoft.graph.userExperienceAnalyticsWorkFromAnywhereMetric entity.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsWorkFromAnywhereDeviceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property metricDevices for deviceManagement

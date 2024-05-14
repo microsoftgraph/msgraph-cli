@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DataPolicyOperations.Item {
+namespace ApiSdk.DataPolicyOperations.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of dataPolicyOperation entities.
     /// </summary>
-    public class DataPolicyOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class DataPolicyOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from dataPolicyOperations

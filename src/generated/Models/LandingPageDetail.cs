@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class LandingPageDetail : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class LandingPageDetail : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Landing page detail content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -43,9 +46,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"content", n => { Content = n.GetStringValue(); } },
-                {"isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
-                {"language", n => { Language = n.GetStringValue(); } },
+                { "content", n => { Content = n.GetStringValue(); } },
+                { "isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
+                { "language", n => { Language = n.GetStringValue(); } },
             };
         }
         /// <summary>

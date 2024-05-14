@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property managedAppPolicies for deviceAppManagement
@@ -57,14 +58,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the targetedManagedAppProtection object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the managedAppPolicy object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedapppolicy-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the targetedManagedAppProtection object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the managedAppPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedapppolicy-get?view=graph-rest-1.0";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
@@ -211,7 +212,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the targetedManagedAppProtection object.
+        /// Read properties and relationships of the managedAppPolicy object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +252,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the targetedManagedAppProtection object.
+        /// Read properties and relationships of the managedAppPolicy object.
         /// </summary>
         public class ManagedAppPolicyItemRequestBuilderGetQueryParameters 
         {

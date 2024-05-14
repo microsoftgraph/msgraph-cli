@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// This topic provides descriptions of the declared methods, properties and relationships exposed by the secureAssessment resource.
     /// </summary>
-    public class Windows10SecureAssessmentConfiguration : DeviceConfiguration, IParsable 
+    public class Windows10SecureAssessmentConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Indicates whether or not to allow the app from printing during the test.</summary>
         public bool? AllowPrinting { get; set; }
@@ -57,11 +58,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"allowPrinting", n => { AllowPrinting = n.GetBoolValue(); } },
-                {"allowScreenCapture", n => { AllowScreenCapture = n.GetBoolValue(); } },
-                {"allowTextSuggestion", n => { AllowTextSuggestion = n.GetBoolValue(); } },
-                {"configurationAccount", n => { ConfigurationAccount = n.GetStringValue(); } },
-                {"launchUri", n => { LaunchUri = n.GetStringValue(); } },
+                { "allowPrinting", n => { AllowPrinting = n.GetBoolValue(); } },
+                { "allowScreenCapture", n => { AllowScreenCapture = n.GetBoolValue(); } },
+                { "allowTextSuggestion", n => { AllowTextSuggestion = n.GetBoolValue(); } },
+                { "configurationAccount", n => { ConfigurationAccount = n.GetStringValue(); } },
+                { "launchUri", n => { LaunchUri = n.GetStringValue(); } },
             };
         }
         /// <summary>

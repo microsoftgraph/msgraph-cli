@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
+namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item
+{
     /// <summary>
     /// Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.
     /// </summary>
-    public class ServiceHealthIssueItemRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceHealthIssueItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property issues for admin

@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Relations.Item {
+namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.Children.Item.Relations.Item
+{
     /// <summary>
     /// Provides operations to manage the relations property of the microsoft.graph.termStore.term entity.
     /// </summary>
-    public class RelationItemRequestBuilder : BaseCliRequestBuilder 
+    public class RelationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property relations for sites

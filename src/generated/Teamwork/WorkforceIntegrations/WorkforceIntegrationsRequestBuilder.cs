@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork.WorkforceIntegrations {
+namespace ApiSdk.Teamwork.WorkforceIntegrations
+{
     /// <summary>
     /// Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
     /// </summary>
-    public class WorkforceIntegrationsRequestBuilder : BaseCliRequestBuilder 
+    public class WorkforceIntegrationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
@@ -182,7 +183,9 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

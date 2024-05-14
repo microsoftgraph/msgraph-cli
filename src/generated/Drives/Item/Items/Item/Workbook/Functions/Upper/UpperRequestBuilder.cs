@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Upper {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Upper
+{
     /// <summary>
     /// Provides operations to call the upper method.
     /// </summary>
-    public class UpperRequestBuilder : BaseCliRequestBuilder 
+    public class UpperRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action upper

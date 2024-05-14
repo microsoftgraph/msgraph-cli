@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos
+{
     /// <summary>
     /// Provides operations to call the acos method.
     /// </summary>
-    public class AcosRequestBuilder : BaseCliRequestBuilder 
+    public class AcosRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action acos

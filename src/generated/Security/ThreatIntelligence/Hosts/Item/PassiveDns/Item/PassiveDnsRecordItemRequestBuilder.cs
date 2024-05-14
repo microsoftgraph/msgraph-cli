@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns.Item
+{
     /// <summary>
     /// Provides operations to manage the passiveDns property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class PassiveDnsRecordItemRequestBuilder : BaseCliRequestBuilder 
+    public class PassiveDnsRecordItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Passive DNS retrieval about this host.

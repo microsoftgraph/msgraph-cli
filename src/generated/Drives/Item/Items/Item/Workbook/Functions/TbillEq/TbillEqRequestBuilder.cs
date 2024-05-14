@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillEq {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillEq
+{
     /// <summary>
     /// Provides operations to call the tbillEq method.
     /// </summary>
-    public class TbillEqRequestBuilder : BaseCliRequestBuilder 
+    public class TbillEqRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action tbillEq

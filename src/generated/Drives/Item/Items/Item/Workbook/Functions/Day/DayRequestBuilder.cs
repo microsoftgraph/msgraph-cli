@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day
+{
     /// <summary>
     /// Provides operations to call the day method.
     /// </summary>
-    public class DayRequestBuilder : BaseCliRequestBuilder 
+    public class DayRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action day

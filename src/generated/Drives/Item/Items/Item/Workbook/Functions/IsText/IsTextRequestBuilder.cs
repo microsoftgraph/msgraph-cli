@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsText {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsText
+{
     /// <summary>
     /// Provides operations to call the isText method.
     /// </summary>
-    public class IsTextRequestBuilder : BaseCliRequestBuilder 
+    public class IsTextRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action isText

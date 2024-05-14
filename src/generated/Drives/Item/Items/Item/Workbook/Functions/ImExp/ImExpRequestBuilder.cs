@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImExp {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImExp
+{
     /// <summary>
     /// Provides operations to call the imExp method.
     /// </summary>
-    public class ImExpRequestBuilder : BaseCliRequestBuilder 
+    public class ImExpRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imExp

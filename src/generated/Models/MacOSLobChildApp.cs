@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties of a macOS .app in the package
     /// </summary>
-    public class MacOSLobChildApp : IAdditionalDataHolder, IParsable 
+    public class MacOSLobChildApp : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -69,10 +70,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"buildNumber", n => { BuildNumber = n.GetStringValue(); } },
-                {"bundleId", n => { BundleId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"versionNumber", n => { VersionNumber = n.GetStringValue(); } },
+                { "buildNumber", n => { BuildNumber = n.GetStringValue(); } },
+                { "bundleId", n => { BundleId = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "versionNumber", n => { VersionNumber = n.GetStringValue(); } },
             };
         }
         /// <summary>

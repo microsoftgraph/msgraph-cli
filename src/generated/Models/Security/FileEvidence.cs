@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class FileEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class FileEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The status of the detection.The possible values are: detected, blocked, prevented, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.DetectionStatus? DetectionStatus { get; set; }
@@ -50,9 +53,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"detectionStatus", n => { DetectionStatus = n.GetEnumValue<DetectionStatus>(); } },
-                {"fileDetails", n => { FileDetails = n.GetObjectValue<ApiSdk.Models.Security.FileDetails>(ApiSdk.Models.Security.FileDetails.CreateFromDiscriminatorValue); } },
-                {"mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
+                { "detectionStatus", n => { DetectionStatus = n.GetEnumValue<DetectionStatus>(); } },
+                { "fileDetails", n => { FileDetails = n.GetObjectValue<ApiSdk.Models.Security.FileDetails>(ApiSdk.Models.Security.FileDetails.CreateFromDiscriminatorValue); } },
+                { "mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
             };
         }
         /// <summary>

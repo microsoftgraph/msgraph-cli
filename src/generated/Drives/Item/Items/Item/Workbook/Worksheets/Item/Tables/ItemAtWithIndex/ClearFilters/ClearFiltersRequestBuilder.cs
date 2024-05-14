@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ClearFilters {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.ItemAtWithIndex.ClearFilters
+{
     /// <summary>
     /// Provides operations to call the clearFilters method.
     /// </summary>
-    public class ClearFiltersRequestBuilder : BaseCliRequestBuilder 
+    public class ClearFiltersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clears all the filters currently applied on the table.

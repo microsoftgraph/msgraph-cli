@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphGroup {
+namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphGroup
+{
     /// <summary>
     /// Casts the previous resource to group.
     /// </summary>
-    public class GraphGroupRequestBuilder : BaseCliRequestBuilder 
+    public class GraphGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.group

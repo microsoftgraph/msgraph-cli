@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.Edge {
+namespace ApiSdk.Admin.Edge
+{
     /// <summary>
     /// Provides operations to manage the edge property of the microsoft.graph.admin entity.
     /// </summary>
-    public class EdgeRequestBuilder : BaseCliRequestBuilder 
+    public class EdgeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property edge for admin

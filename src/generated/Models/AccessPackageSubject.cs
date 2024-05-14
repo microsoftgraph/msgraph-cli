@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AccessPackageSubject : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AccessPackageSubject : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The connected organization of the subject. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,13 +78,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"connectedOrganization", n => { ConnectedOrganization = n.GetObjectValue<ApiSdk.Models.ConnectedOrganization>(ApiSdk.Models.ConnectedOrganization.CreateFromDiscriminatorValue); } },
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"email", n => { Email = n.GetStringValue(); } },
-                {"objectId", n => { ObjectId = n.GetStringValue(); } },
-                {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
-                {"principalName", n => { PrincipalName = n.GetStringValue(); } },
-                {"subjectType", n => { SubjectType = n.GetEnumValue<AccessPackageSubjectType>(); } },
+                { "connectedOrganization", n => { ConnectedOrganization = n.GetObjectValue<ApiSdk.Models.ConnectedOrganization>(ApiSdk.Models.ConnectedOrganization.CreateFromDiscriminatorValue); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "email", n => { Email = n.GetStringValue(); } },
+                { "objectId", n => { ObjectId = n.GetStringValue(); } },
+                { "onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
+                { "principalName", n => { PrincipalName = n.GetStringValue(); } },
+                { "subjectType", n => { SubjectType = n.GetEnumValue<AccessPackageSubjectType>(); } },
             };
         }
         /// <summary>

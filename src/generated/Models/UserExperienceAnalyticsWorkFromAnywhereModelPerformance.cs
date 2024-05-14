@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics work from anywhere model performance.
     /// </summary>
-    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformance : Entity, IParsable 
+    public class UserExperienceAnalyticsWorkFromAnywhereModelPerformance : Entity, IParsable
     {
         /// <summary>The cloud identity score of the device model. Valid values 0 to 100. Value -1 means associated score is unavailable. Supports: $select, $OrderBy. Read-only. Valid values -1.79769313486232E+308 to 1.79769313486232E+308</summary>
         public double? CloudIdentityScore { get; set; }
@@ -58,15 +59,15 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"cloudIdentityScore", n => { CloudIdentityScore = n.GetDoubleValue(); } },
-                {"cloudManagementScore", n => { CloudManagementScore = n.GetDoubleValue(); } },
-                {"cloudProvisioningScore", n => { CloudProvisioningScore = n.GetDoubleValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"modelDeviceCount", n => { ModelDeviceCount = n.GetIntValue(); } },
-                {"windowsScore", n => { WindowsScore = n.GetDoubleValue(); } },
-                {"workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
+                { "cloudIdentityScore", n => { CloudIdentityScore = n.GetDoubleValue(); } },
+                { "cloudManagementScore", n => { CloudManagementScore = n.GetDoubleValue(); } },
+                { "cloudProvisioningScore", n => { CloudProvisioningScore = n.GetDoubleValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "modelDeviceCount", n => { ModelDeviceCount = n.GetIntValue(); } },
+                { "windowsScore", n => { WindowsScore = n.GetDoubleValue(); } },
+                { "workFromAnywhereScore", n => { WorkFromAnywhereScore = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

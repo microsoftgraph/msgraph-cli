@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Members.Item.GraphUser {
+namespace ApiSdk.Groups.Item.Members.Item.GraphUser
+{
     /// <summary>
     /// Casts the previous resource to user.
     /// </summary>
-    public class GraphUserRequestBuilder : BaseCliRequestBuilder 
+    public class GraphUserRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.user";
+            command.Description = "Get a list of the group's direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -100,7 +102,7 @@ namespace ApiSdk.Groups.Item.Members.Item.GraphUser {
         {
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,7 +121,7 @@ namespace ApiSdk.Groups.Item.Members.Item.GraphUser {
             return requestInfo;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.user
+        /// Get a list of the group&apos;s direct members. A group can have users, organizational contacts, devices, service principals and other groups as members. This operation is not transitive.
         /// </summary>
         public class GraphUserRequestBuilderGetQueryParameters 
         {

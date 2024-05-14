@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
+namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details
+{
     /// <summary>
     /// Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.
     /// </summary>
-    public class DetailsRequestBuilder : BaseCliRequestBuilder 
+    public class DetailsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property details for groups
@@ -62,14 +63,13 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerPlanDetails object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplandetails-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Extra details about the plan.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a plannerPlanDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplandetails-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Extra details about the plan.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -122,13 +122,12 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
         }
         /// <summary>
         /// Update the navigation property details in groups
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerplandetails-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in groups\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerplandetails-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property details in groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -219,7 +218,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerPlanDetails object.
+        /// Read-only. Nullable. Extra details about the plan.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -259,7 +258,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerPlanDetails object.
+        /// Read-only. Nullable. Extra details about the plan.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters 
         {

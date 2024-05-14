@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
+namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class EducationCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an existing category. Only teachers can perform this operation.

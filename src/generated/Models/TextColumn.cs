@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TextColumn : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TextColumn : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -58,12 +61,12 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"allowMultipleLines", n => { AllowMultipleLines = n.GetBoolValue(); } },
-                {"appendChangesToExistingText", n => { AppendChangesToExistingText = n.GetBoolValue(); } },
-                {"linesForEditing", n => { LinesForEditing = n.GetIntValue(); } },
-                {"maxLength", n => { MaxLength = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"textType", n => { TextType = n.GetStringValue(); } },
+                { "allowMultipleLines", n => { AllowMultipleLines = n.GetBoolValue(); } },
+                { "appendChangesToExistingText", n => { AppendChangesToExistingText = n.GetBoolValue(); } },
+                { "linesForEditing", n => { LinesForEditing = n.GetIntValue(); } },
+                { "maxLength", n => { MaxLength = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "textType", n => { TextType = n.GetStringValue(); } },
             };
         }
         /// <summary>

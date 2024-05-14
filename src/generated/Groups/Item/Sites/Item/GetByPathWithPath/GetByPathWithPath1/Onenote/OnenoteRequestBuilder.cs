@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Onenote {
+namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath.GetByPathWithPath1.Onenote
+{
     /// <summary>
     /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
     /// </summary>
-    public class OnenoteRequestBuilder : BaseCliRequestBuilder 
+    public class OnenoteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property onenote for groups

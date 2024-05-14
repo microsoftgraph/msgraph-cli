@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item.Worksheet {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item.Worksheet
+{
     /// <summary>
     /// Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.
     /// </summary>
-    public class WorksheetRequestBuilder : BaseCliRequestBuilder 
+    public class WorksheetRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Returns the worksheet on which the named item is scoped to. Available only if the item is scoped to the worksheet. Read-only.

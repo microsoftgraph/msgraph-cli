@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Npv {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Npv
+{
     /// <summary>
     /// Provides operations to call the npv method.
     /// </summary>
-    public class NpvRequestBuilder : BaseCliRequestBuilder 
+    public class NpvRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action npv

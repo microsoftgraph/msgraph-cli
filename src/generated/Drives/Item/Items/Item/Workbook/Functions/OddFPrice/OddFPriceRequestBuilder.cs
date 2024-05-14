@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFPrice {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFPrice
+{
     /// <summary>
     /// Provides operations to call the oddFPrice method.
     /// </summary>
-    public class OddFPriceRequestBuilder : BaseCliRequestBuilder 
+    public class OddFPriceRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action oddFPrice

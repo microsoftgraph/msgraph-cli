@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
+namespace ApiSdk.Security.Labels.Categories.Item.Subcategories
+{
     /// <summary>
     /// Provides operations to manage the subcategories property of the microsoft.graph.security.categoryTemplate entity.
     /// </summary>
-    public class SubcategoriesRequestBuilder : BaseCliRequestBuilder 
+    public class SubcategoriesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the subcategories property of the microsoft.graph.security.categoryTemplate entity.
@@ -53,13 +54,14 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to subcategories for security
+        /// Create a new subcategoryTemplate object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-categorytemplate-post-subcategories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildCreateCommand()
         {
             var command = new Command("create");
-            command.Description = "Create new navigation property to subcategories for security";
+            command.Description = "Create a new subcategoryTemplate object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-categorytemplate-post-subcategories?view=graph-rest-1.0";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -104,13 +106,14 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
             return command;
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Get a list of subcategories subcategoryTemplate associated with a category template.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-categorytemplate-list-subcategories?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Get subcategories from security";
+            command.Description = "Get a list of subcategories subcategoryTemplate associated with a category template.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-categorytemplate-list-subcategories?view=graph-rest-1.0";
             var categoryTemplateIdOption = new Option<string>("--category-template-id", description: "The unique identifier of categoryTemplate") {
             };
             categoryTemplateIdOption.IsRequired = true;
@@ -192,7 +195,9 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -218,7 +223,7 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
         {
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Get a list of subcategories subcategoryTemplate associated with a category template.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +242,7 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to subcategories for security
+        /// Create a new subcategoryTemplate object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -258,7 +263,7 @@ namespace ApiSdk.Security.Labels.Categories.Item.Subcategories {
             return requestInfo;
         }
         /// <summary>
-        /// Get subcategories from security
+        /// Get a list of subcategories subcategoryTemplate associated with a category template.
         /// </summary>
         public class SubcategoriesRequestBuilderGetQueryParameters 
         {

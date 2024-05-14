@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers.Item {
+namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.Trackers.Item
+{
     /// <summary>
     /// Provides operations to manage the trackers property of the microsoft.graph.security.host entity.
     /// </summary>
-    public class HostTrackerItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostTrackerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The hostTrackers that are associated with this host.

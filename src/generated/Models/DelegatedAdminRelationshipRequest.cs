@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DelegatedAdminRelationshipRequest : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DelegatedAdminRelationshipRequest : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The action property</summary>
         public DelegatedAdminRelationshipRequestAction? Action { get; set; }
@@ -33,10 +36,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"action", n => { Action = n.GetEnumValue<DelegatedAdminRelationshipRequestAction>(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"status", n => { Status = n.GetEnumValue<DelegatedAdminRelationshipRequestStatus>(); } },
+                { "action", n => { Action = n.GetEnumValue<DelegatedAdminRelationshipRequestAction>(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "status", n => { Status = n.GetEnumValue<DelegatedAdminRelationshipRequestStatus>(); } },
             };
         }
         /// <summary>

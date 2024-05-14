@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item
+{
     /// <summary>
     /// Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
     /// </summary>
-    public class ConnectedOrganizationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConnectedOrganizationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a connectedOrganization object.

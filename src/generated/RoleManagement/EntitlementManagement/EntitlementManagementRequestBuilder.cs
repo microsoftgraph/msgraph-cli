@@ -23,11 +23,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement {
+namespace ApiSdk.RoleManagement.EntitlementManagement
+{
     /// <summary>
     /// Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.
     /// </summary>
-    public class EntitlementManagementRequestBuilder : BaseCliRequestBuilder 
+    public class EntitlementManagementRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property entitlementManagement for roleManagement

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyCustomFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter.ApplyCustomFilter
+{
     /// <summary>
     /// Provides operations to call the applyCustomFilter method.
     /// </summary>
-    public class ApplyCustomFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyCustomFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyCustomFilter

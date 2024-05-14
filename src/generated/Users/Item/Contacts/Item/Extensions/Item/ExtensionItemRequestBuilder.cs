@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Contacts.Item.Extensions.Item {
+namespace ApiSdk.Users.Item.Contacts.Item.Extensions.Item
+{
     /// <summary>
     /// Provides operations to manage the extensions property of the microsoft.graph.contact entity.
     /// </summary>
-    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExtensionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property extensions for users

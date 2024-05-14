@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Troubleshoot {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.CloudPCs.Item.Troubleshoot
+{
     /// <summary>
     /// Provides operations to call the troubleshoot method.
     /// </summary>
-    public class TroubleshootRequestBuilder : BaseCliRequestBuilder 
+    public class TroubleshootRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Troubleshoot a specific cloudPC object. Use this API to check the health status of the Cloud PC and the session host.

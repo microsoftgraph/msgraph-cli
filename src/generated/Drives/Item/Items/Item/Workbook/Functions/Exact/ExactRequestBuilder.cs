@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exact {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exact
+{
     /// <summary>
     /// Provides operations to call the exact method.
     /// </summary>
-    public class ExactRequestBuilder : BaseCliRequestBuilder 
+    public class ExactRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action exact

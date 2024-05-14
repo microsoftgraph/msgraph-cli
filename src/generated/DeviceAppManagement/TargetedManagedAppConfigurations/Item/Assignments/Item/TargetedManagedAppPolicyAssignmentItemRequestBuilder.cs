@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assignments.Item {
+namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.
     /// </summary>
-    public class TargetedManagedAppPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class TargetedManagedAppPolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignments for deviceAppManagement

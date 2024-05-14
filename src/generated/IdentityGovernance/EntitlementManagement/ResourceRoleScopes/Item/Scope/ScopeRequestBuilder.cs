@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes.Item.Scope
+{
     /// <summary>
     /// Provides operations to manage the scope property of the microsoft.graph.accessPackageResourceRoleScope entity.
     /// </summary>
-    public class ScopeRequestBuilder : BaseCliRequestBuilder 
+    public class ScopeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property scope for identityGovernance

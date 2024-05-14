@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImPower {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImPower
+{
     /// <summary>
     /// Provides operations to call the imPower method.
     /// </summary>
-    public class ImPowerRequestBuilder : BaseCliRequestBuilder 
+    public class ImPowerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imPower

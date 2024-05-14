@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.KeepAlive {
+namespace ApiSdk.Communications.Calls.Item.KeepAlive
+{
     /// <summary>
     /// Provides operations to call the keepAlive method.
     /// </summary>
-    public class KeepAliveRequestBuilder : BaseCliRequestBuilder 
+    public class KeepAliveRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Make a request to this API every 15 to 45 minutes to ensure that an ongoing call remains active. A call that does not receive this request within 45 minutes is considered inactive and will subsequently end. At least one successful request must be made within 45 minutes of the previous request, or the start of the call. We recommend that you send a request in shorter time intervals (every 15 minutes). Make sure that these requests are successful to prevent the call from timing out and ending. Attempting to send a request to a call that has already ended will result in a 404 Not-Found error. The resources related to the call should be cleaned up on the application side.

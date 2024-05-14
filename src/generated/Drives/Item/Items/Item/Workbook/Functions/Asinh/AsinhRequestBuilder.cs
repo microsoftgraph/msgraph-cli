@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asinh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asinh
+{
     /// <summary>
     /// Provides operations to call the asinh method.
     /// </summary>
-    public class AsinhRequestBuilder : BaseCliRequestBuilder 
+    public class AsinhRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action asinh

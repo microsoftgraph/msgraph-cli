@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item.MetricValues.Item
+{
     /// <summary>
     /// Provides operations to manage the metricValues property of the microsoft.graph.userExperienceAnalyticsCategory entity.
     /// </summary>
-    public class UserExperienceAnalyticsMetricItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsMetricItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property metricValues for deviceManagement

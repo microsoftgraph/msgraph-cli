@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sheets {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sheets
+{
     /// <summary>
     /// Provides operations to call the sheets method.
     /// </summary>
-    public class SheetsRequestBuilder : BaseCliRequestBuilder 
+    public class SheetsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sheets

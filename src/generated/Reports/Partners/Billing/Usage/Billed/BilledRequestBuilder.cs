@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.Partners.Billing.Usage.Billed {
+namespace ApiSdk.Reports.Partners.Billing.Usage.Billed
+{
     /// <summary>
     /// Provides operations to manage the billed property of the microsoft.graph.partners.billing.azureUsage entity.
     /// </summary>
-    public class BilledRequestBuilder : BaseCliRequestBuilder 
+    public class BilledRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property billed for reports

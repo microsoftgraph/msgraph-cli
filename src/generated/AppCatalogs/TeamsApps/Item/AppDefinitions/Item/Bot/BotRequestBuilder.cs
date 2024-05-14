@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
+namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot
+{
     /// <summary>
     /// Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.
     /// </summary>
-    public class BotRequestBuilder : BaseCliRequestBuilder 
+    public class BotRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property bot for appCatalogs
@@ -62,14 +63,13 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return command;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0" />
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the bot associated with a specific definition of the  TeamsApp.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0";
+            command.Description = "The details of the bot specified in the Teams app manifest.";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return requestInfo;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -251,7 +251,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return requestInfo;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         public class BotRequestBuilderGetQueryParameters 
         {

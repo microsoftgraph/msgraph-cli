@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
+namespace ApiSdk.Education.Classes.Item.AssignmentDefaults
+{
     /// <summary>
     /// Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.
     /// </summary>
-    public class AssignmentDefaultsRequestBuilder : BaseCliRequestBuilder 
+    public class AssignmentDefaultsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignmentDefaults for education

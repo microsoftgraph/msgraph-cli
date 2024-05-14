@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.LoginPages.Item {
+namespace ApiSdk.Security.AttackSimulation.LoginPages.Item
+{
     /// <summary>
     /// Provides operations to manage the loginPages property of the microsoft.graph.attackSimulationRoot entity.
     /// </summary>
-    public class LoginPageItemRequestBuilder : BaseCliRequestBuilder 
+    public class LoginPageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property loginPages for security

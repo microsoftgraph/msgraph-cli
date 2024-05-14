@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics insight is the recomendation to improve the user experience analytics score.
     /// </summary>
-    public class UserExperienceAnalyticsSettings : IAdditionalDataHolder, IParsable 
+    public class UserExperienceAnalyticsSettings : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -47,8 +48,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"configurationManagerDataConnectorConfigured", n => { ConfigurationManagerDataConnectorConfigured = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "configurationManagerDataConnectorConfigured", n => { ConfigurationManagerDataConnectorConfigured = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

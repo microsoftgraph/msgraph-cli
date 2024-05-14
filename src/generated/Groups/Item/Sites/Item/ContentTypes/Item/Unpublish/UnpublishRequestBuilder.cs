@@ -13,21 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.Unpublish {
+namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.Unpublish
+{
     /// <summary>
     /// Provides operations to call the unpublish method.
     /// </summary>
-    public class UnpublishRequestBuilder : BaseCliRequestBuilder 
+    public class UnpublishRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType from a content type hub site.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPostCommand()
         {
             var command = new Command("post");
-            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
+            command.Description = "Unpublish a contentType from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.Unpublish {
         {
         }
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType from a content type hub site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.SchemaExtensions.Item {
+namespace ApiSdk.SchemaExtensions.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of schemaExtension entities.
     /// </summary>
-    public class SchemaExtensionItemRequestBuilder : BaseCliRequestBuilder 
+    public class SchemaExtensionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the definition of a schema extension. Only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the InDevelopment state. Deleting a schema extension definition does not affect accessing custom data that has been added to resource instances based on that definition.

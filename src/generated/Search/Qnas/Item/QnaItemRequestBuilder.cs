@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Search.Qnas.Item {
+namespace ApiSdk.Search.Qnas.Item
+{
     /// <summary>
     /// Provides operations to manage the qnas property of the microsoft.graph.searchEntity entity.
     /// </summary>
-    public class QnaItemRequestBuilder : BaseCliRequestBuilder 
+    public class QnaItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a qna object.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
+namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults
+{
     /// <summary>
     /// Provides operations to call the restoreFactoryDefaults method.
     /// </summary>
-    public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder 
+    public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Restore a printer&apos;s default settings to the values specified by the manufacturer.

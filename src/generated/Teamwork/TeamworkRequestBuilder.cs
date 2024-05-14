@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teamwork {
+namespace ApiSdk.Teamwork
+{
     /// <summary>
     /// Provides operations to manage the teamwork singleton.
     /// </summary>
-    public class TeamworkRequestBuilder : BaseCliRequestBuilder 
+    public class TeamworkRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the deletedChats property of the microsoft.graph.teamwork entity.

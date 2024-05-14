@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class KubernetesNamespaceEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class KubernetesNamespaceEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The namespace cluster.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,9 +59,9 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"cluster", n => { Cluster = n.GetObjectValue<KubernetesClusterEvidence>(KubernetesClusterEvidence.CreateFromDiscriminatorValue); } },
-                {"labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
-                {"name", n => { Name = n.GetStringValue(); } },
+                { "cluster", n => { Cluster = n.GetObjectValue<KubernetesClusterEvidence>(KubernetesClusterEvidence.CreateFromDiscriminatorValue); } },
+                { "labels", n => { Labels = n.GetObjectValue<Dictionary>(Dictionary.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>

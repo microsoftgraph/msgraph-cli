@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// An abstract class that represents a contained app in a mobileApp acting as a package.
     /// </summary>
-    public class MobileContainedApp : Entity, IParsable 
+    public class MobileContainedApp : Entity, IParsable
     {
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

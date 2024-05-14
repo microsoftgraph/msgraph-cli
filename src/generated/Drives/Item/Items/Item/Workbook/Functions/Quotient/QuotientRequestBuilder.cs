@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient
+{
     /// <summary>
     /// Provides operations to call the quotient method.
     /// </summary>
-    public class QuotientRequestBuilder : BaseCliRequestBuilder 
+    public class QuotientRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action quotient

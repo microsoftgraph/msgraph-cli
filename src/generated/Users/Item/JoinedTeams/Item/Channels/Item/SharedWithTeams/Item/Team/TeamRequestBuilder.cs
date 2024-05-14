@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item.Team {
+namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item.Team
+{
     /// <summary>
     /// Provides operations to manage the team property of the microsoft.graph.teamInfo entity.
     /// </summary>
-    public class TeamRequestBuilder : BaseCliRequestBuilder 
+    public class TeamRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get team from users

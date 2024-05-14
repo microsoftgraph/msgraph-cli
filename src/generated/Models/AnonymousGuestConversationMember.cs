@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AnonymousGuestConversationMember : ConversationMember, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AnonymousGuestConversationMember : ConversationMember, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Unique ID that represents the user. Note: This ID can change if the user leaves and rejoins the meeting, or joins from a different device.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +43,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"anonymousGuestId", n => { AnonymousGuestId = n.GetStringValue(); } },
+                { "anonymousGuestId", n => { AnonymousGuestId = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class TargetManager : SubjectSet, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class TargetManager : SubjectSet, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Manager level, between 1 and 4. The direct manager is 1.</summary>
         public int? ManagerLevel { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"managerLevel", n => { ManagerLevel = n.GetIntValue(); } },
+                { "managerLevel", n => { ManagerLevel = n.GetIntValue(); } },
             };
         }
         /// <summary>

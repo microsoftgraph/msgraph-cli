@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOneDriveUsageFileCountsWithPeriod {
+namespace ApiSdk.Reports.GetOneDriveUsageFileCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOneDriveUsageFileCounts method.
     /// </summary>
-    public class GetOneDriveUsageFileCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOneDriveUsageFileCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOneDriveUsageFileCounts
+        /// Get the total number of files across all sites and how many are active files. A file is considered active if it has been saved, synced, modified, or shared within the specified time period.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveUsageFileCounts";
+            command.Description = "Get the total number of files across all sites and how many are active files. A file is considered active if it has been saved, synced, modified, or shared within the specified time period.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOneDriveUsageFileCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveUsageFileCounts
+        /// Get the total number of files across all sites and how many are active files. A file is considered active if it has been saved, synced, modified, or shared within the specified time period.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

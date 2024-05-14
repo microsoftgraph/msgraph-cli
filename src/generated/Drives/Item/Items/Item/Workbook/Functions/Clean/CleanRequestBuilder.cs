@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Clean {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Clean
+{
     /// <summary>
     /// Provides operations to call the clean method.
     /// </summary>
-    public class CleanRequestBuilder : BaseCliRequestBuilder 
+    public class CleanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action clean

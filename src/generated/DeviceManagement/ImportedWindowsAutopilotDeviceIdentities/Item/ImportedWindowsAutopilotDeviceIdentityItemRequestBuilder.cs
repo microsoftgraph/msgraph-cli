@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item {
+namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item
+{
     /// <summary>
     /// Provides operations to manage the importedWindowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class ImportedWindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder 
+    public class ImportedWindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a importedWindowsAutopilotDeviceIdentity.

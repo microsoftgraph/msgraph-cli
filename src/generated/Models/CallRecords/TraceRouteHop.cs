@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class TraceRouteHop : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class TraceRouteHop : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -27,7 +30,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The time from when the trace route packet was sent from the client to this hop and back to the client, denoted in [ISO 8601][] format. For example, 1 second is denoted as PT1S, where P is the duration designator, T is the time designator, and S is the second designator.</summary>
+        /// <summary>The time from when the trace route packet was sent from the client to this hop and back to the client, denoted in ISO 8601 format. For example, 1 second is denoted as PT1S, where P is the duration designator, T is the time designator, and S is the second designator.</summary>
         public TimeSpan? RoundTripTime { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="TraceRouteHop"/> and sets the default values.
@@ -54,10 +57,10 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"hopCount", n => { HopCount = n.GetIntValue(); } },
-                {"ipAddress", n => { IpAddress = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"roundTripTime", n => { RoundTripTime = n.GetTimeSpanValue(); } },
+                { "hopCount", n => { HopCount = n.GetIntValue(); } },
+                { "ipAddress", n => { IpAddress = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "roundTripTime", n => { RoundTripTime = n.GetTimeSpanValue(); } },
             };
         }
         /// <summary>

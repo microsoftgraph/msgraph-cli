@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
+namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the notificationMessageTemplates property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class NotificationMessageTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class NotificationMessageTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a notificationMessageTemplate.

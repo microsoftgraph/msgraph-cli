@@ -10,11 +10,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Groups.Item.AcceptedSenders.Item {
+namespace ApiSdk.Groups.Item.AcceptedSenders.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \groups\{group-id}\acceptedSenders\{directoryObject-id}
     /// </summary>
-    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder 
+    public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the collection of group entities.

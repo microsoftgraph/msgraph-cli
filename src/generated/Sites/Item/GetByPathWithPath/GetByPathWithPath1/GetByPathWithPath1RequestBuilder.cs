@@ -31,11 +31,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1 {
+namespace ApiSdk.Sites.Item.GetByPathWithPath.GetByPathWithPath1
+{
     /// <summary>
     /// Provides operations to call the getByPath method.
     /// </summary>
-    public class GetByPathWithPath1RequestBuilder : BaseCliRequestBuilder 
+    public class GetByPathWithPath1RequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.site entity.

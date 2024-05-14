@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class FilePlanCitation : FilePlanDescriptorBase, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class FilePlanCitation : FilePlanDescriptorBase, IParsable
+    #pragma warning restore CS1591
     {
-        /// <summary>The citationJurisdiction property</summary>
+        /// <summary>Represents the jurisdiction or agency that published the filePlanCitation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CitationJurisdiction { get; set; }
@@ -15,7 +18,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string CitationJurisdiction { get; set; }
 #endif
-        /// <summary>The citationUrl property</summary>
+        /// <summary>Represents the URL to the published filePlanCitation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CitationUrl { get; set; }
@@ -41,8 +44,8 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"citationJurisdiction", n => { CitationJurisdiction = n.GetStringValue(); } },
-                {"citationUrl", n => { CitationUrl = n.GetStringValue(); } },
+                { "citationJurisdiction", n => { CitationJurisdiction = n.GetStringValue(); } },
+                { "citationUrl", n => { CitationUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

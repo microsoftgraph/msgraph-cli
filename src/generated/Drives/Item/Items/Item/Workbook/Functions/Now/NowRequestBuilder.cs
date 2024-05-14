@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Now {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Now
+{
     /// <summary>
     /// Provides operations to call the now method.
     /// </summary>
-    public class NowRequestBuilder : BaseCliRequestBuilder 
+    public class NowRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action now

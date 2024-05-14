@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperators {
-    public class FilterOperatorsGetResponse : BaseCollectionPaginationCountResponse, IParsable 
+namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperators
+{
+    #pragma warning disable CS1591
+    public class FilterOperatorsGetResponse : BaseCollectionPaginationCountResponse, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +37,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.FilterOperat
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<FilterOperatorSchema>(FilterOperatorSchema.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "value", n => { Value = n.GetCollectionOfObjectValues<FilterOperatorSchema>(FilterOperatorSchema.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>

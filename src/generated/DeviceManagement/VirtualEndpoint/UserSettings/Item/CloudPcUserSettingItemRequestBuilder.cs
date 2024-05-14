@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item
+{
     /// <summary>
     /// Provides operations to manage the userSettings property of the microsoft.graph.virtualEndpoint entity.
     /// </summary>
-    public class CloudPcUserSettingItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPcUserSettingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.

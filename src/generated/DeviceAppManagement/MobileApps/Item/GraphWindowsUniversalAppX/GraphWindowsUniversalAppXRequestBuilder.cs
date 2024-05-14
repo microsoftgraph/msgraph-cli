@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsUniversalAppX
+{
     /// <summary>
     /// Casts the previous resource to windowsUniversalAppX.
     /// </summary>
-    public class GraphWindowsUniversalAppXRequestBuilder : BaseCliRequestBuilder 
+    public class GraphWindowsUniversalAppXRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.

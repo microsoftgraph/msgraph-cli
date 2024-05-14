@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
+namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite
+{
     /// <summary>
     /// Provides operations to call the unfavorite method.
     /// </summary>
-    public class UnfavoriteRequestBuilder : BaseCliRequestBuilder 
+    public class UnfavoriteRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove the favorite status of serviceUpdateMessages for the signed in user.

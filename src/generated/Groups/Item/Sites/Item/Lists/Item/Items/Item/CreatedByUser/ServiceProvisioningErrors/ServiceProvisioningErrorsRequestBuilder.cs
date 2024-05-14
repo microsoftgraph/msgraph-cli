@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreatedByUser.ServiceProvisioningErrors
+{
     /// <summary>
     /// Builds and executes requests for operations under \groups\{group-id}\sites\{site-id}\lists\{list-id}\items\{listItem-id}\createdByUser\serviceProvisioningErrors
     /// </summary>
-    public class ServiceProvisioningErrorsRequestBuilder : BaseCliRequestBuilder 
+    public class ServiceProvisioningErrorsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -145,7 +146,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.CreatedByUser.Serv
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Conversations.Item {
+namespace ApiSdk.Groups.Item.Conversations.Item
+{
     /// <summary>
     /// Provides operations to manage the conversations property of the microsoft.graph.group entity.
     /// </summary>
-    public class ConversationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ConversationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete conversation.

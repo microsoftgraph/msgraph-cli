@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColumn {
+namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item.SourceColumn
+{
     /// <summary>
     /// Provides operations to manage the sourceColumn property of the microsoft.graph.columnDefinition entity.
     /// </summary>
-    public class SourceColumnRequestBuilder : BaseCliRequestBuilder 
+    public class SourceColumnRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The source column for the content type column.

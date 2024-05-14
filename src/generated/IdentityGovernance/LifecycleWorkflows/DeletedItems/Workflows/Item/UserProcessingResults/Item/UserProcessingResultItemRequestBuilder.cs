@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.UserProcessingResults.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.Item.UserProcessingResults.Item
+{
     /// <summary>
     /// Provides operations to manage the userProcessingResults property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class UserProcessingResultItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserProcessingResultItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Per-user workflow execution results.

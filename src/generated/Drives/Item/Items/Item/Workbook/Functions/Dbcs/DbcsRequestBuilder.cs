@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dbcs {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dbcs
+{
     /// <summary>
     /// Provides operations to call the dbcs method.
     /// </summary>
-    public class DbcsRequestBuilder : BaseCliRequestBuilder 
+    public class DbcsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dbcs

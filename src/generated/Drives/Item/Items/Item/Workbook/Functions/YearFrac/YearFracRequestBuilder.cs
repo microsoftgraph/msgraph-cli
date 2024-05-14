@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac
+{
     /// <summary>
     /// Provides operations to call the yearFrac method.
     /// </summary>
-    public class YearFracRequestBuilder : BaseCliRequestBuilder 
+    public class YearFracRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action yearFrac

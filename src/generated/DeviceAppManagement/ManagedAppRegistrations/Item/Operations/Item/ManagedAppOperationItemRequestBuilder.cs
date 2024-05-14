@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Item {
+namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Item
+{
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.
     /// </summary>
-    public class ManagedAppOperationItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppOperationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a managedAppOperation.

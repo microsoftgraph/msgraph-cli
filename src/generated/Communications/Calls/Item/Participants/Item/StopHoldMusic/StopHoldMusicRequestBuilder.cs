@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
+namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic
+{
     /// <summary>
     /// Provides operations to call the stopHoldMusic method.
     /// </summary>
-    public class StopHoldMusicRequestBuilder : BaseCliRequestBuilder 
+    public class StopHoldMusicRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Reincorporate a participant previously put on hold to the call.

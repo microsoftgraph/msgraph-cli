@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors {
+namespace ApiSdk.Security.Labels.RetentionLabels.Item.Descriptors
+{
     /// <summary>
     /// Provides operations to manage the descriptors property of the microsoft.graph.security.retentionLabel entity.
     /// </summary>
-    public class DescriptorsRequestBuilder : BaseCliRequestBuilder 
+    public class DescriptorsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the authorityTemplate property of the microsoft.graph.security.filePlanDescriptor entity.

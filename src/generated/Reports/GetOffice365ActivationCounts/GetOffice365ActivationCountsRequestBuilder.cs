@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365ActivationCounts {
+namespace ApiSdk.Reports.GetOffice365ActivationCounts
+{
     /// <summary>
     /// Provides operations to call the getOffice365ActivationCounts method.
     /// </summary>
-    public class GetOffice365ActivationCountsRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365ActivationCountsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOffice365ActivationCounts
+        /// Get the count of Microsoft 365 activations on desktops and devices.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365ActivationCounts";
+            command.Description = "Get the count of Microsoft 365 activations on desktops and devices.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0";
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
@@ -68,7 +70,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365ActivationCounts
+        /// Get the count of Microsoft 365 activations on desktops and devices.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

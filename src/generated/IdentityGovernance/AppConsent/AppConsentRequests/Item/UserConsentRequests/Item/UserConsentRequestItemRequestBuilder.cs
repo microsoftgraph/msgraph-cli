@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.Item {
+namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConsentRequests.Item
+{
     /// <summary>
     /// Provides operations to manage the userConsentRequests property of the microsoft.graph.appConsentRequest entity.
     /// </summary>
-    public class UserConsentRequestItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserConsentRequestItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the approval property of the microsoft.graph.userConsentRequest entity.

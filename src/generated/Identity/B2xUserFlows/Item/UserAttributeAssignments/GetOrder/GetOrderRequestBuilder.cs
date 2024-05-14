@@ -14,20 +14,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
+namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder
+{
     /// <summary>
     /// Provides operations to call the getOrder method.
     /// </summary>
-    public class GetOrderRequestBuilder : BaseCliRequestBuilder 
+    public class GetOrderRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOrder
+        /// Get the order of identityUserFlowAttributeAssignments being collected within a user flow.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-getorder?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOrder";
+            command.Description = "Get the order of identityUserFlowAttributeAssignments being collected within a user flow.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityuserflowattributeassignment-getorder?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -73,7 +75,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder {
         {
         }
         /// <summary>
-        /// Invoke function getOrder
+        /// Get the order of identityUserFlowAttributeAssignments being collected within a user flow.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

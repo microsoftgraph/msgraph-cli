@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics
+{
     /// <summary>
     /// Provides operations to call the estimateStatistics method.
     /// </summary>
-    public class MicrosoftGraphSecurityEstimateStatisticsRequestBuilder : BaseCliRequestBuilder 
+    public class MicrosoftGraphSecurityEstimateStatisticsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Run an estimate of the number of emails and documents in the eDiscovery search. To learn more about searches in eDiscovery, see Collect data for a case in eDiscovery (Premium).

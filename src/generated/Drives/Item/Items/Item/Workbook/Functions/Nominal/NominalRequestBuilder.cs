@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nominal {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nominal
+{
     /// <summary>
     /// Provides operations to call the nominal method.
     /// </summary>
-    public class NominalRequestBuilder : BaseCliRequestBuilder 
+    public class NominalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action nominal

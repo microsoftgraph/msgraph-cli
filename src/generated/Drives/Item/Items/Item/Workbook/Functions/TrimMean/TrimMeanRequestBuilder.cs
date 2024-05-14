@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TrimMean {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TrimMean
+{
     /// <summary>
     /// Provides operations to call the trimMean method.
     /// </summary>
-    public class TrimMeanRequestBuilder : BaseCliRequestBuilder 
+    public class TrimMeanRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action trimMean

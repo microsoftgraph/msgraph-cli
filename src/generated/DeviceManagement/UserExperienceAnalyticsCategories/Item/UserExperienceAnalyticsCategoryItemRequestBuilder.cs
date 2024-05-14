@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item {
+namespace ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories.Item
+{
     /// <summary>
     /// Provides operations to manage the userExperienceAnalyticsCategories property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class UserExperienceAnalyticsCategoryItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserExperienceAnalyticsCategoryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userExperienceAnalyticsCategories for deviceManagement

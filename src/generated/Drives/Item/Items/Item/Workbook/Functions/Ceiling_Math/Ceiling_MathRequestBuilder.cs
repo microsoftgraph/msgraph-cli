@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math
+{
     /// <summary>
     /// Provides operations to call the ceiling_Math method.
     /// </summary>
-    public class Ceiling_MathRequestBuilder : BaseCliRequestBuilder 
+    public class Ceiling_MathRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action ceiling_Math

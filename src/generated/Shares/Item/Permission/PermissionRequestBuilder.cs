@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Shares.Item.Permission {
+namespace ApiSdk.Shares.Item.Permission
+{
     /// <summary>
     /// Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
     /// </summary>
-    public class PermissionRequestBuilder : BaseCliRequestBuilder 
+    public class PermissionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property permission for shares

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item {
+namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item
+{
     /// <summary>
     /// Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.
     /// </summary>
-    public class PlannerBucketItemRequestBuilder : BaseCliRequestBuilder 
+    public class PlannerBucketItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property buckets for users

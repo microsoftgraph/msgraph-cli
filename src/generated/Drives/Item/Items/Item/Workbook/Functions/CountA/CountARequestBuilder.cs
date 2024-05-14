@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountA {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountA
+{
     /// <summary>
     /// Provides operations to call the countA method.
     /// </summary>
-    public class CountARequestBuilder : BaseCliRequestBuilder 
+    public class CountARequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action countA

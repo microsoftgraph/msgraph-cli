@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
+namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item
+{
     /// <summary>
     /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
     /// </summary>
-    public class IdentityUserFlowAttributeAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class IdentityUserFlowAttributeAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete an identityUserFlowAttributeAssignment object.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text
+{
     /// <summary>
     /// Provides operations to call the text method.
     /// </summary>
-    public class TextRequestBuilder : BaseCliRequestBuilder 
+    public class TextRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action text

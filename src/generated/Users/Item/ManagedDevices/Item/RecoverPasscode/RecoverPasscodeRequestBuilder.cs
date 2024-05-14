@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.RecoverPasscode {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.RecoverPasscode
+{
     /// <summary>
     /// Provides operations to call the recoverPasscode method.
     /// </summary>
-    public class RecoverPasscodeRequestBuilder : BaseCliRequestBuilder 
+    public class RecoverPasscodeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Recover passcode

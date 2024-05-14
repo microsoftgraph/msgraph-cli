@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Var_P {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Var_P
+{
     /// <summary>
     /// Provides operations to call the var_P method.
     /// </summary>
-    public class Var_PRequestBuilder : BaseCliRequestBuilder 
+    public class Var_PRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action var_P

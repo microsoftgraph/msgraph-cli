@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Calendar.CalendarPermissions.Item {
+namespace ApiSdk.Users.Item.Calendar.CalendarPermissions.Item
+{
     /// <summary>
     /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
     /// </summary>
-    public class CalendarPermissionItemRequestBuilder : BaseCliRequestBuilder 
+    public class CalendarPermissionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete calendarPermission.

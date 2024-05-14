@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSech {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSech
+{
     /// <summary>
     /// Provides operations to call the imSech method.
     /// </summary>
-    public class ImSechRequestBuilder : BaseCliRequestBuilder 
+    public class ImSechRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imSech

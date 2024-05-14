@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.GroupSettings.Item {
+namespace ApiSdk.GroupSettings.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of groupSetting entities.
     /// </summary>
-    public class GroupSettingItemRequestBuilder : BaseCliRequestBuilder 
+    public class GroupSettingItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a tenant-level or group-specific groupSetting object.

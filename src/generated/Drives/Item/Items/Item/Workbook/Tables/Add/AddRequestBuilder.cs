@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Add {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Add
+{
     /// <summary>
     /// Provides operations to call the add method.
     /// </summary>
-    public class AddRequestBuilder : BaseCliRequestBuilder 
+    public class AddRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Create a new table. The range source address determines the worksheet under which the table will be added. If the table can&apos;t be added (for example, because the address is invalid, or the table would overlap with another table), an error is generated.

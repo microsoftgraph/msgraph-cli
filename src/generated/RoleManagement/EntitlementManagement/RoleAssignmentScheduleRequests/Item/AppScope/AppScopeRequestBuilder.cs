@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.AppScope {
+namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.AppScope
+{
     /// <summary>
     /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
     /// </summary>
-    public class AppScopeRequestBuilder : BaseCliRequestBuilder 
+    public class AppScopeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read-only property with details of the app-specific scope when the assignment is scoped to an app. Nullable. Supports $expand.

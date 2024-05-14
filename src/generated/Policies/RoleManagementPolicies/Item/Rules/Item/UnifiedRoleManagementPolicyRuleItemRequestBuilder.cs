@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item {
+namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules.Item
+{
     /// <summary>
     /// Provides operations to manage the rules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
     /// </summary>
-    public class UnifiedRoleManagementPolicyRuleItemRequestBuilder : BaseCliRequestBuilder 
+    public class UnifiedRoleManagementPolicyRuleItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property rules for policies

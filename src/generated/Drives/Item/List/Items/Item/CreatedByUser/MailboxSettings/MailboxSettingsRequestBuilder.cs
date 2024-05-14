@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Items.Item.CreatedByUser.MailboxSettings {
+namespace ApiSdk.Drives.Item.List.Items.Item.CreatedByUser.MailboxSettings
+{
     /// <summary>
     /// Builds and executes requests for operations under \drives\{drive-id}\list\items\{listItem-id}\createdByUser\mailboxSettings
     /// </summary>
-    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder 
+    public class MailboxSettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale, and time zone. Returned only on $select.

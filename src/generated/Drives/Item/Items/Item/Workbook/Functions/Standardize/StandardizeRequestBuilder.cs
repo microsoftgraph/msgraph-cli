@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Standardize {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Standardize
+{
     /// <summary>
     /// Provides operations to call the standardize method.
     /// </summary>
-    public class StandardizeRequestBuilder : BaseCliRequestBuilder 
+    public class StandardizeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action standardize

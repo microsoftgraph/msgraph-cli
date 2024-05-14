@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Manager {
+namespace ApiSdk.Users.Item.Manager
+{
     /// <summary>
     /// Provides operations to manage the manager property of the microsoft.graph.user entity.
     /// </summary>
-    public class ManagerRequestBuilder : BaseCliRequestBuilder 
+    public class ManagerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.

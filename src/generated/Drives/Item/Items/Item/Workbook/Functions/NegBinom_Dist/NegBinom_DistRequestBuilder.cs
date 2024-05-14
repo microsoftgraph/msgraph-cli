@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NegBinom_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NegBinom_Dist
+{
     /// <summary>
     /// Provides operations to call the negBinom_Dist method.
     /// </summary>
-    public class NegBinom_DistRequestBuilder : BaseCliRequestBuilder 
+    public class NegBinom_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action negBinom_Dist

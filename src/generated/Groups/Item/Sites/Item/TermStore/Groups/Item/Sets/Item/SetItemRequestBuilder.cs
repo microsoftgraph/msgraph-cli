@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item
+{
     /// <summary>
     /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
     /// </summary>
-    public class SetItemRequestBuilder : BaseCliRequestBuilder 
+    public class SetItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.set entity.

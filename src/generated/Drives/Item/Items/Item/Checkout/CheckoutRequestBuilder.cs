@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Checkout {
+namespace ApiSdk.Drives.Item.Items.Item.Checkout
+{
     /// <summary>
     /// Provides operations to call the checkout method.
     /// </summary>
-    public class CheckoutRequestBuilder : BaseCliRequestBuilder 
+    public class CheckoutRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.

@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks
+{
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
     /// </summary>
-    public class TasksRequestBuilder : BaseCliRequestBuilder 
+    public class TasksRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.identityGovernance.workflowBase entity.
@@ -106,13 +107,14 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Retrieve the details of the built-in tasks in Lifecycle Workflows.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-task?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The tasks in the workflow.";
+            command.Description = "Retrieve the details of the built-in tasks in Lifecycle Workflows.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-workflow-list-task?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -194,7 +196,9 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -220,7 +224,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks {
         {
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Retrieve the details of the built-in tasks in Lifecycle Workflows.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +264,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// The tasks in the workflow.
+        /// Retrieve the details of the built-in tasks in Lifecycle Workflows.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters 
         {

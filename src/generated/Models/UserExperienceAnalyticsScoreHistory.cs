@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device startup score history.
     /// </summary>
-    public class UserExperienceAnalyticsScoreHistory : Entity, IParsable 
+    public class UserExperienceAnalyticsScoreHistory : Entity, IParsable
     {
         /// <summary>The device startup date time. The value cannot be modified and is automatically populated. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: &apos;2014-01-01T00:00:00Z&apos;. Returned by default.</summary>
         public DateTimeOffset? StartupDateTime { get; set; }
@@ -30,7 +31,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"startupDateTime", n => { StartupDateTime = n.GetDateTimeOffsetValue(); } },
+                { "startupDateTime", n => { StartupDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

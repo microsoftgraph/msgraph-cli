@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Admin.People.ProfileCardProperties.Item {
+namespace ApiSdk.Admin.People.ProfileCardProperties.Item
+{
     /// <summary>
     /// Provides operations to manage the profileCardProperties property of the microsoft.graph.peopleAdminSettings entity.
     /// </summary>
-    public class ProfileCardPropertyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ProfileCardPropertyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the profileCardProperty object specified by its directoryPropertyName from the organization&apos;s profile card, and remove any localized customizations for that property.

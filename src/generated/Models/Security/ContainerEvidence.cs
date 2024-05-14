@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class ContainerEvidence : AlertEvidence, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class ContainerEvidence : AlertEvidence, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The list of arguments.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,13 +85,13 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"args", n => { Args = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"command", n => { CommandEscaped = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"containerId", n => { ContainerId = n.GetStringValue(); } },
-                {"image", n => { Image = n.GetObjectValue<ContainerImageEvidence>(ContainerImageEvidence.CreateFromDiscriminatorValue); } },
-                {"isPrivileged", n => { IsPrivileged = n.GetBoolValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"pod", n => { Pod = n.GetObjectValue<KubernetesPodEvidence>(KubernetesPodEvidence.CreateFromDiscriminatorValue); } },
+                { "args", n => { Args = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "command", n => { CommandEscaped = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "containerId", n => { ContainerId = n.GetStringValue(); } },
+                { "image", n => { Image = n.GetObjectValue<ContainerImageEvidence>(ContainerImageEvidence.CreateFromDiscriminatorValue); } },
+                { "isPrivileged", n => { IsPrivileged = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "pod", n => { Pod = n.GetObjectValue<KubernetesPodEvidence>(KubernetesPodEvidence.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

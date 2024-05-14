@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.SubscribedSkus.Item {
+namespace ApiSdk.SubscribedSkus.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of subscribedSku entities.
     /// </summary>
-    public class SubscribedSkuItemRequestBuilder : BaseCliRequestBuilder 
+    public class SubscribedSkuItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete entity from subscribedSkus

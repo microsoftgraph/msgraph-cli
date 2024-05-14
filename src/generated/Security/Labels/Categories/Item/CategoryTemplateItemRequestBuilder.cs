@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Labels.Categories.Item {
+namespace ApiSdk.Security.Labels.Categories.Item
+{
     /// <summary>
     /// Provides operations to manage the categories property of the microsoft.graph.security.labelsRoot entity.
     /// </summary>
-    public class CategoryTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class CategoryTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a categoryTemplate object.

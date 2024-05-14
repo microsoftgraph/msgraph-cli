@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sec {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sec
+{
     /// <summary>
     /// Provides operations to call the sec method.
     /// </summary>
-    public class SecRequestBuilder : BaseCliRequestBuilder 
+    public class SecRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sec

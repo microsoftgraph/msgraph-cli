@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SecureScoreControlProfile : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SecureScoreControlProfile : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Control action type (Config, Review, Behavior).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -153,25 +156,25 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actionType", n => { ActionType = n.GetStringValue(); } },
-                {"actionUrl", n => { ActionUrl = n.GetStringValue(); } },
-                {"azureTenantId", n => { AzureTenantId = n.GetStringValue(); } },
-                {"complianceInformation", n => { ComplianceInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceInformation>(ApiSdk.Models.ComplianceInformation.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"controlCategory", n => { ControlCategory = n.GetStringValue(); } },
-                {"controlStateUpdates", n => { ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>(SecureScoreControlStateUpdate.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"deprecated", n => { Deprecated = n.GetBoolValue(); } },
-                {"implementationCost", n => { ImplementationCost = n.GetStringValue(); } },
-                {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"maxScore", n => { MaxScore = n.GetDoubleValue(); } },
-                {"rank", n => { Rank = n.GetIntValue(); } },
-                {"remediation", n => { Remediation = n.GetStringValue(); } },
-                {"remediationImpact", n => { RemediationImpact = n.GetStringValue(); } },
-                {"service", n => { Service = n.GetStringValue(); } },
-                {"threats", n => { Threats = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"tier", n => { Tier = n.GetStringValue(); } },
-                {"title", n => { Title = n.GetStringValue(); } },
-                {"userImpact", n => { UserImpact = n.GetStringValue(); } },
-                {"vendorInformation", n => { VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
+                { "actionType", n => { ActionType = n.GetStringValue(); } },
+                { "actionUrl", n => { ActionUrl = n.GetStringValue(); } },
+                { "azureTenantId", n => { AzureTenantId = n.GetStringValue(); } },
+                { "complianceInformation", n => { ComplianceInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.ComplianceInformation>(ApiSdk.Models.ComplianceInformation.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "controlCategory", n => { ControlCategory = n.GetStringValue(); } },
+                { "controlStateUpdates", n => { ControlStateUpdates = n.GetCollectionOfObjectValues<SecureScoreControlStateUpdate>(SecureScoreControlStateUpdate.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "deprecated", n => { Deprecated = n.GetBoolValue(); } },
+                { "implementationCost", n => { ImplementationCost = n.GetStringValue(); } },
+                { "lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "maxScore", n => { MaxScore = n.GetDoubleValue(); } },
+                { "rank", n => { Rank = n.GetIntValue(); } },
+                { "remediation", n => { Remediation = n.GetStringValue(); } },
+                { "remediationImpact", n => { RemediationImpact = n.GetStringValue(); } },
+                { "service", n => { Service = n.GetStringValue(); } },
+                { "threats", n => { Threats = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "tier", n => { Tier = n.GetStringValue(); } },
+                { "title", n => { Title = n.GetStringValue(); } },
+                { "userImpact", n => { UserImpact = n.GetStringValue(); } },
+                { "vendorInformation", n => { VendorInformation = n.GetObjectValue<SecurityVendorInformation>(SecurityVendorInformation.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

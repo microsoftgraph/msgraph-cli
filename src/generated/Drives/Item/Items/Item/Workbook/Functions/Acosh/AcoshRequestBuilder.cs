@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acosh {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acosh
+{
     /// <summary>
     /// Provides operations to call the acosh method.
     /// </summary>
-    public class AcoshRequestBuilder : BaseCliRequestBuilder 
+    public class AcoshRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action acosh

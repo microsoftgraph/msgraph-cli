@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ImageInfo : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ImageInfo : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Optional; parameter used to indicate the server is able to render image dynamically in response to parameterization. For example – a high contrast image</summary>
         public bool? AddImageQuery { get; set; }
@@ -68,11 +71,11 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"addImageQuery", n => { AddImageQuery = n.GetBoolValue(); } },
-                {"alternateText", n => { AlternateText = n.GetStringValue(); } },
-                {"alternativeText", n => { AlternativeText = n.GetStringValue(); } },
-                {"iconUrl", n => { IconUrl = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "addImageQuery", n => { AddImageQuery = n.GetBoolValue(); } },
+                { "alternateText", n => { AlternateText = n.GetStringValue(); } },
+                { "alternativeText", n => { AlternativeText = n.GetStringValue(); } },
+                { "iconUrl", n => { IconUrl = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

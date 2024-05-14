@@ -12,11 +12,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item {
+namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item
+{
     /// <summary>
     /// Builds and executes requests for operations under \print\shares\{printerShare-id}\allowedUsers\{user-id}
     /// </summary>
-    public class UserItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The mailboxSettings property

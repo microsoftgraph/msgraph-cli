@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.External.Connections.Item.Items.Item {
+namespace ApiSdk.External.Connections.Item.Items.Item
+{
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
     /// </summary>
-    public class ExternalItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class ExternalItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
@@ -168,13 +169,14 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property items in external
+        /// Update the properties of an externalItem object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalitem-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update the navigation property items in external";
+            command.Description = "Update the properties of an externalItem object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalitem-update?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -277,7 +279,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property items in external
+        /// Update the properties of an externalItem object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

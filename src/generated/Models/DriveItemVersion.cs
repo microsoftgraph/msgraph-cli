@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class DriveItemVersion : BaseItemVersion, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class DriveItemVersion : BaseItemVersion, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The content stream for this version of the item.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,8 +45,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"content", n => { Content = n.GetByteArrayValue(); } },
-                {"size", n => { Size = n.GetLongValue(); } },
+                { "content", n => { Content = n.GetByteArrayValue(); } },
+                { "size", n => { Size = n.GetLongValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item {
+namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails.Item
+{
     /// <summary>
     /// Provides operations to manage the languageDetails property of the microsoft.graph.training entity.
     /// </summary>
-    public class TrainingLanguageDetailItemRequestBuilder : BaseCliRequestBuilder 
+    public class TrainingLanguageDetailItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property languageDetails for security

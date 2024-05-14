@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetYammerGroupsActivityGroupCountsWithPeriod {
+namespace ApiSdk.Reports.GetYammerGroupsActivityGroupCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getYammerGroupsActivityGroupCounts method.
     /// </summary>
-    public class GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getYammerGroupsActivityGroupCounts
+        /// Get the total number of groups that existed and how many included group conversation activities.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getyammergroupsactivitygroupcounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getYammerGroupsActivityGroupCounts";
+            command.Description = "Get the total number of groups that existed and how many included group conversation activities.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getyammergroupsactivitygroupcounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityGroupCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getYammerGroupsActivityGroupCounts
+        /// Get the total number of groups that existed and how many included group conversation activities.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

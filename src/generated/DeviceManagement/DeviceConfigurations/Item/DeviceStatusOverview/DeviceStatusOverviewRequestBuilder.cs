@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview {
+namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
+{
     /// <summary>
     /// Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceConfiguration entity.
     /// </summary>
-    public class DeviceStatusOverviewRequestBuilder : BaseCliRequestBuilder 
+    public class DeviceStatusOverviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deviceStatusOverview for deviceManagement

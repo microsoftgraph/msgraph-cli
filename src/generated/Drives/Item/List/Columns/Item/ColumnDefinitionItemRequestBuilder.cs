@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.List.Columns.Item {
+namespace ApiSdk.Drives.Item.List.Columns.Item
+{
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.list entity.
     /// </summary>
-    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property columns for drives

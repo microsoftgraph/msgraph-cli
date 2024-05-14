@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Planner {
+namespace ApiSdk.Users.Item.Planner
+{
     /// <summary>
     /// Provides operations to manage the planner property of the microsoft.graph.user entity.
     /// </summary>
-    public class PlannerRequestBuilder : BaseCliRequestBuilder 
+    public class PlannerRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property planner for users

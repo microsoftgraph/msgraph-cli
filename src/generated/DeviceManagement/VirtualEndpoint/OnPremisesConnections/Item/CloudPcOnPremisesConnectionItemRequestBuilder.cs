@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.OnPremisesConnections.Item
+{
     /// <summary>
     /// Provides operations to manage the onPremisesConnections property of the microsoft.graph.virtualEndpoint entity.
     /// </summary>
-    public class CloudPcOnPremisesConnectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPcOnPremisesConnectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a specific cloudPcOnPremisesConnection object. When you delete an Azure network connection, permissions to the service are removed from the specified Azure resources. You cannot delete an Azure network connection when it&apos;s in use, as indicated by the inUse property.

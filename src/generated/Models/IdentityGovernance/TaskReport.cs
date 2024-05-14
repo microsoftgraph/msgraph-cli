@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.IdentityGovernance {
-    public class TaskReport : ApiSdk.Models.Entity, IParsable 
+namespace ApiSdk.Models.IdentityGovernance
+{
+    #pragma warning disable CS1591
+    public class TaskReport : ApiSdk.Models.Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The date time that the associated run completed. Value is null if the run has not completed.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public DateTimeOffset? CompletedDateTime { get; set; }
@@ -73,18 +76,18 @@ namespace ApiSdk.Models.IdentityGovernance {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"failedUsersCount", n => { FailedUsersCount = n.GetIntValue(); } },
-                {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"processingStatus", n => { ProcessingStatus = n.GetEnumValue<LifecycleWorkflowProcessingStatus>(); } },
-                {"runId", n => { RunId = n.GetStringValue(); } },
-                {"startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"successfulUsersCount", n => { SuccessfulUsersCount = n.GetIntValue(); } },
-                {"task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
-                {"taskDefinition", n => { TaskDefinition = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskDefinition>(ApiSdk.Models.IdentityGovernance.TaskDefinition.CreateFromDiscriminatorValue); } },
-                {"taskProcessingResults", n => { TaskProcessingResults = n.GetCollectionOfObjectValues<TaskProcessingResult>(TaskProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"totalUsersCount", n => { TotalUsersCount = n.GetIntValue(); } },
-                {"unprocessedUsersCount", n => { UnprocessedUsersCount = n.GetIntValue(); } },
+                { "completedDateTime", n => { CompletedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "failedUsersCount", n => { FailedUsersCount = n.GetIntValue(); } },
+                { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "processingStatus", n => { ProcessingStatus = n.GetEnumValue<LifecycleWorkflowProcessingStatus>(); } },
+                { "runId", n => { RunId = n.GetStringValue(); } },
+                { "startedDateTime", n => { StartedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "successfulUsersCount", n => { SuccessfulUsersCount = n.GetIntValue(); } },
+                { "task", n => { Task = n.GetObjectValue<TaskObject>(TaskObject.CreateFromDiscriminatorValue); } },
+                { "taskDefinition", n => { TaskDefinition = n.GetObjectValue<ApiSdk.Models.IdentityGovernance.TaskDefinition>(ApiSdk.Models.IdentityGovernance.TaskDefinition.CreateFromDiscriminatorValue); } },
+                { "taskProcessingResults", n => { TaskProcessingResults = n.GetCollectionOfObjectValues<TaskProcessingResult>(TaskProcessingResult.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "totalUsersCount", n => { TotalUsersCount = n.GetIntValue(); } },
+                { "unprocessedUsersCount", n => { UnprocessedUsersCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

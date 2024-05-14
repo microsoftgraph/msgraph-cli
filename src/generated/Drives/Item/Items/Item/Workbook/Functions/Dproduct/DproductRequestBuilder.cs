@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dproduct {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dproduct
+{
     /// <summary>
     /// Provides operations to call the dproduct method.
     /// </summary>
-    public class DproductRequestBuilder : BaseCliRequestBuilder 
+    public class DproductRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dproduct

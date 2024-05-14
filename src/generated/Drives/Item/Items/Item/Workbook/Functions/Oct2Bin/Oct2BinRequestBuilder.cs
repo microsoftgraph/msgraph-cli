@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Bin {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Bin
+{
     /// <summary>
     /// Provides operations to call the oct2Bin method.
     /// </summary>
-    public class Oct2BinRequestBuilder : BaseCliRequestBuilder 
+    public class Oct2BinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action oct2Bin

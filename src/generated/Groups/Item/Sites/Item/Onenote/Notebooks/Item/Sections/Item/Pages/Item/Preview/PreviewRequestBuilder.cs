@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Preview {
+namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Preview
+{
     /// <summary>
     /// Provides operations to call the preview method.
     /// </summary>
-    public class PreviewRequestBuilder : BaseCliRequestBuilder 
+    public class PreviewRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke function preview

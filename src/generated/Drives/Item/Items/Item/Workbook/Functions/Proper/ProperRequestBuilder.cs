@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Proper {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Proper
+{
     /// <summary>
     /// Provides operations to call the proper method.
     /// </summary>
-    public class ProperRequestBuilder : BaseCliRequestBuilder 
+    public class ProperRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action proper

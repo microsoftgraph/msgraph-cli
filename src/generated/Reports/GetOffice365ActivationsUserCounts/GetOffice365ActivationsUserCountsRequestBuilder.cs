@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOffice365ActivationsUserCounts {
+namespace ApiSdk.Reports.GetOffice365ActivationsUserCounts
+{
     /// <summary>
     /// Provides operations to call the getOffice365ActivationsUserCounts method.
     /// </summary>
-    public class GetOffice365ActivationsUserCountsRequestBuilder : BaseCliRequestBuilder 
+    public class GetOffice365ActivationsUserCountsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOffice365ActivationsUserCounts
+        /// Get the count of users that are enabled and those that have activated the Office subscription on desktop or devices or shared computers.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getoffice365activationsusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOffice365ActivationsUserCounts";
+            command.Description = "Get the count of users that are enabled and those that have activated the Office subscription on desktop or devices or shared computers.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getoffice365activationsusercounts?view=graph-rest-1.0";
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
@@ -68,7 +70,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserCounts {
         {
         }
         /// <summary>
-        /// Invoke function getOffice365ActivationsUserCounts
+        /// Get the count of users that are enabled and those that have activated the Office subscription on desktop or devices or shared computers.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

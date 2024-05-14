@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundUp {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundUp
+{
     /// <summary>
     /// Provides operations to call the roundUp method.
     /// </summary>
-    public class RoundUpRequestBuilder : BaseCliRequestBuilder 
+    public class RoundUpRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action roundUp

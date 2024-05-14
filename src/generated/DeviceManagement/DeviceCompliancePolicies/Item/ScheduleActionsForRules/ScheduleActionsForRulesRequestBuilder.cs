@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules {
+namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules
+{
     /// <summary>
     /// Provides operations to call the scheduleActionsForRules method.
     /// </summary>
-    public class ScheduleActionsForRulesRequestBuilder : BaseCliRequestBuilder 
+    public class ScheduleActionsForRulesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

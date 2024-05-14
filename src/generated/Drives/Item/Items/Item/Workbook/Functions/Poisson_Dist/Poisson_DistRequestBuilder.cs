@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Poisson_Dist {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Poisson_Dist
+{
     /// <summary>
     /// Provides operations to call the poisson_Dist method.
     /// </summary>
-    public class Poisson_DistRequestBuilder : BaseCliRequestBuilder 
+    public class Poisson_DistRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action poisson_Dist

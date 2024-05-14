@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
-    public class RedirectPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect
+{
+    #pragma warning disable CS1591
+    public class RedirectPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -51,8 +54,8 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"configuration", n => { Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
-                {"destinationPrinterId", n => { DestinationPrinterId = n.GetStringValue(); } },
+                { "configuration", n => { Configuration = n.GetObjectValue<PrintJobConfiguration>(PrintJobConfiguration.CreateFromDiscriminatorValue); } },
+                { "destinationPrinterId", n => { DestinationPrinterId = n.GetStringValue(); } },
             };
         }
         /// <summary>

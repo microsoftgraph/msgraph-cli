@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Devices.Item.RegisteredUsers.Item.GraphAppRoleAssignment {
+namespace ApiSdk.Devices.Item.RegisteredUsers.Item.GraphAppRoleAssignment
+{
     /// <summary>
     /// Casts the previous resource to appRoleAssignment.
     /// </summary>
-    public class GraphAppRoleAssignmentRequestBuilder : BaseCliRequestBuilder 
+    public class GraphAppRoleAssignmentRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment

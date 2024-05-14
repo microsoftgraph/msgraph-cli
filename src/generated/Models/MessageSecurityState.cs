@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class MessageSecurityState : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class MessageSecurityState : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -108,16 +111,16 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"connectingIP", n => { ConnectingIP = n.GetStringValue(); } },
-                {"deliveryAction", n => { DeliveryAction = n.GetStringValue(); } },
-                {"deliveryLocation", n => { DeliveryLocation = n.GetStringValue(); } },
-                {"directionality", n => { Directionality = n.GetStringValue(); } },
-                {"internetMessageId", n => { InternetMessageId = n.GetStringValue(); } },
-                {"messageFingerprint", n => { MessageFingerprint = n.GetStringValue(); } },
-                {"messageReceivedDateTime", n => { MessageReceivedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"messageSubject", n => { MessageSubject = n.GetStringValue(); } },
-                {"networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "connectingIP", n => { ConnectingIP = n.GetStringValue(); } },
+                { "deliveryAction", n => { DeliveryAction = n.GetStringValue(); } },
+                { "deliveryLocation", n => { DeliveryLocation = n.GetStringValue(); } },
+                { "directionality", n => { Directionality = n.GetStringValue(); } },
+                { "internetMessageId", n => { InternetMessageId = n.GetStringValue(); } },
+                { "messageFingerprint", n => { MessageFingerprint = n.GetStringValue(); } },
+                { "messageReceivedDateTime", n => { MessageReceivedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "messageSubject", n => { MessageSubject = n.GetStringValue(); } },
+                { "networkMessageId", n => { NetworkMessageId = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Na {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Na
+{
     /// <summary>
     /// Provides operations to call the na method.
     /// </summary>
-    public class NaRequestBuilder : BaseCliRequestBuilder 
+    public class NaRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action na

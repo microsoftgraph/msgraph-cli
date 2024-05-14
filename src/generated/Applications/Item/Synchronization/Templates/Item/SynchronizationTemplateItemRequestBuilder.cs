@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Templates.Item {
+namespace ApiSdk.Applications.Item.Synchronization.Templates.Item
+{
     /// <summary>
     /// Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
     /// </summary>
-    public class SynchronizationTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class SynchronizationTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property templates for applications

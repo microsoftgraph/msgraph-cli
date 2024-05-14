@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Onenote.Sections.Item.CopyToSectionGroup {
+namespace ApiSdk.Users.Item.Onenote.Sections.Item.CopyToSectionGroup
+{
     /// <summary>
     /// Provides operations to call the copyToSectionGroup method.
     /// </summary>
-    public class CopyToSectionGroupRequestBuilder : BaseCliRequestBuilder 
+    public class CopyToSectionGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.

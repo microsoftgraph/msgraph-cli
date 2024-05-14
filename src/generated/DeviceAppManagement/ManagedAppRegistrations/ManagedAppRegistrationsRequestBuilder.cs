@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
+namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations
+{
     /// <summary>
     /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class ManagedAppRegistrationsRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedAppRegistrationsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
@@ -121,14 +122,14 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppRegistration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedAppRegistration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-list?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the androidManagedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedAppRegistration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappregistration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -204,7 +205,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -230,7 +233,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         {
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppRegistration objects.
+        /// List properties and relationships of the managedAppRegistration objects.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +273,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppRegistration objects.
+        /// List properties and relationships of the managedAppRegistration objects.
         /// </summary>
         public class ManagedAppRegistrationsRequestBuilderGetQueryParameters 
         {

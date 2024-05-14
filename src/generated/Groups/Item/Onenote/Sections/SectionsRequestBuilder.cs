@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Onenote.Sections {
+namespace ApiSdk.Groups.Item.Onenote.Sections
+{
     /// <summary>
     /// Provides operations to manage the sections property of the microsoft.graph.onenote entity.
     /// </summary>
-    public class SectionsRequestBuilder : BaseCliRequestBuilder 
+    public class SectionsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.onenote entity.
@@ -110,14 +111,13 @@ namespace ApiSdk.Groups.Item.Onenote.Sections {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/onenote-list-sections?view=graph-rest-1.0" />
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "Retrieve a list of onenoteSection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenote-list-sections?view=graph-rest-1.0";
+            command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -199,7 +199,9 @@ namespace ApiSdk.Groups.Item.Onenote.Sections {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -225,7 +227,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections {
         {
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +267,7 @@ namespace ApiSdk.Groups.Item.Onenote.Sections {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of onenoteSection objects.
+        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
         /// </summary>
         public class SectionsRequestBuilderGetQueryParameters 
         {

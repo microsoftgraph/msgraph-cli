@@ -14,21 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
+namespace ApiSdk.Education.Schools.Item.AdministrativeUnit
+{
     /// <summary>
     /// Provides operations to manage the administrativeUnit property of the microsoft.graph.educationSchool entity.
     /// </summary>
-    public class AdministrativeUnitRequestBuilder : BaseCliRequestBuilder 
+    public class AdministrativeUnitRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0" />
+        /// The underlying administrativeUnit for this school.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get a list of administrativeUnits associated with an educationSchool object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
+            command.Description = "The underlying administrativeUnit for this school.";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -139,7 +139,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
         {
         }
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object.
+        /// The underlying administrativeUnit for this school.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -179,7 +179,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of administrativeUnits associated with an educationSchool object.
+        /// The underlying administrativeUnit for this school.
         /// </summary>
         public class AdministrativeUnitRequestBuilderGetQueryParameters 
         {

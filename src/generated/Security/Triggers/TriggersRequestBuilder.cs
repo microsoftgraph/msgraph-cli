@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Triggers {
+namespace ApiSdk.Security.Triggers
+{
     /// <summary>
     /// Provides operations to manage the triggers property of the microsoft.graph.security entity.
     /// </summary>
-    public class TriggersRequestBuilder : BaseCliRequestBuilder 
+    public class TriggersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property triggers for security

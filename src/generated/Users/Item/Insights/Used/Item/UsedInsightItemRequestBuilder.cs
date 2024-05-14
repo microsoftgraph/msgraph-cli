@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights.Used.Item {
+namespace ApiSdk.Users.Item.Insights.Used.Item
+{
     /// <summary>
     /// Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
     /// </summary>
-    public class UsedInsightItemRequestBuilder : BaseCliRequestBuilder 
+    public class UsedInsightItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property used for users

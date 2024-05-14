@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyBottomPercentFilter {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyBottomPercentFilter
+{
     /// <summary>
     /// Provides operations to call the applyBottomPercentFilter method.
     /// </summary>
-    public class ApplyBottomPercentFilterRequestBuilder : BaseCliRequestBuilder 
+    public class ApplyBottomPercentFilterRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action applyBottomPercentFilter

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries.Item {
+namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries.Item
+{
     /// <summary>
     /// Provides operations to manage the windowsInformationProtectionNetworkLearningSummaries property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder : BaseCliRequestBuilder 
+    public class WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a windowsInformationProtectionNetworkLearningSummary.

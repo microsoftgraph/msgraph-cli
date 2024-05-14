@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ConnectedOrganizationMembers : SubjectSet, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ConnectedOrganizationMembers : SubjectSet, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The ID of the connected organization in entitlement management.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"connectedOrganizationId", n => { ConnectedOrganizationId = n.GetStringValue(); } },
-                {"description", n => { Description = n.GetStringValue(); } },
+                { "connectedOrganizationId", n => { ConnectedOrganizationId = n.GetStringValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
             };
         }
         /// <summary>

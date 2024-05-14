@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// IOS Update Configuration, allows you to configure time window within week to install iOS updates
     /// </summary>
-    public class IosUpdateConfiguration : DeviceConfiguration, IParsable 
+    public class IosUpdateConfiguration : DeviceConfiguration, IParsable
     {
         /// <summary>Active Hours End (active hours mean the time window when updates install should not happen)</summary>
         public Time? ActiveHoursEnd { get; set; }
@@ -50,10 +51,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"activeHoursEnd", n => { ActiveHoursEnd = n.GetTimeValue(); } },
-                {"activeHoursStart", n => { ActiveHoursStart = n.GetTimeValue(); } },
-                {"scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
-                {"utcTimeOffsetInMinutes", n => { UtcTimeOffsetInMinutes = n.GetIntValue(); } },
+                { "activeHoursEnd", n => { ActiveHoursEnd = n.GetTimeValue(); } },
+                { "activeHoursStart", n => { ActiveHoursStart = n.GetTimeValue(); } },
+                { "scheduledInstallDays", n => { ScheduledInstallDays = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
+                { "utcTimeOffsetInMinutes", n => { UtcTimeOffsetInMinutes = n.GetIntValue(); } },
             };
         }
         /// <summary>

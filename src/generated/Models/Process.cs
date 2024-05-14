@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Process : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Process : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>User account identifier (user account context the process ran under) for example, AccountName, SID, and so on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -102,19 +105,19 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"accountName", n => { AccountName = n.GetStringValue(); } },
-                {"commandLine", n => { CommandLine = n.GetStringValue(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"fileHash", n => { FileHash = n.GetObjectValue<ApiSdk.Models.FileHash>(ApiSdk.Models.FileHash.CreateFromDiscriminatorValue); } },
-                {"integrityLevel", n => { IntegrityLevel = n.GetEnumValue<ProcessIntegrityLevel>(); } },
-                {"isElevated", n => { IsElevated = n.GetBoolValue(); } },
-                {"name", n => { Name = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"parentProcessCreatedDateTime", n => { ParentProcessCreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"parentProcessId", n => { ParentProcessId = n.GetIntValue(); } },
-                {"parentProcessName", n => { ParentProcessName = n.GetStringValue(); } },
-                {"path", n => { Path = n.GetStringValue(); } },
-                {"processId", n => { ProcessId = n.GetIntValue(); } },
+                { "accountName", n => { AccountName = n.GetStringValue(); } },
+                { "commandLine", n => { CommandLine = n.GetStringValue(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "fileHash", n => { FileHash = n.GetObjectValue<ApiSdk.Models.FileHash>(ApiSdk.Models.FileHash.CreateFromDiscriminatorValue); } },
+                { "integrityLevel", n => { IntegrityLevel = n.GetEnumValue<ProcessIntegrityLevel>(); } },
+                { "isElevated", n => { IsElevated = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "parentProcessCreatedDateTime", n => { ParentProcessCreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "parentProcessId", n => { ParentProcessId = n.GetIntValue(); } },
+                { "parentProcessName", n => { ParentProcessName = n.GetStringValue(); } },
+                { "path", n => { Path = n.GetStringValue(); } },
+                { "processId", n => { ProcessId = n.GetIntValue(); } },
             };
         }
         /// <summary>

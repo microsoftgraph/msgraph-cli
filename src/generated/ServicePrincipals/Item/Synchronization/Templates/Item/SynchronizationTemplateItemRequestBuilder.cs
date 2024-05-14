@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
+namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item
+{
     /// <summary>
     /// Provides operations to manage the templates property of the microsoft.graph.synchronization entity.
     /// </summary>
-    public class SynchronizationTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class SynchronizationTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property templates for servicePrincipals
@@ -121,14 +122,13 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return command;
         }
         /// <summary>
-        /// Update (override) the synchronization template associated with a given application.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0" />
+        /// Update the navigation property templates in servicePrincipals
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update (override) the synchronization template associated with a given application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property templates in servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -259,7 +259,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update (override) the synchronization template associated with a given application.
+        /// Update the navigation property templates in servicePrincipals
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ServiceUpdateMessage : ServiceAnnouncementBase, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ServiceUpdateMessage : ServiceAnnouncementBase, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The expected deadline of the action for the message.</summary>
         public DateTimeOffset? ActionRequiredByDateTime { get; set; }
@@ -90,17 +93,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"actionRequiredByDateTime", n => { ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
-                {"attachments", n => { Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"attachmentsArchive", n => { AttachmentsArchive = n.GetByteArrayValue(); } },
-                {"body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
-                {"category", n => { Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
-                {"hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
-                {"isMajorChange", n => { IsMajorChange = n.GetBoolValue(); } },
-                {"services", n => { Services = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"severity", n => { Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
-                {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"viewPoint", n => { ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
+                { "actionRequiredByDateTime", n => { ActionRequiredByDateTime = n.GetDateTimeOffsetValue(); } },
+                { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<ServiceAnnouncementAttachment>(ServiceAnnouncementAttachment.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "attachmentsArchive", n => { AttachmentsArchive = n.GetByteArrayValue(); } },
+                { "body", n => { Body = n.GetObjectValue<ItemBody>(ItemBody.CreateFromDiscriminatorValue); } },
+                { "category", n => { Category = n.GetEnumValue<ServiceUpdateCategory>(); } },
+                { "hasAttachments", n => { HasAttachments = n.GetBoolValue(); } },
+                { "isMajorChange", n => { IsMajorChange = n.GetBoolValue(); } },
+                { "services", n => { Services = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "severity", n => { Severity = n.GetEnumValue<ServiceUpdateSeverity>(); } },
+                { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "viewPoint", n => { ViewPoint = n.GetObjectValue<ServiceUpdateMessageViewpoint>(ServiceUpdateMessageViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

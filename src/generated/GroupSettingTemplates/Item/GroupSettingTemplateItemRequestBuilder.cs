@@ -19,11 +19,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.GroupSettingTemplates.Item {
+namespace ApiSdk.GroupSettingTemplates.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of groupSettingTemplate entities.
     /// </summary>
-    public class GroupSettingTemplateItemRequestBuilder : BaseCliRequestBuilder 
+    public class GroupSettingTemplateItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.

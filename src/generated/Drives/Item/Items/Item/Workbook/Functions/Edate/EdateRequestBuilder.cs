@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Edate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Edate
+{
     /// <summary>
     /// Provides operations to call the edate method.
     /// </summary>
-    public class EdateRequestBuilder : BaseCliRequestBuilder 
+    public class EdateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action edate

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OpenShiftItem : ShiftItem, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OpenShiftItem : ShiftItem, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Count of the number of slots for the given open shift.</summary>
         public int? OpenSlotCount { get; set; }
@@ -34,7 +37,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"openSlotCount", n => { OpenSlotCount = n.GetIntValue(); } },
+                { "openSlotCount", n => { OpenSlotCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

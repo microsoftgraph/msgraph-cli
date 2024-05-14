@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.CallRecords {
-    public class ParticipantEndpoint : Endpoint, IParsable 
+namespace ApiSdk.Models.CallRecords
+{
+    #pragma warning disable CS1591
+    public class ParticipantEndpoint : Endpoint, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>CPU number of cores used by the media endpoint.</summary>
         public int? CpuCoresCount { get; set; }
@@ -68,12 +71,12 @@ namespace ApiSdk.Models.CallRecords {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"cpuCoresCount", n => { CpuCoresCount = n.GetIntValue(); } },
-                {"cpuName", n => { CpuName = n.GetStringValue(); } },
-                {"cpuProcessorSpeedInMhz", n => { CpuProcessorSpeedInMhz = n.GetIntValue(); } },
-                {"feedback", n => { Feedback = n.GetObjectValue<UserFeedback>(UserFeedback.CreateFromDiscriminatorValue); } },
-                {"identity", n => { Identity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
-                {"name", n => { Name = n.GetStringValue(); } },
+                { "cpuCoresCount", n => { CpuCoresCount = n.GetIntValue(); } },
+                { "cpuName", n => { CpuName = n.GetStringValue(); } },
+                { "cpuProcessorSpeedInMhz", n => { CpuProcessorSpeedInMhz = n.GetIntValue(); } },
+                { "feedback", n => { Feedback = n.GetObjectValue<UserFeedback>(UserFeedback.CreateFromDiscriminatorValue); } },
+                { "identity", n => { Identity = n.GetObjectValue<ApiSdk.Models.IdentitySet>(ApiSdk.Models.IdentitySet.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
             };
         }
         /// <summary>

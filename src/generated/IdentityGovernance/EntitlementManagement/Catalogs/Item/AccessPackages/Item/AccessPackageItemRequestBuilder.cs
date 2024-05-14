@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item
+{
     /// <summary>
     /// Provides operations to manage the accessPackages property of the microsoft.graph.accessPackageCatalog entity.
     /// </summary>
-    public class AccessPackageItemRequestBuilder : BaseCliRequestBuilder 
+    public class AccessPackageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The access packages in this catalog. Read-only. Nullable.

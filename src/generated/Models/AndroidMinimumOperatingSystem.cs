@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties for the minimum operating system required for an Android mobile app.
     /// </summary>
-    public class AndroidMinimumOperatingSystem : IAdditionalDataHolder, IParsable 
+    public class AndroidMinimumOperatingSystem : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -77,23 +78,23 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"v10_0", n => { V100 = n.GetBoolValue(); } },
-                {"v11_0", n => { V110 = n.GetBoolValue(); } },
-                {"v4_0", n => { V40 = n.GetBoolValue(); } },
-                {"v4_0_3", n => { V403 = n.GetBoolValue(); } },
-                {"v4_1", n => { V41 = n.GetBoolValue(); } },
-                {"v4_2", n => { V42 = n.GetBoolValue(); } },
-                {"v4_3", n => { V43 = n.GetBoolValue(); } },
-                {"v4_4", n => { V44 = n.GetBoolValue(); } },
-                {"v5_0", n => { V50 = n.GetBoolValue(); } },
-                {"v5_1", n => { V51 = n.GetBoolValue(); } },
-                {"v6_0", n => { V60 = n.GetBoolValue(); } },
-                {"v7_0", n => { V70 = n.GetBoolValue(); } },
-                {"v7_1", n => { V71 = n.GetBoolValue(); } },
-                {"v8_0", n => { V80 = n.GetBoolValue(); } },
-                {"v8_1", n => { V81 = n.GetBoolValue(); } },
-                {"v9_0", n => { V90 = n.GetBoolValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "v10_0", n => { V100 = n.GetBoolValue(); } },
+                { "v11_0", n => { V110 = n.GetBoolValue(); } },
+                { "v4_0", n => { V40 = n.GetBoolValue(); } },
+                { "v4_0_3", n => { V403 = n.GetBoolValue(); } },
+                { "v4_1", n => { V41 = n.GetBoolValue(); } },
+                { "v4_2", n => { V42 = n.GetBoolValue(); } },
+                { "v4_3", n => { V43 = n.GetBoolValue(); } },
+                { "v4_4", n => { V44 = n.GetBoolValue(); } },
+                { "v5_0", n => { V50 = n.GetBoolValue(); } },
+                { "v5_1", n => { V51 = n.GetBoolValue(); } },
+                { "v6_0", n => { V60 = n.GetBoolValue(); } },
+                { "v7_0", n => { V70 = n.GetBoolValue(); } },
+                { "v7_1", n => { V71 = n.GetBoolValue(); } },
+                { "v8_0", n => { V80 = n.GetBoolValue(); } },
+                { "v8_1", n => { V81 = n.GetBoolValue(); } },
+                { "v9_0", n => { V90 = n.GetBoolValue(); } },
             };
         }
         /// <summary>

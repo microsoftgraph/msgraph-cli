@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.PermissionGrants.Item {
+namespace ApiSdk.Teams.Item.PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the permissionGrants property of the microsoft.graph.team entity.
     /// </summary>
-    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class ResourceSpecificPermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property permissionGrants for teams

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sign {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sign
+{
     /// <summary>
     /// Provides operations to call the sign method.
     /// </summary>
-    public class SignRequestBuilder : BaseCliRequestBuilder 
+    public class SignRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action sign

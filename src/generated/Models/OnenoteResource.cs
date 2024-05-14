@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class OnenoteResource : OnenoteEntityBaseModel, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class OnenoteResource : OnenoteEntityBaseModel, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The content stream</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,8 +51,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"content", n => { Content = n.GetByteArrayValue(); } },
-                {"contentUrl", n => { ContentUrl = n.GetStringValue(); } },
+                { "content", n => { Content = n.GetByteArrayValue(); } },
+                { "contentUrl", n => { ContentUrl = n.GetStringValue(); } },
             };
         }
         /// <summary>

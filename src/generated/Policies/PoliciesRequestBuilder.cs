@@ -34,11 +34,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies {
+namespace ApiSdk.Policies
+{
     /// <summary>
     /// Provides operations to manage the policyRoot singleton.
     /// </summary>
-    public class PoliciesRequestBuilder : BaseCliRequestBuilder 
+    public class PoliciesRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
@@ -273,6 +274,7 @@ namespace ApiSdk.Policies {
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildPartnersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildTemplatesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class HomeRealmDiscoveryPolicy : StsPolicy, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class HomeRealmDiscoveryPolicy : StsPolicy, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>
         /// Instantiates a new <see cref="HomeRealmDiscoveryPolicy"/> and sets the default values.

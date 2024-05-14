@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
+namespace ApiSdk.Policies.ClaimsMappingPolicies.Item
+{
     /// <summary>
     /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
-    public class ClaimsMappingPolicyItemRequestBuilder : BaseCliRequestBuilder 
+    public class ClaimsMappingPolicyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.

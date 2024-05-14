@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item {
+namespace ApiSdk.Reports.AuthenticationMethods.UserRegistrationDetails.Item
+{
     /// <summary>
     /// Provides operations to manage the userRegistrationDetails property of the microsoft.graph.authenticationMethodsRoot entity.
     /// </summary>
-    public class UserRegistrationDetailsItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserRegistrationDetailsItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property userRegistrationDetails for reports

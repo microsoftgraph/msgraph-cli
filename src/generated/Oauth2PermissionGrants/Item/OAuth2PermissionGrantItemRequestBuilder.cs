@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Oauth2PermissionGrants.Item {
+namespace ApiSdk.Oauth2PermissionGrants.Item
+{
     /// <summary>
     /// Provides operations to manage the collection of oAuth2PermissionGrant entities.
     /// </summary>
-    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder 
+    public class OAuth2PermissionGrantItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete a delegated permission grant, represented by an oAuth2PermissionGrant object. When a delegated permission grant is deleted, the access it granted is revoked. Existing access tokens will continue to be valid for their lifetime, but new access tokens will not be granted for the delegated permissions identified in the deleted oAuth2PermissionGrant.

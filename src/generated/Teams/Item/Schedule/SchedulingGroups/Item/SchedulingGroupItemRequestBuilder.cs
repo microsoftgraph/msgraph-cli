@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item {
+namespace ApiSdk.Teams.Item.Schedule.SchedulingGroups.Item
+{
     /// <summary>
     /// Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.
     /// </summary>
-    public class SchedulingGroupItemRequestBuilder : BaseCliRequestBuilder 
+    public class SchedulingGroupItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Mark a schedulingGroup as inactive by setting its isActive property.This method does not remove the schedulingGroup from the schedule. Existing shift instances assigned to the scheduling group remain part of the group.

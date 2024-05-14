@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Code {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Code
+{
     /// <summary>
     /// Provides operations to call the code method.
     /// </summary>
-    public class CodeRequestBuilder : BaseCliRequestBuilder 
+    public class CodeRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action code

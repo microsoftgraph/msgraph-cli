@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWithIndex.SetPosition {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWithIndex.SetPosition
+{
     /// <summary>
     /// Provides operations to call the setPosition method.
     /// </summary>
-    public class SetPositionRequestBuilder : BaseCliRequestBuilder 
+    public class SetPositionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Positions the chart relative to cells on the worksheet.

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rri {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rri
+{
     /// <summary>
     /// Provides operations to call the rri method.
     /// </summary>
-    public class RriRequestBuilder : BaseCliRequestBuilder 
+    public class RriRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action rri

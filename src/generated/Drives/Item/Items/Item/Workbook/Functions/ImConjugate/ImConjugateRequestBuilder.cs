@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImConjugate {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImConjugate
+{
     /// <summary>
     /// Provides operations to call the imConjugate method.
     /// </summary>
-    public class ImConjugateRequestBuilder : BaseCliRequestBuilder 
+    public class ImConjugateRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imConjugate

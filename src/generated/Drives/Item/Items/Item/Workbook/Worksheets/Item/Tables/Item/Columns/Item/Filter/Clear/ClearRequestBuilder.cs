@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.Clear {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.Clear
+{
     /// <summary>
     /// Provides operations to call the clear method.
     /// </summary>
-    public class ClearRequestBuilder : BaseCliRequestBuilder 
+    public class ClearRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Clear the filter on the given column.

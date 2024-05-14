@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Applications.Item.Synchronization.Secrets {
+namespace ApiSdk.Applications.Item.Synchronization.Secrets
+{
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\synchronization\secrets
     /// </summary>
-    public class SecretsRequestBuilder : BaseCliRequestBuilder 
+    public class SecretsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.

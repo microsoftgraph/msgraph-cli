@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for the macOS Microsoft Edge App.
     /// </summary>
-    public class MacOSMicrosoftEdgeApp : MobileApp, IParsable 
+    public class MacOSMicrosoftEdgeApp : MobileApp, IParsable
     {
         /// <summary>The enum to specify the channels for Microsoft Edge apps.</summary>
         public MicrosoftEdgeChannel? Channel { get; set; }
@@ -37,7 +38,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"channel", n => { Channel = n.GetEnumValue<MicrosoftEdgeChannel>(); } },
+                { "channel", n => { Channel = n.GetEnumValue<MicrosoftEdgeChannel>(); } },
             };
         }
         /// <summary>

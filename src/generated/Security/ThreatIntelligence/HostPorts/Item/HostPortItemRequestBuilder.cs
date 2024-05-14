@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item {
+namespace ApiSdk.Security.ThreatIntelligence.HostPorts.Item
+{
     /// <summary>
     /// Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
     /// </summary>
-    public class HostPortItemRequestBuilder : BaseCliRequestBuilder 
+    public class HostPortItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property hostPorts for security

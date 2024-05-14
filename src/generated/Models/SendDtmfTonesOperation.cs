@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class SendDtmfTonesOperation : CommsOperation, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class SendDtmfTonesOperation : CommsOperation, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The results of the action. Possible values are: unknown, completedSuccessfully, mediaOperationCanceled, unknownfutureValue.</summary>
         public SendDtmfCompletionReason? CompletionReason { get; set; }
@@ -27,7 +30,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"completionReason", n => { CompletionReason = n.GetEnumValue<SendDtmfCompletionReason>(); } },
+                { "completionReason", n => { CompletionReason = n.GetEnumValue<SendDtmfCompletionReason>(); } },
             };
         }
         /// <summary>

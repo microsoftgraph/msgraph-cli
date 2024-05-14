@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
+namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority
+{
     /// <summary>
     /// Provides operations to call the setMobileDeviceManagementAuthority method.
     /// </summary>
-    public class SetMobileDeviceManagementAuthorityRequestBuilder : BaseCliRequestBuilder 
+    public class SetMobileDeviceManagementAuthorityRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Set mobile device management authority

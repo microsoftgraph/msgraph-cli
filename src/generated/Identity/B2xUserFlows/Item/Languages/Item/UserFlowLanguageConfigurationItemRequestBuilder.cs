@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
+namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item
+{
     /// <summary>
     /// Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.
     /// </summary>
-    public class UserFlowLanguageConfigurationItemRequestBuilder : BaseCliRequestBuilder 
+    public class UserFlowLanguageConfigurationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.

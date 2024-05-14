@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class Video : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class Video : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -74,17 +77,17 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"audioBitsPerSample", n => { AudioBitsPerSample = n.GetIntValue(); } },
-                {"audioChannels", n => { AudioChannels = n.GetIntValue(); } },
-                {"audioFormat", n => { AudioFormat = n.GetStringValue(); } },
-                {"audioSamplesPerSecond", n => { AudioSamplesPerSecond = n.GetIntValue(); } },
-                {"bitrate", n => { Bitrate = n.GetIntValue(); } },
-                {"duration", n => { Duration = n.GetLongValue(); } },
-                {"fourCC", n => { FourCC = n.GetStringValue(); } },
-                {"frameRate", n => { FrameRate = n.GetDoubleValue(); } },
-                {"height", n => { Height = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"width", n => { Width = n.GetIntValue(); } },
+                { "audioBitsPerSample", n => { AudioBitsPerSample = n.GetIntValue(); } },
+                { "audioChannels", n => { AudioChannels = n.GetIntValue(); } },
+                { "audioFormat", n => { AudioFormat = n.GetStringValue(); } },
+                { "audioSamplesPerSecond", n => { AudioSamplesPerSecond = n.GetIntValue(); } },
+                { "bitrate", n => { Bitrate = n.GetIntValue(); } },
+                { "duration", n => { Duration = n.GetLongValue(); } },
+                { "fourCC", n => { FourCC = n.GetStringValue(); } },
+                { "frameRate", n => { FrameRate = n.GetDoubleValue(); } },
+                { "height", n => { Height = n.GetIntValue(); } },
+                { "@odata.type", n => { OdataType = n.GetStringValue(); } },
+                { "width", n => { Width = n.GetIntValue(); } },
             };
         }
         /// <summary>

@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
-    public class UpdateRecordingStatusPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus
+{
+    #pragma warning disable CS1591
+    public class UpdateRecordingStatusPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -45,8 +48,8 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"clientContext", n => { ClientContext = n.GetStringValue(); } },
-                {"status", n => { Status = n.GetEnumValue<RecordingStatus>(); } },
+                { "clientContext", n => { ClientContext = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<RecordingStatus>(); } },
             };
         }
         /// <summary>

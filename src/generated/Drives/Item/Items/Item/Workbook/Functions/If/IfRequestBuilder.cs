@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If
+{
     /// <summary>
     /// Provides operations to call the if method.
     /// </summary>
-    public class IfRequestBuilder : BaseCliRequestBuilder 
+    public class IfRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action if

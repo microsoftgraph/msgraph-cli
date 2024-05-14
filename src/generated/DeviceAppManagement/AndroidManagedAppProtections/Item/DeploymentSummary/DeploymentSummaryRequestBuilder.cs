@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.DeploymentSummary {
+namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.DeploymentSummary
+{
     /// <summary>
     /// Provides operations to manage the deploymentSummary property of the microsoft.graph.androidManagedAppProtection entity.
     /// </summary>
-    public class DeploymentSummaryRequestBuilder : BaseCliRequestBuilder 
+    public class DeploymentSummaryRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property deploymentSummary for deviceAppManagement

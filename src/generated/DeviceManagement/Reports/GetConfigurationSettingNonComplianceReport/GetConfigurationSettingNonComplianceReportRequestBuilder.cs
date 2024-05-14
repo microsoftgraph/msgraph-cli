@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.Reports.GetConfigurationSettingNonComplianceReport {
+namespace ApiSdk.DeviceManagement.Reports.GetConfigurationSettingNonComplianceReport
+{
     /// <summary>
     /// Provides operations to call the getConfigurationSettingNonComplianceReport method.
     /// </summary>
-    public class GetConfigurationSettingNonComplianceReportRequestBuilder : BaseCliRequestBuilder 
+    public class GetConfigurationSettingNonComplianceReportRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Not yet documented

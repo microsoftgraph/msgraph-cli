@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Item.GetPositionOfWebPart {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Item.GetPositionOfWebPart
+{
     /// <summary>
     /// Provides operations to call the getPositionOfWebPart method.
     /// </summary>
-    public class GetPositionOfWebPartRequestBuilder : BaseCliRequestBuilder 
+    public class GetPositionOfWebPartRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action getPositionOfWebPart

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
+namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item
+{
     /// <summary>
     /// Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
     /// </summary>
-    public class BitlockerRecoveryKeyItemRequestBuilder : BaseCliRequestBuilder 
+    public class BitlockerRecoveryKeyItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.

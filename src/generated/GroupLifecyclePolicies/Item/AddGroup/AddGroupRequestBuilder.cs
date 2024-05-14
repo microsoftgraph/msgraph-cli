@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup {
+namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup
+{
     /// <summary>
     /// Provides operations to call the addGroup method.
     /// </summary>
-    public class AddGroupRequestBuilder : BaseCliRequestBuilder 
+    public class AddGroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the managedGroupTypes property of groupLifecyclePolicy is set to Selected.

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
+namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item
+{
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.list entity.
     /// </summary>
-    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder 
+    public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property columns for sites

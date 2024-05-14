@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSub {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSub
+{
     /// <summary>
     /// Provides operations to call the imSub method.
     /// </summary>
-    public class ImSubRequestBuilder : BaseCliRequestBuilder 
+    public class ImSubRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action imSub

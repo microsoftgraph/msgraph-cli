@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Reports.GetOneDriveActivityUserCountsWithPeriod {
+namespace ApiSdk.Reports.GetOneDriveActivityUserCountsWithPeriod
+{
     /// <summary>
     /// Provides operations to call the getOneDriveActivityUserCounts method.
     /// </summary>
-    public class GetOneDriveActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder 
+    public class GetOneDriveActivityUserCountsWithPeriodRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getOneDriveActivityUserCounts
+        /// Get the trend in the number of active OneDrive users.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getOneDriveActivityUserCounts";
+            command.Description = "Get the trend in the number of active OneDrive users.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/reportroot-getonedriveactivityusercounts?view=graph-rest-1.0";
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -74,7 +76,7 @@ namespace ApiSdk.Reports.GetOneDriveActivityUserCountsWithPeriod {
         {
         }
         /// <summary>
-        /// Invoke function getOneDriveActivityUserCounts
+        /// Get the trend in the number of active OneDrive users.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

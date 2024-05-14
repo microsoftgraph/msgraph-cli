@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item {
+namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item
+{
     /// <summary>
     /// Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class MobileAppTroubleshootingEventItemRequestBuilder : BaseCliRequestBuilder 
+    public class MobileAppTroubleshootingEventItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the appLogCollectionRequests property of the microsoft.graph.mobileAppTroubleshootingEvent entity.

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Singleton entity which represents the Exchange OnPremises Conditional Access Settings for a tenant.
     /// </summary>
-    public class OnPremisesConditionalAccessSettings : Entity, IParsable 
+    public class OnPremisesConditionalAccessSettings : Entity, IParsable
     {
         /// <summary>Indicates if on premises conditional access is enabled for this organization</summary>
         public bool? Enabled { get; set; }
@@ -48,10 +49,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"excludedGroups", n => { ExcludedGroups = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
-                {"includedGroups", n => { IncludedGroups = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
-                {"overrideDefaultRule", n => { OverrideDefaultRule = n.GetBoolValue(); } },
+                { "enabled", n => { Enabled = n.GetBoolValue(); } },
+                { "excludedGroups", n => { ExcludedGroups = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
+                { "includedGroups", n => { IncludedGroups = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
+                { "overrideDefaultRule", n => { OverrideDefaultRule = n.GetBoolValue(); } },
             };
         }
         /// <summary>

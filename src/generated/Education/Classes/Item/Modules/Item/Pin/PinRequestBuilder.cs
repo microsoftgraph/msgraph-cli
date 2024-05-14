@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Classes.Item.Modules.Item.Pin {
+namespace ApiSdk.Education.Classes.Item.Modules.Item.Pin
+{
     /// <summary>
     /// Provides operations to call the pin method.
     /// </summary>
-    public class PinRequestBuilder : BaseCliRequestBuilder 
+    public class PinRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Pin an educationModule in the class work list. This action sets the isPinned property to true for an educationModule. Only teachers can perform this action and only one module at a time can be pinned in the class work list.

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Applications.ValidateProperties {
-    public class ValidatePropertiesPostRequestBody : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Applications.ValidateProperties
+{
+    #pragma warning disable CS1591
+    public class ValidatePropertiesPostRequestBody : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -60,10 +63,10 @@ namespace ApiSdk.Applications.ValidateProperties {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"displayName", n => { DisplayName = n.GetStringValue(); } },
-                {"entityType", n => { EntityType = n.GetStringValue(); } },
-                {"mailNickname", n => { MailNickname = n.GetStringValue(); } },
-                {"onBehalfOfUserId", n => { OnBehalfOfUserId = n.GetGuidValue(); } },
+                { "displayName", n => { DisplayName = n.GetStringValue(); } },
+                { "entityType", n => { EntityType = n.GetStringValue(); } },
+                { "mailNickname", n => { MailNickname = n.GetStringValue(); } },
+                { "onBehalfOfUserId", n => { OnBehalfOfUserId = n.GetGuidValue(); } },
             };
         }
         /// <summary>

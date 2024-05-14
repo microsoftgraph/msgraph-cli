@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item.CreateDownloadUrl {
+namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests.Item.CreateDownloadUrl
+{
     /// <summary>
     /// Provides operations to call the createDownloadUrl method.
     /// </summary>
-    public class CreateDownloadUrlRequestBuilder : BaseCliRequestBuilder 
+    public class CreateDownloadUrlRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action createDownloadUrl

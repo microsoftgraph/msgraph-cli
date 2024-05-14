@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval {
+namespace ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval
+{
     /// <summary>
     /// Provides operations to call the getActivitiesByInterval method.
     /// </summary>
-    public class GetActivitiesByIntervalRequestBuilder : BaseCliRequestBuilder 
+    public class GetActivitiesByIntervalRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getActivitiesByInterval
+        /// Get a collection of itemActivityStats resources for the activities that took place on this resource within the specified time interval. Analytics aggregates might not be available for all action types.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/itemactivitystat-getactivitybyinterval?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getActivitiesByInterval";
+            command.Description = "Get a collection of itemActivityStats resources for the activities that took place on this resource within the specified time interval. Analytics aggregates might not be available for all action types.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/itemactivitystat-getactivitybyinterval?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -114,7 +116,9 @@ namespace ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -140,7 +144,7 @@ namespace ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval {
         {
         }
         /// <summary>
-        /// Invoke function getActivitiesByInterval
+        /// Get a collection of itemActivityStats resources for the activities that took place on this resource within the specified time interval. Analytics aggregates might not be available for all action types.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -159,7 +163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getActivitiesByInterval
+        /// Get a collection of itemActivityStats resources for the activities that took place on this resource within the specified time interval. Analytics aggregates might not be available for all action types.
         /// </summary>
         public class GetActivitiesByIntervalRequestBuilderGetQueryParameters 
         {

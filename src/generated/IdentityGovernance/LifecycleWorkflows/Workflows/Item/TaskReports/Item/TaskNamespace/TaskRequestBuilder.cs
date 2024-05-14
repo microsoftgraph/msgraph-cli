@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Item.TaskNamespace {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Item.TaskNamespace
+{
     /// <summary>
     /// Provides operations to manage the task property of the microsoft.graph.identityGovernance.taskReport entity.
     /// </summary>
-    public class TaskRequestBuilder : BaseCliRequestBuilder 
+    public class TaskRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The related lifecycle workflow task.Supports $filter(eq, ne) and $expand.

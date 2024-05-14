@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
+namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item
+{
     /// <summary>
     /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
     /// </summary>
-    public class DelegatedAdminCustomerItemRequestBuilder : BaseCliRequestBuilder 
+    public class DelegatedAdminCustomerItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property delegatedAdminCustomers for tenantRelationships

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.Title.Format {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.Title.Format
+{
     /// <summary>
     /// Provides operations to manage the format property of the microsoft.graph.workbookChartAxisTitle entity.
     /// </summary>
-    public class FormatRequestBuilder : BaseCliRequestBuilder 
+    public class FormatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property format for drives

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
+namespace ApiSdk.Users.Item.Chats.Item.InstalledApps.Item.TeamsAppDefinition
+{
     /// <summary>
     /// Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
     /// </summary>
-    public class TeamsAppDefinitionRequestBuilder : BaseCliRequestBuilder 
+    public class TeamsAppDefinitionRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// The details of this version of the app.

@@ -13,11 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleGroups.Item.Ref {
+namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleGroups.Item.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of identityGovernance entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  

@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item {
+namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.Files.Item
+{
     /// <summary>
     /// Provides operations to manage the files property of the microsoft.graph.agreement entity.
     /// </summary>
-    public class AgreementFileLocalizationItemRequestBuilder : BaseCliRequestBuilder 
+    public class AgreementFileLocalizationItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property files for identityGovernance

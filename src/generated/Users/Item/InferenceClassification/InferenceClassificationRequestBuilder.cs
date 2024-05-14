@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.InferenceClassification {
+namespace ApiSdk.Users.Item.InferenceClassification
+{
     /// <summary>
     /// Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.
     /// </summary>
-    public class InferenceClassificationRequestBuilder : BaseCliRequestBuilder 
+    public class InferenceClassificationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.

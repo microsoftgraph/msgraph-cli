@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Item {
+namespace ApiSdk.Groups.Item.Sites.Item.Pages.Item.GraphSitePage.CanvasLayout.HorizontalSections.Item.Columns.Item.Webparts.Item
+{
     /// <summary>
     /// Provides operations to manage the webparts property of the microsoft.graph.horizontalSectionColumn entity.
     /// </summary>
-    public class WebPartItemRequestBuilder : BaseCliRequestBuilder 
+    public class WebPartItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property webparts for groups

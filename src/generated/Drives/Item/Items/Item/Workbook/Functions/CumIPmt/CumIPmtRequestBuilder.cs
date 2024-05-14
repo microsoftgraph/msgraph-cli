@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumIPmt {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumIPmt
+{
     /// <summary>
     /// Provides operations to call the cumIPmt method.
     /// </summary>
-    public class CumIPmtRequestBuilder : BaseCliRequestBuilder 
+    public class CumIPmtRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action cumIPmt

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class ClaimsMappingPolicy : StsPolicy, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class ClaimsMappingPolicy : StsPolicy, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>
         /// Instantiates a new <see cref="ClaimsMappingPolicy"/> and sets the default values.

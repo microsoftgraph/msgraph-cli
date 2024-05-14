@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UserRegistrationDetails : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UserRegistrationDetails : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates whether the user has an admin role in the tenant. This value can be used to check the authentication methods that privileged accounts are registered for and capable of.</summary>
         public bool? IsAdmin { get; set; }
@@ -79,21 +82,21 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"isAdmin", n => { IsAdmin = n.GetBoolValue(); } },
-                {"isMfaCapable", n => { IsMfaCapable = n.GetBoolValue(); } },
-                {"isMfaRegistered", n => { IsMfaRegistered = n.GetBoolValue(); } },
-                {"isPasswordlessCapable", n => { IsPasswordlessCapable = n.GetBoolValue(); } },
-                {"isSsprCapable", n => { IsSsprCapable = n.GetBoolValue(); } },
-                {"isSsprEnabled", n => { IsSsprEnabled = n.GetBoolValue(); } },
-                {"isSsprRegistered", n => { IsSsprRegistered = n.GetBoolValue(); } },
-                {"isSystemPreferredAuthenticationMethodEnabled", n => { IsSystemPreferredAuthenticationMethodEnabled = n.GetBoolValue(); } },
-                {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"methodsRegistered", n => { MethodsRegistered = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"systemPreferredAuthenticationMethods", n => { SystemPreferredAuthenticationMethods = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
-                {"userPreferredMethodForSecondaryAuthentication", n => { UserPreferredMethodForSecondaryAuthentication = n.GetEnumValue<UserDefaultAuthenticationMethod>(); } },
-                {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
-                {"userType", n => { UserType = n.GetEnumValue<SignInUserType>(); } },
+                { "isAdmin", n => { IsAdmin = n.GetBoolValue(); } },
+                { "isMfaCapable", n => { IsMfaCapable = n.GetBoolValue(); } },
+                { "isMfaRegistered", n => { IsMfaRegistered = n.GetBoolValue(); } },
+                { "isPasswordlessCapable", n => { IsPasswordlessCapable = n.GetBoolValue(); } },
+                { "isSsprCapable", n => { IsSsprCapable = n.GetBoolValue(); } },
+                { "isSsprEnabled", n => { IsSsprEnabled = n.GetBoolValue(); } },
+                { "isSsprRegistered", n => { IsSsprRegistered = n.GetBoolValue(); } },
+                { "isSystemPreferredAuthenticationMethodEnabled", n => { IsSystemPreferredAuthenticationMethodEnabled = n.GetBoolValue(); } },
+                { "lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "methodsRegistered", n => { MethodsRegistered = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "systemPreferredAuthenticationMethods", n => { SystemPreferredAuthenticationMethods = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                { "userDisplayName", n => { UserDisplayName = n.GetStringValue(); } },
+                { "userPreferredMethodForSecondaryAuthentication", n => { UserPreferredMethodForSecondaryAuthentication = n.GetEnumValue<UserDefaultAuthenticationMethod>(); } },
+                { "userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
+                { "userType", n => { UserType = n.GetEnumValue<SignInUserType>(); } },
             };
         }
         /// <summary>

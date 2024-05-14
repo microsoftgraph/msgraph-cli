@@ -26,11 +26,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Chats.Item {
+namespace ApiSdk.Users.Item.Chats.Item
+{
     /// <summary>
     /// Provides operations to manage the chats property of the microsoft.graph.user entity.
     /// </summary>
-    public class ChatItemRequestBuilder : BaseCliRequestBuilder 
+    public class ChatItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property chats for users

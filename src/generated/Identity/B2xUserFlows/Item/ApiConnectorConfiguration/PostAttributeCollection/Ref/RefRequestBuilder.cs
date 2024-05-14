@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.Ref {
+namespace ApiSdk.Identity.B2xUserFlows.Item.ApiConnectorConfiguration.PostAttributeCollection.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of identityContainer entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete ref of navigation property postAttributeCollection for identity

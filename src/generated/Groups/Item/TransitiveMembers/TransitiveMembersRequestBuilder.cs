@@ -22,11 +22,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Groups.Item.TransitiveMembers {
+namespace ApiSdk.Groups.Item.TransitiveMembers
+{
     /// <summary>
     /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
     /// </summary>
-    public class TransitiveMembersRequestBuilder : BaseCliRequestBuilder 
+    public class TransitiveMembersRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
@@ -202,14 +203,14 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             return command;
         }
         /// <summary>
-        /// The direct and transitive members of a group. Nullable.
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildListCommand()
         {
             var command = new Command("list");
-            command.Description = "The direct and transitive members of a group. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
+            command.Description = "Get a list of the group's members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -298,7 +299,9 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -324,7 +327,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         {
         }
         /// <summary>
-        /// The direct and transitive members of a group. Nullable.
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -343,7 +346,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             return requestInfo;
         }
         /// <summary>
-        /// The direct and transitive members of a group. Nullable.
+        /// Get a list of the group&apos;s members. A group can have different object types as members. For more information about supported member types for different groups, see Group membership. This operation is transitive and returns a flat list of all nested members. An attempt to filter by an OData cast that represents an unsupported member type returns a 400 Bad Request error with the Request_UnsupportedQuery code.
         /// </summary>
         public class TransitiveMembersRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat {
+namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardFormat
+{
     /// <summary>
     /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
     /// </summary>
-    public class AssignedToTaskBoardFormatRequestBuilder : BaseCliRequestBuilder 
+    public class AssignedToTaskBoardFormatRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignedToTaskBoardFormat for planner
@@ -68,14 +69,13 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -134,13 +134,12 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
         }
         /// <summary>
         /// Update the navigation property assignedToTaskBoardFormat in planner
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignedToTaskBoardFormat in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property assignedToTaskBoardFormat in planner";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -237,7 +236,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +276,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a plannerAssignedToTaskBoardTaskFormat object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
         /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Manager.Ref {
+namespace ApiSdk.Users.Item.Manager.Ref
+{
     /// <summary>
     /// Provides operations to manage the collection of user entities.
     /// </summary>
-    public class RefRequestBuilder : BaseCliRequestBuilder 
+    public class RefRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Remove a user&apos;s manager.

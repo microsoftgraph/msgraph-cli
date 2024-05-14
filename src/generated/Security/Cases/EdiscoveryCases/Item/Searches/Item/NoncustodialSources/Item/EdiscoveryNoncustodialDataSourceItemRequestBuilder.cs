@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialSources.Item {
+namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialSources.Item
+{
     /// <summary>
     /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder : BaseCliRequestBuilder 
+    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// noncustodialDataSource sources that are included in the eDiscovery search

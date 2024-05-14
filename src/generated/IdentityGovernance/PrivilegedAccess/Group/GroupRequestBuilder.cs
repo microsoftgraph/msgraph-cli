@@ -21,11 +21,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group {
+namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group
+{
     /// <summary>
     /// Provides operations to manage the group property of the microsoft.graph.privilegedAccessRoot entity.
     /// </summary>
-    public class GroupRequestBuilder : BaseCliRequestBuilder 
+    public class GroupRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the assignmentApprovals property of the microsoft.graph.privilegedAccessGroup entity.

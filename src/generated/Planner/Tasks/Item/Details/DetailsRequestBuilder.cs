@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Planner.Tasks.Item.Details {
+namespace ApiSdk.Planner.Tasks.Item.Details
+{
     /// <summary>
     /// Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
     /// </summary>
-    public class DetailsRequestBuilder : BaseCliRequestBuilder 
+    public class DetailsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property details for planner
@@ -109,14 +110,14 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Update the navigation property details in planner
+        /// Update the properties of plannerTaskDetails object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in planner\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of plannerTaskDetails object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property details in planner
+        /// Update the properties of plannerTaskDetails object.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchronization {
+namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchronization
+{
     /// <summary>
     /// Provides operations to manage the identitySynchronization property of the microsoft.graph.crossTenantAccessPolicyConfigurationPartner entity.
     /// </summary>
-    public class IdentitySynchronizationRequestBuilder : BaseCliRequestBuilder 
+    public class IdentitySynchronizationRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete the user synchronization policy for a partner-specific configuration.
@@ -110,13 +111,14 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return command;
         }
         /// <summary>
-        /// Update the navigation property identitySynchronization in policies
+        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPutCommand()
         {
             var command = new Command("put");
-            command.Description = "Update the navigation property identitySynchronization in policies";
+            command.Description = "Create a cross-tenant user synchronization policy for a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -213,7 +215,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property identitySynchronization in policies
+        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

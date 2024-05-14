@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class UserLastSignInRecommendationInsightSetting : AccessReviewRecommendationInsightSetting, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class UserLastSignInRecommendationInsightSetting : AccessReviewRecommendationInsightSetting, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Optional. Indicates the time period of inactivity (with respect to the start date of the review instance) that recommendations will be configured from. The recommendation will be to deny if the user is inactive during the look-back duration. For reviews of groups and Microsoft Entra roles, any duration is accepted. For reviews of applications, 30 days is the maximum duration. If not specified, the duration is 30 days.</summary>
         public TimeSpan? RecommendationLookBackDuration { get; set; }
@@ -36,8 +39,8 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"recommendationLookBackDuration", n => { RecommendationLookBackDuration = n.GetTimeSpanValue(); } },
-                {"signInScope", n => { SignInScope = n.GetEnumValue<UserSignInRecommendationScope>(); } },
+                { "recommendationLookBackDuration", n => { RecommendationLookBackDuration = n.GetTimeSpanValue(); } },
+                { "signInScope", n => { SignInScope = n.GetEnumValue<UserSignInRecommendationScope>(); } },
             };
         }
         /// <summary>

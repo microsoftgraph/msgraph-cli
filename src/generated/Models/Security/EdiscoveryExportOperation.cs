@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.Security {
-    public class EdiscoveryExportOperation : CaseOperation, IParsable 
+namespace ApiSdk.Models.Security
+{
+    #pragma warning disable CS1591
+    public class EdiscoveryExportOperation : CaseOperation, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The description provided for the export.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,13 +72,13 @@ namespace ApiSdk.Models.Security {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"description", n => { Description = n.GetStringValue(); } },
-                {"exportFileMetadata", n => { ExportFileMetadata = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ExportFileMetadata>(ApiSdk.Models.Security.ExportFileMetadata.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"exportOptions", n => { ExportOptions = n.GetEnumValue<ExportOptions>(); } },
-                {"exportStructure", n => { ExportStructure = n.GetEnumValue<ExportFileStructure>(); } },
-                {"outputName", n => { OutputName = n.GetStringValue(); } },
-                {"reviewSet", n => { ReviewSet = n.GetObjectValue<EdiscoveryReviewSet>(EdiscoveryReviewSet.CreateFromDiscriminatorValue); } },
-                {"reviewSetQuery", n => { ReviewSetQuery = n.GetObjectValue<EdiscoveryReviewSetQuery>(EdiscoveryReviewSetQuery.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "exportFileMetadata", n => { ExportFileMetadata = n.GetCollectionOfObjectValues<ApiSdk.Models.Security.ExportFileMetadata>(ApiSdk.Models.Security.ExportFileMetadata.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "exportOptions", n => { ExportOptions = n.GetEnumValue<ExportOptions>(); } },
+                { "exportStructure", n => { ExportStructure = n.GetEnumValue<ExportFileStructure>(); } },
+                { "outputName", n => { OutputName = n.GetStringValue(); } },
+                { "reviewSet", n => { ReviewSet = n.GetObjectValue<EdiscoveryReviewSet>(EdiscoveryReviewSet.CreateFromDiscriminatorValue); } },
+                { "reviewSetQuery", n => { ReviewSetQuery = n.GetObjectValue<EdiscoveryReviewSetQuery>(EdiscoveryReviewSetQuery.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

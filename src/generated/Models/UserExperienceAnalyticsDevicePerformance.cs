@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// The user experience analytics device performance entity contains device boot performance details.
     /// </summary>
-    public class UserExperienceAnalyticsDevicePerformance : Entity, IParsable 
+    public class UserExperienceAnalyticsDevicePerformance : Entity, IParsable
     {
         /// <summary>Average (mean) number of Blue Screens per device in the last 30 days. Valid values 0 to 9999999</summary>
         public double? AverageBlueScreens { get; set; }
@@ -92,26 +93,26 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"averageBlueScreens", n => { AverageBlueScreens = n.GetDoubleValue(); } },
-                {"averageRestarts", n => { AverageRestarts = n.GetDoubleValue(); } },
-                {"blueScreenCount", n => { BlueScreenCount = n.GetIntValue(); } },
-                {"bootScore", n => { BootScore = n.GetIntValue(); } },
-                {"coreBootTimeInMs", n => { CoreBootTimeInMs = n.GetIntValue(); } },
-                {"coreLoginTimeInMs", n => { CoreLoginTimeInMs = n.GetIntValue(); } },
-                {"deviceCount", n => { DeviceCount = n.GetLongValue(); } },
-                {"deviceName", n => { DeviceName = n.GetStringValue(); } },
-                {"diskType", n => { DiskType = n.GetEnumValue<DiskType>(); } },
-                {"groupPolicyBootTimeInMs", n => { GroupPolicyBootTimeInMs = n.GetIntValue(); } },
-                {"groupPolicyLoginTimeInMs", n => { GroupPolicyLoginTimeInMs = n.GetIntValue(); } },
-                {"healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
-                {"loginScore", n => { LoginScore = n.GetIntValue(); } },
-                {"manufacturer", n => { Manufacturer = n.GetStringValue(); } },
-                {"model", n => { Model = n.GetStringValue(); } },
-                {"modelStartupPerformanceScore", n => { ModelStartupPerformanceScore = n.GetDoubleValue(); } },
-                {"operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
-                {"responsiveDesktopTimeInMs", n => { ResponsiveDesktopTimeInMs = n.GetIntValue(); } },
-                {"restartCount", n => { RestartCount = n.GetIntValue(); } },
-                {"startupPerformanceScore", n => { StartupPerformanceScore = n.GetDoubleValue(); } },
+                { "averageBlueScreens", n => { AverageBlueScreens = n.GetDoubleValue(); } },
+                { "averageRestarts", n => { AverageRestarts = n.GetDoubleValue(); } },
+                { "blueScreenCount", n => { BlueScreenCount = n.GetIntValue(); } },
+                { "bootScore", n => { BootScore = n.GetIntValue(); } },
+                { "coreBootTimeInMs", n => { CoreBootTimeInMs = n.GetIntValue(); } },
+                { "coreLoginTimeInMs", n => { CoreLoginTimeInMs = n.GetIntValue(); } },
+                { "deviceCount", n => { DeviceCount = n.GetLongValue(); } },
+                { "deviceName", n => { DeviceName = n.GetStringValue(); } },
+                { "diskType", n => { DiskType = n.GetEnumValue<DiskType>(); } },
+                { "groupPolicyBootTimeInMs", n => { GroupPolicyBootTimeInMs = n.GetIntValue(); } },
+                { "groupPolicyLoginTimeInMs", n => { GroupPolicyLoginTimeInMs = n.GetIntValue(); } },
+                { "healthStatus", n => { HealthStatus = n.GetEnumValue<UserExperienceAnalyticsHealthState>(); } },
+                { "loginScore", n => { LoginScore = n.GetIntValue(); } },
+                { "manufacturer", n => { Manufacturer = n.GetStringValue(); } },
+                { "model", n => { Model = n.GetStringValue(); } },
+                { "modelStartupPerformanceScore", n => { ModelStartupPerformanceScore = n.GetDoubleValue(); } },
+                { "operatingSystemVersion", n => { OperatingSystemVersion = n.GetStringValue(); } },
+                { "responsiveDesktopTimeInMs", n => { ResponsiveDesktopTimeInMs = n.GetIntValue(); } },
+                { "restartCount", n => { RestartCount = n.GetIntValue(); } },
+                { "startupPerformanceScore", n => { StartupPerformanceScore = n.GetDoubleValue(); } },
             };
         }
         /// <summary>

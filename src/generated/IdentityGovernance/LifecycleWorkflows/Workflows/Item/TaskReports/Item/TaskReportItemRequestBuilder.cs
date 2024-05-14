@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.TaskReports.Item
+{
     /// <summary>
     /// Provides operations to manage the taskReports property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class TaskReportItemRequestBuilder : BaseCliRequestBuilder 
+    public class TaskReportItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Represents the aggregation of task execution data for tasks within a workflow object.

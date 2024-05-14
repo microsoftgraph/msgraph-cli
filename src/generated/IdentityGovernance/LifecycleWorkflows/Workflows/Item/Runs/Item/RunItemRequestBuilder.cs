@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item {
+namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.Runs.Item
+{
     /// <summary>
     /// Provides operations to manage the runs property of the microsoft.graph.identityGovernance.workflow entity.
     /// </summary>
-    public class RunItemRequestBuilder : BaseCliRequestBuilder 
+    public class RunItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Read the properties and relationships of a run object.

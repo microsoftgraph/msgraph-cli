@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.GalleryImages.Item
+{
     /// <summary>
     /// Provides operations to manage the galleryImages property of the microsoft.graph.virtualEndpoint entity.
     /// </summary>
-    public class CloudPcGalleryImageItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPcGalleryImageItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property galleryImages for deviceManagement

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class EmailPayloadDetail : PayloadDetail, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class EmailPayloadDetail : PayloadDetail, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Email address of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -58,10 +61,10 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"fromEmail", n => { FromEmail = n.GetStringValue(); } },
-                {"fromName", n => { FromName = n.GetStringValue(); } },
-                {"isExternalSender", n => { IsExternalSender = n.GetBoolValue(); } },
-                {"subject", n => { Subject = n.GetStringValue(); } },
+                { "fromEmail", n => { FromEmail = n.GetStringValue(); } },
+                { "fromName", n => { FromName = n.GetStringValue(); } },
+                { "isExternalSender", n => { IsExternalSender = n.GetBoolValue(); } },
+                { "subject", n => { Subject = n.GetStringValue(); } },
             };
         }
         /// <summary>

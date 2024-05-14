@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Settings {
+namespace ApiSdk.Users.Item.Settings
+{
     /// <summary>
     /// Provides operations to manage the settings property of the microsoft.graph.user entity.
     /// </summary>
-    public class SettingsRequestBuilder : BaseCliRequestBuilder 
+    public class SettingsRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property settings for users
@@ -58,14 +59,13 @@ namespace ApiSdk.Users.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/usersettings-get?view=graph-rest-1.0" />
+        /// Get settings from users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/usersettings-get?view=graph-rest-1.0";
+            command.Description = "Get settings from users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -111,14 +111,13 @@ namespace ApiSdk.Users.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. 
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/usersettings-update?view=graph-rest-1.0" />
+        /// Update the navigation property settings in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/usersettings-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property settings in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -242,7 +241,7 @@ namespace ApiSdk.Users.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.
+        /// Get settings from users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -261,7 +260,7 @@ namespace ApiSdk.Users.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of the userSettings object. Users in the same organization can have different settings based on their preference or on the organization policies. To get the user current settings, see current user settings. 
+        /// Update the navigation property settings in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -282,7 +281,7 @@ namespace ApiSdk.Users.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Read the user and organization userSettings object.To learn how to update the properties of the userSettings object, see update user settings.
+        /// Get settings from users
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters 
         {

@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match
+{
     /// <summary>
     /// Provides operations to call the match method.
     /// </summary>
-    public class MatchRequestBuilder : BaseCliRequestBuilder 
+    public class MatchRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action match

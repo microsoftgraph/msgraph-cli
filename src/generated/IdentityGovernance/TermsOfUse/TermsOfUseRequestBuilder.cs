@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.IdentityGovernance.TermsOfUse {
+namespace ApiSdk.IdentityGovernance.TermsOfUse
+{
     /// <summary>
     /// Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
     /// </summary>
-    public class TermsOfUseRequestBuilder : BaseCliRequestBuilder 
+    public class TermsOfUseRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.

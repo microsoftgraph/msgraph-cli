@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
+namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item
+{
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
     /// </summary>
-    public class BookingAppointmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class BookingAppointmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the cancel method.

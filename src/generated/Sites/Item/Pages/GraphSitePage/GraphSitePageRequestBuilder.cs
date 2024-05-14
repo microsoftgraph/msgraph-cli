@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Pages.GraphSitePage {
+namespace ApiSdk.Sites.Item.Pages.GraphSitePage
+{
     /// <summary>
     /// Casts the previous resource to sitePage.
     /// </summary>
-    public class GraphSitePageRequestBuilder : BaseCliRequestBuilder 
+    public class GraphSitePageRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -39,13 +40,14 @@ namespace ApiSdk.Sites.Item.Pages.GraphSitePage {
             return command;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.sitePage in the microsoft.graph.baseSitePage collection
+        /// Returns the metadata for a sitePage in the site pages list in a site.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Get the items of type microsoft.graph.sitePage in the microsoft.graph.baseSitePage collection";
+            command.Description = "Returns the metadata for a sitePage in the site pages list in a site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sitepage-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -127,7 +129,9 @@ namespace ApiSdk.Sites.Item.Pages.GraphSitePage {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -153,7 +157,7 @@ namespace ApiSdk.Sites.Item.Pages.GraphSitePage {
         {
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.sitePage in the microsoft.graph.baseSitePage collection
+        /// Returns the metadata for a sitePage in the site pages list in a site.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -172,7 +176,7 @@ namespace ApiSdk.Sites.Item.Pages.GraphSitePage {
             return requestInfo;
         }
         /// <summary>
-        /// Get the items of type microsoft.graph.sitePage in the microsoft.graph.baseSitePage collection
+        /// Returns the metadata for a sitePage in the site pages list in a site.
         /// </summary>
         public class GraphSitePageRequestBuilderGetQueryParameters 
         {

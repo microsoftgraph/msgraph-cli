@@ -18,11 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Print.Shares.Item {
+namespace ApiSdk.Print.Shares.Item
+{
     /// <summary>
     /// Provides operations to manage the shares property of the microsoft.graph.print entity.
     /// </summary>
-    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder 
+    public class PrinterShareItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the allowedGroups property of the microsoft.graph.printerShare entity.

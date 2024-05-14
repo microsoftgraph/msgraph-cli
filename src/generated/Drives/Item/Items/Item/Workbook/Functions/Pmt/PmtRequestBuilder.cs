@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pmt {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pmt
+{
     /// <summary>
     /// Provides operations to call the pmt method.
     /// </summary>
-    public class PmtRequestBuilder : BaseCliRequestBuilder 
+    public class PmtRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action pmt

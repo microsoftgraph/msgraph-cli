@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments.Item {
+namespace ApiSdk.DeviceManagement.VirtualEndpoint.UserSettings.Item.Assignments.Item
+{
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.cloudPcUserSetting entity.
     /// </summary>
-    public class CloudPcUserSettingAssignmentItemRequestBuilder : BaseCliRequestBuilder 
+    public class CloudPcUserSettingAssignmentItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property assignments for deviceManagement

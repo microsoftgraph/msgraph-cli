@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models.ODataErrors {
-    public class MainError : IAdditionalDataHolder, IParsable 
+namespace ApiSdk.Models.ODataErrors
+{
+    #pragma warning disable CS1591
+    public class MainError : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -74,11 +77,11 @@ namespace ApiSdk.Models.ODataErrors {
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                {"code", n => { Code = n.GetStringValue(); } },
-                {"details", n => { Details = n.GetCollectionOfObjectValues<ErrorDetails>(ErrorDetails.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"innerError", n => { InnerError = n.GetObjectValue<ApiSdk.Models.ODataErrors.InnerError>(ApiSdk.Models.ODataErrors.InnerError.CreateFromDiscriminatorValue); } },
-                {"message", n => { Message = n.GetStringValue(); } },
-                {"target", n => { Target = n.GetStringValue(); } },
+                { "code", n => { Code = n.GetStringValue(); } },
+                { "details", n => { Details = n.GetCollectionOfObjectValues<ErrorDetails>(ErrorDetails.CreateFromDiscriminatorValue)?.ToList(); } },
+                { "innerError", n => { InnerError = n.GetObjectValue<ApiSdk.Models.ODataErrors.InnerError>(ApiSdk.Models.ODataErrors.InnerError.CreateFromDiscriminatorValue); } },
+                { "message", n => { Message = n.GetStringValue(); } },
+                { "target", n => { Target = n.GetStringValue(); } },
             };
         }
         /// <summary>

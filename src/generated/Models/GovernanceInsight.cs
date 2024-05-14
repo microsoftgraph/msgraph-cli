@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class GovernanceInsight : Entity, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class GovernanceInsight : Entity, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Indicates when the insight was created.</summary>
         public DateTimeOffset? InsightCreatedDateTime { get; set; }
@@ -33,7 +36,7 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"insightCreatedDateTime", n => { InsightCreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "insightCreatedDateTime", n => { InsightCreatedDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>

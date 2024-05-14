@@ -15,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
+namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item
+{
     /// <summary>
     /// Provides operations to manage the historyItems property of the microsoft.graph.userActivity entity.
     /// </summary>
-    public class ActivityHistoryItemItemRequestBuilder : BaseCliRequestBuilder 
+    public class ActivityHistoryItemItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.
@@ -150,14 +151,13 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return command;
         }
         /// <summary>
-        /// Create a new or replace an existing history item for an existing user activity.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0" />
+        /// Update the navigation property historyItems in users
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildPatchCommand()
         {
             var command = new Command("patch");
-            command.Description = "Create a new or replace an existing history item for an existing user activity.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/projectrome-put-historyitem?view=graph-rest-1.0";
+            command.Description = "Update the navigation property historyItems in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -266,7 +266,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new or replace an existing history item for an existing user activity.
+        /// Update the navigation property historyItems in users
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

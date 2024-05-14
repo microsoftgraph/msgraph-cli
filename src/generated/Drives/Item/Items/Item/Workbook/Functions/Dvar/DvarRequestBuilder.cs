@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dvar {
+namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dvar
+{
     /// <summary>
     /// Provides operations to call the dvar method.
     /// </summary>
-    public class DvarRequestBuilder : BaseCliRequestBuilder 
+    public class DvarRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Invoke action dvar

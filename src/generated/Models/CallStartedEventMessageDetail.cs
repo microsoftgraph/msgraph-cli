@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class CallStartedEventMessageDetail : EventMessageDetail, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class CallStartedEventMessageDetail : EventMessageDetail, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Represents the call event type. Possible values are: call, meeting, screenShare, unknownFutureValue.</summary>
         public TeamworkCallEventType? CallEventType { get; set; }
@@ -50,9 +53,9 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"callEventType", n => { CallEventType = n.GetEnumValue<TeamworkCallEventType>(); } },
-                {"callId", n => { CallId = n.GetStringValue(); } },
-                {"initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
+                { "callEventType", n => { CallEventType = n.GetEnumValue<TeamworkCallEventType>(); } },
+                { "callId", n => { CallId = n.GetStringValue(); } },
+                { "initiator", n => { Initiator = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

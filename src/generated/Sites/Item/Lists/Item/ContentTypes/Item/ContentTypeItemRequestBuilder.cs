@@ -24,11 +24,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
+namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item
+{
     /// <summary>
     /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
     /// </summary>
-    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder 
+    public class ContentTypeItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to call the associateWithHubSites method.

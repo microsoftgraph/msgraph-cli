@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps.Item {
+namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps.Item
+{
     /// <summary>
     /// Provides operations to manage the apps property of the microsoft.graph.iosManagedAppProtection entity.
     /// </summary>
-    public class ManagedMobileAppItemRequestBuilder : BaseCliRequestBuilder 
+    public class ManagedMobileAppItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Deletes a managedMobileApp.

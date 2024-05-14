@@ -13,20 +13,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
+namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole
+{
     /// <summary>
     /// Provides operations to call the getByUserRole method.
     /// </summary>
-    public class GetByUserRoleWithRoleRequestBuilder : BaseCliRequestBuilder 
+    public class GetByUserRoleWithRoleRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
-        /// Invoke function getByUserRole
+        /// Get a virtualEventWebinar collection where the signed-in user is either the organizer or a coorganizer.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/virtualeventwebinar-getbyuserrole?view=graph-rest-1.0" />
         /// </summary>
         /// <returns>A <see cref="Command"/></returns>
         public Command BuildGetCommand()
         {
             var command = new Command("get");
-            command.Description = "Invoke function getByUserRole";
+            command.Description = "Get a virtualEventWebinar collection where the signed-in user is either the organizer or a coorganizer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/virtualeventwebinar-getbyuserrole?view=graph-rest-1.0";
             var roleOption = new Option<string>("--role", description: "Usage: role='{role}'") {
             };
             roleOption.IsRequired = true;
@@ -108,7 +110,9 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
+#nullable enable
                 IOutputFormatter? formatter = null;
+#nullable restore
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
@@ -134,7 +138,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
         {
         }
         /// <summary>
-        /// Invoke function getByUserRole
+        /// Get a virtualEventWebinar collection where the signed-in user is either the organizer or a coorganizer.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -153,7 +157,7 @@ namespace ApiSdk.Solutions.VirtualEvents.Webinars.GetByUserRoleWithRole {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function getByUserRole
+        /// Get a virtualEventWebinar collection where the signed-in user is either the organizer or a coorganizer.
         /// </summary>
         public class GetByUserRoleWithRoleRequestBuilderGetQueryParameters 
         {

@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
+namespace ApiSdk.Models
+{
     /// <summary>
     /// Contains properties and inherited properties for the MacOS Office Suite App.
     /// </summary>
-    public class MacOSOfficeSuiteApp : MobileApp, IParsable 
+    public class MacOSOfficeSuiteApp : MobileApp, IParsable
     {
         /// <summary>
         /// Instantiates a new <see cref="MacOSOfficeSuiteApp"/> and sets the default values.

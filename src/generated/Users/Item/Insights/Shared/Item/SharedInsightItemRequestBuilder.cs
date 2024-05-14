@@ -16,11 +16,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Insights.Shared.Item {
+namespace ApiSdk.Users.Item.Insights.Shared.Item
+{
     /// <summary>
     /// Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.
     /// </summary>
-    public class SharedInsightItemRequestBuilder : BaseCliRequestBuilder 
+    public class SharedInsightItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Delete navigation property shared for users

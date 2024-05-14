@@ -14,11 +14,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Education.Users.Item.TaughtClasses.Item {
+namespace ApiSdk.Education.Users.Item.TaughtClasses.Item
+{
     /// <summary>
     /// Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.
     /// </summary>
-    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder 
+    public class EducationClassItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Classes for which the user is a teacher.

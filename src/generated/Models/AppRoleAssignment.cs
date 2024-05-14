@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
-namespace ApiSdk.Models {
-    public class AppRoleAssignment : DirectoryObject, IParsable 
+namespace ApiSdk.Models
+{
+    #pragma warning disable CS1591
+    public class AppRoleAssignment : DirectoryObject, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>The identifier (id) for the app role which is assigned to the principal. This app role must be exposed in the appRoles property on the resource application&apos;s service principal (resourceId). If the resource application has not declared any app roles, a default app role ID of 00000000-0000-0000-0000-000000000000 can be specified to signal that the principal is assigned to the resource app without any specific app roles. Required on create.</summary>
         public Guid? AppRoleId { get; set; }
@@ -64,13 +67,13 @@ namespace ApiSdk.Models {
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                {"appRoleId", n => { AppRoleId = n.GetGuidValue(); } },
-                {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"principalDisplayName", n => { PrincipalDisplayName = n.GetStringValue(); } },
-                {"principalId", n => { PrincipalId = n.GetGuidValue(); } },
-                {"principalType", n => { PrincipalType = n.GetStringValue(); } },
-                {"resourceDisplayName", n => { ResourceDisplayName = n.GetStringValue(); } },
-                {"resourceId", n => { ResourceId = n.GetGuidValue(); } },
+                { "appRoleId", n => { AppRoleId = n.GetGuidValue(); } },
+                { "createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                { "principalDisplayName", n => { PrincipalDisplayName = n.GetStringValue(); } },
+                { "principalId", n => { PrincipalId = n.GetGuidValue(); } },
+                { "principalType", n => { PrincipalType = n.GetStringValue(); } },
+                { "resourceDisplayName", n => { ResourceDisplayName = n.GetStringValue(); } },
+                { "resourceId", n => { ResourceId = n.GetGuidValue(); } },
             };
         }
         /// <summary>

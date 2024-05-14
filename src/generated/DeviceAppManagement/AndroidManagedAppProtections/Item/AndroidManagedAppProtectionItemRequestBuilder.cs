@@ -17,11 +17,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
+namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item
+{
     /// <summary>
     /// Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class AndroidManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder 
+    public class AndroidManagedAppProtectionItemRequestBuilder : BaseCliRequestBuilder
     {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.androidManagedAppProtection entity.
